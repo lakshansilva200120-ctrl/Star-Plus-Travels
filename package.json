@@ -1,9 +1,12 @@
 {
   "name": "starplus-travels",
   "version": "2.0.0",
-  "private": true,
-  "description": "Star Plus Travel and Tourism LLC Web Platform",
+  "description": "Official website and careers portal for Star Plus Travel and Tourism LLC",
+  "main": "index.html",
   "scripts": {
     "build": "echo \"Static build ready\""
-  }
+  },
+  "dependencies": {},
+  "author": "Lupo",
+  "license": "UNLICENSED"
 }
