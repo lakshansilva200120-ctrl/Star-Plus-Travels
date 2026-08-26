@@ -844,8 +844,10 @@ function applyTheme(theme, save = true) {
 
   if (isDark) {
     root.classList.add('dark');
+    root.classList.remove('light');
   } else {
     root.classList.remove('dark');
+    root.classList.add('light');
   }
 
   if (save) {

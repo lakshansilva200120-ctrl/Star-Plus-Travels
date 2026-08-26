@@ -73,16 +73,19 @@
   }
   </script>
 
-  <!-- Immediate Theme Initialization Script (Zero-Flicker) -->
+  <!-- Immediate Theme Initialization Script (Zero-Flicker & OS Auto-Sync) -->
   <script>
     (function() {
       try {
         const storedTheme = localStorage.getItem('starplus_theme');
         const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (storedTheme === 'dark' || (!storedTheme && systemDark)) {
+        const isDark = storedTheme === 'dark' || (!storedTheme && systemDark);
+        if (isDark) {
           document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
         } else {
           document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
         }
       } catch (e) {}
     })();
