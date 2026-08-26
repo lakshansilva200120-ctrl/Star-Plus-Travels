@@ -5,7 +5,7 @@
    Design System & Theme CSS Variables
    ========================================================================== */
 
-/* Default Tokens: Light Mode */
+/* 1. Default Tokens: Light Mode */
 :root {
   --primary-dark: #070e17;
   --ocean-deep: #0b192c;
@@ -15,12 +15,12 @@
   --accent-gold-hover: #d97706;
   --accent-coral: #ff6b6b;
 
-  /* Theme-specific tokens: Light Mode */
+  /* Semantic Theme Tokens: Light Mode */
   --theme-bg-base: #f8fafc;
   --theme-bg-surface: #ffffff;
   --theme-bg-surface-elevated: #f1f5f9;
   --theme-bg-nav: rgba(255, 255, 255, 0.92);
-  --theme-bg-card: rgba(255, 255, 255, 0.94);
+  --theme-bg-card: rgba(255, 255, 255, 0.96);
   --theme-bg-card-hover: #ffffff;
   --theme-bg-input: #ffffff;
   --theme-border-subtle: rgba(15, 23, 42, 0.08);
@@ -34,21 +34,22 @@
   --theme-scrollbar-track: #f1f5f9;
   --theme-scrollbar-thumb: #cbd5e1;
   --theme-glow-opacity: 0.12;
+  --theme-modal-backdrop: rgba(15, 23, 42, 0.75);
 }
 
-/* Automatic OS System Preference: Dark Mode */
+/* 2. Automatic OS System Preference: Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
     --theme-bg-base: #070e17;
     --theme-bg-surface: #0b192c;
     --theme-bg-surface-elevated: #0f1d32;
     --theme-bg-nav: rgba(7, 14, 23, 0.88);
-    --theme-bg-card: rgba(15, 29, 50, 0.82);
-    --theme-bg-card-hover: rgba(22, 43, 73, 0.92);
-    --theme-bg-input: rgba(11, 25, 44, 0.70);
+    --theme-bg-card: rgba(15, 29, 50, 0.85);
+    --theme-bg-card-hover: rgba(22, 43, 73, 0.94);
+    --theme-bg-input: rgba(11, 25, 44, 0.80);
     --theme-border-subtle: rgba(255, 255, 255, 0.08);
-    --theme-border-card: rgba(255, 255, 255, 0.08);
-    --theme-border-input: rgba(255, 255, 255, 0.14);
+    --theme-border-card: rgba(255, 255, 255, 0.09);
+    --theme-border-input: rgba(255, 255, 255, 0.15);
     --theme-text-primary: #f8fafc;
     --theme-text-secondary: #cbd5e1;
     --theme-text-muted: #94a3b8;
@@ -57,21 +58,22 @@
     --theme-scrollbar-track: #070e17;
     --theme-scrollbar-thumb: #1e3e62;
     --theme-glow-opacity: 0.28;
+    --theme-modal-backdrop: rgba(7, 14, 23, 0.88);
   }
 }
 
-/* Explicit Dark Mode Override */
+/* 3. Explicit Dark Mode Class Override */
 html.dark {
   --theme-bg-base: #070e17;
   --theme-bg-surface: #0b192c;
   --theme-bg-surface-elevated: #0f1d32;
   --theme-bg-nav: rgba(7, 14, 23, 0.88);
-  --theme-bg-card: rgba(15, 29, 50, 0.82);
-  --theme-bg-card-hover: rgba(22, 43, 73, 0.92);
-  --theme-bg-input: rgba(11, 25, 44, 0.70);
+  --theme-bg-card: rgba(15, 29, 50, 0.85);
+  --theme-bg-card-hover: rgba(22, 43, 73, 0.94);
+  --theme-bg-input: rgba(11, 25, 44, 0.80);
   --theme-border-subtle: rgba(255, 255, 255, 0.08);
-  --theme-border-card: rgba(255, 255, 255, 0.08);
-  --theme-border-input: rgba(255, 255, 255, 0.14);
+  --theme-border-card: rgba(255, 255, 255, 0.09);
+  --theme-border-input: rgba(255, 255, 255, 0.15);
   --theme-text-primary: #f8fafc;
   --theme-text-secondary: #cbd5e1;
   --theme-text-muted: #94a3b8;
@@ -80,15 +82,16 @@ html.dark {
   --theme-scrollbar-track: #070e17;
   --theme-scrollbar-thumb: #1e3e62;
   --theme-glow-opacity: 0.28;
+  --theme-modal-backdrop: rgba(7, 14, 23, 0.88);
 }
 
-/* Explicit Light Mode Override */
+/* 4. Explicit Light Mode Class Override */
 html.light {
   --theme-bg-base: #f8fafc;
   --theme-bg-surface: #ffffff;
   --theme-bg-surface-elevated: #f1f5f9;
   --theme-bg-nav: rgba(255, 255, 255, 0.92);
-  --theme-bg-card: rgba(255, 255, 255, 0.94);
+  --theme-bg-card: rgba(255, 255, 255, 0.96);
   --theme-bg-card-hover: #ffffff;
   --theme-bg-input: #ffffff;
   --theme-border-subtle: rgba(15, 23, 42, 0.08);
@@ -102,6 +105,7 @@ html.light {
   --theme-scrollbar-track: #f1f5f9;
   --theme-scrollbar-thumb: #cbd5e1;
   --theme-glow-opacity: 0.12;
+  --theme-modal-backdrop: rgba(15, 23, 42, 0.75);
 }
 
 * {
@@ -168,13 +172,8 @@ h1, h2, h3, h4, .font-heading {
   outline: none;
 }
 
-html:not(.dark) .glass-input {
-  background-color: #ffffff;
-  color: #0f172a;
-}
-
-html:not(.dark) .glass-input::placeholder {
-  color: #94a3b8;
+.glass-input::placeholder {
+  color: var(--theme-text-muted);
 }
 
 /* Custom Scrollbar */
@@ -312,16 +311,27 @@ html:not(.dark) .glass-input::placeholder {
 
 /* Modal styles */
 .modal-backdrop {
-  background-color: rgba(7, 14, 23, 0.85);
+  background-color: var(--theme-modal-backdrop);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
 /* Custom Dropdown Styling */
 select option {
-  background-color: #0b192c;
-  color: #ffffff;
+  background-color: var(--theme-bg-surface);
+  color: var(--theme-text-primary);
   padding: 10px;
+}
+
+html.dark select option,
+:root:not(.light) select option {
+  background-color: #0b192c;
+  color: #f8fafc;
+}
+
+html.light select option {
+  background-color: #ffffff;
+  color: #0f172a;
 }
 
 /* Toast container */
