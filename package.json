@@ -1,24 +1,9 @@
 {
   "name": "starplus-travels",
   "version": "2.0.0",
-  "description": "Official Website and Careers Portal for Star Plus Travel & Tourism LLC",
   "private": true,
-  "type": "module",
+  "description": "Star Plus Travel and Tourism LLC Web Platform",
   "scripts": {
-    "dev": "powershell -ExecutionPolicy Bypass -File ./server.ps1",
-    "start": "powershell -ExecutionPolicy Bypass -File ./server.ps1",
-    "build": "powershell -ExecutionPolicy Bypass -File ./build.ps1",
-    "validate": "powershell -ExecutionPolicy Bypass -File ./validate.ps1"
-  },
-  "keywords": [
-    "travel",
-    "tourism",
-    "dubai",
-    "uae",
-    "sri-lanka",
-    "visa",
-    "holiday-packages"
-  ],
-  "author": "Lupo",
-  "license": "UNLICENSED"
+    "build": "echo \"Static build ready\""
+  }
 }
