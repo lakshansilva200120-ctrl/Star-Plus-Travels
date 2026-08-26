@@ -496,7 +496,7 @@ html.dark.season-eid .glass-card:hover {
 }
 
 /* ==========================================================================
-   Luxury Brand Preloader
+   Luxury SVG Brand Preloader (Airplane Takeoff & Suitcase 'u' Flip Engine)
    ========================================================================== */
 .site-preloader {
   position: fixed;
@@ -507,73 +507,89 @@ html.dark.season-eid .glass-card:hover {
   align-items: center;
   justify-content: center;
   background-color: #070e17;
-  background-image: radial-gradient(circle at 50% 45%, rgba(14, 30, 54, 0.92) 0%, #070e17 75%);
+  background-image: radial-gradient(circle at 50% 50%, rgba(14, 30, 54, 0.95) 0%, #070e17 80%);
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.75s cubic-bezier(0.4, 0, 0.2, 1), transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
 }
 
 .site-preloader.fade-out {
   opacity: 0;
   visibility: hidden;
+  transform: scale(1.03);
   pointer-events: none;
 }
 
-.preloader-glow {
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.16) 0%, rgba(245, 158, 11, 0.03) 50%, transparent 70%);
-  animation: preloaderPulse 2.4s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.preloader-orbit {
+.preloader-svg-wrapper {
   position: relative;
-  width: 112px;
-  height: 112px;
+  width: 100%;
+  max-width: 540px;
+  padding: 0 16px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.preloader-ring {
+/* Ambient Radial Glow Behind Logo */
+.preloader-bg-glow {
   position: absolute;
-  inset: 0;
+  width: 380px;
+  height: 380px;
   border-radius: 50%;
-  border: 2px solid rgba(245, 158, 11, 0.15);
-  border-top-color: #f59e0b;
-  border-right-color: #fbbf24;
-  animation: preloaderSpin 1.35s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
-  box-shadow: 0 0 22px rgba(245, 158, 11, 0.25);
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.18) 0%, rgba(245, 158, 11, 0.12) 45%, transparent 70%);
+  filter: blur(40px);
+  animation: preloaderAmbientPulse 3s ease-in-out infinite;
+  pointer-events: none;
 }
 
-.preloader-ring-reverse {
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 1.5px dashed rgba(245, 158, 11, 0.28);
-  animation: preloaderSpinReverse 7s linear infinite;
+/* 1. Compass Star Core Breathing & Light Shimmer */
+#preloaderStarCore {
+  transform-origin: 60px 60px;
+  animation: starCorePulse 2.4s ease-in-out infinite;
 }
 
-.preloader-logo {
-  width: 58px;
-  height: 58px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.5));
-  animation: preloaderBreathing 2.4s ease-in-out infinite;
-  z-index: 2;
+/* 2. Swoosh Orbit Track Pulse */
+#preloaderSwooshPath {
+  animation: swooshGlowPulse 2.2s ease-in-out infinite;
 }
 
+/* 3. Airplane Jet Takeoff Animation (Detaches from swoosh & flies top-right) */
+#preloaderAirplane {
+  transform-origin: 125px 48px;
+  animation: airplaneTakeoff 2.1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* Vapor Contrail Trail */
+.airplane-vapor {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: vaporTrail 2.1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* 4. Stylized Orange Suitcase 'u' 3D Flip & Pulse */
+#preloaderSuitcaseU {
+  transform-origin: 194px 33px;
+  animation: suitcaseFlipPulse 2.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  will-change: transform, filter;
+}
+
+/* 5. Gold Highlight Badge Shimmer */
+#preloaderBadge {
+  animation: badgeFadeIn 1.2s ease-out 0.4s both;
+}
+
+/* Progress Shimmer Bar */
 .preloader-progress-track {
-  width: 140px;
+  width: 160px;
   height: 2px;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 9999px;
   overflow: hidden;
   position: relative;
-  margin-top: 18px;
+  margin-top: 24px;
 }
 
 .preloader-progress-bar {
@@ -581,29 +597,127 @@ html.dark.season-eid .glass-card:hover {
   top: 0;
   left: 0;
   height: 100%;
-  width: 45%;
-  background: linear-gradient(90deg, transparent, #f59e0b, #fbbf24, transparent);
-  animation: preloaderShimmer 1.5s ease-in-out infinite;
+  width: 50%;
+  background: linear-gradient(90deg, transparent, #38bdf8, #f59e0b, transparent);
+  animation: preloaderShimmer 1.4s ease-in-out infinite;
 }
 
-@keyframes preloaderSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* Keyframe Definitions */
+@keyframes airplaneTakeoff {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.9;
+  }
+  20% {
+    transform: translate(-3px, 2px) scale(0.98) rotate(-4deg);
+    opacity: 1;
+  }
+  38% {
+    transform: translate(18px, -14px) scale(1.08) rotate(14deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 8px #38bdf8);
+  }
+  65% {
+    transform: translate(140px, -95px) scale(1.35) rotate(34deg);
+    opacity: 0.95;
+    filter: drop-shadow(0 0 16px #38bdf8);
+  }
+  90% {
+    transform: translate(460px, -320px) scale(1.8) rotate(44deg);
+    opacity: 0.7;
+    filter: drop-shadow(0 0 24px #38bdf8);
+  }
+  100% {
+    transform: translate(650px, -450px) scale(2.1) rotate(46deg);
+    opacity: 0;
+  }
 }
 
-@keyframes preloaderSpinReverse {
-  0% { transform: rotate(360deg); }
-  100% { transform: rotate(0deg); }
+@keyframes vaporTrail {
+  0% {
+    stroke-dashoffset: 40;
+    opacity: 0;
+  }
+  25% {
+    stroke-dashoffset: 20;
+    opacity: 0.85;
+  }
+  60% {
+    stroke-dashoffset: 0;
+    opacity: 0.9;
+  }
+  100% {
+    stroke-dashoffset: -40;
+    opacity: 0;
+  }
 }
 
-@keyframes preloaderPulse {
-  0%, 100% { transform: scale(0.9); opacity: 0.6; }
-  50% { transform: scale(1.18); opacity: 1; }
+@keyframes suitcaseFlipPulse {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 0 rgba(249, 115, 22, 0));
+  }
+  42% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  55% {
+    transform: translate(0, 3px) scale(0.92) rotate(-6deg);
+  }
+  70% {
+    transform: translate(0, -6px) scale(1.28) rotate(360deg);
+    filter: drop-shadow(0 0 20px #f97316) drop-shadow(0 0 10px #fbbf24);
+  }
+  85% {
+    transform: translate(0, 1px) scale(1.08) rotate(358deg);
+    filter: drop-shadow(0 0 14px rgba(249, 115, 22, 0.7));
+  }
+  100% {
+    transform: translate(0, 0) scale(1) rotate(360deg);
+    filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.5));
+  }
 }
 
-@keyframes preloaderBreathing {
-  0%, 100% { transform: scale(0.95); opacity: 0.92; }
-  50% { transform: scale(1.06); opacity: 1; }
+@keyframes starCorePulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(2, 132, 199, 0.3));
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 18px rgba(245, 158, 11, 0.5));
+  }
+}
+
+@keyframes swooshGlowPulse {
+  0%, 100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.6));
+  }
+}
+
+@keyframes preloaderAmbientPulse {
+  0%, 100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes badgeFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes preloaderShimmer {

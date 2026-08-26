@@ -77,24 +77,185 @@
 
 <body class="text-slate-800 dark:text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950">
 
-  <!-- Luxury Brand Preloader -->
+  <!-- Luxury SVG Brand Preloader -->
   <div id="sitePreloader" class="site-preloader" aria-hidden="true" role="status">
-    <div class="preloader-glow"></div>
-    <div class="preloader-orbit">
-      <div class="preloader-ring-reverse"></div>
-      <div class="preloader-ring"></div>
-      <img src="assets/logo_icon.png" alt="Star Plus Travels" class="preloader-logo">
-    </div>
-    <div class="mt-6 text-center">
-      <div class="text-[11px] font-extrabold uppercase tracking-[0.25em] gold-gradient-text font-heading">
-        Star Plus Travel &amp; Tourism
+    <div class="preloader-bg-glow"></div>
+    <div class="preloader-svg-wrapper">
+      <svg id="starplusPreloaderSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 180" class="w-full max-w-lg h-auto overflow-visible select-none">
+        <defs>
+          <!-- Facet Gradients for Star (Left Blue Side) -->
+          <linearGradient id="pStarBlueLight" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#38BDF8"/>
+            <stop offset="100%" stop-color="#0284C7"/>
+          </linearGradient>
+          <linearGradient id="pStarBlueMid" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0284C7"/>
+            <stop offset="100%" stop-color="#0369A1"/>
+          </linearGradient>
+          <linearGradient id="pStarBlueDark" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0369A1"/>
+            <stop offset="100%" stop-color="#075985"/>
+          </linearGradient>
+          
+          <!-- Facet Gradients for Star (Right Orange Side) -->
+          <linearGradient id="pStarOrangeLight" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FED7AA"/>
+            <stop offset="100%" stop-color="#F97316"/>
+          </linearGradient>
+          <linearGradient id="pStarOrangeMid" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FB923C"/>
+            <stop offset="100%" stop-color="#EA580C"/>
+          </linearGradient>
+          <linearGradient id="pStarOrangeDark" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#EA580C"/>
+            <stop offset="100%" stop-color="#C2410C"/>
+          </linearGradient>
+
+          <!-- Swoosh Gradients -->
+          <linearGradient id="pSwooshBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0369A1" stop-opacity="0.2"/>
+            <stop offset="50%" stop-color="#0284C7"/>
+            <stop offset="100%" stop-color="#38BDF8"/>
+          </linearGradient>
+          <linearGradient id="pSwooshOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#EA580C"/>
+            <stop offset="100%" stop-color="#F97316"/>
+          </linearGradient>
+
+          <!-- Suitcase Gradient -->
+          <linearGradient id="pSuitcaseOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FB923C"/>
+            <stop offset="50%" stop-color="#F97316"/>
+            <stop offset="100%" stop-color="#EA580C"/>
+          </linearGradient>
+
+          <!-- Jet Metallic Gradient -->
+          <linearGradient id="pJetBody" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="40%" stop-color="#38BDF8"/>
+            <stop offset="100%" stop-color="#0284C7"/>
+          </linearGradient>
+
+          <linearGradient id="pJetWing" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#38BDF8"/>
+            <stop offset="100%" stop-color="#0369A1"/>
+          </linearGradient>
+
+          <filter id="pGlowFilter" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3.5" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- Group: Star Plus Emblem (Left Side) -->
+        <g id="preloaderEmblemGroup" transform="translate(18, 24)">
+          <!-- Inner Orange Arc -->
+          <path d="M 22,66 C 24,84 46,96 66,94 C 50,92 34,82 30,66 Z" fill="url(#pSwooshOrange)" opacity="0.95"/>
+
+          <!-- 3D 8-Point Compass Star -->
+          <g id="preloaderStarCore">
+            <polygon points="60,14 60,60 48,44" fill="url(#pStarBlueLight)"/>
+            <polygon points="60,14 60,60 72,44" fill="url(#pStarOrangeLight)"/>
+
+            <polygon points="92,28 60,60 72,44" fill="url(#pStarOrangeLight)"/>
+            <polygon points="92,28 60,60 76,60" fill="url(#pStarOrangeMid)"/>
+
+            <polygon points="106,60 60,60 76,60" fill="url(#pStarOrangeMid)"/>
+            <polygon points="106,60 60,60 76,76" fill="url(#pStarOrangeDark)"/>
+
+            <polygon points="92,92 60,60 76,76" fill="url(#pStarOrangeDark)"/>
+            <polygon points="92,92 60,60 60,76" fill="url(#pStarOrangeMid)"/>
+
+            <polygon points="60,106 60,60 60,76" fill="url(#pStarOrangeDark)"/>
+            <polygon points="60,106 60,60 44,76" fill="url(#pStarBlueDark)"/>
+
+            <polygon points="28,92 60,60 44,76" fill="url(#pStarBlueDark)"/>
+            <polygon points="28,92 60,60 44,60" fill="url(#pStarBlueMid)"/>
+
+            <polygon points="14,60 60,60 44,60" fill="url(#pStarBlueMid)"/>
+            <polygon points="14,60 60,60 44,44" fill="url(#pStarBlueLight)"/>
+
+            <polygon points="28,28 60,60 44,44" fill="url(#pStarBlueLight)"/>
+            <polygon points="28,28 60,60 48,44" fill="url(#pStarBlueMid)"/>
+          </g>
+
+          <!-- Outer Swoosh Orbit Path with Motion Glow -->
+          <path id="preloaderSwooshPath" d="M 8,64 C 8,90 36,106 68,100 C 86,96 102,82 120,54 C 106,72 86,88 64,90 C 34,92 14,78 14,62 C 14,50 26,40 38,34 C 26,38 8,50 8,64 Z" fill="url(#pSwooshBlue)"/>
+
+          <!-- Jet Airplane Detaching & Flying Off Top-Right -->
+          <g id="preloaderAirplane">
+            <!-- Vapor Contrail Trail -->
+            <path class="airplane-vapor" d="M -24,18 Q -10,8 0,0" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" opacity="0.75" fill="none"/>
+            <!-- Jet Main Body -->
+            <g transform="translate(125, 48) rotate(36) scale(1.2)">
+              <!-- Left & Right Main Swept Wings -->
+              <path d="M 0,-4 L 16,7 L 15,10 L 0,4 L -15,10 L -16,7 Z" fill="url(#pJetWing)"/>
+              <!-- Jet Fuselage -->
+              <path d="M 0,-16 C 2,-14 3.2,-4 3.2,10 L 1.2,14 L -1.2,14 L -3.2,10 C -3.2,-4 -2,-14 0,-16 Z" fill="url(#pJetBody)"/>
+              <!-- Cockpit Glass -->
+              <polygon points="0,-15 1.5,-8 0,-4 -1.5,-8" fill="#FFFFFF" opacity="0.95"/>
+              <!-- Tail Elevators -->
+              <path d="M 0,9 L 7,14 L 6,16 L 0,14 L -6,16 L -7,14 Z" fill="url(#pJetWing)"/>
+              <!-- Vertical Stabilizer Fin -->
+              <polygon points="0,6 0.8,12 0,14 -0.8,12" fill="#0284C7"/>
+              <!-- Jet Engine Glow -->
+              <circle cx="0" cy="14" r="2" fill="#F59E0B" filter="url(#pGlowFilter)"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- Group: Typography with Suitcase 'u' -->
+        <g id="preloaderTypography" transform="translate(165, 34)">
+          <!-- "Star Pl" -->
+          <text x="0" y="54" font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-size="52" font-weight="900" letter-spacing="-0.5" fill="#FFFFFF">
+            Star Pl
+          </text>
+
+          <!-- Stylized Orange Suitcase 'u' -->
+          <g id="preloaderSuitcaseU">
+            <!-- Suitcase Pull Handle (Top) -->
+            <path d="M 190,22 L 190,17 C 190,14 202,14 202,17 L 202,22" fill="none" stroke="#FED7AA" stroke-width="2.2" stroke-linecap="round"/>
+            
+            <!-- Suitcase Main Body (The 'u' shape container) -->
+            <rect x="184" y="22" width="24" height="34" rx="6" fill="url(#pSuitcaseOrange)" stroke="#EA580C" stroke-width="1.5" filter="url(#pGlowFilter)"/>
+            
+            <!-- Suitcase Front Accent Straps & Tag -->
+            <line x1="184" y1="33" x2="208" y2="33" stroke="#FED7AA" stroke-width="1.5" opacity="0.75"/>
+            <line x1="184" y1="45" x2="208" y2="45" stroke="#FED7AA" stroke-width="1.5" opacity="0.75"/>
+            <rect x="193" y="37" width="6" height="4" rx="1.5" fill="#FED7AA"/>
+
+            <!-- Luggage Rolling Wheels -->
+            <circle cx="189" cy="57" r="2.2" fill="#0F172A" stroke="#EA580C" stroke-width="1"/>
+            <circle cx="203" cy="57" r="2.2" fill="#0F172A" stroke="#EA580C" stroke-width="1"/>
+          </g>
+
+          <!-- "s" in Plus -->
+          <text x="216" y="54" font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-size="52" font-weight="900" letter-spacing="-0.5" fill="#38BDF8">
+            s
+          </text>
+
+          <!-- Subtitle: TRAVEL & TOURISM LLC -->
+          <text id="preloaderSubtitle" x="2" y="86" font-family="'Plus Jakarta Sans', sans-serif" font-size="14.5" font-weight="800" letter-spacing="4.5" fill="#94A3B8">
+            TRAVEL &amp; TOURISM LLC
+          </text>
+
+          <!-- Luxury Gold Accent Badge -->
+          <g id="preloaderBadge" transform="translate(0, 98)">
+            <rect x="0" y="0" width="280" height="20" rx="5" fill="#F59E0B" fill-opacity="0.14" stroke="#F59E0B" stroke-opacity="0.45" stroke-width="1"/>
+            <text x="10" y="14" font-family="'Plus Jakarta Sans', sans-serif" font-size="9.5" font-weight="800" letter-spacing="1.5" fill="#F59E0B">
+              ★ BESPOKE GLOBAL JOURNEYS
+            </text>
+          </g>
+        </g>
+      </svg>
+
+      <!-- Progress Shimmer Bar -->
+      <div class="preloader-progress-track">
+        <div class="preloader-progress-bar"></div>
       </div>
-      <div class="text-[9px] uppercase tracking-[0.2em] text-slate-400 font-medium mt-1">
-        Bespoke Global Journeys
-      </div>
-    </div>
-    <div class="preloader-progress-track">
-      <div class="preloader-progress-bar"></div>
     </div>
   </div>
   <script>
@@ -104,17 +265,17 @@
         var p = document.getElementById('sitePreloader');
         if (!p) return;
         var elapsed = Date.now() - (window.__preloaderStartTime || Date.now());
-        var wait = Math.max(0, 1000 - elapsed);
+        var wait = Math.max(0, 2000 - elapsed);
         setTimeout(function() {
           p.classList.add('fade-out');
-          setTimeout(function() { if (p && p.parentNode) p.style.display = 'none'; }, 700);
+          setTimeout(function() { if (p && p.parentNode) p.style.display = 'none'; }, 800);
         }, wait);
       }
       if (document.readyState === 'complete') {
         dismissEarly();
       } else {
         window.addEventListener('load', dismissEarly);
-        setTimeout(dismissEarly, 2500);
+        setTimeout(dismissEarly, 3200);
       }
     })();
   </script>
