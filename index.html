@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Plus Travels | Your Gateway to the World • Luxury Holidays, Flights & Visas</title>
+  <meta name="description" content="Discover extraordinary holiday packages, cheap flight deals, and fast-track visa services with Star Plus Travels. Headquartered in Deira Dubai and Sri Lanka.">
+  
+  <!-- Favicon Links for Browser Tab & URL Bar -->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Schema.org Structured Metadata -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Star Plus Travel & Tourism LLC",
+    "image": "assets/logo-white-text.png",
+    "telephone": "+97145751321",
+    "email": "info@starplustraveluae.com",
+    "sameAs": [
+      "https://www.facebook.com/share/1EAf7zDgSe/?mibextid=wwXIfr",
+      "https://www.instagram.com/starplustraveltourism?igsh=bDVybXM4b3pqdjcw&utm_source=qr",
+      "https://www.tiktok.com/@starplustravel?_r=1&_t=ZS-990wwC6DOyr",
+      "https://www.linkedin.com/company/starplus-travel-and-tourism/"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Al Maktoum Road, Deira",
+      "addressLocality": "Dubai",
+      "addressCountry": "AE"
+    },
+    "department": [
+      {
+        "@type": "TravelAgency",
+        "name": "Star Plus Travel UAE Branch",
+        "telephone": "+97145751321",
+        "email": "info@starplustraveluae.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Al Maktoum Road, Deira",
+          "addressLocality": "Dubai",
+          "addressCountry": "AE"
+        }
+      },
+      {
+        "@type": "TravelAgency",
+        "name": "Star Plus Travel Sri Lanka Branch",
+        "telephone": "+94112345678",
+        "email": "info@starplustravelsl.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Galle Road, Colombo 03",
+          "addressLocality": "Colombo",
+          "addressCountry": "LK"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Immediate Theme Initialization Script (Zero-Flicker) -->
+  <script>
+    (function() {
+      try {
+        const storedTheme = localStorage.getItem('starplus_theme');
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (storedTheme === 'dark' || (!storedTheme && systemDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#070E17',
+              navy: '#0B192C',
+              ocean: '#1E3E62',
+              lightBlue: '#2E5A88',
+              gold: '#F59E0B',
+              goldHover: '#D97706',
+              goldLight: '#FDE68A',
+              coral: '#FF6B6B',
+              emerald: '#10B981'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            heading: ['"Outfit"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="antialiased selection:bg-amber-500 selection:text-slate-950 transition-colors duration-300">
+
+  <!-- Ambient Glow Backgrounds -->
+  <div class="ambient-glow glow-blue top-0 left-1/4"></div>
+  <div class="ambient-glow glow-gold top-96 right-10"></div>
+
+  <!-- Top Announcement / Contact Bar -->
+  <div class="bg-slate-100/90 dark:bg-slate-950/90 border-b border-slate-200 dark:border-slate-800/80 text-xs py-2 px-4 relative z-40 backdrop-blur-md transition-colors">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-slate-600 dark:text-slate-400">
+      <div class="flex items-center space-x-4">
+        <span class="flex items-center space-x-1.5 text-amber-600 dark:text-amber-400 font-semibold">
+          <i class="fa-solid fa-sparkles text-[11px]"></i>
+          <span>Dubai & Sri Lanka Premier Travel & Visa Specialists</span>
+        </span>
+        <span class="hidden md:inline text-slate-300 dark:text-slate-600">|</span>
+        <span class="hidden md:flex items-center space-x-1">
+          <i class="fa-solid fa-location-dot text-amber-600 dark:text-amber-400 text-[11px]"></i>
+          <span>Deira, Dubai, UAE & Colombo, Sri Lanka</span>
+        </span>
+      </div>
+
+      <div class="flex items-center space-x-3 sm:space-x-4">
+        <!-- Direct Phone & Email Links -->
+        <a href="tel:+97145751321" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors flex items-center space-x-1 font-medium">
+          <i class="fa-solid fa-phone text-amber-600 dark:text-amber-400 text-[10px]"></i>
+          <span>+971 4 575 1321</span>
+        </a>
+        <a href="mailto:info@starplustraveluae.com" class="hidden xl:flex hover:text-amber-600 dark:hover:text-amber-400 transition-colors items-center space-x-1 font-medium">
+          <i class="fa-solid fa-envelope text-amber-600 dark:text-amber-400 text-[10px]"></i>
+          <span>info@starplustraveluae.com</span>
+        </a>
+        <a href="https://wa.me/971527582293" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors flex items-center space-x-1 font-medium">
+          <i class="fa-brands fa-whatsapp text-emerald-600 dark:text-emerald-400 text-xs"></i>
+          <span class="hidden sm:inline">WhatsApp Concierge</span>
+        </a>
+
+        <!-- Currency Selector -->
+        <div class="flex items-center space-x-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/60 rounded-lg px-2 py-0.5 shadow-sm">
+          <i class="fa-solid fa-coins text-amber-500 text-[10px]"></i>
+          <select onchange="changeCurrency(this.value)" class="currency-selector bg-transparent text-slate-800 dark:text-white text-xs outline-none cursor-pointer">
+            <option value="AED">AED (د.إ)</option>
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="LKR">LKR (Rs)</option>
+          </select>
+        </div>
+
+        <!-- Top Bar Theme Toggle Button -->
+        <button type="button" onclick="toggleTheme()" class="theme-toggle-btn flex items-center space-x-1.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/60 rounded-lg px-2.5 py-1 text-xs text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-white transition-all shadow-sm" aria-label="Toggle dark/light theme" title="Toggle Theme">
+          <i class="fa-solid fa-sun text-amber-500 theme-toggle-icon"></i>
+          <span class="theme-toggle-label hidden md:inline text-[11px] font-semibold">Theme</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navbar with Scaled Brand Logo -->
+  <header class="sticky top-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Official Brand Logo (Adapts to Dark & Light Theme) -->
+        <a href="/" class="flex items-center py-1 pr-6 sm:pr-8 group shrink-0" aria-label="Star Plus Travels Home">
+          <img id="brandHeaderLogo"
+               src="assets/logo-white-text.png" 
+               data-dark-src="assets/logo-white-text.png"
+               data-light-src="assets/original-removebg-preview.png"
+               alt="Star Plus Travel and Tourism LLC" 
+               class="h-10 sm:h-12 w-auto max-h-12 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8 text-sm font-semibold text-slate-800 dark:text-slate-200">
+          <a href="#hero" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Home</a>
+          <a href="#clients" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Clients</a>
+          <a href="#packages" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Tour Packages</a>
+          <a href="#visa-services" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Visa Services</a>
+          <a href="#why-us" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Why Choose Us</a>
+          <a href="#testimonials" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Reviews</a>
+          <a href="careers.html" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2 flex items-center space-x-1">
+            <span>Careers</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+          </a>
+          <a href="#faq" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">FAQ</a>
+          <a href="#contact" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Contact</a>
+        </nav>
+
+        <!-- Header CTA & Theme Toggle -->
+        <div class="hidden sm:flex items-center space-x-3 shrink-0 ml-4">
+          <!-- Navbar Theme Toggle Button -->
+          <button type="button" onclick="toggleTheme()" class="theme-toggle-btn w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-white flex items-center justify-center transition-all shadow-sm" aria-label="Toggle theme mode" title="Toggle Light/Dark Theme">
+            <i class="fa-solid fa-sun text-amber-500 text-sm theme-toggle-icon"></i>
+          </button>
+
+          <a href="#contact" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 flex items-center space-x-2">
+            <span>Get Free Quote</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Mobile Header Controls -->
+        <div class="lg:hidden flex items-center space-x-2">
+          <button type="button" onclick="toggleTheme()" class="theme-toggle-btn p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300" aria-label="Toggle theme">
+            <i class="fa-solid fa-sun text-amber-500 text-sm theme-toggle-icon"></i>
+          </button>
+          <button id="mobileMenuBtn" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white" aria-label="Toggle menu">
+            <i class="fa-solid fa-bars-staggered text-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Slide-out Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white/95 dark:bg-slate-950/95 border-b border-slate-200 dark:border-slate-800 px-6 py-6 space-y-4 transition-colors">
+      <nav class="flex flex-col space-y-3 text-base font-semibold text-slate-800 dark:text-slate-200">
+        <a href="#hero" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">Home</a>
+        <a href="#clients" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">Our Clients</a>
+        <a href="#packages" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">Tour Packages</a>
+        <a href="#visa-services" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">Visa Services</a>
+        <a href="#why-us" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">Why Choose Us</a>
+        <a href="#testimonials" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">Customer Reviews</a>
+        <a href="careers.html" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
+          <span>Careers &amp; Vacancies</span>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30">We're Hiring</span>
+        </a>
+        <a href="#faq" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">FAQ</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5">Contact & Office</a>
+      </nav>
+
+      <!-- Mobile Theme Toggle -->
+      <button type="button" onclick="toggleTheme()" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold flex items-center justify-between transition-colors shadow-sm">
+        <span class="flex items-center space-x-2">
+          <i class="fa-solid fa-sun text-amber-500 theme-toggle-icon"></i>
+          <span>Theme Mode</span>
+        </span>
+        <span class="theme-toggle-label text-amber-600 dark:text-amber-400 font-bold">Toggle Mode</span>
+      </button>
+
+      <div class="pt-2 flex flex-col gap-3">
+        <a href="#contact" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm shadow-md">
+          Request Custom Itinerary
+        </a>
+      </div>
+      <!-- Mobile Menu Social Media Links -->
+      <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-center space-x-3">
+        <a href="https://www.facebook.com/share/1EAf7zDgSe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-white hover:bg-blue-600 transition-colors shadow" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f text-sm"></i>
+        </a>
+        <a href="https://www.instagram.com/starplustraveltourism?igsh=bDVybXM4b3pqdjcw&utm_source=qr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-white hover:bg-rose-600 transition-colors shadow" aria-label="Instagram">
+          <i class="fa-brands fa-instagram text-sm"></i>
+        </a>
+        <a href="https://www.tiktok.com/@starplustravel?_r=1&_t=ZS-990wwC6DOyr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-white hover:bg-slate-800 transition-colors shadow" aria-label="TikTok">
+          <i class="fa-brands fa-tiktok text-sm"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/starplus-travel-and-tourism/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-white hover:bg-blue-700 transition-colors shadow" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Video Intro Hero Section -->
+  <section id="hero" class="relative min-h-[96vh] flex items-center justify-center pt-16 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    
+    <!-- Background Looping Video Container -->
+    <div class="hero-video-wrapper">
+      <video id="heroBgVideo" 
+             autoplay 
+             loop 
+             muted 
+             playsinline 
+             poster="https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1920&q=80"
+             class="hero-video-element">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-flying-through-clouds-under-a-blue-sky-41480-large.mp4" type="video/mp4">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-waves-crashing-on-a-tropical-beach-41584-large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Multi-Layered Semi-Transparent Gradient Overlays for Crystal Clear Text Readability -->
+      <div class="hero-video-gradient"></div>
+      <div class="hero-video-vignette"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 max-w-5xl mx-auto text-center">
+      
+      <!-- Top Badge -->
+      <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-950/85 border border-amber-500/50 text-amber-300 text-xs font-bold uppercase tracking-wider mb-6 shadow-2xl backdrop-blur-md animate-float">
+        <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+        <span>Your Gateway to the World • Dubai & Sri Lanka</span>
+        <i class="fa-solid fa-star text-amber-400 text-xs ml-1"></i>
+      </div>
+
+      <!-- Main Catchphrase / Headline -->
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black font-heading text-white tracking-tight leading-[1.08] mb-6 drop-shadow-2xl">
+        Your Gateway to the <span class="gold-gradient-text">World</span>,<br class="hidden sm:inline">
+        Crafted with <span class="ocean-gradient-text">Luxury & Ease</span>.
+      </h1>
+
+      <p class="text-base sm:text-xl text-slate-200 max-w-3xl mx-auto font-normal leading-relaxed mb-10 drop-shadow-md">
+        Seamless journey from Sri Lanka & the UAE to 45+ global destinations. Handcrafted luxury holiday packages, competitive flights, and fast-track express visa processing.
+      </p>
+
+      <!-- Multi-Tab Search Bar Component -->
+      <div class="glass-card p-4 sm:p-6 rounded-3xl border border-slate-700/90 shadow-2xl shadow-black/80 max-w-4xl mx-auto backdrop-blur-2xl text-left">
+        <!-- Search Mode Tabs -->
+        <div class="flex items-center space-x-2 border-b border-slate-800 pb-3 mb-5 overflow-x-auto">
+          <button type="button" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-umbrella-beach"></i>
+            <span>Holiday Packages</span>
+          </button>
+          <a href="#visa-services" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-colors flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-passport"></i>
+            <span>Fast-Track Visas</span>
+          </a>
+          <a href="#contact" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-colors flex items-center space-x-2 shrink-0">
+            <i class="fa-solid fa-plane"></i>
+            <span>Flight Inquiries</span>
+          </a>
+        </div>
+
+        <!-- Search Form -->
+        <form id="heroSearchForm" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
+          <!-- Destination Input -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+              <i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> Destination
+            </label>
+            <input type="text" id="heroDestinationInput" placeholder="e.g. Dubai, Sri Lanka, Baku" class="w-full glass-input px-3.5 py-3 rounded-xl text-sm font-medium placeholder-slate-500">
+          </div>
+
+          <!-- Date Picker -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+              <i class="fa-regular fa-calendar-days text-amber-400 mr-1"></i> Travel Date
+            </label>
+            <input type="date" id="heroDateInput" class="w-full glass-input px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300">
+          </div>
+
+          <!-- Travelers Selector -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+              <i class="fa-solid fa-user-group text-amber-400 mr-1"></i> Travelers
+            </label>
+            <select id="heroTravelersSelect" class="w-full glass-input px-3.5 py-3 rounded-xl text-sm font-medium cursor-pointer">
+              <option value="1">1 Solo Explorer</option>
+              <option value="2" selected>2 Adults (Couple)</option>
+              <option value="3">3 Travelers</option>
+              <option value="4">4+ Family / Group</option>
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-sm uppercase tracking-wider shadow-lg shadow-amber-500/25 transition-all transform active:scale-95 flex items-center justify-center space-x-2">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span>Find Deals</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Quick Trending Suggestions -->
+        <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center flex-wrap gap-2 text-xs text-slate-400">
+          <span class="font-bold text-slate-300">Trending Now:</span>
+          <button type="button" onclick="document.getElementById('heroDestinationInput').value='Dubai'; handleHeroSearch();" class="hover:text-amber-400 underline decoration-amber-500/40">Dubai Desert</button>
+          <span>•</span>
+          <button type="button" onclick="document.getElementById('heroDestinationInput').value='Sri Lanka'; handleHeroSearch();" class="hover:text-amber-400 underline decoration-amber-500/40">Sri Lanka Tea Hills</button>
+          <span>•</span>
+          <button type="button" onclick="document.getElementById('heroDestinationInput').value='Georgia'; handleHeroSearch();" class="hover:text-amber-400 underline decoration-amber-500/40">Georgia Kazbegi</button>
+          <span>•</span>
+          <button type="button" onclick="document.getElementById('heroDestinationInput').value='Maldives'; handleHeroSearch();" class="hover:text-amber-400 underline decoration-amber-500/40">Maldives Villas</button>
+          <span>•</span>
+          <button type="button" onclick="document.getElementById('heroDestinationInput').value='Azerbaijan'; handleHeroSearch();" class="hover:text-amber-400 underline decoration-amber-500/40">Baku Azerbaijan</button>
+        </div>
+      </div>
+
+      <!-- Trust Counters Bar -->
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-left">
+        <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div class="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 font-heading">15,000+</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Happy Explorers Served</p>
+        </div>
+        <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div class="text-2xl sm:text-3xl font-black text-blue-600 dark:text-cyan-400 font-heading">45+</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Global Destinations</p>
+        </div>
+        <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div class="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400 font-heading">99.2%</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Visa Approval Rate</p>
+        </div>
+        <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div class="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 font-heading flex items-center">
+            <span>4.9</span>
+            <span class="text-xs text-amber-500 ml-1">★★★★★</span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Google & Trustpilot Rating</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Our Clients Continuous Marquee Section -->
+  <section id="clients" class="py-14 sm:py-16 px-4 sm:px-6 lg:px-8 bg-slate-100/60 dark:bg-slate-950/60 border-b border-slate-200 dark:border-slate-800/80 relative overflow-hidden transition-colors">
+    <div class="max-w-7xl mx-auto mb-8 text-center">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-xs font-extrabold uppercase tracking-widest mb-3">
+        <i class="fa-solid fa-handshake-angle text-amber-500"></i>
+        <span>Our Clients</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white font-heading">
+        Join Our Family of Happy Travelers & Partners
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm max-w-2xl mx-auto mt-2">
+        Trusted by leading corporate enterprises, luxury hospitality groups, and commercial organizations across the UAE, Sri Lanka, and worldwide.
+      </p>
+    </div>
+
+    <!-- Infinite Scrolling Marquee Container with Gradient Edge Blending -->
+    <div class="relative max-w-7xl mx-auto">
+      <div class="marquee-container py-3">
+        <!-- Left & Right Gradient Fade Masks -->
+        <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-32 z-10 marquee-mask-left"></div>
+        <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-32 z-10 marquee-mask-right"></div>
+
+        <!-- Marquee Group 1 -->
+        <div class="marquee-group">
+          <!-- Client 1: SHAWNS -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="SHAWNS">
+            <img src="assets/clients/client-02.png" 
+                 data-dark-src="assets/clients/client-02-white.png" 
+                 data-light-src="assets/clients/client-02.png" 
+                 alt="SHAWNS - Corporate Client" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 2: makeofit -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="makeofit">
+            <img src="assets/clients/client-04.png" 
+                 data-dark-src="assets/clients/client-04-white.png" 
+                 data-light-src="assets/clients/client-04.png" 
+                 alt="makeofit - Corporate Client" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 3: WRIGHT -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="WRIGHT">
+            <img src="assets/clients/client-05.png" 
+                 data-dark-src="assets/clients/client-05-white.png" 
+                 data-light-src="assets/clients/client-05.png" 
+                 alt="WRIGHT - Corporate Client" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 4: TOCKET -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="TOCKET">
+            <img src="assets/clients/client-06.png" 
+                 data-dark-src="assets/clients/client-06-white.png" 
+                 data-light-src="assets/clients/client-06.png" 
+                 alt="TOCKET - Corporate Client" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 5: Latch. -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="Latch.">
+            <img src="assets/clients/client-07.png" 
+                 data-dark-src="assets/clients/client-07-white.png" 
+                 data-light-src="assets/clients/client-07.png" 
+                 alt="Latch. - Corporate Client" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 6: MOWERR -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="MOWERR">
+            <img src="assets/clients/client-10.png" 
+                 data-dark-src="assets/clients/client-10-white.png" 
+                 data-light-src="assets/clients/client-10.png" 
+                 alt="MOWERR - Corporate Client" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 7: OAK HILLS CITY -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="OAK HILLS CITY">
+            <img src="assets/clients/client-11.png" 
+                 data-dark-src="assets/clients/client-11-white.png" 
+                 data-light-src="assets/clients/client-11.png" 
+                 alt="OAK HILLS CITY - Institutional Partner" 
+                 class="max-h-8 sm:max-h-10 max-w-[110px] sm:max-w-[130px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 8: BRONFMAN HOTEL -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="BRONFMAN HOTEL">
+            <img src="assets/clients/client-12.png" 
+                 data-dark-src="assets/clients/client-12-white.png" 
+                 data-light-src="assets/clients/client-12.png" 
+                 alt="BRONFMAN HOTEL - Hospitality Partner" 
+                 class="max-h-9 sm:max-h-11 max-w-[110px] sm:max-w-[130px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 9: DEMOTIVE GROUP -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="DEMOTIVE GROUP">
+            <img src="assets/clients/client-13.png" 
+                 data-dark-src="assets/clients/client-13-white.png" 
+                 data-light-src="assets/clients/client-13.png" 
+                 alt="DEMOTIVE GROUP - Enterprise Partner" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 10: NEST MEDICAL -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="NEST MEDICAL">
+            <img src="assets/clients/client-14.png" 
+                 data-dark-src="assets/clients/client-14-white.png" 
+                 data-light-src="assets/clients/client-14.png" 
+                 alt="NEST MEDICAL - Corporate Client" 
+                 class="max-h-8 sm:max-h-10 max-w-[110px] sm:max-w-[130px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+        </div>
+
+        <!-- Marquee Group 2 (Duplicate for Seamless Continuous Loop) -->
+        <div class="marquee-group" aria-hidden="true">
+          <!-- Client 1: SHAWNS -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="SHAWNS">
+            <img src="assets/clients/client-02.png" 
+                 data-dark-src="assets/clients/client-02-white.png" 
+                 data-light-src="assets/clients/client-02.png" 
+                 alt="SHAWNS - Corporate Client" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 2: makeofit -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="makeofit">
+            <img src="assets/clients/client-04.png" 
+                 data-dark-src="assets/clients/client-04-white.png" 
+                 data-light-src="assets/clients/client-04.png" 
+                 alt="makeofit - Corporate Client" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 3: WRIGHT -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="WRIGHT">
+            <img src="assets/clients/client-05.png" 
+                 data-dark-src="assets/clients/client-05-white.png" 
+                 data-light-src="assets/clients/client-05.png" 
+                 alt="WRIGHT - Corporate Client" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 4: TOCKET -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="TOCKET">
+            <img src="assets/clients/client-06.png" 
+                 data-dark-src="assets/clients/client-06-white.png" 
+                 data-light-src="assets/clients/client-06.png" 
+                 alt="TOCKET - Corporate Client" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 5: Latch. -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="Latch.">
+            <img src="assets/clients/client-07.png" 
+                 data-dark-src="assets/clients/client-07-white.png" 
+                 data-light-src="assets/clients/client-07.png" 
+                 alt="Latch. - Corporate Client" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 6: MOWERR -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="MOWERR">
+            <img src="assets/clients/client-10.png" 
+                 data-dark-src="assets/clients/client-10-white.png" 
+                 data-light-src="assets/clients/client-10.png" 
+                 alt="MOWERR - Corporate Client" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 7: OAK HILLS CITY -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="OAK HILLS CITY">
+            <img src="assets/clients/client-11.png" 
+                 data-dark-src="assets/clients/client-11-white.png" 
+                 data-light-src="assets/clients/client-11.png" 
+                 alt="OAK HILLS CITY - Institutional Partner" 
+                 class="max-h-8 sm:max-h-10 max-w-[110px] sm:max-w-[130px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 8: BRONFMAN HOTEL -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="BRONFMAN HOTEL">
+            <img src="assets/clients/client-12.png" 
+                 data-dark-src="assets/clients/client-12-white.png" 
+                 data-light-src="assets/clients/client-12.png" 
+                 alt="BRONFMAN HOTEL - Hospitality Partner" 
+                 class="max-h-9 sm:max-h-11 max-w-[110px] sm:max-w-[130px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 9: DEMOTIVE GROUP -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="DEMOTIVE GROUP">
+            <img src="assets/clients/client-13.png" 
+                 data-dark-src="assets/clients/client-13-white.png" 
+                 data-light-src="assets/clients/client-13.png" 
+                 alt="DEMOTIVE GROUP - Enterprise Partner" 
+                 class="max-h-7 sm:max-h-9 max-w-[120px] sm:max-w-[140px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+
+          <!-- Client 10: NEST MEDICAL -->
+          <div class="client-logo-card group flex items-center justify-center h-20 sm:h-24 w-44 sm:w-52 px-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800/80 hover:border-amber-500/50 transition-all duration-300 shrink-0 cursor-pointer shadow-sm" title="NEST MEDICAL">
+            <img src="assets/clients/client-14.png" 
+                 data-dark-src="assets/clients/client-14-white.png" 
+                 data-light-src="assets/clients/client-14.png" 
+                 alt="NEST MEDICAL - Corporate Client" 
+                 class="max-h-8 sm:max-h-10 max-w-[110px] sm:max-w-[130px] w-auto h-auto object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 dark:brightness-0 dark:invert">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Propositions / Why Choose Us -->
+  <section id="why-us" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/70 dark:bg-slate-950/70 border-y border-slate-200 dark:border-slate-900 relative transition-colors">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">The Star Plus Difference</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading">
+          Why Discerning Travelers Choose Us
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3">
+          We combine local insider knowledge with world-class hospitality to ensure every moment of your trip is effortless and memorable.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Card 1 -->
+        <div class="glass-card glass-card-hover p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-amber-500/15 dark:bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-500 text-xl mb-5">
+              <i class="fa-solid fa-gem"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Best Price & Luxury Guarantee</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Direct contracts with top luxury 4★ and 5★ resorts, airlines, and local tour operators giving you unmatched value.
+            </p>
+          </div>
+          <div class="mt-4 text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center space-x-1">
+            <span>Price Match Promise</span>
+            <i class="fa-solid fa-check text-[10px]"></i>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="glass-card glass-card-hover p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-blue-500/15 dark:bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-500 text-xl mb-5">
+              <i class="fa-solid fa-passport"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Express Visa Processing</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              In-house government registered visa documentation specialists for UAE 30/60 days, Schengen, UK, USA & Oman runs.
+            </p>
+          </div>
+          <div class="mt-4 text-xs font-bold text-blue-600 dark:text-blue-400 flex items-center space-x-1">
+            <span>99.2% Success Rate</span>
+            <i class="fa-solid fa-check text-[10px]"></i>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="glass-card glass-card-hover p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/15 dark:bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-500 text-xl mb-5">
+              <i class="fa-solid fa-credit-card"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Fly Now, Pay Later</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Split your holiday payments into 4 interest-free monthly installments with Tabby and Tamara in the UAE.
+            </p>
+          </div>
+          <div class="mt-4 text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center space-x-1">
+            <span>0% Interest with Tabby</span>
+            <i class="fa-solid fa-check text-[10px]"></i>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="glass-card glass-card-hover p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-purple-500/15 dark:bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-500 text-xl mb-5">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">24/7 Dedicated Concierge</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Round-the-clock support in English, Arabic, Sinhala, and Tamil with dedicated personal trip advisors.
+            </p>
+          </div>
+          <div class="mt-4 text-xs font-bold text-purple-600 dark:text-purple-400 flex items-center space-x-1">
+            <span>Instant WhatsApp Help</span>
+            <i class="fa-solid fa-check text-[10px]"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Tour Packages Section -->
+  <section id="packages" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Hand-Picked Getaways</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading">
+            Featured Tour Packages
+          </h2>
+          <p id="packagesCount" class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1">
+            Showing curated premium itineraries
+          </p>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="flex items-center flex-wrap gap-2">
+          <button onclick="filterCategory('all')" data-category="all" class="cat-pill px-5 py-2 rounded-full text-xs font-bold bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition-all">
+            All Packages
+          </button>
+          <button onclick="filterCategory('dubai')" data-category="dubai" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all">
+            🇦🇪 Dubai & UAE
+          </button>
+          <button onclick="filterCategory('srilanka')" data-category="srilanka" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all">
+            🇱🇰 Sri Lanka
+          </button>
+          <button onclick="filterCategory('caucasus')" data-category="caucasus" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all">
+            🏔️ Caucasus & Europe
+          </button>
+          <button onclick="filterCategory('tropical')" data-category="tropical" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all">
+            🌴 Tropical Islands
+          </button>
+          <button onclick="filterCategory('spiritual')" data-category="spiritual" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all">
+            🕋 Umrah & Spiritual
+          </button>
+        </div>
+      </div>
+
+      <!-- Packages Grid Container -->
+      <div id="packagesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- Rendered dynamically by js/app.js -->
+      </div>
+
+      <!-- Bottom Banner for Custom Trip Request -->
+      <div class="mt-14 glass-card p-8 rounded-3xl border border-amber-500/30 flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-r from-slate-900 via-brand-ocean/40 to-slate-900">
+        <div class="text-left">
+          <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Tailor-Made Holidays</span>
+          <h3 class="text-2xl font-bold text-white mt-1 font-heading">Don't see your dream destination?</h3>
+          <p class="text-sm text-slate-300 mt-1 max-w-xl">
+            Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.
+          </p>
+        </div>
+        <a href="#contact" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 shrink-0">
+          Request Custom Itinerary
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Visa Services & Fast-Track Hub Section -->
+  <section id="visa-services" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/80 dark:bg-slate-950/80 border-y border-slate-200 dark:border-slate-800 relative transition-colors">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left Explainer Column -->
+        <div class="lg:col-span-5 text-left">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">Fast-Track Visa Processing</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading leading-tight">
+            Hassle-Free Visas for UAE & Worldwide Travel
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm mt-4 leading-relaxed">
+            Avoid embassy queues and paperwork stress. Star Plus Travels is an accredited travel and visa consultancy in Dubai, providing express tourist visas, freelance visas, and European Schengen appointments.
+          </p>
+
+          <!-- Key Highlights -->
+          <div class="mt-6 space-y-3 text-xs text-slate-700 dark:text-slate-300">
+            <div class="flex items-center space-x-3 bg-white dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <i class="fa-solid fa-circle-check text-emerald-500 dark:text-emerald-400 text-base"></i>
+              <span><strong>UAE Tourist Visas:</strong> 30 Days & 60 Days Single/Multiple entry issued in 24 hours.</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-white dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <i class="fa-solid fa-bus text-amber-500 dark:text-amber-400 text-base"></i>
+              <span><strong>Oman Visa Change:</strong> Daily luxury air-conditioned bus departures from Deira.</span>
+            </div>
+            <div class="flex items-center space-x-3 bg-white dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+              <i class="fa-solid fa-passport text-blue-500 dark:text-cyan-400 text-base"></i>
+              <span><strong>Schengen, UK & USA:</strong> Full documentation, appointment booking & dummy tickets.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Interactive Visa Checker Column -->
+        <div class="lg:col-span-7">
+          <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white font-heading">Interactive Visa Checker</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Select a destination to check requirements and turnaround time</p>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-amber-500/15 dark:bg-amber-500/20 text-amber-500 dark:text-amber-400 flex items-center justify-center text-lg">
+                <i class="fa-solid fa-stamp"></i>
+              </div>
+            </div>
+
+            <!-- Visa Dropdown -->
+            <div class="mb-6">
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+                Select Visa Category
+              </label>
+              <select id="visaSelect" onchange="checkVisaRequirements()" class="w-full glass-input px-4 py-3.5 rounded-xl text-sm font-semibold cursor-pointer">
+                <option value="uae">🇦🇪 UAE Tourist Visa (30 / 60 Days & Freelance)</option>
+                <option value="schengen">🇪🇺 Schengen European Visa Consultation</option>
+                <option value="azerbaijan">🇦🇿 Azerbaijan Official ASAN e-Visa</option>
+                <option value="srilanka">🇱🇰 Sri Lanka ETA / Tourist Visa</option>
+                <option value="oman_change">🚌 Oman Visa Change by Luxury Coach (Deira Dubai)</option>
+              </select>
+            </div>
+
+            <!-- Dynamic Visa Output Card Container -->
+            <div id="visaResultCard">
+              <!-- Rendered dynamically by js/app.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Limited-Time Season Promo Banner -->
+  <section class="py-14 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 p-8 sm:p-12 text-slate-950 shadow-2xl shadow-amber-500/20">
+        <!-- Graphic pattern overlay -->
+        <div class="absolute right-0 top-0 bottom-0 opacity-10 pointer-events-none text-9xl flex items-center pr-10">
+          <i class="fa-solid fa-plane-departure"></i>
+        </div>
+
+        <div class="relative z-10 max-w-2xl text-left">
+          <span class="inline-block px-3 py-1 rounded-full bg-slate-950 text-amber-300 text-xs font-black uppercase tracking-wider mb-4">
+            Exclusive Limited Offer
+          </span>
+          <h3 class="text-3xl sm:text-5xl font-black font-heading leading-tight tracking-tight">
+            Save up to 35% on Winter & Eid Holiday Bookings!
+          </h3>
+          <p class="text-slate-900 font-medium text-sm sm:text-base mt-3">
+            Use promo code <span class="font-mono font-black bg-slate-950 text-white px-2 py-0.5 rounded">STARPLUS</span> when requesting your custom travel itinerary before the end of the month.
+          </p>
+
+          <div class="mt-8 flex items-center flex-wrap gap-4">
+            <a href="#contact" class="px-6 py-3 rounded-xl bg-slate-950 text-white hover:bg-slate-900 font-extrabold text-xs uppercase tracking-wider transition-all shadow-xl">
+              Claim Promo Discount
+            </a>
+            <span class="text-xs font-bold text-slate-900 flex items-center space-x-1.5">
+              <i class="fa-solid fa-lock"></i>
+              <span>Terms & Conditions Apply • 0% Tabby Installments Available</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Testimonials Carousel -->
+  <section id="testimonials" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+    <div class="max-w-5xl mx-auto text-center">
+      
+      <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Real Traveler Stories</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading">
+        Loved by Over 15,000 Adventurers
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+        Read genuine reviews from families, couples, and corporate clients who traveled with Star Plus Travels.
+      </p>
+
+      <!-- Testimonial Slider Card -->
+      <div class="mt-12 glass-card p-8 sm:p-12 rounded-3xl border border-slate-200 dark:border-slate-700/80 shadow-2xl relative">
+        <div id="testimonialSlide">
+          <!-- Rendered dynamically by js/app.js -->
+        </div>
+
+        <!-- Slider Navigation Controls -->
+        <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between">
+          <button onclick="prevSlide()" class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-amber-400 text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-white transition-all shadow-sm" aria-label="Previous review">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <!-- Slider Dots -->
+          <div id="testimonialDots" class="flex items-center space-x-2">
+            <!-- Rendered by js/app.js -->
+          </div>
+
+          <button onclick="nextSlide()" class="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-amber-400 text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-white transition-all shadow-sm" aria-label="Next review">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive FAQ Section -->
+  <section id="faq" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/70 dark:bg-slate-950/70 border-y border-slate-200 dark:border-slate-900 transition-colors">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Got Questions?</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading">
+          Frequently Asked Questions
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        <!-- FAQ Item 1 -->
+        <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+          <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 dark:text-white flex items-center justify-between text-sm sm:text-base hover:text-amber-600 dark:hover:text-amber-300 transition-colors">
+            <span>Can I customize the daily itinerary or hotel rating for my package?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-amber-500 dark:text-amber-400 faq-icon transition-transform"></i>
+          </button>
+          <div class="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed hidden">
+            Yes, absolutely! All our itineraries can be customized according to your exact preferences, travel dates, budget, or preferred hotel chains (e.g. 4-star boutique, 5-star luxury, private pool villas). Contact our concierge to tweak any schedule.
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+          <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 dark:text-white flex items-center justify-between text-sm sm:text-base hover:text-amber-600 dark:hover:text-amber-300 transition-colors">
+            <span>How does the "Fly Now, Pay Later" (Tabby / Tamara) installment work?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-amber-500 dark:text-amber-400 faq-icon transition-transform"></i>
+          </button>
+          <div class="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed hidden">
+            UAE residents with a valid Emirates ID and debit/credit card can split their total tour or flight cost into 4 equal monthly installments with zero interest and zero hidden fees via Tabby or Tamara.
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+          <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 dark:text-white flex items-center justify-between text-sm sm:text-base hover:text-amber-600 dark:hover:text-amber-300 transition-colors">
+            <span>How long does UAE tourist visa processing take?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-amber-500 dark:text-amber-400 faq-icon transition-transform"></i>
+          </button>
+          <div class="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed hidden">
+            Our standard UAE 30-day and 60-day tourist visas are typically approved within 24 to 48 hours. We also offer express rush processing within 12 hours for urgent travel requirements.
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+          <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 dark:text-white flex items-center justify-between text-sm sm:text-base hover:text-amber-600 dark:hover:text-amber-300 transition-colors">
+            <span>What is included in the Oman visa change by luxury coach?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-amber-500 dark:text-amber-400 faq-icon transition-transform"></i>
+          </button>
+          <div class="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed hidden">
+            The Oman border bus package includes roundtrip transportation in comfortable luxury air-conditioned coaches departing from Deira Dubai, Oman border exit/entry handling, Oman transit visa, and issuance of your new UAE tourist visa.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Inquiry Form Section -->
+  <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Contact Information & Offices -->
+        <div class="lg:col-span-5 text-left">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Get in Touch</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading">
+            Let's Plan Your Next Adventure
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm mt-3 leading-relaxed">
+            Fill out the inquiry form or contact our offices directly. Our travel specialists in Dubai and Colombo are ready to assist you.
+          </p>
+
+          <!-- Office 1: Dubai -->
+          <div class="mt-8 glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="text-xl">🇦🇪</span>
+              <div>
+                <h4 class="text-sm font-bold text-slate-900 dark:text-white">Dubai Headquarters, UAE</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Al Maktoum Road, Deira, Dubai</p>
+              </div>
+            </div>
+            <div class="mt-3 text-xs space-y-1.5 text-slate-700 dark:text-slate-300">
+              <p><a href="tel:+97145751321" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fa-solid fa-phone text-amber-500 mr-2"></i>+971 4 575 1321</a></p>
+              <p><a href="https://wa.me/971527582293" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"><i class="fa-solid fa-mobile-screen text-amber-500 mr-2"></i>+971 52 758 2293</a></p>
+              <p><a href="mailto:info@starplustraveluae.com" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fa-solid fa-envelope text-amber-500 mr-2"></i>info@starplustraveluae.com</a></p>
+            </div>
+          </div>
+
+          <!-- Office 2: Colombo -->
+          <div class="mt-4 glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <div class="flex items-center space-x-3 mb-2">
+              <span class="text-xl">🇱🇰</span>
+              <div>
+                <h4 class="text-sm font-bold text-slate-900 dark:text-white">Colombo Branch, Sri Lanka</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Galle Road, Colombo 03</p>
+              </div>
+            </div>
+            <div class="mt-3 text-xs space-y-1.5 text-slate-700 dark:text-slate-300">
+              <p><a href="tel:+94112345678" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fa-solid fa-phone text-amber-500 mr-2"></i>+94 11 234 5678</a></p>
+              <p><a href="mailto:info@starplustravelsl.com" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors"><i class="fa-solid fa-envelope text-amber-500 mr-2"></i>info@starplustravelsl.com</a></p>
+            </div>
+          </div>
+
+          <!-- WhatsApp Direct CTA -->
+          <a href="https://wa.me/971527582293?text=Hello%20Star%20Plus%20Travels,%20I%20would%20like%20to%20inquire%20about%20a%20holiday%20package." target="_blank" rel="noopener noreferrer" class="mt-6 w-full py-3.5 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-lg shadow-emerald-600/20">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>Chat Directly on WhatsApp</span>
+          </a>
+
+          <!-- Official Social Media Channels -->
+          <div class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800/80">
+            <span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-3">Connect On Official Channels</span>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <a href="https://www.facebook.com/share/1EAf7zDgSe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-blue-500 hover:bg-blue-600/10 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-xs font-semibold flex items-center justify-center space-x-2 transition-all shadow-sm group">
+                <i class="fa-brands fa-facebook-f text-blue-500 group-hover:scale-110 transition-transform"></i>
+                <span>Facebook</span>
+              </a>
+              <a href="https://www.instagram.com/starplustraveltourism?igsh=bDVybXM4b3pqdjcw&utm_source=qr" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-rose-500 hover:bg-rose-600/10 text-slate-700 dark:text-slate-300 hover:text-rose-600 dark:hover:text-white text-xs font-semibold flex items-center justify-center space-x-2 transition-all shadow-sm group">
+                <i class="fa-brands fa-instagram text-rose-500 group-hover:scale-110 transition-transform"></i>
+                <span>Instagram</span>
+              </a>
+              <a href="https://www.tiktok.com/@starplustravel?_r=1&_t=ZS-990wwC6DOyr" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-slate-500 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white text-xs font-semibold flex items-center justify-center space-x-2 transition-all shadow-sm group">
+                <i class="fa-brands fa-tiktok text-slate-800 dark:text-slate-200 group-hover:scale-110 transition-transform"></i>
+                <span>TikTok</span>
+              </a>
+              <a href="https://www.linkedin.com/company/starplus-travel-and-tourism/" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-blue-500 hover:bg-blue-700/10 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-xs font-semibold flex items-center justify-center space-x-2 transition-all shadow-sm group">
+                <i class="fa-brands fa-linkedin-in text-blue-500 group-hover:scale-110 transition-transform"></i>
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Careers Spotlight Card -->
+          <div class="mt-4 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between gap-3">
+            <div class="flex items-center space-x-3">
+              <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-500 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-briefcase text-sm"></i>
+              </div>
+              <div>
+                <h4 class="text-xs font-bold text-slate-900 dark:text-white">Looking for a Career in Travel?</h4>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400">We have 6 open positions across UAE &amp; Sri Lanka.</p>
+              </div>
+            </div>
+            <a href="careers.html" class="shrink-0 px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-[11px] uppercase tracking-wider transition-all shadow-sm">
+              View Jobs
+            </a>
+          </div>
+        </div>
+
+        <!-- High-Conversion Inquiry Form -->
+        <div class="lg:col-span-7">
+          <div class="glass-card p-6 sm:p-10 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl text-left">
+            <div class="mb-6">
+              <h3 class="text-2xl font-bold text-slate-900 dark:text-white font-heading">Request a Free Travel Itinerary & Quote</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">We respond with comprehensive options and transparent pricing within 2 hours.</p>
+            </div>
+
+            <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                    Your Full Name *
+                  </label>
+                  <input type="text" id="contactName" required placeholder="e.g. John Doe" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                    Email Address *
+                  </label>
+                  <input type="email" id="contactEmail" required placeholder="name@domain.com" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                    Phone / WhatsApp Number *
+                  </label>
+                  <input type="tel" id="contactPhone" required placeholder="+971 50 123 4567" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                    Primary Interest
+                  </label>
+                  <select id="contactInterest" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
+                    <option value="package">Holiday Tour Package</option>
+                    <option value="visa">Fast-Track Visa Processing</option>
+                    <option value="flight">Cheap Airline Tickets</option>
+                    <option value="custom">Custom Tailor-Made Itinerary</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                    Preferred Destination
+                  </label>
+                  <input type="text" id="contactDest" placeholder="e.g. Sri Lanka, Dubai, Georgia" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                    Estimated Travelers
+                  </label>
+                  <select id="contactTravelers" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
+                    <option value="1">1 Solo</option>
+                    <option value="2" selected>2 Adults (Couple)</option>
+                    <option value="3">3 - 5 (Family)</option>
+                    <option value="6">6+ (Group)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                  Trip Notes / Special Requests
+                </label>
+                <textarea id="contactMessage" rows="3" placeholder="Tell us about your preferred travel dates, hotel rating preference, or special requests..." class="w-full glass-input px-4 py-3 rounded-xl text-sm"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-sm uppercase tracking-wider transition-all shadow-xl shadow-amber-500/25">
+                Send Travel Request
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer with Official Branding -->
+  <footer class="bg-slate-950 border-t border-slate-800/80 pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+      
+      <!-- Column 1: Brand Info -->
+      <div class="lg:col-span-2 space-y-4">
+        <a href="/" class="inline-block py-1" aria-label="Star Plus Travels Home">
+          <img id="brandFooterLogo"
+               src="assets/logo-white-text.png" 
+               data-dark-src="assets/logo-white-text.png"
+               data-light-src="assets/original-removebg-preview.png"
+               alt="Star Plus Travel and Tourism LLC" 
+               class="h-10 sm:h-12 w-auto object-contain">
+        </a>
+        <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+          Star Plus Travel & Tourism LLC is a government accredited travel management company based in Deira, Dubai with branch operations in Sri Lanka. Providing world-class bespoke holiday packages, airline bookings, and express visa solutions.
+        </p>
+        <div class="pt-1 text-xs space-y-1.5 text-slate-300">
+          <p class="flex items-center space-x-1.5">
+            <span class="text-amber-400 font-bold">🇦🇪 UAE Inquiries:</span>
+            <a href="mailto:info@starplustraveluae.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustraveluae.com</a>
+          </p>
+          <p class="flex items-center space-x-1.5">
+            <span class="text-amber-400 font-bold">🇱🇰 Sri Lanka Inquiries:</span>
+            <a href="mailto:info@starplustravelsl.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustravelsl.com</a>
+          </p>
+        </div>
+        <div class="flex items-center space-x-2.5 pt-3">
+          <a href="https://www.facebook.com/share/1EAf7zDgSe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-blue-600 hover:border-blue-500 transition-all shadow-md group" aria-label="Facebook" title="Follow us on Facebook">
+            <i class="fa-brands fa-facebook-f text-xs group-hover:scale-110 transition-transform"></i>
+          </a>
+          <a href="https://www.instagram.com/starplustraveltourism?igsh=bDVybXM4b3pqdjcw&utm_source=qr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-gradient-to-tr hover:from-amber-600 hover:via-rose-600 hover:to-purple-600 hover:border-rose-500 transition-all shadow-md group" aria-label="Instagram" title="Follow us on Instagram">
+            <i class="fa-brands fa-instagram text-xs group-hover:scale-110 transition-transform"></i>
+          </a>
+          <a href="https://www.tiktok.com/@starplustravel?_r=1&_t=ZS-990wwC6DOyr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 hover:border-slate-600 transition-all shadow-md group" aria-label="TikTok" title="Follow us on TikTok">
+            <i class="fa-brands fa-tiktok text-xs group-hover:scale-110 transition-transform"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/starplus-travel-and-tourism/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-blue-700 hover:border-blue-600 transition-all shadow-md group" aria-label="LinkedIn" title="Connect on LinkedIn">
+            <i class="fa-brands fa-linkedin-in text-xs group-hover:scale-110 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#hero" class="hover:text-amber-400 transition-colors">Home</a></li>
+          <li><a href="#clients" class="hover:text-amber-400 transition-colors">Corporate Clients</a></li>
+          <li><a href="#packages" class="hover:text-amber-400 transition-colors">Holiday Packages</a></li>
+          <li><a href="#visa-services" class="hover:text-amber-400 transition-colors">Visa Services</a></li>
+          <li><a href="#why-us" class="hover:text-amber-400 transition-colors">Why Choose Us</a></li>
+          <li><a href="careers.html" class="hover:text-amber-400 transition-colors flex items-center space-x-1"><span>Careers</span><span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-bold">Hiring</span></a></li>
+          <li><a href="#contact" class="hover:text-amber-400 transition-colors">Contact Our Offices</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Popular Packages -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider">Top Packages</h4>
+        <ul class="space-y-2">
+          <li><a href="#packages" onclick="filterCategory('dubai')" class="hover:text-amber-400 transition-colors">Dubai Desert &amp; City Tour</a></li>
+          <li><a href="#packages" onclick="filterCategory('srilanka')" class="hover:text-amber-400 transition-colors">Sri Lanka Wildlife &amp; Tea</a></li>
+          <li><a href="#packages" onclick="filterCategory('caucasus')" class="hover:text-amber-400 transition-colors">Georgia Caucasus Escapes</a></li>
+          <li><a href="#packages" onclick="filterCategory('caucasus')" class="hover:text-amber-400 transition-colors">Baku Azerbaijan Wonders</a></li>
+          <li><a href="#packages" onclick="filterCategory('tropical')" class="hover:text-amber-400 transition-colors">Maldives Luxury Villas</a></li>
+          <li><a href="#packages" onclick="filterCategory('spiritual')" class="hover:text-amber-400 transition-colors">Premium Umrah Packages</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Visa Services -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider">Visa Services</h4>
+        <ul class="space-y-2">
+          <li><a href="#visa-services" class="hover:text-amber-400 transition-colors">30-Day UAE Tourist Visa</a></li>
+          <li><a href="#visa-services" class="hover:text-amber-400 transition-colors">60-Day UAE Tourist Visa</a></li>
+          <li><a href="#visa-services" class="hover:text-amber-400 transition-colors">Oman Visa Change Bus</a></li>
+          <li><a href="#visa-services" class="hover:text-amber-400 transition-colors">European Schengen Visa</a></li>
+          <li><a href="#visa-services" class="hover:text-amber-400 transition-colors">Sri Lanka Electronic ETA</a></li>
+          <li><a href="#visa-services" class="hover:text-amber-400 transition-colors">Azerbaijan ASAN e-Visa</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 5: Newsletter -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider">VIP Travel Deals</h4>
+        <p class="text-xs text-slate-400">Subscribe for unpublished secret airline rates and discount flash sales.</p>
+        <form onsubmit="handleNewsletter(event)" class="space-y-2">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" required class="w-full glass-input px-3 py-2 rounded-xl text-xs">
+          <button type="submit" class="w-full py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
+            Subscribe
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar & Payment Badges -->
+    <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
+      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-2.5 text-center sm:text-left">
+        <span>© 2026 Star Plus Travel & Tourism LLC. All Rights Reserved.</span>
+        <span class="hidden sm:inline text-slate-700">•</span>
+        <span>Redesigned &amp; Developed by <strong class="text-slate-300 font-semibold hover:text-amber-400 transition-colors">Lupo</strong></span>
+      </div>
+      <div class="flex items-center space-x-3 text-slate-400 text-sm">
+        <span class="text-xs text-slate-500 font-semibold mr-1">Accepted Payment:</span>
+        <i class="fa-brands fa-cc-visa hover:text-white transition-colors" title="Visa"></i>
+        <i class="fa-brands fa-cc-mastercard hover:text-white transition-colors" title="MasterCard"></i>
+        <i class="fa-brands fa-cc-apple-pay hover:text-white transition-colors" title="Apple Pay"></i>
+        <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 text-emerald-400">tabby</span>
+        <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 text-pink-400">tamara</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Quick Booking Modal -->
+  <div id="bookingModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
+    <div class="glass-card max-w-xl w-full rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative animate-fadeIn">
+      
+      <!-- Close Button -->
+      <button onclick="closeBookingModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white flex items-center justify-center transition-colors">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <!-- Package Header Summary -->
+      <div class="flex items-center space-x-4 pb-4 border-b border-slate-200 dark:border-slate-800 pr-8">
+        <img id="modalPkgImage" src="" alt="" class="w-16 h-16 rounded-xl object-cover border border-slate-200 dark:border-slate-700 shrink-0">
+        <div>
+          <span class="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider block" id="modalPkgDestination"></span>
+          <h3 id="modalPkgTitle" class="text-base font-bold text-slate-900 dark:text-white font-heading leading-snug"></h3>
+          <span class="text-xs text-slate-500 dark:text-slate-400">Base Price: <strong id="modalPkgBasePrice" class="text-amber-600 dark:text-amber-400"></strong> / person</span>
+        </div>
+      </div>
+
+      <!-- Booking Form -->
+      <form onsubmit="submitBookingForm(event)" class="mt-5 space-y-4 text-left">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">Adult Travelers (12+ yrs)</label>
+            <select id="bookingTravelers" onchange="calculateBookingTotal()" class="w-full glass-input px-3 py-2 rounded-xl text-sm">
+              <option value="1">1 Adult</option>
+              <option value="2" selected>2 Adults</option>
+              <option value="3">3 Adults</option>
+              <option value="4">4 Adults</option>
+              <option value="5">5+ Adults</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">Children (2-11 yrs)</label>
+            <select id="bookingChildren" onchange="calculateBookingTotal()" class="w-full glass-input px-3 py-2 rounded-xl text-sm">
+              <option value="0" selected>0 Children</option>
+              <option value="1">1 Child (-35%)</option>
+              <option value="2">2 Children</option>
+              <option value="3">3 Children</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">Preferred Departure Date</label>
+          <input type="date" id="bookingDate" required class="w-full glass-input px-3 py-2 rounded-xl text-sm">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">Your Full Name *</label>
+            <input type="text" id="bookingName" required placeholder="John Doe" class="w-full glass-input px-3 py-2 rounded-xl text-sm">
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">Email Address *</label>
+            <input type="email" id="bookingEmail" required placeholder="john@example.com" class="w-full glass-input px-3 py-2 rounded-xl text-sm">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">Phone / WhatsApp *</label>
+          <input type="tel" id="bookingPhone" required placeholder="+971 50 123 4567" class="w-full glass-input px-3 py-2 rounded-xl text-sm">
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">Special Requests (Optional)</label>
+          <textarea id="bookingNotes" rows="2" placeholder="Flight preferences, dietary needs, hotel room preference..." class="w-full glass-input px-3 py-2 rounded-xl text-sm"></textarea>
+        </div>
+
+        <!-- Live Price Calculation Box -->
+        <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-amber-500/30 flex items-center justify-between">
+          <div>
+            <span class="text-xs text-slate-500 dark:text-slate-400 block font-medium">Estimated Total Price</span>
+            <span id="modalTotalCalculation" class="text-2xl font-black text-amber-600 dark:text-amber-400 font-heading"></span>
+            <span id="modalTabbyInstallment" class="text-[10px] text-emerald-600 dark:text-emerald-400 block font-medium mt-0.5"></span>
+          </div>
+          <span class="text-[10px] px-2 py-1 rounded bg-amber-500/15 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 font-bold border border-amber-500/30">
+            No Upfront Payment Required
+          </span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-sm uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20">
+          Confirm Booking Request
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Detailed Itinerary Modal -->
+  <div id="itineraryModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
+    <div class="glass-card max-w-2xl w-full rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative animate-fadeIn">
+      
+      <!-- Close Button -->
+      <button onclick="closeItineraryModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white flex items-center justify-center transition-colors">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="relative h-44 rounded-2xl overflow-hidden mb-5 bg-slate-900">
+        <img id="itineraryModalImage" src="" alt="" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 right-4">
+          <span id="itineraryModalMeta" class="text-xs text-amber-400 font-bold block mb-1"></span>
+          <h3 id="itineraryModalTitle" class="text-xl sm:text-2xl font-black text-white font-heading leading-tight"></h3>
+        </div>
+      </div>
+
+      <!-- Perks list -->
+      <div class="mb-6">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Package Inclusions</h4>
+        <div id="itineraryPerksList" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Timeline Days -->
+      <div class="mb-6">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">Day-by-Day Journey</h4>
+        <div id="itineraryDaysContainer" class="space-y-2">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <div>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Starting from</span>
+          <span id="itineraryModalPrice" class="text-2xl font-black text-amber-600 dark:text-amber-400 font-heading"></span>
+        </div>
+        <button id="itineraryBookButton" class="py-3 px-6 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20">
+          Book This Package
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp Action Button -->
+  <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus%20Travels,%20I%20have%20an%20inquiry." target="_blank" class="fixed bottom-6 left-6 z-40 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center text-2xl shadow-2xl shadow-emerald-500/40 transition-transform hover:scale-110 glow-pulse" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/app.js"></script>
+  <script src="js/seasonal-theme.js"></script>
+</body>
+</html>

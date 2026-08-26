@@ -1,0 +1,452 @@
+/* Custom Styles for Star Plus Travels */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+
+/* ==========================================================================
+   Design System & Theme CSS Variables
+   ========================================================================== */
+
+/* Light Mode (Default Root) */
+:root {
+  --primary-dark: #070e17;
+  --ocean-deep: #0b192c;
+  --ocean-blue: #1e3e62;
+  --ocean-light: #2e5a88;
+  --accent-gold: #f59e0b;
+  --accent-gold-hover: #d97706;
+  --accent-coral: #ff6b6b;
+
+  /* Theme-specific tokens: Light Mode */
+  --theme-bg-base: #f8fafc;
+  --theme-bg-surface: #ffffff;
+  --theme-bg-surface-elevated: #f1f5f9;
+  --theme-bg-nav: rgba(255, 255, 255, 0.90);
+  --theme-bg-card: rgba(255, 255, 255, 0.92);
+  --theme-bg-card-hover: rgba(255, 255, 255, 1);
+  --theme-bg-input: #ffffff;
+  --theme-border-subtle: rgba(15, 23, 42, 0.08);
+  --theme-border-card: rgba(226, 232, 240, 0.9);
+  --theme-border-input: rgba(15, 23, 42, 0.16);
+  --theme-text-primary: #0f172a;
+  --theme-text-secondary: #334155;
+  --theme-text-muted: #64748b;
+  --theme-card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --theme-card-shadow-hover: 0 20px 30px -10px rgba(0, 0, 0, 0.12), 0 0 20px rgba(245, 158, 11, 0.15);
+  --theme-scrollbar-track: #f1f5f9;
+  --theme-scrollbar-thumb: #cbd5e1;
+  --theme-glow-opacity: 0.15;
+}
+
+/* Dark Mode Tokens */
+html.dark {
+  --theme-bg-base: #070e17;
+  --theme-bg-surface: #0b192c;
+  --theme-bg-surface-elevated: #0f1d32;
+  --theme-bg-nav: rgba(7, 14, 23, 0.85);
+  --theme-bg-card: rgba(15, 29, 50, 0.78);
+  --theme-bg-card-hover: rgba(22, 43, 73, 0.88);
+  --theme-bg-input: rgba(11, 25, 44, 0.65);
+  --theme-border-subtle: rgba(255, 255, 255, 0.08);
+  --theme-border-card: rgba(255, 255, 255, 0.08);
+  --theme-border-input: rgba(255, 255, 255, 0.12);
+  --theme-text-primary: #f8fafc;
+  --theme-text-secondary: #cbd5e1;
+  --theme-text-muted: #94a3b8;
+  --theme-card-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.6);
+  --theme-card-shadow-hover: 0 20px 35px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.15);
+  --theme-scrollbar-track: #070e17;
+  --theme-scrollbar-thumb: #1e3e62;
+  --theme-glow-opacity: 0.28;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--theme-bg-base);
+  color: var(--theme-text-primary);
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Outfit', sans-serif;
+}
+
+.font-serif-heading {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Glassmorphism Classes */
+.glass-nav {
+  background: var(--theme-bg-nav);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--theme-border-subtle);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card {
+  background: var(--theme-bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--theme-border-card);
+  box-shadow: var(--theme-card-shadow);
+  color: var(--theme-text-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-6px);
+  background: var(--theme-bg-card-hover);
+  border-color: rgba(245, 158, 11, 0.35);
+  box-shadow: var(--theme-card-shadow-hover);
+}
+
+.glass-input {
+  background: var(--theme-bg-input);
+  border: 1px solid var(--theme-border-input);
+  color: var(--theme-text-primary);
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+  outline: none;
+}
+
+html:not(.dark) .glass-input {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+html:not(.dark) .glass-input::placeholder {
+  color: #94a3b8;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--theme-scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--theme-scrollbar-thumb);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+/* Gold Gradient Text */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fde68a 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ocean-gradient-text {
+  background: linear-gradient(135deg, #67e8f9 0%, #38bdf8 50%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glowing Background Effects */
+.ambient-glow {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+  opacity: 0.28;
+  z-index: 1;
+}
+
+.glow-blue {
+  background: radial-gradient(circle, #0284c7 0%, transparent 70%);
+}
+
+.glow-gold {
+  background: radial-gradient(circle, #f59e0b 0%, transparent 70%);
+}
+
+/* Video Hero Styles & Gradient Overlays */
+.hero-video-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-video-element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-video-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 14, 23, 0.88) 0%,
+    rgba(11, 25, 44, 0.65) 30%,
+    rgba(11, 25, 44, 0.78) 70%,
+    rgba(7, 14, 23, 0.98) 100%
+  );
+  z-index: 2;
+}
+
+.hero-video-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 40%, rgba(7, 14, 23, 0.85) 100%);
+  z-index: 3;
+}
+
+/* Floating Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
+  }
+}
+
+.glow-pulse {
+  animation: pulseGlow 2.5s infinite;
+}
+
+/* Package Image Zoom on Hover */
+.package-card .img-container img {
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.package-card:hover .img-container img {
+  transform: scale(1.08);
+}
+
+/* Testimonial slider transitions */
+.testimonial-slide {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Modal styles */
+.modal-backdrop {
+  background-color: rgba(7, 14, 23, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Custom Dropdown Styling */
+select option {
+  background-color: #0b192c;
+  color: #ffffff;
+  padding: 10px;
+}
+
+/* Toast container */
+#toastContainer {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Audio wave animation */
+@keyframes audioWave {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+
+.wave-bar {
+  display: inline-block;
+  width: 3px;
+  background-color: #f59e0b;
+  border-radius: 2px;
+}
+
+.wave-bar:nth-child(1) { animation: audioWave 1.2s infinite ease-in-out; }
+.wave-bar:nth-child(2) { animation: audioWave 0.8s infinite ease-in-out 0.2s; }
+.wave-bar:nth-child(3) { animation: audioWave 1.4s infinite ease-in-out 0.4s; }
+
+/* ==========================================================================
+   Continuous Smooth Marquee Animation (Our Clients)
+   ========================================================================== */
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  position: relative;
+  width: 100%;
+}
+
+.marquee-group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1.5rem;
+  min-width: 100%;
+  animation: marqueeScroll 26s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on Marquee Hover */
+.marquee-container:hover .marquee-group {
+  animation-play-state: paused;
+}
+
+/* Client Logo Card */
+.client-logo-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.client-logo-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: var(--theme-card-shadow-hover);
+}
+
+/* Gradient Fade Masks */
+.marquee-mask-left {
+  background: linear-gradient(to right, var(--theme-bg-base), transparent);
+}
+
+.marquee-mask-right {
+  background: linear-gradient(to left, var(--theme-bg-base), transparent);
+}
+
+/* ==========================================================================
+   Seasonal Themes & Festive Accent Enhancements
+   ========================================================================== */
+
+/* Active Holiday Global Indicator */
+html.season-active {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* 1. Christmas Accent */
+html.season-christmas .gold-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #fbbf24 45%, #ef4444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.dark.season-christmas .glass-card:hover {
+  border-color: rgba(254, 240, 138, 0.45);
+  box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.25);
+}
+
+/* 2. Valentine's Day Accent */
+html.season-valentine .gold-gradient-text {
+  background: linear-gradient(135deg, #fb7185 0%, #f43f5e 50%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.dark.season-valentine .glass-card:hover {
+  border-color: rgba(244, 114, 182, 0.4);
+  box-shadow: 0 10px 30px -10px rgba(244, 63, 94, 0.25);
+}
+
+/* 3. New Year Celebrations Accent */
+html.season-newyear .gold-gradient-text {
+  background: linear-gradient(135deg, #fef08a 0%, #fbbf24 50%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.season-newyear .theme-badge {
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
+}
+
+/* 4. Ramadan Kareem Accent */
+html.season-ramadan .gold-gradient-text {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.dark.season-ramadan .glass-card:hover {
+  border-color: rgba(251, 191, 36, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.3);
+}
+
+/* 5. Eid Mubarak Celebrations Accent */
+html.season-eid .gold-gradient-text {
+  background: linear-gradient(135deg, #34d399 0%, #fbbf24 50%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+html.dark.season-eid .glass-card:hover {
+  border-color: rgba(52, 211, 153, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.3);
+}
+
+/* Holiday Canvas Particle Layer */
+#holidayThemeCanvas,
+#seasonalThemeCanvas {
+  pointer-events: none;
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+

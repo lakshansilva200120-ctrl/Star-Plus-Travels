@@ -1,0 +1,23 @@
+﻿{
+    "version":  "2.0.0",
+    "license":  "UNLICENSED",
+    "keywords":  [
+                     "travel",
+                     "tourism",
+                     "dubai",
+                     "uae",
+                     "sri-lanka",
+                     "visa",
+                     "holiday-packages"
+                 ],
+    "scripts":  {
+                    "validate":  "powershell -ExecutionPolicy Bypass -File ./validate.ps1",
+                    "build":  "powershell -ExecutionPolicy Bypass -File ./build.ps1",
+                    "dev":  "powershell -ExecutionPolicy Bypass -File ./server.ps1",
+                    "start":  "powershell -ExecutionPolicy Bypass -File ./server.ps1"
+                },
+    "name":  "starplus-travels",
+    "private":  true,
+    "author":  "Lupo",
+    "description":  "Official Website \u0026 Careers Portal for Star Plus Travel \u0026 Tourism LLC"
+}

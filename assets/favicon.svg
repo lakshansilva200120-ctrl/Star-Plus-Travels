@@ -1,0 +1,20 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="planeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+  </defs>
+  <!-- Background subtle glow circle for dark/light browser tabs -->
+  <circle cx="32" cy="32" r="30" fill="#0B192C" stroke="#1E293B" stroke-width="1.5"/>
+  <!-- Curved flight swoosh -->
+  <path d="M 12 44 C 24 44, 38 36, 46 22" fill="none" stroke="url(#blueGrad)" stroke-width="3" stroke-linecap="round"/>
+  <!-- Jet Airplane -->
+  <path d="M 48 14 L 41 22 L 32 20 L 30 22 L 37 26 L 35 30 L 31 31 L 30 33 L 35 34 L 49 20 L 52 14 Z" fill="url(#planeGrad)" stroke="#B45309" stroke-width="0.5"/>
+  <!-- Star Plus Accent -->
+  <text x="32" y="52" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="13" text-anchor="middle" fill="#F59E0B">S<tspan fill="#38BDF8">+</tspan></text>
+</svg>
