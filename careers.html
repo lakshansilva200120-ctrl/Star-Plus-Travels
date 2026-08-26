@@ -96,8 +96,8 @@
 
 <body class="text-slate-800 dark:text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950">
 
-  <!-- Simple & Elegant Luxury Brand Preloader -->
-  <div id="sitePreloader" class="site-preloader fixed inset-0 z-50 flex flex-col items-center justify-center m-0 p-0 overflow-hidden" aria-hidden="true" role="status">
+  <!-- Simple & Elegant Luxury Brand Preloader (Full-Screen Solid Overlay) -->
+  <div id="sitePreloader" class="site-preloader fixed inset-0 z-[99999] flex flex-col items-center justify-center m-0 p-0 overflow-hidden" aria-hidden="true" role="status">
     <div class="preloader-ambient-glow"></div>
     <div class="preloader-card flex flex-col items-center justify-center">
       <!-- Centered Star Plus Logo with dual-theme fallback -->
@@ -109,12 +109,9 @@
         class="preloader-brand-logo"
       />
       
-      <!-- Subtle Luxury Gold Loading Indicator -->
-      <div class="preloader-loader-wrap flex flex-col items-center">
+      <!-- Single Subtle Luxury Gold Loading Indicator -->
+      <div class="preloader-loader-wrap flex flex-col items-center justify-center">
         <div class="preloader-spinner"></div>
-        <div class="preloader-bar-track">
-          <div class="preloader-bar-fill"></div>
-        </div>
       </div>
     </div>
   </div>

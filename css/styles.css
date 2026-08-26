@@ -506,30 +506,31 @@ html.dark.season-eid .glass-card:hover {
 }
 
 /* ==========================================================================
-   Simple & Elegant Luxury Brand Preloader (Mobile Responsive & Stable)
+   Simple & Elegant Luxury Brand Preloader (Full-Screen & Solid Overlay)
    ========================================================================== */
 .site-preloader {
-  position: fixed;
-  inset: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100vw;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  margin: 0;
-  padding: 0;
-  z-index: 50;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--theme-bg-base);
+  position: fixed !important;
+  inset: 0 !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  width: 100% !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #070e17;
+  background-image: radial-gradient(circle at 50% 50%, #0d1e33 0%, #070e17 85%);
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.45s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
   touch-action: none;
   overscroll-behavior: none;
@@ -537,13 +538,13 @@ html.dark.season-eid .glass-card:hover {
 
 html.dark .site-preloader,
 :root:not(.light) .site-preloader {
-  background-color: #070e17;
-  background-image: radial-gradient(circle at 50% 50%, rgba(14, 30, 54, 0.95) 0%, #070e17 85%);
+  background-color: #070e17 !important;
+  background-image: radial-gradient(circle at 50% 50%, #0d1e33 0%, #070e17 85%) !important;
 }
 
 html.light .site-preloader {
-  background-color: #f8fafc;
-  background-image: radial-gradient(circle at 50% 50%, rgba(254, 243, 199, 0.35) 0%, #f8fafc 85%);
+  background-color: #f8fafc !important;
+  background-image: radial-gradient(circle at 50% 50%, #ffffff 0%, #f1f5f9 85%) !important;
 }
 
 .site-preloader.fade-out {
@@ -559,10 +560,10 @@ html.light .site-preloader {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  padding: 16px;
-  max-width: 100vw;
+  padding: 20px;
+  max-width: 90vw;
   text-align: center;
-  animation: preloaderCardEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: preloaderCardEnter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Ambient Radial Glow */
@@ -571,11 +572,11 @@ html.light .site-preloader {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 260px;
-  height: 260px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(2, 132, 199, 0.08) 50%, transparent 70%);
-  filter: blur(35px);
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.16) 0%, rgba(2, 132, 199, 0.08) 50%, transparent 70%);
+  filter: blur(30px);
   pointer-events: none;
   animation: preloaderPulse 2.4s ease-in-out infinite;
 }
@@ -583,61 +584,42 @@ html.light .site-preloader {
 /* Centered Logo */
 .preloader-brand-logo {
   height: auto;
-  width: 220px;
-  max-width: 72vw;
-  max-height: 85px;
+  width: 210px;
+  max-width: 68vw;
+  max-height: 80px;
   object-fit: contain;
-  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.25));
-  animation: preloaderBreathing 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.22));
+  animation: preloaderBreathing 2.2s ease-in-out infinite;
   z-index: 2;
   transition: transform 0.3s ease;
 }
 
-/* Luxury Gold Spinner / Shimmer Indicator */
+/* Single Luxury Gold Spinner Indicator */
 .preloader-loader-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 22px;
+  justify-content: center;
+  margin-top: 20px;
   z-index: 2;
 }
 
 .preloader-spinner {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  border: 2.5px solid rgba(245, 158, 11, 0.18);
+  border: 2.5px solid rgba(245, 158, 11, 0.2);
   border-top-color: #f59e0b;
   border-right-color: #fbbf24;
-  animation: preloaderSpin 0.9s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
-}
-
-.preloader-bar-track {
-  width: 140px;
-  height: 2.5px;
-  background: rgba(245, 158, 11, 0.15);
-  border-radius: 9999px;
-  overflow: hidden;
-  position: relative;
-  margin-top: 14px;
-}
-
-.preloader-bar-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 40%;
-  background: linear-gradient(90deg, transparent, #f59e0b, #fbbf24, transparent);
-  animation: preloaderShimmer 1.2s ease-in-out infinite;
+  animation: preloaderSpin 0.85s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
 }
 
 /* Keyframes */
 @keyframes preloaderCardEnter {
   0% {
     opacity: 0;
-    transform: scale(0.94) translateY(6px);
+    transform: scale(0.95) translateY(4px);
   }
   100% {
     opacity: 1;
@@ -651,9 +633,9 @@ html.light .site-preloader {
     opacity: 0.96;
   }
   50% {
-    transform: scale(1.025);
+    transform: scale(1.02);
     opacity: 1;
-    filter: drop-shadow(0 6px 20px rgba(245, 158, 11, 0.35));
+    filter: drop-shadow(0 6px 18px rgba(245, 158, 11, 0.3));
   }
 }
 
@@ -664,18 +646,13 @@ html.light .site-preloader {
 
 @keyframes preloaderPulse {
   0%, 100% {
-    transform: scale(0.92);
+    transform: translate(-50%, -50%) scale(0.92);
     opacity: 0.6;
   }
   50% {
-    transform: scale(1.1);
+    transform: translate(-50%, -50%) scale(1.08);
     opacity: 1;
   }
-}
-
-@keyframes preloaderShimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(250%); }
 }
 
 
