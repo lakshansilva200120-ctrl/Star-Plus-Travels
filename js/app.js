@@ -921,7 +921,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   Luxury Brand Preloader Controller (Airplane Flight & Suitcase Flip)
+   Simple & Elegant Luxury Preloader Controller
    ========================================================================== */
 (function setupLuxuryPreloader() {
   function dismissPreloader() {
@@ -930,7 +930,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const start = window.__preloaderStartTime || Date.now();
     const elapsed = Date.now() - start;
-    const remaining = Math.max(0, 2000 - elapsed);
+    const remaining = Math.max(0, 600 - elapsed);
 
     setTimeout(() => {
       preloader.classList.add('fade-out');
@@ -938,7 +938,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (preloader && preloader.parentNode) {
           preloader.style.display = 'none';
         }
-      }, 800);
+      }, 500);
     }, remaining);
   }
 
@@ -946,6 +946,6 @@ document.addEventListener('DOMContentLoaded', () => {
     dismissPreloader();
   } else {
     window.addEventListener('load', dismissPreloader);
-    setTimeout(dismissPreloader, 3200);
+    setTimeout(dismissPreloader, 1500);
   }
 })();

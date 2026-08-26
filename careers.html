@@ -77,154 +77,59 @@
 
 <body class="text-slate-800 dark:text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950">
 
-  <!-- Luxury SVG Brand Preloader (Official Star Plus Travel Logo Engine) -->
+  <!-- Simple & Elegant Luxury Brand Preloader -->
   <div id="sitePreloader" class="site-preloader" aria-hidden="true" role="status">
-    <div class="preloader-bg-glow"></div>
-    <div class="preloader-svg-wrapper">
-      <svg id="starplusPreloaderSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 280" class="w-full max-w-xl h-auto overflow-visible select-none">
-        <defs>
-          <!-- Brand Color Definitions based on image_13.png -->
-          <linearGradient id="logoOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#F59E0B"/>
-            <stop offset="50%" stop-color="#F08C28"/>
-            <stop offset="100%" stop-color="#EA580C"/>
-          </linearGradient>
-
-          <linearGradient id="logoBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#2B72BA"/>
-            <stop offset="60%" stop-color="#1B5B9E"/>
-            <stop offset="100%" stop-color="#124378"/>
-          </linearGradient>
-
-          <linearGradient id="swooshGrad" x1="0%" y1="50%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#1B5B9E"/>
-            <stop offset="70%" stop-color="#2575C4"/>
-            <stop offset="100%" stop-color="#38BDF8"/>
-          </linearGradient>
-
-          <filter id="preloaderGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="4" result="blur"/>
-            <feMerge>
-              <feMergeNode in="blur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
-
-        <!-- Group: Main Logo Artwork -->
-        <g id="preloaderLogoGroup" transform="translate(10, 10)">
-          
-          <!-- Ambient Backdrop Glow -->
-          <circle cx="310" cy="130" r="160" fill="#1B5B9E" opacity="0.12" filter="url(#preloaderGlow)"/>
-
-          <!-- ==================== "Star" Section (Orange) ==================== -->
-          <g id="preloaderWordStar" fill="url(#logoOrangeGrad)">
-            <!-- Letter 'S' Body -->
-            <path d="M 72,134 C 72,118 86,108 108,108 C 128,108 140,118 140,130 L 124,133 C 123,126 117,121 108,121 C 96,121 88,126 88,133 C 88,140 94,143 108,146 C 128,150 142,156 142,170 C 142,184 126,194 104,194 C 80,194 66,182 66,168 L 82,165 C 83,174 91,180 104,180 C 116,180 126,176 126,169 C 126,161 118,158 104,155 C 84,150 72,145 72,134 Z" />
-
-            <!-- Letter 't' -->
-            <path d="M 152,124 L 166,124 L 166,134 L 178,134 L 178,146 L 166,146 L 166,178 C 166,182 168,184 172,184 C 175,184 177,183 179,182 L 180,193 C 176,194 171,195 165,195 C 154,195 150,188 150,178 L 150,146 L 140,146 L 140,134 L 152,134 Z" />
-            <circle cx="159" cy="116" r="6" />
-
-            <!-- Letter 'a' -->
-            <path d="M 216,146 L 216,193 L 202,193 L 202,184 C 197,191 189,195 178,195 C 164,195 154,185 154,170 C 154,155 166,146 182,146 C 190,146 197,148 202,151 L 202,149 C 202,140 195,135 184,135 C 175,135 168,139 166,144 L 153,138 C 157,128 169,122 184,122 C 204,122 216,132 216,146 Z M 202,164 C 198,161 192,159 185,159 C 174,159 168,164 168,171 C 168,178 174,183 182,183 C 193,183 202,175 202,164 Z" transform="translate(30, 0)" />
-
-            <!-- Letter 'r' -->
-            <path d="M 256,135 L 270,135 L 270,146 C 274,139 281,135 291,135 L 291,151 C 289,150 286,150 283,150 C 275,150 270,156 270,166 L 270,193 L 256,193 Z" transform="translate(18, 0)" />
-          </g>
-
-          <!-- ==================== Blue Swoosh Trajectory ==================== -->
-          <path id="preloaderSwooshPath" d="M 88,140 C 130,136 195,124 255,98 C 290,82 315,64 330,50 C 305,68 265,96 195,124 C 145,142 105,146 88,140 Z" fill="url(#swooshGrad)"/>
-
-          <!-- ==================== Airplane Jet (Detaches & Takes Off) ==================== -->
-          <g id="preloaderAirplane">
-            <!-- Vapor Contrail Trail -->
-            <path class="airplane-vapor" d="M 315,64 C 290,80 250,105 200,128" stroke="#F08C28" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.65"/>
-            
-            <!-- Vector Airplane Body (Rotated ~42deg) -->
-            <g transform="translate(335, 46) rotate(42) scale(1.18)" fill="url(#logoOrangeGrad)">
-              <!-- Main Wings -->
-              <path d="M 0,-6 L 26,12 L 23,16 L 0,6 L -23,16 L -26,12 Z" />
-              <!-- Fuselage -->
-              <path d="M 0,-24 C 3,-20 4,-6 4,16 L 1.5,22 L -1.5,22 L -4,16 C -4,-6 -3,-20 0,-24 Z" />
-              <!-- Tail Wings / Horizontal Stabilizers -->
-              <path d="M 0,12 L 12,20 L 10,23 L 0,19 L -10,23 L -12,20 Z" />
-              <!-- Tail Fin -->
-              <polygon points="0,6 1.5,18 0,22 -1.5,18" fill="#EA580C" />
-            </g>
-          </g>
-
-          <!-- ==================== "Plus" Section (Deep Blue with Suitcase 'u') ==================== -->
-          <g id="preloaderWordPlus">
-            <!-- Letter 'P' -->
-            <path d="M 334,108 L 360,108 C 375,108 386,116 386,130 C 386,144 375,152 360,152 L 349,152 L 349,193 L 334,193 Z M 349,139 L 359,139 C 367,139 372,135 372,130 C 372,125 367,121 359,121 L 349,121 Z" fill="url(#logoBlueGrad)" />
-
-            <!-- Letter 'l' -->
-            <rect x="392" y="108" width="14" height="85" rx="3" fill="url(#logoBlueGrad)" />
-
-            <!-- Stylized Orange/Blue Suitcase 'u' -->
-            <g id="preloaderSuitcaseU">
-              <!-- Orange Telescopic Pull Handle (Top) -->
-              <g stroke="url(#logoOrangeGrad)" stroke-width="2.8" stroke-linecap="round" fill="none">
-                <line x1="422" y1="120" x2="422" y2="100"/>
-                <line x1="448" y1="120" x2="448" y2="100"/>
-                <line x1="419" y1="100" x2="451" y2="100" stroke-width="3.5"/>
-              </g>
-
-              <!-- Blue Suitcase Main Body (The 'u' Shape) -->
-              <path d="M 414,124 L 428,124 L 428,172 C 428,178 432,181 435,181 C 438,181 442,178 442,172 L 442,124 L 456,124 L 456,172 C 456,186 447,194 435,194 C 423,194 414,186 414,172 Z" fill="url(#logoBlueGrad)" />
-              
-              <!-- Luggage Center Detail / Latch -->
-              <rect x="432" y="142" width="6" height="12" rx="1.5" fill="#F08C28" opacity="0.9"/>
-
-              <!-- Orange Rolling Wheels / Pegs (Bottom) -->
-              <rect x="420" y="194" width="6" height="8" rx="2" fill="url(#logoOrangeGrad)" />
-              <rect x="444" y="194" width="6" height="8" rx="2" fill="url(#logoOrangeGrad)" />
-            </g>
-
-            <!-- Letter 's' -->
-            <path d="M 466,128 C 466,116 476,108 492,108 C 508,108 518,116 518,128 L 504,130 C 504,124 499,120 492,120 C 485,120 480,124 480,128 C 480,134 484,137 494,139 C 510,143 520,149 520,162 C 520,176 508,185 492,185 C 474,185 464,175 464,162 L 478,160 C 478,168 484,173 492,173 C 499,173 506,168 506,162 C 506,155 500,152 490,150 C 474,146 466,140 466,128 Z" transform="translate(10, 8)" fill="url(#logoBlueGrad)" />
-          </g>
-
-          <!-- ==================== Underline Baseline ==================== -->
-          <g stroke="url(#logoOrangeGrad)" stroke-width="2.5" stroke-linecap="round">
-            <!-- Left Underline under "Star Pl" -->
-            <line x1="66" y1="206" x2="416" y2="206"/>
-            <!-- Right Underline under 's' -->
-            <line x1="454" y1="206" x2="532" y2="206"/>
-          </g>
-
-          <!-- ==================== Subtitle: TRAVEL AND TOURISM LLC ==================== -->
-          <text x="298" y="238" text-anchor="middle" font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-size="21" font-weight="900" letter-spacing="4.5" fill="#FFFFFF">
-            TRAVEL AND TOURISM LLC
-          </text>
-        </g>
-      </svg>
-
-      <!-- Progress Shimmer Bar -->
-      <div class="preloader-progress-track">
-        <div class="preloader-progress-bar"></div>
+    <div class="preloader-ambient-glow"></div>
+    <div class="preloader-card">
+      <!-- Centered Star Plus Logo with dual-theme fallback -->
+      <img
+        src="assets/logo-white-text.png"
+        data-dark-src="assets/logo-white-text.png"
+        data-light-src="assets/original-removebg-preview.png"
+        alt="Star Plus Travel and Tourism LLC"
+        class="preloader-brand-logo"
+      />
+      
+      <!-- Subtle Luxury Gold Loading Indicator -->
+      <div class="preloader-loader-wrap">
+        <div class="preloader-spinner"></div>
+        <div class="preloader-bar-track">
+          <div class="preloader-bar-fill"></div>
+        </div>
       </div>
     </div>
   </div>
   <script>
     window.__preloaderStartTime = Date.now();
     (function() {
-      function dismissEarly() {
+      // Sync preloader logo with active theme immediately
+      try {
+        var isDark = document.documentElement.classList.contains('dark') || 
+          (!document.documentElement.classList.contains('light') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var pImg = document.querySelector('.preloader-brand-logo');
+        if (pImg) {
+          pImg.src = isDark ? (pImg.getAttribute('data-dark-src') || pImg.src) : (pImg.getAttribute('data-light-src') || pImg.src);
+        }
+      } catch (e) {}
+
+      function dismissPreloader() {
         var p = document.getElementById('sitePreloader');
-        if (!p) return;
+        if (!p || p.classList.contains('fade-out')) return;
         var elapsed = Date.now() - (window.__preloaderStartTime || Date.now());
-        var wait = Math.max(0, 2100 - elapsed);
+        var wait = Math.max(0, 600 - elapsed);
         setTimeout(function() {
           p.classList.add('fade-out');
-          setTimeout(function() { if (p && p.parentNode) p.style.display = 'none'; }, 800);
+          setTimeout(function() {
+            if (p && p.parentNode) p.style.display = 'none';
+          }, 500);
         }, wait);
       }
+
       if (document.readyState === 'complete') {
-        dismissEarly();
+        dismissPreloader();
       } else {
-        window.addEventListener('load', dismissEarly);
-        setTimeout(dismissEarly, 3200);
+        window.addEventListener('load', dismissPreloader);
+        setTimeout(dismissPreloader, 1500);
       }
     })();
   </script>
