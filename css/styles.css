@@ -506,7 +506,7 @@ html.dark.season-eid .glass-card:hover {
 }
 
 /* ==========================================================================
-   Simple & Elegant Luxury Brand Preloader (Full-Screen & Solid Overlay)
+   Luxury App Splash Preloader (Mobile-Responsive, 100dvh Solid Overlay)
    ========================================================================== */
 .site-preloader {
   position: fixed !important;
@@ -519,15 +519,16 @@ html.dark.season-eid .glass-card:hover {
   width: 100% !important;
   height: 100vh !important;
   height: 100dvh !important;
+  min-height: 100dvh !important;
   margin: 0 !important;
   padding: 0 !important;
-  z-index: 99999 !important;
+  z-index: 9999 !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  background-color: #070e17;
-  background-image: radial-gradient(circle at 50% 50%, #0d1e33 0%, #070e17 85%);
+  background-color: #070e17 !important;
+  background-image: radial-gradient(circle at 50% 50%, #0d1e33 0%, #070e17 85%) !important;
   opacity: 1;
   visibility: visible;
   transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.45s cubic-bezier(0.4, 0, 0.2, 1);
