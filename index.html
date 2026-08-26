@@ -119,6 +119,48 @@
 </head>
 <body class="antialiased selection:bg-amber-500 selection:text-slate-950 transition-colors duration-300">
 
+  <!-- Luxury Brand Preloader -->
+  <div id="sitePreloader" class="site-preloader" aria-hidden="true" role="status">
+    <div class="preloader-glow"></div>
+    <div class="preloader-orbit">
+      <div class="preloader-ring-reverse"></div>
+      <div class="preloader-ring"></div>
+      <img src="assets/logo_icon.png" alt="Star Plus Travels" class="preloader-logo">
+    </div>
+    <div class="mt-6 text-center">
+      <div class="text-[11px] font-extrabold uppercase tracking-[0.25em] gold-gradient-text font-heading">
+        Star Plus Travel &amp; Tourism
+      </div>
+      <div class="text-[9px] uppercase tracking-[0.2em] text-slate-400 font-medium mt-1">
+        Bespoke Global Journeys
+      </div>
+    </div>
+    <div class="preloader-progress-track">
+      <div class="preloader-progress-bar"></div>
+    </div>
+  </div>
+  <script>
+    window.__preloaderStartTime = Date.now();
+    (function() {
+      function dismissEarly() {
+        var p = document.getElementById('sitePreloader');
+        if (!p) return;
+        var elapsed = Date.now() - (window.__preloaderStartTime || Date.now());
+        var wait = Math.max(0, 1000 - elapsed);
+        setTimeout(function() {
+          p.classList.add('fade-out');
+          setTimeout(function() { if (p && p.parentNode) p.style.display = 'none'; }, 700);
+        }, wait);
+      }
+      if (document.readyState === 'complete') {
+        dismissEarly();
+      } else {
+        window.addEventListener('load', dismissEarly);
+        setTimeout(dismissEarly, 2500);
+      }
+    })();
+  </script>
+
   <!-- Ambient Glow Backgrounds -->
   <div class="ambient-glow glow-blue top-0 left-1/4"></div>
   <div class="ambient-glow glow-gold top-96 right-10"></div>

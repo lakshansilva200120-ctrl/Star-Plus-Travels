@@ -917,3 +917,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // Attach search listeners
   document.getElementById('heroSearchForm')?.addEventListener('submit', handleHeroSearch);
 });
+
+/* ==========================================================================
+   Luxury Brand Preloader Controller
+   ========================================================================== */
+(function setupLuxuryPreloader() {
+  function dismissPreloader() {
+    const preloader = document.getElementById('sitePreloader');
+    if (!preloader || preloader.classList.contains('fade-out')) return;
+
+    const start = window.__preloaderStartTime || Date.now();
+    const elapsed = Date.now() - start;
+    const remaining = Math.max(0, 1000 - elapsed);
+
+    setTimeout(() => {
+      preloader.classList.add('fade-out');
+      setTimeout(() => {
+        if (preloader && preloader.parentNode) {
+          preloader.style.display = 'none';
+        }
+      }, 700);
+    }, remaining);
+  }
+
+  if (document.readyState === 'complete') {
+    dismissPreloader();
+  } else {
+    window.addEventListener('load', dismissPreloader);
+    setTimeout(dismissPreloader, 2500);
+  }
+})();

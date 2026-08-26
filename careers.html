@@ -73,6 +73,48 @@
 
 <body class="text-slate-800 dark:text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950">
 
+  <!-- Luxury Brand Preloader -->
+  <div id="sitePreloader" class="site-preloader" aria-hidden="true" role="status">
+    <div class="preloader-glow"></div>
+    <div class="preloader-orbit">
+      <div class="preloader-ring-reverse"></div>
+      <div class="preloader-ring"></div>
+      <img src="assets/logo_icon.png" alt="Star Plus Travels" class="preloader-logo">
+    </div>
+    <div class="mt-6 text-center">
+      <div class="text-[11px] font-extrabold uppercase tracking-[0.25em] gold-gradient-text font-heading">
+        Star Plus Travel &amp; Tourism
+      </div>
+      <div class="text-[9px] uppercase tracking-[0.2em] text-slate-400 font-medium mt-1">
+        Bespoke Global Journeys
+      </div>
+    </div>
+    <div class="preloader-progress-track">
+      <div class="preloader-progress-bar"></div>
+    </div>
+  </div>
+  <script>
+    window.__preloaderStartTime = Date.now();
+    (function() {
+      function dismissEarly() {
+        var p = document.getElementById('sitePreloader');
+        if (!p) return;
+        var elapsed = Date.now() - (window.__preloaderStartTime || Date.now());
+        var wait = Math.max(0, 1000 - elapsed);
+        setTimeout(function() {
+          p.classList.add('fade-out');
+          setTimeout(function() { if (p && p.parentNode) p.style.display = 'none'; }, 700);
+        }, wait);
+      }
+      if (document.readyState === 'complete') {
+        dismissEarly();
+      } else {
+        window.addEventListener('load', dismissEarly);
+        setTimeout(dismissEarly, 2500);
+      }
+    })();
+  </script>
+
   <!-- Top Announcement Bar -->
   <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-300 text-xs py-2 px-4 border-b border-slate-700/60 dark:border-slate-800/80 transition-colors">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
