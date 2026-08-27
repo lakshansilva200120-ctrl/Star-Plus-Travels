@@ -73,13 +73,22 @@
   }
   </script>
 
-  <!-- Immediate Theme Initialization Script (Zero-Flicker & OS Auto-Sync) -->
+  <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync by Default & Scroll Top Reset) -->
   <script>
     (function() {
+      // 1. Strict OS system theme matching by default
       try {
-        const storedTheme = localStorage.getItem('starplus_theme');
-        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = storedTheme === 'dark' || (!storedTheme && systemDark);
+        const isManual = localStorage.getItem('starplus_manual_theme_set') === 'true';
+        let isDark;
+        if (isManual) {
+          const stored = localStorage.getItem('starplus_theme');
+          isDark = stored === 'dark';
+        } else {
+          // Clear any conflicting legacy hardcoded localStorage override
+          localStorage.removeItem('starplus_theme');
+          isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+
         if (isDark) {
           document.documentElement.classList.add('dark');
           document.documentElement.classList.remove('light');
@@ -88,6 +97,17 @@
           document.documentElement.classList.add('light');
         }
       } catch (e) {}
+
+      // 2. Prevent refresh jump to FAQ or anchor hashes (always default cleanly to top of page)
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      if (window.location.hash) {
+        try {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (e) {}
+      }
+      window.scrollTo(0, 0);
     })();
   </script>
 

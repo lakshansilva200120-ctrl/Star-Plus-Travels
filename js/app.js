@@ -829,22 +829,31 @@ function toggleMobileMenu() {
   menu.classList.toggle('hidden');
 }
 
-// Theme Management (System Preference Auto-Detection & Manual Toggle with LocalStorage)
+// ==========================================================================
+// Theme Management (Strict OS System Auto-Sync by Default & Manual Override)
+// ==========================================================================
+function isSystemDarkMode() {
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
 function getPreferredTheme() {
   try {
-    const storedTheme = localStorage.getItem('starplus_theme');
-    if (storedTheme === 'dark' || storedTheme === 'light') {
-      return storedTheme;
+    const isManual = localStorage.getItem('starplus_manual_theme_set') === 'true';
+    if (isManual) {
+      const storedTheme = localStorage.getItem('starplus_theme');
+      if (storedTheme === 'dark' || storedTheme === 'light') {
+        return storedTheme;
+      }
+    } else {
+      // Clear any conflicting legacy hardcoded localStorage override
+      localStorage.removeItem('starplus_theme');
     }
   } catch (e) {}
 
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark';
-  }
-  return 'light';
+  return isSystemDarkMode() ? 'dark' : 'light';
 }
 
-function applyTheme(theme, save = false) {
+function applyTheme(theme, isManualAction = false) {
   const root = document.documentElement;
   const isDark = theme === 'dark';
 
@@ -856,9 +865,10 @@ function applyTheme(theme, save = false) {
     root.classList.add('light');
   }
 
-  if (save) {
+  if (isManualAction) {
     try {
       localStorage.setItem('starplus_theme', theme);
+      localStorage.setItem('starplus_manual_theme_set', 'true');
     } catch (e) {}
   }
 
@@ -900,19 +910,20 @@ function toggleTheme() {
   showToast(`Switched to ${newTheme === 'dark' ? '🌙 Dark' : '☀️ Light'} mode`, 'success');
 }
 
-// Real-time OS System Color Scheme Listener (Auto adapts when phone/OS switches mode)
+// Live Real-Time OS System Color Scheme Listener (Auto adapts when phone/OS switches mode)
 (function setupSystemThemeWatcher() {
   if (!window.matchMedia) return;
 
   const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const handleSystemThemeChange = (e) => {
-    // Only auto-update if the user hasn't explicitly set a manual preference in localStorage
     try {
-      const manualPreference = localStorage.getItem('starplus_theme');
-      if (!manualPreference) {
+      const isManual = localStorage.getItem('starplus_manual_theme_set') === 'true';
+      if (!isManual) {
         applyTheme(e.matches ? 'dark' : 'light', false);
       }
-    } catch (err) {}
+    } catch (err) {
+      applyTheme(e.matches ? 'dark' : 'light', false);
+    }
   };
 
   if (darkModeQuery.addEventListener) {
@@ -924,8 +935,19 @@ function toggleTheme() {
 
 // Setup Event Listeners on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize theme from storage or system preference
+  // 1. Initialize theme strictly from system preference or explicit manual override
   applyTheme(getPreferredTheme(), false);
+
+  // 2. Prevent refresh jump to FAQ or anchor hashes (always default cleanly to top of page)
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  if (window.location.hash) {
+    try {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    } catch (e) {}
+  }
+  window.scrollTo(0, 0);
 
   renderPackages(PACKAGES);
   renderTestimonial();
