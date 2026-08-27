@@ -73,20 +73,24 @@
   }
   </script>
 
-  <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync by Default & Scroll Top Reset) -->
+  <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync by Default & Zero Flicker) -->
   <script>
     (function() {
-      // 1. Strict OS system theme matching by default
+      // 1. Strict OS system theme matching by default with 3-mode support ('system', 'light', 'dark')
       try {
-        const isManual = localStorage.getItem('starplus_manual_theme_set') === 'true';
+        const mode = localStorage.getItem('starplus_theme_mode') || 'system';
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         let isDark;
-        if (isManual) {
-          const stored = localStorage.getItem('starplus_theme');
-          isDark = stored === 'dark';
+        if (mode === 'dark') {
+          isDark = true;
+        } else if (mode === 'light') {
+          isDark = false;
         } else {
-          // Clear any conflicting legacy hardcoded localStorage override
+          // 'system' mode: strictly mirrors system prefers-color-scheme live
+          isDark = systemDark;
+          // Purge legacy flat keys
           localStorage.removeItem('starplus_theme');
-          isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          localStorage.removeItem('starplus_manual_theme_set');
         }
 
         if (isDark) {

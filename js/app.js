@@ -830,32 +830,33 @@ function toggleMobileMenu() {
 }
 
 // ==========================================================================
-// Theme Management (Strict OS System Auto-Sync by Default & Manual Override)
+// Theme Management (System Preferences Live Auto-Sync with Tri-State Toggle)
+// Modes: 'system' (default live sync), 'light' (manual), 'dark' (manual)
 // ==========================================================================
 function isSystemDarkMode() {
   return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
-function getPreferredTheme() {
+function getThemeMode() {
   try {
-    const isManual = localStorage.getItem('starplus_manual_theme_set') === 'true';
-    if (isManual) {
-      const storedTheme = localStorage.getItem('starplus_theme');
-      if (storedTheme === 'dark' || storedTheme === 'light') {
-        return storedTheme;
-      }
-    } else {
-      // Clear any conflicting legacy hardcoded localStorage override
-      localStorage.removeItem('starplus_theme');
+    const mode = localStorage.getItem('starplus_theme_mode');
+    if (mode === 'light' || mode === 'dark' || mode === 'system') {
+      return mode;
     }
   } catch (e) {}
+  return 'system';
+}
 
+function getEffectiveTheme(mode = getThemeMode()) {
+  if (mode === 'dark') return 'dark';
+  if (mode === 'light') return 'light';
   return isSystemDarkMode() ? 'dark' : 'light';
 }
 
-function applyTheme(theme, isManualAction = false) {
+function applyTheme(mode = getThemeMode(), save = false) {
   const root = document.documentElement;
-  const isDark = theme === 'dark';
+  const effectiveTheme = getEffectiveTheme(mode);
+  const isDark = effectiveTheme === 'dark';
 
   if (isDark) {
     root.classList.add('dark');
@@ -865,23 +866,51 @@ function applyTheme(theme, isManualAction = false) {
     root.classList.add('light');
   }
 
-  if (isManualAction) {
+  if (save) {
     try {
-      localStorage.setItem('starplus_theme', theme);
-      localStorage.setItem('starplus_manual_theme_set', 'true');
+      if (mode === 'system') {
+        localStorage.setItem('starplus_theme_mode', 'system');
+      } else {
+        localStorage.setItem('starplus_theme_mode', mode);
+      }
+      // Purge legacy flat keys
+      localStorage.removeItem('starplus_theme');
+      localStorage.removeItem('starplus_manual_theme_set');
     } catch (e) {}
   }
 
-  // Update theme toggle icons
-  document.querySelectorAll('.theme-toggle-icon').forEach(icon => {
-    icon.className = isDark 
-      ? 'fa-solid fa-sun text-amber-400 theme-toggle-icon transition-transform' 
-      : 'fa-solid fa-moon text-slate-700 theme-toggle-icon transition-transform';
+  // Update theme toggle icons and tooltips
+  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+    if (mode === 'system') {
+      btn.setAttribute('title', `Theme: System Auto (${isDark ? 'Dark' : 'Light'}) • Click to toggle`);
+    } else if (mode === 'dark') {
+      btn.setAttribute('title', 'Theme: Dark (Manual) • Click to cycle to Auto');
+    } else {
+      btn.setAttribute('title', 'Theme: Light (Manual) • Click to cycle to Dark');
+    }
   });
 
-  // Update theme toggle text labels if present
+  document.querySelectorAll('.theme-toggle-icon').forEach(icon => {
+    if (mode === 'system') {
+      icon.className = isDark 
+        ? 'fa-solid fa-circle-half-stroke text-amber-400 theme-toggle-icon transition-transform' 
+        : 'fa-solid fa-circle-half-stroke text-slate-700 theme-toggle-icon transition-transform';
+    } else if (mode === 'dark') {
+      icon.className = 'fa-solid fa-moon text-amber-400 theme-toggle-icon transition-transform';
+    } else {
+      icon.className = 'fa-solid fa-sun text-amber-500 theme-toggle-icon transition-transform';
+    }
+  });
+
+  // Update theme toggle text labels in mobile menu
   document.querySelectorAll('.theme-toggle-label').forEach(label => {
-    label.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+    if (mode === 'system') {
+      label.textContent = `Auto / System (${isDark ? 'Dark' : 'Light'})`;
+    } else if (mode === 'dark') {
+      label.textContent = 'Dark Mode';
+    } else {
+      label.textContent = 'Light Mode';
+    }
   });
 
   // Update brand logos and images between white text (dark mode) and dark text (light mode)
@@ -904,25 +933,41 @@ function applyTheme(theme, isManualAction = false) {
 }
 
 function toggleTheme() {
-  const currentIsDark = document.documentElement.classList.contains('dark');
-  const newTheme = currentIsDark ? 'light' : 'dark';
-  applyTheme(newTheme, true);
-  showToast(`Switched to ${newTheme === 'dark' ? '🌙 Dark' : '☀️ Light'} mode`, 'success');
+  const currentMode = getThemeMode(); // 'system', 'light', 'dark'
+  const sysDark = isSystemDarkMode();
+  let nextMode;
+
+  if (currentMode === 'system') {
+    // If currently on system auto, switch to the opposite of current system theme
+    nextMode = sysDark ? 'light' : 'dark';
+  } else if (currentMode === 'light') {
+    nextMode = sysDark ? 'dark' : 'system';
+  } else if (currentMode === 'dark') {
+    nextMode = sysDark ? 'system' : 'light';
+  } else {
+    nextMode = 'system';
+  }
+
+  applyTheme(nextMode, true);
+
+  if (nextMode === 'system') {
+    showToast(`💻 Synced with device system settings (${sysDark ? 'Dark' : 'Light'} Mode)`, 'success');
+  } else if (nextMode === 'dark') {
+    showToast(`🌙 Switched to Dark mode (Manual)`, 'success');
+  } else {
+    showToast(`☀️ Switched to Light mode (Manual)`, 'success');
+  }
 }
 
-// Live Real-Time OS System Color Scheme Listener (Auto adapts when phone/OS switches mode)
+// Live Real-Time OS System Color Scheme Listener (Auto-syncs live when in System mode)
 (function setupSystemThemeWatcher() {
   if (!window.matchMedia) return;
 
   const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  const handleSystemThemeChange = (e) => {
-    try {
-      const isManual = localStorage.getItem('starplus_manual_theme_set') === 'true';
-      if (!isManual) {
-        applyTheme(e.matches ? 'dark' : 'light', false);
-      }
-    } catch (err) {
-      applyTheme(e.matches ? 'dark' : 'light', false);
+  const handleSystemThemeChange = () => {
+    const currentMode = getThemeMode();
+    if (currentMode === 'system') {
+      applyTheme('system', false);
     }
   };
 
@@ -935,8 +980,8 @@ function toggleTheme() {
 
 // Setup Event Listeners on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Initialize theme strictly from system preference or explicit manual override
-  applyTheme(getPreferredTheme(), false);
+  // 1. Initialize theme strictly from system preference or explicit manual mode
+  applyTheme(getThemeMode(), false);
 
   // 2. Prevent refresh jump to FAQ or anchor hashes (always default cleanly to top of page)
   if ('scrollRestoration' in history) {
