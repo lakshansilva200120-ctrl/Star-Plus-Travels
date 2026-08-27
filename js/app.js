@@ -40,9 +40,10 @@ const I18N_TRANSLATIONS = {
 
     // Hero Section
     heroBadge: "Your Gateway to the World • Dubai & Sri Lanka",
+    heroTitleFull: 'Your Gateway to the <span class="gold-gradient-text">World</span>, Crafted with <span class="ocean-gradient-text">Luxury & Ease</span>.',
     heroTitleLead: "Your Gateway to the",
     heroTitleWorld: "World",
-    heroTitleMiddle: ", Crafted with",
+    heroTitleMiddle: "Crafted with",
     heroTitleLuxury: "Luxury & Ease",
     heroSubtitle: "Seamless journey from Sri Lanka & the UAE to 45+ global destinations. Handcrafted luxury holiday packages, competitive flights, and fast-track express visa processing.",
     tabHolidays: "Tour Packages",
@@ -251,10 +252,11 @@ const I18N_TRANSLATIONS = {
 
     // Hero Section
     heroBadge: "ඔබේ විශ්වාසනීය සංචාරක සහකරු • ඩුබායි සහ ශ්‍රී ලංකාව",
-    heroTitleLead: "ඔබේ සිහින සංචාරක",
-    heroTitleWorld: "ගමනාන්තය",
-    heroTitleMiddle: ", උසස්ම සුවපහසුවෙන්",
-    heroTitleLuxury: "සැබෑ කරගන්න",
+    heroTitleFull: 'ඔබේ සිහින <span class="gold-gradient-text">ලෝක සංචාරය</span>, උසස්ම <span class="ocean-gradient-text">සුවපහසුවෙන් සැබෑ කරගන්න</span>.',
+    heroTitleLead: "ඔබේ සිහින",
+    heroTitleWorld: "ලෝක සංචාරය",
+    heroTitleMiddle: "උසස්ම",
+    heroTitleLuxury: "සුවපහසුවෙන් සැබෑ කරගන්න",
     heroSubtitle: "Star Plus Travel & Tourism LLC වෙතින් ඩුබායි, ශ්‍රී ලංකාව සහ ලොව පුරා රටවල් 45+ කට සුඛෝපභෝගී නිවාඩු පැකේජ, අඩුම ගුවන් ටිකට්පත් සහ ක්ෂණික වීසා සේවා විශ්වාසනීයව ලබාගන්න.",
     tabHolidays: "සංචාරක පැකේජ",
     tabFlights: "ගුවන් ටිකට්පත්",

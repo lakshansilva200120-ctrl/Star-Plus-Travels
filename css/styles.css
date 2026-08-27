@@ -12,15 +12,50 @@ html.lang-si {
   max-width: 100vw !important;
 }
 
+/* Header Nav Compact Rules in Sinhala */
+html.lang-si header nav {
+  gap: 0.25rem !important;
+}
+
 html.lang-si header nav a {
-  letter-spacing: -0.015em;
-  font-size: 0.8rem;
+  letter-spacing: -0.02em !important;
+  font-size: 0.775rem !important;
+  padding-left: 0.25rem !important;
+  padding-right: 0.25rem !important;
 }
 
 @media (min-width: 1536px) {
-  html.lang-si header nav a {
-    font-size: 0.875rem;
+  html.lang-si header nav {
+    gap: 0.6rem !important;
   }
+  html.lang-si header nav a {
+    font-size: 0.825rem !important;
+    padding-left: 0.35rem !important;
+    padding-right: 0.35rem !important;
+  }
+}
+
+/* Hero Section Headline Formatting & Balance */
+#heroHeadline {
+  text-wrap: balance;
+}
+
+html.lang-si #heroHeadline {
+  font-size: clamp(1.65rem, 3.8vw, 3.1rem) !important;
+  line-height: 1.32 !important;
+  letter-spacing: -0.01em !important;
+  max-width: 48rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-wrap: balance !important;
+}
+
+html.lang-si #heroSubHeadline {
+  font-size: clamp(0.875rem, 1.3vw, 1.05rem) !important;
+  line-height: 1.65 !important;
+  max-width: 44rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* ==========================================================================
