@@ -1514,9 +1514,13 @@ function changeLanguage(lang, notify = true) {
     sel.value = lang;
   });
 
-  // Update navbar language badge
+  // Update navbar language badge & button title
   document.querySelectorAll('.lang-badge').forEach(badge => {
-    badge.textContent = lang === 'si' ? 'සිංහල' : 'EN';
+    badge.textContent = lang === 'si' ? 'SI' : 'EN';
+  });
+  document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+    btn.setAttribute('title', lang === 'si' ? 'භාෂාව මාරු කරන්න (English / සිංහල)' : 'Switch Language (English / Sinhala)');
+    btn.setAttribute('aria-label', `Current language: ${lang === 'si' ? 'Sinhala' : 'English'}. Click to switch.`);
   });
 
   // Update mobile segmented buttons

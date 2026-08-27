@@ -620,4 +620,25 @@ html.light #sitePreloader {
   100% { transform: rotate(360deg); }
 }
 
+/* Language Toggle Button Styling */
+.lang-toggle-btn {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  cursor: pointer;
+}
+
+.lang-toggle-btn:hover {
+  border-color: rgba(245, 158, 11, 0.5) !important;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+}
+
+.lang-toggle-btn:active {
+  transform: scale(0.96);
+}
+
+.lang-badge {
+  letter-spacing: 0.05em;
+  font-feature-settings: "tnum";
+}
+
 
