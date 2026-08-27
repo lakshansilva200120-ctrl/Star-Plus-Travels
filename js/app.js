@@ -1516,7 +1516,7 @@ function changeLanguage(lang, notify = true) {
 
   // Update navbar language badge & button title
   document.querySelectorAll('.lang-badge').forEach(badge => {
-    badge.textContent = lang === 'si' ? 'SI' : 'EN';
+    badge.textContent = lang === 'si' ? 'සිංහල' : 'EN';
   });
   document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
     btn.setAttribute('title', lang === 'si' ? 'භාෂාව මාරු කරන්න (English / සිංහල)' : 'Switch Language (English / Sinhala)');
