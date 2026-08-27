@@ -196,14 +196,11 @@
           <i class="fa-solid fa-envelope text-amber-400 mr-1"></i>SL: info@starplustravelsl.com
         </a>
         <span class="text-slate-600">|</span>
-        <!-- Top Bar Language Dropdown -->
-        <div class="inline-flex items-center space-x-1">
-          <i class="fa-solid fa-globe text-amber-400 text-[10px]"></i>
-          <select onchange="changeLanguage(this.value)" class="lang-selector bg-transparent text-slate-200 hover:text-white text-[11px] font-bold border-none outline-none cursor-pointer">
-            <option value="en" class="bg-slate-900 text-white">🇬🇧 English</option>
-            <option value="si" class="bg-slate-900 text-white">🇱🇰 සිංහල</option>
-          </select>
-        </div>
+        <!-- Top Bar Color Mode / Theme Toggle Button (Far Right Corner) -->
+        <button type="button" onclick="toggleTheme()" class="theme-toggle-btn flex items-center space-x-1.5 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-600/60 rounded-lg px-2.5 py-0.5 text-xs text-slate-200 hover:text-white transition-all shadow-sm cursor-pointer" aria-label="Toggle dark/light theme" title="Toggle Theme (System / Light / Dark)">
+          <i class="fa-solid fa-sun text-amber-400 text-xs theme-toggle-icon"></i>
+          <span class="theme-toggle-label hidden md:inline text-[11px] font-semibold" data-i18n="themeLabel">Theme</span>
+        </button>
       </div>
     </div>
   </div>
@@ -235,9 +232,9 @@
           <a href="index.html#contact" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2" data-i18n="navContact">Contact</a>
         </nav>
 
-        <!-- Header CTA & Theme / Language Toggles -->
-        <div class="hidden sm:flex items-center space-x-2.5 shrink-0 ml-4">
-          <!-- Desktop Language Toggle Button (Positioned right next to Theme Toggle) -->
+        <!-- Header CTA & Translator Button (Language Toggle directly next to View Open Roles) -->
+        <div class="hidden sm:flex items-center space-x-3 shrink-0 ml-4">
+          <!-- Translator / Language Toggle Button -->
           <button type="button" onclick="toggleLanguage()" class="lang-toggle-btn px-3.5 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 flex items-center space-x-2 transition-all shadow-sm group cursor-pointer" aria-label="Toggle language between English and Sinhala" title="Switch Language (English / සිංහල)">
             <i class="fa-solid fa-globe text-amber-500 text-sm group-hover:rotate-45 transition-transform"></i>
             <span class="text-xs font-bold flex items-center space-x-1">
@@ -245,11 +242,6 @@
               <span class="text-slate-400 dark:text-slate-600">|</span>
               <span class="lang-active-si font-semibold text-slate-500 dark:text-slate-400">සිංහල</span>
             </span>
-          </button>
-
-          <!-- Navbar Theme Toggle Button -->
-          <button type="button" onclick="toggleTheme()" class="theme-toggle-btn w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-white flex items-center justify-center transition-all shadow-sm cursor-pointer" aria-label="Toggle theme mode" title="Toggle Light/Dark Theme">
-            <i class="fa-solid fa-sun text-amber-500 text-sm theme-toggle-icon"></i>
           </button>
 
           <a href="#positions" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 flex items-center space-x-2">

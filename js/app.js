@@ -1404,14 +1404,14 @@ function applyTheme(mode = getThemeMode(), save = false) {
     }
   });
 
-  // Update theme toggle text labels in mobile menu
+  // Update theme toggle text labels in top bar & mobile menu
   document.querySelectorAll('.theme-toggle-label').forEach(label => {
     if (mode === 'system') {
-      label.textContent = `Auto / System (${isDark ? 'Dark' : 'Light'})`;
+      label.textContent = `Auto (${isDark ? 'Dark' : 'Light'})`;
     } else if (mode === 'dark') {
-      label.textContent = 'Dark Mode';
+      label.textContent = 'Dark';
     } else {
-      label.textContent = 'Light Mode';
+      label.textContent = 'Light';
     }
   });
 
