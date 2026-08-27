@@ -233,16 +233,16 @@
       <div class="flex items-center space-x-4">
         <span class="flex items-center space-x-1.5 text-amber-600 dark:text-amber-400 font-semibold">
           <i class="fa-solid fa-sparkles text-[11px]"></i>
-          <span>Dubai & Sri Lanka Premier Travel & Visa Specialists</span>
+          <span data-i18n="topAnnouncementText">Dubai & Sri Lanka Premier Travel & Visa Specialists</span>
         </span>
         <span class="hidden md:inline text-slate-300 dark:text-slate-600">|</span>
         <span class="hidden md:flex items-center space-x-1">
           <i class="fa-solid fa-location-dot text-amber-600 dark:text-amber-400 text-[11px]"></i>
-          <span>Deira, Dubai, UAE & Colombo, Sri Lanka</span>
+          <span data-i18n="topLocation">Deira, Dubai, UAE & Colombo, Sri Lanka</span>
         </span>
       </div>
 
-      <div class="flex items-center space-x-3 sm:space-x-4">
+      <div class="flex items-center space-x-2 sm:space-x-3">
         <!-- Direct Phone & Email Links -->
         <a href="tel:+97145751321" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors flex items-center space-x-1 font-medium">
           <i class="fa-solid fa-phone text-amber-600 dark:text-amber-400 text-[10px]"></i>
@@ -254,8 +254,17 @@
         </a>
         <a href="https://wa.me/971527582293" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors flex items-center space-x-1 font-medium">
           <i class="fa-brands fa-whatsapp text-emerald-600 dark:text-emerald-400 text-xs"></i>
-          <span class="hidden sm:inline">WhatsApp Concierge</span>
+          <span class="hidden sm:inline" data-i18n="whatsappConcierge">WhatsApp Concierge</span>
         </a>
+
+        <!-- Language Selector Dropdown -->
+        <div class="flex items-center space-x-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/60 rounded-lg px-2 py-0.5 shadow-sm">
+          <i class="fa-solid fa-globe text-amber-500 text-[10px]"></i>
+          <select onchange="changeLanguage(this.value)" class="lang-selector bg-transparent text-slate-800 dark:text-white text-xs outline-none cursor-pointer font-semibold">
+            <option value="en">🇬🇧 English</option>
+            <option value="si">🇱🇰 සිංහල</option>
+          </select>
+        </div>
 
         <!-- Currency Selector -->
         <div class="flex items-center space-x-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/60 rounded-lg px-2 py-0.5 shadow-sm">
@@ -270,9 +279,9 @@
         </div>
 
         <!-- Top Bar Theme Toggle Button -->
-        <button type="button" onclick="toggleTheme()" class="theme-toggle-btn flex items-center space-x-1.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/60 rounded-lg px-2.5 py-1 text-xs text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-white transition-all shadow-sm" aria-label="Toggle dark/light theme" title="Toggle Theme">
+        <button type="button" onclick="toggleTheme()" class="theme-toggle-btn flex items-center space-x-1.5 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/60 rounded-lg px-2 py-1 text-xs text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-white transition-all shadow-sm" aria-label="Toggle dark/light theme" title="Toggle Theme">
           <i class="fa-solid fa-sun text-amber-500 theme-toggle-icon"></i>
-          <span class="theme-toggle-label hidden md:inline text-[11px] font-semibold">Theme</span>
+          <span class="theme-toggle-label hidden md:inline text-[11px] font-semibold" data-i18n="themeLabel">Theme</span>
         </button>
       </div>
     </div>
@@ -294,36 +303,47 @@
         </a>
 
         <!-- Desktop Navigation Links -->
-        <nav class="hidden lg:flex items-center space-x-6 xl:space-x-8 text-sm font-semibold text-slate-800 dark:text-slate-200">
-          <a href="#hero" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Home</a>
-          <a href="#clients" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Clients</a>
-          <a href="#packages" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Tour Packages</a>
-          <a href="#visa-services" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Visa Services</a>
-          <a href="#why-us" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Why Choose Us</a>
-          <a href="#testimonials" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Reviews</a>
+        <nav class="hidden lg:flex items-center space-x-5 xl:space-x-7 text-sm font-semibold text-slate-800 dark:text-slate-200">
+          <a href="#hero" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2" data-i18n="navHome">Home</a>
+          <a href="#clients" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2" data-i18n="navClients">Clients</a>
+          <a href="#packages" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2" data-i18n="navPackages">Tour Packages</a>
+          <a href="#visa-services" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2" data-i18n="navVisa">Visa Services</a>
+          <a href="#why-us" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2" data-i18n="navWhyUs">Why Choose Us</a>
+          <a href="#testimonials" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2" data-i18n="navReviews">Reviews</a>
           <a href="careers.html" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2 flex items-center space-x-1">
-            <span>Careers</span>
+            <span data-i18n="navCareers">Careers</span>
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
           </a>
-          <a href="#faq" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">FAQ</a>
-          <a href="#contact" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2">Contact</a>
+          <a href="#faq" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2" data-i18n="navFaq">FAQ</a>
+          <a href="#contact" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-2" data-i18n="navContact">Contact</a>
         </nav>
 
-        <!-- Header CTA & Theme Toggle -->
-        <div class="hidden sm:flex items-center space-x-3 shrink-0 ml-4">
+        <!-- Header CTA, Language Toggle & Theme Toggle -->
+        <div class="hidden sm:flex items-center space-x-2.5 shrink-0 ml-4">
+          <!-- Desktop Language Toggle Button -->
+          <button type="button" onclick="toggleLanguage()" class="lang-toggle-btn px-3 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-white flex items-center justify-center transition-all shadow-sm group" aria-label="Toggle language between English and Sinhala" title="Switch Language (English / සිංහල)">
+            <i class="fa-solid fa-globe text-amber-500 text-sm mr-1.5 group-hover:rotate-45 transition-transform"></i>
+            <span class="lang-badge text-xs font-bold">EN</span>
+          </button>
+
           <!-- Navbar Theme Toggle Button -->
           <button type="button" onclick="toggleTheme()" class="theme-toggle-btn w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 hover:text-amber-600 dark:hover:text-white flex items-center justify-center transition-all shadow-sm" aria-label="Toggle theme mode" title="Toggle Light/Dark Theme">
             <i class="fa-solid fa-sun text-amber-500 text-sm theme-toggle-icon"></i>
           </button>
 
           <a href="#contact" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 flex items-center space-x-2">
-            <span>Get Free Quote</span>
+            <span data-i18n="navGetQuote">Get Free Quote</span>
             <i class="fa-solid fa-arrow-right text-xs"></i>
           </a>
         </div>
 
         <!-- Mobile Header Controls -->
-        <div class="lg:hidden flex items-center space-x-2">
+        <div class="lg:hidden flex items-center space-x-1.5">
+          <!-- Mobile Language Toggle Button -->
+          <button type="button" onclick="toggleLanguage()" class="lang-toggle-btn px-2.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 flex items-center space-x-1" aria-label="Toggle language">
+            <i class="fa-solid fa-globe text-amber-500 text-xs"></i>
+            <span class="lang-badge text-xs font-bold">EN</span>
+          </button>
           <button type="button" onclick="toggleTheme()" class="theme-toggle-btn p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300" aria-label="Toggle theme">
             <i class="fa-solid fa-sun text-amber-500 text-sm theme-toggle-icon"></i>
           </button>
@@ -336,32 +356,48 @@
 
     <!-- Mobile Slide-out Menu -->
     <div id="mobileMenu" class="hidden lg:hidden bg-white/95 dark:bg-slate-950/95 border-b border-slate-200 dark:border-slate-800 px-6 py-6 space-y-4 transition-colors">
+      <!-- Mobile Language Switcher (Segmented) -->
+      <div class="p-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-between shadow-sm">
+        <span class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center space-x-2 pl-2">
+          <i class="fa-solid fa-globe text-amber-500"></i>
+          <span data-i18n="langLabel">Language</span>
+        </span>
+        <div class="flex items-center space-x-1 bg-white dark:bg-slate-950 p-1 rounded-lg border border-slate-200 dark:border-slate-800">
+          <button type="button" onclick="changeLanguage('en')" class="lang-btn-en px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-amber-500 text-slate-950 shadow-sm">
+            English
+          </button>
+          <button type="button" onclick="changeLanguage('si')" class="lang-btn-si px-3 py-1 rounded-md text-[11px] font-semibold text-slate-600 dark:text-slate-300 hover:text-amber-500 transition-all">
+            සිංහල
+          </button>
+        </div>
+      </div>
+
       <nav class="flex flex-col space-y-3 text-base font-semibold text-slate-800 dark:text-slate-200">
-        <a href="#hero" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">Home</a>
-        <a href="#clients" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">Our Clients</a>
-        <a href="#packages" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">Tour Packages</a>
-        <a href="#visa-services" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">Visa Services</a>
-        <a href="#why-us" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">Why Choose Us</a>
-        <a href="#testimonials" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">Customer Reviews</a>
+        <a href="#hero" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navHome">Home</a>
+        <a href="#clients" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navClients">Our Clients</a>
+        <a href="#packages" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navPackages">Tour Packages</a>
+        <a href="#visa-services" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navVisa">Visa Services</a>
+        <a href="#why-us" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navWhyUs">Why Choose Us</a>
+        <a href="#testimonials" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navReviews">Customer Reviews</a>
         <a href="careers.html" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
-          <span>Careers &amp; Vacancies</span>
-          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30">We're Hiring</span>
+          <span data-i18n="navCareers">Careers &amp; Vacancies</span>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30" data-i18n="navHiringBadge">We're Hiring</span>
         </a>
-        <a href="#faq" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60">FAQ</a>
-        <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5">Contact & Office</a>
+        <a href="#faq" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navFaq">FAQ</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5" data-i18n="navContact">Contact & Office</a>
       </nav>
 
       <!-- Mobile Theme Toggle -->
       <button type="button" onclick="toggleTheme()" class="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold flex items-center justify-between transition-colors shadow-sm">
         <span class="flex items-center space-x-2">
           <i class="fa-solid fa-sun text-amber-500 theme-toggle-icon"></i>
-          <span>Theme Mode</span>
+          <span data-i18n="themeLabel">Theme Mode</span>
         </span>
         <span class="theme-toggle-label text-amber-600 dark:text-amber-400 font-bold">Toggle Mode</span>
       </button>
 
       <div class="pt-2 flex flex-col gap-3">
-        <a href="#contact" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm shadow-md">
+        <a href="#contact" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm shadow-md" data-i18n="customTripBtn">
           Request Custom Itinerary
         </a>
       </div>
@@ -380,7 +416,6 @@
           <i class="fa-brands fa-linkedin-in text-sm"></i>
         </a>
       </div>
-    </div>
   </header>
 
   <!-- Video Intro Hero Section -->
@@ -411,17 +446,17 @@
       <!-- Top Badge -->
       <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-950/85 border border-amber-500/50 text-amber-300 text-xs font-bold uppercase tracking-wider mb-6 shadow-2xl backdrop-blur-md animate-float">
         <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-        <span>Your Gateway to the World • Dubai & Sri Lanka</span>
+        <span data-i18n="heroBadge">Your Gateway to the World • Dubai & Sri Lanka</span>
         <i class="fa-solid fa-star text-amber-400 text-xs ml-1"></i>
       </div>
 
       <!-- Main Catchphrase / Headline -->
       <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black font-heading text-white tracking-tight leading-[1.08] mb-6 drop-shadow-2xl">
-        Your Gateway to the <span class="gold-gradient-text">World</span>,<br class="hidden sm:inline">
-        Crafted with <span class="ocean-gradient-text">Luxury & Ease</span>.
+        <span data-i18n="heroTitleLead">Your Gateway to the</span> <span class="gold-gradient-text" data-i18n="heroTitleWorld">World</span>,<br class="hidden sm:inline">
+        <span data-i18n="heroTitleMiddle">Crafted with</span> <span class="ocean-gradient-text" data-i18n="heroTitleLuxury">Luxury & Ease</span>.
       </h1>
 
-      <p class="text-base sm:text-xl text-slate-200 max-w-3xl mx-auto font-normal leading-relaxed mb-10 drop-shadow-md">
+      <p class="text-base sm:text-xl text-slate-200 max-w-3xl mx-auto font-normal leading-relaxed mb-10 drop-shadow-md" data-i18n="heroSubtitle">
         Seamless journey from Sri Lanka & the UAE to 45+ global destinations. Handcrafted luxury holiday packages, competitive flights, and fast-track express visa processing.
       </p>
 
@@ -431,15 +466,15 @@
         <div class="flex items-center space-x-2 border-b border-slate-800 pb-3 mb-5 overflow-x-auto">
           <button type="button" class="px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 flex items-center space-x-2 shrink-0">
             <i class="fa-solid fa-umbrella-beach"></i>
-            <span>Holiday Packages</span>
+            <span data-i18n="tabHolidays">Holiday Packages</span>
           </button>
           <a href="#visa-services" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-colors flex items-center space-x-2 shrink-0">
             <i class="fa-solid fa-passport"></i>
-            <span>Fast-Track Visas</span>
+            <span data-i18n="tabVisas">Fast-Track Visas</span>
           </a>
           <a href="#contact" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition-colors flex items-center space-x-2 shrink-0">
             <i class="fa-solid fa-plane"></i>
-            <span>Flight Inquiries</span>
+            <span data-i18n="tabFlights">Flight Inquiries</span>
           </a>
         </div>
 
@@ -448,15 +483,15 @@
           <!-- Destination Input -->
           <div>
             <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
-              <i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> Destination
+              <i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> <span data-i18n="destinationLabel">Destination</span>
             </label>
-            <input type="text" id="heroDestinationInput" placeholder="e.g. Dubai, Sri Lanka, Baku" class="w-full glass-input px-3.5 py-3 rounded-xl text-sm font-medium placeholder-slate-500">
+            <input type="text" id="heroDestinationInput" placeholder="e.g. Dubai, Sri Lanka, Baku" data-i18n-placeholder="destinationPlaceholder" class="w-full glass-input px-3.5 py-3 rounded-xl text-sm font-medium placeholder-slate-500">
           </div>
 
           <!-- Date Picker -->
           <div>
             <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
-              <i class="fa-regular fa-calendar-days text-amber-400 mr-1"></i> Travel Date
+              <i class="fa-regular fa-calendar-days text-amber-400 mr-1"></i> <span data-i18n="travelDateLabel">Travel Date</span>
             </label>
             <input type="date" id="heroDateInput" class="w-full glass-input px-3.5 py-3 rounded-xl text-sm font-medium text-slate-300">
           </div>
@@ -464,13 +499,13 @@
           <!-- Travelers Selector -->
           <div>
             <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
-              <i class="fa-solid fa-user-group text-amber-400 mr-1"></i> Travelers
+              <i class="fa-solid fa-user-group text-amber-400 mr-1"></i> <span data-i18n="travelersLabel">Travelers</span>
             </label>
             <select id="heroTravelersSelect" class="w-full glass-input px-3.5 py-3 rounded-xl text-sm font-medium cursor-pointer">
-              <option value="1">1 Solo Explorer</option>
-              <option value="2" selected>2 Adults (Couple)</option>
-              <option value="3">3 Travelers</option>
-              <option value="4">4+ Family / Group</option>
+              <option value="1" data-i18n="opt1Solo">1 Solo Explorer</option>
+              <option value="2" selected data-i18n="opt2Couple">2 Adults (Couple)</option>
+              <option value="3" data-i18n="opt3Travelers">3 Travelers</option>
+              <option value="4" data-i18n="opt4Family">4+ Family / Group</option>
             </select>
           </div>
 
@@ -478,14 +513,14 @@
           <div>
             <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-sm uppercase tracking-wider shadow-lg shadow-amber-500/25 transition-all transform active:scale-95 flex items-center justify-center space-x-2">
               <i class="fa-solid fa-magnifying-glass"></i>
-              <span>Find Deals</span>
+              <span data-i18n="searchBtn">Find Deals</span>
             </button>
           </div>
         </form>
 
         <!-- Quick Trending Suggestions -->
         <div class="mt-4 pt-3 border-t border-slate-800/60 flex items-center flex-wrap gap-2 text-xs text-slate-400">
-          <span class="font-bold text-slate-300">Trending Now:</span>
+          <span class="font-bold text-slate-300" data-i18n="trendingLabel">Trending Now:</span>
           <button type="button" onclick="document.getElementById('heroDestinationInput').value='Dubai'; handleHeroSearch();" class="hover:text-amber-400 underline decoration-amber-500/40">Dubai Desert</button>
           <span>•</span>
           <button type="button" onclick="document.getElementById('heroDestinationInput').value='Sri Lanka'; handleHeroSearch();" class="hover:text-amber-400 underline decoration-amber-500/40">Sri Lanka Tea Hills</button>
@@ -501,23 +536,23 @@
       <!-- Trust Counters Bar -->
       <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-left">
         <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
-          <div class="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 font-heading">15,000+</div>
-          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Happy Explorers Served</p>
+          <div class="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 font-heading" data-i18n="trustTravelers">15,000+</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5" data-i18n="trustTravelersLabel">Happy Explorers Served</p>
         </div>
         <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
-          <div class="text-2xl sm:text-3xl font-black text-blue-600 dark:text-cyan-400 font-heading">45+</div>
-          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Global Destinations</p>
+          <div class="text-2xl sm:text-3xl font-black text-blue-600 dark:text-cyan-400 font-heading" data-i18n="trustDestinations">45+</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5" data-i18n="trustDestinationsLabel">Global Destinations</p>
         </div>
         <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
-          <div class="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400 font-heading">99.2%</div>
-          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Visa Approval Rate</p>
+          <div class="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400 font-heading" data-i18n="trustVisaRate">99.2%</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5" data-i18n="trustVisaRateLabel">Visa Approval Rate</p>
         </div>
         <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
           <div class="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 font-heading flex items-center">
             <span>4.9</span>
             <span class="text-xs text-amber-500 ml-1">★★★★★</span>
           </div>
-          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">Google & Trustpilot Rating</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5" data-i18n="trustRatingLabel">Google & Trustpilot Rating</p>
         </div>
       </div>
 
@@ -739,11 +774,11 @@
   <section id="why-us" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/70 dark:bg-slate-950/70 border-y border-slate-200 dark:border-slate-900 relative overflow-hidden transition-colors w-full">
     <div class="max-w-7xl mx-auto">
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">The Star Plus Difference</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20" data-i18n="whyUsBadge">The Star Plus Difference</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading" data-i18n="whyUsTitle">
           Why Discerning Travelers Choose Us
         </h2>
-        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3">
+        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3" data-i18n="whyUsSubtitle">
           We combine local insider knowledge with world-class hospitality to ensure every moment of your trip is effortless and memorable.
         </p>
       </div>
@@ -755,13 +790,13 @@
             <div class="w-12 h-12 rounded-xl bg-amber-500/15 dark:bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-500 text-xl mb-5">
               <i class="fa-solid fa-gem"></i>
             </div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Best Price & Luxury Guarantee</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2" data-i18n="whyUs1Title">Best Price & Luxury Guarantee</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="whyUs1Desc">
               Direct contracts with top luxury 4★ and 5★ resorts, airlines, and local tour operators giving you unmatched value.
             </p>
           </div>
           <div class="mt-4 text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center space-x-1">
-            <span>Price Match Promise</span>
+            <span data-i18n="whyUs1Tag">Price Match Promise</span>
             <i class="fa-solid fa-check text-[10px]"></i>
           </div>
         </div>
@@ -772,13 +807,13 @@
             <div class="w-12 h-12 rounded-xl bg-blue-500/15 dark:bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-500 text-xl mb-5">
               <i class="fa-solid fa-passport"></i>
             </div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Express Visa Processing</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2" data-i18n="whyUs2Title">Express Visa Processing</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="whyUs2Desc">
               In-house government registered visa documentation specialists for UAE 30/60 days, Schengen, UK, USA & Oman runs.
             </p>
           </div>
           <div class="mt-4 text-xs font-bold text-blue-600 dark:text-blue-400 flex items-center space-x-1">
-            <span>99.2% Success Rate</span>
+            <span data-i18n="whyUs2Tag">99.2% Success Rate</span>
             <i class="fa-solid fa-check text-[10px]"></i>
           </div>
         </div>
@@ -789,13 +824,13 @@
             <div class="w-12 h-12 rounded-xl bg-emerald-500/15 dark:bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-500 text-xl mb-5">
               <i class="fa-solid fa-credit-card"></i>
             </div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Fly Now, Pay Later</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2" data-i18n="whyUs3Title">Fly Now, Pay Later</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="whyUs3Desc">
               Split your holiday payments into 4 interest-free monthly installments with Tabby and Tamara in the UAE.
             </p>
           </div>
           <div class="mt-4 text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center space-x-1">
-            <span>0% Interest with Tabby</span>
+            <span data-i18n="whyUs3Tag">0% Interest with Tabby</span>
             <i class="fa-solid fa-check text-[10px]"></i>
           </div>
         </div>
@@ -806,13 +841,13 @@
             <div class="w-12 h-12 rounded-xl bg-purple-500/15 dark:bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-500 text-xl mb-5">
               <i class="fa-solid fa-headset"></i>
             </div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">24/7 Dedicated Concierge</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2" data-i18n="whyUs4Title">24/7 Dedicated Concierge</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="whyUs4Desc">
               Round-the-clock support in English, Arabic, Sinhala, and Tamil with dedicated personal trip advisors.
             </p>
           </div>
           <div class="mt-4 text-xs font-bold text-purple-600 dark:text-purple-400 flex items-center space-x-1">
-            <span>Instant WhatsApp Help</span>
+            <span data-i18n="whyUs4Tag">Instant WhatsApp Help</span>
             <i class="fa-solid fa-check text-[10px]"></i>
           </div>
         </div>
@@ -827,33 +862,33 @@
       <!-- Section Header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
         <div>
-          <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Hand-Picked Getaways</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20" data-i18n="packagesBadge">Hand-Picked Getaways</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading" data-i18n="packagesTitle">
             Featured Tour Packages
           </h2>
-          <p id="packagesCount" class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1">
+          <p id="packagesCount" class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-1" data-i18n="packagesCount">
             Showing curated premium itineraries
           </p>
         </div>
 
         <!-- Category Filter Pills -->
         <div class="flex items-center flex-wrap gap-2">
-          <button onclick="filterCategory('all')" data-category="all" class="cat-pill px-5 py-2 rounded-full text-xs font-bold bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition-all">
+          <button onclick="filterCategory('all')" data-category="all" class="cat-pill px-5 py-2 rounded-full text-xs font-bold bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition-all" data-i18n="catAll">
             All Packages
           </button>
-          <button onclick="filterCategory('dubai')" data-category="dubai" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all">
+          <button onclick="filterCategory('dubai')" data-category="dubai" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all" data-i18n="catDubai">
             🇦🇪 Dubai & UAE
           </button>
-          <button onclick="filterCategory('srilanka')" data-category="srilanka" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all">
+          <button onclick="filterCategory('srilanka')" data-category="srilanka" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all" data-i18n="catSriLanka">
             🇱🇰 Sri Lanka
           </button>
-          <button onclick="filterCategory('caucasus')" data-category="caucasus" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all">
+          <button onclick="filterCategory('caucasus')" data-category="caucasus" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all" data-i18n="catCaucasus">
             🏔️ Caucasus & Europe
           </button>
-          <button onclick="filterCategory('tropical')" data-category="tropical" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all">
+          <button onclick="filterCategory('tropical')" data-category="tropical" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all" data-i18n="catTropical">
             🌴 Tropical Islands
           </button>
-          <button onclick="filterCategory('spiritual')" data-category="spiritual" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all">
+          <button onclick="filterCategory('spiritual')" data-category="spiritual" class="cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 border border-slate-700/60 transition-all" data-i18n="catSpiritual">
             🕋 Umrah & Spiritual
           </button>
         </div>
@@ -867,13 +902,13 @@
       <!-- Bottom Banner for Custom Trip Request -->
       <div class="mt-14 glass-card p-8 rounded-3xl border border-amber-500/30 flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-r from-slate-900 via-brand-ocean/40 to-slate-900">
         <div class="text-left">
-          <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">Tailor-Made Holidays</span>
-          <h3 class="text-2xl font-bold text-white mt-1 font-heading">Don't see your dream destination?</h3>
-          <p class="text-sm text-slate-300 mt-1 max-w-xl">
+          <span class="text-xs font-bold text-amber-400 uppercase tracking-wider" data-i18n="customTripBadge">Tailor-Made Holidays</span>
+          <h3 class="text-2xl font-bold text-white mt-1 font-heading" data-i18n="customTripTitle">Don't see your dream destination?</h3>
+          <p class="text-sm text-slate-300 mt-1 max-w-xl" data-i18n="customTripDesc">
             Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.
           </p>
         </div>
-        <a href="#contact" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 shrink-0">
+        <a href="#contact" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 shrink-0" data-i18n="customTripBtn">
           Request Custom Itinerary
         </a>
       </div>
@@ -888,11 +923,11 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <!-- Left Explainer Column -->
         <div class="lg:col-span-5 text-left">
-          <span class="text-xs font-extrabold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">Fast-Track Visa Processing</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading leading-tight">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-blue-600 dark:text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20" data-i18n="visaBadge">Fast-Track Visa Processing</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading leading-tight" data-i18n="visaTitle">
             Hassle-Free Visas for UAE & Worldwide Travel
           </h2>
-          <p class="text-slate-600 dark:text-slate-300 text-sm mt-4 leading-relaxed">
+          <p class="text-slate-600 dark:text-slate-300 text-sm mt-4 leading-relaxed" data-i18n="visaSubtitle">
             Avoid embassy queues and paperwork stress. Star Plus Travels is an accredited travel and visa consultancy in Dubai, providing express tourist visas, freelance visas, and European Schengen appointments.
           </p>
 
@@ -900,15 +935,15 @@
           <div class="mt-6 space-y-3 text-xs text-slate-700 dark:text-slate-300">
             <div class="flex items-center space-x-3 bg-white dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
               <i class="fa-solid fa-circle-check text-emerald-500 dark:text-emerald-400 text-base"></i>
-              <span><strong>UAE Tourist Visas:</strong> 30 Days & 60 Days Single/Multiple entry issued in 24 hours.</span>
+              <span data-i18n="visaFeature1"><strong>UAE Tourist Visas:</strong> 30 Days & 60 Days Single/Multiple entry issued in 24 hours.</span>
             </div>
             <div class="flex items-center space-x-3 bg-white dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
               <i class="fa-solid fa-bus text-amber-500 dark:text-amber-400 text-base"></i>
-              <span><strong>Oman Visa Change:</strong> Daily luxury air-conditioned bus departures from Deira.</span>
+              <span data-i18n="visaFeature2"><strong>Oman Visa Change:</strong> Daily luxury air-conditioned bus departures from Deira.</span>
             </div>
             <div class="flex items-center space-x-3 bg-white dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
               <i class="fa-solid fa-passport text-blue-500 dark:text-cyan-400 text-base"></i>
-              <span><strong>Schengen, UK & USA:</strong> Full documentation, appointment booking & dummy tickets.</span>
+              <span data-i18n="visaFeature3"><strong>Schengen, UK & USA:</strong> Full documentation, appointment booking & dummy tickets.</span>
             </div>
           </div>
         </div>
@@ -918,8 +953,8 @@
           <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl">
             <div class="flex items-center justify-between mb-6">
               <div>
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white font-heading">Interactive Visa Checker</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Select a destination to check requirements and turnaround time</p>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white font-heading" data-i18n="visaCheckerTitle">Interactive Visa Checker</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="visaCheckerSubtitle">Select a destination to check requirements and turnaround time</p>
               </div>
               <div class="w-10 h-10 rounded-xl bg-amber-500/15 dark:bg-amber-500/20 text-amber-500 dark:text-amber-400 flex items-center justify-center text-lg">
                 <i class="fa-solid fa-stamp"></i>
@@ -928,7 +963,7 @@
 
             <!-- Visa Dropdown -->
             <div class="mb-6">
-              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2">
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-2" data-i18n="visaCategoryLabel">
                 Select Visa Category
               </label>
               <select id="visaSelect" onchange="checkVisaRequirements()" class="w-full glass-input px-4 py-3.5 rounded-xl text-sm font-semibold cursor-pointer">
@@ -961,23 +996,23 @@
         </div>
 
         <div class="relative z-10 max-w-2xl text-left">
-          <span class="inline-block px-3 py-1 rounded-full bg-slate-950 text-amber-300 text-xs font-black uppercase tracking-wider mb-4">
+          <span class="inline-block px-3 py-1 rounded-full bg-slate-950 text-amber-300 text-xs font-black uppercase tracking-wider mb-4" data-i18n="promoBadge">
             Exclusive Limited Offer
           </span>
-          <h3 class="text-3xl sm:text-5xl font-black font-heading leading-tight tracking-tight">
+          <h3 class="text-3xl sm:text-5xl font-black font-heading leading-tight tracking-tight" data-i18n="promoTitle">
             Save up to 35% on Winter & Eid Holiday Bookings!
           </h3>
-          <p class="text-slate-900 font-medium text-sm sm:text-base mt-3">
+          <p class="text-slate-900 font-medium text-sm sm:text-base mt-3" data-i18n="promoDesc">
             Use promo code <span class="font-mono font-black bg-slate-950 text-white px-2 py-0.5 rounded">STARPLUS</span> when requesting your custom travel itinerary before the end of the month.
           </p>
 
           <div class="mt-8 flex items-center flex-wrap gap-4">
-            <a href="#contact" class="px-6 py-3 rounded-xl bg-slate-950 text-white hover:bg-slate-900 font-extrabold text-xs uppercase tracking-wider transition-all shadow-xl">
+            <a href="#contact" class="px-6 py-3 rounded-xl bg-slate-950 text-white hover:bg-slate-900 font-extrabold text-xs uppercase tracking-wider transition-all shadow-xl" data-i18n="promoBtn">
               Claim Promo Discount
             </a>
             <span class="text-xs font-bold text-slate-900 flex items-center space-x-1.5">
               <i class="fa-solid fa-lock"></i>
-              <span>Terms & Conditions Apply • 0% Tabby Installments Available</span>
+              <span data-i18n="promoNote">Terms & Conditions Apply • 0% Tabby Installments Available</span>
             </span>
           </div>
         </div>
@@ -989,11 +1024,11 @@
   <section id="testimonials" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full">
     <div class="max-w-5xl mx-auto text-center">
       
-      <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Real Traveler Stories</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading">
+      <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20" data-i18n="testimonialsBadge">Real Traveler Stories</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading" data-i18n="testimonialsTitle">
         Loved by Over 15,000 Adventurers
       </h2>
-      <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto">
+      <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mt-2 max-w-xl mx-auto" data-i18n="testimonialsSubtitle">
         Read genuine reviews from families, couples, and corporate clients who traveled with Star Plus Travels.
       </p>
 
@@ -1027,8 +1062,8 @@
   <section id="faq" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/70 dark:bg-slate-950/70 border-y border-slate-200 dark:border-slate-900 overflow-hidden transition-colors w-full">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-14">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Got Questions?</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20" data-i18n="faqBadge">Got Questions?</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading" data-i18n="faqTitle">
           Frequently Asked Questions
         </h2>
       </div>
@@ -1037,10 +1072,10 @@
         <!-- FAQ Item 1 -->
         <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
           <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 dark:text-white flex items-center justify-between text-sm sm:text-base hover:text-amber-600 dark:hover:text-amber-300 transition-colors">
-            <span>Can I customize the daily itinerary or hotel rating for my package?</span>
+            <span data-i18n="faq1Q">Can I customize the daily itinerary or hotel rating for my package?</span>
             <i class="fa-solid fa-chevron-down text-xs text-amber-500 dark:text-amber-400 faq-icon transition-transform"></i>
           </button>
-          <div class="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed hidden">
+          <div class="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed hidden" data-i18n="faq1A">
             Yes, absolutely! All our itineraries can be customized according to your exact preferences, travel dates, budget, or preferred hotel chains (e.g. 4-star boutique, 5-star luxury, private pool villas). Contact our concierge to tweak any schedule.
           </div>
         </div>
@@ -1048,10 +1083,10 @@
         <!-- FAQ Item 2 -->
         <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
           <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 dark:text-white flex items-center justify-between text-sm sm:text-base hover:text-amber-600 dark:hover:text-amber-300 transition-colors">
-            <span>How does the "Fly Now, Pay Later" (Tabby / Tamara) installment work?</span>
+            <span data-i18n="faq2Q">How does the "Fly Now, Pay Later" (Tabby / Tamara) installment work?</span>
             <i class="fa-solid fa-chevron-down text-xs text-amber-500 dark:text-amber-400 faq-icon transition-transform"></i>
           </button>
-          <div class="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed hidden">
+          <div class="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed hidden" data-i18n="faq2A">
             UAE residents with a valid Emirates ID and debit/credit card can split their total tour or flight cost into 4 equal monthly installments with zero interest and zero hidden fees via Tabby or Tamara.
           </div>
         </div>
@@ -1059,10 +1094,10 @@
         <!-- FAQ Item 3 -->
         <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
           <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 dark:text-white flex items-center justify-between text-sm sm:text-base hover:text-amber-600 dark:hover:text-amber-300 transition-colors">
-            <span>How long does UAE tourist visa processing take?</span>
+            <span data-i18n="faq3Q">How long does UAE tourist visa processing take?</span>
             <i class="fa-solid fa-chevron-down text-xs text-amber-500 dark:text-amber-400 faq-icon transition-transform"></i>
           </button>
-          <div class="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed hidden">
+          <div class="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed hidden" data-i18n="faq3A">
             Our standard UAE 30-day and 60-day tourist visas are typically approved within 24 to 48 hours. We also offer express rush processing within 12 hours for urgent travel requirements.
           </div>
         </div>
@@ -1070,10 +1105,10 @@
         <!-- FAQ Item 4 -->
         <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
           <button type="button" onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-slate-900 dark:text-white flex items-center justify-between text-sm sm:text-base hover:text-amber-600 dark:hover:text-amber-300 transition-colors">
-            <span>What is included in the Oman visa change by luxury coach?</span>
+            <span data-i18n="faq4Q">What is included in the Oman visa change by luxury coach?</span>
             <i class="fa-solid fa-chevron-down text-xs text-amber-500 dark:text-amber-400 faq-icon transition-transform"></i>
           </button>
-          <div class="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed hidden">
+          <div class="px-5 pb-5 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed hidden" data-i18n="faq4A">
             The Oman border bus package includes roundtrip transportation in comfortable luxury air-conditioned coaches departing from Deira Dubai, Oman border exit/entry handling, Oman transit visa, and issuance of your new UAE tourist visa.
           </div>
         </div>
@@ -1088,11 +1123,11 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
         <!-- Contact Information & Offices -->
         <div class="lg:col-span-5 text-left">
-          <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Get in Touch</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20" data-i18n="contactBadge">Get in Touch</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading" data-i18n="contactTitle">
             Let's Plan Your Next Adventure
           </h2>
-          <p class="text-slate-600 dark:text-slate-300 text-sm mt-3 leading-relaxed">
+          <p class="text-slate-600 dark:text-slate-300 text-sm mt-3 leading-relaxed" data-i18n="contactSubtitle">
             Fill out the inquiry form or contact our offices directly. Our travel specialists in Dubai and Colombo are ready to assist you.
           </p>
 
@@ -1101,8 +1136,8 @@
             <div class="flex items-center space-x-3 mb-2">
               <span class="text-xl">🇦🇪</span>
               <div>
-                <h4 class="text-sm font-bold text-slate-900 dark:text-white">Dubai Headquarters, UAE</h4>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Al Maktoum Road, Deira, Dubai</p>
+                <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="contactUaeOffice">Dubai Headquarters, UAE</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="contactUaeAddress">Al Maktoum Road, Deira, Dubai</p>
               </div>
             </div>
             <div class="mt-3 text-xs space-y-1.5 text-slate-700 dark:text-slate-300">
@@ -1117,8 +1152,8 @@
             <div class="flex items-center space-x-3 mb-2">
               <span class="text-xl">🇱🇰</span>
               <div>
-                <h4 class="text-sm font-bold text-slate-900 dark:text-white">Colombo Branch, Sri Lanka</h4>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Galle Road, Colombo 03</p>
+                <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="contactSlOffice">Colombo Branch, Sri Lanka</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400" data-i18n="contactSlAddress">Galle Road, Colombo 03</p>
               </div>
             </div>
             <div class="mt-3 text-xs space-y-1.5 text-slate-700 dark:text-slate-300">
@@ -1130,12 +1165,12 @@
           <!-- WhatsApp Direct CTA -->
           <a href="https://wa.me/971527582293?text=Hello%20Star%20Plus%20Travels,%20I%20would%20like%20to%20inquire%20about%20a%20holiday%20package." target="_blank" rel="noopener noreferrer" class="mt-6 w-full py-3.5 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 transition-all shadow-lg shadow-emerald-600/20">
             <i class="fa-brands fa-whatsapp text-lg"></i>
-            <span>Chat Directly on WhatsApp</span>
+            <span data-i18n="whatsappBtnText">Chat Directly on WhatsApp</span>
           </a>
 
           <!-- Official Social Media Channels -->
           <div class="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800/80">
-            <span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-3">Connect On Official Channels</span>
+            <span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-3" data-i18n="socialTitle">Connect On Official Channels</span>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <a href="https://www.facebook.com/share/1EAf7zDgSe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="py-2 px-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 hover:border-blue-500 hover:bg-blue-600/10 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-white text-xs font-semibold flex items-center justify-center space-x-2 transition-all shadow-sm group">
                 <i class="fa-brands fa-facebook-f text-blue-500 group-hover:scale-110 transition-transform"></i>
@@ -1163,11 +1198,11 @@
                 <i class="fa-solid fa-briefcase text-sm"></i>
               </div>
               <div>
-                <h4 class="text-xs font-bold text-slate-900 dark:text-white">Looking for a Career in Travel?</h4>
-                <p class="text-[11px] text-slate-500 dark:text-slate-400">We have 6 open positions across UAE &amp; Sri Lanka.</p>
+                <h4 class="text-xs font-bold text-slate-900 dark:text-white" data-i18n="careersSpotlightTitle">Looking for a Career in Travel?</h4>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400" data-i18n="careersSpotlightDesc">We have 6 open positions across UAE &amp; Sri Lanka.</p>
               </div>
             </div>
-            <a href="careers.html" class="shrink-0 px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-[11px] uppercase tracking-wider transition-all shadow-sm">
+            <a href="careers.html" class="shrink-0 px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-[11px] uppercase tracking-wider transition-all shadow-sm" data-i18n="careersSpotlightBtn">
               View Jobs
             </a>
           </div>
@@ -1177,20 +1212,20 @@
         <div class="lg:col-span-7">
           <div class="glass-card p-6 sm:p-10 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl text-left">
             <div class="mb-6">
-              <h3 class="text-2xl font-bold text-slate-900 dark:text-white font-heading">Request a Free Travel Itinerary & Quote</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">We respond with comprehensive options and transparent pricing within 2 hours.</p>
+              <h3 class="text-2xl font-bold text-slate-900 dark:text-white font-heading" data-i18n="formTitle">Request a Free Travel Itinerary & Quote</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-i18n="formSubtitle">We respond with comprehensive options and transparent pricing within 2 hours.</p>
             </div>
 
             <form onsubmit="handleContactSubmit(event)" class="space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formFullName">
                     Your Full Name *
                   </label>
                   <input type="text" id="contactName" required placeholder="e.g. John Doe" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formEmail">
                     Email Address *
                   </label>
                   <input type="email" id="contactEmail" required placeholder="name@domain.com" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
@@ -1199,33 +1234,33 @@
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formPhone">
                     Phone / WhatsApp Number *
                   </label>
                   <input type="tel" id="contactPhone" required placeholder="+971 50 123 4567" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formInterest">
                     Primary Interest
                   </label>
                   <select id="contactInterest" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
-                    <option value="package">Holiday Tour Package</option>
-                    <option value="visa">Fast-Track Visa Processing</option>
-                    <option value="flight">Cheap Airline Tickets</option>
-                    <option value="custom">Custom Tailor-Made Itinerary</option>
+                    <option value="package" data-i18n="formInterestPackage">Holiday Tour Package</option>
+                    <option value="visa" data-i18n="formInterestVisa">Fast-Track Visa Processing</option>
+                    <option value="flight" data-i18n="formInterestFlight">Cheap Airline Tickets</option>
+                    <option value="custom" data-i18n="formInterestCustom">Custom Tailor-Made Itinerary</option>
                   </select>
                 </div>
               </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formDestination">
                     Preferred Destination
                   </label>
                   <input type="text" id="contactDest" placeholder="e.g. Sri Lanka, Dubai, Georgia" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formTravelers">
                     Estimated Travelers
                   </label>
                   <select id="contactTravelers" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
@@ -1238,13 +1273,13 @@
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formNotes">
                   Trip Notes / Special Requests
                 </label>
-                <textarea id="contactMessage" rows="3" placeholder="Tell us about your preferred travel dates, hotel rating preference, or special requests..." class="w-full glass-input px-4 py-3 rounded-xl text-sm"></textarea>
+                <textarea id="contactMessage" rows="3" placeholder="Tell us about your preferred travel dates, hotel rating preference, or special requests..." data-i18n-placeholder="formNotesPlaceholder" class="w-full glass-input px-4 py-3 rounded-xl text-sm"></textarea>
               </div>
 
-              <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-sm uppercase tracking-wider transition-all shadow-xl shadow-amber-500/25">
+              <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-sm uppercase tracking-wider transition-all shadow-xl shadow-amber-500/25" data-i18n="formSubmitBtn">
                 Send Travel Request
               </button>
             </form>
@@ -1269,16 +1304,16 @@
                alt="Star Plus Travel and Tourism LLC" 
                class="h-10 sm:h-12 w-auto object-contain">
         </a>
-        <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+        <p class="text-xs text-slate-400 max-w-sm leading-relaxed" data-i18n="footerAbout">
           Star Plus Travel & Tourism LLC is a government accredited travel management company based in Deira, Dubai with branch operations in Sri Lanka. Providing world-class bespoke holiday packages, airline bookings, and express visa solutions.
         </p>
         <div class="pt-1 text-xs space-y-1.5 text-slate-300">
           <p class="flex items-center space-x-1.5">
-            <span class="text-amber-400 font-bold">🇦🇪 UAE Inquiries:</span>
+            <span class="text-amber-400 font-bold" data-i18n="footerUaeInq">🇦🇪 UAE Inquiries:</span>
             <a href="mailto:info@starplustraveluae.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustraveluae.com</a>
           </p>
           <p class="flex items-center space-x-1.5">
-            <span class="text-amber-400 font-bold">🇱🇰 Sri Lanka Inquiries:</span>
+            <span class="text-amber-400 font-bold" data-i18n="footerSlInq">🇱🇰 Sri Lanka Inquiries:</span>
             <a href="mailto:info@starplustravelsl.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustravelsl.com</a>
           </p>
         </div>
@@ -1300,21 +1335,21 @@
 
       <!-- Column 2: Quick Links -->
       <div class="space-y-3">
-        <h4 class="text-xs font-bold text-white uppercase tracking-wider">Quick Links</h4>
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="footerQuickLinks">Quick Links</h4>
         <ul class="space-y-2">
-          <li><a href="#hero" class="hover:text-amber-400 transition-colors">Home</a></li>
-          <li><a href="#clients" class="hover:text-amber-400 transition-colors">Corporate Clients</a></li>
-          <li><a href="#packages" class="hover:text-amber-400 transition-colors">Holiday Packages</a></li>
-          <li><a href="#visa-services" class="hover:text-amber-400 transition-colors">Visa Services</a></li>
-          <li><a href="#why-us" class="hover:text-amber-400 transition-colors">Why Choose Us</a></li>
-          <li><a href="careers.html" class="hover:text-amber-400 transition-colors flex items-center space-x-1"><span>Careers</span><span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-bold">Hiring</span></a></li>
-          <li><a href="#contact" class="hover:text-amber-400 transition-colors">Contact Our Offices</a></li>
+          <li><a href="#hero" class="hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a></li>
+          <li><a href="#clients" class="hover:text-amber-400 transition-colors" data-i18n="navClients">Corporate Clients</a></li>
+          <li><a href="#packages" class="hover:text-amber-400 transition-colors" data-i18n="navPackages">Holiday Packages</a></li>
+          <li><a href="#visa-services" class="hover:text-amber-400 transition-colors" data-i18n="navVisa">Visa Services</a></li>
+          <li><a href="#why-us" class="hover:text-amber-400 transition-colors" data-i18n="navWhyUs">Why Choose Us</a></li>
+          <li><a href="careers.html" class="hover:text-amber-400 transition-colors flex items-center space-x-1"><span data-i18n="navCareers">Careers</span><span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-bold" data-i18n="navHiringBadge">Hiring</span></a></li>
+          <li><a href="#contact" class="hover:text-amber-400 transition-colors" data-i18n="navContact">Contact Our Offices</a></li>
         </ul>
       </div>
 
       <!-- Column 3: Popular Packages -->
       <div class="space-y-3">
-        <h4 class="text-xs font-bold text-white uppercase tracking-wider">Top Packages</h4>
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="footerTopPackages">Top Packages</h4>
         <ul class="space-y-2">
           <li><a href="#packages" onclick="filterCategory('dubai')" class="hover:text-amber-400 transition-colors">Dubai Desert &amp; City Tour</a></li>
           <li><a href="#packages" onclick="filterCategory('srilanka')" class="hover:text-amber-400 transition-colors">Sri Lanka Wildlife &amp; Tea</a></li>
@@ -1327,7 +1362,7 @@
 
       <!-- Column 4: Visa Services -->
       <div class="space-y-3">
-        <h4 class="text-xs font-bold text-white uppercase tracking-wider">Visa Services</h4>
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="navVisa">Visa Services</h4>
         <ul class="space-y-2">
           <li><a href="#visa-services" class="hover:text-amber-400 transition-colors">30-Day UAE Tourist Visa</a></li>
           <li><a href="#visa-services" class="hover:text-amber-400 transition-colors">60-Day UAE Tourist Visa</a></li>
@@ -1355,9 +1390,9 @@
     <!-- Bottom Bar & Payment Badges -->
     <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
       <div class="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-2.5 text-center sm:text-left">
-        <span>© 2026 Star Plus Travel & Tourism LLC. All Rights Reserved.</span>
+        <span data-i18n="footerCopyright">© 2026 Star Plus Travel & Tourism LLC. All Rights Reserved.</span>
         <span class="hidden sm:inline text-slate-700">•</span>
-        <span>Redesigned &amp; Developed by <strong class="text-slate-300 font-semibold hover:text-amber-400 transition-colors">Lupo</strong></span>
+        <span data-i18n="footerAttribution">Redesigned &amp; Developed by Lupo</span>
       </div>
       <div class="flex items-center space-x-3 text-slate-400 text-sm">
         <span class="text-xs text-slate-500 font-semibold mr-1">Accepted Payment:</span>

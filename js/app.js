@@ -13,6 +13,484 @@ const CURRENCIES = {
 
 let currentCurrency = 'AED';
 
+// ==========================================================================
+// Localization / Internationalization (i18n) Engine (English & Sinhala)
+// ==========================================================================
+const I18N_TRANSLATIONS = {
+  en: {
+    // Top Bar
+    topAnnouncementText: "Dubai & Sri Lanka Premier Travel & Visa Specialists",
+    topLocation: "Deira, Dubai, UAE & Colombo, Sri Lanka",
+    whatsappConcierge: "WhatsApp Concierge",
+    themeLabel: "Theme",
+    langLabel: "Language",
+
+    // Navigation
+    navHome: "Home",
+    navClients: "Clients",
+    navPackages: "Tour Packages",
+    navVisa: "Visa Services",
+    navWhyUs: "Why Choose Us",
+    navReviews: "Reviews",
+    navCareers: "Careers",
+    navFaq: "FAQ",
+    navContact: "Contact",
+    navGetQuote: "Get Free Quote",
+    navHiringBadge: "We're Hiring",
+
+    // Hero Section
+    heroBadge: "Your Gateway to the World • Dubai & Sri Lanka",
+    heroTitleLead: "Your Gateway to the",
+    heroTitleWorld: "World",
+    heroTitleMiddle: ", Crafted with",
+    heroTitleLuxury: "Luxury & Ease",
+    heroSubtitle: "Seamless journey from Sri Lanka & the UAE to 45+ global destinations. Handcrafted luxury holiday packages, competitive flights, and fast-track express visa processing.",
+    tabHolidays: "Tour Packages",
+    tabFlights: "Flight Inquiries",
+    tabVisas: "Fast-Track Visas",
+    tabHotels: "Luxury Hotels",
+    destinationLabel: "Destination",
+    destinationPlaceholder: "e.g. Dubai, Sri Lanka, Baku",
+    travelDateLabel: "Travel Date",
+    travelersLabel: "Travelers",
+    searchBtn: "Find Deals",
+    trendingLabel: "Trending Now:",
+    opt1Solo: "1 Solo Explorer",
+    opt2Couple: "2 Adults (Couple)",
+    opt3Travelers: "3 Travelers",
+    opt4Family: "4+ Family / Group",
+
+    // Trust Counters
+    trustTravelers: "15,000+",
+    trustTravelersLabel: "Happy Explorers Served",
+    trustDestinations: "45+",
+    trustDestinationsLabel: "Global Destinations",
+    trustVisaRate: "99.2%",
+    trustVisaRateLabel: "Visa Approval Rate",
+    trustRatingLabel: "Google & Trustpilot Rating",
+
+    // Clients
+    clientsBadge: "Our Clients",
+    clientsTitle: "Join Our Family of Happy Travelers & Partners",
+    clientsSubtitle: "Trusted by leading corporate enterprises, luxury hospitality groups, and commercial organizations across the UAE, Sri Lanka, and worldwide.",
+
+    // Why Choose Us
+    whyUsBadge: "The Star Plus Difference",
+    whyUsTitle: "Why Discerning Travelers Choose Us",
+    whyUsSubtitle: "We combine local insider knowledge with world-class hospitality to ensure every moment of your trip is effortless and memorable.",
+    whyUs1Title: "Best Price & Luxury Guarantee",
+    whyUs1Desc: "Direct contracts with top luxury 4★ and 5★ resorts, airlines, and local tour operators giving you unmatched value.",
+    whyUs1Tag: "Price Match Promise",
+    whyUs2Title: "Express Visa Processing",
+    whyUs2Desc: "In-house government registered visa documentation specialists for UAE 30/60 days, Schengen, UK, USA & Oman runs.",
+    whyUs2Tag: "99.2% Success Rate",
+    whyUs3Title: "Fly Now, Pay Later",
+    whyUs3Desc: "Split your holiday payments into 4 interest-free monthly installments with Tabby and Tamara in the UAE.",
+    whyUs3Tag: "0% Interest with Tabby",
+    whyUs4Title: "24/7 Dedicated Concierge",
+    whyUs4Desc: "Round-the-clock support in English, Arabic, Sinhala, and Tamil with dedicated personal trip advisors.",
+    whyUs4Tag: "Instant WhatsApp Help",
+
+    // Packages Section
+    packagesBadge: "Hand-Picked Getaways",
+    packagesTitle: "Featured Tour Packages",
+    packagesCount: "Showing curated premium itineraries",
+    catAll: "All Packages",
+    catDubai: "🇦🇪 Dubai & UAE",
+    catSriLanka: "🇱🇰 Sri Lanka",
+    catCaucasus: "🏔️ Caucasus & Europe",
+    catTropical: "🌴 Tropical Islands",
+    catSpiritual: "🕋 Umrah & Spiritual",
+    customTripBadge: "Tailor-Made Holidays",
+    customTripTitle: "Don't see your dream destination?",
+    customTripDesc: "Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.",
+    customTripBtn: "Request Custom Itinerary",
+
+    // Visa Hub
+    visaBadge: "Fast-Track Visa Processing",
+    visaTitle: "Hassle-Free Visas for UAE & Worldwide Travel",
+    visaSubtitle: "Avoid embassy queues and paperwork stress. Star Plus Travels is an accredited travel and visa consultancy in Dubai, providing express tourist visas, freelance visas, and European Schengen appointments.",
+    visaFeature1: "UAE Tourist Visas: 30 Days & 60 Days Single/Multiple entry issued in 24 hours.",
+    visaFeature2: "Oman Visa Change: Daily luxury air-conditioned bus departures from Deira.",
+    visaFeature3: "Schengen, UK & USA: Full documentation, appointment booking & dummy tickets.",
+    visaCheckerTitle: "Interactive Visa Checker",
+    visaCheckerSubtitle: "Select a destination to check requirements and turnaround time",
+    visaCategoryLabel: "Select Visa Category",
+
+    // Season Promo
+    promoBadge: "Exclusive Limited Offer",
+    promoTitle: "Save up to 35% on Winter & Eid Holiday Bookings!",
+    promoDesc: "Use promo code STARPLUS when requesting your custom travel itinerary before the end of the month.",
+    promoBtn: "Claim Promo Discount",
+    promoNote: "Terms & Conditions Apply • 0% Tabby Installments Available",
+
+    // Testimonials
+    testimonialsBadge: "Real Traveler Stories",
+    testimonialsTitle: "Loved by Over 15,000 Adventurers",
+    testimonialsSubtitle: "Read genuine reviews from families, couples, and corporate clients who traveled with Star Plus Travels.",
+
+    // FAQ
+    faqBadge: "Got Questions?",
+    faqTitle: "Frequently Asked Questions",
+    faq1Q: "Can I customize the daily itinerary or hotel rating for my package?",
+    faq1A: "Yes, absolutely! All our itineraries can be customized according to your exact preferences, travel dates, budget, or preferred hotel chains (e.g. 4-star boutique, 5-star luxury, private pool villas). Contact our concierge to tweak any schedule.",
+    faq2Q: "How does the \"Fly Now, Pay Later\" (Tabby / Tamara) installment work?",
+    faq2A: "UAE residents with a valid Emirates ID and debit/credit card can split their total tour or flight cost into 4 equal monthly installments with zero interest and zero hidden fees via Tabby or Tamara.",
+    faq3Q: "How long does UAE tourist visa processing take?",
+    faq3A: "Our standard UAE 30-day and 60-day tourist visas are typically approved within 24 to 48 hours. We also offer express rush processing within 12 hours for urgent travel requirements.",
+    faq4Q: "What is included in the Oman visa change by luxury coach?",
+    faq4A: "The Oman border bus package includes roundtrip transportation in comfortable luxury air-conditioned coaches departing from Deira Dubai, Oman border exit/entry handling, Oman transit visa, and issuance of your new UAE tourist visa.",
+
+    // Contact
+    contactBadge: "Get in Touch",
+    contactTitle: "Let's Plan Your Next Adventure",
+    contactSubtitle: "Fill out the inquiry form or contact our offices directly. Our travel specialists in Dubai and Colombo are ready to assist you.",
+    contactUaeOffice: "Dubai Headquarters, UAE",
+    contactUaeAddress: "Al Maktoum Road, Deira, Dubai",
+    contactSlOffice: "Colombo Branch, Sri Lanka",
+    contactSlAddress: "Galle Road, Colombo 03",
+    whatsappBtnText: "Chat Directly on WhatsApp",
+    socialTitle: "Connect On Official Channels",
+    careersSpotlightTitle: "Looking for a Career in Travel?",
+    careersSpotlightDesc: "We have 6 open positions across UAE & Sri Lanka.",
+    careersSpotlightBtn: "View Jobs",
+    formTitle: "Request a Free Travel Itinerary & Quote",
+    formSubtitle: "We respond with comprehensive options and transparent pricing within 2 hours.",
+    formFullName: "Your Full Name *",
+    formEmail: "Email Address *",
+    formPhone: "Phone / WhatsApp Number *",
+    formInterest: "Primary Interest",
+    formInterestPackage: "Holiday Tour Package",
+    formInterestVisa: "Fast-Track Visa Processing",
+    formInterestFlight: "Cheap Airline Tickets",
+    formInterestCustom: "Custom Tailor-Made Itinerary",
+    formDestination: "Preferred Destination",
+    formTravelers: "Estimated Travelers",
+    formNotes: "Trip Notes / Special Requests",
+    formNotesPlaceholder: "Tell us about your preferred travel dates, hotel rating preference, or special requests...",
+    formSubmitBtn: "Send Travel Request",
+
+    // Footer
+    footerAbout: "Star Plus Travel & Tourism LLC is a government accredited travel management company based in Deira, Dubai with branch operations in Sri Lanka. Providing world-class bespoke holiday packages, airline bookings, and express visa solutions.",
+    footerUaeInq: "🇦🇪 UAE Inquiries:",
+    footerSlInq: "🇱🇰 Sri Lanka Inquiries:",
+    footerQuickLinks: "Quick Links",
+    footerTopPackages: "Top Packages",
+    footerDestinations: "Key Hubs",
+    footerLegal: "Accreditations",
+    footerCopyright: "© 2026 Star Plus Travel & Tourism LLC. All Rights Reserved.",
+    footerAttribution: "Redesigned & Developed by Lupo",
+
+    // Careers Page
+    topBarHiring: "We're Hiring! Join our growing teams in Dubai & Sri Lanka",
+    careersBadge: "Careers at Star Plus Travel & Tourism LLC",
+    careersHeroTitle: "Turn Travel Dreams Into Lifelong Careers",
+    careersHeroSubtitle: "We are building the next generation of seamless international travel, luxury vacations, and visa solutions. Join our multi-cultural teams in Dubai, UAE and Colombo, Sri Lanka.",
+    uaeBranchAppTitle: "UAE Branch Applications",
+    uaeBranchAppSubtitle: "Head Office • Deira, Dubai",
+    uaeBranchAppDesc: "Direct HR contact for UAE work permits & Dubai based vacancies.",
+    slBranchAppTitle: "Sri Lanka Branch Applications",
+    slBranchAppSubtitle: "Regional Branch • Colombo",
+    slBranchAppDesc: "Direct HR contact for Sri Lanka operations & creative vacancies.",
+    whyCareersBadge: "Why Star Plus?",
+    whyCareersTitle: "Empowering Your Passion for Global Exploration",
+    perk1Title: "Travel Perks & FAM Trips",
+    perk1Desc: "Exclusive employee airline rates, discounted holiday packages, and sponsored destination familiarization trips.",
+    perk2Title: "Competitive Compensation",
+    perk2Desc: "Attractive salary packages, performance-based booking commissions, and comprehensive health coverage.",
+    perk3Title: "Dual Regional Reach",
+    perk3Desc: "Cross-border collaboration between our vibrant UAE hub in Dubai and our Sri Lanka operations in Colombo.",
+    perk4Title: "GDS & Tourism Training",
+    perk4Desc: "Continuous professional training on Amadeus, Sabre, visa policies, customer management, and digital marketing.",
+    vacanciesBadge: "Open Vacancies",
+    vacanciesTitle: "Current Career Opportunities",
+    vacanciesSubtitle: "Select a position below to review requirements and submit your resume directly to our regional HR desks.",
+    filterAllRoles: "All Roles (6)",
+    filterUaeRoles: "🇦🇪 Dubai, UAE (3)",
+    filterSlRoles: "🇱🇰 Sri Lanka (3)",
+    spontaneousBadge: "Don't see your specific role?",
+    spontaneousTitle: "Send Us a Spontaneous Application",
+    spontaneousDesc: "We are always on the lookout for visionary travel planners, corporate sales leaders, and visa specialists. Email your CV and cover note to our regional HR desks anytime:",
+    spontaneousUaeBtn: "🇦🇪 Email UAE HR Desk (info@starplustraveluae.com)",
+    spontaneousSlBtn: "🇱🇰 Email SL HR Desk (info@starplustravelsl.com)",
+    footerBranches: "Our Branches",
+    recruitmentDesks: "Recruitment Desks",
+    recruitmentDesksSubtitle: "Submit CVs directly to our regional talent acquisition teams:",
+    explorePositions: "Explore 6 Open Positions",
+    viewRolesBtn: "View Open Roles",
+    themeMode: "Theme Mode",
+
+    // Dynamic strings
+    startingFrom: "Starting from",
+    perPerson: "per person",
+    installmentText: "or 4x {amount}/mo with Tabby",
+    itineraryBtn: "Itinerary",
+    bookNowBtn: "Book Now"
+  },
+
+  si: {
+    // Top Bar
+    topAnnouncementText: "ඩුබායි සහ ශ්‍රී ලංකා ප්‍රමුඛතම සංචාරක සහ වීසා විශේෂඥයෝ",
+    topLocation: "දෙයිරා, ඩුබායි සහ කොළඹ, ශ්‍රී ලංකාව",
+    whatsappConcierge: "වට්ස්ඇප් සේවාව",
+    themeLabel: "තේමාව",
+    langLabel: "භාෂාව",
+
+    // Navigation
+    navHome: "මුල් පිටුව",
+    navClients: "පාරිභෝගිකයින්",
+    navPackages: "සංචාරක පැකේජ",
+    navVisa: "වීසා සේවා",
+    navWhyUs: "ඇයි Star Plus",
+    navReviews: "ප්‍රසාද අදහස්",
+    navCareers: "රැකියා අවස්ථා",
+    navFaq: "නිතර අසන ප්‍රශ්න",
+    navContact: "අප අමතන්න",
+    navGetQuote: "මිල ගණන් ලබාගන්න",
+    navHiringBadge: "බඳවා ගැනේ",
+
+    // Hero Section
+    heroBadge: "ඔබේ විශ්වාසනීය සංචාරක සහකරු • ඩුබායි සහ ශ්‍රී ලංකාව",
+    heroTitleLead: "ඔබේ සිහින සංචාරක",
+    heroTitleWorld: "ගමනාන්තය",
+    heroTitleMiddle: ", උසස්ම සුවපහසුවෙන්",
+    heroTitleLuxury: "සැබෑ කරගන්න",
+    heroSubtitle: "Star Plus Travel & Tourism LLC වෙතින් ඩුබායි, ශ්‍රී ලංකාව සහ ලොව පුරා රටවල් 45+ කට සුඛෝපභෝගී නිවාඩු පැකේජ, අඩුම ගුවන් ටිකට්පත් සහ ක්ෂණික වීසා සේවා විශ්වාසනීයව ලබාගන්න.",
+    tabHolidays: "සංචාරක පැකේජ",
+    tabFlights: "ගුවන් ටිකට්පත්",
+    tabVisas: "වීසා සේවා",
+    tabHotels: "හෝටල් වෙන්කිරීම්",
+    destinationLabel: "ගමනාන්තය",
+    destinationPlaceholder: "උදා: ඩුබායි, ශ්‍රී ලංකාව, බාකු",
+    travelDateLabel: "සංචාරක දිනය",
+    travelersLabel: "සංචාරකයින්",
+    searchBtn: "පැකේජ සොයන්න",
+    trendingLabel: "ජනප්‍රියම ගමනාන්ත:",
+    opt1Solo: "තනි සංචාරකයෙක්",
+    opt2Couple: "වැඩිහිටියන් 2 (යුවළක්)",
+    opt3Travelers: "සංචාරකයින් 3 දෙනෙක්",
+    opt4Family: "4+ පවුල / කණ්ඩායම",
+
+    // Trust Counters
+    trustTravelers: "15,000+",
+    trustTravelersLabel: "සතුටුදායක සංචාරකයින්",
+    trustDestinations: "45+",
+    trustDestinationsLabel: "ජාත්‍යන්තර ගමනාන්ත",
+    trustVisaRate: "99.2%",
+    trustVisaRateLabel: "වීසා අනුමැතියේ සාර්ථකත්වය",
+    trustRatingLabel: "Google & Trustpilot ඉහළම ඇගයීම",
+
+    // Clients
+    clientsBadge: "අපගේ පාරිභෝගිකයින්",
+    clientsTitle: "අපගේ සතුටුදායක පාරිභෝගික පවුලට ඔබත් එක්වන්න",
+    clientsSubtitle: "එක්සත් අරාබි එමීර් රාජ්‍යය, ශ්‍රී ලංකාව සහ ලොව පුරා ප්‍රමුඛ සංගත ආයතන හා හවුල්කරුවන්ගේ අඛණ්ඩ විශ්වාසය.",
+
+    // Why Choose Us
+    whyUsBadge: "Star Plus සුවිශේෂත්වය",
+    whyUsTitle: "සංචාරකයින් අපව තෝරාගන්නේ ඇයි?",
+    whyUsSubtitle: "දේශීය අත්දැකීම් සහ ජාත්‍යන්තර ආගන්තුක සත්කාරය එක් කරමින් ඔබගේ සෑම සංචාරයක්ම අමතක නොවන මතකයක් බවට පත් කරමු.",
+    whyUs1Title: "හොඳම මිල සහ සුඛෝපභෝගී සහතිකය",
+    whyUs1Desc: "ලොව ප්‍රමුඛ තරු 4 සහ 5 සුඛෝපභෝගී හෝටල්, ගුවන් සේවා සහ දේශීය සංචාරක නියෝජිතයින් සමඟ ඍජු ගිවිසුම් හරහා අඩුම මිල සහතික කෙරේ.",
+    whyUs1Tag: "හොඳම මිල පොරොන්දුව",
+    whyUs2Title: "ක්ෂණික එක්ස්ප්‍රස් වීසා සේවාව",
+    whyUs2Desc: "ඩුබායි දින 30/60, ෂෙන්ගන්, එක්සත් රාජධානිය, ඇමරිකාව සහ ඕමාන් වීසා සඳහා රජයේ ලියාපදිංචි අපගේ විශේෂඥයින්ගේ ක්ෂණික සහාය.",
+    whyUs2Tag: "99.2% වීසා සාර්ථකත්වය",
+    whyUs3Title: "පොලී රහිත පහසු වාරික ගෙවීම්",
+    whyUs3Desc: "Tabby සහ Tamara හරහා කිසිදු අමතර ගාස්තුවකින් තොරව මාස 4 කින් ඔබගේ සංචාරක ගාස්තු පහසුවෙන් ගෙවන්න.",
+    whyUs3Tag: "Tabby 0% පොලී රහිත ගෙවීම්",
+    whyUs4Title: "24/7 පාරිභෝගික සේවාව",
+    whyUs4Desc: "ඉංග්‍රීසි, අරාබි, සිංහල සහ දෙමළ භාෂාවලින් පැය 24 පුරාම ඔබට වෙන්වූ පුද්ගලික සංචාරක උපදේශක සහාය.",
+    whyUs4Tag: "ක්ෂණික WhatsApp සහාය",
+
+    // Packages Section
+    packagesBadge: "සුවිශේෂී නිවාඩු චාරිකා",
+    packagesTitle: "විශේෂ සංචාරක පැකේජ",
+    packagesCount: "උසස් තත්ත්වයේ තෝරාගත් සංචාරක සැලසුම්",
+    catAll: "සියලු පැකේජ",
+    catDubai: "🇦🇪 ඩුබායි සහ එමිර් රාජ්‍යය",
+    catSriLanka: "🇱🇰 ශ්‍රී ලංකාව",
+    catCaucasus: "🏔️ කොකේසස් සහ යුරෝපය",
+    catTropical: "🌴 නිවර්තන දූපත්",
+    catSpiritual: "🕋 උම්රා සහ වන්දනා",
+    customTripBadge: "ඔබට අවශ්‍ය පරිදි සැලසුම් කරන්න",
+    customTripTitle: "ඔබගේ සිහින ගමනාන්තය මෙහි නැද්ද?",
+    customTripDesc: "පවුලේ චාරිකා, මධුසමය, තනි සංචාර හෝ ආයතනික චාරිකා සඳහා ඔබ කැමති පරිදි විශේෂ පැකේජ සකස් කරගත හැක.",
+    customTripBtn: "අභිරුචි පැකේජයක් ඉල්ලන්න",
+
+    // Visa Hub
+    visaBadge: "ක්ෂණික වීසා සේවා",
+    visaTitle: "ඩුබායි සහ ලොව පුරා සංචාර සඳහා පහසු වීසා",
+    visaSubtitle: "තානාපති කාර්යාල පෝලිම් සහ ලිපි ලේඛන කරදරවලින් තොරව, ඩුබායි සංචාරක වීසා, ෆ්‍රීලාන්ස් වීසා හෝ යුරෝපීය ෂෙන්ගන් වීසා සඳහා අපගේ උපදේශකවරුන් උපරිම වේගයෙන් සහාය වේ.",
+    visaFeature1: "ඩුබායි සංචාරක වීසා: දින 30 සහ 60 තනි/බහු ප්‍රවේශ වීසා පැය 24 න් නිකුත් කෙරේ.",
+    visaFeature2: "ඕමාන් වීසා මාරුව: දෙයිරා සිට දිනපතා පිටත්වන සුඛෝපභෝගී වායුසමනය කළ බස් රථ සේවාව.",
+    visaFeature3: "ෂෙන්ගන්, UK සහ USA: සම්පූර්ණ ලියකියවිලි සකස් කිරීම සහ සම්මුඛ පරීක්ෂණ දිනයන් වෙන්කිරීම.",
+    visaCheckerTitle: "ක්ෂණික වීසා සුදුසුකම් සහ ගාස්තු ගණකය",
+    visaCheckerSubtitle: "ගාස්තු සහ අවශ්‍යතා ක්ෂණිකව බලාගැනීමට ඔබගේ ගමනාන්තය තෝරන්න:",
+    visaCategoryLabel: "වීසා කාණ්ඩය තෝරන්න",
+
+    // Season Promo
+    promoBadge: "සුවිශේෂී සීමිත දීමනාව",
+    promoTitle: "ශීත ඍතු සහ නිවාඩු පැකේජ සඳහා 35% දක්වා විශේෂ වට්ටම්!",
+    promoDesc: "මෙම මස අවසන් වීමට පෙර ඔබගේ සංචාරක සැලසුම සඳහා STARPLUS ප්‍රවර්ධන කේතය භාවිතා කර වට්ටම් ලබාගන්න.",
+    promoBtn: "වට්ටම ලබාගන්න",
+    promoNote: "කොන්දේසි අදාළ වේ • Tabby 0% වාරික ගෙවීම් ලබාගත හැක",
+
+    // Testimonials
+    testimonialsBadge: "සැබෑ සංචාරක අත්දැකීම්",
+    testimonialsTitle: "15,000+ කට අධික සංචාරකයින්ගේ නොමඳ ප්‍රසාදය",
+    testimonialsSubtitle: "Star Plus Travels සමඟ සංචාරය කළ පාරිභෝගිකයින්ගේ සැබෑ අදහස් කියවන්න.",
+
+    // FAQ
+    faqBadge: "නිතර අසන ප්‍රශ්න",
+    faqTitle: "නිතර අසන ප්‍රශ්න සහ පිළිතුරු",
+    faq1Q: "පැකේජයේ දෛනික සැලැස්ම හෝ හෝටල් මට්ටම මට අවශ්‍ය පරිදි වෙනස් කළ හැකිද?",
+    faq1A: "ඔව්, නියත වශයෙන්ම! ඔබගේ සංචාරක දිනයන්, අයවැය හෝ කැමති හෝටල් මට්ටම (තරු 4 හෝ 5) අනුව ඕනෑම පැකේජයක් වෙනස් කළ හැක. අපගේ උපදේශකවරුන් හා සම්බන්ධ වන්න.",
+    faq2Q: "\"Fly Now, Pay Later\" (Tabby / Tamara) වාරික ක්‍රමය ක්‍රියාත්මක වන්නේ කෙසේද?",
+    faq2A: "එක්සත් අරාබි එමීර් රාජ්‍යයේ වලංගු එමිරේට්ස් හැඳුනුම්පතක් (EID) ඇති පදිංචිකරුවන්ට කිසිදු පොලියක් හෝ සැඟවුණු ගාස්තුවක් නොමැතිව මාස 4 ක සමාන වාරික වලින් ගෙවිය හැක.",
+    faq3Q: "ඩුබායි සංචාරක වීසා බලපත්‍රයක් ලබා ගැනීමට කොපමණ කාලයක් ගතවේද?",
+    faq3A: "දින 30 සහ 60 සාමාන්‍ය ඩුබායි සංචාරක වීසා පැය 24 සිට 48 දක්වා කාලයක් තුළ අනුමත වේ. හදිසි අවශ්‍යතා සඳහා පැය 12 ක කඩිනම් සේවාවද ඇත.",
+    faq4Q: "ඕමාන් සුඛෝපභෝගී බස් රථ වීසා මාරු පැකේජයට ඇතුළත් වන්නේ මොනවාද?",
+    faq4A: "දෙයිරා ඩුබායි සිට පිටත්වන සුඛෝපභෝගී වායුසමනය කළ බස් රථ ප්‍රවාහනය, ඕමාන් දේශසීමා නිෂ්කාශනය, ඕමාන් සංක්‍රමණ වීසා සහ ඔබගේ නව ඩුබායි සංචාරක වීසාව ඊට ඇතුළත් වේ.",
+
+    // Contact
+    contactBadge: "අප හා සම්බන්ධ වන්න",
+    contactTitle: "ඔබගේ ඊළඟ සංචාරය අදම සැලසුම් කරමු",
+    contactSubtitle: "අභිරුචි සංචාරක සැලසුම්, ගුවන් ටිකට්පත් හෝ ක්ෂණික වීසා සේවා සඳහා ඩුබායි හෝ කොළඹ කාර්යාල හා සම්බන්ධ වන්න.",
+    contactUaeOffice: "ඩුබායි ප්‍රධාන කාර්යාලය (UAE)",
+    contactUaeAddress: "අල් මක්ටූම් පාර, දෙයිරා, ඩුබායි",
+    contactSlOffice: "කොළඹ ප්‍රාදේශීය ශාඛාව (ශ්‍රී ලංකාව)",
+    contactSlAddress: "ගාලු පාර, කොළඹ 03",
+    whatsappBtnText: "ඍජුවම WhatsApp හරහා සම්බන්ධ වන්න",
+    socialTitle: "නිල සමාජ මාධ්‍ය ඔස්සේ සම්බන්ධ වන්න",
+    careersSpotlightTitle: "සංචාරක ක්ෂේත්‍රයේ රැකියාවක් සොයනවාද?",
+    careersSpotlightDesc: "ඩුබායි සහ ශ්‍රී ලංකාව සඳහා විවෘත පුරප්පාඩු 6 ක් ඇත.",
+    careersSpotlightBtn: "රැකියා බලන්න",
+    formTitle: "නොමිලේ සංචාරක සැලසුමක් සහ මිල ගණන් ලබාගන්න",
+    formSubtitle: "පැය 2 ක් ඇතුළත සියලු විස්තර සහ පැහැදිලි මිල ගණන් සමඟ අප ඔබව අමතන්නෙමු.",
+    formFullName: "සම්පූර්ණ නම *",
+    formEmail: "විද්‍යුත් තැපෑල *",
+    formPhone: "දුරකථන / WhatsApp අංකය *",
+    formInterest: "ප්‍රධාන අවශ්‍යතාවය",
+    formInterestPackage: "සංචාරක පැකේජ",
+    formInterestVisa: "ක්ෂණික වීසා සේවා",
+    formInterestFlight: "අඩුම ගුවන් ටිකට්පත්",
+    formInterestCustom: "අභිරුචි සංචාරක සැලසුම්",
+    formDestination: "කැමති ගමනාන්තය",
+    formTravelers: "සංචාරක පිරිස",
+    formNotes: "විශේෂ අවශ්‍යතා / සටහන්",
+    formNotesPlaceholder: "ඔබගේ සංචාරක දිනයන්, හෝටල් මට්ටම හෝ වෙනත් විශේෂ ඉල්ලීම් සඳහන් කරන්න...",
+    formSubmitBtn: "සංචාරක ඉල්ලීම යොමු කරන්න",
+
+    // Footer
+    footerAbout: "Star Plus Travel & Tourism LLC යනු ඩුබායි දෙයිරා හි ප්‍රධාන කාර්යාලය සහ ශ්‍රී ලංකාවේ ශාඛා සහිත රජයේ අනුමත සංචාරක කළමනාකරණ සමාගමකි. උසස් තත්ත්වයේ නිවාඩු පැකේජ, ගුවන් ටිකට්පත් සහ ක්ෂණික වීසා සේවා සපයනු ලැබේ.",
+    footerUaeInq: "🇦🇪 ඩුබායි විමසීම්:",
+    footerSlInq: "🇱🇰 ශ්‍රී ලංකා විමසීම්:",
+    footerQuickLinks: "ක්ෂණික පිවිසුම්",
+    footerTopPackages: "ප්‍රධාන පැකේජ",
+    footerDestinations: "ප්‍රධාන මධ්‍යස්ථාන",
+    footerLegal: "නීතිමය සහතික",
+    footerCopyright: "© 2026 Star Plus Travel & Tourism LLC. සියලු හිමිකම් ඇවිරිණි.",
+    footerAttribution: "Redesigned & Developed by Lupo",
+
+    // Careers Page
+    topBarHiring: "අප බඳවා ගනු ලැබේ! ඩුබායි සහ ශ්‍රී ලංකාවේ අපගේ කණ්ඩායම් වලට එක්වන්න",
+    careersBadge: "Star Plus Travel & Tourism LLC රැකියා අවස්ථා",
+    careersHeroTitle: "සංචාරක සිහින ජීවිත කාලීන වෘත්තියක් බවට පත් කරගන්න",
+    careersHeroSubtitle: "ජාත්‍යන්තර සංචාර, සුඛෝපභෝගී නිවාඩු සහ ක්ෂණික වීසා සේවා ක්ෂේත්‍රයේ නවමු අත්දැකීමක් ගොඩනැගීමට ඩුබායි සහ කොළඹ අපගේ කණ්ඩායම් හා එක්වන්න.",
+    uaeBranchAppTitle: "එක්සත් අරාබි එමීර් රාජ්‍යයේ රැකියා අයදුම්පත්",
+    uaeBranchAppSubtitle: "ප්‍රධාන කාර්යාලය • දෙයිරා, ඩුබායි",
+    uaeBranchAppDesc: "ඩුබායි රැකියා බලපත්‍ර සහ පුරප්පාඩු සඳහා ඍජු මානව සම්පත් සම්බන්ධතාවය.",
+    slBranchAppTitle: "ශ්‍රී ලංකා ශාඛාවේ රැකියා අයදුම්පත්",
+    slBranchAppSubtitle: "ප්‍රාදේශීය ශාඛාව • කොළඹ",
+    slBranchAppDesc: "ශ්‍රී ලංකා මෙහෙයුම් සහ නිර්මාණාත්මක පුරප්පාඩු සඳහා ඍජු මානව සම්පත් සම්බන්ධතාවය.",
+    whyCareersBadge: "ඇයි Star Plus?",
+    whyCareersTitle: "ගෝලීය සංචාරක අත්දැකීම් කෙරෙහි ඔබේ උනන්දුව බලගන්වන්න",
+    perk1Title: "සංචාරක වරප්‍රසාද සහ FAM චාරිකා",
+    perk1Desc: "සේවක ගුවන් ගමන් වට්ටම්, අඩු මිල නිවාඩු පැකේජ සහ අනුග්‍රාහක ගමනාන්ත අධ්‍යයන චාරිකා.",
+    perk2Title: "ආකර්ෂණීය වැටුප් හා දීමනා",
+    perk2Desc: "ආකර්ෂණීය වැටුප්, කාර්ය සාධන මත පදනම් වූ කොමිස් මුදල් සහ සෞඛ්‍ය ආවරණය.",
+    perk3Title: "ද්විත්ව කලාපීය සම්බන්ධතාවය",
+    perk3Desc: "ඩුබායි සහ කොළඹ අපගේ කාර්යාල අතර අන්තර් කලාපීය සහයෝගීතාවය සහ වෘත්තීය වර්ධනය.",
+    perk4Title: "GDS සහ සංචාරක පුහුණුව",
+    perk4Desc: "Amadeus, Sabre, වීසා නීති, පාරිභෝගික කළමනාකරණය සහ ඩිජිටල් අලෙවිකරණය පිළිබඳ අඛණ්ඩ පුහුණුව.",
+    vacanciesBadge: "විවෘත පුරප්පාඩු",
+    vacanciesTitle: "වත්මන් රැකියා අවස්ථා",
+    vacanciesSubtitle: "අවශ්‍යතා පරීක්ෂා කර ඔබගේ ජීව දත්ත පත්‍රය අදාළ කලාපීය මානව සම්පත් අංශ වෙත යොමු කරන්න.",
+    filterAllRoles: "සියලු අවස්ථා (6)",
+    filterUaeRoles: "🇦🇪 ඩුබායි, UAE (3)",
+    filterSlRoles: "🇱🇰 ශ්‍රී ලංකාව (3)",
+    spontaneousBadge: "ඔබට ගැලපෙන තනතුරක් මෙහි නැද්ද?",
+    spontaneousTitle: "ස්වයං අයදුම්පතක් යොමු කරන්න",
+    spontaneousDesc: "දක්ෂ සංචාරක සැලසුම්කරුවන්, ආයතනික අලෙවි නියෝජිතයින් සහ වීසා විශේෂඥයින් අප නිරතුරුව සොයන්නෙමු. ඔබගේ CV පත්‍රය ඕනෑම වේලාවක අප වෙත එවන්න:",
+    spontaneousUaeBtn: "🇦🇪 ඩුබායි HR වෙත Email කරන්න (info@starplustraveluae.com)",
+    spontaneousSlBtn: "🇱🇰 ශ්‍රී ලංකා HR වෙත Email කරන්න (info@starplustravelsl.com)",
+    footerBranches: "අපගේ ශාඛා",
+    recruitmentDesks: "බඳවා ගැනීමේ අංශ",
+    recruitmentDesksSubtitle: "කලාපීය මානව සම්පත් කණ්ඩායම් වෙත සෘජුවම ජීව දත්ත පත්‍ර යොමු කරන්න:",
+    explorePositions: "විවෘත පුරප්පාඩු 6 බලන්න",
+    viewRolesBtn: "පුරප්පාඩු බලන්න",
+    themeMode: "තේමාව",
+
+    // Dynamic strings
+    startingFrom: "ආරම්භක මිල",
+    perPerson: "පුද්ගලයෙකුට",
+    installmentText: "හෝ Tabby මගින් මසකට 4x {amount}",
+    itineraryBtn: "විස්තර",
+    bookNowBtn: "වෙන්කරන්න"
+  }
+};
+
+const PACKAGES_I18N = {
+  'dubai-luxury': {
+    title: 'ඩුබායි සහ කාන්තාර සෆාරි සුඛෝපභෝගී චාරිකාව',
+    destination: 'ඩුබායි, එක්සත් අරාබි එමීර් රාජ්‍යය',
+    duration: 'දින 5 / රාත්‍රී 4',
+    badge: 'වැඩිම ඉල්ලුමක් ඇති'
+  },
+  'sri-lanka-wildlife': {
+    title: 'සුන්දර ශ්‍රී ලංකාව: තේ වතු, වනජීවී සෆාරි සහ වෙරළ',
+    destination: 'කොළඹ, මහනුවර සහ බෙන්තොට',
+    duration: 'දින 6 / රාත්‍රී 5',
+    badge: 'ජනප්‍රියම'
+  },
+  'baku-azerbaijan': {
+    title: 'බාකු සහ අසර්බයිජානයේ කොකේසස් ආශ්චර්යය',
+    destination: 'බාකු සහ ගබාලා, අසර්බයිජානය',
+    duration: 'දින 5 / රාත්‍රී 4',
+    badge: 'ප්‍රමුඛ'
+  },
+  'georgia-kazbegi': {
+    title: 'සුන්දර ජෝර්ජියාව: ටිබිලිසි, කස්බෙගි සහ ගුඩවුරි',
+    destination: 'ටිබිලිසි සහ කොකේසස්, ජෝර්ජියාව',
+    duration: 'දින 6 / රාත්‍රී 5',
+    badge: 'ශීත ඍතු විශේෂ'
+  },
+  'maldives-all-inclusive': {
+    title: 'මාලදිවයින දියමත විලා සුඛෝපභෝගී නිවාඩුව',
+    destination: 'උතුරු මාලේ අතොළුව, මාලදිවයින',
+    duration: 'දින 4 / රාත්‍රී 3',
+    badge: 'රොමෑන්ටික් නිවාඩුවක්'
+  },
+  'bali-luxury-nature': {
+    title: 'ස්වර්ගීය බාලි චාරිකාව: උබුඩ් සහ සෙමින්‍යක්',
+    destination: 'බාලි, ඉන්දුනීසියාව',
+    duration: 'දින 7 / රාත්‍රී 6',
+    badge: 'වැඩිම ඉල්ලුමක් ඇති'
+  },
+  'turkey-istanbul-cappadocia': {
+    title: 'සුන්දර තුර්කිය: ඉස්තාන්බුල් සහ කැපඩෝසියා බැලූන් චාරිකාව',
+    destination: 'ඉස්තාන්බුල් සහ කැපඩෝසියා, තුර්කිය',
+    duration: 'දින 6 / රාත්‍රී 5',
+    badge: 'විශේෂ චාරිකාව'
+  },
+  'umrah-spiritual-package': {
+    title: 'ප්‍රිමියම් උම්රා වන්දනා ගමන',
+    destination: 'මක්කම සහ මදීනා, සෞදි අරාබිය',
+    duration: 'දින 7 / රාත්‍රී 6',
+    badge: 'සුවිශේෂී වන්දනාව'
+  }
+};
+
 // Comprehensive Tour Packages Data
 const PACKAGES = [
   {
@@ -329,13 +807,23 @@ function showToast(message, type = 'success') {
 }
 
 // Render Tour Package Cards
+function getActiveFilteredPackages() {
+  if (activeCategory === 'all') return PACKAGES;
+  return PACKAGES.filter(pkg => pkg.category === activeCategory);
+}
+
 function renderPackages(filteredList = PACKAGES) {
   const grid = document.getElementById('packagesGrid');
   const countElem = document.getElementById('packagesCount');
   if (!grid) return;
 
+  const currentLang = getPreferredLanguage();
+  const t = I18N_TRANSLATIONS[currentLang] || I18N_TRANSLATIONS.en;
+
   if (countElem) {
-    countElem.textContent = `Showing ${filteredList.length} hand-crafted itineraries`;
+    countElem.textContent = currentLang === 'si'
+      ? `පැකේජ ${filteredList.length} ක් පෙන්වනු ලැබේ`
+      : `Showing ${filteredList.length} hand-crafted itineraries`;
   }
 
   if (filteredList.length === 0) {
@@ -344,10 +832,10 @@ function renderPackages(filteredList = PACKAGES) {
         <div class="w-20 h-20 mx-auto rounded-full bg-slate-800/80 flex items-center justify-center text-amber-400 text-3xl mb-4">
           <i class="fa-solid fa-compass"></i>
         </div>
-        <h3 class="text-xl font-bold text-white mb-2">No matching packages found</h3>
-        <p class="text-slate-400 text-sm max-w-md mx-auto mb-6">Try searching for other destinations like Dubai, Sri Lanka, Baku, Georgia, Maldives, or Bali.</p>
+        <h3 class="text-xl font-bold text-white mb-2">${currentLang === 'si' ? 'ගැළපෙන පැකේජ හමු නොවීය' : 'No matching packages found'}</h3>
+        <p class="text-slate-400 text-sm max-w-md mx-auto mb-6">${currentLang === 'si' ? 'ඩුබායි, ශ්‍රී ලංකාව, බාකු, ජෝර්ජියාව, මාලදිවයින හෝ බාලි වැනි වෙනත් ගමනාන්ත සොයන්න.' : 'Try searching for other destinations like Dubai, Sri Lanka, Baku, Georgia, Maldives, or Bali.'}</p>
         <button onclick="resetFilters()" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-amber-500/20">
-          View All Packages
+          ${currentLang === 'si' ? 'සියලු පැකේජ බලන්න' : 'View All Packages'}
         </button>
       </div>
     `;
@@ -359,6 +847,20 @@ function renderPackages(filteredList = PACKAGES) {
     const formattedOriginal = formatPrice(pkg.originalPriceAED);
     const monthlyInstallment = formatPrice(Math.round(pkg.priceAED / 4));
 
+    const i18nPkg = (currentLang === 'si' && PACKAGES_I18N[pkg.id]) ? PACKAGES_I18N[pkg.id] : null;
+    const title = i18nPkg ? i18nPkg.title : pkg.title;
+    const destination = i18nPkg ? i18nPkg.destination : pkg.destination;
+    const duration = i18nPkg ? i18nPkg.duration : pkg.duration;
+    const badge = i18nPkg ? i18nPkg.badge : pkg.badge;
+
+    const startingFromText = t.startingFrom || 'Starting from';
+    const perPersonText = t.perPerson || 'per person';
+    const installmentText = currentLang === 'si' 
+      ? `හෝ Tabby මගින් මසකට 4x ${monthlyInstallment}`
+      : `or 4x ${monthlyInstallment}/mo with Tabby`;
+    const itineraryBtnText = t.itineraryBtn || 'Itinerary';
+    const bookNowBtnText = t.bookNowBtn || 'Book Now';
+
     return `
       <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-slate-700/50">
         <!-- Image & Badges -->
@@ -369,14 +871,14 @@ function renderPackages(filteredList = PACKAGES) {
           <!-- Category & Bestseller Badge -->
           <div class="absolute top-3 left-3 flex flex-wrap gap-2">
             <span class="px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${pkg.badgeColor} shadow-md">
-              ${pkg.badge}
+              ${badge}
             </span>
           </div>
 
           <!-- Duration Pill -->
           <div class="absolute bottom-3 left-3 flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-slate-900/85 backdrop-blur-md text-xs font-semibold text-slate-200 border border-slate-700/50">
             <i class="fa-regular fa-clock text-amber-400"></i>
-            <span>${pkg.duration}</span>
+            <span>${duration}</span>
           </div>
 
           <!-- Rating -->
@@ -393,12 +895,12 @@ function renderPackages(filteredList = PACKAGES) {
             <!-- Location -->
             <div class="flex items-center space-x-2 text-xs font-medium text-amber-600 dark:text-amber-400 mb-2">
               <span>${pkg.flag}</span>
-              <span class="uppercase tracking-wider font-semibold">${pkg.destination}</span>
+              <span class="uppercase tracking-wider font-semibold">${destination}</span>
             </div>
 
             <!-- Title -->
             <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors leading-snug mb-3">
-              ${pkg.title}
+              ${title}
             </h3>
 
             <!-- Perks Summary -->
@@ -416,25 +918,25 @@ function renderPackages(filteredList = PACKAGES) {
           <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80">
             <div class="flex items-end justify-between mb-4">
               <div>
-                <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-medium">Starting from</span>
+                <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-medium">${startingFromText}</span>
                 <div class="flex items-baseline space-x-2">
                   <span class="text-2xl font-black text-amber-600 dark:text-amber-400 font-heading">${formattedPrice}</span>
                   <span class="text-xs text-slate-400 dark:text-slate-500 line-through">${formattedOriginal}</span>
                 </div>
                 <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium block">
-                  or 4x ${monthlyInstallment}/mo with Tabby
+                  ${installmentText}
                 </span>
               </div>
-              <span class="text-[11px] text-slate-600 dark:text-slate-400 font-medium bg-slate-100 dark:bg-slate-800/60 px-2 py-1 rounded-md">per person</span>
+              <span class="text-[11px] text-slate-600 dark:text-slate-400 font-medium bg-slate-100 dark:bg-slate-800/60 px-2 py-1 rounded-md">${perPersonText}</span>
             </div>
 
             <div class="grid grid-cols-2 gap-2">
               <button onclick="openItineraryModal('${pkg.id}')" class="w-full py-2.5 px-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition-all text-center flex items-center justify-center space-x-1.5 shadow-sm">
                 <i class="fa-solid fa-list-ul text-slate-500 dark:text-slate-400"></i>
-                <span>Itinerary</span>
+                <span>${itineraryBtnText}</span>
               </button>
               <button onclick="openBookingModal('${pkg.id}')" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 text-xs font-extrabold transition-all text-center shadow-lg shadow-amber-500/20 flex items-center justify-center space-x-1.5">
-                <span>Book Now</span>
+                <span>${bookNowBtnText}</span>
                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
               </button>
             </div>
@@ -978,12 +1480,104 @@ function toggleTheme() {
   }
 })();
 
+// ==========================================================================
+// Language / Localization Controller (English & Sinhala)
+// ==========================================================================
+function getPreferredLanguage() {
+  try {
+    const stored = localStorage.getItem('starplus_lang');
+    if (stored === 'si' || stored === 'en') {
+      return stored;
+    }
+  } catch (e) {}
+  return 'en';
+}
+
+function changeLanguage(lang, notify = true) {
+  if (lang !== 'en' && lang !== 'si') lang = 'en';
+
+  try {
+    localStorage.setItem('starplus_lang', lang);
+  } catch (e) {}
+
+  document.documentElement.lang = lang;
+
+  // Apply Sinhala typography styles
+  if (lang === 'si') {
+    document.documentElement.classList.add('lang-si');
+  } else {
+    document.documentElement.classList.remove('lang-si');
+  }
+
+  // Update all language select dropdowns
+  document.querySelectorAll('.lang-selector').forEach(sel => {
+    sel.value = lang;
+  });
+
+  // Update navbar language badge
+  document.querySelectorAll('.lang-badge').forEach(badge => {
+    badge.textContent = lang === 'si' ? 'සිංහල' : 'EN';
+  });
+
+  // Update mobile segmented buttons
+  document.querySelectorAll('.lang-btn-en').forEach(btn => {
+    if (lang === 'en') {
+      btn.className = 'lang-btn-en px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-amber-500 text-slate-950 shadow-sm';
+    } else {
+      btn.className = 'lang-btn-en px-3 py-1 rounded-md text-[11px] font-semibold text-slate-600 dark:text-slate-300 hover:text-amber-500 transition-all';
+    }
+  });
+
+  document.querySelectorAll('.lang-btn-si').forEach(btn => {
+    if (lang === 'si') {
+      btn.className = 'lang-btn-si px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-amber-500 text-slate-950 shadow-sm';
+    } else {
+      btn.className = 'lang-btn-si px-3 py-1 rounded-md text-[11px] font-semibold text-slate-600 dark:text-slate-300 hover:text-amber-500 transition-all';
+    }
+  });
+
+  // Translate all static data-i18n elements
+  const translations = I18N_TRANSLATIONS[lang] || I18N_TRANSLATIONS.en;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[key] !== undefined) {
+      el.textContent = translations[key];
+    }
+  });
+
+  // Translate input placeholders
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (translations[key] !== undefined) {
+      el.placeholder = translations[key];
+    }
+  });
+
+  // Re-render dynamic components
+  if (typeof renderPackages === 'function') {
+    renderPackages(typeof getActiveFilteredPackages === 'function' ? getActiveFilteredPackages() : PACKAGES);
+  }
+
+  if (notify) {
+    showToast(lang === 'si' ? '🇱🇰 භාෂාව සිංහල ලෙස වෙනස් කරන ලදී' : '🇬🇧 Language switched to English', 'success');
+  }
+}
+
+function toggleLanguage() {
+  const currentLang = getPreferredLanguage();
+  const nextLang = currentLang === 'en' ? 'si' : 'en';
+  changeLanguage(nextLang, true);
+}
+
 // Setup Event Listeners on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Initialize theme strictly from system preference or explicit manual mode
+  // 1. Initialize language preference
+  changeLanguage(getPreferredLanguage(), false);
+
+  // 2. Initialize theme strictly from system preference or explicit manual mode
   applyTheme(getThemeMode(), false);
 
-  // 2. Prevent refresh jump to FAQ or anchor hashes (always default cleanly to top of page)
+  // 3. Prevent refresh jump to FAQ or anchor hashes (always default cleanly to top of page)
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }

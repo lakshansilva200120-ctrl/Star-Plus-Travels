@@ -1,5 +1,9 @@
 /* Custom Styles for Star Plus Travels */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+
+html.lang-si, html.lang-si body, html.lang-si button, html.lang-si input, html.lang-si select, html.lang-si textarea {
+  font-family: 'Noto Sans Sinhala', 'Plus Jakarta Sans', sans-serif !important;
+}
 
 /* ==========================================================================
    Design System & Theme CSS Variables
