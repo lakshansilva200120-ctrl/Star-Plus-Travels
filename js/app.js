@@ -1514,10 +1514,18 @@ function changeLanguage(lang, notify = true) {
     sel.value = lang;
   });
 
-  // Update navbar language badge & button title
-  document.querySelectorAll('.lang-badge').forEach(badge => {
-    badge.textContent = lang === 'si' ? 'සිංහල' : 'EN';
+  // Dynamic Toggle Button Label:
+  // When in English ('en'), show 'සිංහල' to invite user to switch to Sinhala.
+  // When in Sinhala ('si'), show 'English' to invite user to switch to English.
+  const targetLabel = lang === 'en' ? 'සිංහල' : 'English';
+  
+  document.querySelectorAll('.desktop-lang-text').forEach(el => {
+    el.textContent = targetLabel;
   });
+  document.querySelectorAll('.lang-badge').forEach(badge => {
+    badge.textContent = targetLabel;
+  });
+
   document.querySelectorAll('.lang-active-en').forEach(el => {
     if (lang === 'en') {
       el.className = 'lang-active-en font-black text-amber-600 dark:text-amber-400';
@@ -1532,17 +1540,13 @@ function changeLanguage(lang, notify = true) {
       el.className = 'lang-active-si font-semibold text-slate-500 dark:text-slate-400';
     }
   });
-  // Update desktop language button text (shows target language to switch to)
-  document.querySelectorAll('.desktop-lang-text').forEach(el => {
-    el.textContent = lang === 'en' ? 'සිංහල' : 'English';
-  });
 
   document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
     btn.setAttribute('title', lang === 'si' ? 'භාෂාව මාරු කරන්න (English / සිංහල)' : 'Switch Language (English / Sinhala)');
-    btn.setAttribute('aria-label', `Current language: ${lang === 'si' ? 'Sinhala' : 'English'}. Click to switch.`);
+    btn.setAttribute('aria-label', `Current language: ${lang === 'si' ? 'Sinhala' : 'English'}. Click to switch to ${lang === 'en' ? 'Sinhala' : 'English'}.`);
   });
 
-  // Update mobile segmented buttons
+  // Update mobile segmented buttons if present
   document.querySelectorAll('.lang-btn-en').forEach(btn => {
     if (lang === 'en') {
       btn.className = 'lang-btn-en px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-amber-500 text-slate-950 shadow-sm';
@@ -1564,7 +1568,11 @@ function changeLanguage(lang, notify = true) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (translations[key] !== undefined) {
-      el.textContent = translations[key];
+      if (translations[key].includes('<') && translations[key].includes('>')) {
+        el.innerHTML = translations[key];
+      } else {
+        el.textContent = translations[key];
+      }
     }
   });
 
@@ -1576,25 +1584,38 @@ function changeLanguage(lang, notify = true) {
     }
   });
 
-  // Re-render dynamic components
+  // Re-render dynamic tour packages with localized titles & descriptions
   if (typeof renderPackages === 'function') {
     renderPackages(typeof getActiveFilteredPackages === 'function' ? getActiveFilteredPackages() : PACKAGES);
   }
+
+  // Dispatch custom language change event
+  window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
 
   if (notify) {
     showToast(lang === 'si' ? '🇱🇰 භාෂාව සිංහල ලෙස වෙනස් කරන ලදී' : '🇬🇧 Language switched to English', 'success');
   }
 }
 
+let _toggleLanguageBusy = false;
 function toggleLanguage() {
+  if (_toggleLanguageBusy) return;
+  _toggleLanguageBusy = true;
+  setTimeout(() => { _toggleLanguageBusy = false; }, 200);
+
   const currentLang = getPreferredLanguage();
   const nextLang = currentLang === 'en' ? 'si' : 'en';
   changeLanguage(nextLang, true);
 }
 
+// Attach globally for inline HTML handlers
+window.getPreferredLanguage = getPreferredLanguage;
+window.changeLanguage = changeLanguage;
+window.toggleLanguage = toggleLanguage;
+
 // Setup Event Listeners on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Initialize language preference
+  // 1. Initialize language preference (syncs button label and DOM text)
   changeLanguage(getPreferredLanguage(), false);
 
   // 2. Initialize theme strictly from system preference or explicit manual mode
@@ -1615,14 +1636,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTestimonial();
   startSlideTimer();
   checkVisaRequirements();
-
-  // Language button click listener (Desktop & Mobile)
-  document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      toggleLanguage();
-    });
-  });
 
   // Mobile menu button listener
   document.getElementById('mobileMenuBtn')?.addEventListener('click', toggleMobileMenu);
