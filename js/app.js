@@ -1611,6 +1611,14 @@ document.addEventListener('DOMContentLoaded', () => {
   startSlideTimer();
   checkVisaRequirements();
 
+  // Language button click listener (Desktop & Mobile)
+  document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleLanguage();
+    });
+  });
+
   // Mobile menu button listener
   document.getElementById('mobileMenuBtn')?.addEventListener('click', toggleMobileMenu);
 

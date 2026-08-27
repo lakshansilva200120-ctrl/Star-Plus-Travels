@@ -312,12 +312,14 @@
         <!-- Header CTA & Translator Button (Desktop: Language Toggle directly next to GET FREE QUOTE) -->
         <div class="hidden md:flex items-center space-x-3 shrink-0 ml-4">
           <!-- Translator / Language Toggle Button -->
-          <button type="button" onclick="toggleLanguage()" class="lang-toggle-btn px-3.5 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 flex items-center space-x-2 transition-all shadow-sm group cursor-pointer" aria-label="Toggle language between English and Sinhala" title="Switch Language (English / සිංහල)">
-            <i class="fa-solid fa-globe text-amber-500 text-sm group-hover:rotate-45 transition-transform"></i>
-            <span class="text-xs font-bold flex items-center space-x-1">
+          <button type="button" onclick="toggleLanguage()" id="desktopLangToggle" class="lang-toggle-btn px-3.5 h-10 rounded-xl bg-white dark:bg-slate-800 border-2 border-amber-500/40 hover:border-amber-500 text-slate-800 dark:text-slate-200 hover:text-amber-600 dark:hover:text-amber-400 flex items-center space-x-2 transition-all shadow-md hover:shadow-amber-500/20 group cursor-pointer" aria-label="Toggle language between English and Sinhala" title="Switch Language (English / සිංහල)">
+            <span class="w-6 h-6 rounded-lg bg-amber-500/10 dark:bg-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400 text-xs group-hover:rotate-45 transition-transform">
+              <i class="fa-solid fa-globe"></i>
+            </span>
+            <span class="text-xs font-extrabold flex items-center space-x-1">
               <span class="lang-active-en font-black text-amber-600 dark:text-amber-400">EN</span>
-              <span class="text-slate-400 dark:text-slate-600">|</span>
-              <span class="lang-active-si font-semibold text-slate-500 dark:text-slate-400">සිංහල</span>
+              <span class="text-slate-300 dark:text-slate-600">/</span>
+              <span class="lang-active-si font-bold text-slate-500 dark:text-slate-400">සිංහල</span>
             </span>
           </button>
 

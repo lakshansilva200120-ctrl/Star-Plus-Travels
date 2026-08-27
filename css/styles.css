@@ -622,18 +622,22 @@ html.light #sitePreloader {
 
 /* Language Toggle Button Styling */
 .lang-toggle-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
   cursor: pointer;
+  line-height: 1 !important;
 }
 
 .lang-toggle-btn:hover {
-  border-color: rgba(245, 158, 11, 0.5) !important;
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+  border-color: #f59e0b !important;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25) !important;
 }
 
 .lang-toggle-btn:active {
-  transform: scale(0.96);
+  transform: scale(0.97) !important;
 }
 
 .lang-badge {
