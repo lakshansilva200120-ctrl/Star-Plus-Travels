@@ -831,14 +831,20 @@ function toggleMobileMenu() {
 
 // Theme Management (System Preference Auto-Detection & Manual Toggle with LocalStorage)
 function getPreferredTheme() {
-  const storedTheme = localStorage.getItem('starplus_theme');
-  if (storedTheme === 'dark' || storedTheme === 'light') {
-    return storedTheme;
+  try {
+    const storedTheme = localStorage.getItem('starplus_theme');
+    if (storedTheme === 'dark' || storedTheme === 'light') {
+      return storedTheme;
+    }
+  } catch (e) {}
+
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark';
   }
-  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  return 'light';
 }
 
-function applyTheme(theme, save = true) {
+function applyTheme(theme, save = false) {
   const root = document.documentElement;
   const isDark = theme === 'dark';
 
@@ -851,7 +857,9 @@ function applyTheme(theme, save = true) {
   }
 
   if (save) {
-    localStorage.setItem('starplus_theme', theme);
+    try {
+      localStorage.setItem('starplus_theme', theme);
+    } catch (e) {}
   }
 
   // Update theme toggle icons
@@ -866,12 +874,18 @@ function applyTheme(theme, save = true) {
     label.textContent = isDark ? 'Light Mode' : 'Dark Mode';
   });
 
-  // Update brand logos between white text (dark mode) and dark text (light mode)
+  // Update brand logos and images between white text (dark mode) and dark text (light mode)
   document.querySelectorAll('img[data-dark-src]').forEach(img => {
     const darkSrc = img.getAttribute('data-dark-src');
     const lightSrc = img.getAttribute('data-light-src');
     img.src = isDark ? darkSrc : lightSrc;
   });
+
+  // Update preloader background if still present
+  const preloader = document.getElementById('sitePreloader');
+  if (preloader) {
+    preloader.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+  }
 
   // Notify seasonal particle engine if present
   if (window.StarPlusSeason && typeof window.StarPlusSeason.refresh === 'function') {
@@ -886,14 +900,27 @@ function toggleTheme() {
   showToast(`Switched to ${newTheme === 'dark' ? '🌙 Dark' : '☀️ Light'} mode`, 'success');
 }
 
-// Listen to OS system color scheme changes if not explicitly overridden by user
-if (window.matchMedia) {
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('starplus_theme')) {
-      applyTheme(e.matches ? 'dark' : 'light', false);
-    }
-  });
-}
+// Real-time OS System Color Scheme Listener (Auto adapts when phone/OS switches mode)
+(function setupSystemThemeWatcher() {
+  if (!window.matchMedia) return;
+
+  const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const handleSystemThemeChange = (e) => {
+    // Only auto-update if the user hasn't explicitly set a manual preference in localStorage
+    try {
+      const manualPreference = localStorage.getItem('starplus_theme');
+      if (!manualPreference) {
+        applyTheme(e.matches ? 'dark' : 'light', false);
+      }
+    } catch (err) {}
+  };
+
+  if (darkModeQuery.addEventListener) {
+    darkModeQuery.addEventListener('change', handleSystemThemeChange);
+  } else if (darkModeQuery.addListener) {
+    darkModeQuery.addListener(handleSystemThemeChange);
+  }
+})();
 
 // Setup Event Listeners on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
