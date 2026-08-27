@@ -1532,6 +1532,11 @@ function changeLanguage(lang, notify = true) {
       el.className = 'lang-active-si font-semibold text-slate-500 dark:text-slate-400';
     }
   });
+  // Update desktop language button text (shows target language to switch to)
+  document.querySelectorAll('.desktop-lang-text').forEach(el => {
+    el.textContent = lang === 'en' ? 'සිංහල' : 'English';
+  });
+
   document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
     btn.setAttribute('title', lang === 'si' ? 'භාෂාව මාරු කරන්න (English / සිංහල)' : 'Switch Language (English / Sinhala)');
     btn.setAttribute('aria-label', `Current language: ${lang === 'si' ? 'Sinhala' : 'English'}. Click to switch.`);
