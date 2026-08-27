@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth overflow-x-hidden w-full max-w-full">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -137,7 +137,7 @@
     }
   </script>
 </head>
-<body class="antialiased selection:bg-amber-500 selection:text-slate-950 transition-colors duration-300">
+<body class="antialiased selection:bg-amber-500 selection:text-slate-950 transition-colors duration-300 overflow-x-hidden w-full max-w-full">
 
   <!-- Isolated Bulletproof Luxury Splash Preloader -->
   <div id="sitePreloader" style="position: fixed; inset: 0; top: 0; left: 0; right: 0; bottom: 0; width: 100vw; height: 100dvh; max-width: 100vw; max-height: 100dvh; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0; padding: 0; box-sizing: border-box; overflow: hidden; touch-action: none; overscroll-behavior: none; pointer-events: auto; background-color: #070e17;" aria-hidden="true" role="status">
@@ -197,9 +197,11 @@
     })();
   </script>
 
-  <!-- Ambient Glow Backgrounds -->
-  <div class="ambient-glow glow-blue top-0 left-1/4"></div>
-  <div class="ambient-glow glow-gold top-96 right-10"></div>
+  <!-- Ambient Glow Backgrounds (Contained in an overflow-hidden layer to prevent mobile horizontal slide) -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+    <div class="ambient-glow glow-blue top-0 left-1/4"></div>
+    <div class="ambient-glow glow-gold top-96 right-10"></div>
+  </div>
 
   <!-- Top Announcement / Contact Bar -->
   <div class="bg-slate-100/90 dark:bg-slate-950/90 border-b border-slate-200 dark:border-slate-800/80 text-xs py-2 px-4 relative z-40 backdrop-blur-md transition-colors">
@@ -710,7 +712,7 @@
   </section>
 
   <!-- Value Propositions / Why Choose Us -->
-  <section id="why-us" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/70 dark:bg-slate-950/70 border-y border-slate-200 dark:border-slate-900 relative transition-colors">
+  <section id="why-us" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/70 dark:bg-slate-950/70 border-y border-slate-200 dark:border-slate-900 relative overflow-hidden transition-colors w-full">
     <div class="max-w-7xl mx-auto">
       <div class="text-center max-w-3xl mx-auto mb-16">
         <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">The Star Plus Difference</span>
@@ -795,7 +797,7 @@
   </section>
 
   <!-- Featured Tour Packages Section -->
-  <section id="packages" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+  <section id="packages" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full">
     <div class="max-w-7xl mx-auto">
       
       <!-- Section Header -->
@@ -856,7 +858,7 @@
   </section>
 
   <!-- Visa Services & Fast-Track Hub Section -->
-  <section id="visa-services" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/80 dark:bg-slate-950/80 border-y border-slate-200 dark:border-slate-800 relative transition-colors">
+  <section id="visa-services" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/80 dark:bg-slate-950/80 border-y border-slate-200 dark:border-slate-800 relative overflow-hidden transition-colors w-full">
     <div class="max-w-7xl mx-auto">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -926,7 +928,7 @@
   </section>
 
   <!-- Limited-Time Season Promo Banner -->
-  <section class="py-14 px-4 sm:px-6 lg:px-8">
+  <section class="py-14 px-4 sm:px-6 lg:px-8 overflow-hidden w-full">
     <div class="max-w-7xl mx-auto">
       <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-500 p-8 sm:p-12 text-slate-950 shadow-2xl shadow-amber-500/20">
         <!-- Graphic pattern overlay -->
@@ -960,7 +962,7 @@
   </section>
 
   <!-- Customer Testimonials Carousel -->
-  <section id="testimonials" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+  <section id="testimonials" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full">
     <div class="max-w-5xl mx-auto text-center">
       
       <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Real Traveler Stories</span>
@@ -998,7 +1000,7 @@
   </section>
 
   <!-- Interactive FAQ Section -->
-  <section id="faq" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/70 dark:bg-slate-950/70 border-y border-slate-200 dark:border-slate-900 transition-colors">
+  <section id="faq" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/70 dark:bg-slate-950/70 border-y border-slate-200 dark:border-slate-900 overflow-hidden transition-colors w-full">
     <div class="max-w-4xl mx-auto">
       <div class="text-center mb-14">
         <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">Got Questions?</span>
@@ -1056,7 +1058,7 @@
   </section>
 
   <!-- Contact & Inquiry Form Section -->
-  <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 relative">
+  <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full">
     <div class="max-w-7xl mx-auto">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -1230,7 +1232,7 @@
   </section>
 
   <!-- Footer with Official Branding -->
-  <footer class="bg-slate-950 border-t border-slate-800/80 pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs">
+  <footer class="bg-slate-950 border-t border-slate-800/80 pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs overflow-hidden w-full max-w-full">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
       
       <!-- Column 1: Brand Info -->
