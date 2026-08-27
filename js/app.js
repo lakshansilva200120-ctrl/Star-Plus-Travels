@@ -1518,6 +1518,20 @@ function changeLanguage(lang, notify = true) {
   document.querySelectorAll('.lang-badge').forEach(badge => {
     badge.textContent = lang === 'si' ? 'සිංහල' : 'EN';
   });
+  document.querySelectorAll('.lang-active-en').forEach(el => {
+    if (lang === 'en') {
+      el.className = 'lang-active-en font-black text-amber-600 dark:text-amber-400';
+    } else {
+      el.className = 'lang-active-en font-semibold text-slate-500 dark:text-slate-400';
+    }
+  });
+  document.querySelectorAll('.lang-active-si').forEach(el => {
+    if (lang === 'si') {
+      el.className = 'lang-active-si font-black text-amber-600 dark:text-amber-400';
+    } else {
+      el.className = 'lang-active-si font-semibold text-slate-500 dark:text-slate-400';
+    }
+  });
   document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
     btn.setAttribute('title', lang === 'si' ? 'භාෂාව මාරු කරන්න (English / සිංහල)' : 'Switch Language (English / Sinhala)');
     btn.setAttribute('aria-label', `Current language: ${lang === 'si' ? 'Sinhala' : 'English'}. Click to switch.`);
