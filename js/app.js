@@ -916,18 +916,18 @@ function renderPackages(filteredList = PACKAGES) {
 
           <!-- Pricing & CTAs -->
           <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80">
-            <div class="flex items-end justify-between mb-4">
-              <div>
-                <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-medium">${startingFromText}</span>
-                <div class="flex items-baseline space-x-2">
+            <div class="flex items-end justify-between mb-4 gap-2 min-w-0">
+              <div class="min-w-0 flex-1">
+                <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-medium truncate">${startingFromText}</span>
+                <div class="flex items-baseline space-x-2 flex-wrap">
                   <span class="text-2xl font-black text-amber-600 dark:text-amber-400 font-heading">${formattedPrice}</span>
                   <span class="text-xs text-slate-400 dark:text-slate-500 line-through">${formattedOriginal}</span>
                 </div>
-                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium block">
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium block break-words">
                   ${installmentText}
                 </span>
               </div>
-              <span class="text-[11px] text-slate-600 dark:text-slate-400 font-medium bg-slate-100 dark:bg-slate-800/60 px-2 py-1 rounded-md">${perPersonText}</span>
+              <span class="text-[11px] text-slate-600 dark:text-slate-400 font-medium bg-slate-100 dark:bg-slate-800/60 px-2 py-1 rounded-md shrink-0 whitespace-nowrap">${perPersonText}</span>
             </div>
 
             <div class="grid grid-cols-2 gap-2">
