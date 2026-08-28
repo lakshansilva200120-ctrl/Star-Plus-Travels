@@ -67,6 +67,26 @@ html.lang-si header nav a {
   text-align: center !important;
 }
 
+/* Top Announcement / Contact Bar Single-Line Strict Rules */
+.top-announcement-bar,
+.top-bar-container {
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+}
+
+html.lang-si .top-announcement-bar,
+html.lang-si .top-announcement-bar * {
+  letter-spacing: -0.015em !important;
+}
+
+html.lang-si [data-i18n="topAnnouncementText"],
+html.lang-si [data-i18n="topLocation"],
+html.lang-si [data-i18n="topBarHiring"],
+html.lang-si [data-i18n="whatsappConcierge"] {
+  font-size: 0.725rem !important;
+  white-space: nowrap !important;
+}
+
 /* Hero Section Headline Formatting & Balance */
 #heroHeadline {
   text-wrap: balance;

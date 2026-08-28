@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="css/styles.css?v=2.8.0">
+  <link rel="stylesheet" href="css/styles.css?v=2.9.0">
 
   <!-- Schema.org Structured Metadata -->
   <script type="application/ld+json">
@@ -227,40 +227,42 @@
     <div class="ambient-glow glow-gold top-96 right-10"></div>
   </div>
 
-  <!-- Top Announcement / Contact Bar -->
-  <div class="bg-slate-100/90 dark:bg-slate-950/90 border-b border-slate-200 dark:border-slate-800/80 text-xs py-2 px-4 relative z-40 backdrop-blur-md transition-colors overflow-hidden">
-    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-slate-600 dark:text-slate-400">
-      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 min-w-0 max-w-full">
-        <span class="flex items-center space-x-1.5 text-amber-600 dark:text-amber-400 font-semibold truncate max-w-full">
-          <i class="fa-solid fa-sparkles text-[11px] shrink-0"></i>
+  <!-- Top Announcement / Contact Bar (Strict Single-Line Flex Row) -->
+  <div class="top-announcement-bar bg-slate-100/90 dark:bg-slate-950/90 border-b border-slate-200 dark:border-slate-800/80 text-[11px] sm:text-xs py-1.5 px-3 sm:px-4 relative z-40 backdrop-blur-md transition-colors overflow-hidden">
+    <div class="top-bar-container max-w-7xl mx-auto flex flex-nowrap items-center justify-between gap-2 text-slate-600 dark:text-slate-400 whitespace-nowrap overflow-hidden">
+      <!-- Left: Official Announcement & Location -->
+      <div class="flex items-center space-x-2 sm:space-x-3 min-w-0 shrink overflow-hidden whitespace-nowrap">
+        <span class="flex items-center space-x-1.5 text-amber-600 dark:text-amber-400 font-semibold truncate">
+          <i class="fa-solid fa-sparkles text-[10px] shrink-0"></i>
           <span data-i18n="topAnnouncementText" class="truncate">Dubai & Sri Lanka Premier Travel & Visa Specialists</span>
         </span>
-        <span class="hidden md:inline text-slate-300 dark:text-slate-600 shrink-0">|</span>
-        <span class="hidden md:flex items-center space-x-1 shrink-0">
-          <i class="fa-solid fa-location-dot text-amber-600 dark:text-amber-400 text-[11px]"></i>
-          <span data-i18n="topLocation">Deira, Dubai, UAE & Colombo, Sri Lanka</span>
+        <span class="hidden xl:inline text-slate-300 dark:text-slate-600 shrink-0">|</span>
+        <span class="hidden xl:flex items-center space-x-1 shrink-0 text-slate-500 dark:text-slate-400">
+          <i class="fa-solid fa-location-dot text-amber-600 dark:text-amber-400 text-[10px]"></i>
+          <span data-i18n="topLocation" class="truncate">Deira, Dubai, UAE & Colombo, Sri Lanka</span>
         </span>
       </div>
 
-      <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
-        <!-- Direct Phone & Email Links -->
-        <a href="tel:+97145751321" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors flex items-center space-x-1 font-medium whitespace-nowrap">
+      <!-- Right: Direct Phone, WhatsApp, Currency Selector & Theme Toggle -->
+      <div class="flex items-center space-x-1.5 sm:space-x-2.5 shrink-0 whitespace-nowrap">
+        <!-- Direct Phone Link -->
+        <a href="tel:+97145751321" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors flex items-center space-x-1 font-medium shrink-0">
           <i class="fa-solid fa-phone text-amber-600 dark:text-amber-400 text-[10px]"></i>
           <span>+971 4 575 1321</span>
         </a>
-        <a href="mailto:info@starplustraveluae.com" class="hidden xl:flex hover:text-amber-600 dark:hover:text-amber-400 transition-colors items-center space-x-1 font-medium whitespace-nowrap">
+        <a href="mailto:info@starplustraveluae.com" class="hidden 2xl:flex hover:text-amber-600 dark:hover:text-amber-400 transition-colors items-center space-x-1 font-medium shrink-0">
           <i class="fa-solid fa-envelope text-amber-600 dark:text-amber-400 text-[10px]"></i>
           <span>info@starplustraveluae.com</span>
         </a>
-        <a href="https://wa.me/971527582293" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors flex items-center space-x-1 font-medium whitespace-nowrap">
+        <a href="https://wa.me/971527582293" target="_blank" rel="noopener noreferrer" class="hidden md:flex hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors items-center space-x-1 font-medium shrink-0">
           <i class="fa-brands fa-whatsapp text-emerald-600 dark:text-emerald-400 text-xs"></i>
-          <span class="hidden sm:inline" data-i18n="whatsappConcierge">WhatsApp Concierge</span>
+          <span data-i18n="whatsappConcierge">WhatsApp Concierge</span>
         </a>
 
         <!-- Currency Selector -->
-        <div class="flex items-center space-x-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/60 rounded-lg px-2 py-0.5 shadow-sm shrink-0">
+        <div class="flex items-center space-x-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/60 rounded-lg px-1.5 py-0.5 shadow-sm shrink-0">
           <i class="fa-solid fa-coins text-amber-500 text-[10px]"></i>
-          <select onchange="changeCurrency(this.value)" class="currency-selector bg-transparent text-slate-800 dark:text-white text-xs outline-none cursor-pointer">
+          <select onchange="changeCurrency(this.value)" class="currency-selector bg-transparent text-slate-800 dark:text-white text-[11px] outline-none cursor-pointer">
             <option value="AED">AED (د.إ)</option>
             <option value="USD">USD ($)</option>
             <option value="EUR">EUR (€)</option>
@@ -270,9 +272,9 @@
         </div>
 
         <!-- Top Bar Color Mode / Theme Toggle Button (Far Right Corner) -->
-        <button type="button" onclick="toggleTheme()" class="theme-toggle-btn flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/60 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition shadow-sm text-xs font-semibold cursor-pointer shrink-0 whitespace-nowrap" aria-label="Toggle Theme" title="Toggle Theme (System / Light / Dark)">
-          <i class="fa-solid fa-sun text-amber-400 text-xs theme-toggle-icon"></i>
-          <span class="theme-toggle-label text-xs font-medium">Auto</span>
+        <button type="button" onclick="toggleTheme()" class="theme-toggle-btn flex items-center space-x-1 px-2.5 py-0.5 rounded-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/60 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition shadow-sm text-[11px] font-semibold cursor-pointer shrink-0 whitespace-nowrap" aria-label="Toggle Theme" title="Toggle Theme (System / Light / Dark)">
+          <i class="fa-solid fa-sun text-amber-400 text-[10px] theme-toggle-icon"></i>
+          <span class="theme-toggle-label text-[11px] font-medium">Auto</span>
         </button>
       </div>
     </div>
@@ -1528,7 +1530,7 @@
   <div id="toastContainer"></div>
 
   <!-- Scripts -->
-  <script src="js/app.js?v=2.8.0"></script>
-  <script src="js/seasonal-theme.js?v=2.8.0"></script>
+  <script src="js/app.js?v=2.9.0"></script>
+  <script src="js/seasonal-theme.js?v=2.9.0"></script>
 </body>
 </html>
