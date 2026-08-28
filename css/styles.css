@@ -47,11 +47,11 @@ html.lang-si header nav a {
   }
 }
 
-/* Fixed-Width & Non-Shrinking Language Toggle Container and Button */
+/* Fixed-Width & Non-Shrinking Compact Language Toggle Container and Button */
 .lang-toggle-wrapper {
-  width: 92px !important;
-  min-width: 92px !important;
-  max-width: 92px !important;
+  width: 78px !important;
+  min-width: 78px !important;
+  max-width: 78px !important;
   flex-shrink: 0 !important;
   display: flex !important;
   align-items: center !important;
@@ -59,12 +59,25 @@ html.lang-si header nav a {
 }
 
 .lang-toggle-btn {
-  width: 88px !important;
-  min-width: 88px !important;
-  max-width: 88px !important;
+  width: 76px !important;
+  min-width: 76px !important;
+  max-width: 76px !important;
+  height: 32px !important;
+  padding: 0.25rem 0.4rem !important;
+  font-size: 0.7rem !important;
   flex-shrink: 0 !important;
   justify-content: center !important;
   text-align: center !important;
+  border-radius: 0.5rem !important;
+}
+
+.lang-toggle-btn i {
+  font-size: 0.65rem !important;
+}
+
+.lang-toggle-btn .desktop-lang-text {
+  font-size: 0.7rem !important;
+  line-height: 1 !important;
 }
 
 /* Top Announcement / Contact Bar Single-Line Strict Rules */
