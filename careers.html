@@ -73,7 +73,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=2.7.0">
+  <link rel="stylesheet" href="css/styles.css?v=2.8.0">
 
   <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync by Default & Zero Flicker) -->
   <script>
@@ -211,7 +211,7 @@
       <div class="flex items-center justify-between h-20 w-full max-w-full">
         
         <!-- Brand Logo -->
-        <a href="/" class="flex items-center py-1 group shrink-0" aria-label="Star Plus Travels Home">
+        <a href="/" class="flex items-center py-1 group shrink-0 flex-shrink-0" aria-label="Star Plus Travels Home">
           <img id="brandHeaderLogo"
                src="assets/logo-white-text.png" 
                data-dark-src="assets/logo-white-text.png"
@@ -221,7 +221,7 @@
         </a>
 
         <!-- Desktop Navigation Links (Spacious single-line layout) -->
-        <nav class="hidden lg:flex items-center space-x-3 xl:space-x-5 2xl:space-x-7 text-xs xl:text-sm font-semibold text-slate-800 dark:text-slate-200 whitespace-nowrap min-w-0 mx-auto px-2">
+        <nav class="hidden lg:flex items-center justify-center space-x-2.5 xl:space-x-4 2xl:space-x-6 text-[12px] xl:text-[13px] 2xl:text-sm font-semibold text-slate-800 dark:text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2 px-1">
           <a href="index.html" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navHome">Home</a>
           <a href="index.html#clients" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navClients">Clients</a>
           <a href="index.html#packages" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navPackages">Tour Packages</a>
@@ -233,21 +233,21 @@
         </nav>
 
         <!-- Right Action Area: Fixed-Width Consistent Language Toggle Button -->
-        <div class="hidden lg:flex items-center shrink-0">
-          <button type="button" onclick="toggleLanguage()" id="desktopLangToggleCareers" class="lang-toggle-btn inline-flex items-center justify-center space-x-1.5 w-[88px] h-9 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/90 dark:bg-slate-900/90 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-all text-xs font-bold shadow-sm cursor-pointer whitespace-nowrap" title="Switch Language" aria-label="Switch Language (English / Sinhala)">
+        <div class="hidden lg:flex items-center shrink-0 flex-shrink-0 lang-toggle-wrapper">
+          <button type="button" onclick="toggleLanguage()" id="desktopLangToggleCareers" class="lang-toggle-btn inline-flex items-center justify-center space-x-1.5 w-[88px] h-9 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/90 dark:bg-slate-900/90 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-all text-xs font-bold shadow-sm cursor-pointer whitespace-nowrap shrink-0 flex-shrink-0" title="Switch Language" aria-label="Switch Language (English / Sinhala)">
             <i class="fa-solid fa-globe text-amber-500 text-xs shrink-0"></i>
             <span class="desktop-lang-text font-bold text-xs text-center">සිංහල</span>
           </button>
         </div>
 
         <!-- Mobile Header Controls -->
-        <div class="lg:hidden flex items-center space-x-2 shrink-0">
+        <div class="lg:hidden flex items-center space-x-2 shrink-0 flex-shrink-0">
           <!-- Mobile Language Toggle Button -->
-          <button type="button" onclick="toggleLanguage()" class="lang-toggle-btn inline-flex items-center justify-center space-x-1.5 w-[88px] h-9 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 shadow-sm cursor-pointer whitespace-nowrap" aria-label="Toggle Language">
+          <button type="button" onclick="toggleLanguage()" class="lang-toggle-btn inline-flex items-center justify-center space-x-1.5 w-[88px] h-9 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 shadow-sm cursor-pointer whitespace-nowrap shrink-0 flex-shrink-0" aria-label="Toggle Language">
             <i class="fa-solid fa-globe text-amber-500 text-xs shrink-0"></i>
             <span class="desktop-lang-text font-bold text-xs text-center">සිංහල</span>
           </button>
-          <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="p-2 h-9 w-9 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white shadow-sm flex items-center justify-center cursor-pointer" aria-label="Toggle menu">
+          <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="p-2 h-9 w-9 rounded-xl bg-white/90 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white shadow-sm flex items-center justify-center cursor-pointer shrink-0 flex-shrink-0" aria-label="Toggle menu">
             <i class="fa-solid fa-bars-staggered text-base"></i>
           </button>
         </div>
@@ -902,8 +902,8 @@
   <div id="toastContainer"></div>
 
   <!-- JavaScript Application Script -->
-  <script src="js/app.js?v=2.7.0"></script>
-  <script src="js/seasonal-theme.js?v=2.7.0"></script>
+  <script src="js/app.js?v=2.8.0"></script>
+  <script src="js/seasonal-theme.js?v=2.8.0"></script>
   
   <script>
     // Careers-specific logic
