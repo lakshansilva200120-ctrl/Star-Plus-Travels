@@ -1639,6 +1639,20 @@ document.addEventListener('DOMContentLoaded', () => {
   startSlideTimer();
   checkVisaRequirements();
 
+  // Sticky header scroll elevation listener
+  const updateHeaderScroll = () => {
+    const header = document.getElementById('mainHeader') || document.querySelector('header');
+    if (header) {
+      if (window.scrollY > 15) {
+        header.classList.add('header-scrolled');
+      } else {
+        header.classList.remove('header-scrolled');
+      }
+    }
+  };
+  window.addEventListener('scroll', updateHeaderScroll, { passive: true });
+  updateHeaderScroll();
+
   // Mobile menu button listener
   document.getElementById('mobileMenuBtn')?.addEventListener('click', toggleMobileMenu);
 
