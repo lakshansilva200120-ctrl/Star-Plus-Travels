@@ -261,6 +261,7 @@ h1, h2, h3, h4, .font-heading {
 header.glass-nav,
 #mainHeader,
 .glass-nav {
+  position: -webkit-sticky !important;
   position: sticky !important;
   top: 0 !important;
   z-index: 50 !important;
