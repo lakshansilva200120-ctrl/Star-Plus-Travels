@@ -119,63 +119,63 @@ html.lang-si #heroSubHeadline {
    Design System & Theme CSS Variables
    ========================================================================== */
 
-/* 1. Default & Primary Tokens: Light Premium Blue Theme */
+/* 1. Default & Primary Tokens: Fly Dubai Rich Royal Blue Theme (#0056A3) */
 :root {
-  --primary-dark: #0b192c;
-  --ocean-deep: #0b192c;
-  --ocean-blue: #1e3e62;
-  --ocean-light: #2e5a88;
-  --royal-blue: #1d4ed8;
-  --royal-blue-hover: #1e40af;
-  --accent-blue: #0284c7;
+  --primary-dark: #002b54;
+  --ocean-deep: #003d75;
+  --ocean-blue: #0056a3;
+  --ocean-light: #006ecf;
+  --royal-blue: #0056a3;
+  --royal-blue-hover: #004380;
+  --accent-blue: #0077d6;
   --accent-gold: #f59e0b;
   --accent-gold-hover: #d97706;
   --accent-coral: #ff6b6b;
 
-  /* Semantic Theme Tokens: Light Premium Blue */
-  --theme-bg-base: #f0f6fc;
+  /* Semantic Theme Tokens: Rich Royal Blue (#0056A3) on Soft Light Background */
+  --theme-bg-base: #f4f6fa;
   --theme-bg-surface: #ffffff;
-  --theme-bg-surface-elevated: #e6f0fa;
-  --theme-bg-nav: rgba(240, 246, 252, 0.90);
+  --theme-bg-surface-elevated: #e9f0f8;
+  --theme-bg-nav: rgba(255, 255, 255, 0.95);
   --theme-bg-card: #ffffff;
   --theme-bg-card-hover: #ffffff;
   --theme-bg-input: #ffffff;
-  --theme-border-subtle: rgba(30, 62, 98, 0.10);
-  --theme-border-card: rgba(186, 215, 242, 0.65);
-  --theme-border-input: rgba(30, 62, 98, 0.18);
-  --theme-text-primary: #0b192c;
+  --theme-border-subtle: rgba(0, 86, 163, 0.12);
+  --theme-border-card: rgba(0, 86, 163, 0.18);
+  --theme-border-input: rgba(0, 86, 163, 0.22);
+  --theme-text-primary: #0056a3;
   --theme-text-secondary: #243c5a;
-  --theme-text-muted: #536b88;
-  --theme-card-shadow: 0 10px 25px -5px rgba(11, 25, 44, 0.06), 0 8px 10px -6px rgba(11, 25, 44, 0.04);
-  --theme-card-shadow-hover: 0 20px 35px -10px rgba(29, 78, 216, 0.14), 0 0 20px rgba(2, 132, 199, 0.10);
-  --theme-scrollbar-track: #f0f6fc;
-  --theme-scrollbar-thumb: #93c5fd;
+  --theme-text-muted: #5b708b;
+  --theme-card-shadow: 0 10px 25px -5px rgba(0, 86, 163, 0.08), 0 8px 10px -6px rgba(0, 86, 163, 0.04);
+  --theme-card-shadow-hover: 0 20px 35px -10px rgba(0, 86, 163, 0.18), 0 0 20px rgba(0, 119, 214, 0.12);
+  --theme-scrollbar-track: #f4f6fa;
+  --theme-scrollbar-thumb: #0056a3;
   --theme-glow-opacity: 0.15;
-  --theme-modal-backdrop: rgba(11, 25, 44, 0.60);
+  --theme-modal-backdrop: rgba(0, 43, 84, 0.65);
 }
 
 /* 2. Explicit Light Mode Class Override */
 html.light,
 :root:not(.dark) {
-  --theme-bg-base: #f0f6fc;
+  --theme-bg-base: #f4f6fa;
   --theme-bg-surface: #ffffff;
-  --theme-bg-surface-elevated: #e6f0fa;
-  --theme-bg-nav: rgba(240, 246, 252, 0.90);
+  --theme-bg-surface-elevated: #e9f0f8;
+  --theme-bg-nav: rgba(255, 255, 255, 0.95);
   --theme-bg-card: #ffffff;
   --theme-bg-card-hover: #ffffff;
   --theme-bg-input: #ffffff;
-  --theme-border-subtle: rgba(30, 62, 98, 0.10);
-  --theme-border-card: rgba(186, 215, 242, 0.65);
-  --theme-border-input: rgba(30, 62, 98, 0.18);
-  --theme-text-primary: #0b192c;
+  --theme-border-subtle: rgba(0, 86, 163, 0.12);
+  --theme-border-card: rgba(0, 86, 163, 0.18);
+  --theme-border-input: rgba(0, 86, 163, 0.22);
+  --theme-text-primary: #0056a3;
   --theme-text-secondary: #243c5a;
-  --theme-text-muted: #536b88;
-  --theme-card-shadow: 0 10px 25px -5px rgba(11, 25, 44, 0.06), 0 8px 10px -6px rgba(11, 25, 44, 0.04);
-  --theme-card-shadow-hover: 0 20px 35px -10px rgba(29, 78, 216, 0.14), 0 0 20px rgba(2, 132, 199, 0.10);
-  --theme-scrollbar-track: #f0f6fc;
-  --theme-scrollbar-thumb: #93c5fd;
+  --theme-text-muted: #5b708b;
+  --theme-card-shadow: 0 10px 25px -5px rgba(0, 86, 163, 0.08), 0 8px 10px -6px rgba(0, 86, 163, 0.04);
+  --theme-card-shadow-hover: 0 20px 35px -10px rgba(0, 86, 163, 0.18), 0 0 20px rgba(0, 119, 214, 0.12);
+  --theme-scrollbar-track: #f4f6fa;
+  --theme-scrollbar-thumb: #0056a3;
   --theme-glow-opacity: 0.15;
-  --theme-modal-backdrop: rgba(11, 25, 44, 0.60);
+  --theme-modal-backdrop: rgba(0, 43, 84, 0.65);
 }
 
 html {
@@ -250,7 +250,7 @@ header.glass-nav.header-scrolled,
 .glass-card-hover:hover {
   transform: translateY(-6px);
   background: var(--theme-bg-card-hover);
-  border-color: rgba(245, 158, 11, 0.35);
+  border-color: rgba(0, 86, 163, 0.35);
   box-shadow: var(--theme-card-shadow-hover);
 }
 
@@ -262,8 +262,8 @@ header.glass-nav.header-scrolled,
 }
 
 .glass-input:focus {
-  border-color: #f59e0b;
-  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+  border-color: #0056a3;
+  box-shadow: 0 0 0 3px rgba(0, 86, 163, 0.18);
   outline: none;
 }
 
@@ -283,20 +283,37 @@ header.glass-nav.header-scrolled,
   border-radius: 6px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #f59e0b;
+  background: #004380;
 }
 
-/* Gold Gradient Text */
+/* Fly Dubai Royal Blue Gradient Text */
 .gold-gradient-text {
-  background: linear-gradient(135deg, #1d4ed8 0%, #0284c7 60%, #0369a1 100%);
+  background: linear-gradient(135deg, #0056a3 0%, #0077d6 50%, #003d75 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .ocean-gradient-text {
-  background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #0077d6 0%, #0056a3 50%, #002b54 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Language Toggle Button Signature Styling */
+.lang-toggle-btn {
+  background: #0056a3 !important;
+  color: #ffffff !important;
+  border: 1px solid #004380 !important;
+  box-shadow: 0 4px 12px rgba(0, 86, 163, 0.20) !important;
+}
+
+.lang-toggle-btn:hover {
+  background: #004380 !important;
+}
+
+.lang-toggle-btn i,
+.lang-toggle-btn span {
+  color: #ffffff !important;
 }
 
 /* Glowing Background Effects */
@@ -308,16 +325,16 @@ header.glass-nav.header-scrolled,
   border-radius: 50%;
   filter: blur(100px);
   pointer-events: none;
-  opacity: 0.18;
+  opacity: 0.16;
   z-index: 1;
 }
 
 .glow-blue {
-  background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+  background: radial-gradient(circle, #0056a3 0%, transparent 70%);
 }
 
 .glow-gold {
-  background: radial-gradient(circle, #93c5fd 0%, transparent 70%);
+  background: radial-gradient(circle, #0077d6 0%, transparent 70%);
 }
 
 /* Video Hero Styles & Gradient Overlays */
@@ -349,10 +366,10 @@ header.glass-nav.header-scrolled,
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(11, 25, 44, 0.72) 0%,
-    rgba(15, 39, 68, 0.48) 35%,
-    rgba(15, 39, 68, 0.60) 65%,
-    rgba(240, 246, 252, 0.98) 100%
+    rgba(0, 43, 84, 0.75) 0%,
+    rgba(0, 61, 117, 0.45) 35%,
+    rgba(0, 86, 163, 0.55) 65%,
+    rgba(244, 246, 250, 0.98) 100%
   );
   z-index: 2;
 }
@@ -360,7 +377,7 @@ header.glass-nav.header-scrolled,
 .hero-video-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, transparent 40%, rgba(11, 25, 44, 0.65) 100%);
+  background: radial-gradient(circle at center, transparent 40%, rgba(0, 43, 84, 0.65) 100%);
   z-index: 3;
 }
 
