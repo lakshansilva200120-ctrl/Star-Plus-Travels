@@ -178,64 +178,79 @@
     })();
   </script>
 
-  <!-- Top Announcement Bar (Strict Single-Line Flex Row) -->
-  <div class="top-announcement-bar bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-300 text-[11px] sm:text-xs py-1.5 px-3 sm:px-4 border-b border-slate-700/60 dark:border-slate-800/80 transition-colors overflow-hidden">
-    <div class="top-bar-container max-w-7xl mx-auto flex flex-nowrap items-center justify-between gap-2 whitespace-nowrap overflow-hidden">
-      <div class="flex items-center space-x-2 sm:space-x-3 min-w-0 shrink overflow-hidden whitespace-nowrap text-[11px] sm:text-xs">
-        <span class="flex items-center space-x-1.5 truncate">
+  <!-- Top Announcement / Contact Bar (Strict Single-Line Flex Row) -->
+  <div class="top-announcement-bar bg-[#050b12]/95 border-b border-slate-800/80 text-[11px] sm:text-xs py-1.5 px-3 sm:px-6 relative z-40 backdrop-blur-md transition-colors overflow-hidden">
+    <div class="top-bar-container max-w-7xl mx-auto flex flex-nowrap items-center justify-between gap-3 text-slate-400 whitespace-nowrap overflow-hidden">
+      <div class="flex items-center space-x-2 sm:space-x-3 min-w-0 shrink overflow-hidden whitespace-nowrap">
+        <span class="flex items-center space-x-1.5 text-amber-400 font-semibold truncate">
           <i class="fa-solid fa-briefcase text-amber-400 shrink-0 text-[10px]"></i>
           <span data-i18n="topBarHiring" class="truncate">We're Hiring! Join our growing teams in <strong>Dubai</strong> &amp; <strong>Sri Lanka</strong></span>
         </span>
       </div>
-      <div class="flex items-center space-x-2 sm:space-x-2.5 text-[11px] sm:text-xs shrink-0 whitespace-nowrap">
-        <a href="mailto:info@starplustraveluae.com" class="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
-          <i class="fa-solid fa-envelope text-amber-400 mr-1 text-[10px]"></i>UAE: info@starplustraveluae.com
+      <div class="flex items-center space-x-2 sm:space-x-3 shrink-0 whitespace-nowrap text-[11px]">
+        <a href="tel:+97145751321" class="hover:text-amber-400 transition-colors flex items-center space-x-1 font-medium shrink-0" title="Direct Hotline">
+          <i class="fa-solid fa-phone text-amber-400 text-[10px]"></i>
+          <span>+971 4 575 1321</span>
         </a>
-        <span class="hidden md:inline text-slate-600 shrink-0">|</span>
-        <a href="mailto:info@starplustravelsl.com" class="hidden md:inline hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
-          <i class="fa-solid fa-envelope text-amber-400 mr-1 text-[10px]"></i>SL: info@starplustravelsl.com
+        <span class="hidden sm:inline text-slate-700 shrink-0">|</span>
+        <a href="mailto:info@starplustraveluae.com" class="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0 flex items-center space-x-1 font-medium">
+          <i class="fa-solid fa-envelope text-amber-400 text-[10px]"></i>
+          <span>UAE: info@starplustraveluae.com</span>
+        </a>
+        <span class="hidden md:inline text-slate-700 shrink-0">|</span>
+        <a href="mailto:info@starplustravelsl.com" class="hidden md:flex hover:text-amber-400 transition-colors whitespace-nowrap shrink-0 items-center space-x-1 font-medium">
+          <i class="fa-solid fa-envelope text-amber-400 text-[10px]"></i>
+          <span>SL: info@starplustravelsl.com</span>
+        </a>
+        <span class="hidden lg:inline text-slate-700 shrink-0">|</span>
+        <a href="https://wa.me/971527582293" target="_blank" rel="noopener noreferrer" class="hidden lg:flex hover:text-emerald-400 transition-colors items-center space-x-1 font-medium shrink-0" title="Chat on WhatsApp">
+          <i class="fa-brands fa-whatsapp text-emerald-400 text-xs"></i>
+          <span data-i18n="whatsappConcierge">WhatsApp Concierge</span>
         </a>
       </div>
     </div>
   </div>
 
-  <!-- Main Navigation Header -->
+  <!-- Main Sticky Navigation Bar -->
   <header id="mainHeader" class="sticky top-0 z-50 glass-nav transition-all duration-300 w-full">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-      <div class="flex items-center justify-between h-20 w-full max-w-full">
+      <div class="flex items-center justify-between h-20 w-full max-w-full gap-3 sm:gap-6">
         
-        <!-- Brand Logo -->
+        <!-- Left: Official Brand Logo -->
         <a href="/" class="flex items-center py-1 group shrink-0 flex-shrink-0" aria-label="Star Plus Travels Home">
           <img id="brandHeaderLogo"
                src="assets/logo-white-text.png" 
                data-dark-src="assets/logo-white-text.png"
                data-light-src="assets/original-removebg-preview.png"
                alt="Star Plus Travel and Tourism LLC" 
-               class="h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
+               class="h-10 sm:h-12 w-auto max-h-12 object-contain transition-transform duration-300 group-hover:scale-[1.02] drop-shadow-md">
         </a>
 
-        <!-- Desktop Navigation Links (Spacious single-line layout) -->
-        <nav class="hidden lg:flex items-center justify-center space-x-2.5 xl:space-x-4 2xl:space-x-6 text-[12px] xl:text-[13px] 2xl:text-sm font-semibold text-slate-800 dark:text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2 px-1">
-          <a href="index.html" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navHome">Home</a>
-          <a href="index.html#clients" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navClients">Clients</a>
-          <a href="index.html#packages" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navPackages">Tour Packages</a>
-          <a href="index.html#visa-services" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navVisa">Visa Services</a>
-          <a href="index.html#why-us" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navWhyUs">Why Choose Us</a>
-          <a href="index.html#testimonials" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navReviews">Reviews</a>
-          <a href="careers.html" class="text-amber-600 dark:text-amber-400 font-bold py-1.5 px-1.5 border-b-2 border-amber-500" data-i18n="navCareers">Careers</a>
-          <a href="index.html#contact" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navContact">Contact</a>
+        <!-- Center: Desktop Navigation Links (Evenly spaced & scaled) -->
+        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
+          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
+          <a href="index.html#packages" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
+          <a href="index.html#visa-services" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navVisa">Visa Services</a>
+          <a href="index.html#why-us" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navWhyUs">Why Choose Us</a>
+          <a href="index.html#testimonials" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
+          <a href="careers.html" class="nav-link active py-2 px-1 text-amber-400 font-bold transition-colors flex items-center space-x-1.5">
+            <span data-i18n="navCareers">Careers</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          </a>
+          <a href="index.html#faq" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navFaq">FAQ</a>
+          <a href="index.html#contact" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
         </nav>
 
-        <!-- Right Action Area: Single Unified Language Toggle & Mobile Hamburger Menu -->
-        <div class="flex items-center space-x-1.5 shrink-0 flex-shrink-0">
-          <!-- Single Unified Language Toggle Button (Desktop & Mobile) -->
-          <button type="button" onclick="toggleLanguage()" id="mainLangToggleBtnCareers" class="lang-toggle-btn inline-flex items-center justify-center space-x-1 w-[76px] h-8 px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-700 bg-white/90 dark:bg-slate-900/90 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-all text-[11px] font-bold shadow-sm cursor-pointer whitespace-nowrap shrink-0 flex-shrink-0" title="Switch Language" aria-label="Switch Language (English / Sinhala)">
-            <i class="fa-solid fa-globe text-amber-500 text-[10px] shrink-0"></i>
-            <span class="desktop-lang-text font-bold text-[11px] text-center">සිංහල</span>
+        <!-- Right: Single Unified Language Toggle & Mobile Hamburger Drawer Button -->
+        <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
+          <!-- Compact Dynamic Bilingual Language Toggle (Switches between Sinhala and English) -->
+          <button type="button" onclick="toggleLanguage()" id="mainLangToggleBtnCareers" class="lang-toggle-btn inline-flex items-center justify-center space-x-1.5 min-w-[82px] h-9 px-3 rounded-xl border border-slate-700/80 bg-slate-900/90 hover:bg-slate-800 hover:border-amber-500/50 text-slate-200 hover:text-white transition-all text-xs font-bold shadow-md cursor-pointer whitespace-nowrap shrink-0 flex-shrink-0 group" title="Switch Language" aria-label="Switch Language (English / Sinhala)">
+            <i class="fa-solid fa-globe text-amber-400 text-xs transition-transform group-hover:rotate-12 shrink-0"></i>
+            <span class="desktop-lang-text font-bold text-xs text-center tracking-wide">සිංහල</span>
           </button>
 
-          <!-- Mobile Hamburger Menu Button (Hidden on lg+ screens) -->
-          <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-1.5 h-8 w-8 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white shadow-sm flex items-center justify-center cursor-pointer shrink-0 flex-shrink-0" aria-label="Toggle menu">
+          <!-- Mobile Hamburger Drawer Button (Visible on mobile/tablet below lg) -->
+          <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-2 h-9 w-9 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-300 hover:text-white hover:border-amber-500/50 shadow-md flex items-center justify-center cursor-pointer shrink-0 flex-shrink-0 transition-colors" aria-label="Toggle navigation menu">
             <i class="fa-solid fa-bars-staggered text-sm"></i>
           </button>
         </div>
@@ -243,32 +258,55 @@
     </div>
 
     <!-- Mobile Slide-out Menu -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-white/95 dark:bg-slate-950/95 border-b border-slate-200 dark:border-slate-800 px-6 py-6 space-y-4 transition-colors">
-      <!-- Mobile Language Switcher Widget -->
-      <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
-        <span class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center space-x-2">
-          <i class="fa-solid fa-globe text-amber-500"></i>
+    <div id="mobileMenu" class="hidden lg:hidden bg-slate-950/98 border-b border-slate-800 px-6 py-6 space-y-4 transition-colors backdrop-blur-xl">
+      <!-- Mobile Language Switcher (Segmented) -->
+      <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between shadow-sm">
+        <span class="text-xs font-bold text-slate-300 flex items-center space-x-2 pl-1">
+          <i class="fa-solid fa-globe text-amber-400"></i>
           <span data-i18n="langLabel">Language</span>
         </span>
-        <div class="inline-flex rounded-xl p-1 bg-slate-200 dark:bg-slate-800">
-          <button type="button" onclick="changeLanguage('en')" class="lang-btn-en px-3 py-1 text-xs font-bold rounded-lg transition-all bg-amber-500 text-slate-950">EN</button>
-          <button type="button" onclick="changeLanguage('si')" class="lang-btn-si px-3 py-1 text-xs font-bold rounded-lg transition-all text-slate-700 dark:text-slate-300 hover:text-amber-500">සිංහල</button>
+        <div class="flex items-center space-x-1 bg-slate-950 p-1 rounded-lg border border-slate-800">
+          <button type="button" onclick="changeLanguage('en')" class="lang-btn-en px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-amber-500 text-slate-950 shadow-sm">
+            English
+          </button>
+          <button type="button" onclick="changeLanguage('si')" class="lang-btn-si px-3 py-1 rounded-md text-[11px] font-semibold text-slate-400 hover:text-amber-400 transition-all">
+            සිංහල
+          </button>
         </div>
       </div>
 
-      <nav class="flex flex-col space-y-3 text-base font-semibold text-slate-800 dark:text-slate-200">
-        <a href="index.html" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navHome">Home</a>
-        <a href="index.html#clients" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navClients">Our Clients</a>
-        <a href="index.html#packages" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navPackages">Tour Packages</a>
-        <a href="index.html#visa-services" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navVisa">Visa Services</a>
-        <a href="index.html#why-us" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navWhyUs">Why Choose Us</a>
-        <a href="careers.html" class="text-amber-600 dark:text-amber-400 font-bold py-1.5 border-b border-slate-100 dark:border-slate-800/60"><span data-i18n="navCareers">Careers</span> <span class="text-xs text-amber-500" data-i18n="navHiringBadge">(We're Hiring!)</span></a>
-        <a href="index.html#contact" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5" data-i18n="navContact">Contact &amp; Office</a>
+      <nav class="flex flex-col space-y-3 text-base font-semibold text-slate-200">
+        <a href="index.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navHome">Home</a>
+        <a href="index.html#packages" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navPackages">Tour Packages</a>
+        <a href="index.html#visa-services" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navVisa">Visa Services</a>
+        <a href="index.html#why-us" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navWhyUs">Why Choose Us</a>
+        <a href="index.html#testimonials" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navReviews">Customer Reviews</a>
+        <a href="careers.html" onclick="toggleMobileMenu()" class="text-amber-400 font-bold py-2 border-b border-slate-800/80 flex items-center justify-between">
+          <span data-i18n="navCareers">Careers</span>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30" data-i18n="navHiringBadge">We're Hiring</span>
+        </a>
+        <a href="index.html#faq" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navFaq">FAQ</a>
+        <a href="index.html#contact" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2" data-i18n="navContact">Contact &amp; Office</a>
       </nav>
 
       <div class="pt-2 flex flex-col gap-3">
-        <a href="#positions" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm shadow-md" data-i18n="explorePositions">
+        <a href="#positions" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all" data-i18n="explorePositions">
           Explore 6 Open Positions
+        </a>
+      </div>
+      <!-- Mobile Menu Social Media Links -->
+      <div class="pt-4 border-t border-slate-800 flex items-center justify-center space-x-3">
+        <a href="https://www.facebook.com/share/1EAf7zDgSe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-blue-600 transition-colors shadow" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f text-sm"></i>
+        </a>
+        <a href="https://www.instagram.com/starplustraveltourism?igsh=bDVybXM4b3pqdjcw&utm_source=qr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-rose-600 transition-colors shadow" aria-label="Instagram">
+          <i class="fa-brands fa-instagram text-sm"></i>
+        </a>
+        <a href="https://www.tiktok.com/@starplustravel?_r=1&_t=ZS-990wwC6DOyr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 transition-colors shadow" aria-label="TikTok">
+          <i class="fa-brands fa-tiktok text-sm"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/starplus-travel-and-tourism/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-blue-700 transition-colors shadow" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in text-sm"></i>
         </a>
       </div>
     </div>
