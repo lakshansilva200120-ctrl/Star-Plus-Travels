@@ -644,8 +644,8 @@ html.dark.season-eid .glass-card:hover {
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  background-color: #f0f6fc !important;
-  background-image: radial-gradient(circle at 50% 50%, #ffffff 0%, #e8f2fc 85%) !important;
+  background-color: #0B132B !important;
+  background-image: radial-gradient(circle at 50% 50%, #162b55 0%, #0B132B 70%, #070e22 100%) !important;
   opacity: 1;
   visibility: visible;
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -656,8 +656,8 @@ html.dark.season-eid .glass-card:hover {
 }
 
 #sitePreloader {
-  background-color: #f0f6fc !important;
-  background-image: radial-gradient(circle at 50% 50%, #ffffff 0%, #e8f2fc 85%) !important;
+  background-color: #0B132B !important;
+  background-image: radial-gradient(circle at 50% 50%, #162b55 0%, #0B132B 70%, #070e22 100%) !important;
 }
 
 #sitePreloader.fade-out,
@@ -689,20 +689,21 @@ html.dark.season-eid .glass-card:hover {
   object-fit: contain !important;
   flex-shrink: 0 !important;
   margin: 0 auto 20px auto !important;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 4px 20px rgba(0, 86, 163, 0.5)) !important;
 }
 
-/* Single Luxury Gold Spinner Indicator */
+/* Luxury Royal Blue & Gold Spinner Indicator */
 .preloader-spinner {
-  width: 28px !important;
-  height: 28px !important;
+  width: 32px !important;
+  height: 32px !important;
   border-radius: 50% !important;
-  border: 3px solid rgba(245, 158, 11, 0.2) !important;
-  border-top-color: #f59e0b !important;
-  border-right-color: #fbbf24 !important;
+  border: 3px solid rgba(0, 86, 163, 0.35) !important;
+  border-top-color: #38bdf8 !important;
+  border-right-color: #f59e0b !important;
   animation: preloaderSpin 0.8s linear infinite !important;
   box-sizing: border-box !important;
   margin: 0 auto !important;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.25) !important;
 }
 
 @keyframes preloaderSpin {
