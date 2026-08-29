@@ -831,12 +831,12 @@ function renderPackages(filteredList = PACKAGES) {
   if (filteredList.length === 0) {
     grid.innerHTML = `
       <div class="col-span-full py-16 text-center">
-        <div class="w-20 h-20 mx-auto rounded-full bg-slate-800/80 flex items-center justify-center text-amber-400 text-3xl mb-4">
+        <div class="w-20 h-20 mx-auto rounded-full bg-blue-50 flex items-center justify-center text-blue-600 text-3xl mb-4 border border-blue-200">
           <i class="fa-solid fa-compass"></i>
         </div>
-        <h3 class="text-xl font-bold text-white mb-2">${currentLang === 'si' ? 'ගැළපෙන පැකේජ හමු නොවීය' : 'No matching packages found'}</h3>
-        <p class="text-slate-400 text-sm max-w-md mx-auto mb-6">${currentLang === 'si' ? 'ඩුබායි, ශ්‍රී ලංකාව, බාකු, ජෝර්ජියාව, මාලදිවයින හෝ බාලි වැනි වෙනත් ගමනාන්ත සොයන්න.' : 'Try searching for other destinations like Dubai, Sri Lanka, Baku, Georgia, Maldives, or Bali.'}</p>
-        <button onclick="resetFilters()" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-amber-500/20">
+        <h3 class="text-xl font-bold text-slate-900 mb-2">${currentLang === 'si' ? 'ගැළපෙන පැකේජ හමු නොවීය' : 'No matching packages found'}</h3>
+        <p class="text-slate-500 text-sm max-w-md mx-auto mb-6">${currentLang === 'si' ? 'ඩුබායි, ශ්‍රී ලංකාව, බාකු, ජෝර්ජියාව, මාලදිවයින හෝ බාලි වැනි වෙනත් ගමනාන්ත සොයන්න.' : 'Try searching for other destinations like Dubai, Sri Lanka, Baku, Georgia, Maldives, or Bali.'}</p>
+        <button onclick="resetFilters()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm transition-all shadow-lg shadow-blue-600/25">
           ${currentLang === 'si' ? 'සියලු පැකේජ බලන්න' : 'View All Packages'}
         </button>
       </div>
@@ -864,11 +864,11 @@ function renderPackages(filteredList = PACKAGES) {
     const bookNowBtnText = t.bookNowBtn || 'Book Now';
 
     return `
-      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-slate-700/50">
+      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-blue-100/80 shadow-sm bg-white">
         <!-- Image & Badges -->
         <div class="img-container relative h-56 overflow-hidden bg-slate-900">
           <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover" loading="lazy">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
           
           <!-- Category & Bestseller Badge -->
           <div class="absolute top-3 left-3 flex flex-wrap gap-2">
@@ -878,13 +878,13 @@ function renderPackages(filteredList = PACKAGES) {
           </div>
 
           <!-- Duration Pill -->
-          <div class="absolute bottom-3 left-3 flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-slate-900/85 backdrop-blur-md text-xs font-semibold text-slate-200 border border-slate-700/50">
-            <i class="fa-regular fa-clock text-amber-400"></i>
+          <div class="absolute bottom-3 left-3 flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-slate-900/85 backdrop-blur-md text-xs font-semibold text-white border border-white/20 shadow-sm">
+            <i class="fa-regular fa-clock text-blue-400"></i>
             <span>${duration}</span>
           </div>
 
           <!-- Rating -->
-          <div class="absolute bottom-3 right-3 flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-amber-500/90 text-slate-950 text-xs font-black shadow-md">
+          <div class="absolute bottom-3 right-3 flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 text-xs font-black shadow-md">
             <i class="fa-solid fa-star text-[10px]"></i>
             <span>${pkg.rating}</span>
             <span class="text-[10px] opacity-80">(${pkg.reviews})</span>
@@ -895,21 +895,21 @@ function renderPackages(filteredList = PACKAGES) {
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
             <!-- Location -->
-            <div class="flex items-center space-x-2 text-xs font-medium text-amber-600 dark:text-amber-400 mb-2">
+            <div class="flex items-center space-x-2 text-xs font-semibold text-blue-600 mb-2">
               <span>${pkg.flag}</span>
-              <span class="uppercase tracking-wider font-semibold">${destination}</span>
+              <span class="uppercase tracking-wider">${destination}</span>
             </div>
 
             <!-- Title -->
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors leading-snug mb-3">
+            <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug mb-3">
               ${title}
             </h3>
 
             <!-- Perks Summary -->
             <ul class="space-y-1.5 mb-5">
               ${pkg.perks.slice(0, 3).map(perk => `
-                <li class="flex items-center text-xs text-slate-600 dark:text-slate-300">
-                  <i class="fa-solid fa-check text-emerald-500 dark:text-emerald-400 text-[10px] mr-2"></i>
+                <li class="flex items-center text-xs text-slate-600">
+                  <i class="fa-solid fa-circle-check text-blue-500 text-[11px] mr-2"></i>
                   <span class="truncate">${perk}</span>
                 </li>
               `).join('')}
@@ -917,27 +917,27 @@ function renderPackages(filteredList = PACKAGES) {
           </div>
 
           <!-- Pricing & CTAs -->
-          <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80">
+          <div class="pt-4 border-t border-blue-100">
             <div class="flex items-end justify-between mb-4 gap-2 min-w-0">
               <div class="min-w-0 flex-1">
-                <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-medium truncate">${startingFromText}</span>
+                <span class="text-[11px] text-slate-500 block font-medium truncate">${startingFromText}</span>
                 <div class="flex items-baseline space-x-2 flex-wrap">
-                  <span class="text-2xl font-black text-amber-600 dark:text-amber-400 font-heading">${formattedPrice}</span>
-                  <span class="text-xs text-slate-400 dark:text-slate-500 line-through">${formattedOriginal}</span>
+                  <span class="text-2xl font-black text-blue-700 font-heading">${formattedPrice}</span>
+                  <span class="text-xs text-slate-400 line-through">${formattedOriginal}</span>
                 </div>
-                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium block break-words">
+                <span class="text-[10px] text-emerald-600 font-semibold block break-words">
                   ${installmentText}
                 </span>
               </div>
-              <span class="text-[11px] text-slate-600 dark:text-slate-400 font-medium bg-slate-100 dark:bg-slate-800/60 px-2 py-1 rounded-md shrink-0 whitespace-nowrap">${perPersonText}</span>
+              <span class="text-[11px] text-blue-800 font-semibold bg-blue-50 border border-blue-100 px-2 py-1 rounded-md shrink-0 whitespace-nowrap">${perPersonText}</span>
             </div>
 
             <div class="grid grid-cols-2 gap-2">
-              <button onclick="openItineraryModal('${pkg.id}')" class="w-full py-2.5 px-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition-all text-center flex items-center justify-center space-x-1.5 shadow-sm">
-                <i class="fa-solid fa-list-ul text-slate-500 dark:text-slate-400"></i>
+              <button onclick="openItineraryModal('${pkg.id}')" class="w-full py-2.5 px-3 rounded-xl border border-blue-200 bg-blue-50/50 hover:bg-blue-100 text-blue-900 text-xs font-bold transition-all text-center flex items-center justify-center space-x-1.5 shadow-sm">
+                <i class="fa-solid fa-list-ul text-blue-600"></i>
                 <span>${itineraryBtnText}</span>
               </button>
-              <button onclick="openBookingModal('${pkg.id}')" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 text-xs font-extrabold transition-all text-center shadow-lg shadow-amber-500/20 flex items-center justify-center space-x-1.5">
+              <button onclick="openBookingModal('${pkg.id}')" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-extrabold transition-all text-center shadow-md shadow-blue-500/20 flex items-center justify-center space-x-1.5">
                 <span>${bookNowBtnText}</span>
                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
               </button>
@@ -958,9 +958,9 @@ function filterCategory(cat) {
   // Update UI tabs
   document.querySelectorAll('.cat-pill').forEach(btn => {
     if (btn.dataset.category === cat) {
-      btn.className = 'cat-pill px-5 py-2 rounded-full text-xs font-bold bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition-all';
+      btn.className = 'cat-pill px-5 py-2 rounded-full text-xs font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md shadow-blue-500/25 transition-all';
     } else {
-      btn.className = 'cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-white dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/60 transition-all shadow-sm';
+      btn.className = 'cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-white hover:bg-blue-50 text-slate-700 border border-blue-200/80 transition-all shadow-sm';
     }
   });
 
@@ -1241,7 +1241,7 @@ function checkVisaRequirements() {
         </ul>
       </div>
 
-      <button onclick="openVisaInquiryModal('${data.title}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-sm transition-all shadow-lg shadow-amber-500/20">
+      <button onclick="openVisaInquiryModal('${data.title}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-extrabold text-sm transition-all shadow-lg shadow-blue-600/25">
         Apply for ${data.title}
       </button>
     </div>
@@ -1551,17 +1551,17 @@ function changeLanguage(lang, notify = true) {
   // Update mobile segmented buttons if present
   document.querySelectorAll('.lang-btn-en').forEach(btn => {
     if (lang === 'en') {
-      btn.className = 'lang-btn-en px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-amber-500 text-slate-950 shadow-sm';
+      btn.className = 'lang-btn-en px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-blue-600 text-white shadow-sm';
     } else {
-      btn.className = 'lang-btn-en px-3 py-1 rounded-md text-[11px] font-semibold text-slate-600 dark:text-slate-300 hover:text-amber-500 transition-all';
+      btn.className = 'lang-btn-en px-3 py-1 rounded-md text-[11px] font-semibold text-slate-600 hover:text-blue-600 transition-all';
     }
   });
 
   document.querySelectorAll('.lang-btn-si').forEach(btn => {
     if (lang === 'si') {
-      btn.className = 'lang-btn-si px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-amber-500 text-slate-950 shadow-sm';
+      btn.className = 'lang-btn-si px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-blue-600 text-white shadow-sm';
     } else {
-      btn.className = 'lang-btn-si px-3 py-1 rounded-md text-[11px] font-semibold text-slate-600 dark:text-slate-300 hover:text-amber-500 transition-all';
+      btn.className = 'lang-btn-si px-3 py-1 rounded-md text-[11px] font-semibold text-slate-600 hover:text-blue-600 transition-all';
     }
   });
 
