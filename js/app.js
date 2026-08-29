@@ -831,12 +831,12 @@ function renderPackages(filteredList = PACKAGES) {
   if (filteredList.length === 0) {
     grid.innerHTML = `
       <div class="col-span-full py-16 text-center">
-        <div class="w-20 h-20 mx-auto rounded-full bg-[#0056A3]/20 flex items-center justify-center text-sky-400 text-3xl mb-4 border border-[#0056A3]/40 shadow-lg shadow-black/40">
+        <div class="w-20 h-20 mx-auto rounded-full bg-slate-800/80 flex items-center justify-center text-amber-400 text-3xl mb-4">
           <i class="fa-solid fa-compass"></i>
         </div>
         <h3 class="text-xl font-bold text-white mb-2">${currentLang === 'si' ? 'ගැළපෙන පැකේජ හමු නොවීය' : 'No matching packages found'}</h3>
         <p class="text-slate-400 text-sm max-w-md mx-auto mb-6">${currentLang === 'si' ? 'ඩුබායි, ශ්‍රී ලංකාව, බාකු, ජෝර්ජියාව, මාලදිවයින හෝ බාලි වැනි වෙනත් ගමනාන්ත සොයන්න.' : 'Try searching for other destinations like Dubai, Sri Lanka, Baku, Georgia, Maldives, or Bali.'}</p>
-        <button onclick="resetFilters()" class="px-6 py-2.5 rounded-xl bg-[#0056A3] hover:bg-[#004380] text-white font-bold text-sm transition-all shadow-lg shadow-[#0056A3]/40 border border-blue-400/30">
+        <button onclick="resetFilters()" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-amber-500/20">
           ${currentLang === 'si' ? 'සියලු පැකේජ බලන්න' : 'View All Packages'}
         </button>
       </div>
@@ -864,11 +864,11 @@ function renderPackages(filteredList = PACKAGES) {
     const bookNowBtnText = t.bookNowBtn || 'Book Now';
 
     return `
-      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-[#0056A3]/30 shadow-xl shadow-black/40 bg-[#101e3d]">
+      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-slate-700/50">
         <!-- Image & Badges -->
-        <div class="img-container relative h-56 overflow-hidden bg-slate-950">
+        <div class="img-container relative h-56 overflow-hidden bg-slate-900">
           <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover" loading="lazy">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#101e3d] via-transparent to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
           
           <!-- Category & Bestseller Badge -->
           <div class="absolute top-3 left-3 flex flex-wrap gap-2">
@@ -878,13 +878,13 @@ function renderPackages(filteredList = PACKAGES) {
           </div>
 
           <!-- Duration Pill -->
-          <div class="absolute bottom-3 left-3 flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-slate-950/85 backdrop-blur-md text-xs font-semibold text-white border border-white/20 shadow-sm">
-            <i class="fa-regular fa-clock text-sky-400"></i>
+          <div class="absolute bottom-3 left-3 flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-slate-900/85 backdrop-blur-md text-xs font-semibold text-slate-200 border border-slate-700/50">
+            <i class="fa-regular fa-clock text-amber-400"></i>
             <span>${duration}</span>
           </div>
 
           <!-- Rating -->
-          <div class="absolute bottom-3 right-3 flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-amber-500 text-slate-950 text-xs font-black shadow-md">
+          <div class="absolute bottom-3 right-3 flex items-center space-x-1 px-2.5 py-1 rounded-lg bg-amber-500/90 text-slate-950 text-xs font-black shadow-md">
             <i class="fa-solid fa-star text-[10px]"></i>
             <span>${pkg.rating}</span>
             <span class="text-[10px] opacity-80">(${pkg.reviews})</span>
@@ -895,21 +895,21 @@ function renderPackages(filteredList = PACKAGES) {
         <div class="p-6 flex-1 flex flex-col justify-between">
           <div>
             <!-- Location -->
-            <div class="flex items-center space-x-2 text-xs font-bold text-sky-400 mb-2">
+            <div class="flex items-center space-x-2 text-xs font-medium text-amber-600 dark:text-amber-400 mb-2">
               <span>${pkg.flag}</span>
-              <span class="uppercase tracking-wider">${destination}</span>
+              <span class="uppercase tracking-wider font-semibold">${destination}</span>
             </div>
 
             <!-- Title -->
-            <h3 class="text-lg font-bold text-white group-hover:text-sky-300 transition-colors leading-snug mb-3">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors leading-snug mb-3">
               ${title}
             </h3>
 
             <!-- Perks Summary -->
             <ul class="space-y-1.5 mb-5">
               ${pkg.perks.slice(0, 3).map(perk => `
-                <li class="flex items-center text-xs text-slate-300">
-                  <i class="fa-solid fa-circle-check text-sky-400 text-[11px] mr-2"></i>
+                <li class="flex items-center text-xs text-slate-600 dark:text-slate-300">
+                  <i class="fa-solid fa-check text-emerald-500 dark:text-emerald-400 text-[10px] mr-2"></i>
                   <span class="truncate">${perk}</span>
                 </li>
               `).join('')}
@@ -917,27 +917,27 @@ function renderPackages(filteredList = PACKAGES) {
           </div>
 
           <!-- Pricing & CTAs -->
-          <div class="pt-4 border-t border-[#0056A3]/25">
+          <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80">
             <div class="flex items-end justify-between mb-4 gap-2 min-w-0">
               <div class="min-w-0 flex-1">
-                <span class="text-[11px] text-slate-400 block font-medium truncate">${startingFromText}</span>
+                <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-medium truncate">${startingFromText}</span>
                 <div class="flex items-baseline space-x-2 flex-wrap">
-                  <span class="text-2xl font-black text-amber-400 font-heading">${formattedPrice}</span>
-                  <span class="text-xs text-slate-500 line-through">${formattedOriginal}</span>
+                  <span class="text-2xl font-black text-amber-600 dark:text-amber-400 font-heading">${formattedPrice}</span>
+                  <span class="text-xs text-slate-400 dark:text-slate-500 line-through">${formattedOriginal}</span>
                 </div>
-                <span class="text-[10px] text-emerald-400 font-semibold block break-words">
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium block break-words">
                   ${installmentText}
                 </span>
               </div>
-              <span class="text-[11px] text-sky-300 font-semibold bg-[#0056A3]/25 border border-[#0056A3]/40 px-2 py-1 rounded-md shrink-0 whitespace-nowrap">${perPersonText}</span>
+              <span class="text-[11px] text-slate-600 dark:text-slate-400 font-medium bg-slate-100 dark:bg-slate-800/60 px-2 py-1 rounded-md shrink-0 whitespace-nowrap">${perPersonText}</span>
             </div>
 
             <div class="grid grid-cols-2 gap-2">
-              <button onclick="openItineraryModal('${pkg.id}')" class="w-full py-2.5 px-3 rounded-xl border border-[#0056A3]/40 bg-[#0b132b] hover:bg-[#162b55] text-sky-300 text-xs font-bold transition-all text-center flex items-center justify-center space-x-1.5 shadow-sm">
-                <i class="fa-solid fa-list-ul text-sky-400"></i>
+              <button onclick="openItineraryModal('${pkg.id}')" class="w-full py-2.5 px-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition-all text-center flex items-center justify-center space-x-1.5 shadow-sm">
+                <i class="fa-solid fa-list-ul text-slate-500 dark:text-slate-400"></i>
                 <span>${itineraryBtnText}</span>
               </button>
-              <button onclick="openBookingModal('${pkg.id}')" class="w-full py-2.5 px-3 rounded-xl bg-[#0056A3] hover:bg-[#004380] text-white text-xs font-extrabold transition-all text-center shadow-lg shadow-[#0056A3]/30 border border-blue-400/30 flex items-center justify-center space-x-1.5">
+              <button onclick="openBookingModal('${pkg.id}')" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 text-xs font-extrabold transition-all text-center shadow-lg shadow-amber-500/20 flex items-center justify-center space-x-1.5">
                 <span>${bookNowBtnText}</span>
                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
               </button>
@@ -958,9 +958,9 @@ function filterCategory(cat) {
   // Update UI tabs
   document.querySelectorAll('.cat-pill').forEach(btn => {
     if (btn.dataset.category === cat) {
-      btn.className = 'cat-pill px-5 py-2 rounded-full text-xs font-bold bg-[#0056A3] text-white shadow-md shadow-[#0056A3]/40 border border-blue-400/40 transition-all';
+      btn.className = 'cat-pill px-5 py-2 rounded-full text-xs font-bold bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition-all';
     } else {
-      btn.className = 'cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-[#101e3d] hover:bg-[#162b55] text-slate-300 border border-[#0056A3]/30 transition-all shadow-sm';
+      btn.className = 'cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-white dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/60 transition-all shadow-sm';
     }
   });
 
@@ -1206,42 +1206,42 @@ function checkVisaRequirements() {
   if (!data) return;
 
   resultCard.innerHTML = `
-    <div class="glass-card p-6 rounded-2xl border border-amber-500/40 bg-[#101e3d] shadow-xl shadow-black/40 animate-fadeIn text-left">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#0056A3]/30">
+    <div class="glass-card p-6 rounded-2xl border border-amber-500/30 animate-fadeIn">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-400 uppercase tracking-wider mb-1 border border-amber-500/30">Fast-Track Assistance</span>
-          <h4 class="text-lg font-bold text-white">${data.title}</h4>
+          <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/15 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-1">Fast-Track Assistance</span>
+          <h4 class="text-lg font-bold text-slate-900 dark:text-white">${data.title}</h4>
         </div>
         <div class="text-right">
-          <span class="text-xs text-slate-400 block font-medium">Starting Fee</span>
-          <span class="text-2xl font-extrabold text-amber-400 font-heading">${formatPrice(data.priceAED)}</span>
+          <span class="text-xs text-slate-500 dark:text-slate-400 block font-medium">Starting Fee</span>
+          <span class="text-2xl font-extrabold text-amber-600 dark:text-amber-400 font-heading">${formatPrice(data.priceAED)}</span>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-5 text-xs text-slate-200">
-        <div class="bg-[#0b132b] p-3.5 rounded-xl border border-[#0056A3]/30 shadow-sm">
-          <span class="text-slate-400 block font-semibold mb-1"><i class="fa-solid fa-bolt text-amber-400 mr-1.5"></i>Turnaround Time</span>
-          <span class="text-white font-bold">${data.time}</span>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-5 text-xs text-slate-700 dark:text-slate-300">
+        <div class="bg-white dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <span class="text-slate-500 dark:text-slate-400 block font-semibold mb-1"><i class="fa-solid fa-bolt text-amber-500 mr-1.5"></i>Turnaround Time</span>
+          <span class="text-slate-900 dark:text-white font-bold">${data.time}</span>
         </div>
-        <div class="bg-[#0b132b] p-3.5 rounded-xl border border-[#0056A3]/30 shadow-sm">
-          <span class="text-slate-400 block font-semibold mb-1"><i class="fa-solid fa-passport text-sky-400 mr-1.5"></i>Available Options</span>
-          <span class="text-white font-bold">${data.types.join(' • ')}</span>
+        <div class="bg-white dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <span class="text-slate-500 dark:text-slate-400 block font-semibold mb-1"><i class="fa-solid fa-passport text-amber-500 mr-1.5"></i>Available Options</span>
+          <span class="text-slate-900 dark:text-white font-bold">${data.types.join(' • ')}</span>
         </div>
       </div>
 
       <div class="mb-5">
-        <h5 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Key Required Documents</h5>
+        <h5 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Key Required Documents</h5>
         <ul class="space-y-1.5">
           ${data.docs.map(doc => `
-            <li class="flex items-center text-xs text-slate-300">
-              <i class="fa-solid fa-check text-sky-400 text-[10px] mr-2"></i>
+            <li class="flex items-center text-xs text-slate-600 dark:text-slate-300">
+              <i class="fa-solid fa-check text-emerald-500 dark:text-emerald-400 text-[10px] mr-2"></i>
               <span>${doc}</span>
             </li>
           `).join('')}
         </ul>
       </div>
 
-      <button onclick="openVisaInquiryModal('${data.title}')" class="w-full py-3.5 rounded-xl bg-[#0056A3] hover:bg-[#004380] text-white font-extrabold text-sm transition-all shadow-lg shadow-[#0056A3]/35 border border-blue-400/30">
+      <button onclick="openVisaInquiryModal('${data.title}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-sm transition-all shadow-lg shadow-amber-500/20">
         Apply for ${data.title}
       </button>
     </div>
@@ -1427,8 +1427,7 @@ function applyTheme(mode = getThemeMode(), save = false) {
   // Update preloader background if still present
   const preloader = document.getElementById('sitePreloader');
   if (preloader) {
-    preloader.style.backgroundColor = '#0B132B';
-    preloader.style.backgroundImage = 'radial-gradient(circle at 50% 50%, #162b55 0%, #0B132B 70%, #070e22 100%)';
+    preloader.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
   }
 
   // Notify seasonal particle engine if present
@@ -1552,17 +1551,17 @@ function changeLanguage(lang, notify = true) {
   // Update mobile segmented buttons if present
   document.querySelectorAll('.lang-btn-en').forEach(btn => {
     if (lang === 'en') {
-      btn.className = 'lang-btn-en px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-[#0056A3] text-white shadow-sm';
+      btn.className = 'lang-btn-en px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-amber-500 text-slate-950 shadow-sm';
     } else {
-      btn.className = 'lang-btn-en px-3 py-1 rounded-md text-[11px] font-semibold text-slate-300 hover:text-white transition-all';
+      btn.className = 'lang-btn-en px-3 py-1 rounded-md text-[11px] font-semibold text-slate-600 dark:text-slate-300 hover:text-amber-500 transition-all';
     }
   });
 
   document.querySelectorAll('.lang-btn-si').forEach(btn => {
     if (lang === 'si') {
-      btn.className = 'lang-btn-si px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-[#0056A3] text-white shadow-sm';
+      btn.className = 'lang-btn-si px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-amber-500 text-slate-950 shadow-sm';
     } else {
-      btn.className = 'lang-btn-si px-3 py-1 rounded-md text-[11px] font-semibold text-slate-300 hover:text-white transition-all';
+      btn.className = 'lang-btn-si px-3 py-1 rounded-md text-[11px] font-semibold text-slate-600 dark:text-slate-300 hover:text-amber-500 transition-all';
     }
   });
 

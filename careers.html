@@ -73,14 +73,35 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=3.9.0">
+  <link rel="stylesheet" href="css/styles.css?v=4.0.0">
 
-  <!-- Immediate Theme Initialization Script (Dark Premium Blue) -->
+  <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync by Default & Zero Flicker) -->
   <script>
     (function() {
+      // 1. Strict OS system theme matching by default with 3-mode support ('system', 'light', 'dark')
       try {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
+        const mode = localStorage.getItem('starplus_theme_mode') || 'system';
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let isDark;
+        if (mode === 'dark') {
+          isDark = true;
+        } else if (mode === 'light') {
+          isDark = false;
+        } else {
+          // 'system' mode: strictly mirrors system prefers-color-scheme live
+          isDark = systemDark;
+          // Purge legacy flat keys
+          localStorage.removeItem('starplus_theme');
+          localStorage.removeItem('starplus_manual_theme_set');
+        }
+
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
       } catch (e) {}
 
       // 2. Prevent refresh jump to anchor hashes (always default cleanly to top of page)
@@ -97,30 +118,44 @@
   </script>
 </head>
 
-<body class="bg-[#0B132B] text-slate-200 antialiased selection:bg-amber-500 selection:text-slate-950 w-full max-w-full relative">
+<body class="text-slate-800 dark:text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950 w-full max-w-full relative">
 
   <!-- Isolated Bulletproof Luxury Splash Preloader -->
-  <div id="sitePreloader" style="position: fixed; inset: 0; top: 0; left: 0; right: 0; bottom: 0; width: 100vw; height: 100dvh; max-width: 100vw; max-height: 100dvh; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0; padding: 0; box-sizing: border-box; overflow: hidden; touch-action: none; overscroll-behavior: none; pointer-events: auto; background-color: #0B132B; background-image: radial-gradient(circle at 50% 50%, #162b55 0%, #0B132B 70%, #070e22 100%);" aria-hidden="true" role="status">
+  <div id="sitePreloader" style="position: fixed; inset: 0; top: 0; left: 0; right: 0; bottom: 0; width: 100vw; height: 100dvh; max-width: 100vw; max-height: 100dvh; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0; padding: 0; box-sizing: border-box; overflow: hidden; touch-action: none; overscroll-behavior: none; pointer-events: auto; background-color: #070e17;" aria-hidden="true" role="status">
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; max-width: 90vw; margin: 0 auto; padding: 16px;">
       <!-- Single High-Res Centered Brand Logo (Locked Aspect Ratio & No Stretching) -->
       <img
         id="preloaderLogoImg"
         src="assets/logo-white-text.png"
         data-dark-src="assets/logo-white-text.png"
-        data-light-src="assets/logo-white-text.png"
+        data-light-src="assets/original-removebg-preview.png"
         alt="Star Plus Travel and Tourism LLC"
         class="preloader-brand-logo"
-        style="display: block; width: 220px; max-width: 70vw; height: auto; max-height: 75px; object-fit: contain; flex-shrink: 0; margin: 0 auto 20px auto; filter: drop-shadow(0 4px 20px rgba(0, 86, 163, 0.5));"
+        style="display: block; width: 220px; max-width: 70vw; height: auto; max-height: 75px; object-fit: contain; flex-shrink: 0; margin: 0 auto 20px auto;"
       />
-      <!-- Single Smooth Luxury Sky Blue & Gold Spinner -->
+      <!-- Single Smooth Luxury Gold Spinner -->
       <div style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; flex-shrink: 0; margin: 0 auto;">
-        <div class="preloader-spinner" style="width: 32px; height: 32px; border-radius: 50%; border: 3px solid rgba(0, 86, 163, 0.35); border-top-color: #38bdf8; border-right-color: #f59e0b; animation: preloaderSpin 0.8s linear infinite; box-sizing: border-box; box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);"></div>
+        <div class="preloader-spinner" style="width: 28px; height: 28px; border-radius: 50%; border: 3px solid rgba(245, 158, 11, 0.2); border-top-color: #f59e0b; border-right-color: #fbbf24; animation: preloaderSpin 0.8s linear infinite; box-sizing: border-box;"></div>
       </div>
     </div>
   </div>
   <script>
     window.__preloaderStartTime = Date.now();
     (function() {
+      // Sync preloader background and logo with active theme immediately
+      try {
+        var isDark = document.documentElement.classList.contains('dark') || 
+          (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var pImg = document.getElementById('preloaderLogoImg');
+        var pBox = document.getElementById('sitePreloader');
+        if (pImg) {
+          pImg.src = isDark ? (pImg.getAttribute('data-dark-src') || pImg.src) : (pImg.getAttribute('data-light-src') || pImg.src);
+        }
+        if (pBox) {
+          pBox.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+        }
+      } catch (e) {}
+
       function dismissPreloader() {
         var p = document.getElementById('sitePreloader');
         if (!p || p.classList.contains('fade-out')) return;
@@ -144,28 +179,28 @@
   </script>
 
   <!-- Top Announcement Bar (Strict Single-Line Flex Row) -->
-  <div class="top-announcement-bar bg-gradient-to-r from-[#070e22] via-[#0b132b] to-[#070e22] text-slate-300 text-[11px] sm:text-xs py-1.5 px-3 sm:px-4 border-b border-[#0056A3]/30 transition-colors overflow-hidden">
+  <div class="top-announcement-bar bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-slate-300 text-[11px] sm:text-xs py-1.5 px-3 sm:px-4 border-b border-slate-700/60 dark:border-slate-800/80 transition-colors overflow-hidden">
     <div class="top-bar-container max-w-7xl mx-auto flex flex-nowrap items-center justify-between gap-2 whitespace-nowrap overflow-hidden">
       <div class="flex items-center space-x-2 sm:space-x-3 min-w-0 shrink overflow-hidden whitespace-nowrap text-[11px] sm:text-xs">
-        <span class="flex items-center space-x-1.5 truncate text-sky-300 font-bold">
+        <span class="flex items-center space-x-1.5 truncate">
           <i class="fa-solid fa-briefcase text-amber-400 shrink-0 text-[10px]"></i>
           <span data-i18n="topBarHiring" class="truncate">We're Hiring! Join our growing teams in <strong>Dubai</strong> &amp; <strong>Sri Lanka</strong></span>
         </span>
       </div>
-      <div class="flex items-center space-x-2 sm:space-x-2.5 text-[11px] sm:text-xs shrink-0 whitespace-nowrap font-medium">
-        <a href="mailto:info@starplustraveluae.com" class="hover:text-amber-400 text-slate-300 transition-colors whitespace-nowrap shrink-0 font-semibold">
-          <i class="fa-solid fa-envelope text-sky-400 mr-1 text-[10px]"></i>UAE: info@starplustraveluae.com
+      <div class="flex items-center space-x-2 sm:space-x-2.5 text-[11px] sm:text-xs shrink-0 whitespace-nowrap">
+        <a href="mailto:info@starplustraveluae.com" class="hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
+          <i class="fa-solid fa-envelope text-amber-400 mr-1 text-[10px]"></i>UAE: info@starplustraveluae.com
         </a>
         <span class="hidden md:inline text-slate-600 shrink-0">|</span>
-        <a href="mailto:info@starplustravelsl.com" class="hidden md:inline hover:text-amber-400 text-slate-300 transition-colors whitespace-nowrap shrink-0">
-          <i class="fa-solid fa-envelope text-sky-400 mr-1 text-[10px]"></i>SL: info@starplustravelsl.com
+        <a href="mailto:info@starplustravelsl.com" class="hidden md:inline hover:text-amber-400 transition-colors whitespace-nowrap shrink-0">
+          <i class="fa-solid fa-envelope text-amber-400 mr-1 text-[10px]"></i>SL: info@starplustravelsl.com
         </a>
       </div>
     </div>
   </div>
 
   <!-- Main Navigation Header -->
-  <header id="mainHeader" class="sticky top-0 z-50 glass-nav border-b border-[#0056A3]/30 transition-all duration-300 w-full">
+  <header id="mainHeader" class="sticky top-0 z-50 glass-nav transition-all duration-300 w-full">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <div class="flex items-center justify-between h-20 w-full max-w-full">
         
@@ -174,33 +209,33 @@
           <img id="brandHeaderLogo"
                src="assets/logo-white-text.png" 
                data-dark-src="assets/logo-white-text.png"
-               data-light-src="assets/logo-white-text.png"
+               data-light-src="assets/original-removebg-preview.png"
                alt="Star Plus Travel and Tourism LLC" 
                class="h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
         </a>
 
         <!-- Desktop Navigation Links (Spacious single-line layout) -->
-        <nav class="hidden lg:flex items-center justify-center space-x-2.5 xl:space-x-4 2xl:space-x-6 text-[12px] xl:text-[13px] 2xl:text-sm font-semibold text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2 px-1">
-          <a href="index.html" class="hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navHome">Home</a>
-          <a href="index.html#clients" class="hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navClients">Clients</a>
-          <a href="index.html#packages" class="hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navPackages">Tour Packages</a>
-          <a href="index.html#visa-services" class="hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navVisa">Visa Services</a>
-          <a href="index.html#why-us" class="hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navWhyUs">Why Choose Us</a>
-          <a href="index.html#testimonials" class="hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navReviews">Reviews</a>
-          <a href="careers.html" class="text-amber-400 font-bold py-1.5 px-1.5 border-b-2 border-amber-400" data-i18n="navCareers">Careers</a>
-          <a href="index.html#contact" class="hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navContact">Contact</a>
+        <nav class="hidden lg:flex items-center justify-center space-x-2.5 xl:space-x-4 2xl:space-x-6 text-[12px] xl:text-[13px] 2xl:text-sm font-semibold text-slate-800 dark:text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2 px-1">
+          <a href="index.html" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navHome">Home</a>
+          <a href="index.html#clients" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navClients">Clients</a>
+          <a href="index.html#packages" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navPackages">Tour Packages</a>
+          <a href="index.html#visa-services" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navVisa">Visa Services</a>
+          <a href="index.html#why-us" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navWhyUs">Why Choose Us</a>
+          <a href="index.html#testimonials" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navReviews">Reviews</a>
+          <a href="careers.html" class="text-amber-600 dark:text-amber-400 font-bold py-1.5 px-1.5 border-b-2 border-amber-500" data-i18n="navCareers">Careers</a>
+          <a href="index.html#contact" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors py-1.5 px-1.5" data-i18n="navContact">Contact</a>
         </nav>
 
         <!-- Right Action Area: Single Unified Language Toggle & Mobile Hamburger Menu -->
         <div class="flex items-center space-x-1.5 shrink-0 flex-shrink-0">
           <!-- Single Unified Language Toggle Button (Desktop & Mobile) -->
-          <button type="button" onclick="toggleLanguage()" id="mainLangToggleBtnCareers" class="lang-toggle-btn inline-flex items-center justify-center space-x-1 w-[76px] h-8 px-2 py-1 rounded-lg bg-[#0056A3] hover:bg-[#004380] text-white transition-all text-[11px] font-bold shadow-md shadow-[#0056A3]/35 cursor-pointer whitespace-nowrap shrink-0 flex-shrink-0 border border-blue-400/40" title="Switch Language" aria-label="Switch Language (English / Sinhala)">
-            <i class="fa-solid fa-globe text-white text-[10px] shrink-0"></i>
-            <span class="desktop-lang-text font-bold text-[11px] text-center text-white">සිංහල</span>
+          <button type="button" onclick="toggleLanguage()" id="mainLangToggleBtnCareers" class="lang-toggle-btn inline-flex items-center justify-center space-x-1 w-[76px] h-8 px-2 py-1 rounded-lg border border-slate-300 dark:border-slate-700 bg-white/90 dark:bg-slate-900/90 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-all text-[11px] font-bold shadow-sm cursor-pointer whitespace-nowrap shrink-0 flex-shrink-0" title="Switch Language" aria-label="Switch Language (English / Sinhala)">
+            <i class="fa-solid fa-globe text-amber-500 text-[10px] shrink-0"></i>
+            <span class="desktop-lang-text font-bold text-[11px] text-center">සිංහල</span>
           </button>
 
           <!-- Mobile Hamburger Menu Button (Hidden on lg+ screens) -->
-          <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-1.5 h-8 w-8 rounded-lg bg-[#101e3d] border border-[#0056A3]/30 text-slate-200 hover:text-white shadow-sm flex items-center justify-center cursor-pointer shrink-0 flex-shrink-0" aria-label="Toggle menu">
+          <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-1.5 h-8 w-8 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white shadow-sm flex items-center justify-center cursor-pointer shrink-0 flex-shrink-0" aria-label="Toggle menu">
             <i class="fa-solid fa-bars-staggered text-sm"></i>
           </button>
         </div>
@@ -208,31 +243,31 @@
     </div>
 
     <!-- Mobile Slide-out Menu -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-[#0e1a38]/98 border-b border-[#0056A3]/30 px-6 py-6 space-y-4 shadow-2xl transition-colors backdrop-blur-xl">
+    <div id="mobileMenu" class="hidden lg:hidden bg-white/95 dark:bg-slate-950/95 border-b border-slate-200 dark:border-slate-800 px-6 py-6 space-y-4 transition-colors">
       <!-- Mobile Language Switcher Widget -->
-      <div class="p-3 rounded-2xl bg-[#101e3d] border border-[#0056A3]/30 flex items-center justify-between">
-        <span class="text-xs font-bold text-slate-300 flex items-center space-x-2">
-          <i class="fa-solid fa-globe text-sky-400"></i>
+      <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <span class="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center space-x-2">
+          <i class="fa-solid fa-globe text-amber-500"></i>
           <span data-i18n="langLabel">Language</span>
         </span>
-        <div class="inline-flex rounded-xl p-1 bg-[#0b132b] border border-[#0056A3]/30">
-          <button type="button" onclick="changeLanguage('en')" class="lang-btn-en px-3 py-1 text-xs font-bold rounded-lg transition-all bg-[#0056A3] text-white shadow-sm border border-blue-400/30">EN</button>
-          <button type="button" onclick="changeLanguage('si')" class="lang-btn-si px-3 py-1 text-xs font-bold rounded-lg transition-all text-slate-400 hover:text-white">සිංහල</button>
+        <div class="inline-flex rounded-xl p-1 bg-slate-200 dark:bg-slate-800">
+          <button type="button" onclick="changeLanguage('en')" class="lang-btn-en px-3 py-1 text-xs font-bold rounded-lg transition-all bg-amber-500 text-slate-950">EN</button>
+          <button type="button" onclick="changeLanguage('si')" class="lang-btn-si px-3 py-1 text-xs font-bold rounded-lg transition-all text-slate-700 dark:text-slate-300 hover:text-amber-500">සිංහල</button>
         </div>
       </div>
 
-      <nav class="flex flex-col space-y-3 text-base font-semibold text-slate-200">
-        <a href="index.html" class="hover:text-amber-400 py-1.5 border-b border-[#0056A3]/20" data-i18n="navHome">Home</a>
-        <a href="index.html#clients" class="hover:text-amber-400 py-1.5 border-b border-[#0056A3]/20" data-i18n="navClients">Our Clients</a>
-        <a href="index.html#packages" class="hover:text-amber-400 py-1.5 border-b border-[#0056A3]/20" data-i18n="navPackages">Tour Packages</a>
-        <a href="index.html#visa-services" class="hover:text-amber-400 py-1.5 border-b border-[#0056A3]/20" data-i18n="navVisa">Visa Services</a>
-        <a href="index.html#why-us" class="hover:text-amber-400 py-1.5 border-b border-[#0056A3]/20" data-i18n="navWhyUs">Why Choose Us</a>
-        <a href="careers.html" class="text-amber-400 font-bold py-1.5 border-b border-[#0056A3]/20"><span data-i18n="navCareers">Careers</span> <span class="text-xs text-amber-400 font-bold" data-i18n="navHiringBadge">(We're Hiring!)</span></a>
-        <a href="index.html#contact" class="hover:text-amber-400 py-1.5" data-i18n="navContact">Contact &amp; Office</a>
+      <nav class="flex flex-col space-y-3 text-base font-semibold text-slate-800 dark:text-slate-200">
+        <a href="index.html" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navHome">Home</a>
+        <a href="index.html#clients" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navClients">Our Clients</a>
+        <a href="index.html#packages" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navPackages">Tour Packages</a>
+        <a href="index.html#visa-services" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navVisa">Visa Services</a>
+        <a href="index.html#why-us" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5 border-b border-slate-100 dark:border-slate-800/60" data-i18n="navWhyUs">Why Choose Us</a>
+        <a href="careers.html" class="text-amber-600 dark:text-amber-400 font-bold py-1.5 border-b border-slate-100 dark:border-slate-800/60"><span data-i18n="navCareers">Careers</span> <span class="text-xs text-amber-500" data-i18n="navHiringBadge">(We're Hiring!)</span></a>
+        <a href="index.html#contact" class="hover:text-amber-600 dark:hover:text-amber-400 py-1.5" data-i18n="navContact">Contact &amp; Office</a>
       </nav>
 
       <div class="pt-2 flex flex-col gap-3">
-        <a href="#positions" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-[#0056A3] hover:bg-[#004380] text-white font-bold text-sm shadow-lg shadow-[#0056A3]/35 border border-blue-400/30" data-i18n="explorePositions">
+        <a href="#positions" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-amber-500 text-slate-950 font-bold text-sm shadow-md" data-i18n="explorePositions">
           Explore 6 Open Positions
         </a>
       </div>
@@ -240,53 +275,53 @@
   </header>
 
   <!-- Careers Hero Section -->
-  <section class="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#0e1a38] via-[#0B132B] to-[#0e1a38] border-b border-[#0056A3]/25 overflow-hidden transition-colors">
+  <section class="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-slate-100 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 border-b border-slate-200 dark:border-slate-800/80 overflow-hidden transition-colors">
     <div class="max-w-5xl mx-auto text-center relative z-10">
       
       <!-- Top Badge -->
-      <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#101e3d] border border-[#0056A3]/40 text-sky-300 text-xs font-extrabold uppercase tracking-wider mb-6 animate-float shadow-lg">
-        <i class="fa-solid fa-users-gear text-amber-400"></i>
+      <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-amber-500/15 dark:bg-amber-500/20 border border-amber-500/30 text-amber-700 dark:text-amber-400 text-xs font-extrabold uppercase tracking-wider mb-6 animate-float">
+        <i class="fa-solid fa-users-gear text-amber-500"></i>
         <span data-i18n="careersBadge">Careers at Star Plus Travel &amp; Tourism LLC</span>
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping ml-1"></span>
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping ml-1"></span>
       </div>
 
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black font-heading text-white tracking-tight leading-tight mb-6" data-i18n="careersHeroTitle">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black font-heading text-slate-900 dark:text-white tracking-tight leading-tight mb-6" data-i18n="careersHeroTitle">
         Turn Travel Dreams Into <span class="gold-gradient-text">Lifelong Careers</span>
       </h1>
 
-      <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10" data-i18n="careersHeroSubtitle">
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10" data-i18n="careersHeroSubtitle">
         We are building the next generation of seamless international travel, luxury vacations, and visa solutions. Join our multi-cultural teams in Dubai, UAE and Colombo, Sri Lanka.
       </p>
 
       <!-- Quick Regional Application Routing Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto text-left">
         <!-- UAE Direct Box -->
-        <div class="glass-card p-5 rounded-2xl border border-[#0056A3]/30 bg-[#101e3d] hover:border-sky-400/50 transition-all shadow-xl shadow-black/30">
+        <div class="glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 transition-all shadow-sm">
           <div class="flex items-center space-x-3 mb-2">
             <span class="text-2xl">🇦🇪</span>
             <div>
-              <h3 class="text-sm font-bold text-white" data-i18n="uaeBranchAppTitle">UAE Branch Applications</h3>
-              <p class="text-[11px] text-slate-400" data-i18n="uaeBranchAppSubtitle">Head Office • Deira, Dubai</p>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="uaeBranchAppTitle">UAE Branch Applications</h3>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400" data-i18n="uaeBranchAppSubtitle">Head Office • Deira, Dubai</p>
             </div>
           </div>
-          <p class="text-xs text-slate-300 mb-3" data-i18n="uaeBranchAppDesc">Direct HR contact for UAE work permits &amp; Dubai based vacancies.</p>
-          <a href="mailto:info@starplustraveluae.com?subject=Job%20Application%20-%20UAE%20Position" class="inline-flex items-center space-x-2 text-xs font-bold text-sky-400 hover:text-amber-400 transition-colors">
+          <p class="text-xs text-slate-600 dark:text-slate-300 mb-3" data-i18n="uaeBranchAppDesc">Direct HR contact for UAE work permits &amp; Dubai based vacancies.</p>
+          <a href="mailto:info@starplustraveluae.com?subject=Job%20Application%20-%20UAE%20Position" class="inline-flex items-center space-x-2 text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">
             <i class="fa-solid fa-paper-plane"></i>
             <span>info@starplustraveluae.com</span>
           </a>
         </div>
 
         <!-- Sri Lanka Direct Box -->
-        <div class="glass-card p-5 rounded-2xl border border-[#0056A3]/30 bg-[#101e3d] hover:border-sky-400/50 transition-all shadow-xl shadow-black/30">
+        <div class="glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-amber-500/50 transition-all shadow-sm">
           <div class="flex items-center space-x-3 mb-2">
             <span class="text-2xl">🇱🇰</span>
             <div>
-              <h3 class="text-sm font-bold text-white" data-i18n="slBranchAppTitle">Sri Lanka Branch Applications</h3>
-              <p class="text-[11px] text-slate-400" data-i18n="slBranchAppSubtitle">Regional Branch • Colombo</p>
+              <h3 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="slBranchAppTitle">Sri Lanka Branch Applications</h3>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400" data-i18n="slBranchAppSubtitle">Regional Branch • Colombo</p>
             </div>
           </div>
-          <p class="text-xs text-slate-300 mb-3" data-i18n="slBranchAppDesc">Direct HR contact for Sri Lanka operations &amp; creative vacancies.</p>
-          <a href="mailto:info@starplustravelsl.com?subject=Job%20Application%20-%20Sri%20Lanka%20Position" class="inline-flex items-center space-x-2 text-xs font-bold text-sky-400 hover:text-amber-400 transition-colors">
+          <p class="text-xs text-slate-600 dark:text-slate-300 mb-3" data-i18n="slBranchAppDesc">Direct HR contact for Sri Lanka operations &amp; creative vacancies.</p>
+          <a href="mailto:info@starplustravelsl.com?subject=Job%20Application%20-%20Sri%20Lanka%20Position" class="inline-flex items-center space-x-2 text-xs font-bold text-amber-600 dark:text-amber-400 hover:underline">
             <i class="fa-solid fa-paper-plane"></i>
             <span>info@starplustravelsl.com</span>
           </a>
@@ -297,76 +332,76 @@
   </section>
 
   <!-- Why Work With Us / Perks -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-[#0B132B] border-b border-[#0056A3]/25 overflow-hidden transition-colors w-full">
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-800/80 overflow-hidden transition-colors w-full">
     <div class="max-w-7xl mx-auto">
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="text-xs font-extrabold uppercase tracking-widest text-sky-300 bg-[#0056A3]/20 px-3.5 py-1 rounded-full border border-[#0056A3]/40" data-i18n="whyCareersBadge">Why Star Plus?</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-3 font-heading" data-i18n="whyCareersTitle">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20" data-i18n="whyCareersBadge">Why Star Plus?</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading" data-i18n="whyCareersTitle">
           Empowering Your Passion for Global Exploration
         </h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="glass-card p-6 rounded-2xl border border-[#0056A3]/25 bg-[#101e3d] shadow-lg shadow-black/30">
-          <div class="w-12 h-12 rounded-xl bg-[#0056A3]/25 text-sky-400 border border-[#0056A3]/40 flex items-center justify-center text-xl mb-4">
+        <div class="glass-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/15 text-amber-500 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-plane-departure"></i>
           </div>
-          <h3 class="text-base font-bold text-white mb-2" data-i18n="perk1Title">Travel Perks &amp; FAM Trips</h3>
-          <p class="text-xs text-slate-300 leading-relaxed" data-i18n="perk1Desc">Exclusive employee airline rates, discounted holiday packages, and sponsored destination familiarization trips.</p>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2" data-i18n="perk1Title">Travel Perks &amp; FAM Trips</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="perk1Desc">Exclusive employee airline rates, discounted holiday packages, and sponsored destination familiarization trips.</p>
         </div>
 
-        <div class="glass-card p-6 rounded-2xl border border-[#0056A3]/25 bg-[#101e3d] shadow-lg shadow-black/30">
-          <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center text-xl mb-4">
+        <div class="glass-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/15 text-blue-500 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-money-bill-trend-up"></i>
           </div>
-          <h3 class="text-base font-bold text-white mb-2" data-i18n="perk2Title">Competitive Compensation</h3>
-          <p class="text-xs text-slate-300 leading-relaxed" data-i18n="perk2Desc">Attractive salary packages, performance-based booking commissions, and comprehensive health coverage.</p>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2" data-i18n="perk2Title">Competitive Compensation</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="perk2Desc">Attractive salary packages, performance-based booking commissions, and comprehensive health coverage.</p>
         </div>
 
-        <div class="glass-card p-6 rounded-2xl border border-[#0056A3]/25 bg-[#101e3d] shadow-lg shadow-black/30">
-          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-xl mb-4">
+        <div class="glass-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/15 text-emerald-500 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-earth-americas"></i>
           </div>
-          <h3 class="text-base font-bold text-white mb-2" data-i18n="perk3Title">Dual Regional Reach</h3>
-          <p class="text-xs text-slate-300 leading-relaxed" data-i18n="perk3Desc">Cross-border collaboration between our vibrant UAE hub in Dubai and our Sri Lanka operations in Colombo.</p>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2" data-i18n="perk3Title">Dual Regional Reach</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="perk3Desc">Cross-border collaboration between our vibrant UAE hub in Dubai and our Sri Lanka operations in Colombo.</p>
         </div>
 
-        <div class="glass-card p-6 rounded-2xl border border-[#0056A3]/25 bg-[#101e3d] shadow-lg shadow-black/30">
-          <div class="w-12 h-12 rounded-xl bg-sky-500/20 text-sky-400 border border-sky-500/30 flex items-center justify-center text-xl mb-4">
+        <div class="glass-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/15 text-purple-500 flex items-center justify-center text-xl mb-4">
             <i class="fa-solid fa-graduation-cap"></i>
           </div>
-          <h3 class="text-base font-bold text-white mb-2" data-i18n="perk4Title">GDS &amp; Tourism Training</h3>
-          <p class="text-xs text-slate-300 leading-relaxed" data-i18n="perk4Desc">Continuous professional training on Amadeus, Sabre, visa policies, customer management, and digital marketing.</p>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2" data-i18n="perk4Title">GDS &amp; Tourism Training</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed" data-i18n="perk4Desc">Continuous professional training on Amadeus, Sabre, visa policies, customer management, and digital marketing.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Open Positions Section -->
-  <section id="positions" class="py-20 px-4 sm:px-6 lg:px-8 bg-[#0e1a38] border-b border-[#0056A3]/25 overflow-hidden transition-colors w-full">
+  <section id="positions" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/70 dark:bg-slate-950/70 border-b border-slate-200 dark:border-slate-900 overflow-hidden transition-colors w-full">
     <div class="max-w-7xl mx-auto">
       
       <!-- Section Header & Filter Tabs -->
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div>
-          <span class="text-xs font-extrabold uppercase tracking-widest text-sky-300 bg-[#0056A3]/20 px-3.5 py-1 rounded-full border border-[#0056A3]/40" data-i18n="vacanciesBadge">Open Vacancies</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 font-heading" data-i18n="vacanciesTitle">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20" data-i18n="vacanciesBadge">Open Vacancies</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading" data-i18n="vacanciesTitle">
             Current Career Opportunities
           </h2>
-          <p class="text-slate-300 text-sm mt-2" data-i18n="vacanciesSubtitle">
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-2" data-i18n="vacanciesSubtitle">
             Select a position below to review requirements and submit your resume directly to our regional HR desks.
           </p>
         </div>
 
         <!-- Location Filter Buttons -->
         <div class="flex flex-wrap gap-2">
-          <button onclick="filterJobs('all')" class="job-filter-pill px-4 py-2 rounded-xl text-xs font-bold bg-[#0056A3] text-white shadow-md shadow-[#0056A3]/35 border border-blue-400/40 transition-all" data-loc="all" data-i18n="filterAllRoles">
+          <button onclick="filterJobs('all')" class="job-filter-pill px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 shadow-md transition-all" data-loc="all" data-i18n="filterAllRoles">
             All Roles (6)
           </button>
-          <button onclick="filterJobs('uae')" class="job-filter-pill px-4 py-2 rounded-xl text-xs font-semibold bg-[#101e3d] hover:bg-[#162b55] text-slate-300 border border-[#0056A3]/30 transition-all shadow-sm" data-loc="uae" data-i18n="filterUaeRoles">
+          <button onclick="filterJobs('uae')" class="job-filter-pill px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-amber-500 transition-all" data-loc="uae" data-i18n="filterUaeRoles">
             🇦🇪 Dubai, UAE (3)
           </button>
-          <button onclick="filterJobs('sl')" class="job-filter-pill px-4 py-2 rounded-xl text-xs font-semibold bg-[#101e3d] hover:bg-[#162b55] text-slate-300 border border-[#0056A3]/30 transition-all shadow-sm" data-loc="sl" data-i18n="filterSlRoles">
+          <button onclick="filterJobs('sl')" class="job-filter-pill px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-amber-500 transition-all" data-loc="sl" data-i18n="filterSlRoles">
             🇱🇰 Sri Lanka (3)
           </button>
         </div>
@@ -376,222 +411,222 @@
       <div id="jobGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
         <!-- Job 1: Travel Consultant -->
-        <div class="job-card glass-card glass-card-hover p-6 rounded-3xl border border-[#0056A3]/30 bg-[#101e3d] flex flex-col justify-between shadow-xl shadow-black/30" data-location="uae sl">
+        <div class="job-card glass-card glass-card-hover p-6 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between" data-location="uae sl">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-[#0056A3]/25 text-sky-300 border border-[#0056A3]/40">
+              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-amber-500/15 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30">
                 Operations &amp; Sales
               </span>
-              <span class="text-xs font-medium text-slate-400">Full-Time</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Full-Time</span>
             </div>
             
-            <h3 class="text-xl font-bold text-white mb-2">Travel Consultant</h3>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Travel Consultant</h3>
             
-            <div class="flex items-center space-x-3 text-xs text-slate-400 mb-4">
-              <span><i class="fa-solid fa-location-dot text-sky-400 mr-1"></i>Dubai &amp; Colombo</span>
+            <div class="flex items-center space-x-3 text-xs text-slate-500 dark:text-slate-400 mb-4">
+              <span><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i>Dubai &amp; Colombo</span>
               <span>•</span>
-              <span><i class="fa-solid fa-clock text-amber-400 mr-1"></i>2+ Yrs Exp</span>
+              <span><i class="fa-solid fa-clock text-amber-500 mr-1"></i>2+ Yrs Exp</span>
             </div>
 
-            <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
               At Star Plus Travel and Tour Company, we are passionate about providing our clients with the best travel experiences possible. We are seeking a skilled and experienced travel consultant to join our team and help us turn travel dreams into lifelong memories. As a leading player in the travel industry, we are committed to providing unparalleled travel experiences to our clients.
             </p>
 
-            <div class="space-y-1.5 mb-6 text-xs text-slate-300">
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Custom holiday packaging &amp; GDS ticketing</span></div>
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Client advisory &amp; luxury itinerary planning</span></div>
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>B2B &amp; direct corporate relationship management</span></div>
+            <div class="space-y-1.5 mb-6 text-xs text-slate-600 dark:text-slate-400">
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Custom holiday packaging &amp; GDS ticketing</span></div>
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Client advisory &amp; luxury itinerary planning</span></div>
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>B2B &amp; direct corporate relationship management</span></div>
             </div>
           </div>
 
-          <div class="pt-4 border-t border-[#0056A3]/25 flex items-center justify-between gap-3">
-            <span class="text-[11px] font-semibold text-slate-400">Apply to UAE or SL</span>
-            <button onclick="openApplyModal('Travel Consultant', 'Operations & Sales', 'Dubai, UAE & Colombo, Sri Lanka', 'both')" class="py-2.5 px-4 rounded-xl bg-[#0056A3] hover:bg-[#004380] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#0056A3]/30 border border-blue-400/30">
+          <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-3">
+            <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Apply to UAE or SL</span>
+            <button onclick="openApplyModal('Travel Consultant', 'Operations & Sales', 'Dubai, UAE & Colombo, Sri Lanka', 'both')" class="py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20">
               Apply Now
             </button>
           </div>
         </div>
 
         <!-- Job 2: Customer Service Representative -->
-        <div class="job-card glass-card glass-card-hover p-6 rounded-3xl border border-[#0056A3]/30 bg-[#101e3d] flex flex-col justify-between shadow-xl shadow-black/30" data-location="uae sl">
+        <div class="job-card glass-card glass-card-hover p-6 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between" data-location="uae sl">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-[#0056A3]/25 text-sky-300 border border-[#0056A3]/40">
+              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-blue-500/15 dark:bg-blue-500/20 text-blue-700 dark:text-blue-400 border border-blue-500/30">
                 Client Support
               </span>
-              <span class="text-xs font-medium text-slate-400">Full-Time</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Full-Time</span>
             </div>
             
-            <h3 class="text-xl font-bold text-white mb-2">Customer Service Representative</h3>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Customer Service Representative</h3>
             
-            <div class="flex items-center space-x-3 text-xs text-slate-400 mb-4">
-              <span><i class="fa-solid fa-location-dot text-sky-400 mr-1"></i>Dubai &amp; Colombo</span>
+            <div class="flex items-center space-x-3 text-xs text-slate-500 dark:text-slate-400 mb-4">
+              <span><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i>Dubai &amp; Colombo</span>
               <span>•</span>
-              <span><i class="fa-solid fa-clock text-amber-400 mr-1"></i>1+ Yr Exp</span>
+              <span><i class="fa-solid fa-clock text-amber-500 mr-1"></i>1+ Yr Exp</span>
             </div>
 
-            <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
               At Star Plus Travel and Tour Company, we pride ourselves on our excellent customer service. We are looking for a customer service representative who shares our passion for providing exceptional service to our clients. As a member of our team, you will play a key role in ensuring that our clients have the best possible travel experiences.
             </p>
 
-            <div class="space-y-1.5 mb-6 text-xs text-slate-300">
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>WhatsApp &amp; telephone traveler assistance</span></div>
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Booking modifications &amp; post-sale care</span></div>
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Fast turnaround on visa &amp; flight questions</span></div>
+            <div class="space-y-1.5 mb-6 text-xs text-slate-600 dark:text-slate-400">
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>WhatsApp &amp; telephone traveler assistance</span></div>
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Booking modifications &amp; post-sale care</span></div>
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Fast turnaround on visa &amp; flight questions</span></div>
             </div>
           </div>
 
-          <div class="pt-4 border-t border-[#0056A3]/25 flex items-center justify-between gap-3">
-            <span class="text-[11px] font-semibold text-slate-400">Apply to UAE or SL</span>
-            <button onclick="openApplyModal('Customer Service Representative', 'Client Support', 'Dubai, UAE & Colombo, Sri Lanka', 'both')" class="py-2.5 px-4 rounded-xl bg-[#0056A3] hover:bg-[#004380] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#0056A3]/30 border border-blue-400/30">
+          <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-3">
+            <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Apply to UAE or SL</span>
+            <button onclick="openApplyModal('Customer Service Representative', 'Client Support', 'Dubai, UAE & Colombo, Sri Lanka', 'both')" class="py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20">
               Apply Now
             </button>
           </div>
         </div>
 
         <!-- Job 3: Travel Writer -->
-        <div class="job-card glass-card glass-card-hover p-6 rounded-3xl border border-[#0056A3]/30 bg-[#101e3d] flex flex-col justify-between shadow-xl shadow-black/30" data-location="sl">
+        <div class="job-card glass-card glass-card-hover p-6 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between" data-location="sl">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
                 Content &amp; Editorial
               </span>
-              <span class="text-xs font-medium text-slate-400">Remote / Hybrid</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Remote / Hybrid</span>
             </div>
             
-            <h3 class="text-xl font-bold text-white mb-2">Travel Writer</h3>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Travel Writer</h3>
             
-            <div class="flex items-center space-x-3 text-xs text-slate-400 mb-4">
-              <span><i class="fa-solid fa-location-dot text-sky-400 mr-1"></i>Colombo, Sri Lanka</span>
+            <div class="flex items-center space-x-3 text-xs text-slate-500 dark:text-slate-400 mb-4">
+              <span><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i>Colombo, Sri Lanka</span>
               <span>•</span>
-              <span><i class="fa-solid fa-clock text-amber-400 mr-1"></i>Writing Portfolio</span>
+              <span><i class="fa-solid fa-clock text-amber-500 mr-1"></i>Writing Portfolio</span>
             </div>
 
-            <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
               Are you a talented writer with a passion for travel? Do you want to help others discover the world by sharing your experiences and insights? If so, we want to hear from you! At Star Plus Travel and Tour Company, we are looking for a travel writer to join our team and help us create engaging and informative content for our clients.
             </p>
 
-            <div class="space-y-1.5 mb-6 text-xs text-slate-300">
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>In-depth travel guides for Sri Lanka &amp; Caucasus</span></div>
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Website travel blogs &amp; newsletter features</span></div>
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Brochure copywriting &amp; destination storytelling</span></div>
+            <div class="space-y-1.5 mb-6 text-xs text-slate-600 dark:text-slate-400">
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>In-depth travel guides for Sri Lanka &amp; Caucasus</span></div>
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Website travel blogs &amp; newsletter features</span></div>
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Brochure copywriting &amp; destination storytelling</span></div>
             </div>
           </div>
 
-          <div class="pt-4 border-t border-[#0056A3]/25 flex items-center justify-between gap-3">
-            <span class="text-[11px] font-semibold text-emerald-400">Routes to SL HR Desk</span>
-            <button onclick="openApplyModal('Travel Writer', 'Content & Editorial', 'Colombo, Sri Lanka (Remote / Hybrid)', 'sl')" class="py-2.5 px-4 rounded-xl bg-[#0056A3] hover:bg-[#004380] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#0056A3]/30 border border-blue-400/30">
+          <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-3">
+            <span class="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">Routes to SL HR Desk</span>
+            <button onclick="openApplyModal('Travel Writer', 'Content & Editorial', 'Colombo, Sri Lanka (Remote / Hybrid)', 'sl')" class="py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20">
               Apply Now
             </button>
           </div>
         </div>
 
         <!-- Job 4: Marketing Coordinator -->
-        <div class="job-card glass-card glass-card-hover p-6 rounded-3xl border border-[#0056A3]/30 bg-[#101e3d] flex flex-col justify-between shadow-xl shadow-black/30" data-location="uae">
+        <div class="job-card glass-card glass-card-hover p-6 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between" data-location="uae">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-[#0056A3]/25 text-sky-300 border border-[#0056A3]/40">
+              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-purple-500/15 dark:bg-purple-500/20 text-purple-700 dark:text-purple-400 border border-purple-500/30">
                 Brand &amp; Growth
               </span>
-              <span class="text-xs font-medium text-slate-400">Full-Time</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Full-Time</span>
             </div>
             
-            <h3 class="text-xl font-bold text-white mb-2">Marketing Coordinator</h3>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Marketing Coordinator</h3>
             
-            <div class="flex items-center space-x-3 text-xs text-slate-400 mb-4">
-              <span><i class="fa-solid fa-location-dot text-sky-400 mr-1"></i>Deira, Dubai (UAE)</span>
+            <div class="flex items-center space-x-3 text-xs text-slate-500 dark:text-slate-400 mb-4">
+              <span><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i>Deira, Dubai (UAE)</span>
               <span>•</span>
-              <span><i class="fa-solid fa-clock text-amber-400 mr-1"></i>2+ Yrs Exp</span>
+              <span><i class="fa-solid fa-clock text-amber-500 mr-1"></i>2+ Yrs Exp</span>
             </div>
 
-            <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
               At Star Plus Travel and Tour Company, we are committed to promoting our brand and services to a global audience. We are seeking a talented marketing coordinator to help us achieve our goals. As a member of our team, you will be responsible for developing and implementing marketing strategies that drive engagement and growth.
             </p>
 
-            <div class="space-y-1.5 mb-6 text-xs text-slate-300">
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>TikTok, Instagram &amp; Facebook campaign management</span></div>
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Hotel &amp; airline partner promotional tie-ups</span></div>
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Lead acquisition &amp; conversion optimization</span></div>
+            <div class="space-y-1.5 mb-6 text-xs text-slate-600 dark:text-slate-400">
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>TikTok, Instagram &amp; Facebook campaign management</span></div>
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Hotel &amp; airline partner promotional tie-ups</span></div>
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Lead acquisition &amp; conversion optimization</span></div>
             </div>
           </div>
 
-          <div class="pt-4 border-t border-[#0056A3]/25 flex items-center justify-between gap-3">
-            <span class="text-[11px] font-semibold text-sky-400">Routes to UAE HR Desk</span>
-            <button onclick="openApplyModal('Marketing Coordinator', 'Brand & Growth', 'Deira, Dubai (UAE)', 'uae')" class="py-2.5 px-4 rounded-xl bg-[#0056A3] hover:bg-[#004380] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#0056A3]/30 border border-blue-400/30">
+          <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-3">
+            <span class="text-[11px] font-semibold text-amber-600 dark:text-amber-400">Routes to UAE HR Desk</span>
+            <button onclick="openApplyModal('Marketing Coordinator', 'Brand & Growth', 'Deira, Dubai (UAE)', 'uae')" class="py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20">
               Apply Now
             </button>
           </div>
         </div>
 
         <!-- Job 5: Tour Guide -->
-        <div class="job-card glass-card glass-card-hover p-6 rounded-3xl border border-[#0056A3]/30 bg-[#101e3d] flex flex-col justify-between shadow-xl shadow-black/30" data-location="sl uae">
+        <div class="job-card glass-card glass-card-hover p-6 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between" data-location="sl uae">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-sky-500/20 text-sky-400 border border-sky-500/30">
+              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-cyan-500/15 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 border border-cyan-500/30">
                 Field Operations
               </span>
-              <span class="text-xs font-medium text-slate-400">Full-Time / Seasonal</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Full-Time / Seasonal</span>
             </div>
             
-            <h3 class="text-xl font-bold text-white mb-2">Tour Guide</h3>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Tour Guide</h3>
             
-            <div class="flex items-center space-x-3 text-xs text-slate-400 mb-4">
-              <span><i class="fa-solid fa-location-dot text-sky-400 mr-1"></i>Sri Lanka &amp; UAE</span>
+            <div class="flex items-center space-x-3 text-xs text-slate-500 dark:text-slate-400 mb-4">
+              <span><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i>Sri Lanka &amp; UAE</span>
               <span>•</span>
-              <span><i class="fa-solid fa-clock text-amber-400 mr-1"></i>Licensed Guide</span>
+              <span><i class="fa-solid fa-clock text-amber-500 mr-1"></i>Licensed Guide</span>
             </div>
 
-            <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
               Do you love to travel and share your knowledge with others? Are you passionate about creating unforgettable experiences for your clients? If so, we want you to join our team as a tour guide! At Star Plus Travel and Tour Company, we are looking for experienced and knowledgeable tour guides to lead our clients on exciting and educational tours around the world.
             </p>
 
-            <div class="space-y-1.5 mb-6 text-xs text-slate-300">
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Leading group and VIP private tour delegations</span></div>
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Deep knowledge of culture, nature &amp; heritage sites</span></div>
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Multilingual proficiency (English, Arabic, Sinhala)</span></div>
+            <div class="space-y-1.5 mb-6 text-xs text-slate-600 dark:text-slate-400">
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Leading group and VIP private tour delegations</span></div>
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Deep knowledge of culture, nature &amp; heritage sites</span></div>
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Multilingual proficiency (English, Arabic, Sinhala)</span></div>
             </div>
           </div>
 
-          <div class="pt-4 border-t border-[#0056A3]/25 flex items-center justify-between gap-3">
-            <span class="text-[11px] font-semibold text-slate-400">Apply to UAE or SL</span>
-            <button onclick="openApplyModal('Tour Guide', 'Field Operations', 'Sri Lanka & UAE', 'both')" class="py-2.5 px-4 rounded-xl bg-[#0056A3] hover:bg-[#004380] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#0056A3]/30 border border-blue-400/30">
+          <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-3">
+            <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Apply to UAE or SL</span>
+            <button onclick="openApplyModal('Tour Guide', 'Field Operations', 'Sri Lanka & UAE', 'both')" class="py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20">
               Apply Now
             </button>
           </div>
         </div>
 
         <!-- Job 6: Travel Photographer -->
-        <div class="job-card glass-card glass-card-hover p-6 rounded-3xl border border-[#0056A3]/30 bg-[#101e3d] flex flex-col justify-between shadow-xl shadow-black/30" data-location="sl uae">
+        <div class="job-card glass-card glass-card-hover p-6 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between" data-location="sl uae">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
-              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">
+              <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-rose-500/15 dark:bg-rose-500/20 text-rose-700 dark:text-rose-400 border border-rose-500/30">
                 Creative Production
               </span>
-              <span class="text-xs font-medium text-slate-400">On-Assignment / Part-Time</span>
+              <span class="text-xs font-medium text-slate-500 dark:text-slate-400">On-Assignment / Part-Time</span>
             </div>
             
-            <h3 class="text-xl font-bold text-white mb-2">Travel Photographer</h3>
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Travel Photographer</h3>
             
-            <div class="flex items-center space-x-3 text-xs text-slate-400 mb-4">
-              <span><i class="fa-solid fa-location-dot text-sky-400 mr-1"></i>Sri Lanka &amp; UAE</span>
+            <div class="flex items-center space-x-3 text-xs text-slate-500 dark:text-slate-400 mb-4">
+              <span><i class="fa-solid fa-location-dot text-amber-500 mr-1"></i>Sri Lanka &amp; UAE</span>
               <span>•</span>
-              <span><i class="fa-solid fa-clock text-amber-400 mr-1"></i>Visual Portfolio</span>
+              <span><i class="fa-solid fa-clock text-amber-500 mr-1"></i>Visual Portfolio</span>
             </div>
 
-            <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
               At Star Plus Travel and Tour Company, we believe that a picture is worth a thousand words. That's why we are looking for a talented travel photographer to help us capture the beauty and wonder of the world. As a member of our team, you will travel to some of the most stunning locations on the planet and help us showcase them to our clients.
             </p>
 
-            <div class="space-y-1.5 mb-6 text-xs text-slate-300">
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Aerial, landscape &amp; resort lifestyle photography</span></div>
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Reels &amp; viral short-form travel video production</span></div>
-              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-400 text-[10px]"></i><span>Post-production color grading &amp; catalog creation</span></div>
+            <div class="space-y-1.5 mb-6 text-xs text-slate-600 dark:text-slate-400">
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Aerial, landscape &amp; resort lifestyle photography</span></div>
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Reels &amp; viral short-form travel video production</span></div>
+              <div class="flex items-center space-x-2"><i class="fa-solid fa-check text-emerald-500 text-[10px]"></i><span>Post-production color grading &amp; catalog creation</span></div>
             </div>
           </div>
 
-          <div class="pt-4 border-t border-[#0056A3]/25 flex items-center justify-between gap-3">
-            <span class="text-[11px] font-semibold text-slate-400">Apply to UAE or SL</span>
-            <button onclick="openApplyModal('Travel Photographer', 'Creative Production', 'Sri Lanka & UAE (On-Assignment)', 'both')" class="py-2.5 px-4 rounded-xl bg-[#0056A3] hover:bg-[#004380] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#0056A3]/30 border border-blue-400/30">
+          <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between gap-3">
+            <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">Apply to UAE or SL</span>
+            <button onclick="openApplyModal('Travel Photographer', 'Creative Production', 'Sri Lanka & UAE (On-Assignment)', 'both')" class="py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20">
               Apply Now
             </button>
           </div>
@@ -603,23 +638,23 @@
   </section>
 
   <!-- General / Spontaneous Application Banner -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-[#0B132B] border-t border-[#0056A3]/25 text-white relative overflow-hidden transition-colors w-full">
-    <div class="max-w-5xl mx-auto glass-card p-8 sm:p-12 rounded-3xl border border-blue-400/30 bg-gradient-to-r from-[#002b54] via-[#0056A3] to-[#001d3b] text-white text-center relative z-10 shadow-2xl shadow-black/40">
-      <span class="text-xs font-extrabold uppercase tracking-widest text-slate-950 bg-amber-400 px-3.5 py-1.5 rounded-full border border-amber-300 mb-4 inline-block shadow-sm" data-i18n="spontaneousBadge">
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-slate-100/80 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80 text-slate-900 dark:text-white relative overflow-hidden transition-colors w-full">
+    <div class="max-w-5xl mx-auto glass-card p-8 sm:p-12 rounded-3xl border border-amber-500/30 dark:border-amber-500/30 text-center relative z-10 shadow-2xl">
+      <span class="text-xs font-extrabold uppercase tracking-widest text-amber-700 dark:text-amber-300 bg-amber-500/15 dark:bg-amber-500/20 px-3.5 py-1.5 rounded-full border border-amber-500/40 dark:border-amber-500/40 mb-4 inline-block shadow-sm" data-i18n="spontaneousBadge">
         Don't see your specific role?
       </span>
-      <h3 class="text-2xl sm:text-3xl font-black font-heading text-white mb-3" data-i18n="spontaneousTitle">
+      <h3 class="text-2xl sm:text-3xl font-black font-heading text-slate-900 dark:text-white mb-3" data-i18n="spontaneousTitle">
         Send Us a Spontaneous Application
       </h3>
-      <p class="text-blue-100/90 text-xs sm:text-sm max-w-2xl mx-auto mb-8 leading-relaxed font-medium" data-i18n="spontaneousDesc">
+      <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto mb-8 leading-relaxed font-medium" data-i18n="spontaneousDesc">
         We are always on the lookout for visionary travel planners, corporate sales leaders, and visa specialists. Email your CV and cover note to our regional HR desks anytime:
       </p>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="mailto:info@starplustraveluae.com?subject=Spontaneous%20Application%20-%20UAE%20Office" class="w-full sm:w-auto py-3.5 px-6 rounded-xl bg-white hover:bg-slate-100 text-[#0056A3] font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg flex items-center justify-center space-x-2">
+        <a href="mailto:info@starplustraveluae.com?subject=Spontaneous%20Application%20-%20UAE%20Office" class="w-full sm:w-auto py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 flex items-center justify-center space-x-2">
           <span data-i18n="spontaneousUaeBtn">🇦🇪 Email UAE HR Desk (info@starplustraveluae.com)</span>
         </a>
-        <a href="mailto:info@starplustravelsl.com?subject=Spontaneous%20Application%20-%20Sri%20Lanka%20Branch" class="w-full sm:w-auto py-3.5 px-6 rounded-xl bg-[#0B132B] hover:bg-[#070e22] text-amber-400 font-bold text-xs uppercase tracking-wider border border-amber-400/40 transition-all flex items-center justify-center space-x-2 shadow-sm">
+        <a href="mailto:info@starplustravelsl.com?subject=Spontaneous%20Application%20-%20Sri%20Lanka%20Branch" class="w-full sm:w-auto py-3.5 px-6 rounded-xl bg-white hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-bold text-xs uppercase tracking-wider border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center space-x-2 shadow-sm">
           <span data-i18n="spontaneousSlBtn">🇱🇰 Email SL HR Desk (info@starplustravelsl.com)</span>
         </a>
       </div>
@@ -627,7 +662,7 @@
   </section>
 
   <!-- Footer with Official Regional Routing -->
-  <footer class="bg-[#070e22] border-t border-[#0056A3]/30 pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs overflow-hidden w-full max-w-full">
+  <footer class="bg-slate-950 border-t border-slate-800/80 pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs overflow-hidden w-full max-w-full">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
       
       <!-- Column 1: Brand Info -->
@@ -636,97 +671,120 @@
           <img id="brandFooterLogo"
                src="assets/logo-white-text.png" 
                data-dark-src="assets/logo-white-text.png"
-               data-light-src="assets/logo-white-text.png"
+               data-light-src="assets/original-removebg-preview.png"
                alt="Star Plus Travel and Tourism LLC" 
                class="h-10 sm:h-12 w-auto object-contain">
         </a>
-        <p class="text-xs text-slate-400 max-w-sm leading-relaxed" data-i18n="careersFooterAbout">
-          Star Plus Travel &amp; Tourism LLC is a premier multinational travel management corporation headquartered in Dubai, UAE with dedicated regional operations in Colombo, Sri Lanka.
+        <p class="text-xs text-slate-400 max-w-sm leading-relaxed" data-i18n="footerAbout">
+          Star Plus Travel & Tourism LLC is a government accredited travel management company based in Deira, Dubai with branch operations in Sri Lanka. Providing world-class bespoke holiday packages, airline bookings, and express visa solutions.
         </p>
-        <div class="flex items-center space-x-2.5 pt-2">
-          <a href="https://www.facebook.com/share/1EAf7zDgSe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-[#0b132b] border border-[#0056A3]/30 flex items-center justify-center text-slate-300 hover:text-white hover:bg-[#0056A3] transition-all shadow-md group" aria-label="Facebook">
+        <div class="pt-1 text-xs space-y-1.5 text-slate-300">
+          <p class="flex items-center space-x-1.5">
+            <span class="text-amber-400 font-bold" data-i18n="footerUaeInq">🇦🇪 UAE HR &amp; Inquiries:</span>
+            <a href="mailto:info@starplustraveluae.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustraveluae.com</a>
+          </p>
+          <p class="flex items-center space-x-1.5">
+            <span class="text-amber-400 font-bold" data-i18n="footerSlInq">🇱🇰 Sri Lanka HR &amp; Inquiries:</span>
+            <a href="mailto:info@starplustravelsl.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustravelsl.com</a>
+          </p>
+        </div>
+        <div class="flex items-center space-x-2.5 pt-3">
+          <a href="https://www.facebook.com/share/1EAf7zDgSe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-blue-600 hover:border-blue-500 transition-all shadow-md group" aria-label="Facebook">
             <i class="fa-brands fa-facebook-f text-xs group-hover:scale-110 transition-transform"></i>
           </a>
-          <a href="https://www.instagram.com/starplustraveltourism?igsh=bDVybXM4b3pqdjcw&utm_source=qr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-[#0b132b] border border-[#0056A3]/30 flex items-center justify-center text-slate-300 hover:text-white hover:bg-rose-600 transition-all shadow-md group" aria-label="Instagram">
+          <a href="https://www.instagram.com/starplustraveltourism?igsh=bDVybXM4b3pqdjcw&utm_source=qr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-gradient-to-tr hover:from-amber-600 hover:via-rose-600 hover:to-purple-600 hover:border-rose-500 transition-all shadow-md group" aria-label="Instagram">
             <i class="fa-brands fa-instagram text-xs group-hover:scale-110 transition-transform"></i>
           </a>
-          <a href="https://www.tiktok.com/@starplustravel?_r=1&_t=ZS-990wwC6DOyr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-[#0b132b] border border-[#0056A3]/30 flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 transition-all shadow-md group" aria-label="TikTok">
+          <a href="https://www.tiktok.com/@starplustravel?_r=1&_t=ZS-990wwC6DOyr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 hover:border-slate-600 transition-all shadow-md group" aria-label="TikTok">
             <i class="fa-brands fa-tiktok text-xs group-hover:scale-110 transition-transform"></i>
           </a>
-          <a href="https://www.linkedin.com/company/starplus-travel-and-tourism/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-[#0b132b] border border-[#0056A3]/30 flex items-center justify-center text-slate-300 hover:text-white hover:bg-[#0056A3] transition-all shadow-md group" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/company/starplus-travel-and-tourism/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-blue-700 hover:border-blue-600 transition-all shadow-md group" aria-label="LinkedIn">
             <i class="fa-brands fa-linkedin-in text-xs group-hover:scale-110 transition-transform"></i>
           </a>
         </div>
       </div>
 
-      <!-- Column 2: Regional HR Desks -->
+      <!-- Column 2: Quick Links -->
       <div class="space-y-3">
-        <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="careersFooterHrDesks">Regional HR Inquiries</h4>
-        <div class="space-y-3 text-xs">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="footerQuickLinks">Quick Navigation</h4>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a></li>
+          <li><a href="index.html#clients" class="hover:text-amber-400 transition-colors" data-i18n="navClients">Our Corporate Clients</a></li>
+          <li><a href="index.html#packages" class="hover:text-amber-400 transition-colors" data-i18n="navPackages">Holiday Tour Packages</a></li>
+          <li><a href="index.html#visa-services" class="hover:text-amber-400 transition-colors" data-i18n="navVisa">Fast-Track Visa Assistance</a></li>
+          <li><a href="index.html#why-us" class="hover:text-amber-400 transition-colors" data-i18n="navWhyUs">Why Choose Us</a></li>
+          <li><a href="careers.html" class="text-amber-400 font-bold transition-colors" data-i18n="navCareers">Careers &amp; Vacancies</a></li>
+          <li><a href="index.html#contact" class="hover:text-amber-400 transition-colors" data-i18n="navContact">Contact Our Offices</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Careers & Branches -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="footerBranches">Our Branches</h4>
+        <div class="space-y-2 text-slate-400">
           <div>
-            <span class="text-amber-400 font-bold block" data-i18n="careersFooterUaeHr">🇦🇪 Dubai HR Desk:</span>
-            <a href="mailto:info@starplustraveluae.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustraveluae.com</a>
-            <p class="text-[11px] text-slate-400 mt-0.5">+971 4 575 1321</p>
+            <span class="font-bold text-slate-200 block" data-i18n="contactUaeOffice">🇦🇪 UAE Headquarters</span>
+            <span data-i18n="contactUaeAddress">Al Maktoum Road, Deira, Dubai</span>
+            <span class="block text-amber-400 font-semibold">+971 4 575 1321</span>
           </div>
-          <div>
-            <span class="text-amber-400 font-bold block" data-i18n="careersFooterSlHr">🇱🇰 Sri Lanka HR Desk:</span>
-            <a href="mailto:info@starplustravelsl.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustravelsl.com</a>
-            <p class="text-[11px] text-slate-400 mt-0.5">+94 11 234 5678</p>
+          <div class="pt-2">
+            <span class="font-bold text-slate-200 block" data-i18n="contactSlOffice">🇱🇰 Sri Lanka Office</span>
+            <span data-i18n="contactSlAddress">Galle Road, Colombo 03</span>
+            <span class="block text-amber-400 font-semibold">+94 11 234 5678</span>
           </div>
         </div>
       </div>
 
-      <!-- Column 3: Quick Navigation -->
+      <!-- Column 4: HR Direct Contacts -->
       <div class="space-y-3">
-        <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="footerQuickLinks">Explore Star Plus</h4>
-        <ul class="space-y-2">
-          <li><a href="index.html" class="hover:text-amber-400 transition-colors" data-i18n="navHome">Home Page</a></li>
-          <li><a href="index.html#packages" class="hover:text-amber-400 transition-colors" data-i18n="navPackages">Holiday Packages</a></li>
-          <li><a href="index.html#visa-services" class="hover:text-amber-400 transition-colors" data-i18n="navVisa">Visa Solutions</a></li>
-          <li><a href="index.html#why-us" class="hover:text-amber-400 transition-colors" data-i18n="navWhyUs">Why Choose Us</a></li>
-          <li><a href="#positions" class="hover:text-amber-400 transition-colors" data-i18n="navCareers">Open Positions (6)</a></li>
-          <li><a href="index.html#contact" class="hover:text-amber-400 transition-colors" data-i18n="navContact">Contact Headquarters</a></li>
-        </ul>
-      </div>
-
-      <!-- Column 4: Spontaneous Submissions -->
-      <div class="space-y-3">
-        <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="careersFooterTalent">Talent Community</h4>
-        <p class="text-xs text-slate-400 leading-relaxed" data-i18n="careersFooterTalentDesc">
-          Even if your ideal role isn't open today, we maintain active talent pipelines for upcoming seasonal expansions.
-        </p>
-        <a href="mailto:info@starplustraveluae.com?subject=Resume%20for%20Talent%20Pool" class="inline-flex items-center space-x-1.5 text-xs font-bold text-amber-400 hover:text-amber-300">
-          <i class="fa-solid fa-paper-plane text-[10px]"></i>
-          <span data-i18n="careersFooterSendCv">Send your CV to Talent Pool</span>
-        </a>
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="recruitmentDesks">Recruitment Desks</h4>
+        <p class="text-xs text-slate-400" data-i18n="recruitmentDesksSubtitle">Submit CVs directly to our regional talent acquisition teams:</p>
+        <div class="space-y-2">
+          <a href="mailto:info@starplustraveluae.com?subject=Job%20Application%20-%20UAE" class="block p-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-500/40 text-[11px] text-amber-400 font-semibold transition-colors">
+            🇦🇪 info@starplustraveluae.com
+          </a>
+          <a href="mailto:info@starplustravelsl.com?subject=Job%20Application%20-%20Sri%20Lanka" class="block p-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-500/40 text-[11px] text-amber-400 font-semibold transition-colors">
+            🇱🇰 info@starplustravelsl.com
+          </a>
+        </div>
       </div>
 
     </div>
 
-    <!-- Bottom Attribution -->
-    <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-400 text-[11px]">
-      <span data-i18n="footerCopyright">© 2026 Star Plus Travel &amp; Tourism LLC. All Rights Reserved.</span>
-      <span data-i18n="footerAttribution">Redesigned &amp; Developed by Lupo</span>
+    <!-- Bottom Bar -->
+    <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
+      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-2.5 text-center sm:text-left">
+        <span data-i18n="footerCopyright">© 2026 Star Plus Travel & Tourism LLC. All Rights Reserved.</span>
+        <span class="hidden sm:inline text-slate-700">•</span>
+        <span data-i18n="footerAttribution">Redesigned &amp; Developed by Lupo</span>
+      </div>
+      <div class="flex items-center space-x-3 text-slate-400 text-xs">
+        <a href="index.html" class="hover:text-white transition-colors">Home</a>
+        <span>•</span>
+        <a href="careers.html" class="hover:text-white transition-colors">Careers</a>
+        <span>•</span>
+        <a href="index.html#contact" class="hover:text-white transition-colors">Contact</a>
+      </div>
     </div>
   </footer>
 
   <!-- Interactive Job Application Modal -->
   <div id="applyModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
-    <div class="glass-card max-w-xl w-full rounded-3xl border border-[#0056A3]/30 bg-[#0e1a38] text-white shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative animate-fadeIn text-left">
+    <div class="glass-card max-w-xl w-full rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative animate-fadeIn text-left">
       
       <!-- Close Button -->
-      <button onclick="closeApplyModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-[#101e3d] hover:bg-[#162b55] text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-[#0056A3]/30">
+      <button onclick="closeApplyModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white flex items-center justify-center transition-colors">
         <i class="fa-solid fa-xmark text-sm"></i>
       </button>
 
       <!-- Modal Header -->
-      <div class="pb-4 border-b border-[#0056A3]/30 pr-8">
-        <span id="modalJobDept" class="text-[10px] font-bold text-sky-400 uppercase tracking-wider block"></span>
-        <h3 id="modalJobTitle" class="text-xl font-bold text-white font-heading leading-tight mt-0.5"></h3>
-        <p id="modalJobLocation" class="text-xs text-slate-400 mt-1"></p>
+      <div class="pb-4 border-b border-slate-200 dark:border-slate-800 pr-8">
+        <span id="modalJobDept" class="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider block"></span>
+        <h3 id="modalJobTitle" class="text-xl font-bold text-slate-900 dark:text-white font-heading leading-tight mt-0.5"></h3>
+        <p id="modalJobLocation" class="text-xs text-slate-500 dark:text-slate-400 mt-1"></p>
         
         <!-- Regional Destination Indicator -->
-        <div id="modalRoutingBadge" class="mt-2.5 inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#101e3d] text-amber-400 border border-amber-400/30">
+        <div id="modalRoutingBadge" class="mt-2.5 inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/15 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30">
           <i class="fa-solid fa-envelope-circle-check"></i>
           <span id="modalRoutingEmail"></span>
         </div>
@@ -737,80 +795,80 @@
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
+            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
               Your Full Name *
             </label>
-            <input type="text" id="applicantName" required placeholder="e.g. Sarah Jenkins" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm bg-[#0b132b] border border-[#0056A3]/30 text-white placeholder-slate-500 focus:border-sky-400">
+            <input type="text" id="applicantName" required placeholder="e.g. Sarah Jenkins" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
           <div>
-            <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
+            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
               Email Address *
             </label>
-            <input type="email" id="applicantEmail" required placeholder="sarah@example.com" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm bg-[#0b132b] border border-[#0056A3]/30 text-white placeholder-slate-500 focus:border-sky-400">
+            <input type="email" id="applicantEmail" required placeholder="sarah@example.com" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
+            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
               Phone / WhatsApp *
             </label>
-            <input type="tel" id="applicantPhone" required placeholder="+971 50 123 4567" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm bg-[#0b132b] border border-[#0056A3]/30 text-white placeholder-slate-500 focus:border-sky-400">
+            <input type="tel" id="applicantPhone" required placeholder="+971 50 123 4567" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
           <div>
-            <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
+            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
               Target Branch Location *
             </label>
-            <select id="applicantBranch" onchange="updateRoutingBadge()" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm cursor-pointer bg-[#0b132b] border border-[#0056A3]/30 text-white focus:border-sky-400">
-              <option value="uae" class="bg-[#0b132b] text-white">🇦🇪 UAE Branch (info@starplustraveluae.com)</option>
-              <option value="sl" class="bg-[#0b132b] text-white">🇱🇰 Sri Lanka Branch (info@starplustravelsl.com)</option>
+            <select id="applicantBranch" onchange="updateRoutingBadge()" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm cursor-pointer">
+              <option value="uae">🇦🇪 UAE Branch (info@starplustraveluae.com)</option>
+              <option value="sl">🇱🇰 Sri Lanka Branch (info@starplustravelsl.com)</option>
             </select>
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
+            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
               Relevant Experience (Years)
             </label>
-            <select id="applicantExp" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm cursor-pointer bg-[#0b132b] border border-[#0056A3]/30 text-white focus:border-sky-400">
-              <option value="entry" class="bg-[#0b132b] text-white">Entry Level (&lt; 1 year)</option>
-              <option value="1-3" selected class="bg-[#0b132b] text-white">1 - 3 years</option>
-              <option value="3-5" class="bg-[#0b132b] text-white">3 - 5 years</option>
-              <option value="5+" class="bg-[#0b132b] text-white">5+ years (Senior / Lead)</option>
+            <select id="applicantExp" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm cursor-pointer">
+              <option value="entry">Entry Level (< 1 year)</option>
+              <option value="1-3" selected>1 - 3 years</option>
+              <option value="3-5">3 - 5 years</option>
+              <option value="5+">5+ years (Senior / Lead)</option>
             </select>
           </div>
           <div>
-            <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
+            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
               LinkedIn or Portfolio URL
             </label>
-            <input type="url" id="applicantPortfolio" placeholder="https://linkedin.com/in/..." class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm bg-[#0b132b] border border-[#0056A3]/30 text-white placeholder-slate-500 focus:border-sky-400">
+            <input type="url" id="applicantPortfolio" placeholder="https://linkedin.com/in/..." class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
         </div>
 
         <div>
-          <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
+          <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
             Resume / CV Link or Attachment Note *
           </label>
-          <input type="text" id="applicantResumeLink" required placeholder="Paste Google Drive/Dropbox link or type 'Sending via Email'" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm bg-[#0b132b] border border-[#0056A3]/30 text-white placeholder-slate-500 focus:border-sky-400">
-          <span class="text-[10px] text-slate-400 block mt-1">You can also attach your PDF file directly by clicking 'Open in Email Client' below.</span>
+          <input type="text" id="applicantResumeLink" required placeholder="Paste Google Drive/Dropbox link or type 'Sending via Email'" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+          <span class="text-[10px] text-slate-500 dark:text-slate-400 block mt-1">You can also attach your PDF file directly by clicking 'Open in Email Client' below.</span>
         </div>
 
         <div>
-          <label class="block text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-1">
+          <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
             Brief Cover Note / Introduction
           </label>
-          <textarea id="applicantMessage" rows="3" placeholder="Tell us why you are a great fit for Star Plus Travel &amp; Tourism..." class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm bg-[#0b132b] border border-[#0056A3]/30 text-white placeholder-slate-500 focus:border-sky-400"></textarea>
+          <textarea id="applicantMessage" rows="3" placeholder="Tell us why you are a great fit for Star Plus Travel & Tourism..." class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm"></textarea>
         </div>
 
         <!-- Action Buttons -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-          <button type="submit" class="w-full py-3.5 rounded-xl bg-[#0056A3] hover:bg-[#004380] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-[#0056A3]/35 border border-blue-400/30">
+          <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20">
             Submit Application
           </button>
           
-          <button type="button" onclick="sendDirectEmailApplication()" class="w-full py-3.5 rounded-xl bg-[#101e3d] hover:bg-[#162b55] text-sky-300 font-bold text-xs uppercase tracking-wider border border-[#0056A3]/40 transition-all flex items-center justify-center space-x-1.5 shadow-sm">
-            <i class="fa-solid fa-envelope-open-text text-sky-400"></i>
+          <button type="button" onclick="sendDirectEmailApplication()" class="w-full py-3.5 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-envelope-open-text text-amber-500"></i>
             <span>Open in Email App</span>
           </button>
         </div>
@@ -823,8 +881,8 @@
   <div id="toastContainer"></div>
 
   <!-- JavaScript Application Script -->
-  <script src="js/app.js?v=3.9.0"></script>
-  <script src="js/seasonal-theme.js?v=3.9.0"></script>
+  <script src="js/app.js?v=4.0.0"></script>
+  <script src="js/seasonal-theme.js?v=4.0.0"></script>
   
   <script>
     // Careers-specific logic
@@ -833,9 +891,9 @@
     function filterJobs(loc) {
       document.querySelectorAll('.job-filter-pill').forEach(btn => {
         if (btn.dataset.loc === loc) {
-          btn.className = 'job-filter-pill px-4 py-2 rounded-xl text-xs font-bold bg-[#0056A3] text-white shadow-md shadow-[#0056A3]/35 border border-blue-400/40 transition-all';
+          btn.className = 'job-filter-pill px-4 py-2 rounded-xl text-xs font-bold bg-amber-500 text-slate-950 shadow-md transition-all';
         } else {
-          btn.className = 'job-filter-pill px-4 py-2 rounded-xl text-xs font-semibold bg-[#101e3d] hover:bg-[#162b55] text-slate-300 border border-[#0056A3]/30 transition-all shadow-sm';
+          btn.className = 'job-filter-pill px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-amber-500 transition-all';
         }
       });
 

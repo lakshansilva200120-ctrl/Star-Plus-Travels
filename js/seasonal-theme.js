@@ -580,7 +580,7 @@
   }
 
   function injectHolidayBanner(holiday) {
-    const topBar = document.querySelector('.top-announcement-bar');
+    const topBar = document.querySelector('.top-announcement-bar') || document.querySelector('.bg-gradient-to-r.from-slate-900');
     if (!topBar) return;
 
     let banner = document.getElementById('holidayBannerTrack');
