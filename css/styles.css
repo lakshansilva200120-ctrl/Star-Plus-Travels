@@ -154,49 +154,49 @@ html.lang-si #heroSubHeadline {
 /* 2. Automatic OS System Preference: Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --theme-bg-base: #070e17;
-    --theme-bg-surface: #0b192c;
-    --theme-bg-surface-elevated: #0f1d32;
-    --theme-bg-nav: rgba(7, 14, 23, 0.88);
-    --theme-bg-card: rgba(15, 29, 50, 0.85);
-    --theme-bg-card-hover: rgba(22, 43, 73, 0.94);
-    --theme-bg-input: rgba(11, 25, 44, 0.80);
+    --theme-bg-base: #0f172a;
+    --theme-bg-surface: #1e293b;
+    --theme-bg-surface-elevated: #334155;
+    --theme-bg-nav: rgba(15, 23, 42, 0.90);
+    --theme-bg-card: rgba(30, 41, 59, 0.75);
+    --theme-bg-card-hover: rgba(51, 65, 85, 0.85);
+    --theme-bg-input: rgba(15, 23, 42, 0.85);
     --theme-border-subtle: rgba(255, 255, 255, 0.08);
-    --theme-border-card: rgba(255, 255, 255, 0.09);
+    --theme-border-card: rgba(255, 255, 255, 0.10);
     --theme-border-input: rgba(255, 255, 255, 0.15);
     --theme-text-primary: #f8fafc;
     --theme-text-secondary: #cbd5e1;
     --theme-text-muted: #94a3b8;
-    --theme-card-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.6);
-    --theme-card-shadow-hover: 0 20px 35px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.18);
-    --theme-scrollbar-track: #070e17;
-    --theme-scrollbar-thumb: #1e3e62;
+    --theme-card-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.45);
+    --theme-card-shadow-hover: 0 20px 35px -10px rgba(0, 0, 0, 0.45), 0 0 20px rgba(245, 158, 11, 0.18);
+    --theme-scrollbar-track: #0f172a;
+    --theme-scrollbar-thumb: #334155;
     --theme-glow-opacity: 0.28;
-    --theme-modal-backdrop: rgba(7, 14, 23, 0.88);
+    --theme-modal-backdrop: rgba(15, 23, 42, 0.88);
   }
 }
 
 /* 3. Explicit Dark Mode Class Override */
 html.dark {
-  --theme-bg-base: #070e17;
-  --theme-bg-surface: #0b192c;
-  --theme-bg-surface-elevated: #0f1d32;
-  --theme-bg-nav: rgba(7, 14, 23, 0.88);
-  --theme-bg-card: rgba(15, 29, 50, 0.85);
-  --theme-bg-card-hover: rgba(22, 43, 73, 0.94);
-  --theme-bg-input: rgba(11, 25, 44, 0.80);
+  --theme-bg-base: #0f172a;
+  --theme-bg-surface: #1e293b;
+  --theme-bg-surface-elevated: #334155;
+  --theme-bg-nav: rgba(15, 23, 42, 0.90);
+  --theme-bg-card: rgba(30, 41, 59, 0.75);
+  --theme-bg-card-hover: rgba(51, 65, 85, 0.85);
+  --theme-bg-input: rgba(15, 23, 42, 0.85);
   --theme-border-subtle: rgba(255, 255, 255, 0.08);
-  --theme-border-card: rgba(255, 255, 255, 0.09);
+  --theme-border-card: rgba(255, 255, 255, 0.10);
   --theme-border-input: rgba(255, 255, 255, 0.15);
   --theme-text-primary: #f8fafc;
   --theme-text-secondary: #cbd5e1;
   --theme-text-muted: #94a3b8;
-  --theme-card-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.6);
-  --theme-card-shadow-hover: 0 20px 35px -10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.18);
-  --theme-scrollbar-track: #070e17;
-  --theme-scrollbar-thumb: #1e3e62;
+  --theme-card-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.45);
+  --theme-card-shadow-hover: 0 20px 35px -10px rgba(0, 0, 0, 0.45), 0 0 20px rgba(245, 158, 11, 0.18);
+  --theme-scrollbar-track: #0f172a;
+  --theme-scrollbar-thumb: #334155;
   --theme-glow-opacity: 0.28;
-  --theme-modal-backdrop: rgba(7, 14, 23, 0.88);
+  --theme-modal-backdrop: rgba(15, 23, 42, 0.88);
 }
 
 /* 4. Explicit Light Mode Class Override */
@@ -669,8 +669,8 @@ html.dark.season-eid .glass-card:hover {
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  background-color: #070e17 !important;
-  background-image: radial-gradient(circle at 50% 50%, #0d1e33 0%, #070e17 85%) !important;
+  background-color: #0f172a !important;
+  background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 85%) !important;
   opacity: 1;
   visibility: visible;
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -682,8 +682,8 @@ html.dark.season-eid .glass-card:hover {
 
 html.dark #sitePreloader,
 :root:not(.light) #sitePreloader {
-  background-color: #070e17 !important;
-  background-image: radial-gradient(circle at 50% 50%, #0d1e33 0%, #070e17 85%) !important;
+  background-color: #0f172a !important;
+  background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 85%) !important;
 }
 
 html.light #sitePreloader {

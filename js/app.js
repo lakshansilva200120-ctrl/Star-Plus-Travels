@@ -1427,7 +1427,7 @@ function applyTheme(mode = getThemeMode(), save = false) {
   // Update preloader background if still present
   const preloader = document.getElementById('sitePreloader');
   if (preloader) {
-    preloader.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+    preloader.style.backgroundColor = isDark ? '#0f172a' : '#ffffff';
   }
 
   // Notify seasonal particle engine if present
