@@ -538,7 +538,7 @@ const PACKAGES = [
     reviews: 142,
     badge: 'Trending',
     badgeColor: 'from-emerald-500 to-teal-500',
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+    image: 'assets/sri-lanka-destination.jpg',
     alt: 'Sri Lanka Ella Nine Arch Bridge and Tea Hills',
     priceAED: 1890,
     originalPriceAED: 2400,
