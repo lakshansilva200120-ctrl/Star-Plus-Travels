@@ -119,10 +119,10 @@
         <div class="flex items-center space-x-1 bg-slate-900/90 border border-slate-700/80 rounded-lg px-2 py-0.5 shadow-sm shrink-0">
           <i class="fa-solid fa-coins text-amber-400 text-[10px]"></i>
           <select onchange="changeCurrency(this.value)" class="currency-selector bg-transparent text-slate-200 text-[11px] font-semibold outline-none cursor-pointer">
-            <option value="AED" class="bg-slate-900 text-slate-200">AED (Ø¯.Ø¥)</option>
+            <option value="AED" class="bg-slate-900 text-slate-200">AED (&#1583;.&#1573;)</option>
             <option value="USD" class="bg-slate-900 text-slate-200">USD ($)</option>
-            <option value="EUR" class="bg-slate-900 text-slate-200">EUR (â‚¬)</option>
-            <option value="GBP" class="bg-slate-900 text-slate-200">GBP (Â£)</option>
+            <option value="EUR" class="bg-slate-900 text-slate-200">EUR (&euro;)</option>
+            <option value="GBP" class="bg-slate-900 text-slate-200">GBP (&pound;)</option>
             <option value="LKR" class="bg-slate-900 text-slate-200">LKR (Rs)</option>
           </select>
         </div>
@@ -186,7 +186,7 @@
         <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
           <button type="button" onclick="toggleLanguage()" id="mainLangToggleBtn" class="lang-toggle-btn inline-flex items-center justify-center space-x-1.5 min-w-[82px] h-9 px-3 rounded-xl border border-slate-700/80 bg-slate-900/90 hover:bg-slate-800 hover:border-amber-500/50 text-slate-200 hover:text-white transition-all text-xs font-bold shadow-md cursor-pointer whitespace-nowrap shrink-0 flex-shrink-0 group" title="Switch Language" aria-label="Switch Language (English / Sinhala)">
             <i class="fa-solid fa-globe text-amber-400 text-xs transition-transform group-hover:rotate-12 shrink-0"></i>
-            <span class="desktop-lang-text font-bold text-xs text-center tracking-wide">à·ƒà·’à¶‚à·„à¶½</span>
+            <span class="desktop-lang-text font-bold text-xs text-center tracking-wide">à·ƒà·'à¶‚à·„à¶½</span>
           </button>
 
           <button id="mobileMenuBtn" class="lg:hidden p-2 h-9 w-9 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-300 hover:text-white hover:border-amber-500/50 shadow-md flex items-center justify-center cursor-pointer shrink-0 flex-shrink-0 transition-colors" aria-label="Toggle menu">
@@ -205,7 +205,7 @@
         </span>
         <div class="flex items-center space-x-1 bg-slate-950 p-1 rounded-lg border border-slate-800">
           <button type="button" onclick="changeLanguage('en')" class="lang-btn-en px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-amber-500 text-slate-950 shadow-sm">English</button>
-          <button type="button" onclick="changeLanguage('si')" class="lang-btn-si px-3 py-1 rounded-md text-[11px] font-semibold text-slate-400 hover:text-amber-400 transition-all">à·ƒà·’à¶‚à·„à¶½</button>
+          <button type="button" onclick="changeLanguage('si')" class="lang-btn-si px-3 py-1 rounded-md text-[11px] font-semibold text-slate-400 hover:text-amber-400 transition-all">à·ƒà·'à¶‚à·„à¶½</button>
         </div>
       </div>
 
@@ -280,11 +280,11 @@
             <label for="visaSelect" class="block text-xs font-bold text-slate-300 mb-2">Select Visa Category:</label>
             <div class="relative">
               <select id="visaSelect" onchange="checkVisaRequirements()" class="w-full pl-4 pr-10 py-3 bg-slate-900 border border-slate-700 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-amber-500 transition-colors cursor-pointer appearance-none">
-                <option value="uae" selected>ðŸ‡¦ðŸ‡ª UAE Tourist &amp; Freelance Visa (30 / 60 Days)</option>
-                <option value="oman_change">ðŸ‡´ðŸ‡² Oman Visa Change by Luxury Coach (Deira Departure)</option>
-                <option value="schengen">ðŸ‡ªðŸ‡º Schengen European Visa Full Concierge &amp; File Preparation</option>
-                <option value="srilanka">ðŸ‡±ðŸ‡° Sri Lanka Electronic Travel Authorization (ETA)</option>
-                <option value="azerbaijan">ðŸ‡¦ðŸ‡¿ Azerbaijan Official ASAN e-Visa (3-Hour Express)</option>
+                <option value="uae" selected>UAE Tourist &amp; Freelance Visa (30 / 60 Days)</option>
+                <option value="oman_change">Oman Visa Change by Luxury Coach (Deira Departure)</option>
+                <option value="schengen">Schengen European Visa Full Concierge &amp; File Preparation</option>
+                <option value="srilanka">Sri Lanka Electronic Travel Authorization (ETA)</option>
+                <option value="azerbaijan">Azerbaijan Official ASAN e-Visa (3-Hour Express)</option>
               </select>
               <i class="fa-solid fa-chevron-down absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
             </div>
@@ -553,11 +553,11 @@
         </p>
         <div class="space-y-1.5 pt-1 text-[11px]">
           <p class="flex items-center space-x-1.5">
-            <span class="text-amber-400 font-bold" data-i18n="footerUaeInq">ðŸ‡¦ðŸ‡ª UAE Inquiries:</span>
+            <span class="text-amber-400 font-bold" data-i18n="footerUaeInq"><i class="fa-solid fa-building mr-1"></i> UAE Inquiries:</span>
             <a href="mailto:info@starplustraveluae.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustraveluae.com</a>
           </p>
           <p class="flex items-center space-x-1.5">
-            <span class="text-amber-400 font-bold" data-i18n="footerSlInq">ðŸ‡±ðŸ‡° Sri Lanka Inquiries:</span>
+            <span class="text-amber-400 font-bold" data-i18n="footerSlInq"><i class="fa-solid fa-landmark mr-1"></i> Sri Lanka Inquiries:</span>
             <a href="mailto:info@starplustravelsl.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustravelsl.com</a>
           </p>
         </div>
@@ -631,8 +631,8 @@
 
     <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
       <div class="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-2.5 text-center sm:text-left">
-        <span data-i18n="footerCopyright">Â© 2026 Star Plus Travel &amp; Tourism LLC. All Rights Reserved.</span>
-        <span class="hidden sm:inline text-slate-700">â€¢</span>
+        <span data-i18n="footerCopyright">&copy; 2026 Star Plus Travel &amp; Tourism LLC. All Rights Reserved.</span>
+        <span class="hidden sm:inline text-slate-700">&bull;</span>
         <span data-i18n="footerAttribution">Redesigned &amp; Developed by Lupo</span>
       </div>
       <div class="flex items-center space-x-3 text-slate-400 text-sm">

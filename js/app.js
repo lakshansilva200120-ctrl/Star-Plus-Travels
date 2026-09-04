@@ -101,11 +101,11 @@ const I18N_TRANSLATIONS = {
     packagesTitle: "Featured Tour Packages",
     packagesCount: "Showing curated premium itineraries",
     catAll: "All Packages",
-    catDubai: "🇦🇪 Dubai & UAE",
-    catSriLanka: "🇱🇰 Sri Lanka",
-    catCaucasus: "🏔️ Caucasus & Europe",
-    catTropical: "🌴 Tropical Islands",
-    catSpiritual: "🕋 Umrah & Spiritual",
+    catDubai: '<i class="fa-solid fa-city mr-1.5 text-amber-400"></i>Dubai &amp; UAE',
+    catSriLanka: '<i class="fa-solid fa-gem mr-1.5 text-amber-400"></i>Sri Lanka',
+    catCaucasus: '<i class="fa-solid fa-mountain-sun mr-1.5 text-amber-400"></i>Caucasus &amp; Europe',
+    catTropical: '<i class="fa-solid fa-umbrella-beach mr-1.5 text-amber-400"></i>Tropical Islands',
+    catSpiritual: '<i class="fa-solid fa-mosque mr-1.5 text-amber-400"></i>Umrah &amp; Spiritual',
     customTripBadge: "Tailor-Made Holidays",
     customTripTitle: "Don't see your dream destination?",
     customTripDesc: "Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.",
@@ -177,47 +177,47 @@ const I18N_TRANSLATIONS = {
 
     // Footer
     footerAbout: "Star Plus Travel & Tourism LLC is a government accredited travel management company based in Deira, Dubai with branch operations in Sri Lanka. Providing world-class bespoke holiday packages, airline bookings, and express visa solutions.",
-    footerUaeInq: "🇦🇪 UAE Inquiries:",
-    footerSlInq: "🇱🇰 Sri Lanka Inquiries:",
+    footerUaeInq: '<i class="fa-solid fa-building mr-1 text-amber-400"></i>UAE Inquiries:',
+    footerSlInq: '<i class="fa-solid fa-landmark mr-1 text-amber-400"></i>Sri Lanka Inquiries:',
     footerQuickLinks: "Quick Links",
     footerTopPackages: "Top Packages",
     footerDestinations: "Key Hubs",
     footerLegal: "Accreditations",
-    footerCopyright: "© 2026 Star Plus Travel & Tourism LLC. All Rights Reserved.",
-    footerAttribution: "Redesigned & Developed by Lupo",
+    footerCopyright: "&copy; 2026 Star Plus Travel &amp; Tourism LLC. All Rights Reserved.",
+    footerAttribution: "Redesigned &amp; Developed by Lupo",
 
     // Careers Page
-    topBarHiring: "We're Hiring! Join our growing teams in Dubai & Sri Lanka",
-    careersBadge: "Careers at Star Plus Travel & Tourism LLC",
+    topBarHiring: "We're Hiring! Join our growing teams in Dubai &amp; Sri Lanka",
+    careersBadge: "Careers at Star Plus Travel &amp; Tourism LLC",
     careersHeroTitle: "Turn Travel Dreams Into Lifelong Careers",
     careersHeroSubtitle: "We are building the next generation of seamless international travel, luxury vacations, and visa solutions. Join our multi-cultural teams in Dubai, UAE and Colombo, Sri Lanka.",
     uaeBranchAppTitle: "UAE Branch Applications",
-    uaeBranchAppSubtitle: "Head Office • Deira, Dubai",
-    uaeBranchAppDesc: "Direct HR contact for UAE work permits & Dubai based vacancies.",
+    uaeBranchAppSubtitle: "Head Office &bull; Deira, Dubai",
+    uaeBranchAppDesc: "Direct HR contact for UAE work permits &amp; Dubai based vacancies.",
     slBranchAppTitle: "Sri Lanka Branch Applications",
-    slBranchAppSubtitle: "Regional Branch • Colombo",
-    slBranchAppDesc: "Direct HR contact for Sri Lanka operations & creative vacancies.",
+    slBranchAppSubtitle: "Regional Branch &bull; Colombo",
+    slBranchAppDesc: "Direct HR contact for Sri Lanka operations &amp; creative vacancies.",
     whyCareersBadge: "Why Star Plus?",
     whyCareersTitle: "Empowering Your Passion for Global Exploration",
-    perk1Title: "Travel Perks & FAM Trips",
+    perk1Title: "Travel Perks &amp; FAM Trips",
     perk1Desc: "Exclusive employee airline rates, discounted holiday packages, and sponsored destination familiarization trips.",
     perk2Title: "Competitive Compensation",
     perk2Desc: "Attractive salary packages, performance-based booking commissions, and comprehensive health coverage.",
     perk3Title: "Dual Regional Reach",
     perk3Desc: "Cross-border collaboration between our vibrant UAE hub in Dubai and our Sri Lanka operations in Colombo.",
-    perk4Title: "GDS & Tourism Training",
+    perk4Title: "GDS &amp; Tourism Training",
     perk4Desc: "Continuous professional training on Amadeus, Sabre, visa policies, customer management, and digital marketing.",
     vacanciesBadge: "Open Vacancies",
     vacanciesTitle: "Current Career Opportunities",
     vacanciesSubtitle: "Select a position below to review requirements and submit your resume directly to our regional HR desks.",
     filterAllRoles: "All Roles (6)",
-    filterUaeRoles: "🇦🇪 Dubai, UAE (3)",
-    filterSlRoles: "🇱🇰 Sri Lanka (3)",
+    filterUaeRoles: '<i class="fa-solid fa-building mr-1 text-amber-400"></i>Dubai, UAE (3)',
+    filterSlRoles: '<i class="fa-solid fa-landmark mr-1 text-amber-400"></i>Sri Lanka (3)',
     spontaneousBadge: "Don't see your specific role?",
     spontaneousTitle: "Send Us a Spontaneous Application",
     spontaneousDesc: "We are always on the lookout for visionary travel planners, corporate sales leaders, and visa specialists. Email your CV and cover note to our regional HR desks anytime:",
-    spontaneousUaeBtn: "🇦🇪 Email UAE HR Desk (info@starplustraveluae.com)",
-    spontaneousSlBtn: "🇱🇰 Email SL HR Desk (info@starplustravelsl.com)",
+    spontaneousUaeBtn: '<i class="fa-solid fa-envelope mr-1.5"></i>Email UAE HR Desk (info@starplustraveluae.com)',
+    spontaneousSlBtn: '<i class="fa-solid fa-envelope mr-1.5 text-amber-500"></i>Email SL HR Desk (info@starplustravelsl.com)',
     footerBranches: "Our Branches",
     recruitmentDesks: "Recruitment Desks",
     recruitmentDesksSubtitle: "Submit CVs directly to our regional talent acquisition teams:",
@@ -317,11 +317,11 @@ const I18N_TRANSLATIONS = {
     packagesTitle: "විශේෂ සංචාරක පැකේජ",
     packagesCount: "උසස් තත්ත්වයේ තෝරාගත් සංචාරක සැලසුම්",
     catAll: "සියලු පැකේජ",
-    catDubai: "🇦🇪 ඩුබායි සහ එමිර් රාජ්‍යය",
-    catSriLanka: "🇱🇰 ශ්‍රී ලංකාව",
-    catCaucasus: "🏔️ කොකේසස් සහ යුරෝපය",
-    catTropical: "🌴 නිවර්තන දූපත්",
-    catSpiritual: "🕋 උම්රා සහ වන්දනා",
+    catDubai: '<i class="fa-solid fa-city mr-1.5 text-amber-400"></i>ඩුබායි සහ එමීර් රාජ්‍යය',
+    catSriLanka: '<i class="fa-solid fa-gem mr-1.5 text-amber-400"></i>ශ්‍රී ලංකාව',
+    catCaucasus: '<i class="fa-solid fa-mountain-sun mr-1.5 text-amber-400"></i>කොකේසස් සහ යුරෝපය',
+    catTropical: '<i class="fa-solid fa-umbrella-beach mr-1.5 text-amber-400"></i>නිවර්තන දූපත්',
+    catSpiritual: '<i class="fa-solid fa-mosque mr-1.5 text-amber-400"></i>උම්රා සහ වන්දනා',
     customTripBadge: "ඔබට අවශ්‍ය පරිදි සැලසුම් කරන්න",
     customTripTitle: "ඔබගේ සිහින ගමනාන්තය මෙහි නැද්ද?",
     customTripDesc: "පවුලේ චාරිකා, මධුසමය, තනි සංචාර හෝ ආයතනික චාරිකා සඳහා ඔබ කැමති පරිදි විශේෂ පැකේජ සකස් කරගත හැක.",
@@ -393,25 +393,25 @@ const I18N_TRANSLATIONS = {
 
     // Footer
     footerAbout: "Star Plus Travel & Tourism LLC යනු ඩුබායි දෙයිරා හි ප්‍රධාන කාර්යාලය සහ ශ්‍රී ලංකාවේ ශාඛා සහිත රජයේ අනුමත සංචාරක කළමනාකරණ සමාගමකි. උසස් තත්ත්වයේ නිවාඩු පැකේජ, ගුවන් ටිකට්පත් සහ ක්ෂණික වීසා සේවා සපයනු ලැබේ.",
-    footerUaeInq: "🇦🇪 ඩුබායි විමසීම්:",
-    footerSlInq: "🇱🇰 ශ්‍රී ලංකා විමසීම්:",
+    footerUaeInq: '<i class="fa-solid fa-building mr-1 text-amber-400"></i>ඩුබායි විමසීම්:',
+    footerSlInq: '<i class="fa-solid fa-landmark mr-1 text-amber-400"></i>ශ්‍රී ලංකා විමසීම්:',
     footerQuickLinks: "ක්ෂණික පිවිසුම්",
     footerTopPackages: "ප්‍රධාන පැකේජ",
     footerDestinations: "ප්‍රධාන මධ්‍යස්ථාන",
     footerLegal: "නීතිමය සහතික",
-    footerCopyright: "© 2026 Star Plus Travel & Tourism LLC. සියලු හිමිකම් ඇවිරිණි.",
-    footerAttribution: "Redesigned & Developed by Lupo",
+    footerCopyright: "&copy; 2026 Star Plus Travel &amp; Tourism LLC. සියලු හිමිකම් ඇවිරිණි.",
+    footerAttribution: "Redesigned &amp; Developed by Lupo",
 
     // Careers Page
     topBarHiring: "අප බඳවා ගනු ලැබේ! ඩුබායි සහ ශ්‍රී ලංකාවේ අපගේ කණ්ඩායම් වලට එක්වන්න",
-    careersBadge: "Star Plus Travel & Tourism LLC රැකියා අවස්ථා",
+    careersBadge: "Star Plus Travel &amp; Tourism LLC රැකියා අවස්ථා",
     careersHeroTitle: "සංචාරක සිහින ජීවිත කාලීන වෘත්තියක් බවට පත් කරගන්න",
     careersHeroSubtitle: "ජාත්‍යන්තර සංචාර, සුඛෝපභෝගී නිවාඩු සහ ක්ෂණික වීසා සේවා ක්ෂේත්‍රයේ නවමු අත්දැකීමක් ගොඩනැගීමට ඩුබායි සහ කොළඹ අපගේ කණ්ඩායම් හා එක්වන්න.",
     uaeBranchAppTitle: "එක්සත් අරාබි එමීර් රාජ්‍යයේ රැකියා අයදුම්පත්",
-    uaeBranchAppSubtitle: "ප්‍රධාන කාර්යාලය • දෙයිරා, ඩුබායි",
+    uaeBranchAppSubtitle: "ප්‍රධාන කාර්යාලය &bull; දෙයිරා, ඩුබායි",
     uaeBranchAppDesc: "ඩුබායි රැකියා බලපත්‍ර සහ පුරප්පාඩු සඳහා ඍජු මානව සම්පත් සම්බන්ධතාවය.",
     slBranchAppTitle: "ශ්‍රී ලංකා ශාඛාවේ රැකියා අයදුම්පත්",
-    slBranchAppSubtitle: "ප්‍රාදේශීය ශාඛාව • කොළඹ",
+    slBranchAppSubtitle: "ප්‍රාදේශීය ශාඛාව &bull; කොළඹ",
     slBranchAppDesc: "ශ්‍රී ලංකා මෙහෙයුම් සහ නිර්මාණාත්මක පුරප්පාඩු සඳහා ඍජු මානව සම්පත් සම්බන්ධතාවය.",
     whyCareersBadge: "ඇයි Star Plus?",
     whyCareersTitle: "ගෝලීය සංචාරක අත්දැකීම් කෙරෙහි ඔබේ උනන්දුව බලගන්වන්න",
@@ -427,13 +427,13 @@ const I18N_TRANSLATIONS = {
     vacanciesTitle: "වත්මන් රැකියා අවස්ථා",
     vacanciesSubtitle: "අවශ්‍යතා පරීක්ෂා කර ඔබගේ ජීව දත්ත පත්‍රය අදාළ කලාපීය මානව සම්පත් අංශ වෙත යොමු කරන්න.",
     filterAllRoles: "සියලු අවස්ථා (6)",
-    filterUaeRoles: "🇦🇪 ඩුබායි, UAE (3)",
-    filterSlRoles: "🇱🇰 ශ්‍රී ලංකාව (3)",
+    filterUaeRoles: '<i class="fa-solid fa-building mr-1 text-amber-400"></i>ඩුබායි, UAE (3)',
+    filterSlRoles: '<i class="fa-solid fa-landmark mr-1 text-amber-400"></i>ශ්‍රී ලංකාව (3)',
     spontaneousBadge: "ඔබට ගැලපෙන තනතුරක් මෙහි නැද්ද?",
     spontaneousTitle: "ස්වයං අයදුම්පතක් යොමු කරන්න",
     spontaneousDesc: "දක්ෂ සංචාරක සැලසුම්කරුවන්, ආයතනික අලෙවි නියෝජිතයින් සහ වීසා විශේෂඥයින් අප නිරතුරුව සොයන්නෙමු. ඔබගේ CV පත්‍රය ඕනෑම වේලාවක අප වෙත එවන්න:",
-    spontaneousUaeBtn: "🇦🇪 ඩුබායි HR වෙත Email කරන්න (info@starplustraveluae.com)",
-    spontaneousSlBtn: "🇱🇰 ශ්‍රී ලංකා HR වෙත Email කරන්න (info@starplustravelsl.com)",
+    spontaneousUaeBtn: '<i class="fa-solid fa-envelope mr-1.5"></i>ඩුබායි HR වෙත Email කරන්න (info@starplustraveluae.com)',
+    spontaneousSlBtn: '<i class="fa-solid fa-envelope mr-1.5 text-amber-500"></i>ශ්‍රී ලංකා HR වෙත Email කරන්න (info@starplustravelsl.com)',
     footerBranches: "අපගේ ශාඛා",
     recruitmentDesks: "බඳවා ගැනීමේ අංශ",
     recruitmentDesksSubtitle: "කලාපීය මානව සම්පත් කණ්ඩායම් වෙත සෘජුවම ජීව දත්ත පත්‍ර යොමු කරන්න:",
@@ -508,7 +508,7 @@ const PACKAGES = [
     title: 'Ultimate Dubai & Desert Safari Extravaganza',
     category: 'dubai',
     destination: 'Dubai, UAE',
-    flag: '🇦🇪',
+    flag: '<i class="fa-solid fa-city text-amber-400"></i>',
     duration: '5 Days / 4 Nights',
     rating: 4.9,
     reviews: 184,
@@ -532,7 +532,7 @@ const PACKAGES = [
     title: 'Scenic Sri Lanka: Tea Hills, Wildlife & Beaches',
     category: 'srilanka',
     destination: 'Colombo, Kandy & Bentota',
-    flag: '🇱🇰',
+    flag: '<i class="fa-solid fa-gem text-amber-400"></i>',
     duration: '6 Days / 5 Nights',
     rating: 5.0,
     reviews: 142,
@@ -557,7 +557,7 @@ const PACKAGES = [
     title: 'Baku & Caucasus Wonders of Azerbaijan',
     category: 'caucasus',
     destination: 'Baku & Gabala, Azerbaijan',
-    flag: '🇦🇿',
+    flag: '<i class="fa-solid fa-mountain-sun text-amber-400"></i>',
     duration: '5 Days / 4 Nights',
     rating: 4.8,
     reviews: 96,
@@ -581,7 +581,7 @@ const PACKAGES = [
     title: 'Magical Georgia: Tbilisi, Kazbegi & Gudauri',
     category: 'caucasus',
     destination: 'Tbilisi & Caucasus, Georgia',
-    flag: '🇬🇪',
+    flag: '<i class="fa-solid fa-snowflake text-amber-400"></i>',
     duration: '6 Days / 5 Nights',
     rating: 4.9,
     reviews: 118,
@@ -606,7 +606,7 @@ const PACKAGES = [
     title: 'Maldives Overwater Villa Paradise Escape',
     category: 'tropical',
     destination: 'North Malé Atoll, Maldives',
-    flag: '🇲🇻',
+    flag: '<i class="fa-solid fa-umbrella-beach text-amber-400"></i>',
     duration: '4 Days / 3 Nights',
     rating: 5.0,
     reviews: 210,
@@ -629,7 +629,7 @@ const PACKAGES = [
     title: 'Bali Heavenly Getaway: Ubud & Seminyak',
     category: 'tropical',
     destination: 'Bali, Indonesia',
-    flag: '🇮🇩',
+    flag: '<i class="fa-solid fa-leaf text-amber-400"></i>',
     duration: '7 Days / 6 Nights',
     rating: 4.9,
     reviews: 165,
@@ -655,7 +655,7 @@ const PACKAGES = [
     title: 'Classic Turkey: Istanbul & Cappadocia Balloons',
     category: 'caucasus',
     destination: 'Istanbul & Cappadocia, Turkey',
-    flag: '🇹🇷',
+    flag: '<i class="fa-solid fa-landmark-dome text-amber-400"></i>',
     duration: '6 Days / 5 Nights',
     rating: 4.9,
     reviews: 138,
@@ -681,7 +681,7 @@ const PACKAGES = [
     category: 'spiritual',
     duration: '7 Days / 6 Nights',
     destination: 'Makkah & Madinah, KSA',
-    flag: '🇸🇦',
+    flag: '<i class="fa-solid fa-mosque text-amber-400"></i>',
     rating: 5.0,
     reviews: 245,
     badge: 'Spiritual Peace',
@@ -710,7 +710,7 @@ const TESTIMONIALS = [
     role: 'Corporate Executive, Dubai',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
     trip: 'Maldives Overwater Luxury Tour',
-    flag: '🇦🇪',
+    flag: '<i class="fa-solid fa-building text-amber-400"></i>',
     stars: 5,
     date: 'February 2026',
     comment: 'Star Plus Travels managed everything seamlessly from our private flights to the overwater villa in Maldives. Their team in Deira provided 24/7 WhatsApp assistance throughout. Will book our winter getaway with them again!'
@@ -720,7 +720,7 @@ const TESTIMONIALS = [
     role: 'Travel Bloggers, London UK',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
     trip: 'Sri Lanka Wildlife & Scenic Train',
-    flag: '🇬🇧',
+    flag: '<i class="fa-solid fa-plane-arrival text-amber-400"></i>',
     stars: 5,
     date: 'January 2026',
     comment: 'The 6-day Sri Lanka tour was beyond perfection! The private chauffeur was courteous, the hotels were 5-star standard, and the train ride through the Nuwara Eliya tea hills was unforgettable. Star Plus Travels is top tier.'
@@ -730,7 +730,7 @@ const TESTIMONIALS = [
     role: 'Business Owner, Colombo',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
     trip: 'Georgia Caucasus & Kazbegi Tour',
-    flag: '🇱🇰',
+    flag: '<i class="fa-solid fa-gem text-amber-400"></i>',
     stars: 5,
     date: 'December 2025',
     comment: 'Our family of five enjoyed snow in Kazbegi and delicious cuisine in Tbilisi. Visa approvals were processed in just 48 hours without any hassle. Exceptional service and honest transparent pricing.'
@@ -740,7 +740,7 @@ const TESTIMONIALS = [
     role: 'Educator, Abu Dhabi',
     avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
     trip: 'Baku & Gabala Wonders',
-    flag: '🇦🇪',
+    flag: '<i class="fa-solid fa-star text-amber-400"></i>',
     stars: 5,
     date: 'November 2025',
     comment: 'Azerbaijan was stunning! Star Plus Travels customized our itinerary to include Gabala cable cars and historical Baku. Their Fly Now Pay Later option with Tabby was super convenient!'
@@ -1023,7 +1023,7 @@ function openBookingModal(pkgId) {
   selectedPackageForBooking = pkg;
 
   document.getElementById('modalPkgTitle').textContent = pkg.title;
-  document.getElementById('modalPkgDestination').textContent = `${pkg.flag} ${pkg.destination} • ${pkg.duration}`;
+  document.getElementById('modalPkgDestination').innerHTML = `${pkg.flag} <span class="font-semibold">${pkg.destination}</span> &bull; <span>${pkg.duration}</span>`;
   document.getElementById('modalPkgImage').src = pkg.image;
   document.getElementById('modalPkgImage').alt = pkg.alt;
   document.getElementById('modalPkgBasePrice').textContent = formatPrice(pkg.priceAED);
@@ -1094,7 +1094,7 @@ function openItineraryModal(pkgId) {
   if (!pkg) return;
 
   document.getElementById('itineraryModalTitle').textContent = pkg.title;
-  document.getElementById('itineraryModalMeta').textContent = `${pkg.flag} ${pkg.destination} • ${pkg.duration} • Rating: ★ ${pkg.rating}`;
+  document.getElementById('itineraryModalMeta').innerHTML = `${pkg.flag} <span class="font-semibold">${pkg.destination}</span> &bull; <span>${pkg.duration}</span> &bull; <span class="text-amber-400 font-bold"><i class="fa-solid fa-star text-xs"></i> ${pkg.rating}</span>`;
   document.getElementById('itineraryModalImage').src = pkg.image;
 
   // Itinerary timeline
@@ -1151,7 +1151,7 @@ function renderTestimonial() {
         <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden border-2 border-amber-500/60 shadow-xl shadow-amber-500/10">
           <img src="${t.avatar}" alt="${t.name}" class="w-full h-full object-cover">
         </div>
-        <span class="absolute -bottom-2 -right-2 text-2xl">${t.flag}</span>
+        <span class="absolute -bottom-2 -right-2 w-7 h-7 rounded-full bg-slate-900 border border-amber-500/50 flex items-center justify-center text-xs shadow-md">${t.flag}</span>
       </div>
 
       <!-- Quote Content -->
@@ -1603,7 +1603,7 @@ function changeLanguage(lang, notify = true) {
   window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
 
   if (notify) {
-    showToast(lang === 'si' ? '🇱🇰 භාෂාව සිංහල ලෙස වෙනස් කරන ලදී' : '🇬🇧 Language switched to English', 'success');
+    showToast(lang === 'si' ? 'භාෂාව සිංහල ලෙස වෙනස් කරන ලදී' : 'Language switched to English', 'success');
   }
 }
 

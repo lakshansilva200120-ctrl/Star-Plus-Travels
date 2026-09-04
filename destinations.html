@@ -119,10 +119,10 @@
         <div class="flex items-center space-x-1 bg-slate-900/90 border border-slate-700/80 rounded-lg px-2 py-0.5 shadow-sm shrink-0">
           <i class="fa-solid fa-coins text-amber-400 text-[10px]"></i>
           <select onchange="changeCurrency(this.value)" class="currency-selector bg-transparent text-slate-200 text-[11px] font-semibold outline-none cursor-pointer">
-            <option value="AED" class="bg-slate-900 text-slate-200">AED (Ø¯.Ø¥)</option>
+            <option value="AED" class="bg-slate-900 text-slate-200">AED (&#1583;.&#1573;)</option>
             <option value="USD" class="bg-slate-900 text-slate-200">USD ($)</option>
-            <option value="EUR" class="bg-slate-900 text-slate-200">EUR (â‚¬)</option>
-            <option value="GBP" class="bg-slate-900 text-slate-200">GBP (Â£)</option>
+            <option value="EUR" class="bg-slate-900 text-slate-200">EUR (&euro;)</option>
+            <option value="GBP" class="bg-slate-900 text-slate-200">GBP (&pound;)</option>
             <option value="LKR" class="bg-slate-900 text-slate-200">LKR (Rs)</option>
           </select>
         </div>
@@ -186,7 +186,7 @@
         <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
           <button type="button" onclick="toggleLanguage()" id="mainLangToggleBtn" class="lang-toggle-btn inline-flex items-center justify-center space-x-1.5 min-w-[82px] h-9 px-3 rounded-xl border border-slate-700/80 bg-slate-900/90 hover:bg-slate-800 hover:border-amber-500/50 text-slate-200 hover:text-white transition-all text-xs font-bold shadow-md cursor-pointer whitespace-nowrap shrink-0 flex-shrink-0 group" title="Switch Language" aria-label="Switch Language (English / Sinhala)">
             <i class="fa-solid fa-globe text-amber-400 text-xs transition-transform group-hover:rotate-12 shrink-0"></i>
-            <span class="desktop-lang-text font-bold text-xs text-center tracking-wide">à·ƒà·’à¶‚à·„à¶½</span>
+            <span class="desktop-lang-text font-bold text-xs text-center tracking-wide">à·ƒà·'à¶‚à·„à¶½</span>
           </button>
 
           <button id="mobileMenuBtn" class="lg:hidden p-2 h-9 w-9 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-300 hover:text-white hover:border-amber-500/50 shadow-md flex items-center justify-center cursor-pointer shrink-0 flex-shrink-0 transition-colors" aria-label="Toggle menu">
@@ -205,7 +205,7 @@
         </span>
         <div class="flex items-center space-x-1 bg-slate-950 p-1 rounded-lg border border-slate-800">
           <button type="button" onclick="changeLanguage('en')" class="lang-btn-en px-3 py-1 rounded-md text-[11px] font-extrabold transition-all bg-amber-500 text-slate-950 shadow-sm">English</button>
-          <button type="button" onclick="changeLanguage('si')" class="lang-btn-si px-3 py-1 rounded-md text-[11px] font-semibold text-slate-400 hover:text-amber-400 transition-all">à·ƒà·’à¶‚à·„à¶½</button>
+          <button type="button" onclick="changeLanguage('si')" class="lang-btn-si px-3 py-1 rounded-md text-[11px] font-semibold text-slate-400 hover:text-amber-400 transition-all">à·ƒà·'à¶‚à·„à¶½</button>
         </div>
       </div>
 
@@ -277,7 +277,7 @@
           <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=85" alt="Dubai UAE Skyline" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/30 to-transparent"></div>
           <div class="absolute top-4 left-4 flex items-center space-x-2">
-            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80">ðŸ‡¦ðŸ‡ª Flagship Hub</span>
+            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80"><i class="fa-solid fa-city text-amber-400 mr-1.5"></i>Flagship Hub</span>
           </div>
           <div class="absolute bottom-4 left-4 right-4">
             <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Arabian Glamour</span>
@@ -315,7 +315,7 @@
           <img src="https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1200&q=85" alt="Sri Lanka Sigiriya" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/30 to-transparent"></div>
           <div class="absolute top-4 left-4 flex items-center space-x-2">
-            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80">ðŸ‡±ðŸ‡° Cultural Triangle</span>
+            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80"><i class="fa-solid fa-gem text-amber-400 mr-1.5"></i>Cultural Triangle</span>
           </div>
           <div class="absolute bottom-4 left-4 right-4">
             <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Emerald Pearl</span>
@@ -353,7 +353,7 @@
           <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=85" alt="Maldives Overwater Resort" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/30 to-transparent"></div>
           <div class="absolute top-4 left-4 flex items-center space-x-2">
-            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80">ðŸ‡²ðŸ‡» Luxury Paradise</span>
+            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80"><i class="fa-solid fa-umbrella-beach text-amber-400 mr-1.5"></i>Luxury Paradise</span>
           </div>
           <div class="absolute bottom-4 left-4 right-4">
             <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Turquoise Atolls</span>
@@ -391,7 +391,7 @@
           <img src="https://images.unsplash.com/photo-1601628828688-632f38a5a7d0?auto=format&fit=crop&w=1200&q=85" alt="Baku Flame Towers" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/30 to-transparent"></div>
           <div class="absolute top-4 left-4 flex items-center space-x-2">
-            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80">ðŸ‡¦ðŸ‡¿ Silk Road Wonder</span>
+            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80"><i class="fa-solid fa-mountain-sun text-amber-400 mr-1.5"></i>Silk Road Wonder</span>
           </div>
           <div class="absolute bottom-4 left-4 right-4">
             <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Land of Fire</span>
@@ -429,7 +429,7 @@
           <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=85" alt="Georgia Kazbegi" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/30 to-transparent"></div>
           <div class="absolute top-4 left-4 flex items-center space-x-2">
-            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80">ðŸ‡¬ðŸ‡ª Alpine Heritage</span>
+            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80"><i class="fa-solid fa-snowflake text-amber-400 mr-1.5"></i>Alpine Heritage</span>
           </div>
           <div class="absolute bottom-4 left-4 right-4">
             <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Caucasus Marvel</span>
@@ -438,7 +438,7 @@
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
           <p class="text-xs text-slate-300 leading-relaxed">
-            Stroll through Old Tbilisiâ€™s charming cobblestone courtyards, gaze up at snow-capped Mount Kazbek from Gergeti Trinity Church, and savor hearty Georgian feasts with warm local hospitality.
+            Stroll through Old Tbilisi's charming cobblestone courtyards, gaze up at snow-capped Mount Kazbek from Gergeti Trinity Church, and savor hearty Georgian feasts with warm local hospitality.
           </p>
           <div class="space-y-2 border-t border-slate-800/80 pt-3">
             <div class="flex items-center justify-between text-[11px] text-slate-400">
@@ -467,7 +467,7 @@
           <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=85" alt="Bali Rice Terraces" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/30 to-transparent"></div>
           <div class="absolute top-4 left-4 flex items-center space-x-2">
-            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80">ðŸ‡®ðŸ‡© Tropical Bliss</span>
+            <span class="px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80"><i class="fa-solid fa-leaf text-amber-400 mr-1.5"></i>Tropical Bliss</span>
           </div>
           <div class="absolute bottom-4 left-4 right-4">
             <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Island of the Gods</span>
@@ -476,7 +476,7 @@
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
           <p class="text-xs text-slate-300 leading-relaxed">
-            Swing over lush emerald Ubud rice terraces, watch cliffside fire dances at Uluwatu, explore sacred waterfalls, and cruise across to Nusa Penidaâ€™s dramatic coastal viewpoints.
+            Swing over lush emerald Ubud rice terraces, watch cliffside fire dances at Uluwatu, explore sacred waterfalls, and cruise across to Nusa Penida's dramatic coastal viewpoints.
           </p>
           <div class="space-y-2 border-t border-slate-800/80 pt-3">
             <div class="flex items-center justify-between text-[11px] text-slate-400">
@@ -530,55 +530,55 @@
           <tbody class="divide-y divide-slate-800/60">
             <tr class="hover:bg-slate-900/50 transition-colors">
               <td class="py-3 px-4 font-bold text-white flex items-center space-x-2">
-                <span>ðŸ‡¦ðŸ‡ª</span> <span>Dubai &amp; Abu Dhabi</span>
+                <i class="fa-solid fa-city text-amber-400 mr-1.5"></i><span>Dubai &amp; Abu Dhabi</span>
               </td>
               <td class="py-3 px-4 text-amber-400 font-medium">Nov &ndash; Apr</td>
-              <td class="py-3 px-4">24Â°C &ndash; 30Â°C</td>
+              <td class="py-3 px-4">24&deg;C &ndash; 30&deg;C</td>
               <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-semibold">30/60-Day Tourist Visa</span></td>
               <td class="py-3 px-4 text-right font-medium text-slate-400">Domestic / Hub</td>
             </tr>
             <tr class="hover:bg-slate-900/50 transition-colors">
               <td class="py-3 px-4 font-bold text-white flex items-center space-x-2">
-                <span>ðŸ‡±ðŸ‡°</span> <span>Sri Lanka</span>
+                <i class="fa-solid fa-gem text-amber-400 mr-1.5"></i><span>Sri Lanka</span>
               </td>
               <td class="py-3 px-4 text-amber-400 font-medium">Year-Round</td>
-              <td class="py-3 px-4">27Â°C &ndash; 31Â°C</td>
+              <td class="py-3 px-4">27&deg;C &ndash; 31&deg;C</td>
               <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-semibold">Online ETA e-Visa</span></td>
               <td class="py-3 px-4 text-right font-medium text-slate-400">~ 4h 15m</td>
             </tr>
             <tr class="hover:bg-slate-900/50 transition-colors">
               <td class="py-3 px-4 font-bold text-white flex items-center space-x-2">
-                <span>ðŸ‡²ðŸ‡»</span> <span>Maldives</span>
+                <i class="fa-solid fa-umbrella-beach text-amber-400 mr-1.5"></i><span>Maldives</span>
               </td>
               <td class="py-3 px-4 text-amber-400 font-medium">Dec &ndash; Apr</td>
-              <td class="py-3 px-4">28Â°C &ndash; 31Â°C</td>
+              <td class="py-3 px-4">28&deg;C &ndash; 31&deg;C</td>
               <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-semibold">Free 30-Day On Arrival</span></td>
               <td class="py-3 px-4 text-right font-medium text-slate-400">~ 4h 00m</td>
             </tr>
             <tr class="hover:bg-slate-900/50 transition-colors">
               <td class="py-3 px-4 font-bold text-white flex items-center space-x-2">
-                <span>ðŸ‡¦ðŸ‡¿</span> <span>Baku, Azerbaijan</span>
+                <i class="fa-solid fa-mountain-sun text-amber-400 mr-1.5"></i><span>Baku, Azerbaijan</span>
               </td>
               <td class="py-3 px-4 text-amber-400 font-medium">Apr &ndash; Jun, Sep &ndash; Nov</td>
-              <td class="py-3 px-4">18Â°C &ndash; 25Â°C</td>
+              <td class="py-3 px-4">18&deg;C &ndash; 25&deg;C</td>
               <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 font-semibold">Fast ASAN e-Visa (3h)</span></td>
               <td class="py-3 px-4 text-right font-medium text-slate-400">~ 2h 55m</td>
             </tr>
             <tr class="hover:bg-slate-900/50 transition-colors">
               <td class="py-3 px-4 font-bold text-white flex items-center space-x-2">
-                <span>ðŸ‡¬ðŸ‡ª</span> <span>Tbilisi &amp; Kazbegi, Georgia</span>
+                <i class="fa-solid fa-snowflake text-amber-400 mr-1.5"></i><span>Tbilisi &amp; Kazbegi, Georgia</span>
               </td>
               <td class="py-3 px-4 text-amber-400 font-medium">May &ndash; Oct / Dec &ndash; Mar</td>
-              <td class="py-3 px-4">15Â°C &ndash; 26Â°C (Summer)</td>
+              <td class="py-3 px-4">15&deg;C &ndash; 26&deg;C (Summer)</td>
               <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-semibold">Visa-Free for UAE Residents</span></td>
               <td class="py-3 px-4 text-right font-medium text-slate-400">~ 3h 25m</td>
             </tr>
             <tr class="hover:bg-slate-900/50 transition-colors">
               <td class="py-3 px-4 font-bold text-white flex items-center space-x-2">
-                <span>ðŸ‡®ðŸ‡©</span> <span>Bali, Indonesia</span>
+                <i class="fa-solid fa-leaf text-amber-400 mr-1.5"></i><span>Bali, Indonesia</span>
               </td>
               <td class="py-3 px-4 text-amber-400 font-medium">May &ndash; Sep</td>
-              <td class="py-3 px-4">26Â°C &ndash; 30Â°C</td>
+              <td class="py-3 px-4">26&deg;C &ndash; 30&deg;C</td>
               <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-semibold">e-VOA (Visa On Arrival)</span></td>
               <td class="py-3 px-4 text-right font-medium text-slate-400">~ 9h 00m</td>
             </tr>
@@ -619,11 +619,11 @@
         </p>
         <div class="space-y-1.5 pt-1 text-[11px]">
           <p class="flex items-center space-x-1.5">
-            <span class="text-amber-400 font-bold" data-i18n="footerUaeInq">ðŸ‡¦ðŸ‡ª UAE Inquiries:</span>
+            <span class="text-amber-400 font-bold" data-i18n="footerUaeInq"><i class="fa-solid fa-building mr-1"></i> UAE Inquiries:</span>
             <a href="mailto:info@starplustraveluae.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustraveluae.com</a>
           </p>
           <p class="flex items-center space-x-1.5">
-            <span class="text-amber-400 font-bold" data-i18n="footerSlInq">ðŸ‡±ðŸ‡° Sri Lanka Inquiries:</span>
+            <span class="text-amber-400 font-bold" data-i18n="footerSlInq"><i class="fa-solid fa-landmark mr-1"></i> Sri Lanka Inquiries:</span>
             <a href="mailto:info@starplustravelsl.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustravelsl.com</a>
           </p>
         </div>
@@ -697,8 +697,8 @@
 
     <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
       <div class="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-2.5 text-center sm:text-left">
-        <span data-i18n="footerCopyright">Â© 2026 Star Plus Travel &amp; Tourism LLC. All Rights Reserved.</span>
-        <span class="hidden sm:inline text-slate-700">â€¢</span>
+        <span data-i18n="footerCopyright">&copy; 2026 Star Plus Travel &amp; Tourism LLC. All Rights Reserved.</span>
+        <span class="hidden sm:inline text-slate-700">&bull;</span>
         <span data-i18n="footerAttribution">Redesigned &amp; Developed by Lupo</span>
       </div>
       <div class="flex items-center space-x-3 text-slate-400 text-sm">
