@@ -229,19 +229,44 @@
                class="h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
         </a>
 
-        <!-- Desktop Navigation Links (Restructured professional travel portal structure) -->
+        <!-- Desktop Navigation Links (Multi-Page Architecture with Explore Dropdown) -->
         <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
           <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
-          <a href="index.html#packages" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
-          <a href="index.html#destinations" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
-          <a href="index.html#visa-services" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Activities &amp; Visas</a>
-          <a href="index.html#testimonials" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
-          <a href="careers.html" class="nav-link active py-2 px-1 text-amber-400 font-bold transition-colors flex items-center space-x-1.5">
-            <span data-i18n="navCareers">Careers</span>
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          </a>
-          <a href="index.html#faq" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navFaq">FAQ</a>
-          <a href="index.html#contact" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
+          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
+          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
+          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
+          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
+          
+          <!-- Explore Dropdown -->
+          <div class="nav-dropdown py-2 px-1">
+            <button type="button" class="nav-link nav-dropdown-trigger active text-amber-400 font-bold transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
+              <span data-i18n="navExplore">Explore</span>
+              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-400"></i>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="why-us.html" class="nav-dropdown-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span data-i18n="navWhyUs">Why Choose Us</span>
+              </a>
+              <a href="careers.html" class="nav-dropdown-item active text-amber-400 font-bold flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-briefcase"></i>
+                  <span data-i18n="navCareers">Careers</span>
+                </div>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              </a>
+              <a href="faq.html" class="nav-dropdown-item">
+                <i class="fa-solid fa-circle-question"></i>
+                <span data-i18n="navFaq">Help &amp; FAQ</span>
+              </a>
+              <a href="terms.html" class="nav-dropdown-item">
+                <i class="fa-solid fa-file-contract"></i>
+                <span data-i18n="navTerms">Terms &amp; Conditions</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
         </nav>
 
         <!-- Right Action Area: Single Unified Language Toggle & Mobile Hamburger Menu -->
@@ -278,18 +303,36 @@
         </div>
       </div>
 
-      <nav class="flex flex-col space-y-3 text-base font-semibold text-slate-200">
+      <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-200">
         <a href="index.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navHome">Home</a>
-        <a href="index.html#packages" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navPackages">Tour Packages</a>
-        <a href="index.html#destinations" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navDestinations">Destinations</a>
-        <a href="index.html#visa-services" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navActivitiesVisa">Activities &amp; Visas</a>
-        <a href="index.html#testimonials" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navReviews">Customer Reviews</a>
-        <a href="careers.html" onclick="toggleMobileMenu()" class="text-amber-400 font-bold py-2 border-b border-slate-800/80 flex items-center justify-between">
-          <span data-i18n="navCareers">Careers</span>
-          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30" data-i18n="navHiringBadge">We're Hiring</span>
-        </a>
-        <a href="index.html#faq" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navFaq">FAQ</a>
-        <a href="index.html#contact" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2" data-i18n="navContact">Contact &amp; Office</a>
+        <a href="packages.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navPackages">Tour Packages</a>
+        <a href="destinations.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navDestinations">Destinations</a>
+        <a href="visa-services.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navActivitiesVisa">Visa Services</a>
+        <a href="reviews.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navReviews">Customer Reviews</a>
+        
+        <div class="pt-2 pb-1 border-b border-slate-800/80">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-500/80 mb-2 block" data-i18n="navExplore">Explore &amp; Info</span>
+          <div class="grid grid-cols-2 gap-2 text-sm font-medium">
+            <a href="why-us.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-300 hover:text-amber-400 flex items-center space-x-1.5">
+              <i class="fa-solid fa-shield-halved text-amber-400 text-xs"></i>
+              <span data-i18n="navWhyUs">Why Us</span>
+            </a>
+            <a href="careers.html" onclick="toggleMobileMenu()" class="py-1.5 text-amber-400 font-bold flex items-center space-x-1.5">
+              <i class="fa-solid fa-briefcase text-amber-400 text-xs"></i>
+              <span data-i18n="navCareers">Careers</span>
+            </a>
+            <a href="faq.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-300 hover:text-amber-400 flex items-center space-x-1.5">
+              <i class="fa-solid fa-circle-question text-amber-400 text-xs"></i>
+              <span data-i18n="navFaq">FAQ</span>
+            </a>
+            <a href="terms.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-300 hover:text-amber-400 flex items-center space-x-1.5">
+              <i class="fa-solid fa-file-contract text-amber-400 text-xs"></i>
+              <span data-i18n="navTerms">Terms</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="contact.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2" data-i18n="navContact">Contact &amp; Office</a>
       </nav>
 
       <div class="pt-2 flex flex-col gap-3">

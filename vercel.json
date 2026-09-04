@@ -3,10 +3,15 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    {
-      "source": "/careers",
-      "destination": "/careers.html"
-    }
+    { "source": "/packages", "destination": "/packages.html" },
+    { "source": "/destinations", "destination": "/destinations.html" },
+    { "source": "/visa-services", "destination": "/visa-services.html" },
+    { "source": "/why-us", "destination": "/why-us.html" },
+    { "source": "/reviews", "destination": "/reviews.html" },
+    { "source": "/faq", "destination": "/faq.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/careers", "destination": "/careers.html" }
   ],
   "headers": [
     {

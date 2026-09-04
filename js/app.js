@@ -34,7 +34,9 @@ const I18N_TRANSLATIONS = {
     navVisa: "Visa Services",
     navWhyUs: "Why Choose Us",
     navReviews: "Reviews",
+    navExplore: "Explore",
     navCareers: "Careers",
+    navTerms: "Terms & Conditions",
     navFaq: "FAQ",
     navContact: "Contact",
     navGetQuote: "Get Free Quote",
@@ -248,7 +250,9 @@ const I18N_TRANSLATIONS = {
     navVisa: "වීසා සේවා",
     navWhyUs: "ඇයි Star Plus",
     navReviews: "ප්‍රසාද අදහස්",
+    navExplore: "ගවේෂණය",
     navCareers: "රැකියා අවස්ථා",
+    navTerms: "නියම සහ කොන්දේසි",
     navFaq: "නිතර අසන ප්‍රශ්න",
     navContact: "අප අමතන්න",
     navGetQuote: "මිල ගණන් ලබාගන්න",
@@ -1670,7 +1674,104 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Attach search listeners
   document.getElementById('heroSearchForm')?.addEventListener('submit', handleHeroSearch);
+
+  // Initialize Dynamic Hero Slideshow if present
+  initHeroSlideshow();
+
+  // Initialize Navigation Dropdown interactions
+  initNavDropdowns();
 });
+
+/* ==========================================================================
+   Dynamic Hero Slideshow Controller
+   ========================================================================== */
+let heroSlideshowTimer = null;
+let currentSlideIndex = 0;
+
+function initHeroSlideshow() {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-indicator-dot');
+  if (!slides || slides.length === 0) return;
+
+  function showSlide(index) {
+    slides.forEach((s, i) => {
+      if (i === index) {
+        s.classList.add('active');
+      } else {
+        s.classList.remove('active');
+      }
+    });
+    dots.forEach((d, i) => {
+      if (i === index) {
+        d.classList.add('active');
+      } else {
+        d.classList.remove('active');
+      }
+    });
+    currentSlideIndex = index;
+  }
+
+  function nextSlide() {
+    const nextIndex = (currentSlideIndex + 1) % slides.length;
+    showSlide(nextIndex);
+  }
+
+  function startSlideshow() {
+    if (heroSlideshowTimer) clearInterval(heroSlideshowTimer);
+    heroSlideshowTimer = setInterval(nextSlide, 5500);
+  }
+
+  function stopSlideshow() {
+    if (heroSlideshowTimer) {
+      clearInterval(heroSlideshowTimer);
+      heroSlideshowTimer = null;
+    }
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.dataset.slideIndex, 10);
+      if (!isNaN(idx)) {
+        showSlide(idx);
+        startSlideshow();
+      }
+    });
+  });
+
+  const heroSection = document.getElementById('hero');
+  if (heroSection) {
+    heroSection.addEventListener('mouseenter', stopSlideshow);
+    heroSection.addEventListener('mouseleave', startSlideshow);
+  }
+
+  showSlide(0);
+  startSlideshow();
+}
+
+/* ==========================================================================
+   Navigation Dropdown Controller (Explore Menu)
+   ========================================================================== */
+function initNavDropdowns() {
+  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  dropdowns.forEach(dropdown => {
+    const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+    if (trigger) {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropdown.classList.toggle('is-open');
+      });
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    dropdowns.forEach(dropdown => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('is-open');
+      }
+    });
+  });
+}
 
 /* ==========================================================================
    Simple & Elegant Luxury Preloader Controller

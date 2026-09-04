@@ -293,19 +293,44 @@
                class="h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
         </a>
 
-        <!-- Desktop Navigation Links (Restructured professional travel portal structure) -->
+        <!-- Desktop Navigation Links (Multi-Page Architecture with Explore Dropdown) -->
         <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
-          <a href="#hero" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
-          <a href="#packages" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
-          <a href="#destinations" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
-          <a href="#visa-services" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Activities &amp; Visas</a>
-          <a href="#testimonials" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
-          <a href="careers.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors flex items-center space-x-1.5">
-            <span data-i18n="navCareers">Careers</span>
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          </a>
-          <a href="#faq" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navFaq">FAQ</a>
-          <a href="#contact" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
+          <a href="index.html" class="nav-link active py-2 px-1 text-amber-400 font-bold transition-colors" data-i18n="navHome">Home</a>
+          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
+          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
+          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
+          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
+          
+          <!-- Explore Dropdown -->
+          <div class="nav-dropdown py-2 px-1">
+            <button type="button" class="nav-link nav-dropdown-trigger hover:text-amber-400 transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px] text-slate-200">
+              <span data-i18n="navExplore">Explore</span>
+              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-400"></i>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="why-us.html" class="nav-dropdown-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span data-i18n="navWhyUs">Why Choose Us</span>
+              </a>
+              <a href="careers.html" class="nav-dropdown-item flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-briefcase"></i>
+                  <span data-i18n="navCareers">Careers</span>
+                </div>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              </a>
+              <a href="faq.html" class="nav-dropdown-item">
+                <i class="fa-solid fa-circle-question"></i>
+                <span data-i18n="navFaq">Help &amp; FAQ</span>
+              </a>
+              <a href="terms.html" class="nav-dropdown-item">
+                <i class="fa-solid fa-file-contract"></i>
+                <span data-i18n="navTerms">Terms &amp; Conditions</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
         </nav>
 
         <!-- Right Action Area: Single Unified Language Toggle & Mobile Hamburger Menu -->
@@ -342,22 +367,44 @@
         </div>
       </div>
 
-      <nav class="flex flex-col space-y-3 text-base font-semibold text-slate-200">
-        <a href="#hero" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navHome">Home</a>
-        <a href="#packages" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navPackages">Tour Packages</a>
-        <a href="#destinations" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navDestinations">Destinations</a>
-        <a href="#visa-services" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navActivitiesVisa">Activities &amp; Visas</a>
-        <a href="#testimonials" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navReviews">Customer Reviews</a>
-        <a href="careers.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80 flex items-center justify-between">
-          <span data-i18n="navCareers">Careers &amp; Vacancies</span>
-          <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30" data-i18n="navHiringBadge">We're Hiring</span>
+      <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-200">
+        <a href="index.html" onclick="toggleMobileMenu()" class="text-amber-400 font-bold py-2 border-b border-slate-800/80 flex items-center justify-between" data-i18n="navHome">
+          <span>Home</span>
+          <i class="fa-solid fa-house text-xs text-amber-400"></i>
         </a>
-        <a href="#faq" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navFaq">FAQ</a>
-        <a href="#contact" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2" data-i18n="navContact">Contact &amp; Office</a>
+        <a href="packages.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navPackages">Tour Packages</a>
+        <a href="destinations.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navDestinations">Destinations</a>
+        <a href="visa-services.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navActivitiesVisa">Visa Services</a>
+        <a href="reviews.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navReviews">Customer Reviews</a>
+        
+        <!-- Mobile Explore Subsection -->
+        <div class="pt-2 pb-1 border-b border-slate-800/80">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-500/80 mb-2 block" data-i18n="navExplore">Explore &amp; Info</span>
+          <div class="grid grid-cols-2 gap-2 text-sm font-medium">
+            <a href="why-us.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-300 hover:text-amber-400 flex items-center space-x-1.5">
+              <i class="fa-solid fa-shield-halved text-amber-400 text-xs"></i>
+              <span data-i18n="navWhyUs">Why Us</span>
+            </a>
+            <a href="careers.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-300 hover:text-amber-400 flex items-center space-x-1.5">
+              <i class="fa-solid fa-briefcase text-amber-400 text-xs"></i>
+              <span data-i18n="navCareers">Careers</span>
+            </a>
+            <a href="faq.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-300 hover:text-amber-400 flex items-center space-x-1.5">
+              <i class="fa-solid fa-circle-question text-amber-400 text-xs"></i>
+              <span data-i18n="navFaq">FAQ</span>
+            </a>
+            <a href="terms.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-300 hover:text-amber-400 flex items-center space-x-1.5">
+              <i class="fa-solid fa-file-contract text-amber-400 text-xs"></i>
+              <span data-i18n="navTerms">Terms</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="contact.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2" data-i18n="navContact">Contact &amp; Office</a>
       </nav>
 
       <div class="pt-2 flex flex-col gap-3">
-        <a href="#contact" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all" data-i18n="customTripBtn">
+        <a href="contact.html" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all" data-i18n="customTripBtn">
           Request Custom Itinerary
         </a>
       </div>
@@ -379,26 +426,54 @@
     </div>
   </header>
 
-  <!-- Video Intro Hero Section -->
+  <!-- Dynamic Banner Slideshow Hero Section -->
   <section id="hero" class="relative min-h-[96vh] flex items-center justify-center pt-16 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
     
-    <!-- Background Looping Video Container -->
-    <div class="hero-video-wrapper">
-      <video id="heroBgVideo" 
-             autoplay 
-             loop 
-             muted 
-             playsinline 
-             poster="https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1920&q=80"
-             class="hero-video-element">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-flying-through-clouds-under-a-blue-sky-41480-large.mp4" type="video/mp4">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-waves-crashing-on-a-tropical-beach-41584-large.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <!-- Dynamic Hero Banner Slideshow (Smooth Luxury Travel Imagery) -->
+    <div class="hero-slideshow-wrapper">
+      <!-- Slide 1: Dubai Twilight Skyline -->
+      <div class="hero-slide active">
+        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1920&q=85" 
+             alt="Luxury Dubai Skyline" 
+             class="hero-slide-img">
+      </div>
+      <!-- Slide 2: Maldives Turquoise Ocean Lagoon -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1920&q=85" 
+             alt="Maldives Tropical Resort" 
+             class="hero-slide-img">
+      </div>
+      <!-- Slide 3: Sri Lanka Sigiriya Fortress & Highlands -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1920&q=85" 
+             alt="Sri Lanka Sigiriya" 
+             class="hero-slide-img">
+      </div>
+      <!-- Slide 4: Caucasus Mountain Peaks & Georgia -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1920&q=85" 
+             alt="Caucasus Snowy Mountains" 
+             class="hero-slide-img">
+      </div>
+      <!-- Slide 5: Bali Island Sanctuary -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=85" 
+             alt="Bali Tropical Paradise" 
+             class="hero-slide-img">
+      </div>
 
-      <!-- Multi-Layered Semi-Transparent Gradient Overlays for Crystal Clear Text Readability -->
+      <!-- Multi-Layered Semi-Transparent Gradient Overlays for Crystal Clear Text Contrast -->
       <div class="hero-video-gradient"></div>
       <div class="hero-video-vignette"></div>
+
+      <!-- Interactive Slideshow Indicator Dots -->
+      <div class="hero-slideshow-indicators">
+        <button type="button" class="hero-indicator-dot active" data-slide-index="0" aria-label="Slide 1: Dubai"></button>
+        <button type="button" class="hero-indicator-dot" data-slide-index="1" aria-label="Slide 2: Maldives"></button>
+        <button type="button" class="hero-indicator-dot" data-slide-index="2" aria-label="Slide 3: Sri Lanka"></button>
+        <button type="button" class="hero-indicator-dot" data-slide-index="3" aria-label="Slide 4: Caucasus"></button>
+        <button type="button" class="hero-indicator-dot" data-slide-index="4" aria-label="Slide 5: Bali"></button>
+      </div>
     </div>
 
     <!-- Hero Content -->
@@ -1298,13 +1373,16 @@
       <div class="space-y-3">
         <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="footerQuickLinks">Quick Links</h4>
         <ul class="space-y-2">
-          <li><a href="#hero" class="hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a></li>
-          <li><a href="#clients" class="hover:text-amber-400 transition-colors" data-i18n="navClients">Corporate Clients</a></li>
-          <li><a href="#packages" class="hover:text-amber-400 transition-colors" data-i18n="navPackages">Holiday Packages</a></li>
-          <li><a href="#visa-services" class="hover:text-amber-400 transition-colors" data-i18n="navVisa">Visa Services</a></li>
-          <li><a href="#why-us" class="hover:text-amber-400 transition-colors" data-i18n="navWhyUs">Why Choose Us</a></li>
+          <li><a href="index.html" class="hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a></li>
+          <li><a href="packages.html" class="hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a></li>
+          <li><a href="destinations.html" class="hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a></li>
+          <li><a href="visa-services.html" class="hover:text-amber-400 transition-colors" data-i18n="navVisa">Visa Services</a></li>
+          <li><a href="why-us.html" class="hover:text-amber-400 transition-colors" data-i18n="navWhyUs">Why Choose Us</a></li>
+          <li><a href="reviews.html" class="hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a></li>
           <li><a href="careers.html" class="hover:text-amber-400 transition-colors flex items-center space-x-1"><span data-i18n="navCareers">Careers</span><span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-bold" data-i18n="navHiringBadge">Hiring</span></a></li>
-          <li><a href="#contact" class="hover:text-amber-400 transition-colors" data-i18n="navContact">Contact Our Offices</a></li>
+          <li><a href="faq.html" class="hover:text-amber-400 transition-colors" data-i18n="navFaq">Help &amp; FAQ</a></li>
+          <li><a href="terms.html" class="hover:text-amber-400 transition-colors" data-i18n="navTerms">Terms &amp; Conditions</a></li>
+          <li><a href="contact.html" class="hover:text-amber-400 transition-colors" data-i18n="navContact">Contact Our Offices</a></li>
         </ul>
       </div>
 

@@ -1,4 +1,4 @@
-﻿# Production Build & Verification Script for Star Plus Travels
+# Production Build & Verification Script for Star Plus Travels
 Write-Host "========================================================" -ForegroundColor Cyan
 Write-Host " Running Star Plus Travels Production Build & Audit... " -ForegroundColor Yellow
 Write-Host "========================================================" -ForegroundColor Cyan
@@ -10,7 +10,18 @@ $errors = @()
 $warnings = @()
 
 # 1. Check Core HTML Files
-$htmlFiles = @("index.html", "careers.html")
+$htmlFiles = @(
+    "index.html",
+    "packages.html",
+    "destinations.html",
+    "visa-services.html",
+    "why-us.html",
+    "reviews.html",
+    "faq.html",
+    "contact.html",
+    "terms.html",
+    "careers.html"
+)
 foreach ($file in $htmlFiles) {
     $fullPath = Join-Path $root $file
     if (-not (Test-Path $fullPath)) {
