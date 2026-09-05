@@ -576,22 +576,22 @@
       </div>
 
       <!-- Trust Counters Bar -->
-      <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-left">
+      <div id="trustCountersBar" class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-left">
         <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
-          <div class="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 font-heading" data-i18n="trustTravelers">15,000+</div>
+          <div class="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 font-heading stat-counter" data-target="15000" data-suffix="+" data-format="comma" data-i18n="trustTravelers">15,000+</div>
           <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5" data-i18n="trustTravelersLabel">Happy Explorers Served</p>
         </div>
         <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
-          <div class="text-2xl sm:text-3xl font-black text-blue-600 dark:text-cyan-400 font-heading" data-i18n="trustDestinations">45+</div>
+          <div class="text-2xl sm:text-3xl font-black text-blue-600 dark:text-cyan-400 font-heading stat-counter" data-target="45" data-suffix="+" data-i18n="trustDestinations">45+</div>
           <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5" data-i18n="trustDestinationsLabel">Global Destinations</p>
         </div>
         <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
-          <div class="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400 font-heading" data-i18n="trustVisaRate">99.2%</div>
+          <div class="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400 font-heading stat-counter" data-target="99.2" data-decimals="1" data-suffix="%" data-i18n="trustVisaRate">99.2%</div>
           <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5" data-i18n="trustVisaRateLabel">Visa Approval Rate</p>
         </div>
         <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
           <div class="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 font-heading flex items-center">
-            <span>4.9</span>
+            <span class="stat-counter" data-target="4.9" data-decimals="1">4.9</span>
             <span class="text-xs text-amber-500 ml-1">★★★★★</span>
           </div>
           <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5" data-i18n="trustRatingLabel">Google & Trustpilot Rating</p>

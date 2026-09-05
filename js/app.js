@@ -1680,6 +1680,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Navigation Dropdown interactions
   initNavDropdowns();
+
+  // Initialize Animated Statistics Number Counters
+  initStatsCounters();
 });
 
 /* ==========================================================================
@@ -1834,3 +1837,90 @@ function initNavDropdowns() {
     setTimeout(dismissPreloader, 1500);
   }
 })();
+
+/* ==========================================================================
+   Animated Statistics Number Counter (Scroll-Triggered with Smooth Easing)
+   ========================================================================== */
+function initStatsCounters() {
+  const counterElements = document.querySelectorAll('.stat-counter');
+  if (!counterElements.length) return;
+
+  // Pre-initialize counters that are out of view so there is no jarring jump
+  counterElements.forEach(el => {
+    const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    const suffix = el.getAttribute('data-suffix') || '';
+    const prefix = el.getAttribute('data-prefix') || '';
+    const rect = el.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    if (!inView) {
+      const zeroFormatted = decimals > 0 ? (0).toFixed(decimals) : '0';
+      el.textContent = `${prefix}${zeroFormatted}${suffix}`;
+    }
+  });
+
+  const animateCounter = (el) => {
+    if (el._hasAnimated) return;
+    el._hasAnimated = true;
+
+    const target = parseFloat(el.getAttribute('data-target') || '0');
+    const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    const suffix = el.getAttribute('data-suffix') || '';
+    const prefix = el.getAttribute('data-prefix') || '';
+    const useComma = el.getAttribute('data-format') === 'comma' || target >= 1000;
+    const duration = parseInt(el.getAttribute('data-duration') || '1800', 10);
+
+    const startTime = performance.now();
+
+    const updateValue = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      // Smooth cubic ease-out curve: fast start, soft settle
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const current = target * easeOut;
+
+      let formattedNumber;
+      if (decimals > 0) {
+        formattedNumber = current.toFixed(decimals);
+      } else {
+        const rounded = Math.floor(current);
+        formattedNumber = useComma ? rounded.toLocaleString('en-US') : rounded.toString();
+      }
+
+      el.textContent = `${prefix}${formattedNumber}${suffix}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(updateValue);
+      } else {
+        let finalFormatted;
+        if (decimals > 0) {
+          finalFormatted = target.toFixed(decimals);
+        } else {
+          finalFormatted = useComma ? Math.floor(target).toLocaleString('en-US') : target.toString();
+        }
+        el.textContent = `${prefix}${finalFormatted}${suffix}`;
+      }
+    };
+
+    requestAnimationFrame(updateValue);
+  };
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    counterElements.forEach(el => observer.observe(el));
+  } else {
+    counterElements.forEach(animateCounter);
+  }
+}
+window.initStatsCounters = initStatsCounters;
+
