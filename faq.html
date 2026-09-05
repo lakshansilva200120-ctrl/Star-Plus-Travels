@@ -53,28 +53,68 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css?v=5.1.0">
 
-  <!-- Immediate Theme Initialization Script (Locked to Professional Dark Theme) -->
+    <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync with Preference Memory) -->
   <script>
     (function() {
       try {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-        localStorage.setItem('starplus_theme_mode', 'dark');
-        localStorage.removeItem('starplus_theme');
-        localStorage.removeItem('starplus_manual_theme_set');
+        const mode = localStorage.getItem('starplus_theme_mode') || 'system';
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let isDark;
+        if (mode === 'dark') {
+          isDark = true;
+        } else if (mode === 'light') {
+          isDark = false;
+        } else {
+          isDark = systemDark;
+        }
+
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
       } catch (e) {}
+
+      // Prevent refresh jump to anchor hashes
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      if (window.location.hash) {
+        try {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (e) {}
+      }
+      window.scrollTo(0, 0);
     })();
   </script>
 </head>
-<body class="bg-[#070e17] text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col">
-  <!-- Preloader -->
-  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#070e17] transition-opacity duration-500">
+<body class="bg-[#f8fafc] dark:bg-[#070e17] text-slate-900 dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col transition-colors duration-300 w-full max-w-full relative">
+    <!-- Preloader -->
+  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-500">
     <div class="relative flex flex-col items-center">
-      <img src="assets/logo-white-text.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
+      <img id="preloaderLogoImg" src="assets/logo-white-text.png" data-dark-src="assets/logo-white-text.png" data-light-src="assets/original-removebg-preview.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
       <div class="luxury-gold-spinner mb-4"></div>
       <p class="text-xs uppercase tracking-widest text-amber-400 font-semibold animate-pulse">Loading Star Plus Travels...</p>
     </div>
   </div>
+  <script>
+    (function() {
+      try {
+        var isDark = document.documentElement.classList.contains('dark') || 
+          (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var pImg = document.getElementById('preloaderLogoImg');
+        var pBox = document.getElementById('sitePreloader');
+        if (pImg) {
+          pImg.src = isDark ? (pImg.getAttribute('data-dark-src') || pImg.src) : (pImg.getAttribute('data-light-src') || pImg.src);
+        }
+        if (pBox) {
+          pBox.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Top Announcement Bar -->
   <div class="top-announcement-bar bg-[#050b12]/95 border-b border-slate-800/80 text-[11px] sm:text-xs py-1.5 px-3 sm:px-6 relative z-40 backdrop-blur-md transition-colors overflow-hidden">
@@ -131,23 +171,23 @@
           <img id="brandHeaderLogo"
                src="assets/logo-white-text.png" 
                data-dark-src="assets/logo-white-text.png"
-               data-light-src="assets/logo-white-text.png"
+               data-light-src="assets/original-removebg-preview.png"
                alt="Star Plus Travel and Tourism LLC" 
                class="h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
         </a>
 
-        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
-          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
-          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
-          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
-          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
-          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
+        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
+          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
+          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
+          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
+          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
+          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
           
           <!-- Explore Dropdown -->
           <div class="nav-dropdown py-2 px-1">
-            <button type="button" class="nav-link nav-dropdown-trigger active text-amber-400 font-bold transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
+            <button type="button" class="nav-link nav-dropdown-trigger active text-amber-500 dark:text-amber-400 font-bold transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
               <span data-i18n="navExplore">Explore</span>
-              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-400"></i>
+              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-500 dark:text-amber-400"></i>
             </button>
             <div class="nav-dropdown-menu">
               <a href="why-us.html" class="nav-dropdown-item">
@@ -172,7 +212,7 @@
             </div>
           </div>
 
-          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
+          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
         </nav>
 
         <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
@@ -243,17 +283,17 @@
 
 <main class="flex-grow">
   <!-- FAQ Hero Banner -->
-  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-[#0B192C]/80 via-[#070E17] to-[#070E17] border-b border-slate-800/80">
+  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50 dark:from-[#0B192C]/80 dark:via-[#070E17] dark:to-[#070E17] border-b border-slate-200 dark:border-slate-800/80 transition-colors">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.12),rgba(255,255,255,0))] pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
         <i class="fa-solid fa-circle-question text-[11px]"></i>
         <span data-i18n="faqBadge">Knowledge Base &amp; Help Desk</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="faqPageTitle">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="faqPageTitle">
         Frequently Asked Questions
       </h1>
-      <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="faqPageSubtitle">
+      <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="faqPageSubtitle">
         Find authoritative answers regarding tour package bookings, UAE and Schengen visa procedures, payment split plans, and refund policies.
       </p>
 
@@ -261,7 +301,7 @@
       <div class="mt-8 max-w-xl mx-auto">
         <div class="relative">
           <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-          <input type="text" id="faqSearchInput" onkeyup="filterFaqs(this.value)" placeholder="Search questions (e.g., visa documents, refund, Tabby)..." class="w-full pl-11 pr-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-amber-500 transition-colors shadow-xl">
+          <input type="text" id="faqSearchInput" onkeyup="filterFaqs(this.value)" placeholder="Search questions (e.g., visa documents, refund, Tabby)..." class="w-full pl-11 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-amber-500 transition-colors shadow-xl">
         </div>
       </div>
     </div>
@@ -272,89 +312,89 @@
     <div class="space-y-4" id="faqContainer">
       
       <!-- FAQ 1 -->
-      <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden transition-colors">
+      <div class="faq-item glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors">
         <button type="button" onclick="toggleFaq(this)" class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer">
-          <span class="text-sm sm:text-base font-bold text-white font-heading">How do I book a tour package with Star Plus Travels?</span>
+          <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-heading">How do I book a tour package with Star Plus Travels?</span>
           <i class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-4">
+        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800/60 pt-4">
           Booking is simple and fast. You can browse our packages online and click "Book Now" to send an instant reservation request, connect directly with our travel specialists via WhatsApp (+971 52 758 2293), or visit our walk-in branches in Deira, Dubai or Colombo 03, Sri Lanka. Our team confirms availability and issues your official voucher within hours.
         </div>
       </div>
 
       <!-- FAQ 2 -->
-      <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden transition-colors">
+      <div class="faq-item glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors">
         <button type="button" onclick="toggleFaq(this)" class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer">
-          <span class="text-sm sm:text-base font-bold text-white font-heading">What documents are required for a UAE 30-day or 60-day tourist visa?</span>
+          <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-heading">What documents are required for a UAE 30-day or 60-day tourist visa?</span>
           <i class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-4">
+        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800/60 pt-4">
           For most nationalities, we only require: (1) A clear color passport copy with at least 6 months validity remaining, and (2) A passport-sized color photograph with a white background. No physical embassy visit or paper courier is needed. All visas are issued electronically via GDRFA or ICP within 24 to 48 hours.
         </div>
       </div>
 
       <!-- FAQ 3 -->
-      <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden transition-colors">
+      <div class="faq-item glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors">
         <button type="button" onclick="toggleFaq(this)" class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer">
-          <span class="text-sm sm:text-base font-bold text-white font-heading">How does the Oman Visa Change Bus service work?</span>
+          <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-heading">How does the Oman Visa Change Bus service work?</span>
           <i class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-4">
+        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800/60 pt-4">
           The Oman Visa Change Bus is the most popular, cost-efficient way to renew or change your UAE visit visa. Our luxury AC coach departs daily from Deira, Dubai. A trained guide assists you through UAE border exit and Oman border entry. You stay comfortably in our partner hotel in Oman while your new UAE visa is approved (usually within 12-24 hours), then return safely to Dubai.
         </div>
       </div>
 
       <!-- FAQ 4 -->
-      <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden transition-colors">
+      <div class="faq-item glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors">
         <button type="button" onclick="toggleFaq(this)" class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer">
-          <span class="text-sm sm:text-base font-bold text-white font-heading">Can I pay for my flights and tour packages in installments?</span>
+          <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-heading">Can I pay for my flights and tour packages in installments?</span>
           <i class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-4">
+        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800/60 pt-4">
           Yes! Star Plus Travels is an official authorized merchant partner of both Tabby and Tamara. UAE residents can split any booking cost into 4 equal, interest-free monthly payments. Simply choose Tabby or Tamara at checkout, verify with your Emirates ID, and you're good to travel.
         </div>
       </div>
 
       <!-- FAQ 5 -->
-      <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden transition-colors">
+      <div class="faq-item glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors">
         <button type="button" onclick="toggleFaq(this)" class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer">
-          <span class="text-sm sm:text-base font-bold text-white font-heading">What is your cancellation and refund policy?</span>
+          <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-heading">What is your cancellation and refund policy?</span>
           <i class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-4">
+        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800/60 pt-4">
           Package cancellations made 14 days or more prior to departure are eligible for a full refund minus unrecoverable airline fare rules. For visa applications, government processing fees are non-refundable once lodged in official immigration portals. Full terms are outlined in detail on our Terms &amp; Conditions page.
         </div>
       </div>
 
       <!-- FAQ 6 -->
-      <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden transition-colors">
+      <div class="faq-item glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors">
         <button type="button" onclick="toggleFaq(this)" class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer">
-          <span class="text-sm sm:text-base font-bold text-white font-heading">Are international flights included in tour package prices?</span>
+          <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-heading">Are international flights included in tour package prices?</span>
           <i class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-4">
+        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800/60 pt-4">
           Our base advertised package prices include luxury accommodations, private guided ground excursions, daily breakfast, and airport transfers. International flights can be bundled seamlessly at wholesale consolidator rates via Emirates, flydubai, or SriLankan Airlines according to your departure city.
         </div>
       </div>
 
       <!-- FAQ 7 -->
-      <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden transition-colors">
+      <div class="faq-item glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors">
         <button type="button" onclick="toggleFaq(this)" class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer">
-          <span class="text-sm sm:text-base font-bold text-white font-heading">How far in advance should I apply for a Schengen Visa?</span>
+          <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-heading">How far in advance should I apply for a Schengen Visa?</span>
           <i class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-4">
+        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800/60 pt-4">
           We recommend starting the Schengen application process 6 to 12 weeks before your planned departure date. European embassies (VFS/TLS) experience high seasonal demand, especially before summer and winter holidays. Our concierge team assists you in securing earliest appointment slots and preparing compliant documentation.
         </div>
       </div>
 
       <!-- FAQ 8 -->
-      <div class="faq-item glass-card rounded-2xl border border-slate-800 overflow-hidden transition-colors">
+      <div class="faq-item glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors">
         <button type="button" onclick="toggleFaq(this)" class="faq-btn w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer">
-          <span class="text-sm sm:text-base font-bold text-white font-heading">Can you customize a private itinerary for our family or corporate group?</span>
+          <span class="text-sm sm:text-base font-bold text-slate-900 dark:text-white font-heading">Can you customize a private itinerary for our family or corporate group?</span>
           <i class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300 shrink-0"></i>
         </button>
-        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/60 pt-4">
+        <div class="faq-answer hidden px-5 sm:px-6 pb-5 sm:pb-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-slate-800/60 pt-4">
           Absolutely. Over 40% of our travelers book tailor-made itineraries. Whether you require private luxury chauffeurs, halal dining arrangements, wheelchair accessible transport, or multi-destination corporate team retreats, our destination specialists will curate every day to your exact requirements.
         </div>
       </div>

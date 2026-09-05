@@ -53,28 +53,68 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css?v=5.1.0">
 
-  <!-- Immediate Theme Initialization Script (Locked to Professional Dark Theme) -->
+    <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync with Preference Memory) -->
   <script>
     (function() {
       try {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-        localStorage.setItem('starplus_theme_mode', 'dark');
-        localStorage.removeItem('starplus_theme');
-        localStorage.removeItem('starplus_manual_theme_set');
+        const mode = localStorage.getItem('starplus_theme_mode') || 'system';
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let isDark;
+        if (mode === 'dark') {
+          isDark = true;
+        } else if (mode === 'light') {
+          isDark = false;
+        } else {
+          isDark = systemDark;
+        }
+
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
       } catch (e) {}
+
+      // Prevent refresh jump to anchor hashes
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      if (window.location.hash) {
+        try {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (e) {}
+      }
+      window.scrollTo(0, 0);
     })();
   </script>
 </head>
-<body class="bg-[#070e17] text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col">
-  <!-- Preloader -->
-  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#070e17] transition-opacity duration-500">
+<body class="bg-[#f8fafc] dark:bg-[#070e17] text-slate-900 dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col transition-colors duration-300 w-full max-w-full relative">
+    <!-- Preloader -->
+  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-500">
     <div class="relative flex flex-col items-center">
-      <img src="assets/logo-white-text.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
+      <img id="preloaderLogoImg" src="assets/logo-white-text.png" data-dark-src="assets/logo-white-text.png" data-light-src="assets/original-removebg-preview.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
       <div class="luxury-gold-spinner mb-4"></div>
       <p class="text-xs uppercase tracking-widest text-amber-400 font-semibold animate-pulse">Loading Star Plus Travels...</p>
     </div>
   </div>
+  <script>
+    (function() {
+      try {
+        var isDark = document.documentElement.classList.contains('dark') || 
+          (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var pImg = document.getElementById('preloaderLogoImg');
+        var pBox = document.getElementById('sitePreloader');
+        if (pImg) {
+          pImg.src = isDark ? (pImg.getAttribute('data-dark-src') || pImg.src) : (pImg.getAttribute('data-light-src') || pImg.src);
+        }
+        if (pBox) {
+          pBox.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Top Announcement Bar -->
   <div class="top-announcement-bar bg-[#050b12]/95 border-b border-slate-800/80 text-[11px] sm:text-xs py-1.5 px-3 sm:px-6 relative z-40 backdrop-blur-md transition-colors overflow-hidden">
@@ -131,23 +171,23 @@
           <img id="brandHeaderLogo"
                src="assets/logo-white-text.png" 
                data-dark-src="assets/logo-white-text.png"
-               data-light-src="assets/logo-white-text.png"
+               data-light-src="assets/original-removebg-preview.png"
                alt="Star Plus Travel and Tourism LLC" 
                class="h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
         </a>
 
-        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
-          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
-          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
-          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
-          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
-          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
+        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
+          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
+          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
+          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
+          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
+          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
           
           <!-- Explore Dropdown -->
           <div class="nav-dropdown py-2 px-1">
-            <button type="button" class="nav-link nav-dropdown-trigger active text-amber-400 font-bold transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
+            <button type="button" class="nav-link nav-dropdown-trigger active text-amber-500 dark:text-amber-400 font-bold transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
               <span data-i18n="navExplore">Explore</span>
-              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-400"></i>
+              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-500 dark:text-amber-400"></i>
             </button>
             <div class="nav-dropdown-menu">
               <a href="why-us.html" class="nav-dropdown-item">
@@ -172,7 +212,7 @@
             </div>
           </div>
 
-          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
+          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
         </nav>
 
         <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
@@ -243,17 +283,17 @@
 
 <main class="flex-grow">
   <!-- Terms Hero Banner -->
-  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-[#0B192C]/80 via-[#070E17] to-[#070E17] border-b border-slate-800/80">
+  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50 dark:from-[#0B192C]/80 dark:via-[#070E17] dark:to-[#070E17] border-b border-slate-200 dark:border-slate-800/80 transition-colors">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.12),rgba(255,255,255,0))] pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
         <i class="fa-solid fa-file-contract text-[11px]"></i>
         <span data-i18n="termsBadge">Legal Disclosures &amp; Policies</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="termsPageTitle">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="termsPageTitle">
         Terms &amp; Conditions
       </h1>
-      <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="termsPageSubtitle">
+      <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="termsPageSubtitle">
         Clear, transparent booking policies, immigration regulatory disclaimers, installment terms, and consumer rights.
       </p>
     </div>
@@ -261,11 +301,11 @@
 
   <!-- Legal Articles Container -->
   <section class="py-14 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
-    <div class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-800 space-y-8 text-xs sm:text-sm text-slate-300 leading-relaxed">
+    <div class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 space-y-8 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
       
       <!-- Article 1 -->
-      <div class="space-y-3 pb-6 border-b border-slate-800">
-        <h2 class="text-base sm:text-lg font-bold text-white font-heading flex items-center space-x-2">
+      <div class="space-y-3 pb-6 border-b border-slate-200 dark:border-slate-800">
+        <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading flex items-center space-x-2">
           <span class="text-amber-400">1.</span>
           <span>Company Licensing &amp; Scope of Services</span>
         </h2>
@@ -275,8 +315,8 @@
       </div>
 
       <!-- Article 2 -->
-      <div class="space-y-3 pb-6 border-b border-slate-800">
-        <h2 class="text-base sm:text-lg font-bold text-white font-heading flex items-center space-x-2">
+      <div class="space-y-3 pb-6 border-b border-slate-200 dark:border-slate-800">
+        <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading flex items-center space-x-2">
           <span class="text-amber-400">2.</span>
           <span>Tour Package Quotations &amp; Confirmations</span>
         </h2>
@@ -286,8 +326,8 @@
       </div>
 
       <!-- Article 3 -->
-      <div class="space-y-3 pb-6 border-b border-slate-800">
-        <h2 class="text-base sm:text-lg font-bold text-white font-heading flex items-center space-x-2">
+      <div class="space-y-3 pb-6 border-b border-slate-200 dark:border-slate-800">
+        <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading flex items-center space-x-2">
           <span class="text-amber-400">3.</span>
           <span>Split Payments &amp; Installments (Tabby &amp; Tamara)</span>
         </h2>
@@ -297,30 +337,30 @@
       </div>
 
       <!-- Article 4 -->
-      <div class="space-y-3 pb-6 border-b border-slate-800">
-        <h2 class="text-base sm:text-lg font-bold text-white font-heading flex items-center space-x-2">
+      <div class="space-y-3 pb-6 border-b border-slate-200 dark:border-slate-800">
+        <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading flex items-center space-x-2">
           <span class="text-amber-400">4.</span>
           <span>Visa Applications &amp; Immigration Disclaimers</span>
         </h2>
         <p>
           Star Plus Travels provides visa application review, document compliance auditing, and authorized portal lodgment services. <strong>Crucial Notice:</strong> The final authority to grant, delay, or reject any tourist, transit, or entry visa rests exclusively with sovereign immigration bodies, including the UAE General Directorate of Residency and Foreigners Affairs (GDRFA), Federal Authority for Identity, Citizenship, Customs and Port Security (ICP), and relevant foreign embassies.
         </p>
-        <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-200 mt-3">
+        <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-900 dark:text-amber-200 mt-3">
           <strong class="text-amber-400 block mb-1">Non-Refundable Government Fees:</strong>
           Government processing fees, consular stamp duties, and administrative filing costs are non-refundable under any circumstances once an application is lodged into official immigration databases, regardless of whether a visa is approved, delayed, or rejected.
         </div>
       </div>
 
       <!-- Article 5 -->
-      <div class="space-y-3 pb-6 border-b border-slate-800">
-        <h2 class="text-base sm:text-lg font-bold text-white font-heading flex items-center space-x-2">
+      <div class="space-y-3 pb-6 border-b border-slate-200 dark:border-slate-800">
+        <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading flex items-center space-x-2">
           <span class="text-amber-400">5.</span>
           <span>Cancellation, Amendments &amp; Refunds</span>
         </h2>
         <p>
           Cancellation requests must be submitted in writing to our official email address (<a href="mailto:info@starplustraveluae.com" class="text-amber-400 underline">info@starplustraveluae.com</a>). Refund entitlements are determined according to the following schedule:
         </p>
-        <ul class="list-disc pl-5 space-y-1 text-xs text-slate-400 mt-2">
+        <ul class="list-disc pl-5 space-y-1 text-xs text-slate-600 dark:text-slate-400 mt-2">
           <li><strong>30+ Days Prior to Departure:</strong> 90% refund of land package costs (airline tickets subject to carrier tariff rules).</li>
           <li><strong>15 to 29 Days Prior to Departure:</strong> 70% refund of land package costs.</li>
           <li><strong>7 to 14 Days Prior to Departure:</strong> 50% refund of land package costs.</li>
@@ -329,8 +369,8 @@
       </div>
 
       <!-- Article 6 -->
-      <div class="space-y-3 pb-6 border-b border-slate-800">
-        <h2 class="text-base sm:text-lg font-bold text-white font-heading flex items-center space-x-2">
+      <div class="space-y-3 pb-6 border-b border-slate-200 dark:border-slate-800">
+        <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading flex items-center space-x-2">
           <span class="text-amber-400">6.</span>
           <span>Passport Validity, Health &amp; Travel Insurance</span>
         </h2>
@@ -341,7 +381,7 @@
 
       <!-- Article 7 -->
       <div class="space-y-3">
-        <h2 class="text-base sm:text-lg font-bold text-white font-heading flex items-center space-x-2">
+        <h2 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading flex items-center space-x-2">
           <span class="text-amber-400">7.</span>
           <span>Governing Law &amp; Legal Jurisdiction</span>
         </h2>

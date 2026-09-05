@@ -53,28 +53,68 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css?v=5.1.0">
 
-  <!-- Immediate Theme Initialization Script (Locked to Professional Dark Theme) -->
+    <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync with Preference Memory) -->
   <script>
     (function() {
       try {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-        localStorage.setItem('starplus_theme_mode', 'dark');
-        localStorage.removeItem('starplus_theme');
-        localStorage.removeItem('starplus_manual_theme_set');
+        const mode = localStorage.getItem('starplus_theme_mode') || 'system';
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let isDark;
+        if (mode === 'dark') {
+          isDark = true;
+        } else if (mode === 'light') {
+          isDark = false;
+        } else {
+          isDark = systemDark;
+        }
+
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
       } catch (e) {}
+
+      // Prevent refresh jump to anchor hashes
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      if (window.location.hash) {
+        try {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (e) {}
+      }
+      window.scrollTo(0, 0);
     })();
   </script>
 </head>
-<body class="bg-[#070e17] text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col">
-  <!-- Preloader -->
-  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#070e17] transition-opacity duration-500">
+<body class="bg-[#f8fafc] dark:bg-[#070e17] text-slate-900 dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col transition-colors duration-300 w-full max-w-full relative">
+    <!-- Preloader -->
+  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-500">
     <div class="relative flex flex-col items-center">
-      <img src="assets/logo-white-text.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
+      <img id="preloaderLogoImg" src="assets/logo-white-text.png" data-dark-src="assets/logo-white-text.png" data-light-src="assets/original-removebg-preview.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
       <div class="luxury-gold-spinner mb-4"></div>
       <p class="text-xs uppercase tracking-widest text-amber-400 font-semibold animate-pulse">Loading Star Plus Travels...</p>
     </div>
   </div>
+  <script>
+    (function() {
+      try {
+        var isDark = document.documentElement.classList.contains('dark') || 
+          (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var pImg = document.getElementById('preloaderLogoImg');
+        var pBox = document.getElementById('sitePreloader');
+        if (pImg) {
+          pImg.src = isDark ? (pImg.getAttribute('data-dark-src') || pImg.src) : (pImg.getAttribute('data-light-src') || pImg.src);
+        }
+        if (pBox) {
+          pBox.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Top Announcement Bar -->
   <div class="top-announcement-bar bg-[#050b12]/95 border-b border-slate-800/80 text-[11px] sm:text-xs py-1.5 px-3 sm:px-6 relative z-40 backdrop-blur-md transition-colors overflow-hidden">
@@ -131,23 +171,23 @@
           <img id="brandHeaderLogo"
                src="assets/logo-white-text.png" 
                data-dark-src="assets/logo-white-text.png"
-               data-light-src="assets/logo-white-text.png"
+               data-light-src="assets/original-removebg-preview.png"
                alt="Star Plus Travel and Tourism LLC" 
                class="h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
         </a>
 
-        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
-          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
-          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
-          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
-          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
-          <a href="reviews.html" class="nav-link active py-2 px-1 text-amber-400 font-bold transition-colors" data-i18n="navReviews">Reviews</a>
+        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
+          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
+          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
+          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
+          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
+          <a href="reviews.html" class="nav-link active py-2 px-1 text-amber-500 dark:text-amber-400 font-bold transition-colors" data-i18n="navReviews">Reviews</a>
           
           <!-- Explore Dropdown -->
           <div class="nav-dropdown py-2 px-1">
-            <button type="button" class="nav-link nav-dropdown-trigger hover:text-amber-400 transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
+            <button type="button" class="nav-link nav-dropdown-trigger hover:text-amber-500 dark:hover:text-amber-400 transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
               <span data-i18n="navExplore">Explore</span>
-              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-400"></i>
+              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-500 dark:text-amber-400"></i>
             </button>
             <div class="nav-dropdown-menu">
               <a href="why-us.html" class="nav-dropdown-item">
@@ -172,7 +212,7 @@
             </div>
           </div>
 
-          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
+          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
         </nav>
 
         <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
@@ -243,25 +283,25 @@
 
 <main class="flex-grow">
   <!-- Reviews Hero Banner -->
-  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-[#0B192C]/80 via-[#070E17] to-[#070E17] border-b border-slate-800/80">
+  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50 dark:from-[#0B192C]/80 dark:via-[#070E17] dark:to-[#070E17] border-b border-slate-200 dark:border-slate-800/80 transition-colors">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.12),rgba(255,255,255,0))] pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
         <i class="fa-solid fa-star text-[11px]"></i>
         <span data-i18n="reviewsBadge">Verified Traveler Stories</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="reviewsPageTitle">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="reviewsPageTitle">
         Client Testimonials &amp; Stories
       </h1>
-      <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="reviewsPageSubtitle">
+      <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="reviewsPageSubtitle">
         Read genuine feedback from families, solo explorers, and corporate executives who experienced seamless holiday tours and visa approvals with Star Plus Travels.
       </p>
 
       <!-- Rating Scoreboard -->
       <div class="mt-8 max-w-2xl mx-auto">
-        <div class="glass-card p-6 rounded-3xl border border-slate-800 flex flex-col sm:flex-row items-center justify-around gap-6 text-center">
+        <div class="glass-card p-6 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-around gap-6 text-center">
           <div>
-            <span class="text-4xl font-extrabold text-white font-heading"><span class="stat-counter" data-target="4.9" data-decimals="1">4.9</span><span class="text-amber-400 text-2xl">/5</span></span>
+            <span class="text-4xl font-extrabold text-slate-900 dark:text-white font-heading"><span class="stat-counter" data-target="4.9" data-decimals="1">4.9</span><span class="text-amber-400 text-2xl">/5</span></span>
             <div class="flex items-center justify-center space-x-1 text-amber-400 text-xs mt-1">
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
@@ -269,20 +309,20 @@
               <i class="fa-solid fa-star"></i>
               <i class="fa-solid fa-star"></i>
             </div>
-            <span class="text-[11px] text-slate-400 mt-0.5 block">Overall Score</span>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 block">Overall Score</span>
           </div>
-          <div class="h-10 w-px bg-slate-800 hidden sm:block"></div>
+          <div class="h-10 w-px bg-slate-200 dark:bg-slate-800 hidden sm:block"></div>
           <div>
-            <span class="text-xl font-bold text-white font-heading flex items-center justify-center space-x-1.5">
+            <span class="text-xl font-bold text-slate-900 dark:text-white font-heading flex items-center justify-center space-x-1.5">
               <i class="fa-brands fa-google text-amber-400 text-lg"></i>
               <span>1,420+ Reviews</span>
             </span>
-            <span class="text-[11px] text-slate-400 mt-1 block">Google Verified Customer Rating</span>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 block">Google Verified Customer Rating</span>
           </div>
-          <div class="h-10 w-px bg-slate-800 hidden sm:block"></div>
+          <div class="h-10 w-px bg-slate-200 dark:bg-slate-800 hidden sm:block"></div>
           <div>
             <span class="text-xl font-bold text-emerald-400 font-heading">99.2%</span>
-            <span class="text-[11px] text-slate-400 mt-1 block">Would Book Again</span>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 block">Would Book Again</span>
           </div>
         </div>
       </div>
@@ -294,7 +334,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       
       <!-- Review 1 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
+      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-1 text-amber-400 text-xs">
@@ -302,23 +342,23 @@
             </div>
             <span class="text-[10px] text-slate-500">2 weeks ago</span>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed italic">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
             "Our family 5-day Dubai trip was completely flawless from the airport VIP greeting to the desert safari and yacht cruise. Star Plus took care of our hotels, tours, and transfers with zero stress. Highly recommend!"
           </p>
         </div>
-        <div class="pt-5 border-t border-slate-800/80 mt-4 flex items-center space-x-3">
+        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center space-x-3">
           <div class="w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-sm">
             RP
           </div>
           <div>
-            <h4 class="text-xs font-bold text-white">Rohit &amp; Priya Patel</h4>
-            <span class="text-[11px] text-slate-400 block">London, UK &bull; <strong class="text-amber-400 font-normal">Dubai Luxury Escape</strong></span>
+            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Rohit &amp; Priya Patel</h4>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 block">London, UK &bull; <strong class="text-amber-400 font-normal">Dubai Luxury Escape</strong></span>
           </div>
         </div>
       </div>
 
       <!-- Review 2 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
+      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-1 text-amber-400 text-xs">
@@ -326,23 +366,23 @@
             </div>
             <span class="text-[10px] text-slate-500">1 month ago</span>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed italic">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
             "Booked the Oman Visa Change Bus service from Deira. The bus was super comfortable, hotel in Buraimi was clean and orderly, and the guide guided us through both immigration checkpoints smoothly. Got my new visa the next morning!"
           </p>
         </div>
-        <div class="pt-5 border-t border-slate-800/80 mt-4 flex items-center space-x-3">
+        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center space-x-3">
           <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 font-bold flex items-center justify-center text-sm">
             FK
           </div>
           <div>
-            <h4 class="text-xs font-bold text-white">Farhan Khan</h4>
-            <span class="text-[11px] text-slate-400 block">Dubai, UAE &bull; <strong class="text-amber-400 font-normal">Oman Bus Visa Change</strong></span>
+            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Farhan Khan</h4>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Dubai, UAE &bull; <strong class="text-amber-400 font-normal">Oman Bus Visa Change</strong></span>
           </div>
         </div>
       </div>
 
       <!-- Review 3 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
+      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-1 text-amber-400 text-xs">
@@ -350,23 +390,23 @@
             </div>
             <span class="text-[10px] text-slate-500">1 month ago</span>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed italic">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
             "Sri Lanka was heavenly! Star Plus arranged an unforgettable private driver who drove us from Sigiriya to Kandy and the Ella tea country. The tea estate boutique resorts they picked were straight out of a magazine."
           </p>
         </div>
-        <div class="pt-5 border-t border-slate-800/80 mt-4 flex items-center space-x-3">
+        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center space-x-3">
           <div class="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 font-bold flex items-center justify-center text-sm">
             SW
           </div>
           <div>
-            <h4 class="text-xs font-bold text-white">Samantha Wright</h4>
-            <span class="text-[11px] text-slate-400 block">Melbourne, Australia &bull; <strong class="text-amber-400 font-normal">Sri Lanka Odyssey</strong></span>
+            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Samantha Wright</h4>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Melbourne, Australia &bull; <strong class="text-amber-400 font-normal">Sri Lanka Odyssey</strong></span>
           </div>
         </div>
       </div>
 
       <!-- Review 4 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
+      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-1 text-amber-400 text-xs">
@@ -374,23 +414,23 @@
             </div>
             <span class="text-[10px] text-slate-500">2 months ago</span>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed italic">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
             "We took the Baku, Azerbaijan package in autumn. The Flame Towers, Old City tour, and Shahdag mountain trip were phenomenal. Having 24/7 WhatsApp support gave our family huge peace of mind."
           </p>
         </div>
-        <div class="pt-5 border-t border-slate-800/80 mt-4 flex items-center space-x-3">
+        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center space-x-3">
           <div class="w-10 h-10 rounded-full bg-purple-500/20 text-purple-400 font-bold flex items-center justify-center text-sm">
             MA
           </div>
           <div>
-            <h4 class="text-xs font-bold text-white">Mohammed Al Qasimi</h4>
-            <span class="text-[11px] text-slate-400 block">Sharjah, UAE &bull; <strong class="text-amber-400 font-normal">Baku &amp; Caucasus Tour</strong></span>
+            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Mohammed Al Qasimi</h4>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Sharjah, UAE &bull; <strong class="text-amber-400 font-normal">Baku &amp; Caucasus Tour</strong></span>
           </div>
         </div>
       </div>
 
       <!-- Review 5 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
+      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-1 text-amber-400 text-xs">
@@ -398,23 +438,23 @@
             </div>
             <span class="text-[10px] text-slate-500">2 months ago</span>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed italic">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
             "I had been rejected for a European Schengen visa twice before applying through another agency. The Star Plus team audited all my documentation, arranged an early appointment slot, and my French visa was approved in 8 days!"
           </p>
         </div>
-        <div class="pt-5 border-t border-slate-800/80 mt-4 flex items-center space-x-3">
+        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center space-x-3">
           <div class="w-10 h-10 rounded-full bg-rose-500/20 text-rose-400 font-bold flex items-center justify-center text-sm">
             DN
           </div>
           <div>
-            <h4 class="text-xs font-bold text-white">Dilshan Nanayakkara</h4>
-            <span class="text-[11px] text-slate-400 block">Colombo, Sri Lanka &bull; <strong class="text-amber-400 font-normal">Schengen Concierge</strong></span>
+            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Dilshan Nanayakkara</h4>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Colombo, Sri Lanka &bull; <strong class="text-amber-400 font-normal">Schengen Concierge</strong></span>
           </div>
         </div>
       </div>
 
       <!-- Review 6 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
+      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl">
         <div class="space-y-3">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-1 text-amber-400 text-xs">
@@ -422,17 +462,17 @@
             </div>
             <span class="text-[10px] text-slate-500">3 months ago</span>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed italic">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
             "Splitting our Maldives vacation package into 4 monthly payments with Tabby was seamless. The private water villa at Sun Siyam was breathtaking. Thank you Star Plus for making our honeymoon unforgettable!"
           </p>
         </div>
-        <div class="pt-5 border-t border-slate-800/80 mt-4 flex items-center space-x-3">
+        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center space-x-3">
           <div class="w-10 h-10 rounded-full bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-sm">
             AE
           </div>
           <div>
-            <h4 class="text-xs font-bold text-white">Ahmed &amp; Elena</h4>
-            <span class="text-[11px] text-slate-400 block">Dubai, UAE &bull; <strong class="text-amber-400 font-normal">Maldives Overwater Retreat</strong></span>
+            <h4 class="text-xs font-bold text-slate-900 dark:text-white">Ahmed &amp; Elena</h4>
+            <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Dubai, UAE &bull; <strong class="text-amber-400 font-normal">Maldives Overwater Retreat</strong></span>
           </div>
         </div>
       </div>

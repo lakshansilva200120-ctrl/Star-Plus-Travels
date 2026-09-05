@@ -53,28 +53,68 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css?v=5.1.0">
 
-  <!-- Immediate Theme Initialization Script (Locked to Professional Dark Theme) -->
+    <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync with Preference Memory) -->
   <script>
     (function() {
       try {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-        localStorage.setItem('starplus_theme_mode', 'dark');
-        localStorage.removeItem('starplus_theme');
-        localStorage.removeItem('starplus_manual_theme_set');
+        const mode = localStorage.getItem('starplus_theme_mode') || 'system';
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let isDark;
+        if (mode === 'dark') {
+          isDark = true;
+        } else if (mode === 'light') {
+          isDark = false;
+        } else {
+          isDark = systemDark;
+        }
+
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
       } catch (e) {}
+
+      // Prevent refresh jump to anchor hashes
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      if (window.location.hash) {
+        try {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (e) {}
+      }
+      window.scrollTo(0, 0);
     })();
   </script>
 </head>
-<body class="bg-[#070e17] text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col">
-  <!-- Preloader -->
-  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#070e17] transition-opacity duration-500">
+<body class="bg-[#f8fafc] dark:bg-[#070e17] text-slate-900 dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col transition-colors duration-300 w-full max-w-full relative">
+    <!-- Preloader -->
+  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-500">
     <div class="relative flex flex-col items-center">
-      <img src="assets/logo-white-text.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
+      <img id="preloaderLogoImg" src="assets/logo-white-text.png" data-dark-src="assets/logo-white-text.png" data-light-src="assets/original-removebg-preview.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
       <div class="luxury-gold-spinner mb-4"></div>
       <p class="text-xs uppercase tracking-widest text-amber-400 font-semibold animate-pulse">Loading Star Plus Travels...</p>
     </div>
   </div>
+  <script>
+    (function() {
+      try {
+        var isDark = document.documentElement.classList.contains('dark') || 
+          (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var pImg = document.getElementById('preloaderLogoImg');
+        var pBox = document.getElementById('sitePreloader');
+        if (pImg) {
+          pImg.src = isDark ? (pImg.getAttribute('data-dark-src') || pImg.src) : (pImg.getAttribute('data-light-src') || pImg.src);
+        }
+        if (pBox) {
+          pBox.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Top Announcement Bar -->
   <div class="top-announcement-bar bg-[#050b12]/95 border-b border-slate-800/80 text-[11px] sm:text-xs py-1.5 px-3 sm:px-6 relative z-40 backdrop-blur-md transition-colors overflow-hidden">
@@ -131,23 +171,23 @@
           <img id="brandHeaderLogo"
                src="assets/logo-white-text.png" 
                data-dark-src="assets/logo-white-text.png"
-               data-light-src="assets/logo-white-text.png"
+               data-light-src="assets/original-removebg-preview.png"
                alt="Star Plus Travel and Tourism LLC" 
                class="h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
         </a>
 
-        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
-          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
-          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
-          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
-          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
-          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
+        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
+          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
+          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
+          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
+          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
+          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
           
           <!-- Explore Dropdown -->
           <div class="nav-dropdown py-2 px-1">
-            <button type="button" class="nav-link nav-dropdown-trigger hover:text-amber-400 transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
+            <button type="button" class="nav-link nav-dropdown-trigger hover:text-amber-500 dark:hover:text-amber-400 transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
               <span data-i18n="navExplore">Explore</span>
-              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-400"></i>
+              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-500 dark:text-amber-400"></i>
             </button>
             <div class="nav-dropdown-menu">
               <a href="why-us.html" class="nav-dropdown-item">
@@ -172,7 +212,7 @@
             </div>
           </div>
 
-          <a href="contact.html" class="nav-link active py-2 px-1 text-amber-400 font-bold transition-colors" data-i18n="navContact">Contact</a>
+          <a href="contact.html" class="nav-link active py-2 px-1 text-amber-500 dark:text-amber-400 font-bold transition-colors" data-i18n="navContact">Contact</a>
         </nav>
 
         <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
@@ -243,17 +283,17 @@
 
 <main class="flex-grow">
   <!-- Contact Hero Banner -->
-  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-[#0B192C]/80 via-[#070E17] to-[#070E17] border-b border-slate-800/80">
+  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50 dark:from-[#0B192C]/80 dark:via-[#070E17] dark:to-[#070E17] border-b border-slate-200 dark:border-slate-800/80 transition-colors">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.12),rgba(255,255,255,0))] pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
         <i class="fa-solid fa-headset text-[11px]"></i>
         <span data-i18n="contactBadge">24/7 Concierge &amp; Global Desks</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="contactPageTitle">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="contactPageTitle">
         Contact Our Global Offices
       </h1>
-      <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="contactPageSubtitle">
+      <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="contactPageSubtitle">
         Visit our physical branches in Dubai or Colombo, or speak directly with our senior travel specialists on phone or WhatsApp.
       </p>
     </div>
@@ -264,24 +304,24 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       
       <!-- Dubai Office Card -->
-      <div class="glass-card p-8 rounded-3xl border border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between shadow-2xl relative overflow-hidden">
+      <div class="glass-card p-8 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between shadow-2xl relative overflow-hidden">
         <div class="space-y-4">
-          <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
             <div class="flex items-center space-x-3">
               <span class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg shrink-0"><i class="fa-solid fa-building"></i></span>`n              <div>`n                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Headquarters</span>
-                <h3 class="text-lg font-bold text-white font-heading">Dubai, United Arab Emirates</h3>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading">Dubai, United Arab Emirates</h3>
               </div>
             </div>
             <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-bold border border-emerald-500/20">Open Today</span>
           </div>
 
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Star Plus Travel and Tourism LLC<br>
             Office 204, Al Rigga Business Center, Al Rigga Road, Deira, Dubai, UAE.
           </p>
 
           <div class="space-y-2.5 pt-2 text-xs">
-            <div class="flex items-center space-x-3 text-slate-300">
+            <div class="flex items-center space-x-3 text-slate-700 dark:text-slate-300">
               <div class="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
                 <i class="fa-solid fa-phone text-xs"></i>
               </div>
@@ -291,7 +331,7 @@
               </div>
             </div>
 
-            <div class="flex items-center space-x-3 text-slate-300">
+            <div class="flex items-center space-x-3 text-slate-700 dark:text-slate-300">
               <div class="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
                 <i class="fa-brands fa-whatsapp text-sm"></i>
               </div>
@@ -301,7 +341,7 @@
               </div>
             </div>
 
-            <div class="flex items-center space-x-3 text-slate-300">
+            <div class="flex items-center space-x-3 text-slate-700 dark:text-slate-300">
               <div class="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
                 <i class="fa-solid fa-envelope text-xs"></i>
               </div>
@@ -311,47 +351,47 @@
               </div>
             </div>
 
-            <div class="flex items-center space-x-3 text-slate-300">
+            <div class="flex items-center space-x-3 text-slate-700 dark:text-slate-300">
               <div class="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
                 <i class="fa-solid fa-clock text-xs"></i>
               </div>
               <div>
                 <span class="text-[10px] text-slate-500 block">Working Hours</span>
-                <span class="font-medium text-slate-200">Mon &ndash; Sat: 9:00 AM &ndash; 9:00 PM (GST)</span>
+                <span class="font-medium text-slate-800 dark:text-slate-200">Mon &ndash; Sat: 9:00 AM &ndash; 9:00 PM (GST)</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="pt-6 border-t border-slate-800/80 mt-6 flex gap-3">
+        <div class="pt-6 border-t border-slate-200 dark:border-slate-800/80 mt-6 flex gap-3">
           <a href="https://maps.google.com/?q=Al+Rigga+Road+Deira+Dubai" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
             Get Directions (Dubai)
           </a>
-          <a href="https://wa.me/971527582293" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500 text-emerald-400 hover:text-white transition-all" title="WhatsApp Dubai Desk">
+          <a href="https://wa.me/971527582293" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-emerald-500 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-white transition-all" title="WhatsApp Dubai Desk">
             <i class="fa-brands fa-whatsapp text-base"></i>
           </a>
         </div>
       </div>
 
       <!-- Colombo Office Card -->
-      <div class="glass-card p-8 rounded-3xl border border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between shadow-2xl relative overflow-hidden">
+      <div class="glass-card p-8 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between shadow-2xl relative overflow-hidden">
         <div class="space-y-4">
-          <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
             <div class="flex items-center space-x-3">
               <span class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg shrink-0"><i class="fa-solid fa-landmark"></i></span>`n              <div>`n                <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Regional Branch</span>
-                <h3 class="text-lg font-bold text-white font-heading">Colombo, Sri Lanka</h3>
+                <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading">Colombo, Sri Lanka</h3>
               </div>
             </div>
             <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-bold border border-emerald-500/20">Open Today</span>
           </div>
 
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Star Plus Travel (PVT) LTD<br>
             No. 45, Galle Road, Colombo 03, Western Province, Sri Lanka.
           </p>
 
           <div class="space-y-2.5 pt-2 text-xs">
-            <div class="flex items-center space-x-3 text-slate-300">
+            <div class="flex items-center space-x-3 text-slate-700 dark:text-slate-300">
               <div class="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
                 <i class="fa-solid fa-phone text-xs"></i>
               </div>
@@ -361,7 +401,7 @@
               </div>
             </div>
 
-            <div class="flex items-center space-x-3 text-slate-300">
+            <div class="flex items-center space-x-3 text-slate-700 dark:text-slate-300">
               <div class="w-7 h-7 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
                 <i class="fa-brands fa-whatsapp text-sm"></i>
               </div>
@@ -371,7 +411,7 @@
               </div>
             </div>
 
-            <div class="flex items-center space-x-3 text-slate-300">
+            <div class="flex items-center space-x-3 text-slate-700 dark:text-slate-300">
               <div class="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
                 <i class="fa-solid fa-envelope text-xs"></i>
               </div>
@@ -381,23 +421,23 @@
               </div>
             </div>
 
-            <div class="flex items-center space-x-3 text-slate-300">
+            <div class="flex items-center space-x-3 text-slate-700 dark:text-slate-300">
               <div class="w-7 h-7 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
                 <i class="fa-solid fa-clock text-xs"></i>
               </div>
               <div>
                 <span class="text-[10px] text-slate-500 block">Working Hours</span>
-                <span class="font-medium text-slate-200">Mon &ndash; Sat: 8:30 AM &ndash; 6:00 PM (IST)</span>
+                <span class="font-medium text-slate-800 dark:text-slate-200">Mon &ndash; Sat: 8:30 AM &ndash; 6:00 PM (IST)</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="pt-6 border-t border-slate-800/80 mt-6 flex gap-3">
+        <div class="pt-6 border-t border-slate-200 dark:border-slate-800/80 mt-6 flex gap-3">
           <a href="https://maps.google.com/?q=Galle+Road+Colombo+03+Sri+Lanka" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
             Get Directions (Colombo)
           </a>
-          <a href="https://wa.me/94771234567" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500 text-emerald-400 hover:text-white transition-all" title="WhatsApp Colombo Desk">
+          <a href="https://wa.me/94771234567" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-emerald-500 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-white transition-all" title="WhatsApp Colombo Desk">
             <i class="fa-brands fa-whatsapp text-base"></i>
           </a>
         </div>
@@ -408,11 +448,11 @@
 
   <!-- Interactive Contact & Consultation Form -->
   <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
-    <div class="glass-card p-8 sm:p-12 rounded-3xl border border-slate-800 shadow-2xl">
+    <div class="glass-card p-8 sm:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl">
       <div class="text-center max-w-xl mx-auto mb-8">
         <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">Direct Communication</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-heading">Send Us a Direct Message</h2>
-        <p class="text-xs sm:text-sm text-slate-400 mt-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-heading">Send Us a Direct Message</h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2">
           Fill out the quick form below and our dedicated travel concierge will get back to you within 15 minutes.
         </p>
       </div>
@@ -420,22 +460,22 @@
       <form onsubmit="handleContactSubmit(event)" class="space-y-4 text-left">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1">Your Full Name *</label>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Your Full Name *</label>
             <input type="text" id="contactName" required placeholder="e.g. David Miller" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1">Email Address *</label>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Email Address *</label>
             <input type="email" id="contactEmail" required placeholder="david@example.com" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1">Phone / WhatsApp Number *</label>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Phone / WhatsApp Number *</label>
             <input type="tel" id="contactPhone" required placeholder="+971 50 123 4567" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1">Preferred Office Desk</label>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Preferred Office Desk</label>
             <select id="contactBranch" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm cursor-pointer">
               <option value="dubai">Dubai Flagship Desk (UAE)</option>
               <option value="colombo">Colombo Desk (Sri Lanka)</option>
@@ -444,7 +484,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate-300 mb-1">Topic of Inquiry</label>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Topic of Inquiry</label>
           <select id="contactTopic" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm cursor-pointer">
             <option value="package">Curated Tour Package / Customized Itinerary</option>
             <option value="visa_uae">UAE Tourist / Freelance Visa (30/60 Days)</option>
@@ -457,7 +497,7 @@
         </div>
 
         <div>
-          <label class="block text-xs font-bold text-slate-300 mb-1">Your Message or Requirements</label>
+          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Your Message or Requirements</label>
           <textarea id="contactMessage" rows="4" placeholder="Tell us about your travel dates, number of travelers, budget or specific questions..." class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm"></textarea>
         </div>
 

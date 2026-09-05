@@ -53,28 +53,68 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css?v=5.1.0">
 
-  <!-- Immediate Theme Initialization Script (Locked to Professional Dark Theme) -->
+    <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync with Preference Memory) -->
   <script>
     (function() {
       try {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-        localStorage.setItem('starplus_theme_mode', 'dark');
-        localStorage.removeItem('starplus_theme');
-        localStorage.removeItem('starplus_manual_theme_set');
+        const mode = localStorage.getItem('starplus_theme_mode') || 'system';
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let isDark;
+        if (mode === 'dark') {
+          isDark = true;
+        } else if (mode === 'light') {
+          isDark = false;
+        } else {
+          isDark = systemDark;
+        }
+
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
       } catch (e) {}
+
+      // Prevent refresh jump to anchor hashes
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      if (window.location.hash) {
+        try {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (e) {}
+      }
+      window.scrollTo(0, 0);
     })();
   </script>
 </head>
-<body class="bg-[#070e17] text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col">
-  <!-- Preloader -->
-  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#070e17] transition-opacity duration-500">
+<body class="bg-[#f8fafc] dark:bg-[#070e17] text-slate-900 dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col transition-colors duration-300 w-full max-w-full relative">
+    <!-- Preloader -->
+  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-500">
     <div class="relative flex flex-col items-center">
-      <img src="assets/logo-white-text.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
+      <img id="preloaderLogoImg" src="assets/logo-white-text.png" data-dark-src="assets/logo-white-text.png" data-light-src="assets/original-removebg-preview.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
       <div class="luxury-gold-spinner mb-4"></div>
       <p class="text-xs uppercase tracking-widest text-amber-400 font-semibold animate-pulse">Loading Star Plus Travels...</p>
     </div>
   </div>
+  <script>
+    (function() {
+      try {
+        var isDark = document.documentElement.classList.contains('dark') || 
+          (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var pImg = document.getElementById('preloaderLogoImg');
+        var pBox = document.getElementById('sitePreloader');
+        if (pImg) {
+          pImg.src = isDark ? (pImg.getAttribute('data-dark-src') || pImg.src) : (pImg.getAttribute('data-light-src') || pImg.src);
+        }
+        if (pBox) {
+          pBox.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Top Announcement Bar -->
   <div class="top-announcement-bar bg-[#050b12]/95 border-b border-slate-800/80 text-[11px] sm:text-xs py-1.5 px-3 sm:px-6 relative z-40 backdrop-blur-md transition-colors overflow-hidden">
@@ -131,23 +171,23 @@
           <img id="brandHeaderLogo"
                src="assets/logo-white-text.png" 
                data-dark-src="assets/logo-white-text.png"
-               data-light-src="assets/logo-white-text.png"
+               data-light-src="assets/original-removebg-preview.png"
                alt="Star Plus Travel and Tourism LLC" 
                class="h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
         </a>
 
-        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
-          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
-          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
-          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
-          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
-          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
+        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
+          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
+          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
+          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
+          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
+          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
           
           <!-- Explore Dropdown -->
           <div class="nav-dropdown py-2 px-1">
-            <button type="button" class="nav-link nav-dropdown-trigger active text-amber-400 font-bold transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
+            <button type="button" class="nav-link nav-dropdown-trigger active text-amber-500 dark:text-amber-400 font-bold transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
               <span data-i18n="navExplore">Explore</span>
-              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-400"></i>
+              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-500 dark:text-amber-400"></i>
             </button>
             <div class="nav-dropdown-menu">
               <a href="why-us.html" class="nav-dropdown-item">
@@ -172,7 +212,7 @@
             </div>
           </div>
 
-          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
+          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
         </nav>
 
         <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
@@ -243,17 +283,17 @@
 
 <main class="flex-grow">
   <!-- Why Us Hero Banner -->
-  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-[#0B192C]/80 via-[#070E17] to-[#070E17] border-b border-slate-800/80">
+  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50 dark:from-[#0B192C]/80 dark:via-[#070E17] dark:to-[#070E17] border-b border-slate-200 dark:border-slate-800/80 transition-colors">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.12),rgba(255,255,255,0))] pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
         <i class="fa-solid fa-crown text-[11px]"></i>
         <span data-i18n="whyUsBadge">The Star Plus Distinction</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="whyUsPageTitle">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="whyUsPageTitle">
         Why Discerning Travelers Choose Us
       </h1>
-      <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="whyUsPageSubtitle">
+      <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="whyUsPageSubtitle">
         Dual headquarters in Dubai and Colombo, accredited legal authority, direct wholesale airline partnerships, and around-the-clock personal concierge service.
       </p>
     </div>
@@ -264,22 +304,22 @@
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
       <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center">
         <span class="text-3xl sm:text-4xl font-black text-amber-400 font-heading block stat-counter" data-target="15000" data-suffix="+" data-format="comma">15,000+</span>
-        <span class="text-xs text-slate-300 font-semibold uppercase tracking-wider mt-1 block">Happy Travelers</span>
+        <span class="text-xs text-slate-600 dark:text-slate-300 font-semibold uppercase tracking-wider mt-1 block">Happy Travelers</span>
         <span class="text-[11px] text-slate-500 mt-0.5 block">Across UAE &amp; Sri Lanka</span>
       </div>
       <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center">
         <span class="text-3xl sm:text-4xl font-black text-amber-400 font-heading block stat-counter" data-target="99.4" data-decimals="1" data-suffix="%">99.4%</span>
-        <span class="text-xs text-slate-300 font-semibold uppercase tracking-wider mt-1 block">Visa Success Rate</span>
+        <span class="text-xs text-slate-600 dark:text-slate-300 font-semibold uppercase tracking-wider mt-1 block">Visa Success Rate</span>
         <span class="text-[11px] text-slate-500 mt-0.5 block">Pre-screened Compliance</span>
       </div>
       <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center">
         <span class="text-3xl sm:text-4xl font-black text-amber-400 font-heading block stat-counter" data-target="20" data-suffix="+">20+</span>
-        <span class="text-xs text-slate-300 font-semibold uppercase tracking-wider mt-1 block">Airline Partners</span>
+        <span class="text-xs text-slate-600 dark:text-slate-300 font-semibold uppercase tracking-wider mt-1 block">Airline Partners</span>
         <span class="text-[11px] text-slate-500 mt-0.5 block">Direct Wholesale Fares</span>
       </div>
       <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center">
         <span class="text-3xl sm:text-4xl font-black text-amber-400 font-heading block stat-counter" data-target="4.9" data-decimals="1" data-suffix=" / 5">4.9 / 5</span>
-        <span class="text-xs text-slate-300 font-semibold uppercase tracking-wider mt-1 block">Traveler Rating</span>
+        <span class="text-xs text-slate-600 dark:text-slate-300 font-semibold uppercase tracking-wider mt-1 block">Traveler Rating</span>
         <span class="text-[11px] text-slate-500 mt-0.5 block">Google &amp; TripAdvisor</span>
       </div>
     </div>
@@ -289,7 +329,7 @@
   <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
     <div class="text-center max-w-2xl mx-auto mb-12">
       <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">Our Core Advantages</span>
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-heading">What Sets Star Plus Travels Apart</h2>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-heading">What Sets Star Plus Travels Apart</h2>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -299,8 +339,8 @@
         <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl mb-5 group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-certificate"></i>
         </div>
-        <h3 class="text-lg font-bold text-white font-heading mb-2">Dual Licensed &amp; Accredited</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading mb-2">Dual Licensed &amp; Accredited</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
           We are officially licensed by the Government of Dubai's Department of Economy and Tourism (DET) and the Sri Lanka Tourism Development Authority (SLTDA). You deal with an authorized, legally registered company.
         </p>
       </div>
@@ -310,8 +350,8 @@
         <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl mb-5 group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-building-shield"></i>
         </div>
-        <h3 class="text-lg font-bold text-white font-heading mb-2">Real Physical Headquarters</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading mb-2">Real Physical Headquarters</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
           Unlike online-only aggregator portals with unresponsive bots, Star Plus operates physical walk-in customer branches in Deira, Dubai and Colombo 03, Sri Lanka where you can meet your travel planner face-to-face.
         </p>
       </div>
@@ -321,8 +361,8 @@
         <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl mb-5 group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-passport"></i>
         </div>
-        <h3 class="text-lg font-bold text-white font-heading mb-2">99.4% Visa Issuance Track Record</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading mb-2">99.4% Visa Issuance Track Record</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
           We prevent visa rejections. Every passport copy, photo, and bank declaration undergoes rigorous compliance checking by our veteran immigration team before electronic submission to government authorities.
         </p>
       </div>
@@ -332,8 +372,8 @@
         <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl mb-5 group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-plane-up"></i>
         </div>
-        <h3 class="text-lg font-bold text-white font-heading mb-2">Direct Airline Consolidator Rates</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading mb-2">Direct Airline Consolidator Rates</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
           Direct wholesale contracts with Emirates, flydubai, SriLankan Airlines, Qatar Airways, and Etihad mean you unlock group flight discounts and flexible date adjustments that public search engines cannot match.
         </p>
       </div>
@@ -343,8 +383,8 @@
         <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl mb-5 group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-credit-card"></i>
         </div>
-        <h3 class="text-lg font-bold text-white font-heading mb-2">Tabby &amp; Tamara Installments</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading mb-2">Tabby &amp; Tamara Installments</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
           Travel now, pay later. Book any tour package, flight booking, or visa service and comfortably divide the payment into 4 interest-free monthly installments via Tabby or Tamara at checkout.
         </p>
       </div>
@@ -354,8 +394,8 @@
         <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl mb-5 group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-headset"></i>
         </div>
-        <h3 class="text-lg font-bold text-white font-heading mb-2">24/7 Human-Only Support</h3>
-        <p class="text-xs text-slate-300 leading-relaxed">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading mb-2">24/7 Human-Only Support</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
           Zero automated phone loops. You are assigned a dedicated personal travel manager who is reachable on direct WhatsApp and phone around the clock before, during, and after your trip.
         </p>
       </div>
@@ -368,7 +408,7 @@
     <div class="glass-card rounded-3xl p-8 sm:p-12 border border-amber-500/30 bg-gradient-to-r from-[#0B192C]/90 via-[#0E2238] to-[#0B192C]/90">
       <div class="text-center max-w-2xl mx-auto mb-8">
         <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">Our Pledge to You</span>
-        <h3 class="text-2xl sm:text-3xl font-extrabold text-white font-heading">The Star Plus Triple Guarantee</h3>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-heading">The Star Plus Triple Guarantee</h3>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
@@ -376,7 +416,7 @@
           <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto mb-3 text-lg">
             <i class="fa-solid fa-tag"></i>
           </div>
-          <h4 class="text-sm font-bold text-white mb-1.5">Best Value Assurance</h4>
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1.5">Best Value Assurance</h4>
           <p class="text-xs text-slate-400">If you find an identical verified airline and hotel itinerary for less, we will match or beat the quote.</p>
         </div>
 
@@ -384,7 +424,7 @@
           <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto mb-3 text-lg">
             <i class="fa-solid fa-hand-holding-dollar"></i>
           </div>
-          <h4 class="text-sm font-bold text-white mb-1.5">Zero Hidden Surcharges</h4>
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1.5">Zero Hidden Surcharges</h4>
           <p class="text-xs text-slate-400">All prices clearly state tourism dirhams, municipality fees, and VAT up-front. No airport surprises.</p>
         </div>
 
@@ -392,7 +432,7 @@
           <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto mb-3 text-lg">
             <i class="fa-solid fa-user-shield"></i>
           </div>
-          <h4 class="text-sm font-bold text-white mb-1.5">Dedicated Trip Architect</h4>
+          <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1.5">Dedicated Trip Architect</h4>
           <p class="text-xs text-slate-400">One dedicated human expert manages your flights, hotels, vouchers, and emergency travel assistance.</p>
         </div>
       </div>
@@ -402,8 +442,8 @@
   <!-- CTA Banner -->
   <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
     <div class="glass-card rounded-3xl p-8 sm:p-12 border border-slate-800 text-center">
-      <h3 class="text-2xl sm:text-3xl font-extrabold text-white font-heading">Ready to Experience the Star Plus Difference?</h3>
-      <p class="mt-3 text-sm text-slate-300 max-w-xl mx-auto">
+      <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-heading">Ready to Experience the Star Plus Difference?</h3>
+      <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto">
         Speak with our travel architects today or browse our curated holiday packages with instant online inquiry.
       </p>
       <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">

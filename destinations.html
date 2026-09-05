@@ -53,28 +53,68 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css?v=5.1.0">
 
-  <!-- Immediate Theme Initialization Script (Locked to Professional Dark Theme) -->
+    <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync with Preference Memory) -->
   <script>
     (function() {
       try {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-        localStorage.setItem('starplus_theme_mode', 'dark');
-        localStorage.removeItem('starplus_theme');
-        localStorage.removeItem('starplus_manual_theme_set');
+        const mode = localStorage.getItem('starplus_theme_mode') || 'system';
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let isDark;
+        if (mode === 'dark') {
+          isDark = true;
+        } else if (mode === 'light') {
+          isDark = false;
+        } else {
+          isDark = systemDark;
+        }
+
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
       } catch (e) {}
+
+      // Prevent refresh jump to anchor hashes
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      if (window.location.hash) {
+        try {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (e) {}
+      }
+      window.scrollTo(0, 0);
     })();
   </script>
 </head>
-<body class="bg-[#070e17] text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col">
-  <!-- Preloader -->
-  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#070e17] transition-opacity duration-500">
+<body class="bg-[#f8fafc] dark:bg-[#070e17] text-slate-900 dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col transition-colors duration-300 w-full max-w-full relative">
+    <!-- Preloader -->
+  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-500">
     <div class="relative flex flex-col items-center">
-      <img src="assets/logo-white-text.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
+      <img id="preloaderLogoImg" src="assets/logo-white-text.png" data-dark-src="assets/logo-white-text.png" data-light-src="assets/original-removebg-preview.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
       <div class="luxury-gold-spinner mb-4"></div>
       <p class="text-xs uppercase tracking-widest text-amber-400 font-semibold animate-pulse">Loading Star Plus Travels...</p>
     </div>
   </div>
+  <script>
+    (function() {
+      try {
+        var isDark = document.documentElement.classList.contains('dark') || 
+          (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var pImg = document.getElementById('preloaderLogoImg');
+        var pBox = document.getElementById('sitePreloader');
+        if (pImg) {
+          pImg.src = isDark ? (pImg.getAttribute('data-dark-src') || pImg.src) : (pImg.getAttribute('data-light-src') || pImg.src);
+        }
+        if (pBox) {
+          pBox.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Top Announcement Bar -->
   <div class="top-announcement-bar bg-[#050b12]/95 border-b border-slate-800/80 text-[11px] sm:text-xs py-1.5 px-3 sm:px-6 relative z-40 backdrop-blur-md transition-colors overflow-hidden">
@@ -131,23 +171,23 @@
           <img id="brandHeaderLogo"
                src="assets/logo-white-text.png" 
                data-dark-src="assets/logo-white-text.png"
-               data-light-src="assets/logo-white-text.png"
+               data-light-src="assets/original-removebg-preview.png"
                alt="Star Plus Travel and Tourism LLC" 
                class="h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
         </a>
 
-        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
-          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
-          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
-          <a href="destinations.html" class="nav-link active py-2 px-1 text-amber-400 font-bold transition-colors" data-i18n="navDestinations">Destinations</a>
-          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
-          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
+        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
+          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
+          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
+          <a href="destinations.html" class="nav-link active py-2 px-1 text-amber-500 dark:text-amber-400 font-bold transition-colors" data-i18n="navDestinations">Destinations</a>
+          <a href="visa-services.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
+          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
           
           <!-- Explore Dropdown -->
           <div class="nav-dropdown py-2 px-1">
-            <button type="button" class="nav-link nav-dropdown-trigger hover:text-amber-400 transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
+            <button type="button" class="nav-link nav-dropdown-trigger hover:text-amber-500 dark:hover:text-amber-400 transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
               <span data-i18n="navExplore">Explore</span>
-              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-400"></i>
+              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-500 dark:text-amber-400"></i>
             </button>
             <div class="nav-dropdown-menu">
               <a href="why-us.html" class="nav-dropdown-item">
@@ -172,7 +212,7 @@
             </div>
           </div>
 
-          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
+          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
         </nav>
 
         <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
@@ -201,7 +241,7 @@
         </div>
       </div>
 
-      <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-200">
+      <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-800 dark:text-slate-200">
         <a href="index.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navHome">Home</a>
         <a href="packages.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navPackages">Tour Packages</a>
         <a href="destinations.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navDestinations">Destinations</a>
@@ -243,17 +283,17 @@
 
 <main class="flex-grow">
   <!-- Destinations Hero Banner -->
-  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-[#0B192C]/80 via-[#070E17] to-[#070E17] border-b border-slate-800/80">
+  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50 dark:from-[#0B192C]/80 dark:via-[#070E17] dark:to-[#070E17] border-b border-slate-200 dark:border-slate-800/80 transition-colors">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.12),rgba(255,255,255,0))] pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
         <i class="fa-solid fa-earth-americas text-[11px]"></i>
         <span data-i18n="destinationsBadge">World-Class Destinations</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="destinationsPageTitle">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="destinationsPageTitle">
         Inspiring Travel Destinations
       </h1>
-      <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="destinationsPageSubtitle">
+      <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="destinationsPageSubtitle">
         From glistening Arabian skyscrapers and tranquil Indian Ocean atolls to misty tea mountains and ancient Caucasian fortresses.
       </p>
     </div>
@@ -264,7 +304,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       
       <!-- Destination 1: Dubai & UAE -->
-      <div class="glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col group shadow-xl">
+      <div class="glass-card rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col group shadow-xl">
         <div class="relative h-64 overflow-hidden">
           <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=85" alt="Dubai UAE Skyline" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/30 to-transparent"></div>
@@ -277,24 +317,24 @@
           </div>
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Marvel at the iconic Burj Khalifa, embark on thrilling 4x4 desert safaris, cruise the Marina on private luxury yachts, and explore Abu Dhabi's majestic Sheikh Zayed Grand Mosque.
           </p>
-          <div class="space-y-2 border-t border-slate-800/80 pt-3">
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
+          <div class="space-y-2 border-t border-slate-200 dark:border-slate-800/80 pt-3">
+            <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span class="flex items-center space-x-1.5"><i class="fa-solid fa-calendar-check text-amber-400"></i><span>Best Season:</span></span>
-              <span class="font-semibold text-slate-200">October &ndash; April</span>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">October &ndash; April</span>
             </div>
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
+            <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span class="flex items-center space-x-1.5"><i class="fa-solid fa-clock text-amber-400"></i><span>Recommended:</span></span>
-              <span class="font-semibold text-slate-200">4 &ndash; 7 Days</span>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">4 &ndash; 7 Days</span>
             </div>
           </div>
           <div class="pt-2 flex items-center gap-2">
             <a href="packages.html" class="flex-1 text-center py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
               View Packages
             </a>
-            <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Dubai%20tours" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 hover:text-white transition-all" title="Inquire on WhatsApp">
+            <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Dubai%20tours" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-emerald-500/50 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-white transition-all" title="Inquire on WhatsApp">
               <i class="fa-brands fa-whatsapp text-sm"></i>
             </a>
           </div>
@@ -302,7 +342,7 @@
       </div>
 
       <!-- Destination 2: Sri Lanka -->
-      <div class="glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col group shadow-xl">
+      <div class="glass-card rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col group shadow-xl">
         <div class="relative h-64 overflow-hidden">
           <img src="assets/sri-lanka-destination.jpg" alt="Sri Lanka Scenic Blue Train at Demodara Nine Arch Bridge, Ella and Tea Hills" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/30 to-transparent"></div>
@@ -315,24 +355,24 @@
           </div>
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Ascend ancient Sigiriya Rock Fortress, take the world's most scenic train across Ella's misty green hills, track leopards in Yala National Park, and unwind on Galle's colonial ramparts.
           </p>
-          <div class="space-y-2 border-t border-slate-800/80 pt-3">
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
+          <div class="space-y-2 border-t border-slate-200 dark:border-slate-800/80 pt-3">
+            <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span class="flex items-center space-x-1.5"><i class="fa-solid fa-calendar-check text-amber-400"></i><span>Best Season:</span></span>
-              <span class="font-semibold text-slate-200">Year-Round Destinations</span>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">Year-Round Destinations</span>
             </div>
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
+            <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span class="flex items-center space-x-1.5"><i class="fa-solid fa-clock text-amber-400"></i><span>Recommended:</span></span>
-              <span class="font-semibold text-slate-200">6 &ndash; 10 Days</span>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">6 &ndash; 10 Days</span>
             </div>
           </div>
           <div class="pt-2 flex items-center gap-2">
             <a href="packages.html" class="flex-1 text-center py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
               View Packages
             </a>
-            <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Sri%20Lanka%20tours" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 hover:text-white transition-all" title="Inquire on WhatsApp">
+            <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Sri%20Lanka%20tours" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-emerald-500/50 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-white transition-all" title="Inquire on WhatsApp">
               <i class="fa-brands fa-whatsapp text-sm"></i>
             </a>
           </div>
@@ -340,7 +380,7 @@
       </div>
 
       <!-- Destination 3: Maldives -->
-      <div class="glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col group shadow-xl">
+      <div class="glass-card rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col group shadow-xl">
         <div class="relative h-64 overflow-hidden">
           <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=85" alt="Maldives Overwater Resort" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/30 to-transparent"></div>
@@ -353,24 +393,24 @@
           </div>
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Indulge in premier overwater villas with private glass plunge pools, private seaplane transfers, vibrant coral reef snorkeling, and romantic sunset dolphin cruises in complete seclusion.
           </p>
-          <div class="space-y-2 border-t border-slate-800/80 pt-3">
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
+          <div class="space-y-2 border-t border-slate-200 dark:border-slate-800/80 pt-3">
+            <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span class="flex items-center space-x-1.5"><i class="fa-solid fa-calendar-check text-amber-400"></i><span>Best Season:</span></span>
-              <span class="font-semibold text-slate-200">November &ndash; April</span>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">November &ndash; April</span>
             </div>
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
+            <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span class="flex items-center space-x-1.5"><i class="fa-solid fa-clock text-amber-400"></i><span>Recommended:</span></span>
-              <span class="font-semibold text-slate-200">4 &ndash; 7 Days</span>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">4 &ndash; 7 Days</span>
             </div>
           </div>
           <div class="pt-2 flex items-center gap-2">
             <a href="packages.html" class="flex-1 text-center py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
               View Packages
             </a>
-            <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Maldives%20holidays" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 hover:text-white transition-all" title="Inquire on WhatsApp">
+            <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Maldives%20holidays" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-emerald-500/50 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-white transition-all" title="Inquire on WhatsApp">
               <i class="fa-brands fa-whatsapp text-sm"></i>
             </a>
           </div>
@@ -378,7 +418,7 @@
       </div>
 
       <!-- Destination 4: Baku, Azerbaijan -->
-      <div class="glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col group shadow-xl">
+      <div class="glass-card rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col group shadow-xl">
         <div class="relative h-64 overflow-hidden">
           <img src="https://images.unsplash.com/photo-1601628828688-632f38a5a7d0?auto=format&fit=crop&w=1200&q=85" alt="Baku Flame Towers" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/30 to-transparent"></div>
@@ -391,24 +431,24 @@
           </div>
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Witness where futuristic architecture meets ancient UNESCO Silk Road alleys. Stand in awe of the Flame Towers, discover bubbling mud volcanoes, and ride high into Shahdag alpine resorts.
           </p>
-          <div class="space-y-2 border-t border-slate-800/80 pt-3">
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
+          <div class="space-y-2 border-t border-slate-200 dark:border-slate-800/80 pt-3">
+            <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span class="flex items-center space-x-1.5"><i class="fa-solid fa-calendar-check text-amber-400"></i><span>Best Season:</span></span>
-              <span class="font-semibold text-slate-200">April &ndash; June &amp; Sept &ndash; Nov</span>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">April &ndash; June &amp; Sept &ndash; Nov</span>
             </div>
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
+            <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span class="flex items-center space-x-1.5"><i class="fa-solid fa-clock text-amber-400"></i><span>Recommended:</span></span>
-              <span class="font-semibold text-slate-200">5 &ndash; 7 Days</span>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">5 &ndash; 7 Days</span>
             </div>
           </div>
           <div class="pt-2 flex items-center gap-2">
             <a href="packages.html" class="flex-1 text-center py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
               View Packages
             </a>
-            <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Baku%20packages" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 hover:text-white transition-all" title="Inquire on WhatsApp">
+            <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Baku%20packages" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-emerald-500/50 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-white transition-all" title="Inquire on WhatsApp">
               <i class="fa-brands fa-whatsapp text-sm"></i>
             </a>
           </div>
@@ -416,7 +456,7 @@
       </div>
 
       <!-- Destination 5: Georgia -->
-      <div class="glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col group shadow-xl">
+      <div class="glass-card rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col group shadow-xl">
         <div class="relative h-64 overflow-hidden">
           <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=85" alt="Georgia Kazbegi" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/30 to-transparent"></div>
@@ -429,24 +469,24 @@
           </div>
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Stroll through Old Tbilisi's charming cobblestone courtyards, gaze up at snow-capped Mount Kazbek from Gergeti Trinity Church, and savor hearty Georgian feasts with warm local hospitality.
           </p>
-          <div class="space-y-2 border-t border-slate-800/80 pt-3">
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
+          <div class="space-y-2 border-t border-slate-200 dark:border-slate-800/80 pt-3">
+            <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span class="flex items-center space-x-1.5"><i class="fa-solid fa-calendar-check text-amber-400"></i><span>Best Season:</span></span>
-              <span class="font-semibold text-slate-200">May &ndash; October / Winter Ski</span>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">May &ndash; October / Winter Ski</span>
             </div>
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
+            <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span class="flex items-center space-x-1.5"><i class="fa-solid fa-clock text-amber-400"></i><span>Recommended:</span></span>
-              <span class="font-semibold text-slate-200">5 &ndash; 8 Days</span>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">5 &ndash; 8 Days</span>
             </div>
           </div>
           <div class="pt-2 flex items-center gap-2">
             <a href="packages.html" class="flex-1 text-center py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
               View Packages
             </a>
-            <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Georgia%20tours" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 hover:text-white transition-all" title="Inquire on WhatsApp">
+            <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Georgia%20tours" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-emerald-500/50 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-white transition-all" title="Inquire on WhatsApp">
               <i class="fa-brands fa-whatsapp text-sm"></i>
             </a>
           </div>
@@ -454,7 +494,7 @@
       </div>
 
       <!-- Destination 6: Bali, Indonesia -->
-      <div class="glass-card rounded-3xl overflow-hidden border border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col group shadow-xl">
+      <div class="glass-card rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col group shadow-xl">
         <div class="relative h-64 overflow-hidden">
           <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=85" alt="Bali Rice Terraces" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/30 to-transparent"></div>
@@ -467,24 +507,24 @@
           </div>
         </div>
         <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Swing over lush emerald Ubud rice terraces, watch cliffside fire dances at Uluwatu, explore sacred waterfalls, and cruise across to Nusa Penida's dramatic coastal viewpoints.
           </p>
-          <div class="space-y-2 border-t border-slate-800/80 pt-3">
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
+          <div class="space-y-2 border-t border-slate-200 dark:border-slate-800/80 pt-3">
+            <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span class="flex items-center space-x-1.5"><i class="fa-solid fa-calendar-check text-amber-400"></i><span>Best Season:</span></span>
-              <span class="font-semibold text-slate-200">April &ndash; October (Dry)</span>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">April &ndash; October (Dry)</span>
             </div>
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
+            <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
               <span class="flex items-center space-x-1.5"><i class="fa-solid fa-clock text-amber-400"></i><span>Recommended:</span></span>
-              <span class="font-semibold text-slate-200">6 &ndash; 10 Days</span>
+              <span class="font-semibold text-slate-800 dark:text-slate-200">6 &ndash; 10 Days</span>
             </div>
           </div>
           <div class="pt-2 flex items-center gap-2">
             <a href="packages.html" class="flex-1 text-center py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
               View Packages
             </a>
-            <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Bali%20trips" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 hover:text-white transition-all" title="Inquire on WhatsApp">
+            <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Bali%20trips" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-emerald-500/50 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-white transition-all" title="Inquire on WhatsApp">
               <i class="fa-brands fa-whatsapp text-sm"></i>
             </a>
           </div>
@@ -499,8 +539,8 @@
     <div class="glass-card rounded-3xl p-6 sm:p-10 border border-slate-800">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800">
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold text-white font-heading">Destination Comparison &amp; Visa Guide</h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">Quick seasonal and visa reference for UAE and Sri Lankan passport holders &amp; residents</p>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-heading">Destination Comparison &amp; Visa Guide</h2>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">Quick seasonal and visa reference for UAE and Sri Lankan passport holders &amp; residents</p>
         </div>
         <a href="visa-services.html" class="inline-flex items-center space-x-2 text-xs text-amber-400 font-bold hover:underline">
           <span>Explore Express Visa Services</span>
@@ -509,8 +549,8 @@
       </div>
 
       <div class="overflow-x-auto mt-6">
-        <table class="w-full text-left text-xs text-slate-300">
-          <thead class="bg-slate-900/90 text-slate-400 uppercase tracking-wider text-[10px] font-bold border-b border-slate-800">
+        <table class="w-full text-left text-xs text-slate-700 dark:text-slate-300">
+          <thead class="bg-slate-100 dark:bg-slate-900/90 text-slate-700 dark:text-slate-400 uppercase tracking-wider text-[10px] font-bold border-b border-slate-200 dark:border-slate-800">
             <tr>
               <th class="py-3 px-4">Destination</th>
               <th class="py-3 px-4">Peak Season</th>
@@ -519,60 +559,60 @@
               <th class="py-3 px-4 text-right">Flight Duration from UAE</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60">
-            <tr class="hover:bg-slate-900/50 transition-colors">
-              <td class="py-3 px-4 font-bold text-white flex items-center space-x-2">
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800/60">
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors">
+              <td class="py-3 px-4 font-bold text-slate-900 dark:text-white flex items-center space-x-2">
                 <i class="fa-solid fa-city text-amber-400 mr-1.5"></i><span>Dubai &amp; Abu Dhabi</span>
               </td>
               <td class="py-3 px-4 text-amber-400 font-medium">Nov &ndash; Apr</td>
               <td class="py-3 px-4">24&deg;C &ndash; 30&deg;C</td>
               <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-semibold">30/60-Day Tourist Visa</span></td>
-              <td class="py-3 px-4 text-right font-medium text-slate-400">Domestic / Hub</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-500 dark:text-slate-400">Domestic / Hub</td>
             </tr>
-            <tr class="hover:bg-slate-900/50 transition-colors">
-              <td class="py-3 px-4 font-bold text-white flex items-center space-x-2">
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors">
+              <td class="py-3 px-4 font-bold text-slate-900 dark:text-white flex items-center space-x-2">
                 <i class="fa-solid fa-gem text-amber-400 mr-1.5"></i><span>Sri Lanka</span>
               </td>
               <td class="py-3 px-4 text-amber-400 font-medium">Year-Round</td>
               <td class="py-3 px-4">27&deg;C &ndash; 31&deg;C</td>
               <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-semibold">Online ETA e-Visa</span></td>
-              <td class="py-3 px-4 text-right font-medium text-slate-400">~ 4h 15m</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-500 dark:text-slate-400">~ 4h 15m</td>
             </tr>
-            <tr class="hover:bg-slate-900/50 transition-colors">
-              <td class="py-3 px-4 font-bold text-white flex items-center space-x-2">
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors">
+              <td class="py-3 px-4 font-bold text-slate-900 dark:text-white flex items-center space-x-2">
                 <i class="fa-solid fa-umbrella-beach text-amber-400 mr-1.5"></i><span>Maldives</span>
               </td>
               <td class="py-3 px-4 text-amber-400 font-medium">Dec &ndash; Apr</td>
               <td class="py-3 px-4">28&deg;C &ndash; 31&deg;C</td>
               <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-semibold">Free 30-Day On Arrival</span></td>
-              <td class="py-3 px-4 text-right font-medium text-slate-400">~ 4h 00m</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-500 dark:text-slate-400">~ 4h 00m</td>
             </tr>
-            <tr class="hover:bg-slate-900/50 transition-colors">
-              <td class="py-3 px-4 font-bold text-white flex items-center space-x-2">
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors">
+              <td class="py-3 px-4 font-bold text-slate-900 dark:text-white flex items-center space-x-2">
                 <i class="fa-solid fa-mountain-sun text-amber-400 mr-1.5"></i><span>Baku, Azerbaijan</span>
               </td>
               <td class="py-3 px-4 text-amber-400 font-medium">Apr &ndash; Jun, Sep &ndash; Nov</td>
               <td class="py-3 px-4">18&deg;C &ndash; 25&deg;C</td>
               <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 font-semibold">Fast ASAN e-Visa (3h)</span></td>
-              <td class="py-3 px-4 text-right font-medium text-slate-400">~ 2h 55m</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-500 dark:text-slate-400">~ 2h 55m</td>
             </tr>
-            <tr class="hover:bg-slate-900/50 transition-colors">
-              <td class="py-3 px-4 font-bold text-white flex items-center space-x-2">
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors">
+              <td class="py-3 px-4 font-bold text-slate-900 dark:text-white flex items-center space-x-2">
                 <i class="fa-solid fa-snowflake text-amber-400 mr-1.5"></i><span>Tbilisi &amp; Kazbegi, Georgia</span>
               </td>
               <td class="py-3 px-4 text-amber-400 font-medium">May &ndash; Oct / Dec &ndash; Mar</td>
               <td class="py-3 px-4">15&deg;C &ndash; 26&deg;C (Summer)</td>
               <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-semibold">Visa-Free for UAE Residents</span></td>
-              <td class="py-3 px-4 text-right font-medium text-slate-400">~ 3h 25m</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-500 dark:text-slate-400">~ 3h 25m</td>
             </tr>
-            <tr class="hover:bg-slate-900/50 transition-colors">
-              <td class="py-3 px-4 font-bold text-white flex items-center space-x-2">
+            <tr class="hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors">
+              <td class="py-3 px-4 font-bold text-slate-900 dark:text-white flex items-center space-x-2">
                 <i class="fa-solid fa-leaf text-amber-400 mr-1.5"></i><span>Bali, Indonesia</span>
               </td>
               <td class="py-3 px-4 text-amber-400 font-medium">May &ndash; Sep</td>
               <td class="py-3 px-4">26&deg;C &ndash; 30&deg;C</td>
               <td class="py-3 px-4"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-semibold">e-VOA (Visa On Arrival)</span></td>
-              <td class="py-3 px-4 text-right font-medium text-slate-400">~ 9h 00m</td>
+              <td class="py-3 px-4 text-right font-medium text-slate-500 dark:text-slate-400">~ 9h 00m</td>
             </tr>
           </tbody>
         </table>

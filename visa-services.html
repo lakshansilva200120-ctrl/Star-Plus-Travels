@@ -53,28 +53,68 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css?v=5.1.0">
 
-  <!-- Immediate Theme Initialization Script (Locked to Professional Dark Theme) -->
+    <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync with Preference Memory) -->
   <script>
     (function() {
       try {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-        localStorage.setItem('starplus_theme_mode', 'dark');
-        localStorage.removeItem('starplus_theme');
-        localStorage.removeItem('starplus_manual_theme_set');
+        const mode = localStorage.getItem('starplus_theme_mode') || 'system';
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let isDark;
+        if (mode === 'dark') {
+          isDark = true;
+        } else if (mode === 'light') {
+          isDark = false;
+        } else {
+          isDark = systemDark;
+        }
+
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
       } catch (e) {}
+
+      // Prevent refresh jump to anchor hashes
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      if (window.location.hash) {
+        try {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (e) {}
+      }
+      window.scrollTo(0, 0);
     })();
   </script>
 </head>
-<body class="bg-[#070e17] text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col">
-  <!-- Preloader -->
-  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#070e17] transition-opacity duration-500">
+<body class="bg-[#f8fafc] dark:bg-[#070e17] text-slate-900 dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col transition-colors duration-300 w-full max-w-full relative">
+    <!-- Preloader -->
+  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-500">
     <div class="relative flex flex-col items-center">
-      <img src="assets/logo-white-text.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
+      <img id="preloaderLogoImg" src="assets/logo-white-text.png" data-dark-src="assets/logo-white-text.png" data-light-src="assets/original-removebg-preview.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
       <div class="luxury-gold-spinner mb-4"></div>
       <p class="text-xs uppercase tracking-widest text-amber-400 font-semibold animate-pulse">Loading Star Plus Travels...</p>
     </div>
   </div>
+  <script>
+    (function() {
+      try {
+        var isDark = document.documentElement.classList.contains('dark') || 
+          (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var pImg = document.getElementById('preloaderLogoImg');
+        var pBox = document.getElementById('sitePreloader');
+        if (pImg) {
+          pImg.src = isDark ? (pImg.getAttribute('data-dark-src') || pImg.src) : (pImg.getAttribute('data-light-src') || pImg.src);
+        }
+        if (pBox) {
+          pBox.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Top Announcement Bar -->
   <div class="top-announcement-bar bg-[#050b12]/95 border-b border-slate-800/80 text-[11px] sm:text-xs py-1.5 px-3 sm:px-6 relative z-40 backdrop-blur-md transition-colors overflow-hidden">
@@ -131,23 +171,23 @@
           <img id="brandHeaderLogo"
                src="assets/logo-white-text.png" 
                data-dark-src="assets/logo-white-text.png"
-               data-light-src="assets/logo-white-text.png"
+               data-light-src="assets/original-removebg-preview.png"
                alt="Star Plus Travel and Tourism LLC" 
                class="h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
         </a>
 
-        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
-          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
-          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
-          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
-          <a href="visa-services.html" class="nav-link active py-2 px-1 text-amber-400 font-bold transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
-          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
+        <nav class="hidden lg:flex items-center justify-center space-x-3 xl:space-x-5 2xl:space-x-7 text-[13px] xl:text-[14px] font-semibold text-slate-700 dark:text-slate-200 whitespace-nowrap min-w-0 flex-1 mx-2">
+          <a href="index.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a>
+          <a href="packages.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a>
+          <a href="destinations.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a>
+          <a href="visa-services.html" class="nav-link active py-2 px-1 text-amber-500 dark:text-amber-400 font-bold transition-colors" data-i18n="navActivitiesVisa">Visa Services</a>
+          <a href="reviews.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a>
           
           <!-- Explore Dropdown -->
           <div class="nav-dropdown py-2 px-1">
-            <button type="button" class="nav-link nav-dropdown-trigger hover:text-amber-400 transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
+            <button type="button" class="nav-link nav-dropdown-trigger hover:text-amber-500 dark:hover:text-amber-400 transition-colors cursor-pointer bg-transparent border-none outline-none font-semibold text-[13px] xl:text-[14px]">
               <span data-i18n="navExplore">Explore</span>
-              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-400"></i>
+              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-500 dark:text-amber-400"></i>
             </button>
             <div class="nav-dropdown-menu">
               <a href="why-us.html" class="nav-dropdown-item">
@@ -172,7 +212,7 @@
             </div>
           </div>
 
-          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
+          <a href="contact.html" class="nav-link py-2 px-1 hover:text-amber-500 dark:hover:text-amber-400 transition-colors" data-i18n="navContact">Contact</a>
         </nav>
 
         <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
@@ -243,17 +283,17 @@
 
 <main class="flex-grow">
   <!-- Visa Page Hero Banner -->
-  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-[#0B192C]/80 via-[#070E17] to-[#070E17] border-b border-slate-800/80">
+  <section class="relative pt-16 pb-12 overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50 dark:from-[#0B192C]/80 dark:via-[#070E17] dark:to-[#070E17] border-b border-slate-200 dark:border-slate-800/80 transition-colors">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.12),rgba(255,255,255,0))] pointer-events-none"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
         <i class="fa-solid fa-passport text-[11px]"></i>
         <span data-i18n="visaBadge">Accredited Immigration Support</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="visaPageTitle">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="visaPageTitle">
         Express Visa &amp; Immigration Concierge
       </h1>
-      <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="visaPageSubtitle">
+      <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="visaPageSubtitle">
         Fast, authorized visa issuance with a 99.4% approval track record across the UAE, GCC, Schengen, Sri Lanka, and worldwide.
       </p>
 
@@ -263,15 +303,15 @@
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-800">
             <div>
               <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Live Calculator</span>
-              <h3 class="text-base sm:text-lg font-bold text-white font-heading">Check Visa Requirements &amp; Rates</h3>
+              <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading">Check Visa Requirements &amp; Rates</h3>
             </div>
             <span class="text-xs text-slate-400 flex items-center gap-1.5"><i class="fa-solid fa-bolt text-amber-400"></i> Instant Quote</span>
           </div>
 
           <div>
-            <label for="visaSelect" class="block text-xs font-bold text-slate-300 mb-2">Select Visa Category:</label>
+            <label for="visaSelect" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Select Visa Category:</label>
             <div class="relative">
-              <select id="visaSelect" onchange="checkVisaRequirements()" class="w-full pl-4 pr-10 py-3 bg-slate-900 border border-slate-700 rounded-xl text-xs sm:text-sm text-white focus:outline-none focus:border-amber-500 transition-colors cursor-pointer appearance-none">
+              <select id="visaSelect" onchange="checkVisaRequirements()" class="w-full pl-4 pr-10 py-3 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:border-amber-500 transition-colors cursor-pointer appearance-none">
                 <option value="uae" selected>UAE Tourist &amp; Freelance Visa (30 / 60 Days)</option>
                 <option value="oman_change">Oman Visa Change by Luxury Coach (Deira Departure)</option>
                 <option value="schengen">Schengen European Visa Full Concierge &amp; File Preparation</option>
@@ -295,163 +335,163 @@
   <section class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
     <div class="text-center max-w-2xl mx-auto mb-12">
       <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">Our Specializations</span>
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-heading">Complete Travel Authorization Suite</h2>
-      <p class="text-xs sm:text-sm text-slate-400 mt-2">Whether you need to extend your UAE stay, run to the border, or fly to Europe, we handle everything from A to Z.</p>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-heading">Complete Travel Authorization Suite</h2>
+      <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2">Whether you need to extend your UAE stay, run to the border, or fly to Europe, we handle everything from A to Z.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       
       <!-- Service 1: 30/60-Day UAE Tourist Visa -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl">
+      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl">
         <div class="space-y-4">
           <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-passport"></i>
           </div>
           <div>
             <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Fast GDRFA / ICP Approval</span>
-            <h3 class="text-lg font-bold text-white font-heading mt-0.5">30 &amp; 60-Day UAE Tourist Visa</h3>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading mt-0.5">30 &amp; 60-Day UAE Tourist Visa</h3>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Directly submitted to Dubai (GDRFA) and Federal (ICP) immigration. Single and multiple entry available for all eligible nationalities.
           </p>
-          <ul class="space-y-2 text-xs text-slate-400 border-t border-slate-800/80 pt-3">
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 pt-3">
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Issued in 24 &ndash; 48 hours</span></li>
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Only Passport Copy &amp; Photo needed</span></li>
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Includes mandatory COVID/medical insurance</span></li>
           </ul>
         </div>
         <div class="pt-6">
-          <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20need%20a%20UAE%20Tourist%20Visa" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-500 hover:text-amber-400 text-slate-200 font-bold text-xs uppercase tracking-wider transition-all">
+          <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20need%20a%20UAE%20Tourist%20Visa" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider transition-all">
             Apply via WhatsApp
           </a>
         </div>
       </div>
 
       <!-- Service 2: Oman Visa Change Bus -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl">
+      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl">
         <div class="space-y-4">
           <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-bus-simple"></i>
           </div>
           <div>
             <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Daily Deira Departures</span>
-            <h3 class="text-lg font-bold text-white font-heading mt-0.5">Oman Visa Change by Luxury Coach</h3>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading mt-0.5">Oman Visa Change by Luxury Coach</h3>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             The most reliable and cost-effective method to renew or change your UAE tourist or residency visa without expensive flights.
           </p>
-          <ul class="space-y-2 text-xs text-slate-400 border-t border-slate-800/80 pt-3">
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 pt-3">
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Luxury AC Coach round-trip from Deira</span></li>
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Comfortable Oman hotel room stay included</span></li>
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Dedicated bilingual border clearance guide</span></li>
           </ul>
         </div>
         <div class="pt-6">
-          <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20want%20to%20book%20the%20Oman%20Visa%20Change%20Bus" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-500 hover:text-amber-400 text-slate-200 font-bold text-xs uppercase tracking-wider transition-all">
+          <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20want%20to%20book%20the%20Oman%20Visa%20Change%20Bus" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider transition-all">
             Book Next Departure
           </a>
         </div>
       </div>
 
       <!-- Service 3: Schengen Visa Concierge -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl">
+      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl">
         <div class="space-y-4">
           <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-landmark-flag"></i>
           </div>
           <div>
             <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">European Embassies (VFS/TLS/BLS)</span>
-            <h3 class="text-lg font-bold text-white font-heading mt-0.5">Schengen Concierge &amp; File Prep</h3>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading mt-0.5">Schengen Concierge &amp; File Prep</h3>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Eliminate rejection anxiety. We secure difficult appointment slots, prepare verified dummy flight and hotel bookings, and audit your bank statements.
           </p>
-          <ul class="space-y-2 text-xs text-slate-400 border-t border-slate-800/80 pt-3">
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 pt-3">
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Fast appointment slot alerts &amp; booking</span></li>
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Embassy-compliant travel health insurance</span></li>
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Personalized cover letter &amp; itinerary design</span></li>
           </ul>
         </div>
         <div class="pt-6">
-          <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20need%20help%20with%20a%20Schengen%20Visa" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-500 hover:text-amber-400 text-slate-200 font-bold text-xs uppercase tracking-wider transition-all">
+          <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20need%20help%20with%20a%20Schengen%20Visa" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider transition-all">
             Schedule Visa Consultation
           </a>
         </div>
       </div>
 
       <!-- Service 4: Sri Lanka ETA -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl">
+      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl">
         <div class="space-y-4">
           <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-plane-arrival"></i>
           </div>
           <div>
             <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Official Government ETA</span>
-            <h3 class="text-lg font-bold text-white font-heading mt-0.5">Sri Lanka Electronic ETA</h3>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading mt-0.5">Sri Lanka Electronic ETA</h3>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Hassle-free double-entry tourist and business authorization approved directly with Sri Lanka Department of Immigration &amp; Emigration.
           </p>
-          <ul class="space-y-2 text-xs text-slate-400 border-t border-slate-800/80 pt-3">
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 pt-3">
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Turnaround in 6 &ndash; 24 hours</span></li>
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Valid for 30 days from arrival</span></li>
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Colombo office on-the-ground support</span></li>
           </ul>
         </div>
         <div class="pt-6">
-          <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20need%20a%20Sri%20Lanka%20ETA" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-500 hover:text-amber-400 text-slate-200 font-bold text-xs uppercase tracking-wider transition-all">
+          <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20need%20a%20Sri%20Lanka%20ETA" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider transition-all">
             Get Sri Lanka ETA
           </a>
         </div>
       </div>
 
       <!-- Service 5: Azerbaijan ASAN e-Visa -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl">
+      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl">
         <div class="space-y-4">
           <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-fire"></i>
           </div>
           <div>
             <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Official ASAN System</span>
-            <h3 class="text-lg font-bold text-white font-heading mt-0.5">Azerbaijan ASAN e-Visa</h3>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading mt-0.5">Azerbaijan ASAN e-Visa</h3>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Fast-track your trip to Baku. Standard 3-day approval or urgent 3-hour VIP express issuance delivered directly to your WhatsApp.
           </p>
-          <ul class="space-y-2 text-xs text-slate-400 border-t border-slate-800/80 pt-3">
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 pt-3">
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>3-Hour VIP Express available</span></li>
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>30-Day stay with 90-day validity</span></li>
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Combo packages with Shahdag hotel stays</span></li>
           </ul>
         </div>
         <div class="pt-6">
-          <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20need%20an%20Azerbaijan%20eVisa" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-500 hover:text-amber-400 text-slate-200 font-bold text-xs uppercase tracking-wider transition-all">
+          <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20need%20an%20Azerbaijan%20eVisa" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider transition-all">
             Apply for Baku Visa
           </a>
         </div>
       </div>
 
       <!-- Service 6: Saudi Umrah & Tourist e-Visa -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl">
+      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all flex flex-col justify-between group shadow-xl">
         <div class="space-y-4">
           <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-xl group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-kaaba"></i>
           </div>
           <div>
             <span class="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">Official MOFA Portal</span>
-            <h3 class="text-lg font-bold text-white font-heading mt-0.5">Saudi Umrah &amp; Tourist e-Visa</h3>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white font-heading mt-0.5">Saudi Umrah &amp; Tourist e-Visa</h3>
           </div>
-          <p class="text-xs text-slate-300 leading-relaxed">
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             1-Year multiple entry tourist and Umrah visas for GCC residents and international visitors with comprehensive medical insurance.
           </p>
-          <ul class="space-y-2 text-xs text-slate-400 border-t border-slate-800/80 pt-3">
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800/80 pt-3">
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>90-Day stay per visit allowed</span></li>
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Approved in as fast as 4 hours</span></li>
             <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400 text-[10px]"></i><span>Full Nusuk appointment guidance included</span></li>
           </ul>
         </div>
         <div class="pt-6">
-          <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20need%20a%20Saudi%20Tourist%20or%20Umrah%20Visa" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-500 hover:text-amber-400 text-slate-200 font-bold text-xs uppercase tracking-wider transition-all">
+          <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20need%20a%20Saudi%20Tourist%20or%20Umrah%20Visa" target="_blank" rel="noopener noreferrer" class="w-full block text-center py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-400 text-slate-800 dark:text-slate-200 font-bold text-xs uppercase tracking-wider transition-all">
             Get Saudi e-Visa
           </a>
         </div>
@@ -464,8 +504,8 @@
   <section class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full border-t border-slate-800">
     <div class="text-center max-w-2xl mx-auto mb-12">
       <span class="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">Seamless Experience</span>
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-heading">Our 4-Step Express Issuance</h2>
-      <p class="text-xs sm:text-sm text-slate-400 mt-2">Zero embassy lines. Zero confusing paperwork. Here is how simple it is:</p>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-heading">Our 4-Step Express Issuance</h2>
+      <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2">Zero embassy lines. Zero confusing paperwork. Here is how simple it is:</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
