@@ -1156,16 +1156,16 @@ function renderTestimonial() {
 
       <!-- Quote Content -->
       <div class="flex-1">
-        <div class="flex items-center space-x-1 text-amber-500 text-sm mb-3">
+        <div class="flex items-center space-x-1 text-amber-400 text-sm mb-3">
           ${Array(t.stars).fill('<i class="fa-solid fa-star"></i>').join('')}
-          <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold ml-2">Verified Traveler • ${t.date}</span>
+          <span class="text-xs text-slate-400 font-semibold ml-2">Verified Traveler • ${t.date}</span>
         </div>
-        <p class="text-base md:text-lg text-slate-700 dark:text-slate-200 italic leading-relaxed mb-4">
+        <p class="text-base md:text-lg text-slate-200 italic leading-relaxed mb-4">
           "${t.comment}"
         </p>
         <div>
-          <h4 class="text-base font-bold text-slate-900 dark:text-white">${t.name}</h4>
-          <p class="text-xs text-amber-600 dark:text-amber-400 font-medium">${t.role} — <span class="text-slate-500 dark:text-slate-400">${t.trip}</span></p>
+          <h4 class="text-base font-bold text-white">${t.name}</h4>
+          <p class="text-xs text-amber-400 font-medium">${t.role} — <span class="text-slate-400">${t.trip}</span></p>
         </div>
       </div>
     </div>
@@ -1342,100 +1342,57 @@ function toggleMobileMenu() {
 }
 
 // ==========================================================================
-// Theme Management (System Preferences Live Auto-Sync with Tri-State Toggle)
-// Modes: 'system' (default live sync), 'light' (manual), 'dark' (manual)
+// Theme Management (Locked to Professional Dark Theme)
+// Website is locked to permanent dark theme regardless of OS / browser mode
 // ==========================================================================
 function isSystemDarkMode() {
-  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return true;
 }
 
 function getThemeMode() {
-  try {
-    const mode = localStorage.getItem('starplus_theme_mode');
-    if (mode === 'light' || mode === 'dark' || mode === 'system') {
-      return mode;
-    }
-  } catch (e) {}
-  return 'system';
+  return 'dark';
 }
 
-function getEffectiveTheme(mode = getThemeMode()) {
-  if (mode === 'dark') return 'dark';
-  if (mode === 'light') return 'light';
-  return isSystemDarkMode() ? 'dark' : 'light';
+function getEffectiveTheme() {
+  return 'dark';
 }
 
-function applyTheme(mode = getThemeMode(), save = false) {
+function applyTheme(mode = 'dark', save = false) {
   const root = document.documentElement;
-  const effectiveTheme = getEffectiveTheme(mode);
-  const isDark = effectiveTheme === 'dark';
+  root.classList.add('dark');
+  root.classList.remove('light');
 
-  if (isDark) {
-    root.classList.add('dark');
-    root.classList.remove('light');
-  } else {
-    root.classList.remove('dark');
-    root.classList.add('light');
-  }
+  try {
+    localStorage.setItem('starplus_theme_mode', 'dark');
+    localStorage.removeItem('starplus_theme');
+    localStorage.removeItem('starplus_manual_theme_set');
+  } catch (e) {}
 
-  if (save) {
-    try {
-      if (mode === 'system') {
-        localStorage.setItem('starplus_theme_mode', 'system');
-      } else {
-        localStorage.setItem('starplus_theme_mode', mode);
-      }
-      // Purge legacy flat keys
-      localStorage.removeItem('starplus_theme');
-      localStorage.removeItem('starplus_manual_theme_set');
-    } catch (e) {}
-  }
-
-  // Update theme toggle icons and tooltips
+  // Update theme toggle icons and tooltips (if any exist)
   document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
-    if (mode === 'system') {
-      btn.setAttribute('title', `Theme: System Auto (${isDark ? 'Dark' : 'Light'}) • Click to toggle`);
-    } else if (mode === 'dark') {
-      btn.setAttribute('title', 'Theme: Dark (Manual) • Click to cycle to Auto');
-    } else {
-      btn.setAttribute('title', 'Theme: Light (Manual) • Click to cycle to Dark');
-    }
+    btn.setAttribute('title', 'Theme: Dark');
   });
 
   document.querySelectorAll('.theme-toggle-icon').forEach(icon => {
-    if (mode === 'system') {
-      icon.className = isDark 
-        ? 'fa-solid fa-circle-half-stroke text-amber-400 theme-toggle-icon transition-transform' 
-        : 'fa-solid fa-circle-half-stroke text-slate-700 theme-toggle-icon transition-transform';
-    } else if (mode === 'dark') {
-      icon.className = 'fa-solid fa-moon text-amber-400 theme-toggle-icon transition-transform';
-    } else {
-      icon.className = 'fa-solid fa-sun text-amber-500 theme-toggle-icon transition-transform';
-    }
+    icon.className = 'fa-solid fa-moon text-amber-400 theme-toggle-icon transition-transform';
   });
 
-  // Update theme toggle text labels in top bar & mobile menu
   document.querySelectorAll('.theme-toggle-label').forEach(label => {
-    if (mode === 'system') {
-      label.textContent = `Auto (${isDark ? 'Dark' : 'Light'})`;
-    } else if (mode === 'dark') {
-      label.textContent = 'Dark';
-    } else {
-      label.textContent = 'Light';
-    }
+    label.textContent = 'Dark';
   });
 
-  // Update brand logos and images between white text (dark mode) and dark text (light mode)
+  // Update brand logos and images to white text (dark mode)
   document.querySelectorAll('img[data-dark-src]').forEach(img => {
     const darkSrc = img.getAttribute('data-dark-src');
-    const lightSrc = img.getAttribute('data-light-src');
-    img.src = isDark ? darkSrc : lightSrc;
+    if (darkSrc) {
+      img.src = darkSrc;
+    }
   });
 
-  // Update preloader background if still present
+  // Update preloader background
   const preloader = document.getElementById('sitePreloader');
   if (preloader) {
-    preloader.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+    preloader.style.backgroundColor = '#070e17';
   }
 
   // Notify seasonal particle engine if present
@@ -1445,49 +1402,12 @@ function applyTheme(mode = getThemeMode(), save = false) {
 }
 
 function toggleTheme() {
-  const currentMode = getThemeMode(); // 'system', 'light', 'dark'
-  const sysDark = isSystemDarkMode();
-  let nextMode;
-
-  if (currentMode === 'system') {
-    // If currently on system auto, switch to the opposite of current system theme
-    nextMode = sysDark ? 'light' : 'dark';
-  } else if (currentMode === 'light') {
-    nextMode = sysDark ? 'dark' : 'system';
-  } else if (currentMode === 'dark') {
-    nextMode = sysDark ? 'system' : 'light';
-  } else {
-    nextMode = 'system';
-  }
-
-  applyTheme(nextMode, true);
-
-  if (nextMode === 'system') {
-    showToast(`💻 Synced with device system settings (${sysDark ? 'Dark' : 'Light'} Mode)`, 'success');
-  } else if (nextMode === 'dark') {
-    showToast(`🌙 Switched to Dark mode (Manual)`, 'success');
-  } else {
-    showToast(`☀️ Switched to Light mode (Manual)`, 'success');
-  }
+  applyTheme('dark', true);
 }
 
-// Live Real-Time OS System Color Scheme Listener (Auto-syncs live when in System mode)
+// OS system watcher locked to enforce dark mode
 (function setupSystemThemeWatcher() {
-  if (!window.matchMedia) return;
-
-  const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  const handleSystemThemeChange = () => {
-    const currentMode = getThemeMode();
-    if (currentMode === 'system') {
-      applyTheme('system', false);
-    }
-  };
-
-  if (darkModeQuery.addEventListener) {
-    darkModeQuery.addEventListener('change', handleSystemThemeChange);
-  } else if (darkModeQuery.addListener) {
-    darkModeQuery.addListener(handleSystemThemeChange);
-  }
+  applyTheme('dark', false);
 })();
 
 // ==========================================================================
