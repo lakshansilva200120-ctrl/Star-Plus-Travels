@@ -1683,7 +1683,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   Dynamic Hero Slideshow Controller & Cinematic Preview Cards
+   Dynamic Hero Slideshow Controller
    ========================================================================== */
 let heroSlideshowTimer = null;
 let currentSlideIndex = 0;
@@ -1691,7 +1691,6 @@ let currentSlideIndex = 0;
 function switchHeroSlide(index) {
   const slides = document.querySelectorAll('.hero-slide');
   const dots = document.querySelectorAll('.hero-indicator-dot');
-  const previewCards = document.querySelectorAll('.hero-preview-card');
   if (!slides || slides.length === 0) return;
 
   const validIndex = ((index % slides.length) + slides.length) % slides.length;
@@ -1709,20 +1708,6 @@ function switchHeroSlide(index) {
       d.classList.add('active');
     } else {
       d.classList.remove('active');
-    }
-  });
-
-  previewCards.forEach((c, i) => {
-    if (i === validIndex) {
-      c.classList.add('active');
-      // Scroll card into view smoothly in the horizontal preview bar if needed
-      try {
-        c.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      } catch (e) {
-        // Fallback if browser doesn't support options
-      }
-    } else {
-      c.classList.remove('active');
     }
   });
 
@@ -1762,22 +1747,11 @@ function stopHeroTimer() {
 function initHeroSlideshow() {
   const slides = document.querySelectorAll('.hero-slide');
   const dots = document.querySelectorAll('.hero-indicator-dot');
-  const previewCards = document.querySelectorAll('.hero-preview-card');
   if (!slides || slides.length === 0) return;
 
   dots.forEach(dot => {
     dot.addEventListener('click', () => {
       const idx = parseInt(dot.dataset.slideIndex, 10);
-      if (!isNaN(idx)) {
-        switchHeroSlide(idx);
-        resetHeroTimer();
-      }
-    });
-  });
-
-  previewCards.forEach(card => {
-    card.addEventListener('click', () => {
-      const idx = parseInt(card.dataset.slideIndex, 10);
       if (!isNaN(idx)) {
         switchHeroSlide(idx);
         resetHeroTimer();
@@ -1794,6 +1768,17 @@ function initHeroSlideshow() {
   switchHeroSlide(0);
   resetHeroTimer();
 }
+
+/* ==========================================================================
+   Tour Packages Interactive Carousel Controller
+   ========================================================================== */
+function scrollPackagesCarousel(direction) {
+  const track = document.getElementById('packagesGrid');
+  if (!track) return;
+  const scrollAmount = Math.max(300, Math.floor(track.clientWidth * 0.75)) * direction;
+  track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+}
+window.scrollPackagesCarousel = scrollPackagesCarousel;
 
 /* ==========================================================================
    Navigation Dropdown Controller (Explore Menu)

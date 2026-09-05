@@ -581,63 +581,35 @@ header.glass-nav.header-scrolled,
   box-shadow: 0 0 12px rgba(245, 158, 11, 0.6);
 }
 
-/* Cinematic Hero Destination Preview Cards */
-.hero-preview-slider {
+/* Tour Packages Interactive Carousel Track & Cards */
+.packages-carousel-track {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE/Edge */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
-.hero-preview-slider::-webkit-scrollbar {
+.packages-carousel-track::-webkit-scrollbar {
   display: none; /* Chrome/Safari */
 }
 
-.hero-preview-card {
-  position: relative;
-  background: rgba(11, 25, 44, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
-  user-select: none;
-  cursor: pointer;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+.packages-carousel-track .package-card {
+  flex-shrink: 0;
+  width: 320px;
+  max-width: 85vw;
+  scroll-snap-align: start;
 }
 
-.hero-preview-card:hover {
-  border-color: rgba(245, 158, 11, 0.65);
-  box-shadow: 0 14px 34px -8px rgba(245, 158, 11, 0.25);
-  transform: translateY(-3px) scale(1.02);
+@media (min-width: 640px) {
+  .packages-carousel-track .package-card {
+    width: 360px;
+  }
 }
 
-.hero-preview-card.active {
-  background: rgba(15, 29, 52, 0.95);
-  border-color: #f59e0b !important;
-  box-shadow: 0 0 24px rgba(245, 158, 11, 0.45), 0 12px 30px -5px rgba(0, 0, 0, 0.8);
-  transform: translateY(-3px) scale(1.03);
-}
-
-.hero-preview-card.active .preview-active-pill {
-  display: inline-block !important;
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.7);
-}
-
-.hero-preview-card:not(.active) .preview-active-pill {
-  display: none !important;
-}
-
-html.light .hero-preview-card {
-  background: rgba(255, 255, 255, 0.88);
-  border-color: rgba(226, 232, 240, 0.9);
-}
-
-html.light .hero-preview-card.active {
-  background: #ffffff;
-  border-color: #f59e0b !important;
-  box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.35);
-}
-
-html.light .hero-preview-card h4 {
-  color: #0f172a;
+@media (min-width: 1024px) {
+  .packages-carousel-track .package-card {
+    width: 380px;
+  }
 }
 
 /* Floating Animations */
