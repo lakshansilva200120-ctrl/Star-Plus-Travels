@@ -584,41 +584,52 @@ html.light .glass-card-hover:hover,
 }
 
 /* Headings inside cards */
-html.light .glass-card h1,
-html.light .glass-card h2,
-html.light .glass-card h3,
-html.light .glass-card h4,
-html.light .glass-card h5,
-html.light .glass-card h6,
-:root:not(.dark) .glass-card h1,
-:root:not(.dark) .glass-card h2,
-:root:not(.dark) .glass-card h3,
-:root:not(.dark) .glass-card h4,
-:root:not(.dark) .glass-card h5,
-:root:not(.dark) .glass-card h6 {
+html.light .glass-card:not([class*="from-"]) h1:not(.banner-overlay-title):not(.hero-banner-title),
+html.light .glass-card:not([class*="from-"]) h2:not(.banner-overlay-title):not(.hero-banner-title),
+html.light .glass-card:not([class*="from-"]) h3:not(.banner-overlay-title):not(.hero-banner-title),
+html.light .glass-card:not([class*="from-"]) h4:not(.banner-overlay-title):not(.hero-banner-title),
+html.light .glass-card:not([class*="from-"]) h5:not(.banner-overlay-title):not(.hero-banner-title),
+html.light .glass-card:not([class*="from-"]) h6:not(.banner-overlay-title):not(.hero-banner-title),
+:root:not(.dark) .glass-card:not([class*="from-"]) h1:not(.banner-overlay-title):not(.hero-banner-title),
+:root:not(.dark) .glass-card:not([class*="from-"]) h2:not(.banner-overlay-title):not(.hero-banner-title),
+:root:not(.dark) .glass-card:not([class*="from-"]) h3:not(.banner-overlay-title):not(.hero-banner-title),
+:root:not(.dark) .glass-card:not([class*="from-"]) h4:not(.banner-overlay-title):not(.hero-banner-title),
+:root:not(.dark) .glass-card:not([class*="from-"]) h5:not(.banner-overlay-title):not(.hero-banner-title),
+:root:not(.dark) .glass-card:not([class*="from-"]) h6:not(.banner-overlay-title):not(.hero-banner-title) {
   color: #0f172a;
 }
 
 /* Paragraphs and copy inside cards */
-html.light .glass-card p:not([class*="text-amber"]):not([class*="text-emerald"]):not([class*="text-red"]):not(.badge),
-:root:not(.dark) .glass-card p:not([class*="text-amber"]):not([class*="text-emerald"]):not([class*="text-red"]):not(.badge) {
+html.light .glass-card:not([class*="from-"]) p:not([class*="text-amber"]):not([class*="text-emerald"]):not([class*="text-red"]):not(.badge):not(.banner-overlay-text),
+:root:not(.dark) .glass-card:not([class*="from-"]) p:not([class*="text-amber"]):not([class*="text-emerald"]):not([class*="text-red"]):not(.badge):not(.banner-overlay-text) {
   color: #334155;
 }
 
 /* Text utility overrides inside light cards */
-html.light .glass-card .text-slate-300,
-:root:not(.dark) .glass-card .text-slate-300 {
+html.light .glass-card:not([class*="from-"]) .text-slate-300:not(.banner-overlay-text),
+:root:not(.dark) .glass-card:not([class*="from-"]) .text-slate-300:not(.banner-overlay-text) {
   color: #334155 !important;
 }
 
-html.light .glass-card .text-slate-400,
-:root:not(.dark) .glass-card .text-slate-400 {
+html.light .glass-card:not([class*="from-"]) .text-slate-400:not(.banner-overlay-text),
+:root:not(.dark) .glass-card:not([class*="from-"]) .text-slate-400:not(.banner-overlay-text) {
   color: #475569 !important;
 }
 
-html.light .glass-card .text-white:not(button):not(.btn):not([class*="bg-"]):not(.badge):not([class*="gradient"]):not([class*="from-"]):not([class*="to-"]),
-:root:not(.dark) .glass-card .text-white:not(button):not(.btn):not([class*="bg-"]):not(.badge):not([class*="gradient"]):not([class*="from-"]):not([class*="to-"]) {
+html.light .glass-card .text-white:not(button):not(.btn):not([class*="bg-"]):not(.badge):not([class*="gradient"]):not([class*="from-"]):not([class*="to-"]):not(.banner-overlay-title):not(.hero-banner-title):not([class*="overlay"]),
+:root:not(.dark) .glass-card .text-white:not(button):not(.btn):not([class*="bg-"]):not(.badge):not([class*="gradient"]):not([class*="from-"]):not([class*="to-"]):not(.banner-overlay-title):not(.hero-banner-title):not([class*="overlay"]) {
   color: #0f172a !important;
+}
+
+/* Ensure banner overlay titles and elements over dark image gradients always stay pure crisp white */
+.banner-overlay-title,
+.hero-banner-title,
+.glass-card .banner-overlay-title,
+.glass-card [class*="absolute bottom"] h3,
+.glass-card .relative.h-64 h3,
+.glass-card .relative.h-44 h3 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 /* Filter / Category Pill Buttons in Light Mode */
