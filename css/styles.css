@@ -560,6 +560,298 @@ html.light #mobileMenu .bg-slate-950 {
   box-shadow: var(--theme-card-shadow-hover);
 }
 
+/* ==========================================================================
+   Universal Light Mode Text Contrast & Theme Adaptability System
+   ========================================================================== */
+html.light,
+:root:not(.dark) {
+  color-scheme: light;
+}
+
+/* Base Body Text in Light Mode */
+html.light body,
+:root:not(.dark) body {
+  background-color: var(--theme-bg-base);
+  color: #0f172a;
+}
+
+/* Universal Cards & Containers Contrast in Light Mode */
+html.light .glass-card,
+:root:not(.dark) .glass-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(226, 232, 240, 0.95);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  color: #0f172a;
+}
+
+/* Headings inside Glass Cards & Light Mode Sections */
+html.light .glass-card h1,
+html.light .glass-card h2,
+html.light .glass-card h3,
+html.light .glass-card h4,
+html.light .glass-card h5,
+html.light .glass-card h6,
+html.light .glass-card .font-heading,
+:root:not(.dark) .glass-card h1,
+:root:not(.dark) .glass-card h2,
+:root:not(.dark) .glass-card h3,
+:root:not(.dark) .glass-card h4,
+:root:not(.dark) .glass-card h5,
+:root:not(.dark) .glass-card h6,
+:root:not(.dark) .glass-card .font-heading {
+  color: #0f172a;
+}
+
+/* Paragraphs & Descriptions inside Glass Cards */
+html.light .glass-card p,
+html.light .glass-card .text-slate-300,
+html.light .glass-card .text-slate-200,
+:root:not(.dark) .glass-card p,
+:root:not(.dark) .glass-card .text-slate-300,
+:root:not(.dark) .glass-card .text-slate-200 {
+  color: #334155;
+}
+
+/* Metadata Labels & Muted Text inside Glass Cards */
+html.light .glass-card .text-slate-400,
+:root:not(.dark) .glass-card .text-slate-400 {
+  color: #475569;
+}
+
+html.light .glass-card .text-slate-500,
+:root:not(.dark) .glass-card .text-slate-500 {
+  color: #64748b;
+}
+
+/* Metadata values & bold elements (e.g. Best Season, Recommended, Turnaround) */
+html.light .glass-card .font-semibold.text-slate-200,
+html.light .glass-card .font-bold.text-slate-200,
+html.light .glass-card .text-slate-100,
+:root:not(.dark) .glass-card .font-semibold.text-slate-200,
+:root:not(.dark) .glass-card .font-bold.text-slate-200,
+:root:not(.dark) .glass-card .text-slate-100 {
+  color: #0f172a;
+}
+
+/* Border dividers inside Glass Cards */
+html.light .glass-card .border-slate-800,
+html.light .glass-card .border-slate-800\/80,
+html.light .glass-card .border-slate-700,
+html.light .glass-card .border-slate-700\/50,
+html.light .glass-card .border-slate-700\/80,
+:root:not(.dark) .glass-card .border-slate-800,
+:root:not(.dark) .glass-card .border-slate-800\/80,
+:root:not(.dark) .glass-card .border-slate-700,
+:root:not(.dark) .glass-card .border-slate-700\/50,
+:root:not(.dark) .glass-card .border-slate-700\/80 {
+  border-color: #e2e8f0;
+}
+
+/* Dark pill / button backgrounds inside Glass Cards in Light Mode */
+html.light .glass-card a.bg-slate-900,
+html.light .glass-card button.bg-slate-900,
+:root:not(.dark) .glass-card a.bg-slate-900,
+:root:not(.dark) .glass-card button.bg-slate-900 {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+
+html.light .glass-card a.bg-slate-900:hover,
+html.light .glass-card button.bg-slate-900:hover,
+:root:not(.dark) .glass-card a.bg-slate-900:hover,
+:root:not(.dark) .glass-card button.bg-slate-900:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Top Announcement & Utility Bar in Light Mode */
+html.light .top-announcement-bar,
+html.light .top-bar-container,
+:root:not(.dark) .top-announcement-bar,
+:root:not(.dark) .top-bar-container {
+  color: #475569;
+}
+
+html.light .top-bar-container .text-slate-300,
+html.light .top-bar-container .text-slate-400,
+:root:not(.dark) .top-bar-container .text-slate-300,
+:root:not(.dark) .top-bar-container .text-slate-400 {
+  color: #334155;
+}
+
+html.light .top-bar-container select.currency-selector,
+:root:not(.dark) .top-bar-container select.currency-selector {
+  color: #0f172a;
+}
+
+/* Form controls in Light Mode */
+html.light input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+html.light select,
+html.light textarea,
+:root:not(.dark) input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+:root:not(.dark) select,
+:root:not(.dark) textarea {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder,
+:root:not(.dark) input::placeholder,
+:root:not(.dark) textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* Subpage Hero Banners in Light Mode */
+html.light main > section.bg-gradient-to-b.from-\[\#0B192C\]\/80,
+:root:not(.dark) main > section.bg-gradient-to-b.from-\[\#0B192C\]\/80 {
+  background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 50%, #f8fafc 100%) !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+html.light main > section.bg-gradient-to-b.from-\[\#0B192C\]\/80 h1,
+:root:not(.dark) main > section.bg-gradient-to-b.from-\[\#0B192C\]\/80 h1 {
+  color: #0f172a !important;
+}
+
+html.light main > section.bg-gradient-to-b.from-\[\#0B192C\]\/80 p,
+:root:not(.dark) main > section.bg-gradient-to-b.from-\[\#0B192C\]\/80 p {
+  color: #475569 !important;
+}
+
+/* Section Headings in Light Mode */
+html.light h1.text-white,
+html.light h2.text-white,
+html.light h3.text-white,
+html.light h4.text-white,
+:root:not(.dark) h1.text-white,
+:root:not(.dark) h2.text-white,
+:root:not(.dark) h3.text-white,
+:root:not(.dark) h4.text-white {
+  color: #0f172a;
+}
+
+/* Tables in Light Mode */
+html.light table,
+:root:not(.dark) table {
+  color: #334155;
+}
+
+html.light table thead,
+:root:not(.dark) table thead {
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+html.light table thead th,
+:root:not(.dark) table thead th {
+  color: #475569 !important;
+}
+
+html.light table tbody tr,
+:root:not(.dark) table tbody tr {
+  border-bottom-color: #f1f5f9 !important;
+}
+
+html.light table tbody tr:hover,
+:root:not(.dark) table tbody tr:hover {
+  background-color: #f8fafc !important;
+}
+
+html.light table tbody td.text-white,
+html.light table tbody td .text-white,
+:root:not(.dark) table tbody td.text-white,
+:root:not(.dark) table tbody td .text-white {
+  color: #0f172a !important;
+}
+
+/* Category Filter Pills in Light Mode */
+html.light .category-pill:not(.active),
+html.light .cat-pill:not(.bg-amber-500),
+:root:not(.dark) .category-pill:not(.active),
+:root:not(.dark) .cat-pill:not(.bg-amber-500) {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+html.light .category-pill:not(.active):hover,
+html.light .cat-pill:not(.bg-amber-500):hover,
+:root:not(.dark) .category-pill:not(.active):hover,
+:root:not(.dark) .cat-pill:not(.bg-amber-500):hover {
+  background-color: #f8fafc !important;
+  border-color: #f59e0b !important;
+  color: #0f172a !important;
+}
+
+/* Light Mode Alerts & Highlight Boxes */
+html.light .bg-amber-500\/10,
+:root:not(.dark) .bg-amber-500\/10 {
+  background-color: rgba(245, 158, 11, 0.1) !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+html.light .bg-amber-500\/10 .text-amber-200,
+:root:not(.dark) .bg-amber-500\/10 .text-amber-200 {
+  color: #78350f !important;
+}
+
+html.light .bg-amber-500\/10 .text-amber-400,
+:root:not(.dark) .bg-amber-500\/10 .text-amber-400 {
+  color: #b45309 !important;
+}
+
+html.light .bg-amber-500\/10 h4.text-white,
+:root:not(.dark) .bg-amber-500\/10 h4.text-white {
+  color: #78350f !important;
+}
+
+html.light .bg-amber-500\/10 p.text-slate-300,
+:root:not(.dark) .bg-amber-500\/10 p.text-slate-300 {
+  color: #92400e !important;
+}
+
+/* Inner nested dark containers in Light Mode */
+html.light .glass-card .bg-slate-950\/60,
+html.light .glass-card .bg-slate-950\/80,
+html.light .glass-card .bg-slate-900,
+:root:not(.dark) .glass-card .bg-slate-950\/60,
+:root:not(.dark) .glass-card .bg-slate-950\/80,
+:root:not(.dark) .glass-card .bg-slate-900 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light .glass-card .bg-slate-950\/60 h4.text-white,
+:root:not(.dark) .glass-card .bg-slate-950\/60 h4.text-white {
+  color: #0f172a !important;
+}
+
+/* FAQ Accordion Buttons in Light Mode */
+html.light .faq-btn span.text-white,
+:root:not(.dark) .faq-btn span.text-white {
+  color: #0f172a !important;
+}
+
+html.light .faq-btn:hover span.text-white,
+:root:not(.dark) .faq-btn:hover span.text-white {
+  color: #d97706 !important;
+}
+
+/* Ensure Photo Overlay Titles & Badges preserve high contrast on dark images */
+.relative .absolute.bottom-4 h3.text-white,
+.relative .absolute.bottom-3 span,
+.relative.h-64 h3.text-white,
+.relative.h-64 span.text-amber-400,
+.hero-video-gradient ~ * h1,
+.hero-video-gradient ~ * p {
+  color: #ffffff !important;
+}
+
 .glass-input {
   background: var(--theme-bg-input);
   border: 1px solid var(--theme-border-input);
