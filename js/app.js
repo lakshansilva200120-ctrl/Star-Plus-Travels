@@ -49,7 +49,7 @@ const I18N_TRANSLATIONS = {
     heroTitleWorld: "World",
     heroTitleMiddle: "Crafted with",
     heroTitleLuxury: "Luxury & Ease",
-    heroSubtitle: 'Seamless journey from Sri Lanka & the UAE to <span class="stat-counter font-bold text-amber-500 dark:text-amber-400" data-target="45" data-suffix="+">45+</span> global destinations. Handcrafted luxury holiday packages, competitive flights, and fast-track express visa processing.',
+    heroSubtitle: "Seamless journey from Sri Lanka & the UAE to 45+ global destinations. Handcrafted luxury holiday packages, competitive flights, and fast-track express visa processing.",
     tabHolidays: "Tour Packages",
     tabFlights: "Flight Inquiries",
     tabVisas: "Fast-Track Visas",
@@ -88,10 +88,10 @@ const I18N_TRANSLATIONS = {
     whyUs1Tag: "Price Match Promise",
     whyUs2Title: "Express Visa Processing",
     whyUs2Desc: "In-house government registered visa documentation specialists for UAE 30/60 days, Schengen, UK, USA & Oman runs.",
-    whyUs2Tag: '<span class="stat-counter" data-target="99.2" data-decimals="1" data-suffix="%">99.2%</span> Success Rate',
+    whyUs2Tag: "99.2% Success Rate",
     whyUs3Title: "Fly Now, Pay Later",
     whyUs3Desc: "Split your holiday payments into 4 interest-free monthly installments with Tabby and Tamara in the UAE.",
-    whyUs3Tag: '<span class="stat-counter" data-target="0" data-suffix="%">0%</span> Interest with Tabby',
+    whyUs3Tag: "0% Interest with Tabby",
     whyUs4Title: "24/7 Dedicated Concierge",
     whyUs4Desc: "Round-the-clock support in English, Arabic, Sinhala, and Tamil with dedicated personal trip advisors.",
     whyUs4Tag: "Instant WhatsApp Help",
@@ -124,14 +124,14 @@ const I18N_TRANSLATIONS = {
 
     // Season Promo
     promoBadge: "Exclusive Limited Offer",
-    promoTitle: 'Save up to <span class="stat-counter" data-target="35" data-suffix="%">35%</span> on Winter & Eid Holiday Bookings!',
+    promoTitle: "Save up to 35% on Winter & Eid Holiday Bookings!",
     promoDesc: "Use promo code STARPLUS when requesting your custom travel itinerary before the end of the month.",
     promoBtn: "Claim Promo Discount",
     promoNote: "Terms & Conditions Apply • 0% Tabby Installments Available",
 
     // Testimonials
     testimonialsBadge: "Real Traveler Stories",
-    testimonialsTitle: 'Loved by Over <span class="stat-counter" data-target="15000" data-format="comma">15,000</span> Adventurers',
+    testimonialsTitle: "Loved by Over 15,000 Adventurers",
     testimonialsSubtitle: "Read genuine reviews from families, couples, and corporate clients who traveled with Star Plus Travels.",
 
     // FAQ
@@ -157,7 +157,7 @@ const I18N_TRANSLATIONS = {
     whatsappBtnText: "Chat Directly on WhatsApp",
     socialTitle: "Connect On Official Channels",
     careersSpotlightTitle: "Looking for a Career in Travel?",
-    careersSpotlightDesc: 'We have <span class="stat-counter" data-target="6">6</span> open positions across UAE & Sri Lanka.',
+    careersSpotlightDesc: "We have 6 open positions across UAE & Sri Lanka.",
     careersSpotlightBtn: "View Jobs",
     formTitle: "Request a Free Travel Itinerary & Quote",
     formSubtitle: "We respond with comprehensive options and transparent pricing within 2 hours.",
@@ -210,9 +210,9 @@ const I18N_TRANSLATIONS = {
     vacanciesBadge: "Open Vacancies",
     vacanciesTitle: "Current Career Opportunities",
     vacanciesSubtitle: "Select a position below to review requirements and submit your resume directly to our regional HR desks.",
-    filterAllRoles: 'All Roles (<span class="stat-counter" data-target="6">6</span>)',
-    filterUaeRoles: '<i class="fa-solid fa-building mr-1 text-amber-400"></i>Dubai, UAE (<span class="stat-counter" data-target="3">3</span>)',
-    filterSlRoles: '<i class="fa-solid fa-landmark mr-1 text-amber-400"></i>Sri Lanka (<span class="stat-counter" data-target="3">3</span>)',
+    filterAllRoles: "All Roles (6)",
+    filterUaeRoles: '<i class="fa-solid fa-building mr-1 text-amber-400"></i>Dubai, UAE (3)',
+    filterSlRoles: '<i class="fa-solid fa-landmark mr-1 text-amber-400"></i>Sri Lanka (3)',
     spontaneousBadge: "Don't see your specific role?",
     spontaneousTitle: "Send Us a Spontaneous Application",
     spontaneousDesc: "We are always on the lookout for visionary travel planners, corporate sales leaders, and visa specialists. Email your CV and cover note to our regional HR desks anytime:",
@@ -221,7 +221,7 @@ const I18N_TRANSLATIONS = {
     footerBranches: "Our Branches",
     recruitmentDesks: "Recruitment Desks",
     recruitmentDesksSubtitle: "Submit CVs directly to our regional talent acquisition teams:",
-    explorePositions: 'Explore <span class="stat-counter" data-target="6">6</span> Open Positions',
+    explorePositions: "Explore 6 Open Positions",
     viewRolesBtn: "View Open Roles",
     themeMode: "Theme Mode",
 
@@ -265,7 +265,7 @@ const I18N_TRANSLATIONS = {
     heroTitleWorld: "ලෝක සංචාරය",
     heroTitleMiddle: "උසස්ම",
     heroTitleLuxury: "සුවපහසුවෙන් සැබෑ කරගන්න",
-    heroSubtitle: 'Star Plus Travel & Tourism LLC වෙතින් ඩුබායි, ශ්‍රී ලංකාව සහ ලොව පුරා රටවල් <span class="stat-counter font-bold text-amber-500 dark:text-amber-400" data-target="45" data-suffix="+">45+</span> කට සුඛෝපභෝගී නිවාඩු පැකේජ, අඩුම ගුවන් ටිකට්පත් සහ ක්ෂණික වීසා සේවා විශ්වාසනීයව ලබාගන්න.',
+    heroSubtitle: "Star Plus Travel & Tourism LLC වෙතින් ඩුබායි, ශ්‍රී ලංකාව සහ ලොව පුරා රටවල් 45+ කට සුඛෝපභෝගී නිවාඩු පැකේජ, අඩුම ගුවන් ටිකට්පත් සහ ක්ෂණික වීසා සේවා විශ්වාසනීයව ලබාගන්න.",
     tabHolidays: "සංචාරක පැකේජ",
     tabFlights: "ගුවන් ටිකට්පත්",
     tabVisas: "වීසා සේවා",
@@ -304,10 +304,10 @@ const I18N_TRANSLATIONS = {
     whyUs1Tag: "හොඳම මිල පොරොන්දුව",
     whyUs2Title: "ක්ෂණික එක්ස්ප්‍රස් වීසා සේවාව",
     whyUs2Desc: "ඩුබායි දින 30/60, ෂෙන්ගන්, එක්සත් රාජධානිය, ඇමරිකාව සහ ඕමාන් වීසා සඳහා රජයේ ලියාපදිංචි අපගේ විශේෂඥයින්ගේ ක්ෂණික සහාය.",
-    whyUs2Tag: '<span class="stat-counter" data-target="99.2" data-decimals="1" data-suffix="%">99.2%</span> වීසා සාර්ථකත්වය',
+    whyUs2Tag: "99.2% වීසා සාර්ථකත්වය",
     whyUs3Title: "පොලී රහිත පහසු වාරික ගෙවීම්",
     whyUs3Desc: "Tabby සහ Tamara හරහා කිසිදු අමතර ගාස්තුවකින් තොරව මාස 4 කින් ඔබගේ සංචාරක ගාස්තු පහසුවෙන් ගෙවන්න.",
-    whyUs3Tag: 'Tabby <span class="stat-counter" data-target="0" data-suffix="%">0%</span> පොලී රහිත ගෙවීම්',
+    whyUs3Tag: "Tabby 0% පොලී රහිත ගෙවීම්",
     whyUs4Title: "24/7 පාරිභෝගික සේවාව",
     whyUs4Desc: "ඉංග්‍රීසි, අරාබි, සිංහල සහ දෙමළ භාෂාවලින් පැය 24 පුරාම ඔබට වෙන්වූ පුද්ගලික සංචාරක උපදේශක සහාය.",
     whyUs4Tag: "ක්ෂණික WhatsApp සහාය",
@@ -340,14 +340,14 @@ const I18N_TRANSLATIONS = {
 
     // Season Promo
     promoBadge: "සුවිශේෂී සීමිත දීමනාව",
-    promoTitle: 'ශීත ඍතු සහ නිවාඩු පැකේජ සඳහා <span class="stat-counter" data-target="35" data-suffix="%">35%</span> දක්වා විශේෂ වට්ටම්!',
+    promoTitle: "ශීත ඍතු සහ නිවාඩු පැකේජ සඳහා 35% දක්වා විශේෂ වට්ටම්!",
     promoDesc: "මෙම මස අවසන් වීමට පෙර ඔබගේ සංචාරක සැලසුම සඳහා STARPLUS ප්‍රවර්ධන කේතය භාවිතා කර වට්ටම් ලබාගන්න.",
     promoBtn: "වට්ටම ලබාගන්න",
     promoNote: "කොන්දේසි අදාළ වේ • Tabby 0% වාරික ගෙවීම් ලබාගත හැක",
 
     // Testimonials
     testimonialsBadge: "සැබෑ සංචාරක අත්දැකීම්",
-    testimonialsTitle: '<span class="stat-counter" data-target="15000" data-format="comma" data-suffix="+">15,000+</span> කට අධික සංචාරකයින්ගේ නොමඳ ප්‍රසාදය',
+    testimonialsTitle: "15,000+ කට අධික සංචාරකයින්ගේ නොමඳ ප්‍රසාදය",
     testimonialsSubtitle: "Star Plus Travels සමඟ සංචාරය කළ පාරිභෝගිකයින්ගේ සැබෑ අදහස් කියවන්න.",
 
     // FAQ
@@ -373,7 +373,7 @@ const I18N_TRANSLATIONS = {
     whatsappBtnText: "ඍජුවම WhatsApp හරහා සම්බන්ධ වන්න",
     socialTitle: "නිල සමාජ මාධ්‍ය ඔස්සේ සම්බන්ධ වන්න",
     careersSpotlightTitle: "සංචාරක ක්ෂේත්‍රයේ රැකියාවක් සොයනවාද?",
-    careersSpotlightDesc: 'ඩුබායි සහ ශ්‍රී ලංකාවේ විවෘත පුරප්පාඩු <span class="stat-counter" data-target="6">6</span>ක් ඇත.',
+    careersSpotlightDesc: "ඩුබායි සහ ශ්‍රී ලංකාව සඳහා විවෘත පුරප්පාඩු 6 ක් ඇත.",
     careersSpotlightBtn: "රැකියා බලන්න",
     formTitle: "නොමිලේ සංචාරක සැලසුමක් සහ මිල ගණන් ලබාගන්න",
     formSubtitle: "පැය 2 ක් ඇතුළත සියලු විස්තර සහ පැහැදිලි මිල ගණන් සමඟ අප ඔබව අමතන්නෙමු.",
@@ -426,9 +426,9 @@ const I18N_TRANSLATIONS = {
     vacanciesBadge: "විවෘත පුරප්පාඩු",
     vacanciesTitle: "වත්මන් රැකියා අවස්ථා",
     vacanciesSubtitle: "අවශ්‍යතා පරීක්ෂා කර ඔබගේ ජීව දත්ත පත්‍රය අදාළ කලාපීය මානව සම්පත් අංශ වෙත යොමු කරන්න.",
-    filterAllRoles: 'සියලු අවස්ථා (<span class="stat-counter" data-target="6">6</span>)',
-    filterUaeRoles: '<i class="fa-solid fa-building mr-1 text-amber-400"></i>ඩුබායි, UAE (<span class="stat-counter" data-target="3">3</span>)',
-    filterSlRoles: '<i class="fa-solid fa-landmark mr-1 text-amber-400"></i>ශ්‍රී ලංකාව (<span class="stat-counter" data-target="3">3</span>)',
+    filterAllRoles: "සියලු අවස්ථා (6)",
+    filterUaeRoles: '<i class="fa-solid fa-building mr-1 text-amber-400"></i>ඩුබායි, UAE (3)',
+    filterSlRoles: '<i class="fa-solid fa-landmark mr-1 text-amber-400"></i>ශ්‍රී ලංකාව (3)',
     spontaneousBadge: "ඔබට ගැලපෙන තනතුරක් මෙහි නැද්ද?",
     spontaneousTitle: "ස්වයං අයදුම්පතක් යොමු කරන්න",
     spontaneousDesc: "දක්ෂ සංචාරක සැලසුම්කරුවන්, ආයතනික අලෙවි නියෝජිතයින් සහ වීසා විශේෂඥයින් අප නිරතුරුව සොයන්නෙමු. ඔබගේ CV පත්‍රය ඕනෑම වේලාවක අප වෙත එවන්න:",
@@ -437,7 +437,7 @@ const I18N_TRANSLATIONS = {
     footerBranches: "අපගේ ශාඛා",
     recruitmentDesks: "බඳවා ගැනීමේ අංශ",
     recruitmentDesksSubtitle: "කලාපීය මානව සම්පත් කණ්ඩායම් වෙත සෘජුවම ජීව දත්ත පත්‍ර යොමු කරන්න:",
-    explorePositions: 'විවෘත පුරප්පාඩු <span class="stat-counter" data-target="6">6</span> බලන්න',
+    explorePositions: "විවෘත පුරප්පාඩු 6 බලන්න",
     viewRolesBtn: "පුරප්පාඩු බලන්න",
     themeMode: "තේමාව",
 
@@ -1839,72 +1839,22 @@ function initNavDropdowns() {
 })();
 
 /* ==========================================================================
-   Universal Animated Statistics & Metric Number Counter Engine
+   Animated Statistics Number Counter (Scroll-Triggered with Smooth Easing)
    ========================================================================== */
-function parseCounterConfig(el) {
-  if (el._statConfig) return el._statConfig;
-
-  let target = 0;
-  let decimals = 0;
-  let suffix = '';
-  let prefix = '';
-  let useComma = false;
-
-  if (el.hasAttribute('data-target')) {
-    target = parseFloat(el.getAttribute('data-target') || '0');
-    decimals = el.hasAttribute('data-decimals') 
-      ? parseInt(el.getAttribute('data-decimals'), 10) 
-      : (target % 1 !== 0 ? (target.toString().split('.')[1] || '').length : 0);
-    suffix = el.getAttribute('data-suffix') || '';
-    prefix = el.getAttribute('data-prefix') || '';
-    useComma = el.getAttribute('data-format') === 'comma' || target >= 1000;
-  } else {
-    // Auto-detect numbers within text (e.g. "Loved by Over 15,000 Adventurers", "99.2%", "4.9 / 5")
-    const rawText = el.textContent.trim();
-    const match = rawText.match(/^(.*?)(\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d+(?:\.\d+)?)(.*)$/s);
-    if (match) {
-      prefix = match[1];
-      const numStr = match[2];
-      suffix = match[3];
-      target = parseFloat(numStr.replace(/,/g, ''));
-      useComma = numStr.includes(',') || target >= 1000;
-      if (numStr.includes('.')) {
-        decimals = (numStr.split('.')[1] || '').length;
-      }
-    } else {
-      target = parseFloat(rawText.replace(/[^0-9.]/g, '')) || 0;
-    }
-  }
-
-  const duration = parseInt(el.getAttribute('data-duration') || '1800', 10);
-  const config = { target, decimals, suffix, prefix, useComma, duration };
-  el._statConfig = config;
-  return config;
-}
-
-function formatCounterValue(val, config) {
-  let numStr;
-  if (config.decimals > 0) {
-    numStr = val.toFixed(config.decimals);
-  } else {
-    const rounded = Math.floor(val);
-    numStr = config.useComma ? rounded.toLocaleString('en-US') : rounded.toString();
-  }
-  return `${config.prefix}${numStr}${config.suffix}`;
-}
-
 function initStatsCounters() {
   const counterElements = document.querySelectorAll('.stat-counter');
   if (!counterElements.length) return;
 
   // Pre-initialize counters that are out of view so there is no jarring jump
   counterElements.forEach(el => {
-    const config = parseCounterConfig(el);
+    const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    const suffix = el.getAttribute('data-suffix') || '';
+    const prefix = el.getAttribute('data-prefix') || '';
     const rect = el.getBoundingClientRect();
     const inView = rect.top < window.innerHeight && rect.bottom > 0;
-    if (!inView && !el._hasAnimated) {
-      const zeroFormatted = config.decimals > 0 ? (0).toFixed(config.decimals) : '0';
-      el.textContent = `${config.prefix}${zeroFormatted}${config.suffix}`;
+    if (!inView) {
+      const zeroFormatted = decimals > 0 ? (0).toFixed(decimals) : '0';
+      el.textContent = `${prefix}${zeroFormatted}${suffix}`;
     }
   });
 
@@ -1912,28 +1862,42 @@ function initStatsCounters() {
     if (el._hasAnimated) return;
     el._hasAnimated = true;
 
-    const config = parseCounterConfig(el);
+    const target = parseFloat(el.getAttribute('data-target') || '0');
+    const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    const suffix = el.getAttribute('data-suffix') || '';
+    const prefix = el.getAttribute('data-prefix') || '';
+    const useComma = el.getAttribute('data-format') === 'comma' || target >= 1000;
+    const duration = parseInt(el.getAttribute('data-duration') || '1800', 10);
+
     const startTime = performance.now();
 
     const updateValue = (now) => {
       const elapsed = now - startTime;
-      const progress = Math.min(1, elapsed / config.duration);
-      // Smooth cubic ease-out curve: fast acceleration, elegant settle
+      const progress = Math.min(1, elapsed / duration);
+      // Smooth cubic ease-out curve: fast start, soft settle
       const easeOut = 1 - Math.pow(1 - progress, 3);
-      const current = config.target * easeOut;
+      const current = target * easeOut;
 
-      el.textContent = formatCounterValue(current, config);
+      let formattedNumber;
+      if (decimals > 0) {
+        formattedNumber = current.toFixed(decimals);
+      } else {
+        const rounded = Math.floor(current);
+        formattedNumber = useComma ? rounded.toLocaleString('en-US') : rounded.toString();
+      }
+
+      el.textContent = `${prefix}${formattedNumber}${suffix}`;
 
       if (progress < 1) {
         requestAnimationFrame(updateValue);
       } else {
         let finalFormatted;
-        if (config.decimals > 0) {
-          finalFormatted = config.target.toFixed(config.decimals);
+        if (decimals > 0) {
+          finalFormatted = target.toFixed(decimals);
         } else {
-          finalFormatted = config.useComma ? Math.floor(config.target).toLocaleString('en-US') : config.target.toString();
+          finalFormatted = useComma ? Math.floor(target).toLocaleString('en-US') : target.toString();
         }
-        el.textContent = `${config.prefix}${finalFormatted}${config.suffix}`;
+        el.textContent = `${prefix}${finalFormatted}${suffix}`;
       }
     };
 
@@ -1950,29 +1914,13 @@ function initStatsCounters() {
       });
     }, {
       threshold: 0.15,
-      rootMargin: '0px 0px -30px 0px'
+      rootMargin: '0px 0px -40px 0px'
     });
 
-    counterElements.forEach(el => {
-      if (!el._hasAnimated) {
-        observer.observe(el);
-      }
-    });
+    counterElements.forEach(el => observer.observe(el));
   } else {
     counterElements.forEach(animateCounter);
   }
 }
 window.initStatsCounters = initStatsCounters;
-
-// Automatically re-initialize on dynamic language switch
-window.addEventListener('languagechange', () => {
-  setTimeout(() => {
-    document.querySelectorAll('.stat-counter').forEach(el => {
-      delete el._statConfig;
-      el._hasAnimated = false;
-    });
-    initStatsCounters();
-  }, 120);
-});
-
 
