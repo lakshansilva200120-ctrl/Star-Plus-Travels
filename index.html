@@ -1351,6 +1351,19 @@
                 <textarea id="contactMessage" rows="3" placeholder="Tell us about your preferred travel dates, hotel rating preference, or special requests..." data-i18n-placeholder="formNotesPlaceholder" class="w-full glass-input px-4 py-3 rounded-xl text-sm"></textarea>
               </div>
 
+              <!-- Secure Payment Alert Notice -->
+              <div class="warning-banner-box p-3.5 sm:p-4 rounded-2xl bg-amber-500/10 dark:bg-amber-500/10 border border-amber-500/30 flex items-start space-x-3 text-left">
+                <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+                  <i class="fa-solid fa-shield-halved text-sm"></i>
+                </div>
+                <div class="flex-1 text-xs">
+                  <span class="font-bold text-slate-900 dark:text-amber-300 block mb-0.5" data-i18n="formPaymentNoticeTitle">Official Payment Protection Notice:</span>
+                  <p class="text-[11.5px] text-slate-700 dark:text-slate-300 leading-relaxed" data-i18n="formPaymentNoticeText">
+                    All payments must be made strictly to our official company bank account. We will never ask you to transfer funds to a personal account.
+                  </p>
+                </div>
+              </div>
+
               <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-sm uppercase tracking-wider transition-all shadow-xl shadow-amber-500/25" data-i18n="formSubmitBtn">
                 Send Travel Request
               </button>
@@ -1559,6 +1572,14 @@
           <span class="text-[10px] px-2 py-1 rounded bg-amber-500/15 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 font-bold border border-amber-500/30">
             No Upfront Payment Required
           </span>
+        </div>
+
+        <!-- Secure Payment Alert Notice -->
+        <div class="warning-banner-box p-3 rounded-xl bg-amber-500/10 dark:bg-amber-500/10 border border-amber-500/30 flex items-start space-x-2.5 text-left">
+          <i class="fa-solid fa-shield-halved text-amber-600 dark:text-amber-400 text-xs mt-0.5 shrink-0"></i>
+          <p class="text-[11px] text-slate-700 dark:text-slate-300 leading-tight" data-i18n="formPaymentNoticeText">
+            All payments must be made strictly to our official company bank account. We will never ask you to transfer funds to a personal account.
+          </p>
         </div>
 
         <!-- Submit Button -->

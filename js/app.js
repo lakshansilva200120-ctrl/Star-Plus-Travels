@@ -174,6 +174,8 @@ const I18N_TRANSLATIONS = {
     formNotes: "Trip Notes / Special Requests",
     formNotesPlaceholder: "Tell us about your preferred travel dates, hotel rating preference, or special requests...",
     formSubmitBtn: "Send Travel Request",
+    formPaymentNoticeTitle: "Official Payment Protection Notice:",
+    formPaymentNoticeText: "All payments must be made strictly to our official company bank account. We will never ask you to transfer funds to a personal account.",
 
     // Footer
     footerAbout: "Star Plus Travel & Tourism LLC is a government accredited travel management company based in Deira, Dubai with branch operations in Sri Lanka. Providing world-class bespoke holiday packages, airline bookings, and express visa solutions.",
@@ -390,6 +392,8 @@ const I18N_TRANSLATIONS = {
     formNotes: "විශේෂ අවශ්‍යතා / සටහන්",
     formNotesPlaceholder: "ඔබගේ සංචාරක දිනයන්, හෝටල් මට්ටම හෝ වෙනත් විශේෂ ඉල්ලීම් සඳහන් කරන්න...",
     formSubmitBtn: "සංචාරක ඉල්ලීම යොමු කරන්න",
+    formPaymentNoticeTitle: "නිල ගෙවීම් ආරක්ෂණ දැනුම්දීම:",
+    formPaymentNoticeText: "සියලුම ගෙවීම් අපගේ නිල සමාගම් බැංකු ගිණුමට පමණක් සිදු කළ යුතුය. කිසිදු පුද්ගලික ගිණුමකට මුදල් බැර කරන ලෙස අප කිසිවිටෙකත් ඉල්ලා නොසිටිමු.",
 
     // Footer
     footerAbout: "Star Plus Travel & Tourism LLC යනු ඩුබායි දෙයිරා හි ප්‍රධාන කාර්යාලය සහ ශ්‍රී ලංකාවේ ශාඛා සහිත රජයේ අනුමත සංචාරක කළමනාකරණ සමාගමකි. උසස් තත්ත්වයේ නිවාඩු පැකේජ, ගුවන් ටිකට්පත් සහ ක්ෂණික වීසා සේවා සපයනු ලැබේ.",
