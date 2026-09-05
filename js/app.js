@@ -591,7 +591,7 @@ const PACKAGES = [
     reviews: 118,
     badge: 'Winter Special',
     badgeColor: 'from-indigo-500 to-purple-500',
-    image: 'https://images.unsplash.com/photo-1588714477688-cf28a50e94f7?auto=format&fit=crop&w=1200&q=85',
+    image: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=1200&q=85',
     alt: 'Gergeti Trinity Church and Mount Kazbek Caucasus Mountains, Georgia',
     priceAED: 2290,
     originalPriceAED: 2950,
