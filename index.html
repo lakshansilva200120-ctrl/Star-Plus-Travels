@@ -461,6 +461,12 @@
              alt="Bali Tropical Paradise" 
              class="hero-slide-img">
       </div>
+      <!-- Slide 6: Baku Flame Towers & Caspian Coast -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1920&q=85" 
+             alt="Baku Flame Towers Azerbaijan" 
+             class="hero-slide-img">
+      </div>
 
       <!-- Multi-Layered Semi-Transparent Gradient Overlays for Crystal Clear Text Contrast -->
       <div class="hero-video-gradient"></div>
@@ -473,6 +479,7 @@
         <button type="button" class="hero-indicator-dot" data-slide-index="2" aria-label="Slide 3: Sri Lanka"></button>
         <button type="button" class="hero-indicator-dot" data-slide-index="3" aria-label="Slide 4: Caucasus"></button>
         <button type="button" class="hero-indicator-dot" data-slide-index="4" aria-label="Slide 5: Bali"></button>
+        <button type="button" class="hero-indicator-dot" data-slide-index="5" aria-label="Slide 6: Baku"></button>
       </div>
     </div>
 
@@ -568,8 +575,176 @@
         </div>
       </div>
 
+      <!-- Interactive Cinematic Destination Preview Cards Slider -->
+      <div class="mt-8 mb-4 max-w-5xl mx-auto text-left">
+        <div class="flex items-center justify-between mb-3 px-1">
+          <div class="flex items-center space-x-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Featured Expeditions</span>
+            <span class="text-[11px] text-slate-400 hidden sm:inline">• Click to preview destination</span>
+          </div>
+          <div class="flex items-center space-x-1.5 text-xs text-slate-400">
+            <button type="button" onclick="heroPrevSlide()" class="w-7 h-7 rounded-full bg-slate-900/80 border border-slate-700/80 hover:border-amber-400/60 hover:text-amber-400 flex items-center justify-center transition-all" aria-label="Previous destination">
+              <i class="fa-solid fa-chevron-left text-[11px]"></i>
+            </button>
+            <button type="button" onclick="heroNextSlide()" class="w-7 h-7 rounded-full bg-slate-900/80 border border-slate-700/80 hover:border-amber-400/60 hover:text-amber-400 flex items-center justify-center transition-all" aria-label="Next destination">
+              <i class="fa-solid fa-chevron-right text-[11px]"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Cards Slider Track -->
+        <div class="hero-preview-slider flex items-stretch gap-3 overflow-x-auto pb-2 scroll-smooth no-scrollbar snap-x snap-mandatory">
+          
+          <!-- Card 0: Dubai -->
+          <div class="hero-preview-card active shrink-0 w-44 sm:w-48 rounded-2xl p-2.5 glass-card border border-amber-500/80 cursor-pointer snap-start transition-all duration-300 group hover:scale-[1.03]"
+               data-slide-index="0"
+               onclick="switchHeroSlide(0)">
+            <div class="relative h-24 rounded-xl overflow-hidden mb-2">
+              <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=400&q=80" 
+                   alt="Dubai Skyline" 
+                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-slate-950/80 text-amber-400 border border-amber-500/40 backdrop-blur-sm">
+                UAE
+              </span>
+              <span class="preview-active-pill absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded-md text-[9px] font-bold bg-amber-500 text-slate-950">
+                ACTIVE
+              </span>
+            </div>
+            <div class="px-1">
+              <h4 class="text-xs font-bold text-white group-hover:text-amber-300 transition-colors truncate">Dubai & Desert Safari</h4>
+              <div class="flex items-center justify-between mt-1 text-[11px]">
+                <span class="text-slate-400">From AED 1,450</span>
+                <span class="text-amber-400 font-bold flex items-center"><i class="fa-solid fa-star text-[9px] mr-0.5"></i>4.9</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 1: Maldives -->
+          <div class="hero-preview-card shrink-0 w-44 sm:w-48 rounded-2xl p-2.5 glass-card border border-slate-700/70 hover:border-amber-500/60 cursor-pointer snap-start transition-all duration-300 group hover:scale-[1.03]"
+               data-slide-index="1"
+               onclick="switchHeroSlide(1)">
+            <div class="relative h-24 rounded-xl overflow-hidden mb-2">
+              <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=400&q=80" 
+                   alt="Maldives Lagoon" 
+                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-slate-950/80 text-cyan-400 border border-cyan-500/40 backdrop-blur-sm">
+                ISLAND
+              </span>
+              <span class="preview-active-pill hidden absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded-md text-[9px] font-bold bg-amber-500 text-slate-950">
+                ACTIVE
+              </span>
+            </div>
+            <div class="px-1">
+              <h4 class="text-xs font-bold text-white group-hover:text-amber-300 transition-colors truncate">Maldives Overwater</h4>
+              <div class="flex items-center justify-between mt-1 text-[11px]">
+                <span class="text-slate-400">From AED 4,650</span>
+                <span class="text-amber-400 font-bold flex items-center"><i class="fa-solid fa-star text-[9px] mr-0.5"></i>5.0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Sri Lanka -->
+          <div class="hero-preview-card shrink-0 w-44 sm:w-48 rounded-2xl p-2.5 glass-card border border-slate-700/70 hover:border-amber-500/60 cursor-pointer snap-start transition-all duration-300 group hover:scale-[1.03]"
+               data-slide-index="2"
+               onclick="switchHeroSlide(2)">
+            <div class="relative h-24 rounded-xl overflow-hidden mb-2">
+              <img src="assets/sri-lanka-destination.jpg" 
+                   alt="Sri Lanka Ella Nine Arch Bridge" 
+                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-slate-950/80 text-emerald-400 border border-emerald-500/40 backdrop-blur-sm">
+                SRI LANKA
+              </span>
+              <span class="preview-active-pill hidden absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded-md text-[9px] font-bold bg-amber-500 text-slate-950">
+                ACTIVE
+              </span>
+            </div>
+            <div class="px-1">
+              <h4 class="text-xs font-bold text-white group-hover:text-amber-300 transition-colors truncate">Ella Hills & Wildlife</h4>
+              <div class="flex items-center justify-between mt-1 text-[11px]">
+                <span class="text-slate-400">From AED 1,890</span>
+                <span class="text-amber-400 font-bold flex items-center"><i class="fa-solid fa-star text-[9px] mr-0.5"></i>5.0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Georgia -->
+          <div class="hero-preview-card shrink-0 w-44 sm:w-48 rounded-2xl p-2.5 glass-card border border-slate-700/70 hover:border-amber-500/60 cursor-pointer snap-start transition-all duration-300 group hover:scale-[1.03]"
+               data-slide-index="3"
+               onclick="switchHeroSlide(3)">
+            <div class="relative h-24 rounded-xl overflow-hidden mb-2">
+              <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=400&q=80" 
+                   alt="Georgia Kazbegi Mountains" 
+                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-slate-950/80 text-indigo-300 border border-indigo-500/40 backdrop-blur-sm">
+                GEORGIA
+              </span>
+              <span class="preview-active-pill hidden absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded-md text-[9px] font-bold bg-amber-500 text-slate-950">
+                ACTIVE
+              </span>
+            </div>
+            <div class="px-1">
+              <h4 class="text-xs font-bold text-white group-hover:text-amber-300 transition-colors truncate">Kazbegi & Caucasus</h4>
+              <div class="flex items-center justify-between mt-1 text-[11px]">
+                <span class="text-slate-400">From AED 2,290</span>
+                <span class="text-amber-400 font-bold flex items-center"><i class="fa-solid fa-star text-[9px] mr-0.5"></i>4.9</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Bali -->
+          <div class="hero-preview-card shrink-0 w-44 sm:w-48 rounded-2xl p-2.5 glass-card border border-slate-700/70 hover:border-amber-500/60 cursor-pointer snap-start transition-all duration-300 group hover:scale-[1.03]"
+               data-slide-index="4"
+               onclick="switchHeroSlide(4)">
+            <div class="relative h-24 rounded-xl overflow-hidden mb-2">
+              <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&q=80" 
+                   alt="Bali Tropical Sanctuary" 
+                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-slate-950/80 text-lime-400 border border-lime-500/40 backdrop-blur-sm">
+                BALI
+              </span>
+              <span class="preview-active-pill hidden absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded-md text-[9px] font-bold bg-amber-500 text-slate-950">
+                ACTIVE
+              </span>
+            </div>
+            <div class="px-1">
+              <h4 class="text-xs font-bold text-white group-hover:text-amber-300 transition-colors truncate">Bali Sanctuary</h4>
+              <div class="flex items-center justify-between mt-1 text-[11px]">
+                <span class="text-slate-400">From AED 2,850</span>
+                <span class="text-amber-400 font-bold flex items-center"><i class="fa-solid fa-star text-[9px] mr-0.5"></i>4.9</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: Baku -->
+          <div class="hero-preview-card shrink-0 w-44 sm:w-48 rounded-2xl p-2.5 glass-card border border-slate-700/70 hover:border-amber-500/60 cursor-pointer snap-start transition-all duration-300 group hover:scale-[1.03]"
+               data-slide-index="5"
+               onclick="switchHeroSlide(5)">
+            <div class="relative h-24 rounded-xl overflow-hidden mb-2">
+              <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=400&q=80" 
+                   alt="Baku Flame Towers" 
+                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <span class="absolute top-1.5 left-1.5 px-2 py-0.5 rounded-md text-[10px] font-extrabold bg-slate-950/80 text-cyan-300 border border-cyan-500/40 backdrop-blur-sm">
+                AZERBAIJAN
+              </span>
+              <span class="preview-active-pill hidden absolute top-1.5 right-1.5 px-1.5 py-0.5 rounded-md text-[9px] font-bold bg-amber-500 text-slate-950">
+                ACTIVE
+              </span>
+            </div>
+            <div class="px-1">
+              <h4 class="text-xs font-bold text-white group-hover:text-amber-300 transition-colors truncate">Baku & Flame Towers</h4>
+              <div class="flex items-center justify-between mt-1 text-[11px]">
+                <span class="text-slate-400">From AED 2,150</span>
+                <span class="text-amber-400 font-bold flex items-center"><i class="fa-solid fa-star text-[9px] mr-0.5"></i>4.8</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <!-- Trust Counters Bar -->
-      <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto text-left">
+      <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto text-left">
         <div class="glass-card p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
           <div class="text-2xl sm:text-3xl font-black text-amber-600 dark:text-amber-400 font-heading" data-i18n="trustTravelers">15,000+</div>
           <p class="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5" data-i18n="trustTravelersLabel">Happy Explorers Served</p>
