@@ -276,12 +276,18 @@ header.glass-nav.header-scrolled,
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3) !important;
 }
 
-/* High-End Travel Portal Navigation Links */
+/* High-End Travel Portal Navigation Links & Adaptive Contrast */
+header nav {
+  color: var(--theme-text-secondary);
+}
+
 .nav-link {
   position: relative;
   transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
+  color: #1e293b;
+  color: var(--theme-text-secondary);
 }
 
 .nav-link::after {
@@ -302,6 +308,56 @@ header.glass-nav.header-scrolled,
   width: 100%;
 }
 
+/* Light Mode Navigation Contrast (Default & html.light) */
+:root .nav-link:not(.active),
+html.light .nav-link:not(.active),
+html.light header nav .nav-link:not(.active) {
+  color: #1e293b !important; /* Crisp dark slate for maximum readability on white/light nav */
+}
+
+:root .nav-link:hover,
+html.light .nav-link:hover,
+html.light header nav .nav-link:hover {
+  color: #d97706 !important; /* Rich amber on hover */
+}
+
+:root .nav-link.active,
+html.light .nav-link.active,
+html.light header nav .nav-link.active {
+  color: #b45309 !important; /* Deep rich amber gold for active nav item on light nav */
+}
+
+/* Dark Mode Navigation Contrast (prefers-color-scheme: dark & html.dark) */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .nav-link:not(.active),
+  :root:not(.light) header nav .nav-link:not(.active) {
+    color: #e2e8f0 !important;
+  }
+  :root:not(.light) .nav-link:hover,
+  :root:not(.light) header nav .nav-link:hover {
+    color: #fbbf24 !important;
+  }
+  :root:not(.light) .nav-link.active,
+  :root:not(.light) header nav .nav-link.active {
+    color: #f59e0b !important;
+  }
+}
+
+html.dark .nav-link:not(.active),
+html.dark header nav .nav-link:not(.active) {
+  color: #e2e8f0 !important;
+}
+
+html.dark .nav-link:hover,
+html.dark header nav .nav-link:hover {
+  color: #fbbf24 !important;
+}
+
+html.dark .nav-link.active,
+html.dark header nav .nav-link.active {
+  color: #f59e0b !important;
+}
+
 /* Navigation Dropdown Menu (Explore / More) */
 .nav-dropdown {
   position: relative;
@@ -319,6 +375,11 @@ header.glass-nav.header-scrolled,
 .nav-dropdown-trigger i.chevron {
   font-size: 0.65rem;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #f59e0b;
+}
+
+html.light .nav-dropdown-trigger i.chevron {
+  color: #d97706;
 }
 
 .nav-dropdown:hover .nav-dropdown-trigger i.chevron,
@@ -346,6 +407,13 @@ header.glass-nav.header-scrolled,
   z-index: 60;
 }
 
+html.light .nav-dropdown-menu,
+:root:not(.dark) .nav-dropdown-menu {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(245, 158, 11, 0.2);
+}
+
 .nav-dropdown:hover .nav-dropdown-menu,
 .nav-dropdown:focus-within .nav-dropdown-menu,
 .nav-dropdown.is-open .nav-dropdown-menu {
@@ -368,6 +436,11 @@ header.glass-nav.header-scrolled,
   text-decoration: none;
 }
 
+html.light .nav-dropdown-item,
+:root:not(.dark) .nav-dropdown-item {
+  color: #334155;
+}
+
 .nav-dropdown-item i {
   color: #f59e0b;
   font-size: 0.85rem;
@@ -376,14 +449,94 @@ header.glass-nav.header-scrolled,
   transition: transform 0.2s ease;
 }
 
+html.light .nav-dropdown-item i {
+  color: #d97706;
+}
+
 .nav-dropdown-item:hover {
   background: rgba(245, 158, 11, 0.12);
   color: #ffffff;
   transform: translateX(4px);
 }
 
+html.light .nav-dropdown-item:hover,
+:root:not(.dark) .nav-dropdown-item:hover {
+  background: rgba(245, 158, 11, 0.12);
+  color: #0f172a;
+  transform: translateX(4px);
+}
+
 .nav-dropdown-item:hover i {
   transform: scale(1.15);
+}
+
+/* Language Toggle & Mobile Hamburger Adaptation in Light Theme */
+html.light .lang-toggle-btn {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light .lang-toggle-btn:hover {
+  background: #f8fafc !important;
+  border-color: #f59e0b !important;
+  color: #0f172a !important;
+}
+
+html.light #mobileMenuBtn {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light #mobileMenuBtn:hover {
+  background: #f8fafc !important;
+  border-color: #f59e0b !important;
+  color: #0f172a !important;
+}
+
+/* Mobile Menu Container & Links in Light Theme */
+html.light #mobileMenu {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+html.light #mobileMenu nav {
+  color: #1e293b !important;
+}
+
+html.light #mobileMenu nav a {
+  color: #334155 !important;
+  border-bottom-color: #f1f5f9 !important;
+}
+
+html.light #mobileMenu nav a:hover {
+  color: #d97706 !important;
+}
+
+html.light #mobileMenu nav a.active,
+html.light #mobileMenu nav a.text-amber-400 {
+  color: #b45309 !important;
+}
+
+html.light #mobileMenu .text-slate-300 {
+  color: #334155 !important;
+}
+
+html.light #mobileMenu .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.light #mobileMenu .bg-slate-900 {
+  background: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.light #mobileMenu .bg-slate-950 {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
 }
 
 .glass-card {
