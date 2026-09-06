@@ -893,17 +893,63 @@ html.light .warning-banner-box p,
 }
 
 /* Date input constraints on mobile and webkit browsers */
+input[type="date"] {
+  -webkit-box-sizing: border-box !important;
+  box-sizing: border-box !important;
+}
+
 input[type="date"].glass-input,
 #heroDateInput {
   width: 100% !important;
   max-width: 100% !important;
   min-width: 0 !important;
   box-sizing: border-box !important;
-  display: block;
+  display: block !important;
+  margin: 0 !important;
 }
 
+/* Fix iOS Safari date input intrinsic blowout and align text */
 input[type="date"]::-webkit-date-and-time-value {
-  text-align: left;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 1.25rem !important;
+  line-height: 1.25rem !important;
+  width: 100% !important;
+}
+
+/* Ensure Destination, Travel Date, and Travelers share matching heights, padding & alignment */
+#heroSearchForm .glass-input {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  min-height: 46px !important;
+  height: 46px !important;
+  margin: 0 !important;
+}
+
+#heroSearchForm button[type="submit"] {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 46px !important;
+  height: 46px !important;
+}
+
+/* Strict grid column minmax(0, 1fr) constraint to prevent blowout on mobile */
+#heroSearchForm {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+@media (min-width: 640px) {
+  #heroSearchForm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  #heroSearchForm {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 /* Custom Scrollbar */
