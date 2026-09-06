@@ -876,7 +876,7 @@ function renderPackages(filteredList = PACKAGES) {
     const bookNowBtnText = t.bookNowBtn || 'Book Now';
 
     return `
-      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-slate-700/50">
+      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10">
         <!-- Image & Badges -->
         <div class="img-container relative h-56 overflow-hidden bg-slate-900">
           <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover" loading="lazy">
