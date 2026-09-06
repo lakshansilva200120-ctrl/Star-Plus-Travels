@@ -24,6 +24,7 @@ const I18N_TRANSLATIONS = {
     whatsappConcierge: "WhatsApp Concierge",
     themeLabel: "Theme",
     langLabel: "Language",
+    logoSubtitle: "TRAVEL AND TOURISM LLC",
 
     // Navigation
     navHome: "Home",
@@ -242,6 +243,7 @@ const I18N_TRANSLATIONS = {
     whatsappConcierge: "වට්ස්ඇප් සේවාව",
     themeLabel: "තේමාව",
     langLabel: "භාෂාව",
+    logoSubtitle: "TRAVEL AND TOURISM LLC",
 
     // Navigation
     navHome: "මුල් පිටුව",
@@ -1361,6 +1363,7 @@ function toggleMobileMenu() {
     } else {
       header.classList.remove('menu-open');
     }
+    updateBrandLogoTheme();
   }
 }
 
@@ -1449,15 +1452,7 @@ function applyTheme(mode = getThemeMode(), save = false) {
   });
 
   // Update brand logos and images between white text (dark mode) and dark text (light mode)
-  document.querySelectorAll('img[data-dark-src]').forEach(img => {
-    const darkSrc = img.getAttribute('data-dark-src');
-    const lightSrc = img.getAttribute('data-light-src');
-    if (darkSrc && lightSrc) {
-      img.src = isDark ? darkSrc : lightSrc;
-    } else if (darkSrc && isDark) {
-      img.src = darkSrc;
-    }
-  });
+  updateBrandLogoTheme();
 
   // Update preloader background if still present
   const preloader = document.getElementById('sitePreloader');
@@ -1496,6 +1491,26 @@ function toggleTheme() {
     showToast(`☀️ Switched to Light mode (Manual)`, 'success');
   }
 }
+
+function updateBrandLogoTheme() {
+  const isDark = document.documentElement.classList.contains('dark');
+  const hasDarkHero = !!document.getElementById('hero');
+  const isScrolled = window.scrollY > 15;
+  const isMenuOpen = document.getElementById('mainHeader')?.classList.contains('menu-open');
+
+  document.querySelectorAll('img[data-dark-src]').forEach(img => {
+    const darkSrc = img.getAttribute('data-dark-src');
+    const lightSrc = img.getAttribute('data-light-src');
+    if (!darkSrc || !lightSrc) return;
+
+    if (img.id === 'brandHeaderLogo' && hasDarkHero && !isScrolled && !isDark && !isMenuOpen) {
+      img.src = darkSrc;
+    } else {
+      img.src = isDark ? darkSrc : lightSrc;
+    }
+  });
+}
+window.updateBrandLogoTheme = updateBrandLogoTheme;
 
 // Live Real-Time OS System Color Scheme Listener (Auto-syncs live when in System mode)
 (function setupSystemThemeWatcher() {
@@ -1687,6 +1702,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         header.classList.remove('header-scrolled');
       }
+      updateBrandLogoTheme();
     }
   };
   window.addEventListener('scroll', updateHeaderScroll, { passive: true });
