@@ -926,6 +926,9 @@ html.light .warning-banner-box p,
 input[type="date"] {
   -webkit-box-sizing: border-box !important;
   box-sizing: border-box !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
 input[type="date"].glass-input,
@@ -936,6 +939,9 @@ input[type="date"].glass-input,
   box-sizing: border-box !important;
   display: block !important;
   margin: 0 !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
 /* Fix iOS Safari date input intrinsic blowout and align text */
