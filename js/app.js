@@ -1354,6 +1354,14 @@ function toggleMobileMenu() {
       }
     }
   }
+  const header = document.getElementById('mainHeader') || document.querySelector('header');
+  if (header) {
+    if (!isHidden) {
+      header.classList.add('menu-open');
+    } else {
+      header.classList.remove('menu-open');
+    }
+  }
 }
 
 // ==========================================================================

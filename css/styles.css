@@ -315,7 +315,7 @@ h1, h2, h3, h4, .font-heading {
   font-family: 'Playfair Display', serif;
 }
 
-/* Glassmorphism Classes & Sticky Header */
+/* Glassmorphism Classes & Floating / Seamless Sticky Header */
 header.glass-nav,
 #mainHeader,
 .glass-nav {
@@ -323,17 +323,100 @@ header.glass-nav,
   position: sticky !important;
   top: 0 !important;
   z-index: 50 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom: 1px solid transparent !important;
+  box-shadow: none !important;
+  transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              backdrop-filter 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              -webkit-backdrop-filter 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Atmospheric subtle top blend at page top (seamless integration with hero layer, zero harsh lines) */
+header.glass-nav:not(.header-scrolled):not(.menu-open),
+#mainHeader:not(.header-scrolled):not(.menu-open) {
+  background: linear-gradient(180deg, rgba(7, 14, 23, 0.72) 0%, rgba(7, 14, 23, 0.22) 60%, transparent 100%) !important;
+  border-bottom: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+/* Light mode subpage hero top blend */
+html.light body:not(:has(#hero)) header.glass-nav:not(.header-scrolled):not(.menu-open),
+:root:not(.dark) body:not(:has(#hero)) header.glass-nav:not(.header-scrolled):not(.menu-open),
+html.light body:not(:has(#hero)) #mainHeader:not(.header-scrolled):not(.menu-open),
+:root:not(.dark) body:not(:has(#hero)) #mainHeader:not(.header-scrolled):not(.menu-open) {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.3) 60%, transparent 100%) !important;
+  border-bottom: 1px solid transparent !important;
+}
+
+/* Scrolled elevation state: Modern Luxury Frosted Glass */
+header.glass-nav.header-scrolled,
+#mainHeader.header-scrolled {
   background: var(--theme-bg-nav) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border-bottom: 1px solid var(--theme-border-subtle) !important;
-  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-header.glass-nav.header-scrolled,
-#mainHeader.header-scrolled {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3) !important;
 }
+
+html.light header.glass-nav.header-scrolled,
+:root:not(.dark) header.glass-nav.header-scrolled,
+html.light #mainHeader.header-scrolled,
+:root:not(.dark) #mainHeader.header-scrolled {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* When Mobile Menu is Active */
+header.glass-nav.menu-open,
+#mainHeader.menu-open,
+header:has(#mobileMenu:not(.hidden)),
+#mainHeader:has(#mobileMenu:not(.hidden)) {
+  background: rgba(7, 14, 23, 0.98) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Floating Hero Navigation Typography & Controls */
+body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) .nav-link:not(.active),
+body:has(#hero) header.glass-nav:not(.header-scrolled):not(.menu-open) .nav-link:not(.active),
+.hero-floating-nav:not(.header-scrolled):not(.menu-open) .nav-link:not(.active) {
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) .nav-link:hover,
+body:has(#hero) header.glass-nav:not(.header-scrolled):not(.menu-open) .nav-link:hover,
+.hero-floating-nav:not(.header-scrolled):not(.menu-open) .nav-link:hover {
+  color: #fbbf24 !important;
+}
+
+body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) .nav-link.active,
+body:has(#hero) header.glass-nav:not(.header-scrolled):not(.menu-open) .nav-link.active,
+.hero-floating-nav:not(.header-scrolled):not(.menu-open) .nav-link.active {
+  color: #f59e0b !important;
+}
+
+body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) .nav-dropdown-trigger,
+.hero-floating-nav:not(.header-scrolled):not(.menu-open) .nav-dropdown-trigger {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) #mainLangToggleBtn,
+body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) #mobileMenuBtn,
+.hero-floating-nav:not(.header-scrolled):not(.menu-open) #mainLangToggleBtn,
+.hero-floating-nav:not(.header-scrolled):not(.menu-open) #mobileMenuBtn {
+  background-color: rgba(15, 23, 42, 0.55) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(8px);
+}
+
 
 /* High-End Travel Portal Navigation Links & Adaptive Contrast */
 header nav {
