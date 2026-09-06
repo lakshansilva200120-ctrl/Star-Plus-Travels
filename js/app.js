@@ -131,7 +131,7 @@ const I18N_TRANSLATIONS = {
 
     // Testimonials
     testimonialsBadge: "Real Traveler Stories",
-    testimonialsTitle: "Loved by Over 15,000 Adventurers",
+    testimonialsTitle: 'Loved by Over <span class="stat-counter inline-block tabular-nums" data-target="15000" data-format="comma">15,000</span> Adventurers',
     testimonialsSubtitle: "Read genuine reviews from families, couples, and corporate clients who traveled with Star Plus Travels.",
 
     // FAQ
@@ -349,7 +349,7 @@ const I18N_TRANSLATIONS = {
 
     // Testimonials
     testimonialsBadge: "සැබෑ සංචාරක අත්දැකීම්",
-    testimonialsTitle: "15,000+ කට අධික සංචාරකයින්ගේ නොමඳ ප්‍රසාදය",
+    testimonialsTitle: '<span class="stat-counter inline-block tabular-nums" data-target="15000" data-format="comma">15,000</span>+ කට අධික සංචාරකයින්ගේ නොමඳ ප්‍රසාදය',
     testimonialsSubtitle: "Star Plus Travels සමඟ සංචාරය කළ පාරිභෝගිකයින්ගේ සැබෑ අදහස් කියවන්න.",
 
     // FAQ
@@ -1620,6 +1620,11 @@ function changeLanguage(lang, notify = true) {
   // Dispatch custom language change event
   window.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
 
+  // Re-run stats counters for any newly inserted translated counters
+  if (typeof initStatsCounters === 'function') {
+    initStatsCounters();
+  }
+
   if (notify) {
     showToast(lang === 'si' ? 'භාෂාව සිංහල ලෙස වෙනස් කරන ලදී' : 'Language switched to English', 'success');
   }
@@ -1865,12 +1870,21 @@ function initStatsCounters() {
 
   // Pre-initialize counters that are out of view so there is no jarring jump
   counterElements.forEach(el => {
+    if (el._hasAnimated) return;
+    const target = parseFloat(el.getAttribute('data-target') || '0');
     const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
     const suffix = el.getAttribute('data-suffix') || '';
     const prefix = el.getAttribute('data-prefix') || '';
+    const useComma = el.getAttribute('data-format') === 'comma' || target >= 1000;
     const rect = el.getBoundingClientRect();
+    const isPast = rect.bottom <= 0;
     const inView = rect.top < window.innerHeight && rect.bottom > 0;
-    if (!inView) {
+
+    if (isPast) {
+      el._hasAnimated = true;
+      const finalFormatted = decimals > 0 ? target.toFixed(decimals) : (useComma ? Math.floor(target).toLocaleString('en-US') : target.toString());
+      el.textContent = `${prefix}${finalFormatted}${suffix}`;
+    } else if (!inView) {
       const zeroFormatted = decimals > 0 ? (0).toFixed(decimals) : '0';
       el.textContent = `${prefix}${zeroFormatted}${suffix}`;
     }
@@ -1931,11 +1945,15 @@ function initStatsCounters() {
         }
       });
     }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: 0.1,
+      rootMargin: '0px 0px -20px 0px'
     });
 
-    counterElements.forEach(el => observer.observe(el));
+    counterElements.forEach(el => {
+      if (!el._hasAnimated) {
+        observer.observe(el);
+      }
+    });
   } else {
     counterElements.forEach(animateCounter);
   }
