@@ -1342,7 +1342,18 @@ function toggleFaq(btn) {
 function toggleMobileMenu() {
   const menu = document.getElementById('mobileMenu');
   if (!menu) return;
-  menu.classList.toggle('hidden');
+  const isHidden = menu.classList.toggle('hidden');
+  const btn = document.getElementById('mobileMenuBtn');
+  if (btn) {
+    const icon = btn.querySelector('i');
+    if (icon) {
+      if (isHidden) {
+        icon.className = 'fa-solid fa-bars-staggered text-sm';
+      } else {
+        icon.className = 'fa-solid fa-xmark text-sm';
+      }
+    }
+  }
 }
 
 // ==========================================================================

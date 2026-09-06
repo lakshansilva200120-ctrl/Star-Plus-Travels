@@ -345,6 +345,16 @@
 
     <!-- Mobile Slide-out Menu -->
     <div id="mobileMenu" class="hidden lg:hidden bg-slate-950/98 border-b border-slate-800 px-6 py-6 space-y-4 transition-colors backdrop-blur-xl">
+      <!-- Mobile Menu Header with Close ('X') Button -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+        <div class="flex items-center space-x-2">
+          <span class="text-xs font-black uppercase tracking-widest text-amber-400 font-heading">Menu</span>
+        </div>
+        <button type="button" onclick="toggleMobileMenu()" class="p-2 rounded-xl bg-slate-900 border border-slate-700/80 text-slate-300 hover:text-amber-400 hover:border-amber-500/50 transition-colors cursor-pointer flex items-center justify-center h-8 w-8 shadow-sm" aria-label="Close menu">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
       <!-- Mobile Language Switcher (Segmented) -->
       <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between shadow-sm">
         <span class="text-xs font-bold text-slate-300 flex items-center space-x-2 pl-1">
@@ -517,7 +527,7 @@
         <!-- Search Form -->
         <form id="heroSearchForm" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
           <!-- Destination Input -->
-          <div>
+          <div class="min-w-0 w-full">
             <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
               <i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> <span data-i18n="destinationLabel">Destination</span>
             </label>
@@ -525,7 +535,7 @@
           </div>
 
           <!-- Date Picker -->
-          <div>
+          <div class="min-w-0 w-full">
             <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
               <i class="fa-regular fa-calendar-days text-amber-400 mr-1"></i> <span data-i18n="travelDateLabel">Travel Date</span>
             </label>
@@ -533,7 +543,7 @@
           </div>
 
           <!-- Travelers Selector -->
-          <div>
+          <div class="min-w-0 w-full">
             <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
               <i class="fa-solid fa-user-group text-amber-400 mr-1"></i> <span data-i18n="travelersLabel">Travelers</span>
             </label>
@@ -546,7 +556,7 @@
           </div>
 
           <!-- Submit Button -->
-          <div>
+          <div class="min-w-0 w-full">
             <button type="submit" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-sm uppercase tracking-wider shadow-lg shadow-amber-500/25 transition-all transform active:scale-95 flex items-center justify-center space-x-2">
               <i class="fa-solid fa-magnifying-glass"></i>
               <span data-i18n="searchBtn">Find Deals</span>

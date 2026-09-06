@@ -734,6 +734,8 @@ html.light .warning-banner-box p,
   border: 1px solid var(--theme-border-input);
   color: var(--theme-text-primary);
   transition: all 0.2s ease;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .glass-input:focus {
@@ -744,6 +746,20 @@ html.light .warning-banner-box p,
 
 .glass-input::placeholder {
   color: var(--theme-text-muted);
+}
+
+/* Date input constraints on mobile and webkit browsers */
+input[type="date"].glass-input,
+#heroDateInput {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  display: block;
+}
+
+input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
 }
 
 /* Custom Scrollbar */
