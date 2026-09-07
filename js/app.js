@@ -44,7 +44,7 @@ const I18N_TRANSLATIONS = {
 
     // Hero Section
     heroBadge: "Your Gateway to the World • Dubai & Sri Lanka",
-    heroTitleFull: 'Your Gateway to the <span class="gold-gradient-text">World</span>, Crafted with <span class="ocean-gradient-text">Luxury & Ease</span>.',
+    heroTitleFull: 'Your Gateway to the World, Crafted with Luxury & Ease.',
     heroTitleLead: "Your Gateway to the",
     heroTitleWorld: "World",
     heroTitleMiddle: "Crafted with",
@@ -262,7 +262,7 @@ const I18N_TRANSLATIONS = {
 
     // Hero Section
     heroBadge: "ඔබේ විශ්වාසනීය සංචාරක සහකරු • ඩුබායි සහ ශ්‍රී ලංකාව",
-    heroTitleFull: 'ඔබේ සිහින <span class="gold-gradient-text">ලෝක සංචාරය</span>, උසස්ම <span class="ocean-gradient-text">සුවපහසුවෙන් සැබෑ කරගන්න</span>.',
+    heroTitleFull: 'ඔබේ සිහින ලෝක සංචාරය, උසස්ම සුවපහසුවෙන් සැබෑ කරගන්න.',
     heroTitleLead: "ඔබේ සිහින",
     heroTitleWorld: "ලෝක සංචාරය",
     heroTitleMiddle: "උසස්ම",
