@@ -1284,11 +1284,18 @@ html.light select option {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  gap: 1.5rem;
+  gap: 1.5rem; /* 24px gap on mobile (gap-6) */
+  padding-right: 1.5rem; /* 24px seamless loop spacing (pr-6) */
   min-width: 100%;
-  animation: marqueeScroll 26s linear infinite;
+  animation: marqueeScroll 28s linear infinite;
   will-change: transform;
+}
+
+@media (min-width: 640px) {
+  .marquee-group {
+    gap: 2rem; /* 32px gap on desktop (sm:gap-8) */
+    padding-right: 2rem; /* 32px seamless loop spacing (sm:pr-8) */
+  }
 }
 
 /* Pause on Marquee Hover */
