@@ -441,6 +441,32 @@ body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) #mobileMenuBtn
   backdrop-filter: blur(8px);
 }
 
+/* Header Logo Glass Pill Container & Contrast Protection */
+.header-logo-pill {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-logo-pill img {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.50));
+}
+
+/* When header is scrolled in light mode, adjust pill background subtly */
+html.light header.glass-nav.header-scrolled .header-logo-pill,
+:root:not(.dark) header.glass-nav.header-scrolled .header-logo-pill,
+html.light #mainHeader.header-scrolled .header-logo-pill,
+:root:not(.dark) #mainHeader.header-scrolled .header-logo-pill {
+  background: rgba(241, 245, 249, 0.70) !important;
+  border-color: rgba(203, 213, 225, 0.70) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light header.glass-nav.header-scrolled .header-logo-pill img,
+:root:not(.dark) header.glass-nav.header-scrolled .header-logo-pill img,
+html.light #mainHeader.header-scrolled .header-logo-pill img,
+:root:not(.dark) #mainHeader.header-scrolled .header-logo-pill img {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.10));
+}
+
 
 /* High-End Travel Portal Navigation Links & Adaptive Contrast */
 header nav {
