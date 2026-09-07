@@ -158,6 +158,11 @@ html.lang-si [data-i18n="whatsappConcierge"] {
 /* Hero Section Headline Formatting & Balance */
 #heroHeadline {
   text-wrap: balance;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.75), 0 2px 6px rgba(0, 0, 0, 0.50);
+}
+
+#heroSubHeadline {
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.80), 0 1px 3px rgba(0, 0, 0, 0.60);
 }
 
 html.lang-si #heroHeadline {
@@ -218,50 +223,50 @@ html.lang-si #heroSubHeadline {
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
     color-scheme: dark;
-    --theme-bg-base: #030712;
-    --theme-bg-surface: #0b1528;
-    --theme-bg-surface-elevated: #0f1d36;
-    --theme-bg-nav: rgba(3, 7, 18, 0.88);
-    --theme-bg-card: rgba(15, 23, 42, 0.65);
-    --theme-bg-card-hover: rgba(26, 38, 64, 0.82);
-    --theme-bg-input: rgba(11, 21, 40, 0.85);
+    --theme-bg-base: #060e1a;
+    --theme-bg-surface: #0f1d36;
+    --theme-bg-surface-elevated: #152744;
+    --theme-bg-nav: rgba(6, 14, 26, 0.82);
+    --theme-bg-card: rgba(15, 23, 42, 0.45);
+    --theme-bg-card-hover: rgba(26, 38, 64, 0.60);
+    --theme-bg-input: rgba(11, 21, 40, 0.50);
     --theme-border-subtle: rgba(255, 255, 255, 0.08);
-    --theme-border-card: rgba(255, 255, 255, 0.10);
-    --theme-border-input: rgba(255, 255, 255, 0.16);
+    --theme-border-card: rgba(255, 255, 255, 0.12);
+    --theme-border-input: rgba(255, 255, 255, 0.18);
     --theme-text-primary: #f8fafc;
     --theme-text-secondary: #cbd5e1;
     --theme-text-muted: #94a3b8;
-    --theme-card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.75), 0 0 1px 1px rgba(255, 255, 255, 0.05);
-    --theme-card-shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 25px rgba(245, 158, 11, 0.22);
-    --theme-scrollbar-track: #030712;
+    --theme-card-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.50), 0 0 1px 1px rgba(255, 255, 255, 0.06);
+    --theme-card-shadow-hover: 0 20px 45px -10px rgba(0, 0, 0, 0.60), 0 0 25px rgba(245, 158, 11, 0.22);
+    --theme-scrollbar-track: #060e1a;
     --theme-scrollbar-thumb: #1e3a5f;
-    --theme-glow-opacity: 0.32;
-    --theme-modal-backdrop: rgba(3, 7, 18, 0.90);
+    --theme-glow-opacity: 0.48;
+    --theme-modal-backdrop: rgba(3, 7, 18, 0.85);
   }
 }
 
 /* 3. Explicit Dark Mode Class Override */
 html.dark {
   color-scheme: dark;
-  --theme-bg-base: #030712;
-  --theme-bg-surface: #0b1528;
-  --theme-bg-surface-elevated: #0f1d36;
-  --theme-bg-nav: rgba(3, 7, 18, 0.88);
-  --theme-bg-card: rgba(15, 23, 42, 0.65);
-  --theme-bg-card-hover: rgba(26, 38, 64, 0.82);
-  --theme-bg-input: rgba(11, 21, 40, 0.85);
+  --theme-bg-base: #060e1a;
+  --theme-bg-surface: #0f1d36;
+  --theme-bg-surface-elevated: #152744;
+  --theme-bg-nav: rgba(6, 14, 26, 0.82);
+  --theme-bg-card: rgba(15, 23, 42, 0.45);
+  --theme-bg-card-hover: rgba(26, 38, 64, 0.60);
+  --theme-bg-input: rgba(11, 21, 40, 0.50);
   --theme-border-subtle: rgba(255, 255, 255, 0.08);
-  --theme-border-card: rgba(255, 255, 255, 0.10);
-  --theme-border-input: rgba(255, 255, 255, 0.16);
+  --theme-border-card: rgba(255, 255, 255, 0.12);
+  --theme-border-input: rgba(255, 255, 255, 0.18);
   --theme-text-primary: #f8fafc;
   --theme-text-secondary: #cbd5e1;
   --theme-text-muted: #94a3b8;
-  --theme-card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.75), 0 0 1px 1px rgba(255, 255, 255, 0.05);
-  --theme-card-shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 25px rgba(245, 158, 11, 0.22);
-  --theme-scrollbar-track: #030712;
+  --theme-card-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.50), 0 0 1px 1px rgba(255, 255, 255, 0.06);
+  --theme-card-shadow-hover: 0 20px 45px -10px rgba(0, 0, 0, 0.60), 0 0 25px rgba(245, 158, 11, 0.22);
+  --theme-scrollbar-track: #060e1a;
   --theme-scrollbar-thumb: #1e3a5f;
-  --theme-glow-opacity: 0.32;
-  --theme-modal-backdrop: rgba(3, 7, 18, 0.90);
+  --theme-glow-opacity: 0.48;
+  --theme-modal-backdrop: rgba(3, 7, 18, 0.85);
 }
 
 /* 4. Explicit Light Mode Class Override */
@@ -714,18 +719,18 @@ html.light #mobileMenu .bg-slate-950,
 /* Enhanced Dark Mode Glassmorphism & High-End Depth */
 html.dark .glass-card,
 :root:not(.light) .glass-card {
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(15, 23, 42, 0.45);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-color: rgba(255, 255, 255, 0.10);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.75), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.50), inset 0 1px 0 0 rgba(255, 255, 255, 0.10);
 }
 
 html.dark .glass-card-hover:hover,
 :root:not(.light) .glass-card-hover:hover {
-  background: rgba(26, 38, 64, 0.82);
-  border-color: rgba(245, 158, 11, 0.40);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 25px rgba(245, 158, 11, 0.22), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  background: rgba(26, 38, 64, 0.60);
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.60), 0 0 25px rgba(245, 158, 11, 0.22), inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
 }
 
 /* Light Mode Glass Card Styling & Text Contrast Guarantees */
@@ -999,22 +1004,30 @@ input[type="date"]::-webkit-date-and-time-value {
 /* Glowing Background Effects */
 .ambient-glow {
   position: absolute;
-  width: min(550px, 90vw);
-  height: min(550px, 90vw);
+  width: min(600px, 92vw);
+  height: min(600px, 92vw);
   max-width: 100%;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(130px);
   pointer-events: none;
-  opacity: 0.32;
+  opacity: 0.48;
   z-index: 1;
 }
 
 .glow-blue {
-  background: radial-gradient(circle, #0369a1 0%, #0b1528 50%, transparent 70%);
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.45) 0%, rgba(3, 105, 161, 0.22) 45%, transparent 70%);
 }
 
 .glow-gold {
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.45) 0%, rgba(217, 119, 6, 0.2) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.45) 0%, rgba(217, 119, 6, 0.22) 45%, transparent 70%);
+}
+
+.glow-warm {
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.42) 0%, rgba(234, 88, 12, 0.18) 45%, transparent 70%);
+}
+
+.glow-cyan {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.42) 0%, rgba(14, 116, 144, 0.18) 45%, transparent 70%);
 }
 
 /* Video Hero Styles & Gradient Overlays */
@@ -1046,10 +1059,10 @@ input[type="date"]::-webkit-date-and-time-value {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(7, 14, 23, 0.88) 0%,
-    rgba(11, 25, 44, 0.65) 30%,
-    rgba(11, 25, 44, 0.78) 70%,
-    rgba(7, 14, 23, 0.98) 100%
+    rgba(6, 14, 26, 0.42) 0%,
+    rgba(6, 14, 26, 0.18) 30%,
+    rgba(10, 22, 40, 0.28) 70%,
+    rgba(6, 14, 26, 0.68) 100%
   );
   z-index: 2;
 }
@@ -1057,7 +1070,7 @@ input[type="date"]::-webkit-date-and-time-value {
 .hero-video-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, transparent 40%, rgba(7, 14, 23, 0.85) 100%);
+  background: radial-gradient(circle at center, transparent 48%, rgba(6, 14, 26, 0.42) 100%);
   z-index: 3;
 }
 
