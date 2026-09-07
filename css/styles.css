@@ -441,30 +441,19 @@ body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) #mobileMenuBtn
   backdrop-filter: blur(8px);
 }
 
-/* Header Logo Glass Pill Container & Contrast Protection */
-.header-logo-pill {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Header Brand Logo Pure Transparency & Clean Contrast Drop Shadow */
+#brandHeaderLogo,
+.header-brand-logo {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 3px rgba(255, 255, 255, 0.45));
+  transition: filter 0.3s ease, transform 0.3s ease;
 }
 
-.header-logo-pill img {
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.50));
-}
-
-/* When header is scrolled in light mode, adjust pill background subtly */
-html.light header.glass-nav.header-scrolled .header-logo-pill,
-:root:not(.dark) header.glass-nav.header-scrolled .header-logo-pill,
-html.light #mainHeader.header-scrolled .header-logo-pill,
-:root:not(.dark) #mainHeader.header-scrolled .header-logo-pill {
-  background: rgba(241, 245, 249, 0.70) !important;
-  border-color: rgba(203, 213, 225, 0.70) !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
-}
-
-html.light header.glass-nav.header-scrolled .header-logo-pill img,
-:root:not(.dark) header.glass-nav.header-scrolled .header-logo-pill img,
-html.light #mainHeader.header-scrolled .header-logo-pill img,
-:root:not(.dark) #mainHeader.header-scrolled .header-logo-pill img {
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.10));
+/* When header is scrolled in light mode, adjust logo drop shadow subtly */
+html.light header.glass-nav.header-scrolled #brandHeaderLogo,
+:root:not(.dark) header.glass-nav.header-scrolled #brandHeaderLogo,
+html.light #mainHeader.header-scrolled #brandHeaderLogo,
+:root:not(.dark) #mainHeader.header-scrolled #brandHeaderLogo {
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.15));
 }
 
 
