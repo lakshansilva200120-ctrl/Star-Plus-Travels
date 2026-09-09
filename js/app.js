@@ -1513,7 +1513,7 @@ function handlePartnerSubmit(e) {
   const dmcSubmissionPayload = {
     formType: 'DMC_GROUND_SERVICES_INTAKE',
     submittedAt: new Date().toISOString(),
-    recipient: 'info@starplustraveluae.com',
+    recipient: 'nfo@starplustraveluae.com',
     companyDetails: {
       companyName: company,
       primaryDestination: destination,
@@ -1550,33 +1550,34 @@ function handlePartnerSubmit(e) {
   }
 
   setTimeout(() => {
-    // Also trigger direct email client pre-fill with full details so the file is directly attached
-    const subject = encodeURIComponent(`B2B DMC Partnership Intake: ${company} - ${destination}`);
+    // Trigger direct email client pre-fill with cleanly formatted structured data
+    const subject = encodeURIComponent(`B2B DMC Intake: ${company} (${destination})`);
     const body = encodeURIComponent(
-      `Dear Star Plus Travels Contracting Desk,\n\n` +
-      `Please find our official DMC and Ground Services partnership application:\n\n` +
-      `COMPANY & CREDENTIALS:\n` +
-      `- Company Legal Name: ${company}\n` +
-      `- Primary Destination: ${destination}\n` +
-      `- Key Contact: ${contact}\n` +
-      `- Corporate Email: ${email}\n` +
-      `- Corporate Phone / WhatsApp: ${phone}\n` +
-      `- Website / Portfolio: ${website}\n` +
-      `- Social Media Profile: ${social}\n` +
-      `- Tourism License / Registration No: ${license}\n` +
-      `- Headquarters Location: ${city}\n\n` +
-      `OFFICIAL TRADE LICENSE ATTACHMENT (Max 5MB):\n` +
+      `===================================================\n` +
+      `  NEW B2B DMC / GROUND SERVICES INTAKE APPLICATION  \n` +
+      `===================================================\n\n` +
+      `[1] COMPANY DETAILS\n` +
+      `• Company Name: ${company}\n` +
+      `• Destination / Country: ${destination}\n` +
+      `• Headquarters Location: ${city}\n` +
+      `• Tourism License / Reg No: ${license}\n\n` +
+      `[2] CONTACT PERSON & ONLINE PRESENCE\n` +
+      `• Key Contact Person: ${contact}\n` +
+      `• Corporate Email: ${email}\n` +
+      `• Phone / WhatsApp: ${phone}\n` +
+      `• Official Website: ${website}\n` +
+      `• Social Media Link / Profile: ${social}\n\n` +
+      `[3] TRADE LICENSE ATTACHMENT (Max 5MB)\n` +
       (licenseFile 
-        ? `- Document: ${licenseFile.name} (${formattedDocSize}) [Attached to this email]` 
-        : `- Document: [Please attach your official license / certificate document here]\n`) +
-      `\nSERVICES & ASSETS:\n` +
-      `- ${services.length > 0 ? services.join(', ') : 'Full Inbound Services'}\n\n` +
-      `PROPOSAL & TARIFF OVERVIEW:\n` +
+        ? `• Attached File: ${licenseFile.name} (${formattedDocSize})\n  (Please ensure document is attached to this email message)\n` 
+        : `• Attached File: [Please attach official Trade License/Certificate file here]\n`) +
+      `\n[4] SERVICES & ASSETS OFFERED\n` +
+      `• ${services.length > 0 ? services.join('\n• ') : 'Full Inbound Services'}\n\n` +
+      `[5] PROPOSAL & TARIFF OVERVIEW\n` +
       `${proposal}\n\n` +
-      `We certify our operational compliance and look forward to receiving contracting documents.\n\n` +
-      `Sincerely,\n` +
-      `${contact}\n` +
-      `${company}`
+      `===================================================\n` +
+      `I certify that our organization is a legally registered travel company and consent to Star Plus Travels verifying our credentials.\n\n` +
+      `Submitted by:\n${contact} | ${company}\n`
     );
 
     e.target.reset();
@@ -1590,8 +1591,8 @@ function handlePartnerSubmit(e) {
       submitBtn.innerHTML = originalBtnHtml;
     }
 
-    showToast('🤝 DMC Application and Trade License dispatched! Opening email client to finalize direct attachment to info@starplustraveluae.com.', 'success');
-    window.location.href = `mailto:info@starplustraveluae.com?subject=${subject}&body=${body}`;
+    showToast('🤝 DMC Application dispatched! Opening email client addressed to nfo@starplustraveluae.com.', 'success');
+    window.location.href = `mailto:nfo@starplustraveluae.com?subject=${subject}&body=${body}`;
   }, 1000);
 }
 
@@ -1603,8 +1604,8 @@ function sendDirectDmcEmail() {
   const email = document.getElementById('partnerEmail')?.value?.trim() || '';
   const phone = document.getElementById('partnerPhone')?.value?.trim() || '';
   const website = document.getElementById('partnerWebsite')?.value?.trim() || '';
-  const social = document.getElementById('partnerSocial')?.value?.trim() || 'N/A';
-  const license = document.getElementById('partnerLicense')?.value?.trim() || 'N/A';
+  const social = document.getElementById('partnerSocial')?.value?.trim() || 'Not Provided';
+  const license = document.getElementById('partnerLicense')?.value?.trim() || 'Pending';
   const city = document.getElementById('partnerCity')?.value?.trim() || '';
   const proposal = document.getElementById('partnerProposal')?.value?.trim() || '';
   
@@ -1616,35 +1617,37 @@ function sendDirectDmcEmail() {
     return;
   }
 
-  const fileNotice = licenseFile 
-    ? `Document: ${licenseFile.name} (${(licenseFile.size / 1024).toFixed(1)} KB) - Attached to this email`
-    : 'Document: [Please attach your official license / certificate document directly to this email]';
+  const formattedDocSize = licenseFile 
+    ? (licenseFile.size > 1024 * 1024 ? (licenseFile.size / (1024 * 1024)).toFixed(1) + ' MB' : Math.round(licenseFile.size / 1024) + ' KB')
+    : 'None Attached';
 
-  const subject = encodeURIComponent(`B2B DMC Partnership Intake: ${company} - ${destination}`);
+  const subject = encodeURIComponent(`B2B DMC Intake: ${company} (${destination})`);
   const body = encodeURIComponent(
-    `Dear Star Plus Travels Contracting Team,\n\n` +
-    `Please find our official DMC and Ground Services partnership application:\n\n` +
-    `COMPANY & CREDENTIALS:\n` +
-    `- Company Legal Name: ${company}\n` +
-    `- Primary Destination: ${destination}\n` +
-    `- Key Contact: ${contact}\n` +
-    `- Corporate Email: ${email}\n` +
-    `- Corporate Phone / WhatsApp: ${phone}\n` +
-    `- Website / Portfolio: ${website}\n` +
-    `- Social Media / Professional Profile: ${social}\n` +
-    `- Tourism License / Registration No: ${license}\n` +
-    `- Headquarters Location: ${city}\n\n` +
-    `TRADE LICENSE ATTACHMENT:\n` +
-    `- ${fileNotice}\n\n` +
-    `PROPOSAL & TARIFF OVERVIEW:\n` +
+    `===================================================\n` +
+    `  NEW B2B DMC / GROUND SERVICES INTAKE APPLICATION  \n` +
+    `===================================================\n\n` +
+    `[1] COMPANY DETAILS\n` +
+    `• Company Name: ${company}\n` +
+    `• Destination / Country: ${destination}\n` +
+    `• Headquarters Location: ${city}\n` +
+    `• Tourism License / Reg No: ${license}\n\n` +
+    `[2] CONTACT PERSON & ONLINE PRESENCE\n` +
+    `• Key Contact Person: ${contact}\n` +
+    `• Corporate Email: ${email}\n` +
+    `• Phone / WhatsApp: ${phone}\n` +
+    `• Official Website: ${website}\n` +
+    `• Social Media Link / Profile: ${social}\n\n` +
+    `[3] TRADE LICENSE ATTACHMENT (Max 5MB)\n` +
+    (licenseFile 
+      ? `• Attached File: ${licenseFile.name} (${formattedDocSize})\n  (Please ensure document is attached to this email message)\n` 
+      : `• Attached File: [Please attach official Trade License/Certificate file here]\n`) +
+    `\n[4] PROPOSAL & TARIFF OVERVIEW\n` +
     `${proposal}\n\n` +
-    `We certify our operational compliance and look forward to receiving contracting documents.\n\n` +
-    `Sincerely,\n` +
-    `${contact}\n` +
-    `${company}`
+    `===================================================\n` +
+    `Submitted by:\n${contact} | ${company}\n`
   );
 
-  window.location.href = `mailto:info@starplustraveluae.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:nfo@starplustraveluae.com?subject=${subject}&body=${body}`;
 }
 
 // Newsletter Subscription
