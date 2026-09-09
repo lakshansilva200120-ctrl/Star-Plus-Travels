@@ -98,11 +98,6 @@ html.lang-si #mobileMenu .grid a {
   padding-right: 0 !important;
 }
 
-html.lang-si #mobileMenu .lang-btn-en,
-html.lang-si #mobileMenu .lang-btn-si {
-  font-size: 0.75rem !important;
-}
-
 /* Compact & Non-Shrinking Language Toggle Button (Single Unified Component) */
 .lang-toggle-btn {
   min-width: 82px !important;
