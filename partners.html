@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>B2B Supplier &amp; DMC Partnerships | Star Plus Travel &amp; Tourism LLC</title>
+  <meta name="description" content="Partner with Star Plus Travels. We are actively expanding our global B2B supplier and DMC network across Singapore, Malaysia, Turkey, Vietnam, Bali, Maldives, Armenia, Kazakhstan, Kyrgyzstan, Japan, Mauritius, and Kenya.">
+
+  <!-- Favicon Suite -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#F59E0B',
+              goldLight: '#FBBF24',
+              goldDark: '#D97706',
+              navy: '#0B192C',
+              navyLight: '#1E3E62',
+              navyDark: '#070E17',
+              ocean: '#0056A3',
+              oceanLight: '#0072CE'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            heading: ['"Outfit"', 'sans-serif'],
+            display: ['"Cinzel"', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css?v=5.7.0">
+
+  <!-- Immediate Theme Initialization Script -->
+  <script>
+    (function() {
+      try {
+        const mode = localStorage.getItem('starplus_theme_mode') || 'system';
+        const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let isDark;
+        if (mode === 'dark') {
+          isDark = true;
+        } else if (mode === 'light') {
+          isDark = false;
+        } else {
+          isDark = systemDark;
+        }
+
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        }
+      } catch (e) {}
+
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      if (window.location.hash) {
+        try {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
+        } catch (e) {}
+      }
+      window.scrollTo(0, 0);
+    })();
+  </script>
+</head>
+<body class="bg-[#f8fafc] dark:bg-[#070e17] text-slate-900 dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col transition-colors duration-300 w-full max-w-full relative">
+  <!-- Preloader -->
+  <div id="sitePreloader" class="fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-500">
+    <div class="relative flex flex-col items-center">
+      <img id="preloaderLogoImg" src="assets/logo-white-text.png" data-dark-src="assets/logo-white-text.png" data-light-src="assets/original-removebg-preview.png" alt="Star Plus Travels" class="h-14 w-auto mb-6 object-contain drop-shadow-lg">
+      <div class="luxury-gold-spinner mb-4"></div>
+      <p class="text-xs uppercase tracking-widest text-amber-400 font-semibold animate-pulse">Loading Star Plus Travels...</p>
+    </div>
+  </div>
+  <script>
+    (function() {
+      try {
+        var isDark = document.documentElement.classList.contains('dark') || 
+          (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var pImg = document.getElementById('preloaderLogoImg');
+        var pBox = document.getElementById('sitePreloader');
+        if (pImg) {
+          pImg.src = isDark ? (pImg.getAttribute('data-dark-src') || pImg.src) : (pImg.getAttribute('data-light-src') || pImg.src);
+        }
+        if (pBox) {
+          pBox.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-announcement-bar bg-transparent border-none border-b-0 text-[11px] sm:text-xs py-1.5 px-3 sm:px-6 relative z-40 transition-colors overflow-hidden">
+    <div class="top-bar-container max-w-7xl mx-auto flex flex-nowrap items-center justify-between gap-3 text-slate-400 whitespace-nowrap overflow-hidden">
+      <div class="flex items-center space-x-2 sm:space-x-3 min-w-0 shrink overflow-hidden whitespace-nowrap">
+        <span class="flex items-center space-x-1.5 text-amber-400 font-semibold truncate">
+          <i class="fa-solid fa-sparkles text-[10px] shrink-0"></i>
+          <span data-i18n="topAnnouncementText" class="truncate">Dubai &amp; Sri Lanka Premier Travel &amp; Visa Specialists</span>
+        </span>
+        <span class="hidden xl:inline text-slate-700 shrink-0">|</span>
+        <span class="hidden xl:flex items-center space-x-1.5 shrink-0 text-slate-300 font-medium">
+          <i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>
+          <span data-i18n="topLocation" class="truncate">Deira, Dubai, UAE &amp; Colombo, Sri Lanka</span>
+        </span>
+      </div>
+
+      <div class="flex items-center space-x-2 sm:space-x-3 shrink-0 whitespace-nowrap text-[11px]">
+        <!-- Dubai Hotline -->
+        <a href="tel:+971527582293" class="hover:text-amber-400 transition-colors flex items-center space-x-1 font-medium shrink-0" title="Dubai Hotline (Click to call)">
+          <i class="fa-solid fa-phone text-amber-400 text-[10px]"></i>
+          <span>+971 52 758 2293</span>
+        </a>
+        <span class="hidden xl:inline text-slate-700 shrink-0">|</span>
+        <!-- Dubai Office -->
+        <a href="tel:+97145751321" class="hidden xl:flex hover:text-amber-400 transition-colors items-center space-x-1 font-medium shrink-0" title="Dubai Office (Click to call)">
+          <i class="fa-solid fa-building text-amber-400 text-[10px]"></i>
+          <span>+971 4 575 1321</span>
+        </a>
+        <span class="hidden sm:inline text-slate-700 shrink-0">|</span>
+        <!-- Email -->
+        <a href="mailto:info@starplustraveluae.com" class="hidden md:flex hover:text-amber-400 transition-colors items-center space-x-1 font-medium shrink-0" title="Direct Support Email">
+          <i class="fa-solid fa-envelope text-amber-400 text-[10px]"></i>
+          <span>info@starplustraveluae.com</span>
+        </a>
+        <span class="hidden md:inline text-slate-700 shrink-0">|</span>
+        <!-- WhatsApp Concierge -->
+        <a href="https://wa.me/971527582293" target="_blank" rel="noopener noreferrer" class="hidden lg:flex hover:text-emerald-400 transition-colors items-center space-x-1 font-medium shrink-0" title="Chat on WhatsApp">
+          <i class="fa-brands fa-whatsapp text-emerald-400 text-xs"></i>
+          <span data-i18n="whatsappConcierge">WhatsApp Concierge</span>
+        </a>
+
+        <!-- Currency Selector -->
+        <div class="flex items-center space-x-1 bg-slate-900/90 border border-slate-700/80 rounded-lg px-2 py-0.5 shadow-sm shrink-0">
+          <i class="fa-solid fa-coins text-amber-400 text-[10px]"></i>
+          <select onchange="changeCurrency(this.value)" class="currency-selector bg-transparent text-slate-200 text-[11px] font-semibold outline-none cursor-pointer">
+            <option value="AED" class="bg-slate-900 text-slate-200">AED (&#1583;.&#1573;)</option>
+            <option value="USD" class="bg-slate-900 text-slate-200">USD ($)</option>
+            <option value="EUR" class="bg-slate-900 text-slate-200">EUR (&euro;)</option>
+            <option value="GBP" class="bg-slate-900 text-slate-200">GBP (&pound;)</option>
+            <option value="LKR" class="bg-slate-900 text-slate-200">LKR (Rs)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header with Glass Pill Navigation -->
+  <header id="mainHeader" class="sticky top-0 z-50 glass-nav hero-floating-nav border-none border-b-0 transition-all duration-300 w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="flex items-center justify-between h-20 w-full max-w-full gap-3 sm:gap-6">
+        
+        <!-- Official Brand Logo -->
+        <a href="/" class="flex items-center py-1 group shrink-0 flex-shrink-0" aria-label="Star Plus Travels Home">
+          <img id="brandHeaderLogo"
+               src="assets/logo_full.svg?v=5.5.0" 
+               data-dark-src="assets/logo_full.svg?v=5.5.0"
+               data-light-src="assets/logo_full_light.svg?v=5.5.0"
+               alt="Star Plus Travel and Tourism LLC" 
+               class="header-brand-logo h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
+        </a>
+
+        <!-- Desktop Navigation Links with Sliding Glass Pill Active State -->
+        <nav id="desktopNav" class="nav-pill-track hidden lg:flex items-center justify-center p-1 rounded-full relative isolate whitespace-nowrap min-w-0 flex-1 mx-2">
+          <div id="navPillIndicator" class="nav-pill-indicator pointer-events-none absolute rounded-full transition-all duration-300 ease-[cubic-bezier(0.2,0.9,0.3,1.2)] z-0 opacity-0" aria-hidden="true"></div>
+
+          <a href="index.html" class="nav-link" data-i18n="navHome">Home</a>
+          <a href="packages.html" class="nav-link" data-i18n="navPackages">Tour Packages</a>
+          <a href="destinations.html" class="nav-link" data-i18n="navDestinations">Destinations</a>
+          <a href="visa-services.html" class="nav-link" data-i18n="navActivitiesVisa">Visa Services</a>
+          <a href="reviews.html" class="nav-link" data-i18n="navReviews">Reviews</a>
+          
+          <!-- Explore Dropdown -->
+          <div class="nav-dropdown">
+            <button type="button" class="nav-link nav-dropdown-trigger active cursor-pointer bg-transparent border-none outline-none font-semibold">
+              <span data-i18n="navExplore">Explore</span>
+              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-500 dark:text-amber-400"></i>
+            </button>
+            <div class="nav-dropdown-menu">
+              <a href="why-us.html" class="nav-dropdown-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span data-i18n="navWhyUs">Why Choose Us</span>
+              </a>
+              <a href="careers.html" class="nav-dropdown-item flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-briefcase"></i>
+                  <span data-i18n="navCareers">Careers</span>
+                </div>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              </a>
+              <a href="partners.html" class="nav-dropdown-item flex items-center justify-between bg-amber-500/10 text-amber-400 font-semibold">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-handshake"></i>
+                  <span>B2B &amp; DMC Partners</span>
+                </div>
+                <span class="text-[9px] bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded font-black uppercase tracking-wider">Intake</span>
+              </a>
+              <a href="faq.html" class="nav-dropdown-item">
+                <i class="fa-solid fa-circle-question"></i>
+                <span data-i18n="navFaq">Help &amp; FAQ</span>
+              </a>
+              <a href="terms.html" class="nav-dropdown-item">
+                <i class="fa-solid fa-file-contract"></i>
+                <span data-i18n="navTerms">Terms &amp; Conditions</span>
+              </a>
+            </div>
+          </div>
+
+          <a href="contact.html" class="nav-link" data-i18n="navContact">Contact</a>
+        </nav>
+
+        <!-- Right Action Area -->
+        <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
+          <button type="button" onclick="toggleLanguage()" id="mainLangToggleBtn" class="lang-toggle-btn inline-flex items-center justify-center space-x-1.5 min-w-[82px] h-9 px-3 rounded-xl border border-slate-700/80 bg-slate-900/90 hover:bg-slate-800 hover:border-amber-500/50 text-slate-200 hover:text-white transition-all text-xs font-bold shadow-md cursor-pointer whitespace-nowrap shrink-0 flex-shrink-0 group" title="Switch Language" aria-label="Switch Language (English / Sinhala)">
+            <i class="fa-solid fa-globe text-amber-400 text-xs transition-transform group-hover:rotate-12 shrink-0"></i>
+            <span class="desktop-lang-text font-bold text-xs text-center tracking-wide">à·ƒà·’à¶‚à·„à¶½</span>
+          </button>
+
+          <button id="mobileMenuBtn" class="lg:hidden p-2 h-9 w-9 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-300 hover:text-white hover:border-amber-500/50 shadow-md flex items-center justify-center cursor-pointer shrink-0 flex-shrink-0 transition-colors" aria-label="Toggle menu">
+            <i class="fa-solid fa-bars-staggered text-sm"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Slide-out Menu Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden backdrop-blur-xl bg-white/80 dark:bg-slate-950/80 border-b border-white/20 dark:border-slate-800/50 px-5 sm:px-6 pt-5 pb-16 space-y-4 transition-all duration-300 shadow-xl shadow-slate-900/5 dark:shadow-black/40">
+      <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-900 dark:text-white">
+        <a href="index.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+          <span data-i18n="navHome">Home</span>
+        </a>
+        <a href="packages.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+          <span data-i18n="navPackages">Tour Packages</span>
+        </a>
+        <a href="destinations.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+          <span data-i18n="navDestinations">Destinations</span>
+        </a>
+        <a href="visa-services.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+          <span data-i18n="navActivitiesVisa">Visa Services</span>
+        </a>
+        <a href="reviews.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+          <span data-i18n="navReviews">Customer Reviews</span>
+        </a>
+        
+        <!-- Mobile Explore Subsection -->
+        <div class="pt-2 pb-1 border-b border-slate-200/80 dark:border-slate-800/80">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400/90 mb-2 block" data-i18n="navExplore">Explore &amp; Info</span>
+          <div class="grid grid-cols-2 gap-2 text-sm font-medium">
+            <a href="why-us.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-700 dark:text-slate-300 hover:text-amber-500 dark:hover:text-amber-400 flex items-center space-x-1.5 transition-colors">
+              <i class="fa-solid fa-shield-halved text-amber-500 dark:text-amber-400 text-xs"></i>
+              <span data-i18n="navWhyUs">Why Us</span>
+            </a>
+            <a href="careers.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-700 dark:text-slate-300 hover:text-amber-500 dark:hover:text-amber-400 flex items-center space-x-1.5 transition-colors">
+              <i class="fa-solid fa-briefcase text-amber-500 dark:text-amber-400 text-xs"></i>
+              <span data-i18n="navCareers">Careers</span>
+            </a>
+            <a href="partners.html" onclick="toggleMobileMenu()" class="py-1.5 text-amber-600 dark:text-amber-400 font-bold flex items-center space-x-1.5 transition-colors col-span-2">
+              <i class="fa-solid fa-handshake text-amber-500 text-xs"></i>
+              <span>B2B &amp; DMC Partners</span>
+              <span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ml-auto">Intake</span>
+            </a>
+            <a href="faq.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-700 dark:text-slate-300 hover:text-amber-500 dark:hover:text-amber-400 flex items-center space-x-1.5 transition-colors">
+              <i class="fa-solid fa-circle-question text-amber-500 dark:text-amber-400 text-xs"></i>
+              <span data-i18n="navFaq">FAQ</span>
+            </a>
+            <a href="terms.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-700 dark:text-slate-300 hover:text-amber-500 dark:hover:text-amber-400 flex items-center space-x-1.5 transition-colors">
+              <i class="fa-solid fa-file-contract text-amber-500 dark:text-amber-400 text-xs"></i>
+              <span data-i18n="navTerms">Terms</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="contact.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 transition-colors">
+          <span data-i18n="navContact">Contact &amp; Office</span>
+        </a>
+      </nav>
+
+      <div class="pt-2 flex flex-col gap-3">
+        <a href="#applyForm" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all">
+          Apply as DMC Partner
+        </a>
+      </div>
+
+      <!-- Mobile Drawer Direct Call & Contact Card -->
+      <div class="pt-3 pb-1 border-t border-slate-200/80 dark:border-slate-800/80 space-y-2 text-xs">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400/90 block">Direct Contact &amp; Call</span>
+        
+        <!-- Dubai Hotline -->
+        <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800">
+          <div class="flex items-center space-x-2.5">
+            <span class="text-base">ðŸ‡¦ðŸ‡ª</span>
+            <div>
+              <span class="text-[10px] text-slate-500 dark:text-slate-400 block leading-tight">Dubai Hotline (24/7)</span>
+              <a href="tel:+971527582293" class="font-bold text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 transition-colors">+971 52 758 2293</a>
+            </div>
+          </div>
+          <a href="tel:+971527582293" class="w-8 h-8 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 flex items-center justify-center shadow-sm shrink-0" aria-label="Call Dubai Hotline" title="Call Dubai Hotline">
+            <i class="fa-solid fa-phone text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Dubai Office -->
+        <div class="flex items-center justify-between py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800">
+          <div class="flex items-center space-x-2.5">
+            <span class="text-base">ðŸ¢</span>
+            <div>
+              <span class="text-[10px] text-slate-500 dark:text-slate-400 block leading-tight">Dubai Office</span>
+              <a href="tel:+97145751321" class="font-bold text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 transition-colors">+971 4 575 1321</a>
+            </div>
+          </div>
+          <a href="tel:+97145751321" class="w-8 h-8 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 flex items-center justify-center shadow-sm shrink-0" aria-label="Call Dubai Office" title="Call Dubai Office">
+            <i class="fa-solid fa-phone text-xs"></i>
+          </a>
+        </div>
+
+        <!-- Sri Lanka Lines -->
+        <div class="py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="text-base">ðŸ‡±ðŸ‡°</span>
+              <span class="text-[10px] text-slate-500 dark:text-slate-400 block leading-tight font-medium">Sri Lanka Lines</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-2 mt-1.5 pt-1.5 border-t border-slate-200/60 dark:border-slate-800/60">
+            <a href="tel:+94766969799" class="flex items-center justify-center space-x-1.5 py-1.5 px-2 rounded-lg bg-white dark:bg-slate-800 font-bold text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 text-[11px] transition-colors shadow-xs border border-slate-200/60 dark:border-slate-700/60" title="Call Sri Lanka Line 1">
+              <i class="fa-solid fa-phone text-[9px] text-amber-500"></i>
+              <span>+94 76 696 9799</span>
+            </a>
+            <a href="tel:+94766119799" class="flex items-center justify-center space-x-1.5 py-1.5 px-2 rounded-lg bg-white dark:bg-slate-800 font-bold text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 text-[11px] transition-colors shadow-xs border border-slate-200/60 dark:border-slate-700/60" title="Call Sri Lanka Line 2">
+              <i class="fa-solid fa-phone text-[9px] text-amber-500"></i>
+              <span>+94 76 611 9799</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Social Media Links -->
+      <div class="pt-4 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center space-x-3">
+        <a href="https://www.facebook.com/share/1EAf7zDgSe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-white hover:bg-blue-600 transition-colors shadow-sm" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f text-sm"></i>
+        </a>
+        <a href="https://www.instagram.com/starplustraveltourism?igsh=bDVybXM4b3pqdjcw&utm_source=qr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-white hover:bg-rose-600 transition-colors shadow-sm" aria-label="Instagram">
+          <i class="fa-brands fa-instagram text-sm"></i>
+        </a>
+        <a href="https://www.tiktok.com/@starplustravel?_r=1&_t=ZS-990wwC6DOyr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-white hover:bg-slate-800 transition-colors shadow-sm" aria-label="TikTok">
+          <i class="fa-brands fa-tiktok text-sm"></i>
+        </a>
+        <a href="https://www.linkedin.com/company/starplus-travel-and-tourism/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-white hover:bg-blue-700 transition-colors shadow-sm" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in text-sm"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+<main class="flex-grow">
+  <!-- B2B Hero Section -->
+  <section class="relative -mt-[112px] pt-36 sm:pt-44 pb-16 sm:pb-20 overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50 dark:from-[#0B192C]/90 dark:via-[#070E17] dark:to-[#070E17] border-b border-slate-200 dark:border-slate-800/80 transition-colors">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.15),rgba(255,255,255,0))] pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      
+      <!-- Eyebrow Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/10 border border-amber-500/30 text-amber-500 dark:text-amber-400 mb-6 shadow-sm">
+        <i class="fa-solid fa-handshake-angle text-sm"></i>
+        <span>Global Inbound DMC &amp; Wholesale Supplier Intake</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight font-heading max-w-4xl mx-auto leading-tight">
+        Expand Your Inbound Reach with <span class="bg-gradient-to-r from-amber-500 to-amber-300 bg-clip-text text-transparent">Star Plus Travels</span>
+      </h1>
+
+      <p class="mt-5 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+        Headquartered in Deira, Dubai with regional operations in Colombo, Sri Lanka, Star Plus Travel &amp; Tourism LLC commands an active outbound network of high-yield leisure travelers, VIP families, and corporate MICE delegations. We are actively vetting and contracting licensed Destination Management Companies (DMCs), ground handlers, luxury fleets, and hotel wholesalers across <strong>12 strategic growth destinations</strong>.
+      </p>
+
+      <!-- Key Action Buttons -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#applyForm" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2">
+          <i class="fa-solid fa-file-pen"></i>
+          <span>Submit Partner Application</span>
+        </a>
+        <a href="#destinations" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-amber-500 text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 font-bold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-sm">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>View 12 Target Markets</span>
+        </a>
+      </div>
+
+      <!-- Trust Metrics Bar -->
+      <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto text-left">
+        <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <span class="text-2xl sm:text-3xl font-extrabold text-amber-500 dark:text-amber-400 font-heading block">12+</span>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200 block mt-1">Priority DMC Markets</span>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug block mt-0.5">Actively contracting verified ground partners</span>
+        </div>
+
+        <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <span class="text-2xl sm:text-3xl font-extrabold text-amber-500 dark:text-amber-400 font-heading block">25,000+</span>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200 block mt-1">Annual Passengers</span>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug block mt-0.5">High-spending UAE &amp; South Asia travelers</span>
+        </div>
+
+        <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <span class="text-2xl sm:text-3xl font-extrabold text-amber-500 dark:text-amber-400 font-heading block">100%</span>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200 block mt-1">Advance Settlement</span>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug block mt-0.5">Guaranteed prompt payment terms</span>
+        </div>
+
+        <div class="glass-card p-4 sm:p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <span class="text-2xl sm:text-3xl font-extrabold text-amber-500 dark:text-amber-400 font-heading block">Tier-1</span>
+          <span class="text-xs font-bold text-slate-800 dark:text-slate-200 block mt-1">Direct Procurement</span>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug block mt-0.5">No intermediary brokers or delays</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Target Destinations Section -->
+  <section id="destinations" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-amber-500 dark:text-amber-400 block mb-2">Priority Procurement Callout</span>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-heading">
+        Key Destinations for Active Supplier Intake
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+        We are seeking long-term operational alliances with verified local operators licensed by their respective Ministry of Tourism in the following 12 key destinations:
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      
+      <!-- 1. Singapore -->
+      <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all flex flex-col group shadow-lg">
+        <div class="h-40 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=800&q=80" alt="Singapore Skyline" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-400 text-[10px] font-bold">ðŸ‡¸ðŸ‡¬ Singapore</span>
+          <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Singapore</span>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Seeking local DMCs for Sentosa leisure packages, luxury Marina stays, cruise turnaround transfers &amp; B2B attraction ticketing.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-slate-200 dark:border-slate-800 text-[10px]">
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-semibold">Hotels</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Attractions</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Fleet</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Malaysia -->
+      <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all flex flex-col group shadow-lg">
+        <div class="h-40 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=800&q=80" alt="Malaysia Petronas Towers" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-400 text-[10px] font-bold">ðŸ‡²ðŸ‡¾ Malaysia</span>
+          <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Malaysia</span>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Ground operators for Kuala Lumpur, Genting Highlands, Langkawi resorts &amp; Penang cultural excursions for family groups.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-slate-200 dark:border-slate-800 text-[10px]">
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-semibold">KL &amp; Genting</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Coaches</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Langkawi</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Turkey -->
+      <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all flex flex-col group shadow-lg">
+        <div class="h-40 overflow-hidden relative">
+          <img src="assets/packages/turkey-cappadocia-balloons.jpg" alt="Turkey Cappadocia" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-400 text-[10px] font-bold">ðŸ‡¹ðŸ‡· Turkey</span>
+          <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Turkey</span>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            High-capacity DMCs across Istanbul Bosphorus tours, Cappadocia cave suites &amp; balloon rides, plus Antalya coastal resorts.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-slate-200 dark:border-slate-800 text-[10px]">
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-semibold">Cappadocia</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Balloons</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">VIP Vans</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Vietnam -->
+      <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all flex flex-col group shadow-lg">
+        <div class="h-40 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=800&q=80" alt="Vietnam Ha Long Bay" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-400 text-[10px] font-bold">ðŸ‡»ðŸ‡³ Vietnam</span>
+          <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Vietnam</span>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Inbound partners for Hanoi, Da Nang (Ba Na Hills Golden Bridge), luxury overnight Ha Long Bay cruises &amp; Saigon circuits.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-slate-200 dark:border-slate-800 text-[10px]">
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-semibold">Ha Long Cruises</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Da Nang</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Guides</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Bali (Indonesia) -->
+      <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all flex flex-col group shadow-lg">
+        <div class="h-40 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" alt="Bali Indonesia" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-400 text-[10px] font-bold">ðŸ‡®ðŸ‡© Indonesia</span>
+          <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Bali</span>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Local Bali ground handlers for private pool villas in Ubud/Seminyak, Nusa Penida speedboats, swings &amp; honeymoon curations.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-slate-200 dark:border-slate-800 text-[10px]">
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-semibold">Villas</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Nusa Penida</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Chauffeurs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Maldives -->
+      <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all flex flex-col group shadow-lg">
+        <div class="h-40 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80" alt="Maldives Overwater Resort" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-400 text-[10px] font-bold">ðŸ‡²ðŸ‡» Maldives</span>
+          <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Maldives</span>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Wholesale resort contractors for 4â˜… &amp; 5â˜… all-inclusive overwater villas, private seaplane coordination &amp; honeymoon packages.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-slate-200 dark:border-slate-800 text-[10px]">
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-semibold">Resort Rates</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Seaplanes</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">All-Inclusive</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Armenia -->
+      <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all flex flex-col group shadow-lg">
+        <div class="h-40 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=800&q=80" alt="Armenia Khor Virap" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-400 text-[10px] font-bold">ðŸ‡¦ðŸ‡² Armenia</span>
+          <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Armenia</span>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Caucasus operators for Yerevan heritage walking tours, Lake Sevan, Garni Temple &amp; Tsaghkadzor winter ski resorts.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-slate-200 dark:border-slate-800 text-[10px]">
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-semibold">Yerevan</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Ski Packages</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Caucasus</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Kazakhstan -->
+      <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all flex flex-col group shadow-lg">
+        <div class="h-40 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1558588942-930faae5a389?auto=format&fit=crop&w=800&q=80" alt="Kazakhstan Almaty" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-400 text-[10px] font-bold">ðŸ‡°ðŸ‡¿ Kazakhstan</span>
+          <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Kazakhstan</span>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Almaty and Astana ground handlers for Shymbulak Mountain Resort, Medeu skating rink, Charyn Canyon &amp; luxury city stays.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-slate-200 dark:border-slate-800 text-[10px]">
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-semibold">Almaty</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Shymbulak</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Canyons</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Kyrgyzstan -->
+      <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all flex flex-col group shadow-lg">
+        <div class="h-40 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=800&q=80" alt="Kyrgyzstan Tien Shan" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-400 text-[10px] font-bold">ðŸ‡°ðŸ‡¬ Kyrgyzstan</span>
+          <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Kyrgyzstan</span>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Specialized DMCs for Bishkek city tours, Ala Archa National Park alpine treks, Issyk-Kul lake resorts &amp; yurt camp adventures.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-slate-200 dark:border-slate-800 text-[10px]">
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-semibold">Issyk-Kul</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Ala Archa</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Trekking</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Japan -->
+      <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all flex flex-col group shadow-lg">
+        <div class="h-40 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80" alt="Japan Kyoto Pagoda" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-400 text-[10px] font-bold">ðŸ‡¯ðŸ‡µ Japan</span>
+          <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Japan</span>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Wholesale suppliers for Golden Route (Tokyo-Kyoto-Osaka), Mount Fuji day trips, JR Bullet Train ticketing &amp; English-speaking guides.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-slate-200 dark:border-slate-800 text-[10px]">
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-semibold">Golden Route</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">JR Rail</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Private Guides</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Mauritius -->
+      <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all flex flex-col group shadow-lg">
+        <div class="h-40 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=800&q=80" alt="Mauritius Island" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-400 text-[10px] font-bold">ðŸ‡²ðŸ‡º Mauritius</span>
+          <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Mauritius</span>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Inbound operators for 5â˜… beach resort contracts, catamaran sailing tours, Chamarel 7-coloured earth excursions &amp; helicopter flips.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-slate-200 dark:border-slate-800 text-[10px]">
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-semibold">Luxury Resorts</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Catamarans</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Honeymoons</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. Kenya -->
+      <div class="glass-card rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-amber-500/40 transition-all flex flex-col group shadow-lg">
+        <div class="h-40 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=800&q=80" alt="Kenya Safari Wildlife" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent"></div>
+          <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-400 text-[10px] font-bold">ðŸ‡°ðŸ‡ª Kenya</span>
+          <span class="absolute bottom-3 left-3 text-white font-bold text-sm">Kenya</span>
+        </div>
+        <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Safari specialists for Maasai Mara big cat game drives, Amboseli elephant plains, 4x4 land cruisers &amp; luxury tented safari camps.
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1 border-t border-slate-200 dark:border-slate-800 text-[10px]">
+            <span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 font-semibold">Maasai Mara</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">4x4 Fleet</span>
+            <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Safari Lodges</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Value Proposition: Why Partner With Us -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full border-t border-slate-200 dark:border-slate-800/80">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-amber-500 dark:text-amber-400 block mb-2">The Star Plus Advantage</span>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-heading">
+        Why Top Global DMCs Prefer Star Plus Travels
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
+        We value transparent, long-term B2B relationships founded on guaranteed commitments, operational excellence, and mutual profitability.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <div class="glass-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 dark:text-amber-400 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-vault"></i>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white font-heading">Prompt Advance Payments</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Never wait on overdue balances. We settle hotel prepayments and supplier booking vouchers on agreed schedules without delays.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-200/80 dark:border-slate-800/80 text-[11px] font-semibold text-amber-500">
+          âœ“ Guaranteed Security
+        </div>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 dark:text-amber-400 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-gem"></i>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white font-heading">High-Spending Travelers</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Our clientele consists of discerning UAE residents, GCC nationals, and South Asian affluent travelers demanding 4â˜…, 5â˜…, and VIP experiences.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-200/80 dark:border-slate-800/80 text-[11px] font-semibold text-amber-500">
+          âœ“ Maximum Yield Per Pax
+        </div>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 dark:text-amber-400 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white font-heading">Year-Round Booking Volumes</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            We deliver sustained group and FIT traffic across Eid holidays, summer escapes, school breaks, winter sun getaways, and corporate retreats.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-200/80 dark:border-slate-800/80 text-[11px] font-semibold text-amber-500">
+          âœ“ Reliable Seasonality
+        </div>
+      </div>
+
+      <div class="glass-card p-6 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between">
+        <div class="space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-500 dark:text-amber-400 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white font-heading">Dedicated Procurement Desk</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+            Direct communication with our Dubai contracting officers. No automated chatbotsâ€”get fast approvals and dedicated operational support.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-200/80 dark:border-slate-800/80 text-[11px] font-semibold text-amber-500">
+          âœ“ Direct Human Liaison
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Partner Onboarding Workflow -->
+  <section class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full bg-slate-50/50 dark:bg-slate-900/20 rounded-3xl border border-slate-200/80 dark:border-slate-800/60 my-6">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <span class="text-xs font-bold uppercase tracking-widest text-amber-500 dark:text-amber-400 block mb-1">Our Fast-Track Vetting Process</span>
+      <h3 class="text-xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-heading">
+        How Onboarding Works
+      </h3>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <div class="relative flex flex-col items-center text-center p-5 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <span class="w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-black text-sm flex items-center justify-center mb-3">1</span>
+        <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Apply Online</h4>
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+          Submit your company details, license numbers, destination fleet specs, and wholesale tariffs via our form below.
+        </p>
+      </div>
+
+      <div class="relative flex flex-col items-center text-center p-5 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <span class="w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-black text-sm flex items-center justify-center mb-3">2</span>
+        <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Credential Review</h4>
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+          Our procurement team reviews government licenses, passenger liability insurance, and quality standards within 48h.
+        </p>
+      </div>
+
+      <div class="relative flex flex-col items-center text-center p-5 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <span class="w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-black text-sm flex items-center justify-center mb-3">3</span>
+        <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Commercial Agreement</h4>
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+          Execute our formal B2B Partner agreement outlining mutually beneficial payment terms, cancellation windows &amp; SLAs.
+        </p>
+      </div>
+
+      <div class="relative flex flex-col items-center text-center p-5 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <span class="w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-black text-sm flex items-center justify-center mb-3">4</span>
+        <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-1">Live Deployment</h4>
+        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+          Your packages and hotel allocations are loaded into our booking engine and promoted across UAE &amp; Sri Lanka markets.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- B2B Supplier Application Form Section -->
+  <section id="applyForm" class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
+    <div class="glass-card p-6 sm:p-10 lg:p-12 rounded-3xl border border-amber-500/30 shadow-2xl relative overflow-hidden bg-gradient-to-b from-[#0B192C]/95 via-[#070E17] to-[#070E17]">
+      
+      <!-- Ambient Glow -->
+      <div class="absolute -top-24 -right-24 w-60 h-60 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-400 block mb-2">Official Intake Application</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-heading">
+          Register Your DMC / Ground Services
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+          Fill out the confidential intake form below. Our Contracting Director will connect directly via WhatsApp and corporate email.
+        </p>
+      </div>
+
+      <form onsubmit="handlePartnerSubmit(event)" class="space-y-6">
+        
+        <!-- Section 1: Company & Location -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="partnerCompany" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
+              Legal Company Name <span class="text-amber-400">*</span>
+            </label>
+            <input type="text" id="partnerCompany" required placeholder="e.g., Nexus DMC Japan Co. Ltd" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+          </div>
+
+          <div>
+            <label for="partnerDestination" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
+              Primary Destination / Country <span class="text-amber-400">*</span>
+            </label>
+            <select id="partnerDestination" required class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm bg-[#070e17] text-white">
+              <option value="" disabled selected>Select Primary Destination</option>
+              <option value="Singapore">Singapore ðŸ‡¸ðŸ‡¬</option>
+              <option value="Malaysia">Malaysia ðŸ‡²ðŸ‡¾</option>
+              <option value="Turkey">Turkey ðŸ‡¹ðŸ‡·</option>
+              <option value="Vietnam">Vietnam ðŸ‡»ðŸ‡³</option>
+              <option value="Bali (Indonesia)">Bali (Indonesia) ðŸ‡®ðŸ‡©</option>
+              <option value="Maldives">Maldives ðŸ‡²ðŸ‡»</option>
+              <option value="Armenia">Armenia ðŸ‡¦ðŸ‡²</option>
+              <option value="Kazakhstan">Kazakhstan ðŸ‡°ðŸ‡¿</option>
+              <option value="Kyrgyzstan">Kyrgyzstan ðŸ‡°ðŸ‡¬</option>
+              <option value="Japan">Japan ðŸ‡¯ðŸ‡µ</option>
+              <option value="Mauritius">Mauritius ðŸ‡²ðŸ‡º</option>
+              <option value="Kenya">Kenya ðŸ‡°ðŸ‡ª</option>
+              <option value="Other Global Market">Other Global Market</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Section 2: Contact Person Details -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="partnerContact" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
+              Key Contact Person &amp; Title <span class="text-amber-400">*</span>
+            </label>
+            <input type="text" id="partnerContact" required placeholder="e.g., Alexander Lee, Managing Director" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+          </div>
+
+          <div>
+            <label for="partnerEmail" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
+              Corporate Work Email <span class="text-amber-400">*</span>
+            </label>
+            <input type="email" id="partnerEmail" required placeholder="alex@nexus-dmc.com" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+          </div>
+        </div>
+
+        <!-- Section 3: Phone & Website -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="partnerPhone" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
+              Corporate Phone / WhatsApp <span class="text-amber-400">*</span>
+            </label>
+            <input type="tel" id="partnerPhone" required placeholder="e.g., +81 3 1234 5678" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+          </div>
+
+          <div>
+            <label for="partnerWebsite" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
+              Website / Online Portfolio <span class="text-amber-400">*</span>
+            </label>
+            <input type="url" id="partnerWebsite" required placeholder="https://www.yourdmc.com" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+          </div>
+        </div>
+
+        <!-- Section 4: License & Fleet Capacity -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="partnerLicense" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
+              Tourism License / Reg No. <span class="text-amber-400">*</span>
+            </label>
+            <input type="text" id="partnerLicense" required placeholder="e.g., MOT-8849201-B2B" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+          </div>
+
+          <div>
+            <label for="partnerCity" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
+              Headquarters City &amp; Country <span class="text-amber-400">*</span>
+            </label>
+            <input type="text" id="partnerCity" required placeholder="e.g., Tokyo, Japan" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+          </div>
+        </div>
+
+        <!-- Section 5: Services Offered Checkboxes -->
+        <div>
+          <label class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-2.5">
+            Services &amp; Assets Offered (Select all that apply) <span class="text-amber-400">*</span>
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-300">
+            <label class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
+              <input type="checkbox" name="services" value="hotels" class="rounded text-amber-500 focus:ring-amber-400">
+              <span>Direct 4â˜… &amp; 5â˜… Hotel Wholesaling</span>
+            </label>
+
+            <label class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
+              <input type="checkbox" name="services" value="transport" class="rounded text-amber-500 focus:ring-amber-400">
+              <span>Private Ground Fleet &amp; Luxury Coaches</span>
+            </label>
+
+            <label class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
+              <input type="checkbox" name="services" value="tours" class="rounded text-amber-500 focus:ring-amber-400">
+              <span>Licensed Guided Excursions &amp; Day Tours</span>
+            </label>
+
+            <label class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
+              <input type="checkbox" name="services" value="mice" class="rounded text-amber-500 focus:ring-amber-400">
+              <span>Corporate MICE &amp; Delegation Logistics</span>
+            </label>
+
+            <label class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
+              <input type="checkbox" name="services" value="vip" class="rounded text-amber-500 focus:ring-amber-400">
+              <span>VIP Airport Meet &amp; Assist / Fast-Track</span>
+            </label>
+
+            <label class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
+              <input type="checkbox" name="services" value="tickets" class="rounded text-amber-500 focus:ring-amber-400">
+              <span>Attraction, Theme Park &amp; Rail Tickets</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Section 6: Proposal / Brief -->
+        <div>
+          <label for="partnerProposal" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
+            Company Overview &amp; Competitive Tariff Highlights <span class="text-amber-400">*</span>
+          </label>
+          <textarea id="partnerProposal" rows="4" required placeholder="Briefly describe your company's operational presence, fleet size, preferred hotel contracts, and why Star Plus Travels should partner with your DMC..." class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm"></textarea>
+        </div>
+
+        <!-- Consent -->
+        <div class="flex items-start space-x-3 text-xs text-slate-400">
+          <input type="checkbox" id="partnerConsent" required class="mt-1 rounded text-amber-500 focus:ring-amber-400">
+          <label for="partnerConsent" class="leading-relaxed">
+            I certify that our organization is a legally registered travel company in good standing, holds all necessary operational licenses and insurances, and consents to Star Plus Travels verifying our credentials for B2B contracting.
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm uppercase tracking-wider transition-all shadow-xl shadow-amber-500/25 flex items-center justify-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>Submit DMC Partnership Application</span>
+        </button>
+
+      </form>
+
+      <!-- Procurement Desk Direct Info -->
+      <div class="mt-10 pt-6 border-t border-slate-800 text-center text-xs text-slate-400 space-y-1">
+        <p>
+          Need urgent B2B contracting or already have active static rates? Contact our Head of Contracting directly at:
+        </p>
+        <p class="text-amber-400 font-semibold flex items-center justify-center gap-3 pt-1">
+          <a href="mailto:info@starplustraveluae.com?subject=Urgent%20DMC%20Contracting" class="hover:underline flex items-center gap-1.5"><i class="fa-solid fa-envelope"></i> info@starplustraveluae.com</a>
+          <span class="text-slate-600">|</span>
+          <a href="tel:+971527582293" class="hover:underline flex items-center gap-1.5"><i class="fa-solid fa-phone text-xs"></i> +971 52 758 2293</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+  <!-- Standard Footer with Updated Contact Lines -->
+  <footer class="bg-slate-950 border-t border-slate-800/80 pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs overflow-hidden w-full max-w-full">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+      
+      <!-- Column 1: Brand Info -->
+      <div class="lg:col-span-2 space-y-4">
+        <a href="/" class="inline-block py-1" aria-label="Star Plus Travels Home">
+          <img id="brandFooterLogo"
+               src="assets/logo_full.svg?v=5.5.0" 
+               data-dark-src="assets/logo_full.svg?v=5.5.0"
+               data-light-src="assets/logo_full_light.svg?v=5.5.0"
+               alt="Star Plus Travel and Tourism LLC" 
+               class="h-10 sm:h-12 w-auto object-contain">
+        </a>
+        <p class="text-xs text-slate-400 max-w-sm leading-relaxed" data-i18n="footerAbout">
+          Star Plus Travel &amp; Tourism LLC is a government accredited travel management company based in Deira, Dubai with branch operations in Sri Lanka. Providing world-class bespoke holiday packages, airline bookings, and express visa solutions.
+        </p>
+        <div class="pt-1 text-xs space-y-2 text-slate-300">
+          <div class="space-y-1">
+            <p class="flex items-center space-x-1.5">
+              <span class="text-amber-400 font-bold" data-i18n="footerUaeInq"><i class="fa-solid fa-building mr-1"></i> UAE Inquiries:</span>
+              <a href="mailto:info@starplustraveluae.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustraveluae.com</a>
+            </p>
+            <p class="text-slate-400 pl-4 flex flex-wrap items-center gap-x-2 text-[11px]">
+              <a href="tel:+971527582293" class="hover:text-amber-400 text-slate-300 transition-colors inline-flex items-center gap-1 font-medium"><i class="fa-solid fa-phone text-[9px] text-amber-500"></i>Hotline: +971 52 758 2293</a>
+              <span class="text-slate-600">|</span>
+              <a href="tel:+97145751321" class="hover:text-amber-400 text-slate-300 transition-colors inline-flex items-center gap-1 font-medium"><i class="fa-solid fa-phone text-[9px] text-amber-500"></i>Office: +971 4 575 1321</a>
+            </p>
+          </div>
+          <div class="space-y-1 pt-0.5">
+            <p class="flex items-center space-x-1.5">
+              <span class="text-amber-400 font-bold" data-i18n="footerSlInq"><i class="fa-solid fa-landmark mr-1"></i> Sri Lanka Inquiries:</span>
+              <a href="mailto:info@starplustravelsl.com" class="hover:text-amber-400 text-slate-300 transition-colors">info@starplustravelsl.com</a>
+            </p>
+            <p class="text-slate-400 pl-4 flex flex-wrap items-center gap-x-2 text-[11px]">
+              <a href="tel:+94766969799" class="hover:text-amber-400 text-slate-300 transition-colors inline-flex items-center gap-1 font-medium"><i class="fa-solid fa-phone text-[9px] text-amber-500"></i>+94 76 696 9799</a>
+              <span class="text-slate-600">|</span>
+              <a href="tel:+94766119799" class="hover:text-amber-400 text-slate-300 transition-colors inline-flex items-center gap-1 font-medium"><i class="fa-solid fa-phone text-[9px] text-amber-500"></i>+94 76 611 9799</a>
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center space-x-2.5 pt-3">
+          <a href="https://www.facebook.com/share/1EAf7zDgSe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-blue-600 hover:border-blue-500 transition-all shadow-md group" aria-label="Facebook" title="Follow us on Facebook">
+            <i class="fa-brands fa-facebook-f text-xs group-hover:scale-110 transition-transform"></i>
+          </a>
+          <a href="https://www.instagram.com/starplustraveltourism?igsh=bDVybXM4b3pqdjcw&utm_source=qr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-gradient-to-tr hover:from-amber-600 hover:via-rose-600 hover:to-purple-600 hover:border-rose-500 transition-all shadow-md group" aria-label="Instagram" title="Follow us on Instagram">
+            <i class="fa-brands fa-instagram text-xs group-hover:scale-110 transition-transform"></i>
+          </a>
+          <a href="https://www.tiktok.com/@starplustravel?_r=1&_t=ZS-990wwC6DOyr" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 hover:border-slate-600 transition-all shadow-md group" aria-label="TikTok" title="Follow us on TikTok">
+            <i class="fa-brands fa-tiktok text-xs group-hover:scale-110 transition-transform"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/starplus-travel-and-tourism/" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-blue-700 hover:border-blue-600 transition-all shadow-md group" aria-label="LinkedIn" title="Connect on LinkedIn">
+            <i class="fa-brands fa-linkedin-in text-xs group-hover:scale-110 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="footerQuickLinks">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="index.html" class="hover:text-amber-400 transition-colors" data-i18n="navHome">Home</a></li>
+          <li><a href="packages.html" class="hover:text-amber-400 transition-colors" data-i18n="navPackages">Tour Packages</a></li>
+          <li><a href="destinations.html" class="hover:text-amber-400 transition-colors" data-i18n="navDestinations">Destinations</a></li>
+          <li><a href="visa-services.html" class="hover:text-amber-400 transition-colors" data-i18n="navVisa">Visa Services</a></li>
+          <li><a href="why-us.html" class="hover:text-amber-400 transition-colors" data-i18n="navWhyUs">Why Choose Us</a></li>
+          <li><a href="partners.html" class="hover:text-amber-400 transition-colors text-amber-400 font-semibold flex items-center space-x-1"><span>B2B &amp; DMC Partners</span><span class="text-[9px] bg-amber-500 text-slate-950 px-1.5 py-0.5 rounded font-black">Intake</span></a></li>
+          <li><a href="reviews.html" class="hover:text-amber-400 transition-colors" data-i18n="navReviews">Reviews</a></li>
+          <li><a href="careers.html" class="hover:text-amber-400 transition-colors flex items-center space-x-1"><span data-i18n="navCareers">Careers</span><span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-bold" data-i18n="navHiringBadge">Hiring</span></a></li>
+          <li><a href="faq.html" class="hover:text-amber-400 transition-colors" data-i18n="navFaq">Help &amp; FAQ</a></li>
+          <li><a href="terms.html" class="hover:text-amber-400 transition-colors" data-i18n="navTerms">Terms &amp; Conditions</a></li>
+          <li><a href="contact.html" class="hover:text-amber-400 transition-colors" data-i18n="navContact">Contact Our Offices</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Popular Packages -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="footerTopPackages">Top Packages</h4>
+        <ul class="space-y-2">
+          <li><a href="packages.html#packages" class="hover:text-amber-400 transition-colors">Dubai Desert &amp; City Tour</a></li>
+          <li><a href="packages.html#packages" class="hover:text-amber-400 transition-colors">Sri Lanka Wildlife &amp; Tea</a></li>
+          <li><a href="packages.html#packages" class="hover:text-amber-400 transition-colors">Georgia Caucasus Escapes</a></li>
+          <li><a href="packages.html#packages" class="hover:text-amber-400 transition-colors">Baku Azerbaijan Wonders</a></li>
+          <li><a href="packages.html#packages" class="hover:text-amber-400 transition-colors">Maldives Luxury Villas</a></li>
+          <li><a href="packages.html#packages" class="hover:text-amber-400 transition-colors">Premium Umrah Packages</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Visa Services -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider" data-i18n="navVisa">Visa Services</h4>
+        <ul class="space-y-2">
+          <li><a href="visa-services.html" class="hover:text-amber-400 transition-colors">30-Day UAE Tourist Visa</a></li>
+          <li><a href="visa-services.html" class="hover:text-amber-400 transition-colors">60-Day UAE Tourist Visa</a></li>
+          <li><a href="visa-services.html" class="hover:text-amber-400 transition-colors">Oman Visa Change Bus</a></li>
+          <li><a href="visa-services.html" class="hover:text-amber-400 transition-colors">European Schengen Visa</a></li>
+          <li><a href="visa-services.html" class="hover:text-amber-400 transition-colors">Sri Lanka Electronic ETA</a></li>
+          <li><a href="visa-services.html" class="hover:text-amber-400 transition-colors">Azerbaijan ASAN e-Visa</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 5: Newsletter -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-bold text-white uppercase tracking-wider">VIP Travel Deals</h4>
+        <p class="text-xs text-slate-400">Subscribe for unpublished secret airline rates and discount flash sales.</p>
+        <form onsubmit="handleNewsletter(event)" class="space-y-2">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" required class="w-full glass-input px-3 py-2 rounded-xl text-xs">
+          <button type="submit" class="w-full py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
+            Subscribe
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
+      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-2.5 text-center sm:text-left">
+        <span data-i18n="footerCopyright">&copy; 2026 Star Plus Travel &amp; Tourism LLC. All Rights Reserved.</span>
+        <span class="hidden sm:inline text-slate-700">&bull;</span>
+        <span data-i18n="footerAttribution">Redesigned &amp; Developed by Lupo</span>
+      </div>
+      <div class="flex items-center space-x-3 text-slate-400 text-sm">
+        <span class="text-xs text-slate-500 font-semibold mr-1">Accepted Payment:</span>
+        <i class="fa-brands fa-cc-visa hover:text-white transition-colors" title="Visa"></i>
+        <i class="fa-brands fa-cc-mastercard hover:text-white transition-colors" title="MasterCard"></i>
+        <i class="fa-brands fa-cc-apple-pay hover:text-white transition-colors" title="Apple Pay"></i>
+        <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 text-emerald-400">tabby</span>
+        <span class="text-[10px] font-black px-1.5 py-0.5 rounded bg-slate-900 border border-slate-700 text-pink-400">tamara</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-[9999] flex flex-col space-y-2 pointer-events-none"></div>
+
+  <!-- Core Scripts -->
+  <script src="js/app.js?v=5.7.0"></script>
+</body>
+</html>

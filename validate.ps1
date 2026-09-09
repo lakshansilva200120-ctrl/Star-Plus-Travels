@@ -20,7 +20,8 @@ $htmlFiles = @(
     "faq.html",
     "contact.html",
     "terms.html",
-    "careers.html"
+    "careers.html",
+    "partners.html"
 )
 foreach ($file in $htmlFiles) {
     $fullPath = Join-Path $root $file

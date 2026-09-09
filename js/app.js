@@ -1312,6 +1312,35 @@ function handleContactSubmit(e) {
   showToast('Inquiry received! A Star Plus Travels specialist will contact you with a customized quote shortly.', 'success');
 }
 
+// B2B Supplier & DMC Partnership Form Submission
+function handlePartnerSubmit(e) {
+  e.preventDefault();
+  const company = document.getElementById('partnerCompany')?.value;
+  const destination = document.getElementById('partnerDestination')?.value;
+  const email = document.getElementById('partnerEmail')?.value;
+
+  if (!company || !destination || !email) {
+    showToast('Please complete the required company details.', 'error');
+    return;
+  }
+
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processing Application...';
+  }
+
+  setTimeout(() => {
+    e.target.reset();
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+    }
+    showToast('🤝 Partnership application received! Our Global Contracting Desk will review your credentials within 2-3 business days.', 'success');
+  }, 1000);
+}
+
 // Newsletter Subscription
 function handleNewsletter(e) {
   e.preventDefault();
