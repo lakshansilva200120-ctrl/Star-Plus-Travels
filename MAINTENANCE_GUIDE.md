@@ -1,4 +1,4 @@
-# 🌟 Star Plus Travel & Tourism LLC - Website Maintenance & Deployment Guide
+﻿# 🌟 Star Plus Travel & Tourism LLC - Website Maintenance & Deployment Guide
 
 Welcome to the maintenance and deployment manual for the official Star Plus Travel & Tourism LLC website. This guide provides quick, clear instructions on making future text/image edits and deploying updates live automatically.
 
@@ -50,7 +50,7 @@ All tour package information is centralized in [`js/app.js`](js/app.js) inside t
 ### B. Updating Contact Details & Regional Emails
 - **UAE Office / HR Desk**: `info@starplustraveluae.com`
 - **Sri Lanka Office / HR Desk**: `info@starplustravelsl.com`
-- To update phone numbers or physical addresses, search for `+971 45 751 321` (UAE) or `+94 70 467 6900` (Sri Lanka) in [`index.html`](index.html) and [`careers.html`](careers.html).
+- To update phone numbers or physical addresses, search for `+971 52 758 2293 / +971 4 575 1321` (UAE) or `+94 76 696 9799 / +94 76 611 9799` (Sri Lanka) in [`index.html`](index.html) and [`careers.html`](careers.html).
 
 ### C. Updating Visa Services & Processing Fees
 All visa details are located in [`js/app.js`](js/app.js) inside the `VISA_DATA` object (lines 205–300):
