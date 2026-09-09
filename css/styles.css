@@ -1141,13 +1141,19 @@ input[type="date"]::-webkit-date-and-time-value {
 
 .hero-slideshow-indicators {
   position: absolute;
-  bottom: 1.5rem;
+  bottom: 0.75rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 0.5rem;
   z-index: 20;
+}
+
+@media (min-width: 640px) {
+  .hero-slideshow-indicators {
+    bottom: 1.5rem;
+  }
 }
 
 .hero-indicator-dot {
