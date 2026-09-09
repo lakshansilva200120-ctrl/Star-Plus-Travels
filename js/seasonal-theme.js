@@ -752,6 +752,22 @@
     isFestivalActive: function() {
       return detectActiveHoliday() !== null;
     },
+    isNewYearMorningWindow: function(targetDate) {
+      if (window.StarPlusNewYearLoader && typeof window.StarPlusNewYearLoader.checkCondition === 'function') {
+        return window.StarPlusNewYearLoader.checkCondition(targetDate);
+      }
+      const d = targetDate || new Date();
+      if (d.getMonth() !== 0 || d.getDate() !== 1) return false;
+      const h = d.getHours(), m = d.getMinutes(), s = d.getSeconds(), ms = d.getMilliseconds();
+      if (h < 0 || h > 12) return false;
+      if (h === 12 && (m > 0 || s > 0 || ms > 0)) return false;
+      return true;
+    },
+    testNewYearLoader: function(enable) {
+      if (window.StarPlusNewYearLoader && typeof window.StarPlusNewYearLoader.preview === 'function') {
+        if (enable !== false) window.StarPlusNewYearLoader.preview();
+      }
+    },
     isHolidayScheduleActive: isHolidayScheduleActive,
     getHolidaySchedule: function() {
       return Object.keys(HOLIDAYS).map(k => {

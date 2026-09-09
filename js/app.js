@@ -1848,17 +1848,235 @@ function initNavDropdowns() {
 /* ==========================================================================
    Simple & Elegant Luxury Preloader Controller
    ========================================================================== */
+/* ==========================================================================
+   Luxury Preloader & Strictly Time-Gated New Year Loading Screen Controller
+   Condition: Only active on January 1st strictly between 12:00 AM & 12:00 PM
+   ========================================================================== */
 (function setupLuxuryPreloader() {
+  const preloader = document.getElementById('sitePreloader');
+  if (!preloader) return;
+
+  /**
+   * Evaluates whether current date & time falls strictly within
+   * the January 1st morning celebratory window: 12:00 AM (00:00:00) to 12:00 PM (12:00:00).
+   */
+  function isNewYearMorningActive(targetDate) {
+    let d = targetDate;
+    if (!d) {
+      if (typeof window !== 'undefined') {
+        if (window.__FORCE_NY_LOADER === true) return true;
+        if (window.__FORCE_NY_LOADER === false) return false;
+        try {
+          const params = new URLSearchParams(window.location.search);
+          if (params.get('ny_loader') === '1' || params.get('newyear_loader') === 'true') {
+            return true;
+          }
+          const dateParam = params.get('date');
+          if (dateParam) {
+            const parsed = new Date(dateParam);
+            if (!isNaN(parsed.getTime())) d = parsed;
+          }
+        } catch (e) {}
+      }
+      if (!d) d = new Date();
+    }
+
+    // Month 0 = January, Date 1 = 1st
+    if (d.getMonth() !== 0 || d.getDate() !== 1) {
+      return false;
+    }
+
+    const h = d.getHours();
+    const m = d.getMinutes();
+    const s = d.getSeconds();
+    const ms = d.getMilliseconds();
+
+    // Strictly between 12:00 AM (00:00:00.000) and 12:00 PM (12:00:00.000)
+    if (h < 0 || h > 12) return false;
+    if (h === 12 && (m > 0 || s > 0 || ms > 0)) return false;
+    return true;
+  }
+
+  /**
+   * Lightweight 60 FPS Canvas Particle Engine for Gold Confetti & Star Sparkles
+   */
+  function initConfettiCanvas(container) {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'nyLoaderConfettiCanvas';
+    canvas.className = 'ny-loader-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    container.insertBefore(canvas, container.firstChild);
+
+    const ctx = canvas.getContext('2d');
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    function onResize() {
+      if (!canvas || !canvas.parentNode) return;
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', onResize);
+
+    const colors = ['#f59e0b', '#fbbf24', '#fef08a', '#ffffff', '#d97706', '#fde68a'];
+    const particleCount = Math.min(65, Math.max(35, Math.floor(window.innerWidth / 20)));
+    const particles = [];
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height * 0.8 - height * 0.4,
+        w: Math.random() * 8 + 6,
+        h: Math.random() * 5 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: (Math.random() - 0.5) * 2,
+        vy: Math.random() * 2.2 + 1.6,
+        rotation: Math.random() * 360,
+        rotationSpeed: (Math.random() - 0.5) * 6,
+        oscillationSpeed: Math.random() * 0.04 + 0.02,
+        oscillationOffset: Math.random() * Math.PI * 2,
+        type: Math.random() > 0.4 ? 'ribbon' : 'sparkle',
+        opacity: Math.random() * 0.4 + 0.6
+      });
+    }
+
+    let isRunning = true;
+    let animId = null;
+
+    function render(time) {
+      if (!isRunning) return;
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.y += p.vy;
+        p.x += p.vx + Math.sin(time * 0.002 + p.oscillationOffset) * 0.8;
+        p.rotation += p.rotationSpeed;
+
+        if (p.y > height + 20) {
+          p.y = -20;
+          p.x = Math.random() * width;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.globalAlpha = p.opacity;
+        ctx.fillStyle = p.color;
+
+        if (p.type === 'ribbon') {
+          const scaleX = Math.cos(p.rotation * 0.05);
+          ctx.scale(scaleX, 1);
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        } else {
+          // 4-point golden star sparkle
+          const r = p.w * 0.55;
+          ctx.beginPath();
+          for (let s = 0; s < 4; s++) {
+            const angle = (s * Math.PI) / 2;
+            ctx.lineTo(Math.cos(angle) * r, Math.sin(angle) * r);
+            const halfAngle = angle + Math.PI / 4;
+            ctx.lineTo(Math.cos(halfAngle) * (r * 0.35), Math.sin(halfAngle) * (r * 0.35));
+          }
+          ctx.closePath();
+          ctx.fill();
+        }
+
+        ctx.restore();
+      }
+
+      animId = requestAnimationFrame(render);
+    }
+
+    animId = requestAnimationFrame(render);
+
+    return function cleanup() {
+      isRunning = false;
+      if (animId) cancelAnimationFrame(animId);
+      window.removeEventListener('resize', onResize);
+      if (canvas && canvas.parentNode) {
+        canvas.remove();
+      }
+    };
+  }
+
+  /**
+   * Renders the Luxury Festive Greeting Card inside #sitePreloader
+   */
+  function renderNewYearCard(targetPreloader, year) {
+    targetPreloader.classList.add('ny-celebration-active');
+
+    const isDark = document.documentElement.classList.contains('dark') ||
+      (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const logoSrc = isDark ? 'assets/logo-white-text.png' : 'assets/original-removebg-preview.png';
+
+    targetPreloader.innerHTML = `
+      <div class="ny-loader-card">
+        <div class="ny-logo-container">
+          <img src="${logoSrc}" alt="Star Plus Travel and Tourism LLC" class="ny-brand-logo" />
+        </div>
+
+        <div class="ny-badge-container">
+          <span class="ny-festive-badge">
+            <svg class="ny-star-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2h7.6l-6.2 4.5 2.4 7.2-6.2-4.5-6.2 4.5 2.4-7.2-6.2-4.5h7.6z"/></svg>
+            HAPPY NEW YEAR • <span class="ny-year-text">${year}</span>
+            <svg class="ny-star-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2h7.6l-6.2 4.5 2.4 7.2-6.2-4.5-6.2 4.5 2.4-7.2-6.2-4.5h7.6z"/></svg>
+          </span>
+        </div>
+
+        <h2 class="ny-celebration-heading">
+          Wishing You Extraordinary Journeys In <span class="ny-gold-year">${year}</span>
+        </h2>
+
+        <p class="ny-celebration-subheading">
+          May your new year unfold timeless voyages, bespoke luxury &amp; unforgettable horizons across the globe.
+        </p>
+
+        <div class="ny-progress-wrapper">
+          <div class="ny-progress-bar-track">
+            <div class="ny-progress-bar-fill"></div>
+          </div>
+          <div class="ny-progress-status-text">PREPARING YOUR LUXURY EXPERIENCE</div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Determine active state
+  const isNyActive = isNewYearMorningActive();
+  window.__isNewYearLoaderActive = isNyActive;
+
+  let cleanupConfetti = null;
+
+  if (isNyActive) {
+    let year = new Date().getFullYear();
+    try {
+      const p = new URLSearchParams(window.location.search);
+      const dp = p.get('date');
+      if (dp) {
+        const parsed = new Date(dp);
+        if (!isNaN(parsed.getTime())) year = parsed.getFullYear();
+      }
+    } catch (e) {}
+    renderNewYearCard(preloader, year);
+    cleanupConfetti = initConfettiCanvas(preloader);
+  }
+
   function dismissPreloader() {
-    const preloader = document.getElementById('sitePreloader');
     if (!preloader || preloader.classList.contains('fade-out')) return;
 
     const start = window.__preloaderStartTime || Date.now();
     const elapsed = Date.now() - start;
-    const remaining = Math.max(0, 600 - elapsed);
+    // On New Year morning, give visitors ~2600ms to enjoy the celebration, otherwise standard 600ms
+    const minWait = isNyActive ? 2600 : 600;
+    const remaining = Math.max(0, minWait - elapsed);
 
     setTimeout(() => {
       preloader.classList.add('fade-out');
+      if (cleanupConfetti) {
+        cleanupConfetti();
+        cleanupConfetti = null;
+      }
       setTimeout(() => {
         if (preloader && preloader.parentNode) {
           preloader.style.display = 'none';
@@ -1871,8 +2089,32 @@ function initNavDropdowns() {
     dismissPreloader();
   } else {
     window.addEventListener('load', dismissPreloader);
-    setTimeout(dismissPreloader, 1500);
+    setTimeout(dismissPreloader, isNyActive ? 3600 : 1500);
   }
+
+  // Expose public API for developer preview & verification
+  window.StarPlusNewYearLoader = {
+    isActive: function() { return isNewYearMorningActive(); },
+    checkCondition: isNewYearMorningActive,
+    preview: function() {
+      window.__FORCE_NY_LOADER = true;
+      if (preloader) {
+        preloader.style.display = 'flex';
+        preloader.classList.remove('fade-out');
+        const currentYear = new Date().getFullYear();
+        renderNewYearCard(preloader, currentYear);
+        if (cleanupConfetti) cleanupConfetti();
+        cleanupConfetti = initConfettiCanvas(preloader);
+        setTimeout(() => {
+          preloader.classList.add('fade-out');
+          setTimeout(() => {
+            if (cleanupConfetti) cleanupConfetti();
+            preloader.style.display = 'none';
+          }, 500);
+        }, 3200);
+      }
+    }
+  };
 })();
 
 /* ==========================================================================

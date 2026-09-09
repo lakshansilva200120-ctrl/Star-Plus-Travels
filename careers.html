@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth w-full max-w-full">
 <head>
   <meta charset="UTF-8">
@@ -73,7 +73,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=5.1.0">
+  <link rel="stylesheet" href="css/styles.css?v=5.3.0">
 
     <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync with Preference Memory) -->
   <script>
@@ -138,6 +138,17 @@
     window.__preloaderStartTime = Date.now();
     (function() {
       try {
+        var urlParams = new URLSearchParams(window.location.search);
+        var dateParam = urlParams.get('date');
+        var d = dateParam ? new Date(dateParam) : new Date();
+        var isNyParam = urlParams.get('ny_loader') === '1' || urlParams.get('newyear_loader') === 'true';
+        var isJan1 = d.getMonth() === 0 && d.getDate() === 1;
+        var h = d.getHours(), m = d.getMinutes(), s = d.getSeconds();
+        var isMorning = (h >= 0 && h < 12) || (h === 12 && m === 0 && s === 0);
+        if (isNyParam || (isJan1 && isMorning)) {
+          window.__isNewYearLoaderActive = true;
+        }
+
         var isDark = document.documentElement.classList.contains('dark') || 
           (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
         var pImg = document.getElementById('preloaderLogoImg');
@@ -151,6 +162,7 @@
       } catch (e) {}
 
       function dismissPreloader() {
+        if (window.__isNewYearLoaderActive) return;
         var p = document.getElementById('sitePreloader');
         if (!p || p.classList.contains('fade-out')) return;
         var elapsed = Date.now() - (window.__preloaderStartTime || Date.now());
@@ -969,8 +981,8 @@
   <div id="toastContainer"></div>
 
   <!-- JavaScript Application Script -->
-  <script src="js/app.js?v=5.1.0"></script>
-  <script src="js/seasonal-theme.js?v=5.2.0"></script>
+  <script src="js/app.js?v=5.3.0"></script>
+  <script src="js/seasonal-theme.js?v=5.3.0"></script>
   
   <script>
     // Careers-specific logic
