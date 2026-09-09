@@ -179,6 +179,7 @@ const I18N_TRANSLATIONS = {
 
     // Footer
     footerAbout: "Star Plus Travel & Tourism LLC is a government accredited travel management company based in Deira, Dubai with branch operations in Sri Lanka. Providing world-class bespoke holiday packages, airline bookings, and express visa solutions.",
+    footerDesc: "Star Plus Travel and Tourism LLC is a premier licensed travel agency in the United Arab Emirates and Sri Lanka, delivering bespoke luxury vacations, corporate airline ticketing, and rapid express visa processing.",
     footerUaeInq: '<i class="fa-solid fa-building mr-1 text-amber-400"></i>UAE Inquiries:',
     footerSlInq: '<i class="fa-solid fa-landmark mr-1 text-amber-400"></i>Sri Lanka Inquiries:',
     footerQuickLinks: "Quick Links",
@@ -225,7 +226,40 @@ const I18N_TRANSLATIONS = {
     recruitmentDesksSubtitle: "Submit CVs directly to our regional talent acquisition teams:",
     explorePositions: "Explore 6 Open Positions",
     viewRolesBtn: "View Open Roles",
-    themeMode: "Theme Mode",
+    // Terms & Conditions Page
+    termsBadge: "Legal Disclosures &amp; Policies",
+    termsPageTitle: "Terms &amp; Conditions",
+    termsPageSubtitle: "Clear, transparent booking policies, immigration regulatory disclaimers, installment terms, and consumer rights.",
+    termsArt1Title: "Company Licensing &amp; Scope of Services",
+    termsArt1Desc: "Star Plus Travel and Tourism LLC is a registered, licensed entity authorized by the Government of Dubai Department of Economy and Tourism (DET) in the United Arab Emirates, and affiliated with Star Plus Travel (PVT) LTD accredited under the Sri Lanka Tourism Development Authority (SLTDA). By booking holiday packages, international airline tickets, visa concierge services, or transportation through Star Plus Travels, the client acknowledges and enters into an agreement governed by the terms specified herein.",
+    termsArt2Title: "Tour Package Quotations &amp; Confirmations",
+    termsArt2Desc: "All published or quoted prices are subject to inventory availability and airline fare fluctuations until full payment or the agreed initial deposit has been secured. Star Plus Travels guarantees that once an official booking confirmation voucher has been issued, no supplementary fuel surcharges or unexpected taxes will be added unless mandated by sudden government statutory decree.",
+    termsArt3Title: "Split Payments &amp; Installments (Tabby &amp; Tamara)",
+    termsArt3Desc: "Customers utilizing split payment solutions (such as Tabby or Tamara) enter into an independent financing relationship with the respective payment provider. Approval of split installment eligibility is determined entirely by Tabby or Tamara algorithms based on UAE Emirates ID verification and credit scoring. Star Plus Travels does not charge any interest or financing fees for split installments. Any late penalty fees assessed for overdue payments are governed strictly by the provider's consumer terms.",
+    termsArt4Title: "Official Company Bank Accounts &amp; Secure Payment Policy",
+    termsArt4Desc: "All payments must be made strictly to our official company bank account. We will never ask you to transfer funds to a personal account.",
+    termsArt4ClauseTitle: "Official Payment Protection Clause:",
+    termsArt4ClauseDesc: "All monetary remittances—including holiday deposits, flight ticketing charges, visa processing fees, and hotel reservations—must be remitted exclusively to the verified corporate bank accounts of <strong>Star Plus Travel and Tourism LLC</strong> (in the UAE) or <strong>Star Plus Travel (PVT) LTD</strong> (in Sri Lanka), or completed via our authorized point-of-sale terminals or accredited installment gateways. Under no circumstances will any representative, employee, or agent of Star Plus Travels instruct a client to transfer funds into an individual or personal account.",
+    termsArt5Title: "Visa Applications &amp; Immigration Disclaimers",
+    termsArt5Desc: "Star Plus Travels provides visa application review, document compliance auditing, and authorized portal lodgment services. <strong>Crucial Notice:</strong> The final authority to grant, delay, or reject any tourist, transit, or entry visa rests exclusively with sovereign immigration bodies, including the UAE General Directorate of Residency and Foreigners Affairs (GDRFA), Federal Authority for Identity, Citizenship, Customs and Port Security (ICP), and relevant foreign embassies.",
+    termsArt5FeesTitle: "Non-Refundable Government Fees:",
+    termsArt5FeesDesc: "Government processing fees, consular stamp duties, and administrative filing costs are non-refundable under any circumstances once an application is lodged into official immigration databases, regardless of whether a visa is approved, delayed, or rejected.",
+    termsArt6Title: "Cancellation, Amendments &amp; Refunds",
+    termsArt6Desc: 'Cancellation requests must be submitted in writing to our official email address (<a href="mailto:info@starplustraveluae.com" class="text-amber-400 underline">info@starplustraveluae.com</a>). Refund entitlements are determined according to the following schedule:',
+    termsArt6Tier1: "<strong>30+ Days Prior to Departure:</strong> 90% refund of land package costs (airline tickets subject to carrier tariff rules).",
+    termsArt6Tier2: "<strong>15 to 29 Days Prior to Departure:</strong> 70% refund of land package costs.",
+    termsArt6Tier3: "<strong>7 to 14 Days Prior to Departure:</strong> 50% refund of land package costs.",
+    termsArt6Tier4: "<strong>Under 7 Days or No-Show:</strong> Non-refundable due to committed hotel and transportation locks.",
+    termsArt7Title: "Passport Validity, Health &amp; Travel Insurance",
+    termsArt7Desc: "It is the traveler's sole responsibility to ensure their passport possesses a minimum of six (6) months validity from the scheduled return date. Star Plus Travels strongly advises all travelers to hold comprehensive international travel medical and luggage insurance. For Schengen visas and select international destinations, proof of insurance meeting statutory minimum medical coverage (EUR 30,000) is mandatory.",
+    termsArt8Title: "Governing Law &amp; Legal Jurisdiction",
+    termsArt8Desc: "These terms and conditions, along with any dispute or claim arising out of or in connection with them, shall be governed by and construed in accordance with the federal laws of the United Arab Emirates and the Emirate of Dubai for UAE-booked contracts, and the laws of the Democratic Socialist Republic of Sri Lanka for contracts executed through our Colombo desk. The competent courts of Dubai or Colombo shall have exclusive jurisdiction.",
+    termsInquiriesContact: 'For questions regarding our terms, cancellation notices, or corporate agreements, please contact our legal desk at <a href="mailto:info@starplustraveluae.com" class="text-amber-400 hover:underline font-semibold">info@starplustraveluae.com</a> or call <a href="tel:+971527582293" class="text-slate-200 hover:text-amber-400 font-semibold">+971 52 758 2293</a> / <a href="tel:+97145751321" class="text-slate-200 hover:text-amber-400 font-semibold">+971 4 575 1321</a>.',
+    termsFooterVipDeals: "VIP Travel Deals",
+    termsFooterVipDesc: "Subscribe for unpublished secret airline rates and discount flash sales.",
+    termsFooterSubscribe: "Subscribe",
+    termsFooterEmailPlaceholder: "Enter your email",
+    termsFooterAcceptedPayment: "Accepted Payment:",
 
     // Dynamic strings
     startingFrom: "Starting from",
@@ -397,6 +431,7 @@ const I18N_TRANSLATIONS = {
 
     // Footer
     footerAbout: "Star Plus Travel & Tourism LLC යනු ඩුබායි දෙයිරා හි ප්‍රධාන කාර්යාලය සහ ශ්‍රී ලංකාවේ ශාඛා සහිත රජයේ අනුමත සංචාරක කළමනාකරණ සමාගමකි. උසස් තත්ත්වයේ නිවාඩු පැකේජ, ගුවන් ටිකට්පත් සහ ක්ෂණික වීසා සේවා සපයනු ලැබේ.",
+    footerDesc: "Star Plus Travel and Tourism LLC යනු එක්සත් අරාබි එමීර් රාජ්‍යයේ සහ ශ්‍රී ලංකාවේ බලපත්‍රලාභී ප්‍රමුඛතම සංචාරක ආයතනයක් වන අතර, සුඛෝපභෝගී නිවාඩු චාරිකා, ආයතනික ගුවන් ටිකට්පත් සහ ක්ෂණික එක්ස්ප්‍රස් වීසා සේවා සපයයි.",
     footerUaeInq: '<i class="fa-solid fa-building mr-1 text-amber-400"></i>ඩුබායි විමසීම්:',
     footerSlInq: '<i class="fa-solid fa-landmark mr-1 text-amber-400"></i>ශ්‍රී ලංකා විමසීම්:',
     footerQuickLinks: "ක්ෂණික පිවිසුම්",
@@ -443,7 +478,40 @@ const I18N_TRANSLATIONS = {
     recruitmentDesksSubtitle: "කලාපීය මානව සම්පත් කණ්ඩායම් වෙත සෘජුවම ජීව දත්ත පත්‍ර යොමු කරන්න:",
     explorePositions: "විවෘත පුරප්පාඩු 6 බලන්න",
     viewRolesBtn: "පුරප්පාඩු බලන්න",
-    themeMode: "තේමාව",
+    // Terms & Conditions Page (Sinhala)
+    termsBadge: "නීතිමය ප්‍රකාශන සහ ප්‍රතිපත්ති",
+    termsPageTitle: "නියම සහ කොන්දේසි",
+    termsPageSubtitle: "විනිවිදභාවයෙන් යුතු වෙන්කිරීමේ ප්‍රතිපත්ති, ආගමන විගමන නීතිමය ප්‍රකාශන, වාරික ගෙවීම් නියම සහ පාරිභෝගික අයිතිවාසිකම්.",
+    termsArt1Title: "සමාගම් බලපත්‍ර සහ සේවා විෂය පථය",
+    termsArt1Desc: "Star Plus Travel and Tourism LLC යනු එක්සත් අරාබි එමීර් රාජ්‍යයේ ඩුබායි ආර්ථික හා සංචාරක දෙපාර්තමේන්තුව (DET) මඟින් බලපත්‍රලත් නීත්‍යානුකූල සමාගමක් වන අතර, ශ්‍රී ලංකා සංචාරක සංවර්ධන අධිකාරිය (SLTDA) යටතේ ලියාපදිංචි Star Plus Travel (PVT) LTD සමඟ අනුබද්ධිත වේ. Star Plus Travels හරහා නිවාඩු පැකේජ, ජාත්‍යන්තර ගුවන් ටිකට්පත්, වීසා සේවා හෝ ප්‍රවාහන සේවා වෙන්කරවා ගැනීමෙන්, සේවාදායකයා මෙහි සඳහන් නියමයන්ට එකඟතාව පළ කරනු ලබයි.",
+    termsArt2Title: "සංචාරක පැකේජ මිල ගණන් සහ තහවුරු කිරීම්",
+    termsArt2Desc: "සම්පූර්ණ ගෙවීම හෝ එකඟ වූ මූලික තැන්පතුව ගෙවන තුරු ප්‍රකාශිත හෝ ලබාදුන් සියලුම මිල ගණන් හෝටල් කාමර සහ ගුවන් ගාස්තු වෙනස්වීම් මත රඳා පවතී. නිල වෙන්කිරීම් තහවුරු කිරීමේ වවුචරයක් නිකුත් කළ පසු, හදිසි රජයේ බදු නියෝගයකින් හැර කිසිදු අමතර ඉන්ධන අධිභාරයක් හෝ අනපේක්ෂිත බද්දක් එකතු නොකරන බවට Star Plus Travels සහතික කරයි.",
+    termsArt3Title: "පහසු වාරික ගෙවීම් (Tabby සහ Tamara)",
+    termsArt3Desc: "Tabby හෝ Tamara වැනි පහසු වාරික ගෙවීම් ක්‍රම භාවිතා කරන පාරිභෝගිකයින් අදාළ ගෙවීම් සේවා සපයන්නා සමඟ ස්වාධීන මූල්‍ය ගිවිසුමකට එළඹේ. වාරික ගෙවීමේ සුදුසුකම් අනුමැතිය එක්සත් අරාබි එමීර් රාජ්‍යයේ හැඳුනුම්පත් (Emirates ID) සත්‍යාපනය සහ ණය ශ්‍රේණිගත කිරීම මත Tabby හෝ Tamara මඟින් තීරණය කරනු ලැබේ. Star Plus Travels වාරික ගෙවීම් සඳහා කිසිදු පොලියක් හෝ මූල්‍ය ගාස්තුවක් අය නොකරයි. ප්‍රමාද ගාස්තු අදාළ සේවා සපයන්නාගේ පාරිභෝගික නියමයන්ට යටත් වේ.",
+    termsArt4Title: "නිල සමාගම් බැංකු ගිණුම් සහ ආරක්ෂිත ගෙවීම් ප්‍රතිපත්තිය",
+    termsArt4Desc: "සියලුම ගෙවීම් අපගේ නිල සමාගම් බැංකු ගිණුමට පමණක් සිදු කළ යුතුය. පුද්ගලික ගිණුම්වලට මුදල් තැන්පත් කරන ලෙස අප කිසි විටෙකත් ඉල්ලා නොසිටිමු.",
+    termsArt4ClauseTitle: "නිල ගෙවීම් ආරක්ෂණ වගන්තිය:",
+    termsArt4ClauseDesc: "නිවාඩු තැන්පතු, ගුවන් ටිකට්පත් ගාස්තු, වීසා ගාස්තු සහ හෝටල් වෙන්කිරීම් ඇතුළු සියලුම මුදල් ගනුදෙනු <strong>Star Plus Travel and Tourism LLC</strong> (එක්සත් අරාබි එමීර් රාජ්‍යයේ) හෝ <strong>Star Plus Travel (PVT) LTD</strong> (ශ්‍රී ලංකාවේ) නිල සමාගම් බැංකු ගිණුම්වලට හෝ අපගේ බලයලත් ගෙවීම් පර්යන්ත/වාරික ගේට්වේ හරහා පමණක් සිදු කළ යුතුය. කිසිදු සේවකයෙකු හෝ නියෝජිතයෙකු පුද්ගලික ගිණුම්වලට මුදල් තැන්පත් කිරීමට උපදෙස් නොදෙනු ඇත.",
+    termsArt5Title: "වීසා අයදුම්පත් සහ ආගමන විගමන වගකීම් ප්‍රකාශය",
+    termsArt5Desc: "Star Plus Travels වීසා අයදුම්පත් සමාලෝචනය, ලියකියවිලි පරීක්ෂාව සහ නිල පද්ධති වෙත යොමු කිරීමේ සේවාව සපයයි. <strong>වැදගත් නිවේදනය:</strong> සංචාරක, සංක්‍රමණ හෝ ප්‍රවේශ වීසා අනුමත කිරීම, ප්‍රමාද කිරීම හෝ ප්‍රතික්ෂේප කිරීමේ පූර්ණ බලය එක්සත් අරාබි එමීර් රාජ්‍යයේ ආගමන විගමන අධිකාරීන් (GDRFA, ICP) සහ අදාළ විදේශ තානාපති කාර්යාල සතු වේ.",
+    termsArt5FeesTitle: "ආපසු නොගෙවන රජයේ ගාස්තු:",
+    termsArt5FeesDesc: "වීසා අයදුම්පතක් නිල ආගමන විගමන පද්ධතියට ඇතුළත් කළ පසු, වීසා අනුමත වීම, ප්‍රමාද වීම හෝ ප්‍රතික්ෂේප වීම නොසලකා රජයේ ගාස්තු, කොන්සියුලර් මුද්දර ගාස්තු සහ පරිපාලන ගාස්තු කිසිදු හේතුවක් මත ආපසු ගෙවනු නොලැබේ.",
+    termsArt6Title: "අවලංගු කිරීම්, සංශෝධන සහ මුදල් ආපසු ගෙවීම්",
+    termsArt6Desc: 'අවලංගු කිරීමේ ඉල්ලීම් අපගේ නිල විද්‍යුත් ලිපිනයට (<a href="mailto:info@starplustraveluae.com" class="text-amber-400 underline">info@starplustraveluae.com</a>) ලිඛිතව යොමු කළ යුතුය. මුදල් ආපසු ගෙවීම පහත කාලසටහන අනුව තීරණය වේ:',
+    termsArt6Tier1: "<strong>සංචාරයට දින 30 කට පෙර:</strong> ගොඩබිම් පැකේජ පිරිවැයෙන් 90% ක් ආපසු ගෙවේ (ගුවන් ටිකට්පත් ගුවන් සේවා නීතිවලට යටත් වේ).",
+    termsArt6Tier2: "<strong>සංචාරයට දින 15 සිට 29 දක්වා පෙර:</strong> ගොඩබිම් පැකේජ පිරිවැයෙන් 70% ක් ආපසු ගෙවේ.",
+    termsArt6Tier3: "<strong>සංචාරයට දින 7 සිට 14 දක්වා පෙර:</strong> ගොඩබිම් පැකේජ පිරිවැයෙන් 50% ක් ආපසු ගෙවේ.",
+    termsArt6Tier4: "<strong>දින 7 කට අඩු කාලයකදී හෝ නොපැමිණීම:</strong> හෝටල් සහ ප්‍රවාහන වෙන්කිරීම් හේතුවෙන් මුදල් ආපසු නොගෙවේ.",
+    termsArt7Title: "විදේශ ගමන් බලපත්‍ර වලංගුභාවය, සෞඛ්‍යය සහ සංචාරක රක්ෂණය",
+    termsArt7Desc: "සංචාරය අවසන් වී ආපසු පැමිණෙන දින සිට අවම වශයෙන් මාස හයක (6) වලංගු කාලයක් විදේශ ගමන් බලපත්‍රයට තිබීම සංචාරකයාගේ පූර්ණ වගකීමකි. සියලුම සංචාරකයින් සඳහා පූර්ණ ජාත්‍යන්තර සංචාරක වෛද්‍ය සහ ගමන් මලු රක්ෂණයක් ලබාගැනීමට Star Plus Travels තරයේ නිර්දේශ කරයි. ෂෙන්ගන් වීසා සහ තෝරාගත් ගමනාන්ත සඳහා අවම යුරෝ 30,000 ක වෛද්‍ය ආවරණයක් සහිත රක්ෂණයක් අනිවාර්ය වේ.",
+    termsArt8Title: "පාලන නීතිය සහ නෛතික අධිකරණ බලය",
+    termsArt8Desc: "මෙම නියම සහ කොන්දේසි එක්සත් අරාබි එමීර් රාජ්‍යයේ සහ ඩුබායි එමීර් රාජ්‍යයේ ෆෙඩරල් නීතිවලට යටත් වන අතර (ඩුබායි හරහා වෙන්කරන ලද ගිවිසුම් සඳහා), කොළඹ ශාඛාව හරහා සිදුකරන ගිවිසුම් සඳහා ශ්‍රී ලංකා ප්‍රජාතාන්ත්‍රික සමාජවාදී ජනරජයේ නීතිවලට යටත් වේ. ඕනෑම නීතිමය ආරවුලකදී ඩුබායි හෝ කොළඹ අධිකරණයට සුවිශේෂී බලය හිමිවේ.",
+    termsInquiriesContact: 'අපගේ නියමයන්, අවලංගු කිරීමේ දැන්වීම් හෝ ආයතනික ගිවිසුම් පිළිබඳ විමසීම් සඳහා කරුණාකර අපගේ නීති අංශය අමතන්න: <a href="mailto:info@starplustraveluae.com" class="text-amber-400 hover:underline font-semibold">info@starplustraveluae.com</a> හෝ අමතන්න <a href="tel:+971527582293" class="text-slate-200 hover:text-amber-400 font-semibold">+971 52 758 2293</a> / <a href="tel:+97145751321" class="text-slate-200 hover:text-amber-400 font-semibold">+971 4 575 1321</a>.',
+    termsFooterVipDeals: "VIP සංචාරක දීමනා",
+    termsFooterVipDesc: "රහසිගත විශේෂ ගුවන් ගාස්තු සහ ක්ෂණික වට්ටම් දැනගැනීමට ලියාපදිංචි වන්න.",
+    termsFooterSubscribe: "ලියාපදිංචි වන්න",
+    termsFooterEmailPlaceholder: "ඔබගේ විද්‍යුත් ලිපිනය ඇතුළත් කරන්න",
+    termsFooterAcceptedPayment: "ගෙවීම් ක්‍රම:",
 
     // Dynamic strings
     startingFrom: "ආරම්භක මිල",
@@ -1721,7 +1789,8 @@ function toggleLanguage() {
   _toggleLanguageBusy = true;
   setTimeout(() => { _toggleLanguageBusy = false; }, 200);
 
-  const currentLang = getPreferredLanguage();
+  const activeDomLang = document.documentElement.lang;
+  const currentLang = (activeDomLang === 'si' || getPreferredLanguage() === 'si') ? 'si' : 'en';
   const nextLang = currentLang === 'en' ? 'si' : 'en';
   changeLanguage(nextLang, true);
 }
@@ -1735,6 +1804,15 @@ window.toggleLanguage = toggleLanguage;
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize language preference (syncs button label and DOM text)
   changeLanguage(getPreferredLanguage(), false);
+
+  // Attach direct click listener to language toggle buttons to guarantee responsive triggers
+  document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!_toggleLanguageBusy) {
+        toggleLanguage();
+      }
+    });
+  });
 
   // 2. Initialize theme strictly from system preference or explicit manual mode
   applyTheme(getThemeMode(), false);
