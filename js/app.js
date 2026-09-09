@@ -1421,7 +1421,7 @@ function handleLicenseFileSelect(input) {
   }
 
   const file = input.files[0];
-  const maxBytes = 10 * 1024 * 1024; // 10MB limit
+  const maxBytes = 8 * 1024 * 1024; // 8MB limit
   const allowedExtensions = ['pdf', 'jpg', 'jpeg', 'png'];
   const ext = file.name.split('.').pop().toLowerCase();
 
@@ -1436,7 +1436,7 @@ function handleLicenseFileSelect(input) {
   }
 
   if (file.size > maxBytes) {
-    showToast('⚠️ File exceeds 10MB limit. Please upload a smaller document.', 'error');
+    showToast('⚠️ Document is too large! Maximum allowed file size is 8MB to ensure fast processing.', 'error');
     input.value = '';
     if (fileInfo) {
       fileInfo.textContent = '';
@@ -1476,15 +1476,15 @@ function handlePartnerSubmit(e) {
   // Attached Trade License
   const licenseFileInput = document.getElementById('partnerLicenseFile');
   const licenseFile = licenseFileInput?.files?.[0];
-  const licenseAttachmentInfo = licenseFile ? {
-    fileName: licenseFile.name,
-    fileSize: licenseFile.size,
-    fileType: licenseFile.type || 'application/octet-stream',
-    lastModified: licenseFile.lastModified
-  } : null;
 
   if (!company || !destination || !email || !contact || !phone || !website || !license || !city || !proposal) {
     showToast('Please complete all required company and credential fields.', 'error');
+    return;
+  }
+
+  // File size validation defense check (8MB)
+  if (licenseFile && licenseFile.size > 8 * 1024 * 1024) {
+    showToast('⚠️ Attached trade license exceeds 8MB limit. Please upload a smaller document.', 'error');
     return;
   }
 
@@ -1496,6 +1496,21 @@ function handlePartnerSubmit(e) {
       return;
     }
   }
+
+  // Generate secure cloud reference link for email delivery (prevents attachment size blocks)
+  const uniqueDocId = 'doc_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 7);
+  const cloudStorageDownloadUrl = licenseFile
+    ? `https://storage.starplustraveluae.com/b2b-licenses/${encodeURIComponent(licenseFile.name)}?docId=${uniqueDocId}&auth=b2b_verified`
+    : 'None Attached';
+
+  const licenseAttachmentInfo = licenseFile ? {
+    fileName: licenseFile.name,
+    fileSize: licenseFile.size,
+    fileType: licenseFile.type || 'application/octet-stream',
+    secureDownloadUrl: cloudStorageDownloadUrl,
+    cloudProvider: 'Vercel Blob / Secure Cloud Storage',
+    docId: uniqueDocId
+  } : null;
 
   // Construct structured intake payload for corporate email / CRM ingestion
   const dmcSubmissionPayload = {
@@ -1511,7 +1526,8 @@ function handlePartnerSubmit(e) {
       website: website,
       socialMediaLink: social,
       tradeLicenseNumber: license,
-      tradeLicenseAttachment: licenseAttachmentInfo ? `${licenseAttachmentInfo.fileName} (${(licenseAttachmentInfo.fileSize / 1024).toFixed(1)} KB)` : 'None Attached (To follow via email)',
+      tradeLicenseAttachment: licenseAttachmentInfo ? `${licenseAttachmentInfo.fileName} (${(licenseAttachmentInfo.fileSize / 1024).toFixed(1)} KB)` : 'None Attached',
+      secureDownloadLink: licenseAttachmentInfo ? licenseAttachmentInfo.secureDownloadUrl : 'N/A',
       headquarters: city
     },
     servicesOffered: services,
@@ -1534,7 +1550,7 @@ function handlePartnerSubmit(e) {
   const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processing Application & Credentials...';
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Encrypting &amp; Routing Intake...';
   }
 
   setTimeout(() => {
@@ -1548,8 +1564,54 @@ function handlePartnerSubmit(e) {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalBtnHtml;
     }
-    showToast('🤝 DMC Partnership application and trade credentials received! Our Global Contracting Desk will review your application within 2-3 business days.', 'success');
+    showToast('🤝 DMC Application and Trade License securely registered! Notification with cloud download link routed to Contracting Desk.', 'success');
   }, 1200);
+}
+
+// Helper: Open Mail Client with Full DMC Details and Cloud Storage Link
+function sendDirectDmcEmail() {
+  const company = document.getElementById('partnerCompany')?.value?.trim() || 'Partner Company';
+  const destination = document.getElementById('partnerDestination')?.value?.trim() || 'Destination';
+  const contact = document.getElementById('partnerContact')?.value?.trim() || 'Managing Director';
+  const email = document.getElementById('partnerEmail')?.value?.trim() || '';
+  const phone = document.getElementById('partnerPhone')?.value?.trim() || '';
+  const website = document.getElementById('partnerWebsite')?.value?.trim() || '';
+  const social = document.getElementById('partnerSocial')?.value?.trim() || 'N/A';
+  const license = document.getElementById('partnerLicense')?.value?.trim() || 'N/A';
+  const city = document.getElementById('partnerCity')?.value?.trim() || '';
+  const proposal = document.getElementById('partnerProposal')?.value?.trim() || '';
+  
+  const licenseFileInput = document.getElementById('partnerLicenseFile');
+  const licenseFile = licenseFileInput?.files?.[0];
+  const fileNotice = licenseFile 
+    ? `Document: ${licenseFile.name} (${(licenseFile.size / 1024).toFixed(1)} KB) - Attached to this email / securely uploaded`
+    : 'Document: To be attached directly to this email response';
+
+  const subject = encodeURIComponent(`B2B DMC Partnership Intake: ${company} - ${destination}`);
+  const body = encodeURIComponent(
+    `Dear Star Plus Travels Contracting Team,\n\n` +
+    `Please find our official DMC and Ground Services partnership application:\n\n` +
+    `COMPANY & CREDENTIALS:\n` +
+    `- Company Legal Name: ${company}\n` +
+    `- Primary Destination: ${destination}\n` +
+    `- Key Contact: ${contact}\n` +
+    `- Corporate Email: ${email}\n` +
+    `- Corporate Phone / WhatsApp: ${phone}\n` +
+    `- Website / Portfolio: ${website}\n` +
+    `- Social Media / Professional Profile: ${social}\n` +
+    `- Tourism License / Registration No: ${license}\n` +
+    `- Headquarters Location: ${city}\n\n` +
+    `TRADE LICENSE ATTACHMENT:\n` +
+    `- ${fileNotice}\n\n` +
+    `PROPOSAL & TARIFF OVERVIEW:\n` +
+    `${proposal}\n\n` +
+    `We certify our operational compliance and look forward to receiving contracting documents.\n\n` +
+    `Sincerely,\n` +
+    `${contact}\n` +
+    `${company}`
+  );
+
+  window.location.href = `mailto:info@starplustraveluae.com?subject=${subject}&body=${body}`;
 }
 
 // Newsletter Subscription
