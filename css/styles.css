@@ -454,78 +454,116 @@ body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) #mobileMenuBtn
   backdrop-filter: blur(8px);
 }
 
-/* Star Plus Travels Shimmering Metallic Brand Logo & Radiant Contrast Backdrop */
+/* Star Plus Travels Brand Logo: Floating Directly on Header Background (Zero Box Plate) */
 header a[aria-label="Star Plus Travels Home"],
 .header-brand-wrap {
   position: relative;
   display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.75rem;
-  border-radius: 0.85rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  padding: 0.125rem 0.25rem;
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
 }
 
-/* Light Mode (Scrolled Header or Light Subpages): Crisp Frosted Glass Backdrop */
+/* Ensure no background plate in light mode */
 html.light header a[aria-label="Star Plus Travels Home"],
 :root:not(.dark) header a[aria-label="Star Plus Travels Home"],
 html.light .header-brand-wrap,
 :root:not(.dark) .header-brand-wrap {
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 2px 10px -1px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
-/* Dark Mode (All Pages): Deep Navy Frosted Glass Backdrop */
+/* Ensure no background plate in dark mode */
 html.dark header a[aria-label="Star Plus Travels Home"],
 :root.dark header a[aria-label="Star Plus Travels Home"],
 html.dark .header-brand-wrap,
 :root.dark .header-brand-wrap {
-  background: rgba(11, 25, 44, 0.58);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
-/* Over Hero Before Scrolling (Transparent Header over Dark Hero Video/Images) */
+/* Ensure no background plate over hero before scrolling */
 body:has(#hero) #mainHeader:not(.header-scrolled) a[aria-label="Star Plus Travels Home"],
 body:has(#hero) .hero-floating-nav:not(.header-scrolled) a[aria-label="Star Plus Travels Home"],
 body:has(#hero) #mainHeader:not(.header-scrolled) .header-brand-wrap,
 body:has(#hero) .hero-floating-nav:not(.header-scrolled) .header-brand-wrap {
-  background: rgba(11, 25, 44, 0.65) !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+  background: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
-/* Hover Accent for Logo Backdrop */
+/* Clean Hover: No bounding box or border glow */
 header a[aria-label="Star Plus Travels Home"]:hover,
 .header-brand-wrap:hover {
-  border-color: rgba(245, 158, 11, 0.4);
-  box-shadow: 0 4px 18px -2px rgba(245, 158, 11, 0.22);
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
   transform: translateY(-0.5px);
 }
 
-/* Star Plus Travels Shimmering Metallic Brand Logo & Radiant Contrast Drop-Shadow */
+/* Star Plus Travels Brand Logo: Precise Soft-Focus Drop-Shadow Directly on Logo Elements */
 #brandHeaderLogo,
 .header-brand-logo,
 .preloader-brand-logo {
-  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 12px rgba(245, 158, 11, 0.22));
-  transition: filter 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.22));
+  transition: filter 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: filter, transform;
 }
 
 #brandHeaderLogo:hover,
-.header-brand-logo:hover {
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 18px rgba(56, 189, 248, 0.35));
+.header-brand-logo:hover,
+.header-brand-wrap:hover #brandHeaderLogo,
+.header-brand-wrap:hover .header-brand-logo {
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.32));
   transform: scale(1.02);
 }
 
-/* When header is scrolled in light mode, adjust logo drop shadow subtly */
+/* Light Mode: Soft navy/slate shadow providing crisp contrast against light backgrounds */
+html.light #brandHeaderLogo,
+:root:not(.dark) #brandHeaderLogo,
+html.light .header-brand-logo,
+:root:not(.dark) .header-brand-logo {
+  filter: drop-shadow(2px 2px 4px rgba(15, 23, 42, 0.18));
+}
+
 html.light header.glass-nav.header-scrolled #brandHeaderLogo,
 :root:not(.dark) header.glass-nav.header-scrolled #brandHeaderLogo,
 html.light #mainHeader.header-scrolled #brandHeaderLogo,
 :root:not(.dark) #mainHeader.header-scrolled #brandHeaderLogo {
-  filter: drop-shadow(0 1px 3px rgba(15, 23, 42, 0.22)) drop-shadow(0 0 8px rgba(245, 158, 11, 0.14));
+  filter: drop-shadow(2px 2px 4px rgba(15, 23, 42, 0.18));
+}
+
+/* Dark Mode: Soft-focus depth shadow */
+html.dark #brandHeaderLogo,
+:root.dark #brandHeaderLogo,
+html.dark .header-brand-logo,
+:root.dark .header-brand-logo {
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.35));
+}
+
+/* Floating Over Dark Hero Section */
+body:has(#hero) #mainHeader:not(.header-scrolled) #brandHeaderLogo,
+body:has(#hero) .hero-floating-nav:not(.header-scrolled) #brandHeaderLogo {
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.45));
 }
 
 /* Dynamic Subtitle Color for Star Plus Travels ("TRAVEL AND TOURISM LLC") */
