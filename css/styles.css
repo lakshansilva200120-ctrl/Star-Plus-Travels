@@ -470,84 +470,155 @@ html.light #mainHeader.header-scrolled #brandHeaderLogo,
 }
 
 
-/* High-End Travel Portal Navigation Links & Adaptive Contrast */
-header nav {
-  color: var(--theme-text-secondary);
+/* Desktop Sliding Glass Pill Navigation System */
+.nav-pill-track {
+  position: relative;
+  background: rgba(15, 23, 42, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  gap: 0.25rem;
 }
 
+@media (min-width: 1280px) {
+  .nav-pill-track {
+    gap: 0.45rem;
+  }
+}
+
+html.light .nav-pill-track,
+:root:not(.dark) .nav-pill-track {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.8);
+}
+
+/* Floating hero nav state in light mode over photo background */
+body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-pill-track {
+  background: rgba(15, 23, 42, 0.45) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Floating Animated Glass Pill Indicator (Glides behind hovered / active tab) */
+.nav-pill-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2),
+              width 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2),
+              height 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2),
+              opacity 0.25s ease;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+}
+
+html.dark .nav-pill-indicator,
+:root.dark .nav-pill-indicator {
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+html.light .nav-pill-indicator,
+:root:not(.dark) .nav-pill-indicator {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.08), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+}
+
+body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-pill-indicator {
+  background: rgba(255, 255, 255, 0.20) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Glass Pill Navigation Link Buttons */
 .nav-link {
   position: relative;
-  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  padding: 0.42rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s ease;
+  user-select: none;
+  cursor: pointer;
 }
 
+@media (min-width: 1280px) {
+  .nav-link {
+    padding: 0.42rem 1.05rem;
+    font-size: 14px;
+  }
+}
+
+/* Remove old underline bar pseudo-element */
 .nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #f59e0b, #fbbf24);
-  border-radius: 2px;
-  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: none !important;
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 100%;
+/* Light Theme Navigation Link Typography */
+html.light .nav-link,
+:root:not(.dark) .nav-link {
+  color: #1e293b;
+  text-shadow: none;
 }
 
-/* Light Mode Navigation Contrast (Default & html.light) */
-:root:not(.dark) .nav-link:not(.active),
-html.light .nav-link:not(.active),
-html.light header nav .nav-link:not(.active) {
-  color: #1e293b !important; /* Crisp dark slate for maximum readability on white/light nav */
+/* Light mode floating over hero */
+html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link,
+:root:not(.dark) body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link {
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
 }
 
-:root:not(.dark) .nav-link:hover,
-html.light .nav-link:hover,
-html.light header nav .nav-link:hover {
-  color: #d97706 !important; /* Rich amber on hover */
-}
-
-:root:not(.dark) .nav-link.active,
-html.light .nav-link.active,
-html.light header nav .nav-link.active {
-  color: #b45309 !important; /* Deep rich amber gold for active nav item on light nav */
-}
-
-/* Dark Mode Navigation Contrast (prefers-color-scheme: dark & html.dark) */
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) .nav-link:not(.active),
-  :root:not(.light) header nav .nav-link:not(.active) {
-    color: #e2e8f0 !important;
-  }
-  :root:not(.light) .nav-link:hover,
-  :root:not(.light) header nav .nav-link:hover {
-    color: #fbbf24 !important;
-  }
-  :root:not(.light) .nav-link.active,
-  :root:not(.light) header nav .nav-link.active {
-    color: #f59e0b !important;
-  }
-}
-
-html.dark .nav-link:not(.active),
-html.dark header nav .nav-link:not(.active) {
-  color: #e2e8f0 !important;
-}
-
-html.dark .nav-link:hover,
-html.dark header nav .nav-link:hover {
-  color: #fbbf24 !important;
-}
-
-html.dark .nav-link.active,
-html.dark header nav .nav-link.active {
+/* Active & Hover States */
+.nav-link.active {
   color: #f59e0b !important;
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+}
+
+html.light .nav-link.active,
+:root:not(.dark) .nav-link.active {
+  color: #b45309 !important;
+  text-shadow: none;
+}
+
+html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link.active,
+:root:not(.dark) body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link.active {
+  color: #fbbf24 !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7) !important;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+html.light .nav-link:hover,
+:root:not(.dark) .nav-link:hover {
+  color: #0f172a;
+}
+
+html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:hover,
+:root:not(.dark) body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:hover {
+  color: #ffffff !important;
 }
 
 /* Navigation Dropdown Menu (Explore / More) */

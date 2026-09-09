@@ -1638,6 +1638,11 @@ function changeLanguage(lang, notify = true) {
     initStatsCounters();
   }
 
+  // Re-sync sliding nav pill indicator to newly translated text widths
+  if (typeof syncNavPillIndicator === 'function') {
+    setTimeout(() => syncNavPillIndicator(true), 60);
+  }
+
   if (notify) {
     showToast(lang === 'si' ? 'භාෂාව සිංහල ලෙස වෙනස් කරන ලදී' : 'Language switched to English', 'success');
   }
@@ -1717,6 +1722,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Navigation Dropdown interactions
   initNavDropdowns();
+
+  // Initialize Desktop Sliding Glass Pill Navigation Indicator
+  initNavPillIndicator();
 
   // Initialize Animated Statistics Number Counters
   initStatsCounters();
@@ -1843,6 +1851,95 @@ function initNavDropdowns() {
       }
     });
   });
+}
+
+/* ==========================================================================
+   Desktop Sliding Glass Pill Navigation Indicator
+   Glides & morphs smoothly behind whichever tab is currently active or hovered
+   ========================================================================== */
+function initNavPillIndicator() {
+  const navTrack = document.getElementById('desktopNav');
+  const indicator = document.getElementById('navPillIndicator');
+  if (!navTrack || !indicator) return;
+
+  const navLinks = navTrack.querySelectorAll('.nav-link');
+  if (!navLinks.length) return;
+
+  let isHovered = false;
+
+  function moveIndicatorTo(target, animate = true) {
+    if (!target) {
+      indicator.style.opacity = '0';
+      return;
+    }
+
+    const trackRect = navTrack.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+
+    const left = targetRect.left - trackRect.left;
+    const top = targetRect.top - trackRect.top;
+    const width = targetRect.width;
+    const height = targetRect.height;
+
+    if (!animate) {
+      indicator.style.transition = 'none';
+    } else {
+      indicator.style.transition = '';
+    }
+
+    indicator.style.transform = `translate3d(${Math.round(left)}px, ${Math.round(top)}px, 0)`;
+    indicator.style.width = `${Math.round(width)}px`;
+    indicator.style.height = `${Math.round(height)}px`;
+    indicator.style.opacity = '1';
+
+    if (!animate) {
+      void indicator.offsetWidth;
+      indicator.style.transition = '';
+    }
+  }
+
+  function getActiveItem() {
+    return navTrack.querySelector('.nav-link.active') || navTrack.querySelector('.nav-link');
+  }
+
+  function syncActive(animate = false) {
+    if (isHovered) return;
+    const activeItem = getActiveItem();
+    if (activeItem) {
+      moveIndicatorTo(activeItem, animate);
+    }
+  }
+
+  window.syncNavPillIndicator = (animate = false) => {
+    syncActive(animate);
+  };
+
+  navLinks.forEach(link => {
+    link.addEventListener('mouseenter', () => {
+      isHovered = true;
+      moveIndicatorTo(link, true);
+    });
+    link.addEventListener('focus', () => {
+      isHovered = true;
+      moveIndicatorTo(link, true);
+    });
+  });
+
+  navTrack.addEventListener('mouseleave', () => {
+    isHovered = false;
+    syncActive(true);
+  });
+
+  window.addEventListener('resize', () => {
+    syncActive(false);
+  });
+
+  // Re-sync once webfonts are loaded and layout coordinates settle
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => syncActive(false));
+  }
+  setTimeout(() => syncActive(false), 50);
+  setTimeout(() => syncActive(false), 250);
 }
 
 /* ==========================================================================
