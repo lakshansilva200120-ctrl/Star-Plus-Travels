@@ -519,7 +519,7 @@ const PACKAGES = [
     badge: 'Bestseller',
     badgeColor: 'from-amber-500 to-yellow-500',
     image: 'assets/packages/dubai-desert-safari.jpg',
-    alt: 'Golden hour red sand dunes with camels and luxury desert camp in Dubai',
+    alt: 'Iconic sunset skyline of Dubai featuring the Burj Khalifa and illuminated city highways',
     priceAED: 2450,
     originalPriceAED: 3100,
     perks: ['5★ Luxury Hotel Stay', 'VIP Desert Safari & BBQ', 'Burj Khalifa Top Deck', 'Luxury Marina Yacht Cruise', 'Private Airport Transfers'],
