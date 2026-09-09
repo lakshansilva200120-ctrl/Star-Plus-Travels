@@ -423,9 +423,17 @@
 
 <main class="flex-grow">
   <!-- B2B Hero Section -->
-  <section class="relative -mt-[112px] pt-36 sm:pt-44 pb-16 sm:pb-20 overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50 dark:from-[#0B192C]/90 dark:via-[#070E17] dark:to-[#070E17] border-b border-slate-200 dark:border-slate-800/80 transition-colors">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.15),rgba(255,255,255,0))] pointer-events-none"></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+  <section class="subpage-hero partners-hero relative -mt-[112px] min-h-[420px] sm:min-h-[460px] lg:min-h-[500px] flex flex-col items-center justify-center pt-36 sm:pt-44 lg:pt-48 pb-16 sm:pb-20 overflow-hidden bg-slate-100 dark:bg-[#070e17] border-b border-slate-200 dark:border-slate-800/80 transition-colors">
+    <!-- Responsive Hero Background Image with Proper Scaling & Zero Awkward Cropping -->
+    <div class="hero-bg-wrapper absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
+      <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1920&q=80" 
+           alt="Global Inbound DMC and Wholesale Supplier Intake" 
+           class="hero-bg-image w-full h-full object-cover object-center scale-105 transition-transform duration-1000 opacity-20 dark:opacity-25"
+           loading="eager" fetchpriority="high">
+      <div class="hero-bg-overlay absolute inset-0 bg-gradient-to-b from-slate-100/90 via-white/95 to-slate-50 dark:from-[#0B192C]/85 dark:via-[#070E17]/90 dark:to-[#070E17]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.15),rgba(255,255,255,0))] pointer-events-none"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full flex flex-col items-center">
       
       <!-- Eyebrow Badge -->
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-500/10 border border-amber-500/30 text-amber-500 dark:text-amber-400 mb-6 shadow-sm">
