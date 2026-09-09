@@ -979,7 +979,7 @@
 
         <div>
           <label for="partnerLicenseFile" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
-            Upload Trade License / Certificate
+            Upload Trade License / Certificate <span class="text-slate-400 font-normal">(Max 5MB)</span>
           </label>
           <div class="relative flex flex-col sm:flex-row items-stretch sm:items-center gap-3 p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-colors">
             <div class="w-10 h-10 rounded-lg bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0 text-base">
@@ -988,7 +988,7 @@
             <div class="flex-1 min-w-0">
               <input type="file" id="partnerLicenseFile" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" onchange="handleLicenseFileSelect(this)" class="block w-full text-xs text-slate-300 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-400 file:cursor-pointer cursor-pointer">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-slate-400 mt-1.5 gap-1">
-                <span>Accepted formats: <strong class="text-slate-300">PDF, JPG, PNG</strong> (Max 8MB &bull; Cloud link delivered to inbox)</span>
+                <span>Standard formats: <strong class="text-slate-300">PDF, JPG, PNG</strong> (Strict 5MB cap for direct email attachment)</span>
                 <span id="partnerLicenseFileInfo" class="text-emerald-400 font-semibold hidden truncate max-w-[220px]"></span>
               </div>
             </div>
