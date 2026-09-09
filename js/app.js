@@ -1550,12 +1550,21 @@ function toggleTheme() {
 
 function updateBrandLogoTheme() {
   const isDark = document.documentElement.classList.contains('dark');
+  const header = document.getElementById('mainHeader') || document.querySelector('header');
+  const hasHero = !!document.getElementById('hero');
+  const isOverHeroUnscrolled = hasHero && header && !header.classList.contains('header-scrolled');
 
   document.querySelectorAll('img[data-dark-src]').forEach(img => {
     const darkSrc = img.getAttribute('data-dark-src');
     const lightSrc = img.getAttribute('data-light-src');
     if (!darkSrc || !lightSrc) return;
-    img.src = isDark ? darkSrc : lightSrc;
+
+    // Over dark hero section before scrolling, always display darkSrc (crisp white subtitle) even in light mode
+    if (isOverHeroUnscrolled && (img.id === 'brandHeaderLogo' || img.classList.contains('header-brand-logo'))) {
+      img.src = darkSrc;
+    } else {
+      img.src = isDark ? darkSrc : lightSrc;
+    }
   });
 }
 window.updateBrandLogoTheme = updateBrandLogoTheme;
