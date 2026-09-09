@@ -41,25 +41,11 @@
 
     <!-- Brand Signature Linear Gradient: Smooth blend from bright amber/gold into deep ocean blue -->
     <linearGradient id="logoBrandGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#F59E0B"/>
-      <stop offset="28%" stop-color="#FBBF24"/>
-      <stop offset="52%" stop-color="#38BDF8"/>
-      <stop offset="80%" stop-color="#0284C7"/>
-      <stop offset="100%" stop-color="#0369A1"/>
-    </linearGradient>
-
-    <!-- Distinct Amber Gold Gradient for "Star" -->
-    <linearGradient id="textStarGold" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#F59E0B"/>
-      <stop offset="55%" stop-color="#FBBF24"/>
-      <stop offset="100%" stop-color="#FDE047"/>
-    </linearGradient>
-
-    <!-- Distinct Sky-to-Deep Blue Gradient for "Plus" -->
-    <linearGradient id="textPlusBlue" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#38BDF8"/>
-      <stop offset="55%" stop-color="#0284C7"/>
-      <stop offset="100%" stop-color="#0369A1"/>
+      <stop offset="0%" stop-color="#D97706"/>
+      <stop offset="28%" stop-color="#F59E0B"/>
+      <stop offset="52%" stop-color="#0284C7"/>
+      <stop offset="80%" stop-color="#0369A1"/>
+      <stop offset="100%" stop-color="#1E3A8A"/>
     </linearGradient>
   </defs>
 
@@ -107,20 +93,20 @@
 
   <!-- Typography (Star Plus + TRAVEL & TOURISM LLC) -->
   <g transform="translate(124, 8)">
-    <!-- "Star Plus" with smooth linear gradient fill blending from bright amber/gold into deep blue -->
+    <!-- "Star Plus" with smooth linear gradient fill blending from rich amber/gold into deep blue -->
     <text x="0" y="44" font-family="'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900" letter-spacing="-0.5" fill="url(#logoBrandGradient)">
       Star Plus
     </text>
 
     <!-- Subtitle "TRAVEL & TOURISM LLC" -->
-    <text x="2" y="72" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" letter-spacing="3.5" fill="#CBD5E1">
+    <text x="2" y="72" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" letter-spacing="3.5" fill="#334155">
       TRAVEL &amp; TOURISM LLC
     </text>
 
     <!-- Golden Highlight Pill -->
     <g transform="translate(0, 81)">
-      <rect x="0" y="0" width="225" height="17" rx="4" fill="#F59E0B" fill-opacity="0.16" stroke="#F59E0B" stroke-opacity="0.4" stroke-width="1"/>
-      <text x="8" y="12" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="800" letter-spacing="1.2" fill="#F59E0B">
+      <rect x="0" y="0" width="225" height="17" rx="4" fill="#F59E0B" fill-opacity="0.16" stroke="#D97706" stroke-opacity="0.5" stroke-width="1"/>
+      <text x="8" y="12" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="800" letter-spacing="1.2" fill="#B45309">
         ★ DUBAI &amp; SRI LANKA PREMIER
       </text>
     </g>
