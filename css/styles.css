@@ -1439,6 +1439,24 @@ html.dark.season-eid .glass-card:hover {
   animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Fallback: ensure festival components remain strictly hidden and inert when outside festival periods */
+:root:not(.season-active) #holidayThemeCanvas,
+:root:not(.season-active) #seasonalThemeCanvas,
+:root:not(.season-active) #holidayBannerTrack,
+html:not(.season-active) #holidayThemeCanvas,
+html:not(.season-active) #seasonalThemeCanvas,
+html:not(.season-active) #holidayBannerTrack {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
 /* ==========================================================================
    Isolated & Bulletproof Luxury Preloader (Full-Screen Solid Overlay)
    ========================================================================== */

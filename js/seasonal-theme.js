@@ -103,97 +103,175 @@
   }
 
   // =========================================================================
-  // 2. Five Holiday Configurations & Detection Logic
+  // 2. Holiday Configurations & Date/Month Matching Rules
   // =========================================================================
 
+  /**
+   * Defines the 5 official holiday celebrations with explicit schedule parameters:
+   * - scheduleType:
+   *     'festival_month'           -> active for the specific festival month (e.g. Ramadan Hijri month 9)
+   *     'exact_dates'              -> active on specific festival calendar date(s) (e.g. Eid)
+   *     'exact_date_and_range'     -> active on exact festival day + concentrated holiday window (e.g. Valentine, New Year)
+   *     'exact_date_or_month'      -> active on exact dates OR throughout the specific festival month (e.g. Christmas in Dec)
+   * - exactDates: array of { month, day }
+   * - dateRange: { startMonth, startDay, endMonth, endDay }
+   * - festivalMonth: Gregorian calendar month (1-12)
+   * - hijriFestivalMonth: Hijri calendar month (1-12)
+   * - hijriExactRanges: array of { month, startDay, endDay, name }
+   */
   const HOLIDAYS = {
-    // 1. New Year (Fixed: Dec 31 to Jan 5)
+    // 1. New Year (Exact Festival Dates: Dec 31 & Jan 1, with celebration window Dec 31 - Jan 5)
     NEW_YEAR: {
       id: 'newyear',
       name: 'New Year Celebrations',
       type: 'fixed',
+      scheduleType: 'exact_date_and_range',
+      exactDates: [{ month: 12, day: 31 }, { month: 1, day: 1 }],
+      dateRange: { startMonth: 12, startDay: 31, endMonth: 1, endDay: 5 },
       badge: '✨ Happy New Year!',
       bannerText: 'Celebrate the New Year with unpublished airline rates & premium holiday packages!',
       accentClass: 'season-newyear',
       particleType: 'fireworks_sparkles',
-      ctaUrl: '#packages',
-      check: function(date) {
-        const m = date.getMonth() + 1; // 1-12
-        const d = date.getDate();
-        // Dec 31 or Jan 1 to Jan 5
-        return (m === 12 && d >= 31) || (m === 1 && d <= 5);
-      }
+      ctaUrl: '#packages'
     },
 
-    // 2. Valentine's Day (Fixed: Feb 10 to Feb 16)
+    // 2. Valentine's Day (Exact Festival Date: Feb 14, with celebration window Feb 10 - Feb 16)
     VALENTINE: {
       id: 'valentine',
       name: "Valentine's Day",
       type: 'fixed',
+      scheduleType: 'exact_date_and_range',
+      exactDates: [{ month: 2, day: 14 }],
+      dateRange: { startMonth: 2, startDay: 10, endMonth: 2, endDay: 16 },
       badge: "🌹 Valentine's Romantic Escapes",
       bannerText: 'Romantic Couples Retreats: Maldives Overwater Pool Villas, Swiss Alps & Beach Getaways.',
       accentClass: 'season-valentine',
       particleType: 'hearts',
-      ctaUrl: '#packages',
-      check: function(date) {
-        const m = date.getMonth() + 1;
-        const d = date.getDate();
-        return m === 2 && d >= 10 && d <= 16;
-      }
+      ctaUrl: '#packages'
     },
 
-    // 3. Ramadan (Dynamic Islamic: Month 9 [Ramadan 1 - 30])
+    // 3. Ramadan (Specific Festival Month: Islamic Hijri Month 9: Ramadan 1 - 30)
     RAMADAN: {
       id: 'ramadan',
       name: 'Ramadan Kareem',
       type: 'islamic',
+      scheduleType: 'festival_month',
+      hijriFestivalMonth: 9, // Full Month 9 of the Islamic calendar
       badge: '🌙 Ramadan Kareem',
       bannerText: 'Experience the blessings of Ramadan with VIP Umrah packages & serene spiritual journeys.',
       accentClass: 'season-ramadan',
       particleType: 'lanterns_and_crescents',
-      ctaUrl: '#packages',
-      check: function(date, hijri) {
-        // Islamic Month 9 = Ramadan (Day 1 to end of Ramadan)
-        return hijri.hMonth === 9 && hijri.hDay >= 1 && hijri.hDay <= 30;
-      }
+      ctaUrl: '#packages'
     },
 
-    // 4. Eid (Dynamic Islamic: Eid al-Fitr [Shawwal 1-4] & Eid al-Adha [Dhu al-Hijjah 9-13])
+    // 4. Eid (Exact Festival Dates: Eid al-Fitr [Shawwal 1-4] & Eid al-Adha [Dhu al-Hijjah 9-13])
     EID: {
       id: 'eid',
       name: 'Eid Celebrations (Eid Mubarak)',
       type: 'islamic',
+      scheduleType: 'exact_dates',
+      hijriExactRanges: [
+        { month: 10, startDay: 1, endDay: 4, name: 'Eid al-Fitr' },
+        { month: 12, startDay: 9, endDay: 13, name: 'Eid al-Adha' }
+      ],
       badge: '✨ Eid Mubarak!',
       bannerText: 'Eid Mubarak! Celebrate with exclusive holiday travel packages, luxury beach stays & family escapes.',
       accentClass: 'season-eid',
       particleType: 'eid_crescents',
-      ctaUrl: '#packages',
-      check: function(date, hijri) {
-        // Eid al-Fitr: Shawwal 1 - 4 (Month 10)
-        const isEidFitr = (hijri.hMonth === 10 && hijri.hDay >= 1 && hijri.hDay <= 4);
-        // Eid al-Adha: Dhu al-Hijjah 9 - 13 (Month 12)
-        const isEidAdha = (hijri.hMonth === 12 && hijri.hDay >= 9 && hijri.hDay <= 13);
-        return isEidFitr || isEidAdha;
-      }
+      ctaUrl: '#packages'
     },
 
-    // 5. Christmas (Fixed: Dec 15 to Dec 28)
+    // 5. Christmas (Specific Festival Month: December / Month 12, with exact dates Dec 24-26 and window Dec 15-28)
     CHRISTMAS: {
       id: 'christmas',
       name: 'Christmas & Winter Holiday',
       type: 'fixed',
+      scheduleType: 'exact_date_or_month',
+      festivalMonth: 12, // Specific Festival Month: December
+      exactDates: [{ month: 12, day: 24 }, { month: 12, day: 25 }, { month: 12, day: 26 }],
+      dateRange: { startMonth: 12, startDay: 15, endMonth: 12, endDay: 28 },
       badge: '🎄 Merry Christmas & Winter Deals',
       bannerText: 'Celebrate Christmas with magical winter wonderland & snow ski packages to Georgia & Baku!',
       accentClass: 'season-christmas',
       particleType: 'snow',
-      ctaUrl: '#packages',
-      check: function(date) {
-        const m = date.getMonth() + 1;
-        const d = date.getDate();
-        return m === 12 && d >= 15 && d <= 28;
-      }
+      ctaUrl: '#packages'
     }
   };
+
+  /**
+   * Universal Date & Month Schedule Evaluator.
+   * Evaluates if a given date matches a holiday's schedule:
+   * - Checks whether the date matches either the exact festival date OR the specific festival month (depending on holiday).
+   */
+  function isHolidayScheduleActive(holiday, date, hijri) {
+    if (!holiday) return false;
+
+    const m = date.getMonth() + 1; // 1-12
+    const d = date.getDate();
+
+    // 1. Specific Festival Month Check (Gregorian or Hijri)
+    const isGregorianMonthMatch = Boolean(
+      holiday.festivalMonth && m === holiday.festivalMonth
+    );
+    const isHijriMonthMatch = Boolean(
+      hijri && holiday.hijriFestivalMonth && hijri.hMonth === holiday.hijriFestivalMonth
+    );
+    const isFestivalMonthMatch = isGregorianMonthMatch || isHijriMonthMatch;
+
+    // 2. Exact Festival Date Check (Gregorian)
+    const isExactDateMatch = Boolean(
+      holiday.exactDates && holiday.exactDates.some(ed => ed.month === m && ed.day === d)
+    );
+
+    // 3. Date-Range Check (Gregorian)
+    let isDateRangeMatch = false;
+    if (holiday.dateRange) {
+      const { startMonth, startDay, endMonth, endDay } = holiday.dateRange;
+      if (startMonth === endMonth) {
+        isDateRangeMatch = (m === startMonth && d >= startDay && d <= endDay);
+      } else {
+        // Cross-month range (e.g. Dec 31 to Jan 5)
+        isDateRangeMatch = (m === startMonth && d >= startDay) ||
+                           (m === endMonth && d <= endDay);
+      }
+    }
+
+    // 4. Exact Festival Dates / Date-Range Check (Hijri)
+    let isHijriExactMatch = false;
+    if (hijri && holiday.hijriExactRanges) {
+      isHijriExactMatch = holiday.hijriExactRanges.some(r => {
+        return hijri.hMonth === r.month && hijri.hDay >= r.startDay && hijri.hDay <= r.endDay;
+      });
+    }
+
+    const isExactOrRangeMatch = isExactDateMatch || isDateRangeMatch || isHijriExactMatch;
+
+    // Evaluate according to the holiday's defined scheduleType:
+    switch (holiday.scheduleType) {
+      case 'festival_month':
+        // Specific festival month (e.g. Ramadan Hijri month 9)
+        return isFestivalMonthMatch;
+
+      case 'exact_dates':
+      case 'exact_date':
+        // Exact festival date(s) only (e.g. Eid al-Fitr & Eid al-Adha)
+        return isExactDateMatch || isHijriExactMatch;
+
+      case 'date_range':
+        // Specific festival date range
+        return isDateRangeMatch || isHijriExactMatch;
+
+      case 'exact_date_and_range':
+        // Exact festival date or festival date range (e.g. Valentine Feb 14 / Feb 10-16, New Year Dec 31 - Jan 5)
+        return isExactOrRangeMatch;
+
+      case 'exact_date_or_month':
+      case 'exact_or_month':
+      default:
+        // Matches either the exact festival date/range OR the specific festival month (e.g. Christmas)
+        return isExactOrRangeMatch || isFestivalMonthMatch;
+    }
+  }
 
   // Helper to get effective date (supporting ?date=YYYY-MM-DD for simulator)
   function getEffectiveDate() {
@@ -233,7 +311,7 @@
     const order = ['EID', 'RAMADAN', 'NEW_YEAR', 'CHRISTMAS', 'VALENTINE'];
     for (const key of order) {
       const holiday = HOLIDAYS[key];
-      if (holiday.check(today, hijri)) {
+      if (isHolidayScheduleActive(holiday, today, hijri)) {
         return holiday;
       }
     }
@@ -253,6 +331,7 @@
   let isRunning = false;
   let width = window.innerWidth;
   let height = window.innerHeight;
+  let onVisibilityChange = null;
 
   function initParticleEngine(holiday) {
     const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -286,13 +365,18 @@
     startAnimation(holiday);
 
     // Visibility-aware performance preservation
-    document.addEventListener('visibilitychange', () => {
+    if (onVisibilityChange) {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      onVisibilityChange = null;
+    }
+    onVisibilityChange = () => {
       if (document.hidden) {
         stopAnimation();
       } else {
         startAnimation(holiday);
       }
-    });
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
   }
 
   function onResize() {
@@ -538,12 +622,35 @@
 
   function cleanupParticleEngine() {
     stopAnimation();
+
+    // 1. Thoroughly remove and clean any active or stale holiday canvases
+    const canvases = document.querySelectorAll('#holidayThemeCanvas, #seasonalThemeCanvas, canvas[data-holiday]');
+    canvases.forEach(el => {
+      try {
+        el.style.display = 'none';
+        el.style.opacity = '0';
+        el.style.visibility = 'hidden';
+        el.style.pointerEvents = 'none';
+        if (el.parentNode) el.parentNode.removeChild(el);
+      } catch (e) {}
+    });
+
     if (canvas && canvas.parentNode) {
-      canvas.parentNode.removeChild(canvas);
+      try {
+        canvas.parentNode.removeChild(canvas);
+      } catch (e) {}
     }
+
     canvas = null;
     ctx = null;
+    particles = [];
+
+    // 2. Remove performance event listeners
     window.removeEventListener('resize', onResize);
+    if (onVisibilityChange) {
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      onVisibilityChange = null;
+    }
   }
 
   // =========================================================================
@@ -551,22 +658,36 @@
   // =========================================================================
 
   function applyHolidayUI(holiday) {
-    // Remove all previous holiday classes
-    document.documentElement.classList.remove(
+    // Remove all previous holiday classes from both html and body
+    const classesToRemove = [
       'season-active',
       'season-newyear',
       'season-valentine',
       'season-ramadan',
       'season-eid',
       'season-christmas'
-    );
+    ];
+    document.documentElement.classList.remove(...classesToRemove);
+    if (document.body) {
+      document.body.classList.remove(...classesToRemove);
+    }
 
+    // Fallback: When outside festival periods, ensure components remain safely hidden with 0 overhead
     if (!holiday) {
-      // Revert completely to clean default theme
       cleanupParticleEngine();
       const existingBanner = document.getElementById('holidayBannerTrack');
       if (existingBanner) existingBanner.remove();
+
+      if (window.StarPlusSeason) {
+        window.StarPlusSeason.isActive = false;
+        window.StarPlusSeason.currentHoliday = null;
+      }
       return;
+    }
+
+    if (window.StarPlusSeason) {
+      window.StarPlusSeason.isActive = true;
+      window.StarPlusSeason.currentHoliday = holiday.id;
     }
 
     // Apply active holiday class
@@ -624,8 +745,42 @@
 
   window.StarPlusSeason = {
     HOLIDAYS: HOLIDAYS,
+    isActive: false,
+    currentHoliday: null,
     getHijriDate: getHijriDate,
     getActiveHoliday: detectActiveHoliday,
+    isFestivalActive: function() {
+      return detectActiveHoliday() !== null;
+    },
+    isHolidayScheduleActive: isHolidayScheduleActive,
+    getHolidaySchedule: function() {
+      return Object.keys(HOLIDAYS).map(k => {
+        const h = HOLIDAYS[k];
+        return {
+          id: h.id,
+          name: h.name,
+          scheduleType: h.scheduleType,
+          exactDates: h.exactDates || null,
+          dateRange: h.dateRange || null,
+          festivalMonth: h.festivalMonth || null,
+          hijriFestivalMonth: h.hijriFestivalMonth || null,
+          hijriExactRanges: h.hijriExactRanges || null
+        };
+      });
+    },
+    testDate: function(dateStr) {
+      const d = new Date(dateStr);
+      if (isNaN(d.getTime())) return { error: 'Invalid date string. Format: YYYY-MM-DD' };
+      const h = getHijriDate(d);
+      const order = ['EID', 'RAMADAN', 'NEW_YEAR', 'CHRISTMAS', 'VALENTINE'];
+      for (const key of order) {
+        const holiday = HOLIDAYS[key];
+        if (isHolidayScheduleActive(holiday, d, h)) {
+          return { active: true, holiday: holiday.id, name: holiday.name, scheduleType: holiday.scheduleType, hijri: h };
+        }
+      }
+      return { active: false, holiday: null, message: 'Standard default theme (no festival active outside schedule)', hijri: h };
+    },
     refresh: function() {
       const active = detectActiveHoliday();
       applyHolidayUI(active);
