@@ -73,7 +73,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=5.4.0">
+  <link rel="stylesheet" href="css/styles.css?v=5.6.0">
 
     <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync with Preference Memory) -->
   <script>
@@ -290,58 +290,71 @@
         </div>
       </div>
     </div>
-
-    <!-- Mobile Slide-out Menu -->
-    <div id="mobileMenu" class="hidden lg:hidden bg-slate-950/98 border-b border-slate-800 px-5 sm:px-6 pt-5 pb-16 space-y-4 transition-colors backdrop-blur-xl">
-      <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-200">
-        <a href="index.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navHome">Home</a>
-        <a href="packages.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navPackages">Tour Packages</a>
-        <a href="destinations.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navDestinations">Destinations</a>
-        <a href="visa-services.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navActivitiesVisa">Visa Services</a>
-        <a href="reviews.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2 border-b border-slate-800/80" data-i18n="navReviews">Customer Reviews</a>
+    <!-- Mobile Slide-out Menu (Frosted Glass Translucent Drawer) -->
+    <div id="mobileMenu" class="hidden lg:hidden backdrop-blur-xl bg-white/80 dark:bg-slate-950/80 border-b border-white/20 dark:border-slate-800/50 px-5 sm:px-6 pt-5 pb-16 space-y-4 transition-all duration-300 shadow-xl shadow-slate-900/5 dark:shadow-black/40">
+      <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-900 dark:text-white">
+        <a href="index.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+          <span data-i18n="navHome">Home</span>
+        </a>
+        <a href="packages.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+          <span data-i18n="navPackages">Tour Packages</span>
+        </a>
+        <a href="destinations.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+          <span data-i18n="navDestinations">Destinations</span>
+        </a>
+        <a href="visa-services.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+          <span data-i18n="navActivitiesVisa">Visa Services</span>
+        </a>
+        <a href="reviews.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+          <span data-i18n="navReviews">Customer Reviews</span>
+        </a>
         
-        <div class="pt-2 pb-1 border-b border-slate-800/80">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-500/80 mb-2 block" data-i18n="navExplore">Explore &amp; Info</span>
+        <!-- Mobile Explore Subsection -->
+        <div class="pt-2 pb-1 border-b border-slate-200/80 dark:border-slate-800/80">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400/90 mb-2 block" data-i18n="navExplore">Explore &amp; Info</span>
           <div class="grid grid-cols-2 gap-2 text-sm font-medium">
-            <a href="why-us.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-300 hover:text-amber-400 flex items-center space-x-1.5">
-              <i class="fa-solid fa-shield-halved text-amber-400 text-xs"></i>
+            <a href="why-us.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-700 dark:text-slate-300 hover:text-amber-500 dark:hover:text-amber-400 flex items-center space-x-1.5 transition-colors">
+              <i class="fa-solid fa-shield-halved text-amber-500 dark:text-amber-400 text-xs"></i>
               <span data-i18n="navWhyUs">Why Us</span>
             </a>
-            <a href="careers.html" onclick="toggleMobileMenu()" class="py-1.5 text-amber-400 font-bold flex items-center space-x-1.5">
-              <i class="fa-solid fa-briefcase text-amber-400 text-xs"></i>
+            <a href="careers.html" onclick="toggleMobileMenu()" class="py-1.5 text-amber-500 dark:text-amber-400 font-bold flex items-center space-x-1.5 transition-colors">
+              <i class="fa-solid fa-briefcase text-amber-500 dark:text-amber-400 text-xs"></i>
               <span data-i18n="navCareers">Careers</span>
             </a>
-            <a href="faq.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-300 hover:text-amber-400 flex items-center space-x-1.5">
-              <i class="fa-solid fa-circle-question text-amber-400 text-xs"></i>
+            <a href="faq.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-700 dark:text-slate-300 hover:text-amber-500 dark:hover:text-amber-400 flex items-center space-x-1.5 transition-colors">
+              <i class="fa-solid fa-circle-question text-amber-500 dark:text-amber-400 text-xs"></i>
               <span data-i18n="navFaq">FAQ</span>
             </a>
-            <a href="terms.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-300 hover:text-amber-400 flex items-center space-x-1.5">
-              <i class="fa-solid fa-file-contract text-amber-400 text-xs"></i>
+            <a href="terms.html" onclick="toggleMobileMenu()" class="py-1.5 text-slate-700 dark:text-slate-300 hover:text-amber-500 dark:hover:text-amber-400 flex items-center space-x-1.5 transition-colors">
+              <i class="fa-solid fa-file-contract text-amber-500 dark:text-amber-400 text-xs"></i>
               <span data-i18n="navTerms">Terms</span>
             </a>
           </div>
         </div>
 
-        <a href="contact.html" onclick="toggleMobileMenu()" class="hover:text-amber-400 py-2" data-i18n="navContact">Contact &amp; Office</a>
+        <a href="contact.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 transition-colors">
+          <span data-i18n="navContact">Contact &amp; Office</span>
+        </a>
       </nav>
 
       <div class="pt-2 flex flex-col gap-3">
-        <a href="#positions" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all" data-i18n="explorePositions">
-          Explore 6 Open Positions
+        <a href="contact.html" onclick="toggleMobileMenu()" class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm shadow-lg shadow-amber-500/20 transition-all" data-i18n="customTripBtn">
+          Request Custom Itinerary
         </a>
       </div>
+
       <!-- Mobile Menu Social Media Links -->
-      <div class="pt-4 border-t border-slate-800 flex items-center justify-center space-x-3">
-        <a href="https://www.facebook.com/share/1EAf7zDgSe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-blue-600 transition-colors shadow" aria-label="Facebook">
+      <div class="pt-4 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-center space-x-3">
+        <a href="https://www.facebook.com/share/1EAf7zDgSe/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-white hover:bg-blue-600 transition-colors shadow-sm" aria-label="Facebook">
           <i class="fa-brands fa-facebook-f text-sm"></i>
         </a>
-        <a href="https://www.instagram.com/starplustraveltourism?igsh=bDVybXM4b3pqdjcw&utm_source=qr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-rose-600 transition-colors shadow" aria-label="Instagram">
+        <a href="https://www.instagram.com/starplustraveltourism?igsh=bDVybXM4b3pqdjcw&utm_source=qr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-white hover:bg-rose-600 transition-colors shadow-sm" aria-label="Instagram">
           <i class="fa-brands fa-instagram text-sm"></i>
         </a>
-        <a href="https://www.tiktok.com/@starplustravel?_r=1&_t=ZS-990wwC6DOyr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 transition-colors shadow" aria-label="TikTok">
+        <a href="https://www.tiktok.com/@starplustravel?_r=1&_t=ZS-990wwC6DOyr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-white hover:bg-slate-800 transition-colors shadow-sm" aria-label="TikTok">
           <i class="fa-brands fa-tiktok text-sm"></i>
         </a>
-        <a href="https://www.linkedin.com/company/starplus-travel-and-tourism/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-blue-700 transition-colors shadow" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/company/starplus-travel-and-tourism/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:text-white hover:bg-blue-700 transition-colors shadow-sm" aria-label="LinkedIn">
           <i class="fa-brands fa-linkedin-in text-sm"></i>
         </a>
       </div>
@@ -955,7 +968,7 @@
   <div id="toastContainer"></div>
 
   <!-- JavaScript Application Script -->
-  <script src="js/app.js?v=5.4.0"></script>
+  <script src="js/app.js?v=5.6.0"></script>
   <script src="js/seasonal-theme.js?v=5.3.0"></script>
   
   <script>

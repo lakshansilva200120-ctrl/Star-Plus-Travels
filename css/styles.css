@@ -390,12 +390,30 @@ html.light #mainHeader.header-scrolled,
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
 }
 
-/* When Mobile Menu is Active */
-header.glass-nav.menu-open,
-#mainHeader.menu-open,
-header:has(#mobileMenu:not(.hidden)),
-#mainHeader:has(#mobileMenu:not(.hidden)) {
-  background: rgba(7, 14, 23, 0.98) !important;
+/* When Mobile Menu is Active: Seamless Translucent Frosted Glass Header */
+html.light header.glass-nav.menu-open,
+:root:not(.dark) header.glass-nav.menu-open,
+html.light #mainHeader.menu-open,
+:root:not(.dark) #mainHeader.menu-open,
+html.light header:has(#mobileMenu:not(.hidden)),
+:root:not(.dark) header:has(#mobileMenu:not(.hidden)),
+html.light #mainHeader:has(#mobileMenu:not(.hidden)),
+:root:not(.dark) #mainHeader:has(#mobileMenu:not(.hidden)) {
+  background: rgba(255, 255, 255, 0.80) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6) !important;
+}
+
+html.dark header.glass-nav.menu-open,
+:root.dark header.glass-nav.menu-open,
+html.dark #mainHeader.menu-open,
+:root.dark #mainHeader.menu-open,
+html.dark header:has(#mobileMenu:not(.hidden)),
+:root.dark header:has(#mobileMenu:not(.hidden)),
+html.dark #mainHeader:has(#mobileMenu:not(.hidden)),
+:root.dark #mainHeader:has(#mobileMenu:not(.hidden)) {
+  background: rgba(7, 14, 23, 0.80) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
@@ -678,22 +696,35 @@ html.light #mobileMenuBtn:hover,
   color: #0f172a !important;
 }
 
-/* Mobile Menu Container & Links in Light Theme */
+/* Mobile Menu Frosted Glass Container & Dynamic Theme Adaptability */
+#mobileMenu {
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
 html.light #mobileMenu,
 :root:not(.dark) #mobileMenu {
-  background: rgba(255, 255, 255, 0.98) !important;
-  border-bottom-color: #e2e8f0 !important;
+  background: rgba(255, 255, 255, 0.80) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03) !important;
+}
+
+html.dark #mobileMenu,
+:root.dark #mobileMenu {
+  background: rgba(7, 14, 23, 0.80) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4) !important;
 }
 
 html.light #mobileMenu nav,
 :root:not(.dark) #mobileMenu nav {
-  color: #1e293b !important;
+  color: #0f172a !important;
 }
 
 html.light #mobileMenu nav a,
 :root:not(.dark) #mobileMenu nav a {
-  color: #334155 !important;
-  border-bottom-color: #f1f5f9 !important;
+  color: #1e293b !important;
+  border-bottom-color: rgba(226, 232, 240, 0.8) !important;
 }
 
 html.light #mobileMenu nav a:hover,
@@ -703,8 +734,10 @@ html.light #mobileMenu nav a:hover,
 
 html.light #mobileMenu nav a.active,
 html.light #mobileMenu nav a.text-amber-400,
+html.light #mobileMenu nav a.text-amber-500,
 :root:not(.dark) #mobileMenu nav a.active,
-:root:not(.dark) #mobileMenu nav a.text-amber-400 {
+:root:not(.dark) #mobileMenu nav a.text-amber-400,
+:root:not(.dark) #mobileMenu nav a.text-amber-500 {
   color: #b45309 !important;
 }
 
@@ -719,14 +752,17 @@ html.light #mobileMenu .text-slate-400,
 }
 
 html.light #mobileMenu .bg-slate-900,
-:root:not(.dark) #mobileMenu .bg-slate-900 {
-  background: #f1f5f9 !important;
-  border-color: #e2e8f0 !important;
+html.light #mobileMenu .bg-slate-900\/80,
+:root:not(.dark) #mobileMenu .bg-slate-900,
+:root:not(.dark) #mobileMenu .bg-slate-900\/80 {
+  background: rgba(241, 245, 249, 0.9) !important;
+  border-color: rgba(203, 213, 225, 0.8) !important;
+  color: #334155 !important;
 }
 
 html.light #mobileMenu .bg-slate-950,
 :root:not(.dark) #mobileMenu .bg-slate-950 {
-  background: #ffffff !important;
+  background: rgba(255, 255, 255, 0.9) !important;
   border-color: #cbd5e1 !important;
 }
 
