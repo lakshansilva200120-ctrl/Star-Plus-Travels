@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Star Plus Travels - Interactive Application Logic & Video Hero Engine
  */
 
@@ -2134,7 +2134,7 @@ function initNavPillIndicator() {
 
     const isDark = document.documentElement.classList.contains('dark') ||
       (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    const logoSrc = isDark ? 'assets/logo-white-text.png?v=6.1.0' : 'assets/original-removebg-preview.png?v=6.1.0';
+    const logoSrc = isDark ? 'assets/logo-white-text.png?v=7.0.0' : 'assets/original-removebg-preview.png?v=7.0.0';
 
     targetPreloader.innerHTML = `
       <div class="ny-loader-card">
