@@ -1409,33 +1409,147 @@ function handleContactSubmit(e) {
   showToast('Inquiry received! A Star Plus Travels specialist will contact you with a customized quote shortly.', 'success');
 }
 
+// DMC Trade License File Selection Helper
+function handleLicenseFileSelect(input) {
+  const fileInfo = document.getElementById('partnerLicenseFileInfo');
+  if (!input || !input.files || input.files.length === 0) {
+    if (fileInfo) {
+      fileInfo.textContent = '';
+      fileInfo.classList.add('hidden');
+    }
+    return;
+  }
+
+  const file = input.files[0];
+  const maxBytes = 10 * 1024 * 1024; // 10MB limit
+  const allowedExtensions = ['pdf', 'jpg', 'jpeg', 'png'];
+  const ext = file.name.split('.').pop().toLowerCase();
+
+  if (!allowedExtensions.includes(ext)) {
+    showToast('⚠️ Unsupported file format. Please attach a PDF, JPG, or PNG document.', 'error');
+    input.value = '';
+    if (fileInfo) {
+      fileInfo.textContent = '';
+      fileInfo.classList.add('hidden');
+    }
+    return;
+  }
+
+  if (file.size > maxBytes) {
+    showToast('⚠️ File exceeds 10MB limit. Please upload a smaller document.', 'error');
+    input.value = '';
+    if (fileInfo) {
+      fileInfo.textContent = '';
+      fileInfo.classList.add('hidden');
+    }
+    return;
+  }
+
+  const formattedSize = file.size > 1024 * 1024 
+    ? (file.size / (1024 * 1024)).toFixed(1) + ' MB'
+    : Math.round(file.size / 1024) + ' KB';
+
+  if (fileInfo) {
+    fileInfo.textContent = `✓ ${file.name} (${formattedSize})`;
+    fileInfo.classList.remove('hidden');
+  }
+}
+
 // B2B Supplier & DMC Partnership Form Submission
 function handlePartnerSubmit(e) {
   e.preventDefault();
-  const company = document.getElementById('partnerCompany')?.value;
-  const destination = document.getElementById('partnerDestination')?.value;
-  const email = document.getElementById('partnerEmail')?.value;
+  const company = document.getElementById('partnerCompany')?.value?.trim();
+  const destination = document.getElementById('partnerDestination')?.value?.trim();
+  const contact = document.getElementById('partnerContact')?.value?.trim();
+  const email = document.getElementById('partnerEmail')?.value?.trim();
+  const phone = document.getElementById('partnerPhone')?.value?.trim();
+  const website = document.getElementById('partnerWebsite')?.value?.trim();
+  const social = document.getElementById('partnerSocial')?.value?.trim() || 'Not Provided';
+  const license = document.getElementById('partnerLicense')?.value?.trim();
+  const city = document.getElementById('partnerCity')?.value?.trim();
+  const proposal = document.getElementById('partnerProposal')?.value?.trim();
+  
+  // Selected Services
+  const serviceCheckboxes = document.querySelectorAll('input[name="services"]:checked');
+  const services = Array.from(serviceCheckboxes).map(cb => cb.value);
 
-  if (!company || !destination || !email) {
-    showToast('Please complete the required company details.', 'error');
+  // Attached Trade License
+  const licenseFileInput = document.getElementById('partnerLicenseFile');
+  const licenseFile = licenseFileInput?.files?.[0];
+  const licenseAttachmentInfo = licenseFile ? {
+    fileName: licenseFile.name,
+    fileSize: licenseFile.size,
+    fileType: licenseFile.type || 'application/octet-stream',
+    lastModified: licenseFile.lastModified
+  } : null;
+
+  if (!company || !destination || !email || !contact || !phone || !website || !license || !city || !proposal) {
+    showToast('Please complete all required company and credential fields.', 'error');
     return;
   }
+
+  // Optional validation: If social link provided, basic URL sanity check
+  if (social && social !== 'Not Provided') {
+    const isUrl = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i.test(social);
+    if (!isUrl && !social.includes('.') && !social.includes('/')) {
+      showToast('Please provide a valid URL or username for your social media profile.', 'error');
+      return;
+    }
+  }
+
+  // Construct structured intake payload for corporate email / CRM ingestion
+  const dmcSubmissionPayload = {
+    formType: 'DMC_GROUND_SERVICES_INTAKE',
+    submittedAt: new Date().toISOString(),
+    recipient: 'info@starplustraveluae.com',
+    companyDetails: {
+      companyName: company,
+      primaryDestination: destination,
+      contactPerson: contact,
+      corporateEmail: email,
+      phoneWhatsApp: phone,
+      website: website,
+      socialMediaLink: social,
+      tradeLicenseNumber: license,
+      tradeLicenseAttachment: licenseAttachmentInfo ? `${licenseAttachmentInfo.fileName} (${(licenseAttachmentInfo.fileSize / 1024).toFixed(1)} KB)` : 'None Attached (To follow via email)',
+      headquarters: city
+    },
+    servicesOffered: services,
+    proposalOverview: proposal,
+    complianceConsent: true
+  };
+
+  // Persist locally for session continuity / fallback
+  try {
+    const existingIntakes = JSON.parse(localStorage.getItem('starplus_dmc_intakes') || '[]');
+    existingIntakes.push(dmcSubmissionPayload);
+    localStorage.setItem('starplus_dmc_intakes', JSON.stringify(existingIntakes.slice(-10)));
+  } catch (err) {
+    console.warn('Local intake caching unavailable:', err);
+  }
+
+  console.info('DMC Partnership Submission Payload Prepared:', dmcSubmissionPayload);
 
   const submitBtn = e.target.querySelector('button[type="submit"]');
   const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processing Application...';
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Processing Application & Credentials...';
   }
 
   setTimeout(() => {
     e.target.reset();
+    const fileInfo = document.getElementById('partnerLicenseFileInfo');
+    if (fileInfo) {
+      fileInfo.textContent = '';
+      fileInfo.classList.add('hidden');
+    }
     if (submitBtn) {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalBtnHtml;
     }
-    showToast('🤝 Partnership application received! Our Global Contracting Desk will review your credentials within 2-3 business days.', 'success');
-  }, 1000);
+    showToast('🤝 DMC Partnership application and trade credentials received! Our Global Contracting Desk will review your application within 2-3 business days.', 'success');
+  }, 1200);
 }
 
 // Newsletter Subscription
