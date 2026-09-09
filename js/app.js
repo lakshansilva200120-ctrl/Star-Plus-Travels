@@ -2134,7 +2134,7 @@ function initNavPillIndicator() {
 
     const isDark = document.documentElement.classList.contains('dark') ||
       (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    const logoSrc = isDark ? 'assets/logo-white-text.png' : 'assets/original-removebg-preview.png';
+    const logoSrc = isDark ? 'assets/logo-white-text.png?v=6.1.0' : 'assets/original-removebg-preview.png?v=6.1.0';
 
     targetPreloader.innerHTML = `
       <div class="ny-loader-card">
@@ -2144,9 +2144,7 @@ function initNavPillIndicator() {
 
         <div class="ny-badge-container">
           <span class="ny-festive-badge">
-            <svg class="ny-star-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2h7.6l-6.2 4.5 2.4 7.2-6.2-4.5-6.2 4.5 2.4-7.2-6.2-4.5h7.6z"/></svg>
             HAPPY NEW YEAR • <span class="ny-year-text">${year}</span>
-            <svg class="ny-star-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2h7.6l-6.2 4.5 2.4 7.2-6.2-4.5-6.2 4.5 2.4-7.2-6.2-4.5h7.6z"/></svg>
           </span>
         </div>
 

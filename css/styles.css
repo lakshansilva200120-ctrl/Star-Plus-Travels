@@ -1719,7 +1719,7 @@ html.light #sitePreloader {
   max-height: 72px !important;
   object-fit: contain !important;
   margin: 0 auto !important;
-  filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.35)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
 }
 
 .ny-badge-container {
