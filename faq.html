@@ -142,12 +142,12 @@
         var p = document.getElementById('sitePreloader');
         if (!p || p.classList.contains('fade-out')) return;
         var elapsed = Date.now() - (window.__preloaderStartTime || Date.now());
-        var wait = Math.max(0, 500 - elapsed);
+        var wait = Math.max(0, 1200 - elapsed);
         setTimeout(function() {
           p.classList.add('fade-out');
           setTimeout(function() {
             if (p && p.parentNode) p.style.display = 'none';
-          }, 400);
+          }, 650);
         }, wait);
       }
 
@@ -156,7 +156,7 @@
       } else {
         window.addEventListener('load', dismissPreloader);
       }
-      setTimeout(dismissPreloader, 1800);
+      setTimeout(dismissPreloader, 2500);
     })();
   </script>
 

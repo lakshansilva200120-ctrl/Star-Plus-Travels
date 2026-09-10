@@ -2741,8 +2741,8 @@ function initNavPillIndicator() {
 
     const start = window.__preloaderStartTime || Date.now();
     const elapsed = Date.now() - start;
-    // On New Year morning, give visitors ~2600ms to enjoy the celebration, otherwise standard 600ms
-    const minWait = isNyActive ? 2600 : 600;
+    // On New Year morning, give visitors ~2600ms to enjoy the celebration, otherwise standard luxury 1200ms
+    const minWait = isNyActive ? 2600 : 1200;
     const remaining = Math.max(0, minWait - elapsed);
 
     setTimeout(() => {
@@ -2755,7 +2755,7 @@ function initNavPillIndicator() {
         if (preloader && preloader.parentNode) {
           preloader.style.display = 'none';
         }
-      }, 500);
+      }, 650);
     }, remaining);
   }
 
@@ -2763,7 +2763,7 @@ function initNavPillIndicator() {
     dismissPreloader();
   } else {
     window.addEventListener('load', dismissPreloader);
-    setTimeout(dismissPreloader, isNyActive ? 3600 : 1500);
+    setTimeout(dismissPreloader, isNyActive ? 3600 : 2500);
   }
 
   // Expose public API for developer preview & verification
