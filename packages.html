@@ -456,25 +456,45 @@
           </button>
         </div>
 
-        <!-- Filter Category Pills -->
-        <div class="flex items-center justify-center flex-wrap gap-2 pt-4">
-          <button type="button" onclick="filterCategory('all')" class="category-pill active px-4 py-1.5 rounded-full text-xs font-semibold bg-amber-500 text-slate-950 border border-amber-500 transition-all cursor-pointer">
-            All Packages
+        <!-- Primary Segmented Category Filter Bar -->
+        <div class="mt-6 flex justify-center w-full">
+          <div class="package-filter-track">
+            <button type="button" data-category="all" onclick="filterCategory('all')" class="package-filter-btn active">
+              <i class="fa-solid fa-layer-group text-xs"></i>
+              <span data-i18n="catAll">All Packages</span>
+            </button>
+            <button type="button" data-category="holiday" onclick="filterCategory('holiday')" class="package-filter-btn">
+              <i class="fa-solid fa-umbrella-beach text-xs text-amber-500"></i>
+              <span data-i18n="catHoliday">Holiday Packages</span>
+            </button>
+            <button type="button" data-category="corporate" onclick="filterCategory('corporate')" class="package-filter-btn">
+              <i class="fa-solid fa-briefcase text-xs text-amber-500"></i>
+              <span data-i18n="catCorporate">Corporate &amp; MICE</span>
+            </button>
+            <button type="button" data-category="visa-bundle" onclick="filterCategory('visa-bundle')" class="package-filter-btn">
+              <i class="fa-solid fa-passport text-xs text-amber-500"></i>
+              <span data-i18n="catVisaBundle">Visa Bundles</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Destination Sub-Chips -->
+        <div class="flex items-center justify-center flex-wrap gap-2 pt-3">
+          <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline">Destination:</span>
+          <button type="button" data-category="dubai" onclick="filterCategory('dubai')" class="cat-chip">
+            <i class="fa-solid fa-city text-amber-400 text-[10px]"></i>Dubai &amp; UAE
           </button>
-          <button type="button" onclick="filterCategory('dubai')" class="category-pill px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900/90 text-slate-300 border border-slate-700/80 hover:border-amber-500/50 hover:text-white transition-all cursor-pointer">
-            <i class="fa-solid fa-city mr-1.5 text-amber-400"></i>Dubai &amp; UAE
+          <button type="button" data-category="srilanka" onclick="filterCategory('srilanka')" class="cat-chip">
+            <i class="fa-solid fa-gem text-amber-400 text-[10px]"></i>Sri Lanka
           </button>
-          <button type="button" onclick="filterCategory('srilanka')" class="category-pill px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900/90 text-slate-300 border border-slate-700/80 hover:border-amber-500/50 hover:text-white transition-all cursor-pointer">
-            <i class="fa-solid fa-gem mr-1.5 text-amber-400"></i>Sri Lanka
+          <button type="button" data-category="caucasus" onclick="filterCategory('caucasus')" class="cat-chip">
+            <i class="fa-solid fa-mountain-sun text-amber-400 text-[10px]"></i>Caucasus &amp; Baku
           </button>
-          <button type="button" onclick="filterCategory('caucasus')" class="category-pill px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900/90 text-slate-300 border border-slate-700/80 hover:border-amber-500/50 hover:text-white transition-all cursor-pointer">
-            <i class="fa-solid fa-mountain-sun mr-1.5 text-amber-400"></i>Caucasus &amp; Baku
+          <button type="button" data-category="tropical" onclick="filterCategory('tropical')" class="cat-chip">
+            <i class="fa-solid fa-water-ladder text-amber-400 text-[10px]"></i>Tropical &amp; Beach
           </button>
-          <button type="button" onclick="filterCategory('tropical')" class="category-pill px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900/90 text-slate-300 border border-slate-700/80 hover:border-amber-500/50 hover:text-white transition-all cursor-pointer">
-            <i class="fa-solid fa-umbrella-beach mr-1.5 text-amber-400"></i>Tropical &amp; Beach
-          </button>
-          <button type="button" onclick="filterCategory('spiritual')" class="category-pill px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-900/90 text-slate-300 border border-slate-700/80 hover:border-amber-500/50 hover:text-white transition-all cursor-pointer">
-            <i class="fa-solid fa-mosque mr-1.5 text-amber-400"></i>Spiritual &amp; Umrah
+          <button type="button" data-category="spiritual" onclick="filterCategory('spiritual')" class="cat-chip">
+            <i class="fa-solid fa-mosque text-amber-400 text-[10px]"></i>Spiritual &amp; Umrah
           </button>
         </div>
       </div>
@@ -652,11 +672,56 @@
 
   <!-- Detailed Itinerary Modal -->
   <div id="itineraryModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
-    <div class="glass-card max-w-2xl w-full rounded-3xl border border-slate-700 shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative animate-fadeIn">
-      <button onclick="closeItineraryModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors">
+    <div class="glass-card max-w-2xl w-full rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative animate-fadeIn">
+      
+      <!-- Close Button -->
+      <button onclick="closeItineraryModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white flex items-center justify-center transition-colors" aria-label="Close itinerary details">
         <i class="fa-solid fa-xmark text-sm"></i>
       </button>
-      <div id="itineraryModalContent" class="space-y-6"></div>
+
+      <div class="relative h-48 sm:h-56 rounded-2xl overflow-hidden mb-5 bg-slate-900 shadow-md">
+        <img id="itineraryModalImage" src="" alt="" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+        <div class="absolute bottom-4 left-4 right-4">
+          <span id="itineraryModalMeta" class="text-xs text-amber-400 font-bold block mb-1"></span>
+          <h3 id="itineraryModalTitle" class="text-xl sm:text-2xl font-black text-white font-heading leading-tight"></h3>
+        </div>
+      </div>
+
+      <!-- Perks list -->
+      <div class="mb-6">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Package Inclusions</h4>
+        <div id="itineraryPerksList" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Timeline Days -->
+      <div class="mb-6">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">Day-by-Day Journey</h4>
+        <div id="itineraryDaysContainer" class="space-y-2">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-medium">Starting from</span>
+          <span id="itineraryModalPrice" class="text-2xl font-black text-amber-600 dark:text-amber-400 font-heading"></span>
+        </div>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <a id="itineraryWhatsAppButton" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-emerald-950/20 flex items-center justify-center space-x-2">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>WhatsApp Inquiry</span>
+          </a>
+          <button id="itineraryBookButton" class="flex-1 sm:flex-initial py-3 px-5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 flex items-center justify-center space-x-1.5">
+            <span>Request Quote</span>
+            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
   <!-- Footer -->

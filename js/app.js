@@ -101,6 +101,9 @@ const I18N_TRANSLATIONS = {
     packagesTitle: "Featured Tour Packages",
     packagesCount: "Showing curated premium itineraries",
     catAll: "All Packages",
+    catHoliday: "Holiday Packages",
+    catCorporate: "Corporate & MICE",
+    catVisaBundle: "Visa Bundles",
     catDubai: '<i class="fa-solid fa-city mr-1.5 text-amber-400"></i>Dubai &amp; UAE',
     catSriLanka: '<i class="fa-solid fa-gem mr-1.5 text-amber-400"></i>Sri Lanka',
     catCaucasus: '<i class="fa-solid fa-mountain-sun mr-1.5 text-amber-400"></i>Caucasus &amp; Europe',
@@ -353,6 +356,9 @@ const I18N_TRANSLATIONS = {
     packagesTitle: "විශේෂ සංචාරක පැකේජ",
     packagesCount: "උසස් තත්ත්වයේ තෝරාගත් සංචාරක සැලසුම්",
     catAll: "සියලු පැකේජ",
+    catHoliday: "නිවාඩු පැකේජ",
+    catCorporate: "ආයතනික සහ MICE",
+    catVisaBundle: "වීසා පැකේජ",
     catDubai: '<i class="fa-solid fa-city mr-1.5 text-amber-400"></i>ඩුබායි සහ එමීර් රාජ්‍යය',
     catSriLanka: '<i class="fa-solid fa-gem mr-1.5 text-amber-400"></i>ශ්‍රී ලංකාව',
     catCaucasus: '<i class="fa-solid fa-mountain-sun mr-1.5 text-amber-400"></i>කොකේසස් සහ යුරෝපය',
@@ -570,6 +576,30 @@ const PACKAGES_I18N = {
     destination: 'මක්කම සහ මදීනා, සෞදි අරාබිය',
     duration: 'දින 7 / රාත්‍රී 6',
     badge: 'සුවිශේෂී වන්දනාව'
+  },
+  'dubai-corporate-mice': {
+    title: 'විධායක ඩුබායි MICE සහ ආයතනික සමුළු පැකේජය',
+    destination: 'ඩුබායි සහ අබුඩාබි, එ.අ.එ.',
+    duration: 'දින 4 / රාත්‍රී 3',
+    badge: 'ආයතනික VIP'
+  },
+  'baku-corporate-retreat': {
+    title: 'කොකේසස් විධායක නායකත්ව සහ කණ්ඩායම් සංචාරක පැකේජය',
+    destination: 'බාකු සහ ෂාඩාග්, අසර්බයිජාන්',
+    duration: 'දින 5 / රාත්‍රී 4',
+    badge: 'විධායක සංචාරය'
+  },
+  'uae-golden-visa-bundle': {
+    title: 'එ.අ.එ. වසර 10 ක ගෝල්ඩන් වීසා සහ පදිංචි වීමේ සේවා පැකේජය',
+    destination: 'ඩුබායි, එක්සත් අරාබි එමීර් රාජ්‍යය',
+    duration: 'දින 5-7 සීඝ්‍රගාමී',
+    badge: 'ගෝල්ඩන් වීසා'
+  },
+  'schengen-visa-travel-bundle': {
+    title: 'යුරෝපා ෂෙන්ගන් එක්ස්ප්‍රස් වීසා සහ ගුවන් ටිකට්පත් පැකේජය',
+    destination: 'ප්‍රංශය, ස්විට්සර්ලන්තය සහ ඉතාලිය',
+    duration: 'දින 10-15 සේවා කාලය',
+    badge: 'සහතික කළ අවස්ථාව'
   }
 };
 
@@ -772,6 +802,104 @@ const PACKAGES = [
       { day: 6, title: 'Madinah Ziyarat (Masjid Quba, Mount Uhud)' },
       { day: 7, title: 'Final Prayers & Departure Transfer to Airport' }
     ]
+  },
+  {
+    id: 'dubai-corporate-mice',
+    title: 'Executive Dubai MICE, Gala & Corporate Summit',
+    category: 'corporate',
+    tags: ['corporate', 'dubai', 'mice'],
+    destination: 'Dubai & Abu Dhabi, UAE',
+    flag: '<i class="fa-solid fa-briefcase text-amber-400"></i>',
+    duration: '4 Days / 3 Nights',
+    rating: 5.0,
+    reviews: 88,
+    badge: 'Corporate VIP',
+    badgeColor: 'from-blue-600 to-indigo-600',
+    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=85',
+    alt: 'Luxury corporate gala conference and executive summit in Dubai',
+    priceAED: 3450,
+    originalPriceAED: 4400,
+    perks: ['5★ Luxury Business Hotel Stay', 'State-of-the-Art Conference Hall Setup', 'Private Executive Fleet Chauffeur', 'Exclusive Marina Yacht Gala Dinner', 'VIP Fast-Track Airport Protocols'],
+    itinerary: [
+      { day: 1, title: 'VIP Airport Arrival & Luxury Executive Check-in' },
+      { day: 2, title: 'Corporate Keynote, Breakouts & Team Workshops' },
+      { day: 3, title: 'Innovation Safari, Museum of the Future & Gala Dinner' },
+      { day: 4, title: 'Executive Debrief & Airport Escort' }
+    ]
+  },
+  {
+    id: 'baku-corporate-retreat',
+    title: 'Caucasus Executive Leadership & Team Incentive Retreat',
+    category: 'corporate',
+    tags: ['corporate', 'caucasus'],
+    destination: 'Baku & Shahdag, Azerbaijan',
+    flag: '<i class="fa-solid fa-building-user text-amber-400"></i>',
+    duration: '5 Days / 4 Nights',
+    rating: 4.9,
+    reviews: 64,
+    badge: 'Executive Retreat',
+    badgeColor: 'from-amber-600 to-orange-600',
+    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1200&q=85',
+    alt: 'Corporate team building and executive leadership retreat in Azerbaijan',
+    priceAED: 2650,
+    originalPriceAED: 3300,
+    perks: ['Direct Return Airline Bookings', 'Flame Towers 5★ Luxury Suites', 'Alpine Team Building in Shahdag Resort', 'Private Caspian Waterfront Gala Dinner', 'Dedicated 24/7 Corporate Account Lead'],
+    itinerary: [
+      { day: 1, title: 'Arrival in Baku & Boulevard Executive Reception' },
+      { day: 2, title: 'Leadership Strategy Sessions & Old City Walk' },
+      { day: 3, title: 'Alpine Team Building & Mountain Activities in Shahdag' },
+      { day: 4, title: 'Ateshgah Cultural Discovery & Formal Gala Banquet' },
+      { day: 5, title: 'Executive Farewell & Airport Transfer' }
+    ]
+  },
+  {
+    id: 'uae-golden-visa-bundle',
+    title: 'UAE 10-Year Golden Visa & Concierge Relocation Bundle',
+    category: 'visa-bundle',
+    tags: ['visa-bundle', 'dubai'],
+    destination: 'Dubai, United Arab Emirates',
+    flag: '<i class="fa-solid fa-passport text-amber-400"></i>',
+    duration: 'Express 5-7 Days',
+    rating: 5.0,
+    reviews: 196,
+    badge: '10-Year Residency',
+    badgeColor: 'from-amber-500 to-yellow-500',
+    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=85',
+    alt: 'UAE Golden Visa processing and VIP government concierge in Dubai',
+    priceAED: 4950,
+    originalPriceAED: 6500,
+    perks: ['Complete 10-Year Golden Visa Clearance', 'VIP Medical & Emirates ID Fast-Track', 'Corporate Bank Account Introductions', 'Luxury Chauffeur to Government Centers', '100% Legal & Regulatory Assurance'],
+    itinerary: [
+      { day: 1, title: 'Document Vetting & Initial Authority Nomination' },
+      { day: 2, title: 'VIP Medical Fitness & Biometrics Fast-Track' },
+      { day: 3, title: 'Emirates ID Issuance & Residency Stamping' },
+      { day: 4, title: 'Corporate Banking & Personal Relocation Handover' }
+    ]
+  },
+  {
+    id: 'schengen-visa-travel-bundle',
+    title: 'Schengen Europe Express Visa + Flight Booking Bundle',
+    category: 'visa-bundle',
+    tags: ['visa-bundle', 'caucasus'],
+    destination: 'France, Switzerland & Italy',
+    flag: '<i class="fa-solid fa-file-shield text-amber-400"></i>',
+    duration: '10-15 Days Processing',
+    rating: 4.9,
+    reviews: 172,
+    badge: 'Guaranteed Slot',
+    badgeColor: 'from-emerald-600 to-teal-600',
+    image: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1200&q=85',
+    alt: 'Schengen visa and international flight bundle',
+    priceAED: 1450,
+    originalPriceAED: 1950,
+    perks: ['Guaranteed Embassy Appointment Slot', 'Official Confirmed Flight & Hotel Vouchers', 'Custom Day-by-Day Travel Itinerary', 'Comprehensive Schengen Travel Insurance', 'Senior Immigration Specialist Review'],
+    itinerary: [
+      { day: 1, title: 'Profile Assessment & Required Checklist Formulation' },
+      { day: 2, title: 'Embassy Slot Confirmation & Application Submission' },
+      { day: 3, title: 'Flight & Hotel Reservation Certificate Issuance' },
+      { day: 4, title: 'Biometrics Appointment Attendance Support' },
+      { day: 5, title: 'Passport Retrieval with Valid Visa Stamping' }
+    ]
   }
 ];
 
@@ -911,7 +1039,33 @@ function showToast(message, type = 'success') {
 // Render Tour Package Cards
 function getActiveFilteredPackages() {
   if (activeCategory === 'all') return PACKAGES;
-  return PACKAGES.filter(pkg => pkg.category === activeCategory);
+  return PACKAGES.filter(pkg => {
+    if (activeCategory === 'holiday') {
+      return pkg.category === 'holiday' || pkg.category === 'dubai' || pkg.category === 'srilanka' || pkg.category === 'caucasus' || pkg.category === 'tropical';
+    }
+    if (activeCategory === 'corporate') {
+      return pkg.category === 'corporate';
+    }
+    if (activeCategory === 'visa-bundle') {
+      return pkg.category === 'visa-bundle' || pkg.category === 'spiritual';
+    }
+    if (activeCategory === 'dubai') {
+      return pkg.category === 'dubai' || pkg.destination.toLowerCase().includes('dubai') || (pkg.tags && pkg.tags.includes('dubai'));
+    }
+    if (activeCategory === 'srilanka') {
+      return pkg.category === 'srilanka' || pkg.destination.toLowerCase().includes('sri lanka') || (pkg.tags && pkg.tags.includes('srilanka'));
+    }
+    if (activeCategory === 'caucasus') {
+      return pkg.category === 'caucasus' || (pkg.tags && pkg.tags.includes('caucasus'));
+    }
+    if (activeCategory === 'tropical') {
+      return pkg.category === 'tropical' || (pkg.tags && pkg.tags.includes('tropical'));
+    }
+    if (activeCategory === 'spiritual') {
+      return pkg.category === 'spiritual' || (pkg.tags && pkg.tags.includes('spiritual'));
+    }
+    return pkg.category === activeCategory || (pkg.tags && pkg.tags.includes(activeCategory));
+  });
 }
 
 function renderPackages(filteredList = PACKAGES) {
@@ -935,8 +1089,8 @@ function renderPackages(filteredList = PACKAGES) {
           <i class="fa-solid fa-compass"></i>
         </div>
         <h3 class="text-xl font-bold text-white mb-2">${currentLang === 'si' ? 'ගැළපෙන පැකේජ හමු නොවීය' : 'No matching packages found'}</h3>
-        <p class="text-slate-400 text-sm max-w-md mx-auto mb-6">${currentLang === 'si' ? 'ඩුබායි, ශ්‍රී ලංකාව, බාකු, ජෝර්ජියාව, මාලදිවයින හෝ බාලි වැනි වෙනත් ගමනාන්ත සොයන්න.' : 'Try searching for other destinations like Dubai, Sri Lanka, Baku, Georgia, Maldives, or Bali.'}</p>
-        <button onclick="resetFilters()" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-amber-500/20">
+        <p class="text-slate-400 text-sm max-w-md mx-auto mb-6">${currentLang === 'si' ? 'ඩුබායි, ශ්‍රී ලංකාව, ආයතනික හෝ වීසා පැකේජ වැනි වෙනත් විකල්ප සොයන්න.' : 'Try selecting All Packages or searching for corporate, holiday, or visa bundles.'}</p>
+        <button onclick="resetFilters()" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-amber-500/20 cursor-pointer">
           ${currentLang === 'si' ? 'සියලු පැකේජ බලන්න' : 'View All Packages'}
         </button>
       </div>
@@ -961,10 +1115,16 @@ function renderPackages(filteredList = PACKAGES) {
       ? `හෝ Tabby මගින් මසකට 4x ${monthlyInstallment}`
       : `or 4x ${monthlyInstallment}/mo with Tabby`;
     const itineraryBtnText = t.itineraryBtn || 'Itinerary';
-    const bookNowBtnText = t.bookNowBtn || 'Book Now';
+    const quoteBtnText = currentLang === 'si' ? 'මිල ගණන්' : 'Request Quote';
+    const whatsappBtnText = currentLang === 'si' ? 'WhatsApp මගින් විමසන්න' : 'Inquire on WhatsApp';
+
+    const rawWaMsg = currentLang === 'si'
+      ? `හෙලෝ Star Plus Travels, මම "${title}" (${formattedPrice}) පැකේජය පිළිබඳ විස්තර සහ ලබාගත හැකි දින දැනගැනීමට කැමතියි.`
+      : `Hello Star Plus Travels, I would like to inquire about "${title}" (${formattedPrice} per person). Please share more details and availability.`;
+    const whatsappUrl = `https://wa.me/971527582293?text=${encodeURIComponent(rawWaMsg)}`;
 
     return `
-      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10">
+      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10 transition-all duration-300">
         <!-- Image & Badges -->
         <div class="img-container relative h-56 overflow-hidden bg-slate-900">
           <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover" loading="lazy">
@@ -1009,7 +1169,7 @@ function renderPackages(filteredList = PACKAGES) {
             <ul class="space-y-1.5 mb-5">
               ${pkg.perks.slice(0, 3).map(perk => `
                 <li class="flex items-center text-xs text-slate-600 dark:text-slate-300">
-                  <i class="fa-solid fa-check text-emerald-500 dark:text-emerald-400 text-[10px] mr-2"></i>
+                  <i class="fa-solid fa-check text-emerald-500 dark:text-emerald-400 text-[10px] mr-2 shrink-0"></i>
                   <span class="truncate">${perk}</span>
                 </li>
               `).join('')}
@@ -1018,7 +1178,7 @@ function renderPackages(filteredList = PACKAGES) {
 
           <!-- Pricing & CTAs -->
           <div class="pt-4 border-t border-slate-200 dark:border-slate-800/80">
-            <div class="flex items-end justify-between mb-4 gap-2 min-w-0">
+            <div class="flex items-end justify-between mb-3 gap-2 min-w-0">
               <div class="min-w-0 flex-1">
                 <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-medium truncate">${startingFromText}</span>
                 <div class="flex items-baseline space-x-2 flex-wrap">
@@ -1029,19 +1189,28 @@ function renderPackages(filteredList = PACKAGES) {
                   ${installmentText}
                 </span>
               </div>
-              <span class="text-[11px] text-slate-600 dark:text-slate-400 font-medium bg-slate-100 dark:bg-slate-800/60 px-2 py-1 rounded-md shrink-0 whitespace-nowrap">${perPersonText}</span>
+              <span class="text-[11px] text-slate-600 dark:text-slate-400 font-medium bg-slate-100 dark:bg-slate-800/60 px-2.5 py-1 rounded-lg shrink-0 whitespace-nowrap border border-slate-200/60 dark:border-slate-700/60">${perPersonText}</span>
             </div>
 
-            <div class="grid grid-cols-2 gap-2">
-              <button onclick="openItineraryModal('${pkg.id}')" class="w-full py-2.5 px-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition-all text-center flex items-center justify-center space-x-1.5 shadow-sm">
-                <i class="fa-solid fa-list-ul text-slate-500 dark:text-slate-400"></i>
-                <span>${itineraryBtnText}</span>
-              </button>
-              <button onclick="openBookingModal('${pkg.id}')" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 text-xs font-extrabold transition-all text-center shadow-lg shadow-amber-500/20 flex items-center justify-center space-x-1.5">
-                <span>${bookNowBtnText}</span>
-                <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </button>
+            <!-- Action Buttons: WhatsApp Instant Conversion + Itinerary & Request Quote -->
+            <div class="space-y-2 mt-2">
+              <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 active:scale-[0.98] text-white text-xs font-bold transition-all text-center flex items-center justify-center space-x-2 shadow-md shadow-emerald-950/20 group/wa cursor-pointer" title="Inquire on WhatsApp for ${title}">
+                <i class="fa-brands fa-whatsapp text-sm text-white group-hover/wa:scale-110 transition-transform"></i>
+                <span>${whatsappBtnText}</span>
+              </a>
+
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="openItineraryModal('${pkg.id}')" class="w-full py-2 px-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition-all text-center flex items-center justify-center space-x-1.5 shadow-xs cursor-pointer">
+                  <i class="fa-solid fa-list-ul text-amber-500 text-[10px]"></i>
+                  <span>${itineraryBtnText}</span>
+                </button>
+                <button type="button" onclick="openBookingModal('${pkg.id}')" class="w-full py-2 px-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-[0.98] text-slate-950 text-xs font-black transition-all text-center shadow-md shadow-amber-500/20 flex items-center justify-center space-x-1 cursor-pointer">
+                  <span>${quoteBtnText}</span>
+                  <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -1055,21 +1224,60 @@ let activeCategory = 'all';
 function filterCategory(cat) {
   activeCategory = cat;
   
-  // Update UI tabs
-  document.querySelectorAll('.cat-pill').forEach(btn => {
-    if (btn.dataset.category === cat) {
-      btn.className = 'cat-pill px-5 py-2 rounded-full text-xs font-bold bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20 transition-all';
+  // Synchronize all filter buttons & pills on page
+  document.querySelectorAll('.cat-pill, .category-pill, .package-filter-btn, .cat-chip, [data-category]').forEach(btn => {
+    const btnCat = btn.getAttribute('data-category');
+    if (btnCat === cat) {
+      btn.classList.add('active');
     } else {
-      btn.className = 'cat-pill px-5 py-2 rounded-full text-xs font-semibold bg-white dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/60 transition-all shadow-sm';
+      btn.classList.remove('active');
     }
   });
 
-  if (cat === 'all') {
-    renderPackages(PACKAGES);
-  } else {
-    const filtered = PACKAGES.filter(p => p.category === cat);
-    renderPackages(filtered);
+  const searchInput = document.getElementById('heroDestinationInput');
+  const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+  let filtered = PACKAGES;
+  if (cat !== 'all') {
+    filtered = PACKAGES.filter(p => {
+      if (cat === 'holiday') {
+        return p.category === 'holiday' || p.category === 'dubai' || p.category === 'srilanka' || p.category === 'caucasus' || p.category === 'tropical';
+      }
+      if (cat === 'corporate') {
+        return p.category === 'corporate';
+      }
+      if (cat === 'visa-bundle') {
+        return p.category === 'visa-bundle' || p.category === 'spiritual';
+      }
+      if (cat === 'dubai') {
+        return p.category === 'dubai' || p.destination.toLowerCase().includes('dubai') || (p.tags && p.tags.includes('dubai'));
+      }
+      if (cat === 'srilanka') {
+        return p.category === 'srilanka' || p.destination.toLowerCase().includes('sri lanka') || (p.tags && p.tags.includes('srilanka'));
+      }
+      if (cat === 'caucasus') {
+        return p.category === 'caucasus' || (p.tags && p.tags.includes('caucasus'));
+      }
+      if (cat === 'tropical') {
+        return p.category === 'tropical' || (p.tags && p.tags.includes('tropical'));
+      }
+      if (cat === 'spiritual') {
+        return p.category === 'spiritual' || (p.tags && p.tags.includes('spiritual'));
+      }
+      return p.category === cat || (p.tags && p.tags.includes(cat));
+    });
   }
+
+  if (query) {
+    filtered = filtered.filter(p => 
+      p.title.toLowerCase().includes(query) ||
+      p.destination.toLowerCase().includes(query) ||
+      p.category.toLowerCase().includes(query) ||
+      (p.perks && p.perks.some(perk => perk.toLowerCase().includes(query)))
+    );
+  }
+
+  renderPackages(filtered);
 }
 
 function resetFilters() {
@@ -1209,15 +1417,33 @@ function openItineraryModal(pkgId) {
   `).join('');
 
   // Price & CTA
-  document.getElementById('itineraryModalPrice').textContent = formatPrice(pkg.priceAED);
-  document.getElementById('itineraryBookButton').onclick = () => {
-    closeItineraryModal();
-    openBookingModal(pkg.id);
-  };
+  const priceElem = document.getElementById('itineraryModalPrice');
+  if (priceElem) priceElem.textContent = formatPrice(pkg.priceAED);
+
+  const bookBtn = document.getElementById('itineraryBookButton');
+  if (bookBtn) {
+    bookBtn.onclick = () => {
+      closeItineraryModal();
+      openBookingModal(pkg.id);
+    };
+  }
+
+  // Pre-fill WhatsApp Inquiry
+  const itineraryWaBtn = document.getElementById('itineraryWhatsAppButton');
+  if (itineraryWaBtn) {
+    const formattedPrice = formatPrice(pkg.priceAED);
+    const currentLang = getPreferredLanguage();
+    const rawWaMsg = currentLang === 'si'
+      ? `හෙලෝ Star Plus Travels, මම "${pkg.title}" (${formattedPrice}) පැකේජයේ සම්පූර්ණ විස්තර සහ දින සැලසුම පිළිබඳව විමසීමට කැමතියි.`
+      : `Hello Star Plus Travels, I am reviewing the itinerary for "${pkg.title}" (${formattedPrice}) and would like to inquire about booking availability and custom details.`;
+    itineraryWaBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(rawWaMsg)}`;
+  }
 
   const modal = document.getElementById('itineraryModal');
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
+  if (modal) {
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
 }
 
 function closeItineraryModal() {
@@ -1380,11 +1606,7 @@ function changeCurrency(newCurr) {
   });
 
   // Re-render packages with updated currency
-  if (activeCategory === 'all') {
-    renderPackages(PACKAGES);
-  } else {
-    renderPackages(PACKAGES.filter(p => p.category === activeCategory));
-  }
+  renderPackages(getActiveFilteredPackages());
 
   // Update Visa section if rendered
   checkVisaRequirements();
