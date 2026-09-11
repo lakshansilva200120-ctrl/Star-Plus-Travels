@@ -19,7 +19,7 @@ let currentCurrency = 'AED';
 const I18N_TRANSLATIONS = {
   en: {
     // Top Bar
-    topAnnouncementText: "Dubai & Sri Lanka Premier Travel & Visa Specialists",
+    topAnnouncementText: "Star Plus Travel & Tourism LLC • Premier Travel & Visa Specialists",
     topLocation: "Deira, Dubai, UAE & Colombo, Sri Lanka",
     whatsappConcierge: "WhatsApp Concierge",
     themeLabel: "Theme",
@@ -43,13 +43,13 @@ const I18N_TRANSLATIONS = {
     navHiringBadge: "We're Hiring",
 
     // Hero Section
-    heroBadge: "Your Gateway to the World • Dubai & Sri Lanka",
+    heroBadge: "Star Plus Travel & Tourism LLC • Dubai & Sri Lanka",
     heroTitleFull: 'Your <span class="text-amber-400">Gateway</span> to the World, Crafted with <span class="text-amber-400">Luxury</span> & Ease.',
     heroTitleLead: "Your Gateway to the",
     heroTitleWorld: "World",
     heroTitleMiddle: "Crafted with",
     heroTitleLuxury: "Luxury & Ease",
-    heroSubtitle: "Seamless journey from Sri Lanka & the UAE to 45+ global destinations. Handcrafted luxury holiday packages, competitive flights, and fast-track express visa processing.",
+    heroSubtitle: "Experience seamless global travel with Star Plus Travel & Tourism LLC. Handcrafted luxury holiday packages, competitive airline flights, and fast-track express visas from Dubai & Sri Lanka to 45+ worldwide destinations.",
     tabHolidays: "Tour Packages",
     tabFlights: "Flight Inquiries",
     tabVisas: "Fast-Track Visas",
@@ -182,7 +182,7 @@ const I18N_TRANSLATIONS = {
 
     // Footer
     footerAbout: "Star Plus Travel & Tourism LLC is a government accredited travel management company based in Deira, Dubai with branch operations in Sri Lanka. Providing world-class bespoke holiday packages, airline bookings, and express visa solutions.",
-    footerDesc: "Star Plus Travel and Tourism LLC is a premier licensed travel agency in the United Arab Emirates and Sri Lanka, delivering bespoke luxury vacations, corporate airline ticketing, and rapid express visa processing.",
+    footerDesc: "Star Plus Travel & Tourism LLC is a premier licensed travel agency in the United Arab Emirates and Sri Lanka, delivering bespoke luxury vacations, corporate airline ticketing, and rapid express visa processing.",
     footerUaeInq: '<i class="fa-solid fa-building mr-1 text-amber-400"></i>UAE Inquiries:',
     footerSlInq: '<i class="fa-solid fa-landmark mr-1 text-amber-400"></i>Sri Lanka Inquiries:',
     footerQuickLinks: "Quick Links",
@@ -234,7 +234,7 @@ const I18N_TRANSLATIONS = {
     termsPageTitle: "Terms &amp; Conditions",
     termsPageSubtitle: "Clear, transparent booking policies, immigration regulatory disclaimers, installment terms, and consumer rights.",
     termsArt1Title: "Company Licensing &amp; Scope of Services",
-    termsArt1Desc: "Star Plus Travel and Tourism LLC is a registered, licensed entity authorized by the Government of Dubai Department of Economy and Tourism (DET) in the United Arab Emirates, and affiliated with Star Plus Travel (PVT) LTD accredited under the Sri Lanka Tourism Development Authority (SLTDA). By booking holiday packages, international airline tickets, visa concierge services, or transportation through Star Plus Travels, the client acknowledges and enters into an agreement governed by the terms specified herein.",
+    termsArt1Desc: "Star Plus Travel & Tourism LLC is a registered, licensed entity authorized by the Government of Dubai Department of Economy and Tourism (DET) in the United Arab Emirates, and affiliated with Star Plus Travel (PVT) LTD accredited under the Sri Lanka Tourism Development Authority (SLTDA). By booking holiday packages, international airline tickets, visa concierge services, or transportation through Star Plus Travels, the client acknowledges and enters into an agreement governed by the terms specified herein.",
     termsArt2Title: "Tour Package Quotations &amp; Confirmations",
     termsArt2Desc: "All published or quoted prices are subject to inventory availability and airline fare fluctuations until full payment or the agreed initial deposit has been secured. Star Plus Travels guarantees that once an official booking confirmation voucher has been issued, no supplementary fuel surcharges or unexpected taxes will be added unless mandated by sudden government statutory decree.",
     termsArt3Title: "Split Payments &amp; Installments (Tabby &amp; Tamara)",
@@ -242,7 +242,7 @@ const I18N_TRANSLATIONS = {
     termsArt4Title: "Official Company Bank Accounts &amp; Secure Payment Policy",
     termsArt4Desc: "All payments must be made strictly to our official company bank account. We will never ask you to transfer funds to a personal account.",
     termsArt4ClauseTitle: "Official Payment Protection Clause:",
-    termsArt4ClauseDesc: "All monetary remittances—including holiday deposits, flight ticketing charges, visa processing fees, and hotel reservations—must be remitted exclusively to the verified corporate bank accounts of <strong>Star Plus Travel and Tourism LLC</strong> (in the UAE) or <strong>Star Plus Travel (PVT) LTD</strong> (in Sri Lanka), or completed via our authorized point-of-sale terminals or accredited installment gateways. Under no circumstances will any representative, employee, or agent of Star Plus Travels instruct a client to transfer funds into an individual or personal account.",
+    termsArt4ClauseDesc: "All monetary remittances—including holiday deposits, flight ticketing charges, visa processing fees, and hotel reservations—must be remitted exclusively to the verified corporate bank accounts of <strong>Star Plus Travel & Tourism LLC</strong> (in the UAE) or <strong>Star Plus Travel (PVT) LTD</strong> (in Sri Lanka), or completed via our authorized point-of-sale terminals or accredited installment gateways. Under no circumstances will any representative, employee, or agent of Star Plus Travels instruct a client to transfer funds into an individual or personal account.",
     termsArt5Title: "Visa Applications &amp; Immigration Disclaimers",
     termsArt5Desc: "Star Plus Travels provides visa application review, document compliance auditing, and authorized portal lodgment services. <strong>Crucial Notice:</strong> The final authority to grant, delay, or reject any tourist, transit, or entry visa rests exclusively with sovereign immigration bodies, including the UAE General Directorate of Residency and Foreigners Affairs (GDRFA), Federal Authority for Identity, Citizenship, Customs and Port Security (ICP), and relevant foreign embassies.",
     termsArt5FeesTitle: "Non-Refundable Government Fees:",
@@ -274,7 +274,7 @@ const I18N_TRANSLATIONS = {
 
   si: {
     // Top Bar
-    topAnnouncementText: "ඩුබායි සහ ශ්‍රී ලංකා ප්‍රමුඛතම සංචාරක සහ වීසා විශේෂඥයෝ",
+    topAnnouncementText: "Star Plus Travel & Tourism LLC • ඩුබායි සහ ශ්‍රී ලංකා ප්‍රමුඛතම සංචාරක සහ වීසා විශේෂඥයෝ",
     topLocation: "දෙයිරා, ඩුබායි සහ කොළඹ, ශ්‍රී ලංකාව",
     whatsappConcierge: "වට්ස්ඇප් සේවාව",
     themeLabel: "තේමාව",
@@ -298,7 +298,7 @@ const I18N_TRANSLATIONS = {
     navHiringBadge: "බඳවා ගැනේ",
 
     // Hero Section
-    heroBadge: "ඔබේ විශ්වාසනීය සංචාරක සහකරු • ඩුබායි සහ ශ්‍රී ලංකාව",
+    heroBadge: "Star Plus Travel & Tourism LLC • ඩුබායි සහ ශ්‍රී ලංකාව",
     heroTitleFull: 'ඔබේ සිහින <span class="text-amber-400">ලෝක සංචාරය</span>, උසස්ම <span class="text-amber-400">සුවපහසුවෙන් සැබෑ කරගන්න</span>.',
     heroTitleLead: "ඔබේ සිහින",
     heroTitleWorld: "ලෝක සංචාරය",
@@ -437,7 +437,7 @@ const I18N_TRANSLATIONS = {
 
     // Footer
     footerAbout: "Star Plus Travel & Tourism LLC යනු ඩුබායි දෙයිරා හි ප්‍රධාන කාර්යාලය සහ ශ්‍රී ලංකාවේ ශාඛා සහිත රජයේ අනුමත සංචාරක කළමනාකරණ සමාගමකි. උසස් තත්ත්වයේ නිවාඩු පැකේජ, ගුවන් ටිකට්පත් සහ ක්ෂණික වීසා සේවා සපයනු ලැබේ.",
-    footerDesc: "Star Plus Travel and Tourism LLC යනු එක්සත් අරාබි එමීර් රාජ්‍යයේ සහ ශ්‍රී ලංකාවේ බලපත්‍රලාභී ප්‍රමුඛතම සංචාරක ආයතනයක් වන අතර, සුඛෝපභෝගී නිවාඩු චාරිකා, ආයතනික ගුවන් ටිකට්පත් සහ ක්ෂණික එක්ස්ප්‍රස් වීසා සේවා සපයයි.",
+    footerDesc: "Star Plus Travel & Tourism LLC යනු එක්සත් අරාබි එමීර් රාජ්‍යයේ සහ ශ්‍රී ලංකාවේ බලපත්‍රලාභී ප්‍රමුඛතම සංචාරක ආයතනයක් වන අතර, සුඛෝපභෝගී නිවාඩු චාරිකා, ආයතනික ගුවන් ටිකට්පත් සහ ක්ෂණික එක්ස්ප්‍රස් වීසා සේවා සපයයි.",
     footerUaeInq: '<i class="fa-solid fa-building mr-1 text-amber-400"></i>ඩුබායි විමසීම්:',
     footerSlInq: '<i class="fa-solid fa-landmark mr-1 text-amber-400"></i>ශ්‍රී ලංකා විමසීම්:',
     footerQuickLinks: "ක්ෂණික පිවිසුම්",
@@ -489,7 +489,7 @@ const I18N_TRANSLATIONS = {
     termsPageTitle: "නියම සහ කොන්දේසි",
     termsPageSubtitle: "විනිවිදභාවයෙන් යුතු වෙන්කිරීමේ ප්‍රතිපත්ති, ආගමන විගමන නීතිමය ප්‍රකාශන, වාරික ගෙවීම් නියම සහ පාරිභෝගික අයිතිවාසිකම්.",
     termsArt1Title: "සමාගම් බලපත්‍ර සහ සේවා විෂය පථය",
-    termsArt1Desc: "Star Plus Travel and Tourism LLC යනු එක්සත් අරාබි එමීර් රාජ්‍යයේ ඩුබායි ආර්ථික හා සංචාරක දෙපාර්තමේන්තුව (DET) මඟින් බලපත්‍රලත් නීත්‍යානුකූල සමාගමක් වන අතර, ශ්‍රී ලංකා සංචාරක සංවර්ධන අධිකාරිය (SLTDA) යටතේ ලියාපදිංචි Star Plus Travel (PVT) LTD සමඟ අනුබද්ධිත වේ. Star Plus Travels හරහා නිවාඩු පැකේජ, ජාත්‍යන්තර ගුවන් ටිකට්පත්, වීසා සේවා හෝ ප්‍රවාහන සේවා වෙන්කරවා ගැනීමෙන්, සේවාදායකයා මෙහි සඳහන් නියමයන්ට එකඟතාව පළ කරනු ලබයි.",
+    termsArt1Desc: "Star Plus Travel & Tourism LLC යනු එක්සත් අරාබි එමීර් රාජ්‍යයේ ඩුබායි ආර්ථික හා සංචාරක දෙපාර්තමේන්තුව (DET) මඟින් බලපත්‍රලත් නීත්‍යානුකූල සමාගමක් වන අතර, ශ්‍රී ලංකා සංචාරක සංවර්ධන අධිකාරිය (SLTDA) යටතේ ලියාපදිංචි Star Plus Travel (PVT) LTD සමඟ අනුබද්ධිත වේ. Star Plus Travels හරහා නිවාඩු පැකේජ, ජාත්‍යන්තර ගුවන් ටිකට්පත්, වීසා සේවා හෝ ප්‍රවාහන සේවා වෙන්කරවා ගැනීමෙන්, සේවාදායකයා මෙහි සඳහන් නියමයන්ට එකඟතාව පළ කරනු ලබයි.",
     termsArt2Title: "සංචාරක පැකේජ මිල ගණන් සහ තහවුරු කිරීම්",
     termsArt2Desc: "සම්පූර්ණ ගෙවීම හෝ එකඟ වූ මූලික තැන්පතුව ගෙවන තුරු ප්‍රකාශිත හෝ ලබාදුන් සියලුම මිල ගණන් හෝටල් කාමර සහ ගුවන් ගාස්තු වෙනස්වීම් මත රඳා පවතී. නිල වෙන්කිරීම් තහවුරු කිරීමේ වවුචරයක් නිකුත් කළ පසු, හදිසි රජයේ බදු නියෝගයකින් හැර කිසිදු අමතර ඉන්ධන අධිභාරයක් හෝ අනපේක්ෂිත බද්දක් එකතු නොකරන බවට Star Plus Travels සහතික කරයි.",
     termsArt3Title: "පහසු වාරික ගෙවීම් (Tabby සහ Tamara)",
@@ -497,7 +497,7 @@ const I18N_TRANSLATIONS = {
     termsArt4Title: "නිල සමාගම් බැංකු ගිණුම් සහ ආරක්ෂිත ගෙවීම් ප්‍රතිපත්තිය",
     termsArt4Desc: "සියලුම ගෙවීම් අපගේ නිල සමාගම් බැංකු ගිණුමට පමණක් සිදු කළ යුතුය. පුද්ගලික ගිණුම්වලට මුදල් තැන්පත් කරන ලෙස අප කිසි විටෙකත් ඉල්ලා නොසිටිමු.",
     termsArt4ClauseTitle: "නිල ගෙවීම් ආරක්ෂණ වගන්තිය:",
-    termsArt4ClauseDesc: "නිවාඩු තැන්පතු, ගුවන් ටිකට්පත් ගාස්තු, වීසා ගාස්තු සහ හෝටල් වෙන්කිරීම් ඇතුළු සියලුම මුදල් ගනුදෙනු <strong>Star Plus Travel and Tourism LLC</strong> (එක්සත් අරාබි එමීර් රාජ්‍යයේ) හෝ <strong>Star Plus Travel (PVT) LTD</strong> (ශ්‍රී ලංකාවේ) නිල සමාගම් බැංකු ගිණුම්වලට හෝ අපගේ බලයලත් ගෙවීම් පර්යන්ත/වාරික ගේට්වේ හරහා පමණක් සිදු කළ යුතුය. කිසිදු සේවකයෙකු හෝ නියෝජිතයෙකු පුද්ගලික ගිණුම්වලට මුදල් තැන්පත් කිරීමට උපදෙස් නොදෙනු ඇත.",
+    termsArt4ClauseDesc: "නිවාඩු තැන්පතු, ගුවන් ටිකට්පත් ගාස්තු, වීසා ගාස්තු සහ හෝටල් වෙන්කිරීම් ඇතුළු සියලුම මුදල් ගනුදෙනු <strong>Star Plus Travel & Tourism LLC</strong> (එක්සත් අරාබි එමීර් රාජ්‍යයේ) හෝ <strong>Star Plus Travel (PVT) LTD</strong> (ශ්‍රී ලංකාවේ) නිල සමාගම් බැංකු ගිණුම්වලට හෝ අපගේ බලයලත් ගෙවීම් පර්යන්ත/වාරික ගේට්වේ හරහා පමණක් සිදු කළ යුතුය. කිසිදු සේවකයෙකු හෝ නියෝජිතයෙකු පුද්ගලික ගිණුම්වලට මුදල් තැන්පත් කිරීමට උපදෙස් නොදෙනු ඇත.",
     termsArt5Title: "වීසා අයදුම්පත් සහ ආගමන විගමන වගකීම් ප්‍රකාශය",
     termsArt5Desc: "Star Plus Travels වීසා අයදුම්පත් සමාලෝචනය, ලියකියවිලි පරීක්ෂාව සහ නිල පද්ධති වෙත යොමු කිරීමේ සේවාව සපයයි. <strong>වැදගත් නිවේදනය:</strong> සංචාරක, සංක්‍රමණ හෝ ප්‍රවේශ වීසා අනුමත කිරීම, ප්‍රමාද කිරීම හෝ ප්‍රතික්ෂේප කිරීමේ පූර්ණ බලය එක්සත් අරාබි එමීර් රාජ්‍යයේ ආගමන විගමන අධිකාරීන් (GDRFA, ICP) සහ අදාළ විදේශ තානාපති කාර්යාල සතු වේ.",
     termsArt5FeesTitle: "ආපසු නොගෙවන රජයේ ගාස්තු:",
@@ -2689,7 +2689,7 @@ function initNavPillIndicator() {
     targetPreloader.innerHTML = `
       <div class="ny-loader-card">
         <div class="ny-logo-container">
-          <img src="${logoSrc}" alt="Star Plus Travel and Tourism LLC" class="ny-brand-logo" />
+          <img src="${logoSrc}" alt="Star Plus Travel & Tourism LLC" class="ny-brand-logo" />
         </div>
 
         <div class="ny-badge-container">
