@@ -2061,6 +2061,24 @@ function updateBrandLogoTheme() {
     const lightSrc = img.getAttribute('data-light-src');
     if (!darkSrc || !lightSrc) return;
 
+    // Footer is permanently midnight dark (#050b12 / #020617 / bg-slate-950) across all pages
+    if (img.id === 'brandFooterLogo' || img.classList.contains('footer-brand-logo') || img.closest('footer')) {
+      img.src = darkSrc;
+      return;
+    }
+
+    // Preloader handles its own background switch or uses darkSrc for dark background
+    if (img.id === 'preloaderLogoImg' || img.classList.contains('preloader-brand-logo') || img.closest('#sitePreloader')) {
+      img.src = isDark ? darkSrc : lightSrc;
+      return;
+    }
+
+    // Mobile menu drawer (light in light mode, dark in dark mode)
+    if (img.classList.contains('mobile-brand-logo') || img.closest('#mobileMenu')) {
+      img.src = isDark ? darkSrc : lightSrc;
+      return;
+    }
+
     // Over dark hero section before scrolling, always display darkSrc (crisp white subtitle) even in light mode
     if (isOverHeroUnscrolled && (img.id === 'brandHeaderLogo' || img.classList.contains('header-brand-logo'))) {
       img.src = darkSrc;
@@ -2684,7 +2702,7 @@ function initNavPillIndicator() {
 
     const isDark = document.documentElement.classList.contains('dark') ||
       (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    const logoSrc = isDark ? 'assets/logo-white-text.png?v=8.0.0' : 'assets/original-removebg-preview.png?v=8.0.0';
+    const logoSrc = isDark ? 'assets/logo-white-text.png?v=8.2.0' : 'assets/original-removebg-preview.png?v=8.2.0';
 
     targetPreloader.innerHTML = `
       <div class="ny-loader-card">

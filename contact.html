@@ -97,9 +97,9 @@
       <!-- Single High-Res Centered Brand Logo (Locked Aspect Ratio & No Stretching) -->
       <img
         id="preloaderLogoImg"
-        src="assets/logo-white-text.png?v=8.0.0"
-        data-dark-src="assets/logo-white-text.png?v=8.0.0"
-        data-light-src="assets/original-removebg-preview.png?v=8.0.0"
+        src="assets/logo-white-text.png?v=8.2.0"
+        data-dark-src="assets/logo-white-text.png?v=8.2.0"
+        data-light-src="assets/original-removebg-preview.png?v=8.2.0"
         alt="Star Plus Travel & Tourism LLC"
         class="preloader-brand-logo"
         style="display: block; width: 220px; max-width: 70vw; height: auto; max-height: 75px; object-fit: contain; flex-shrink: 0; margin: 0 auto 20px auto;"
@@ -221,9 +221,9 @@
         <!-- Official Brand Logo -->
         <a href="/" class="header-brand-wrap flex items-center py-1 group shrink-0 flex-shrink-0" aria-label="Star Plus Travel & Tourism LLC Home">
           <img id="brandHeaderLogo"
-               src="assets/logo-white-text.png?v=8.0.0" 
-               data-dark-src="assets/logo-white-text.png?v=8.0.0"
-               data-light-src="assets/original-removebg-preview.png?v=8.0.0"
+               src="assets/logo-white-text.png?v=8.2.0" 
+               data-dark-src="assets/logo-white-text.png?v=8.2.0"
+               data-light-src="assets/original-removebg-preview.png?v=8.2.0"
                alt="Star Plus Travel & Tourism LLC" 
                class="header-brand-logo h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
         </a>
@@ -291,6 +291,20 @@
     </div>
     <!-- Mobile Slide-out Menu (Frosted Glass Translucent Drawer) -->
     <div id="mobileMenu" class="hidden lg:hidden backdrop-blur-xl bg-white/80 dark:bg-slate-950/80 border-b border-white/20 dark:border-slate-800/50 px-5 sm:px-6 pt-5 pb-16 space-y-4 transition-all duration-300 shadow-xl shadow-slate-900/5 dark:shadow-black/40">
+      <!-- Mobile Menu Brand Logo Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-slate-800/80">
+        <a href="index.html" class="inline-block py-1" aria-label="Star Plus Travel & Tourism LLC Home">
+          <img src="assets/logo-white-text.png?v=8.2.0"
+               data-dark-src="assets/logo-white-text.png?v=8.2.0"
+               data-light-src="assets/original-removebg-preview.png?v=8.2.0"
+               alt="Star Plus Travel & Tourism LLC"
+               class="mobile-brand-logo h-8 sm:h-9 w-auto object-contain">
+        </a>
+        <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" aria-label="Close menu">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
       <nav class="flex flex-col space-y-2.5 text-base font-semibold text-slate-900 dark:text-white">
         <a href="index.html" onclick="toggleMobileMenu()" class="text-slate-800 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400 py-2 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
           <span data-i18n="navHome">Home</span>
@@ -697,7 +711,14 @@
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800 text-xs">
       
       <div class="lg:col-span-2 space-y-4">
-        <img src="assets/logo-white-text.png?v=8.0.0" alt="Star Plus Travel & Tourism LLC" class="h-10 w-auto object-contain">
+        <a href="index.html" class="inline-block py-1" aria-label="Star Plus Travel & Tourism LLC Home">
+          <img id="brandFooterLogo"
+               src="assets/logo-white-text.png?v=8.2.0"
+               data-dark-src="assets/logo-white-text.png?v=8.2.0"
+               data-light-src="assets/logo-white-text.png?v=8.2.0"
+               alt="Star Plus Travel & Tourism LLC"
+               class="footer-brand-logo h-10 sm:h-12 w-auto object-contain">
+        </a>
         <p class="text-xs text-slate-400 leading-relaxed max-w-sm" data-i18n="footerDesc">
           Star Plus Travel & Tourism LLC is a premier licensed travel agency in the United Arab Emirates and Sri Lanka, delivering bespoke luxury vacations, corporate airline ticketing, and rapid express visa processing.
         </p>
