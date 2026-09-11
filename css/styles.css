@@ -455,7 +455,7 @@ body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) #mobileMenuBtn
 }
 
 /* Star Plus Travels Brand Logo: Floating Directly on Header Background (Zero Box Plate) */
-header a[aria-label="Star Plus Travels Home"],
+header a[aria-label="Star Plus Travel & Tourism LLC Home"],
 .header-brand-wrap {
   position: relative;
   display: inline-flex;
@@ -473,8 +473,8 @@ header a[aria-label="Star Plus Travels Home"],
 }
 
 /* Ensure no background plate in light mode */
-html.light header a[aria-label="Star Plus Travels Home"],
-:root:not(.dark) header a[aria-label="Star Plus Travels Home"],
+html.light header a[aria-label="Star Plus Travel & Tourism LLC Home"],
+:root:not(.dark) header a[aria-label="Star Plus Travel & Tourism LLC Home"],
 html.light .header-brand-wrap,
 :root:not(.dark) .header-brand-wrap {
   background: none !important;
@@ -486,8 +486,8 @@ html.light .header-brand-wrap,
 }
 
 /* Ensure no background plate in dark mode */
-html.dark header a[aria-label="Star Plus Travels Home"],
-:root.dark header a[aria-label="Star Plus Travels Home"],
+html.dark header a[aria-label="Star Plus Travel & Tourism LLC Home"],
+:root.dark header a[aria-label="Star Plus Travel & Tourism LLC Home"],
 html.dark .header-brand-wrap,
 :root.dark .header-brand-wrap {
   background: none !important;
@@ -499,8 +499,8 @@ html.dark .header-brand-wrap,
 }
 
 /* Ensure no background plate over hero before scrolling */
-body:has(#hero) #mainHeader:not(.header-scrolled) a[aria-label="Star Plus Travels Home"],
-body:has(#hero) .hero-floating-nav:not(.header-scrolled) a[aria-label="Star Plus Travels Home"],
+body:has(#hero) #mainHeader:not(.header-scrolled) a[aria-label="Star Plus Travel & Tourism LLC Home"],
+body:has(#hero) .hero-floating-nav:not(.header-scrolled) a[aria-label="Star Plus Travel & Tourism LLC Home"],
 body:has(#hero) #mainHeader:not(.header-scrolled) .header-brand-wrap,
 body:has(#hero) .hero-floating-nav:not(.header-scrolled) .header-brand-wrap {
   background: none !important;
@@ -512,7 +512,7 @@ body:has(#hero) .hero-floating-nav:not(.header-scrolled) .header-brand-wrap {
 }
 
 /* Clean Hover: No bounding box or border glow */
-header a[aria-label="Star Plus Travels Home"]:hover,
+header a[aria-label="Star Plus Travel & Tourism LLC Home"]:hover,
 .header-brand-wrap:hover {
   background: none !important;
   border: none !important;
