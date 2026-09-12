@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Star Plus Travels - Interactive Application Logic & Video Hero Engine
  */
 
@@ -3684,7 +3684,7 @@ window.prevDestinationSlide = prevDestinationSlide;
 window.handleSliderExplore = handleSliderExplore;
 
 /* ==========================================================================
-   LEVEL 2: Country-Specific Interactive Showcase Modal System (Image 2)
+   LEVEL 2 & 3: Country-Specific Interactive Showcase & Itinerary Drawer System
    ========================================================================== */
 const COUNTRY_SHOWCASE_DATA = {
   srilanka: {
@@ -3706,16 +3706,54 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 165,000',
         image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-        description: 'Unwind along Sri Lanka’s sun-drenched southern coastline. Stroll the 17th-century ramparts and cobblestone paths of UNESCO World Heritage Galle Dutch Fort, watch stilt fishermen at Koggala, catch premier surf breaks at Weligama and Hiriketiya, and cruise through mangrove tunnels on the Madu River boat safari.',
+        description: 'Unwind along Sri Lankaâ€™s sun-drenched southern coastline. Stroll the 17th-century ramparts and cobblestone paths of UNESCO World Heritage Galle Dutch Fort, watch stilt fishermen at Koggala, catch premier surf breaks at Weligama and Hiriketiya, and cruise through mangrove tunnels on the Madu River boat safari.',
         checklist: [
-          'UNESCO Galle Dutch Fort & Lighthouse',
-          'Mirissa Secret Beach & Whale Harbor',
-          'Unawatuna Japanese Peace Pagoda',
-          'Hikkaduwa Coral Reef Snorkeling',
-          'Hiriketiya Horseshoe Surf Bay',
-          'Bentota & Madu River Mangrove Safari'
+          'UNESCO Galle Dutch Fort & Lighthouse Ramparts',
+          'Mirissa Secret Beach & Whale Watching Harbor',
+          'Unawatuna Japanese Peace Pagoda & Jungle Beach',
+          'Hikkaduwa Coral Reef & Sea Turtle Sanctuary',
+          'Bentota & Madu River Mangrove Boat Safari'
         ],
-        whatsappMsg: 'Hi Star Plus, I would like to book the Sri Lanka "Galle & Down South" regional tour (AED 1,890 / LKR 165,000).'
+        inclusions: [
+          '3 Nights accommodation at 4-Star Beachfront Resort in Galle/Bentota',
+          'Daily International Buffet Breakfast',
+          'Private Air-Conditioned luxury vehicle with English-speaking Chauffeur Guide',
+          'Roundtrip Colombo Airport (CMB) private transfers',
+          'Madu River Mangrove Boat Safari with Fish Spa Experience',
+          'UNESCO Galle Dutch Fort & Lighthouse guided walking tour',
+          'Emirates flight booking assistance & complimentary visa guidance',
+          '24/7 dedicated on-trip concierge support'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Arrival in Sri Lanka & Scenic Coastal Highway Transfer',
+            desc: 'Warm VIP welcome at Colombo Bandaranaike International Airport (CMB). Meet your dedicated English-speaking chauffeur guide and transfer along the southern expressway to your beachfront resort in Bentota/Galle. Enjoy sunset ocean breezes and an evening at leisure.'
+          },
+          {
+            day: 2,
+            title: 'UNESCO Galle Dutch Fort & Madu River Mangrove Safari',
+            desc: 'Embark on a private boat safari through the mangrove tunnels of the Madu River, visiting Cinnamon Island and experiencing natural fish therapy. Continue to the historic 17th-century Galle Dutch Fort; explore cobblestone alleys, boutique cafes, the iconic lighthouse, and rampart viewpoints at sunset.'
+          },
+          {
+            day: 3,
+            title: 'Mirissa Coastal Wonders, Stilt Fishermen & Beachside Dining',
+            desc: 'Visit the picturesque coconut tree hill of Mirissa and observe the iconic traditional stilt fishermen of Koggala. Option for seasonal whale watching or relaxing at Hiriketiya beach. Savor a fresh seafood dinner right on the golden sands under the stars.'
+          },
+          {
+            day: 4,
+            title: 'Sea Turtle Conservation Project & Airport Departure',
+            desc: 'Enjoy a leisurely breakfast overlooking the Indian Ocean. Visit the Kosgoda Sea Turtle Conservation Project to learn about endangered turtle rehabilitation. Scenic transfer back to Colombo Airport for your departure flight.'
+          }
+        ],
+        finePrint: [
+          'Rates are based on double/twin sharing per person.',
+          'Standard hotel check-in is 14:00 hrs; check-out is 12:00 hrs.',
+          'Whale watching excursion operates seasonally from November through April.',
+          'Valid passport with at least 6 months validity and Sri Lanka ETA required.',
+          'Flexible booking with 0% Tabby installment options available upon checkout.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Galle & Down South'
       },
       {
         id: 'sl-sigiriya-cultural',
@@ -3732,13 +3770,57 @@ const COUNTRY_SHOWCASE_DATA = {
         thumbnail: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
         description: 'Journey through 2,500 years of royal Sri Lankan heritage. Scale the iconic 5th-century Lion Rock of Sigiriya, admire 150+ Buddha statues in Dambulla Cave Temples, explore the sprawling ruins of Anuradhapura and Polonnaruwa, and witness sacred relic ceremonies in Kandy.',
         checklist: [
-          'Sigiriya 5th-Century Lion Rock Fortress',
-          'Golden Dambulla Cave Temple Complex',
-          'Anuradhapura Sacred Bodhi Tree',
-          'Polonnaruwa Ancient Kingdom Ruins',
-          'Kandy Temple of the Tooth Relic'
+          'Sigiriya 5th-Century Lion Rock Fortress Ascent',
+          'Golden Dambulla Cave Temple Complex (150+ Statues)',
+          'Anuradhapura Sacred Bodhi Tree & Monasteries',
+          'Polonnaruwa Ancient Royal Kingdom Ruins',
+          'Kandy Sacred Temple of the Tooth Relic'
         ],
-        whatsappMsg: 'Hi Star Plus, I am interested in the Sri Lanka "Sigiriya & Cultural Triangle" tour (AED 2,250 / LKR 195,000).'
+        inclusions: [
+          '4 Nights accommodation at 4-Star & 5-Star Heritage Boutique Resorts',
+          'Daily buffet breakfast and authentic Ceylon dinners',
+          'Private luxury AC transport with dedicated chauffeur guide',
+          'VIP entrance tickets to Sigiriya Rock Fortress and Dambulla Cave Temples',
+          'Temple of the Tooth Relic evening puja ritual entry',
+          'Traditional village bullock cart tour with organic clay-pot lunch',
+          'Emirates flight booking assistance & full visa concierge',
+          '24/7 dedicated travel concierge'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Welcome to Sri Lanka & Transfer to Cultural Heartlands',
+            desc: 'Arrival at Colombo Airport (CMB). Meet your chauffeur guide and drive into the heart of the Cultural Triangle. Check in to your eco-resort surrounded by tropical flora with views of the distant rock fortress.'
+          },
+          {
+            day: 2,
+            title: 'Climb 5th-Century Sigiriya Lion Rock & Village Experience',
+            desc: 'Ascend the dramatic 200m monolithic citadel of Sigiriya in the crisp morning air. Marvel at ancient water gardens, royal frescoes, and the giant lion paws. Afternoon traditional village bullock cart ride and authentic rural home-cooked clay pot lunch.'
+          },
+          {
+            day: 3,
+            title: 'Polonnaruwa Ancient Kingdom Ruins & Minneriya Safari',
+            desc: 'Cycle or tour the ancient royal capital of Polonnaruwa, exploring the Gal Vihara rock-cut Buddha sculptures and royal palaces. In the afternoon, embark on an open 4x4 jeep safari in Minneriya National Park to witness hundreds of wild Asian elephants at the lake reservoir.'
+          },
+          {
+            day: 4,
+            title: 'Dambulla Golden Caves, Spice Gardens & Royal Kandy',
+            desc: 'Explore the 5 sacred cave shrines of Dambulla containing over 150 exquisite Buddha statues and intricate murals. Continue to Kandy with a fragrant spice garden stop. In the evening, attend the revered puja ceremony at the Temple of the Tooth Relic.'
+          },
+          {
+            day: 5,
+            title: 'Peradeniya Royal Botanical Gardens & Airport Departure',
+            desc: 'Stroll through the sprawling Royal Botanical Gardens of Peradeniya, home to giant Javan fig trees and rare orchids. Panoramic Kandy lake drive before transferring to Colombo Airport for your departure flight.'
+          }
+        ],
+        finePrint: [
+          'Modest dress code required at sacred temple sites (shoulders and knees covered).',
+          'Sigiriya climb involves approximately 1,200 steps; comfortable walking shoes recommended.',
+          'Elephant gathering at Minneriya/Kaudulla depends on seasonal wildlife movement.',
+          'Peak season supplement applies during festive dates and Kandy Esala Perahera.',
+          '0% Tabby installment plans available.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Sigiriya & Cultural Triangle'
       },
       {
         id: 'sl-ella-nuwaraeliya',
@@ -3753,15 +3835,58 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 180,000',
         image: 'assets/sri-lanka-destination.jpg',
         thumbnail: 'assets/sri-lanka-destination.jpg',
-        description: 'Ride the legendary blue train as it weaves across misty valleys and the architectural marvel of the Demodara Nine Arches Bridge. Wander through the crisp, emerald Ceylon tea plantations of Nuwara Eliya, stand above the clouds at World’s End in Horton Plains, and hike to cascading waterfalls.',
+        description: 'Ride the legendary blue train as it weaves across misty valleys and the architectural marvel of the Demodara Nine Arches Bridge. Wander through the crisp, emerald Ceylon tea plantations of Nuwara Eliya, stand above the clouds at Worldâ€™s End in Horton Plains, and hike to cascading waterfalls.',
         checklist: [
-          'Hill Country Scenic Blue Train Journey',
-          'Demodara Nine Arches Bridge Viewpoint',
-          'Ravana Falls & Little Adam’s Peak Hike',
-          'Horton Plains & 880m World’s End Precipice',
-          'Ceylon Tea Plantation & Estate Tasting'
+          'World-Famous Scenic Hill Country Blue Train Journey',
+          'Demodara Nine Arches Bridge Photography Stop',
+          'Ravana Falls & Little Adamâ€™s Peak Panoramic Hike',
+          'Horton Plains National Park & Worldâ€™s End Precipice',
+          'Colonial Ceylon Tea Plantation & Estate Tasting'
         ],
-        whatsappMsg: 'Hi Star Plus, I would like to inquire about the "Ella & Nuwara Eliya" Hill Country tour (AED 2,050 / LKR 180,000).'
+        inclusions: [
+          '4 Nights stay in colonial tea estate bungalows & boutique mountain resorts',
+          'Daily gourmet breakfast featuring freshly picked highland teas',
+          'Reserved 1st / 2nd Class tickets for the scenic Hill Country Blue Train',
+          'Private AC vehicle throughout with expert mountain driver guide',
+          'Guided tea manufacturing tour and private tea tasting session',
+          'Horton Plains National Park entry permits & guide',
+          'Emirates flight booking assistance',
+          '24/7 dedicated concierge assistance'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Ascend to the Misty Hills of Nuwara Eliya ("Little England")',
+            desc: 'Arrive at Colombo Airport and begin the picturesque ascent into the central highlands. Pass cascading roadside waterfalls and rolling emerald tea terraces. Check in to your colonial bungalow in Nuwara Eliya and enjoy an evening stroll around Gregory Lake.'
+          },
+          {
+            day: 2,
+            title: 'Horton Plains & 880m Worldâ€™s End Cliff Trek',
+            desc: 'Early morning expedition to Horton Plains National Park. Trek through cloud forests to the breathtaking 880m drop at Worldâ€™s End and admire Bakerâ€™s Falls. Afternoon visit to a working British-era tea factory with tea master tasting.'
+          },
+          {
+            day: 3,
+            title: 'Scenic Blue Train Ride to Ella & Nine Arches Bridge',
+            desc: 'Board the iconic blue train at Nanu Oya for one of the worldâ€™s most scenic rail journeys, winding through misty mountain passes. Arrive in bohemian Ella; walk along the tracks to the majestic 1921 Demodara Nine Arches Bridge as trains pass through.'
+          },
+          {
+            day: 4,
+            title: 'Hike Little Adamâ€™s Peak & Ravana Waterfall Cascade',
+            desc: 'Embark on an easy morning hike up Little Adamâ€™s Peak for 360-degree vistas across Ella Gap. Visit the thundering Ravana Falls and unwind at one of Ellaâ€™s trendy clifftop cafes.'
+          },
+          {
+            day: 5,
+            title: 'Scenic Southern Descent & Airport Return',
+            desc: 'Descend through rubber and coconut plantations towards the coast, taking the highway back to Colombo International Airport for your return flight.'
+          }
+        ],
+        finePrint: [
+          'Train tickets are subject to government railway reservation windows; guaranteed seating prioritized.',
+          'Light jackets/warm clothing recommended for Nuwara Eliya evenings (12Â°C - 16Â°C).',
+          'Horton Plains trek is approximately 9 km loop; suitable for active travelers.',
+          '0% Tabby installment financing options available.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Ella & Nuwara Eliya'
       },
       {
         id: 'sl-wildlife-safari',
@@ -3778,13 +3903,56 @@ const COUNTRY_SHOWCASE_DATA = {
         thumbnail: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=80',
         description: 'Track the highest leopard density on the planet with customized 4x4 open-top jeep safaris in Yala and Wilpattu. Trek beneath the ancient prehistoric canopy of UNESCO Sinharaja Virgin Rainforest, observe wild elephant rehabilitation at Udawalawe, and spot rare migratory wetland birds at Bundala.',
         checklist: [
-          'Yala Big-Game Leopard 4x4 Safari',
-          'Udawalawe Elephant Transit Home Visit',
-          'Sinharaja UNESCO Virgin Rainforest Trek',
+          'Yala National Park Big-Game Leopard 4x4 Safari',
+          'Udawalawe Elephant Transit Home & Orphan Rehabilitation',
+          'Sinharaja UNESCO Virgin Rainforest Canopy Trek',
           'Bundala Wetland Migratory Bird Sanctuary',
-          'Wilpattu Dense Forest Leopard Safari'
+          'Wilpattu Dense Forest Sloth Bear & Leopard Safari'
         ],
-        whatsappMsg: 'Hi Star Plus, I would like to book the "Wildlife & Rainforest Safari" package (AED 2,150 / LKR 190,000).'
+        inclusions: [
+          '4 Nights luxury safari tented camp & eco-lodge accommodation',
+          'Daily buffet breakfast and bush dinners under the stars',
+          'Private 4x4 open-top safari jeeps with expert wildlife trackers and park rangers',
+          'All National Park entrance fees, conservation permits, and tracker tips',
+          'Guided Sinharaja rainforest nature walk with certified naturalist',
+          'Private AC transfers between all national reserves',
+          'Emirates flight booking assistance',
+          '24/7 dedicated on-trip concierge'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Arrival & Transfer to Sinharaja Rainforest Biosphere',
+            desc: 'Meet your guide at Colombo Airport and drive to the fringes of the UNESCO Sinharaja Rainforest. Settle into your eco-lodge serenaded by jungle bird calls. Evening nocturnal nature walk.'
+          },
+          {
+            day: 2,
+            title: 'Sinharaja Deep Forest Trek & Udawalawe Elephant Home',
+            desc: 'Embark on a guided morning trek beneath the ancient canopy of Sinharaja, spotting endemic birds, purple-faced langurs, and hidden streams. Afternoon drive to Udawalawe to witness baby elephant milk feeding at the Elephant Transit Home.'
+          },
+          {
+            day: 3,
+            title: 'Yala National Park Big-Game Afternoon Safari',
+            desc: 'Check in to your luxury safari tented camp near Yala. Board your custom 4x4 open safari jeep for an intensive game drive in Yala Block 1, home to the worldâ€™s densest wild leopard population, sloth bears, and crocodiles.'
+          },
+          {
+            day: 4,
+            title: 'Dawn Leopard Tracking & Bundala Bird Sanctuary',
+            desc: 'Early morning game drive at first light when big cats are most active on the granite rocks. In the afternoon, visit the coastal wetlands of Bundala National Park, a UNESCO Biosphere sanctuary hosting thousands of migratory flamingos and waterfowl.'
+          },
+          {
+            day: 5,
+            title: 'Southern Coastal Drive & Colombo Airport Departure',
+            desc: 'Enjoy a leisurely breakfast listening to peacocks in the bush. Take the southern expressway back to Colombo Airport for your departure flight.'
+          }
+        ],
+        finePrint: [
+          'Yala Block 1 undergoes annual dry-season maintenance in Sept/Oct; safaris redirected to Block 5/Lunugamvehera.',
+          'Neutral clothing (khaki, olive, brown) recommended for all wildlife game drives.',
+          'Safari jeeps are fully insured and operated by certified professional trackers.',
+          '0% Tabby installment financing options available.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Wildlife & Rainforest Safari'
       },
       {
         id: 'sl-jaffna-north',
@@ -3801,13 +3969,49 @@ const COUNTRY_SHOWCASE_DATA = {
         thumbnail: 'https://images.unsplash.com/photo-1588258524675-c6353d9e8790?auto=format&fit=crop&w=800&q=80',
         description: 'Discover the vibrant Tamil cultural capital of Northern Sri Lanka. Experience spiritual reverence at the golden Nallur Kandaswamy Kovil, explore the star-shaped Dutch fort, take scenic ferries across the Palk Strait to sacred Nagadeepa Temple, and witness wild horses on remote coral-walled Delft Island.',
         checklist: [
-          'Star-Shaped Historic Jaffna Dutch Fort',
-          'Golden Nallur Kandaswamy Kovil Experience',
+          'Star-Shaped Historic Jaffna Dutch Fort & Ramparts',
+          'Golden Nallur Kandaswamy Kovil Puja Experience',
           'Nagadeepa (Nainativu) Island Ferry Crossing',
-          'Delft Island Wild Horses & Baobab Tree',
-          'Keerimalai Sacred Natural Springs'
+          'Delft Island Wild Horses & Ancient Baobab Tree',
+          'Keerimalai Sacred Natural Healing Springs'
         ],
-        whatsappMsg: 'Hi Star Plus, please provide details for the "Jaffna & Untouched North" tour (AED 1,950 / LKR 170,000).'
+        inclusions: [
+          '3 Nights stay at premier heritage boutique hotel in Jaffna City',
+          'Daily traditional Northern Ceylon breakfast and Jaffna crab curry dinner',
+          'Private AC vehicle throughout with regional specialist chauffeur guide',
+          'Public and speed ferry boat transfers to Nainativu & Delft Islands',
+          'Jaffna Dutch Fort and historical site entrance permits',
+          'Emirates flight booking assistance',
+          '24/7 travel concierge support'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Gateway to the North & Jaffna Dutch Fort',
+            desc: 'Cross Elephant Pass into the Jaffna Peninsula. Check in to your boutique city hotel. Afternoon walking tour around the grand star-shaped Jaffna Dutch Fort and restored colonial public library. Taste the famous Jaffna mango ice cream at Rio.'
+          },
+          {
+            day: 2,
+            title: 'Nallur Kandaswamy Kovil & Heritage Discovery',
+            desc: 'Witness the morning temple ceremonies and rhythmic drumming at the magnificent golden Nallur Kandaswamy Kovil. Visit the historic ruins of the Jaffna Kingdom (Sangiliyan Thoranam) and explore bustling local bazaars filled with Palmyra sweets and spices.'
+          },
+          {
+            day: 3,
+            title: 'Island Hopping: Nainativu & Delft Island',
+            desc: 'Drive to Kurikadduwan jetty and take the ferry to sacred Nainativu island to visit Nagadeepa Buddhist Vihara and Nagapooshani Amman Hindu Kovil. Continue to remote Delft Island to see wild descendant horses of Portuguese cavalry, coral wall lanes, and the colossal ancient Baobab tree.'
+          },
+          {
+            day: 4,
+            title: 'Keerimalai Healing Springs, Point Pedro & Departure',
+            desc: 'Visit Keerimalai Sacred Natural Springs overlooking the Palk Strait and stand at Point Pedro, the northernmost point of Sri Lanka. Transfer to Jaffna station for the luxury air-conditioned express train or drive south to Colombo Airport.'
+          }
+        ],
+        finePrint: [
+          'Conservative clothing required at temples (men remove shirts at Nallur inner sanctum).',
+          'Island boat ferries are subject to sea weather and maritime authority scheduling.',
+          '0% Tabby installment financing options available.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Jaffna & Untouched North'
       }
     ]
   },
@@ -3830,7 +4034,7 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 380,000 / Adult (Child LKR 320,000)',
         image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
-        description: 'The signature Dubai luxury family getaway. Stay in 4-star deluxe comfort at Avani Deira Hotel with daily international breakfast, ascend to the 124th/125th floor of the Burj Khalifa, explore the aquatic wonders of Dubai Aquarium & Underwater Zoo, sail Dubai Marina on a 5-star Dhow Cruise Dinner with live Tanoura dance, and visit Dubai Miracle Garden and Global Village.',
+        description: 'The signature Dubai luxury family getaway. Stay in 4-star deluxe comfort at Avani Deira Hotel with daily international breakfast, ascend to the 124th/125th floor of the Burj Khalifa, explore the aquatic wonders of Dubai Aquarium & Underwater Zoo, sail Dubai Marina on a 5-star Dhow Cruise Dinner with live Tanoura dance, and conquer the golden dunes on a VIP 4x4 desert safari.',
         checklist: [
           'Avani Deira Dubai Hotel 4-Star Deluxe Stay',
           'Burj Khalifa 124th/125th Floor Observation Deck',
@@ -3839,7 +4043,48 @@ const COUNTRY_SHOWCASE_DATA = {
           'Dubai Miracle Garden & Global Village Entry',
           'VIP 4x4 Desert Safari with Dune Bashing & BBQ'
         ],
-        whatsappMsg: 'Hi Star Plus, I am interested in the "Dubai 4D / 3N Family Escape" with Avani Deira Hotel (LKR 380,000 / Adult).'
+        inclusions: [
+          '3 Nights Deluxe accommodation at Avani Deira Dubai Hotel (4-Star Deluxe)',
+          'Daily International Buffet Breakfast at hotel restaurant',
+          'Roundtrip Private Dubai International Airport (DXB) transfers in luxury AC vehicle',
+          'Burj Khalifa "At The Top" (124th & 125th Floor) Observation Deck prime tickets',
+          'Dubai Aquarium & Underwater Zoo Explorer regular pass',
+          '5-Star Dubai Marina Luxury Dhow Cruise Dinner with international buffet & live Tanoura dance show',
+          'VIP 4x4 Desert Safari: Dune Bashing, Camel Ride, Sandboarding, BBQ Dinner, Fire & Belly Dance Shows',
+          'Dubai Miracle Garden & Global Village entrance tickets with transfers',
+          'Emirates flight booking assistance and express UAE Tourist Visa processing',
+          '24/7 dedicated Dubai on-ground concierge support'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Welcome to Dubai & 5-Star Marina Dhow Cruise Dinner',
+            desc: 'Arrive at Dubai International Airport (DXB). Meet our representative for private luxury transfer to Avani Deira Dubai Hotel. Freshen up and relax. In the evening, transfer to Dubai Marina for a 2-hour 5-star luxury Dhow Cruise Dinner: glide beneath illuminated skyscrapers, enjoy an opulent international buffet, and witness a mesmerizing live Tanoura dance show.'
+          },
+          {
+            day: 2,
+            title: 'Burj Khalifa "At The Top", Dubai Aquarium & Dubai Mall',
+            desc: 'Enjoy buffet breakfast at Avani Deira Hotel. Transfer to Downtown Dubai and board the worldâ€™s fastest double-deck elevators to the 124th & 125th floors of Burj Khalifa for 360-degree panoramic skyline views. Explore the Dubai Aquarium & Underwater Zoo, marveling at thousands of aquatic animals and the giant 10-million-liter tank. Watch the musical Dubai Fountain show in the evening.'
+          },
+          {
+            day: 3,
+            title: 'Miracle Garden, Global Village & VIP Red Dune Desert Safari',
+            desc: 'Morning visit to the vibrant floral wonderland of Dubai Miracle Garden. In the afternoon, embark on an exhilarating VIP 4x4 Desert Safari in a Land Cruiser across the high red Lahbab dunes. Enjoy thrilling dune bashing, sandboarding, camel rides, Arabic coffee & dates, henna painting, and an open-air 5-star BBQ dinner with fire shows and belly dance performances.'
+          },
+          {
+            day: 4,
+            title: 'Deira Gold Souks Leisure & Private Airport Departure',
+            desc: 'Leisurely breakfast at the hotel. Explore the traditional Deira Gold & Spice Souks or do last-minute luxury shopping at Deira City Centre. Private chauffeur transfer to Dubai International Airport (DXB) for your Emirates flight back home.'
+          }
+        ],
+        finePrint: [
+          'Rates are based on twin/double sharing per person; special child rates applicable (LKR 320,000).',
+          'Standard hotel check-in at 14:00 hrs & check-out at 12:00 hrs.',
+          'Tourism Dirham fee of AED 15 per room per night payable directly to the hotel upon check-in.',
+          'UAE 30-Day or 60-Day tourist visa assistance provided (approval in 24-48 hours).',
+          '0% interest installment financing available through Tabby (4 convenient monthly payments).'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Dubai 4D / 3N Family Escape'
       },
       {
         id: 'dubai-abudhabi-grand',
@@ -3862,7 +4107,50 @@ const COUNTRY_SHOWCASE_DATA = {
           'Red Dune VIP Desert Safari with Private Majlis',
           'Dedicated Chauffeur & 5-Star Waterfront Hotel'
         ],
-        whatsappMsg: 'Hi Star Plus, I would like to book the "Dubai & Abu Dhabi Grand Tour" (AED 2,750 / LKR 560,000).'
+        inclusions: [
+          '4 Nights at 5-Star Waterfront Hotel (Radisson Blu / SwissÃ´tel Al Ghurair)',
+          'Daily International Gourmet Breakfast Buffet',
+          'Full-day private chauffeur tour to Abu Dhabi (Grand Mosque, Corniche & Louvre)',
+          'Private 2-Hour Luxury Yacht Cruise past Dubai Marina, JBR & Atlantis The Palm',
+          'Museum of the Future VIP Priority Admission Tickets',
+          'Red Dune VIP Desert Safari with private table majlis service',
+          'Private roundtrip Dubai International Airport (DXB) transfers in luxury vehicle',
+          'Emirates flights booking concierge & 24/7 dedicated travel manager'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'VIP Arrival in Dubai & Private 2-Hour Luxury Yacht Cruise',
+            desc: 'VIP airport meet-and-greet at DXB with private luxury vehicle transfer to your 5-star waterfront hotel. Evening transfer to Dubai Marina Yacht Club for a private 2-hour sunset yacht cruise gliding past Ain Dubai, JBR, and Atlantis The Palm with chilled refreshments.'
+          },
+          {
+            day: 2,
+            title: 'Museum of the Future & Downtown Dubai Elegance',
+            desc: 'Step into the year 2071 with VIP priority admission to the architectural marvel of the Museum of the Future. Afternoon visit to Dubai Frame with its transparent glass bridge, followed by dinner overlooking the Dubai Fountain.'
+          },
+          {
+            day: 3,
+            title: 'Full-Day Abu Dhabi Royal Capital Tour & Louvre Museum',
+            desc: 'Private chauffeur excursion to UAE\'s capital, Abu Dhabi. Tour the breathtaking white marble Sheikh Zayed Grand Mosque, drive along the pristine Corniche past Emirates Palace, and explore world-class art at Louvre Abu Dhabi.'
+          },
+          {
+            day: 4,
+            title: 'VIP Red Dune Desert Safari & Starlight Majlis Dinner',
+            desc: 'Morning at leisure for relaxation or designer shopping. In the afternoon, journey into the Lahbab red desert for thrilling dune bashing, falconry photography, and a private majlis BBQ banquet with live Arabian fire and dance performances.'
+          },
+          {
+            day: 5,
+            title: 'Luxury Shopping & Chauffeur Airport Departure',
+            desc: 'Breakfast at the hotel. Chauffeur-driven shopping tour at Souk Madinat Jumeirah and Mall of the Emirates before direct private transfer to Dubai International Airport (DXB).'
+          }
+        ],
+        finePrint: [
+          'Modest dress code required for Sheikh Zayed Grand Mosque (abayas available for ladies).',
+          'Louvre Abu Dhabi is closed on Mondays; schedule adjusted seamlessly.',
+          'Tourism Dirham fee payable directly at the hotel (AED 20 per room per night).',
+          '0% Tabby installment options available.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Dubai & Abu Dhabi Grand Tour'
       }
     ]
   },
@@ -3888,12 +4176,50 @@ const COUNTRY_SHOWCASE_DATA = {
         description: 'Wake up above crystal lagoons in your private overwater pool villa. Includes scenic return seaplane transfers from Male, all-inclusive dine-around fine dining, guided coral reef snorkeling with sea turtles, and sunset champagne dolphin cruises.',
         checklist: [
           '5-Star Overwater Pool Villa Accommodation',
-          'Roundtrip Scenic Seaplane Transfers',
+          'Roundtrip Scenic Seaplane Transfers from Male',
           'All-Inclusive Fine Dining & Champagne Breakfast',
-          'Guided Coral Reef Turtle Snorkeling',
+          'Guided Coral Reef Turtle Snorkeling Safari',
           'Sunset Dolphin Yacht Cruise with Canapes'
         ],
-        whatsappMsg: 'Hi Star Plus, I am interested in the Maldives Overwater Villa Luxury Escape (AED 4,499).'
+        inclusions: [
+          '3 Nights in a 5-Star Luxury Overwater Villa with Private Infinity Plunge Pool',
+          'Roundtrip Scenic Seaplane transfers from Velana International Airport (Male)',
+          'All-Inclusive Dine-Around meal plan (Breakfast, Lunch, Dinner & Premium Beverages)',
+          'Floating Champagne Breakfast in your villa pool',
+          'Guided coral reef snorkeling excursion with resident marine biologist',
+          'Sunset dolphin cruise on traditional wooden Dhoni yacht with champagne',
+          'Complimentary non-motorized water sports (kayaks, paddleboards, snorkel gear)',
+          'Emirates flight booking support and Maldives Green Tax included'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Arrival in Male & Scenic Seaplane Flight to Atoll',
+            desc: 'Arrive at Velana International Airport (MLE). Enjoy VIP Seaplane Lounge hospitality before boarding a breathtaking 35-minute scenic seaplane flight over turquoise atolls. Check in to your private Overwater Villa and toast the sunset with welcome champagne.'
+          },
+          {
+            day: 2,
+            title: 'Floating Pool Breakfast & Guided Turtle Snorkeling',
+            desc: 'Start your morning with a lavish floating breakfast in your private infinity pool. Afternoon guided snorkeling excursion along the resort\'s house reef, swimming alongside green sea turtles, eagle rays, and vibrant schools of fish.'
+          },
+          {
+            day: 3,
+            title: 'Overwater Spa Indulgence & Sunset Dolphin Cruise',
+            desc: 'Pamper yourselves with an overwater couples spa massage with glass floor ocean viewing. In the late afternoon, set sail on a traditional Maldivian yacht for a sunset dolphin watching cruise accompanied by canapÃ©s.'
+          },
+          {
+            day: 4,
+            title: 'Sunrise Lagoon Dip & Seaplane Transfer to Male',
+            desc: 'Final morning swim in crystal turquoise waters. Savor a gourmet breakfast before taking the seaplane transfer back to Male Airport for your onward Emirates flight.'
+          }
+        ],
+        finePrint: [
+          'Seaplanes operate during daylight hours only (06:00 to 16:00).',
+          'Maldives Green Tax ($6/person/night) included in all bookings.',
+          'Honeymoon complimentary cake, bed decoration & fruit basket require wedding certificate within 6 months.',
+          '0% Tabby installment financing options available.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Overwater Villa Luxury Escape'
       },
       {
         id: 'maldives-family-oasis',
@@ -3911,12 +4237,53 @@ const COUNTRY_SHOWCASE_DATA = {
         description: 'Direct powder-soft beach access from your beachfront villa. Enjoy full board gourmet buffet dining, unlimited non-motorized watersports, children\'s club activities, and boat excursions to nearby coral atolls.',
         checklist: [
           'Beachfront Villa with Direct Lagoon Access',
-          'Speedboat Airport Transfers from Male',
-          'Full Board Meal Plan (Breakfast, Lunch, Dinner)',
-          'Kayaks, Paddleboards & Snorkel Gear',
-          'Island Hopping & Sandbank Excursion'
+          'Roundtrip Speedboat Airport Transfers from Male',
+          'Full Board Plus Meal Plan (Breakfast, Lunch, Dinner)',
+          'Kayaks, Paddleboards & Snorkel Equipment Included',
+          'Island Hopping & Deserted Sandbank Excursion'
         ],
-        whatsappMsg: 'Hi Star Plus, please share details for the Maldives Beachfront Island Family Oasis (AED 3,250).'
+        inclusions: [
+          '4 Nights in a Deluxe Beachfront Family Villa with private sundeck',
+          'Roundtrip swift speedboat transfers from Male Airport (25 minutes)',
+          'Full Board Plus meal plan (Daily Breakfast, Lunch, Dinner & soft drinks)',
+          'Daily Kids Club supervised activities and coral nursery workshop',
+          'Half-day deserted sandbank excursion with family picnic',
+          'Complimentary use of snorkeling gear, sea kayaks, and paddleboards',
+          'Emirates flight booking assistance and all resort service charges'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Swift Speedboat Arrival & Beachfront Villa Welcome',
+            desc: 'Arrive at Male Airport and step directly onto your luxury speedboat for a 25-minute cruise across turquoise waters. Check in to your villa steps away from the powder-white sand. Relax and enjoy evening beachfront dining.'
+          },
+          {
+            day: 2,
+            title: 'Family Watersports & House Reef Coral Snorkel',
+            desc: 'Explore the calm lagoon on paddleboards and transparent kayaks. In the afternoon, enjoy a family snorkeling tour guided by the resort marine team along the shallow coral garden.'
+          },
+          {
+            day: 3,
+            title: 'Private Sandbank Picnic & Island Hopping',
+            desc: 'Cruise by boat to a pristine uninhabited sandbank in the middle of the Indian Ocean for private sunbathing, sandcastle building, and a gourmet beach picnic.'
+          },
+          {
+            day: 4,
+            title: 'Kids Coral Discovery & Open-Air Starlight Cinema',
+            desc: 'Kids participate in an interactive coral planting activity. In the evening, relax with popcorn on beanbags under the coconut palms for an outdoor movie night on the beach.'
+          },
+          {
+            day: 5,
+            title: 'Island Farewell & Speedboat Return to Male',
+            desc: 'Enjoy a rich tropical buffet breakfast, take one last lagoon swim, and board the speedboat back to Male Airport for departure.'
+          }
+        ],
+        finePrint: [
+          'Speedboat transfers operate 24 hours depending on flight arrival times.',
+          'All resort taxes and service charges included.',
+          '0% Tabby installment financing options available.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Beachfront Island Family Oasis'
       }
     ]
   },
@@ -3947,7 +4314,49 @@ const COUNTRY_SHOWCASE_DATA = {
           'Shahdag Alpine Resort Mountain Cable Car',
           'English-Speaking Guide & Chauffeur'
         ],
-        whatsappMsg: 'Hi Star Plus, I would like to inquire about the Baku & Shahdag Mountain Escape (AED 1,950).'
+        inclusions: [
+          '3 Nights in 4-Star Baku Hotel + 1 Night in Shahdag Mountain Resort',
+          'Daily International Buffet Breakfast',
+          'Private AC vehicle throughout with professional English-speaking guide',
+          'Roundtrip Baku International Airport (GYD) private transfers',
+          'Shahdag Mountain Resort panoramic cable car passes',
+          'Entrance tickets: Maiden Tower, Shirvanshahs Palace, Gobustan & Ateshgah',
+          'Emirates flight booking assistance and express ASAN e-Visa support',
+          '24/7 dedicated travel concierge'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Arrival in Baku & Caspian Boulevard Stroll',
+            desc: 'Arrive at Baku Heydar Aliyev International Airport (GYD). Private transfer to your central 4-star hotel. Evening orientation walk along Nizami Street and the Caspian Seaside Boulevard.'
+          },
+          {
+            day: 2,
+            title: 'UNESCO Old City & Modern Architecture Icons',
+            desc: 'Discover the ancient 12th-century walls of Icherisheher, Maiden Tower, and Shirvanshahs Palace. Afternoon photo stop at the iconic flowing contours of Zaha Hadid\'s Heydar Aliyev Center and evening views from Highland Park.'
+          },
+          {
+            day: 3,
+            title: 'Gobustan Mud Volcanoes & Eternal Flames of Absheron',
+            desc: 'Drive to Gobustan National Park to marvel at 40,000-year-old rock petroglyphs and active mud volcanoes. Visit the ancient Ateshgah Zoroastrian Fire Temple and Yanar Dag, the hillside that has burned continuously for millennia.'
+          },
+          {
+            day: 4,
+            title: 'Caucasus Ascent to Shahdag Alpine Resort',
+            desc: 'Scenic drive through the foothills of the Greater Caucasus mountains to Shahdag Mountain Resort. Ride panoramic cable cars, enjoy mountain coasters or winter snow activities, and relax in pristine alpine air.'
+          },
+          {
+            day: 5,
+            title: 'Bazaar Souvenirs & Baku Airport Departure',
+            desc: 'Traditional Azerbaijani breakfast, scenic descent back to Baku, quick visit to Yashil Bazaar for local saffron and caviar, and airport transfer for your departure flight.'
+          }
+        ],
+        finePrint: [
+          'ASAN e-Visa required for most nationalities (processed online in 3 hours to 3 days).',
+          'Winter snow season at Shahdag typically runs from December to March.',
+          '0% Tabby installment financing options available.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Baku & Shahdag Mountain Escape'
       }
     ]
   },
@@ -3978,7 +4387,49 @@ const COUNTRY_SHOWCASE_DATA = {
           '4x4 Ascent to Gergeti Trinity Church',
           'Traditional Georgian Supra Feast with Wine'
         ],
-        whatsappMsg: 'Hi Star Plus, I am interested in the Georgia & Kazbegi Alpine Tour (AED 1,890).'
+        inclusions: [
+          '3 Nights in Old Tbilisi boutique hotel + 1 Night in Kazbegi mountain lodge',
+          'Daily organic Georgian buffet breakfast',
+          'Private 4x4 transport throughout with dedicated English-speaking guide',
+          'Roundtrip Tbilisi International Airport (TBS) transfers',
+          '4x4 off-road ascent to 14th-century Gergeti Trinity Church',
+          'Narikala Fortress cable car tickets and sulfur baths walking tour',
+          'Emirates flight booking assistance',
+          '24/7 travel concierge support'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Arrival in Tbilisi & Narikala Fortress Views',
+            desc: 'Arrival at Tbilisi International Airport (TBS). Private transfer to your hotel in the historic district. Ride the cable car to Narikala Fortress for sweeping sunset vistas of the city and Mother of Georgia.'
+          },
+          {
+            day: 2,
+            title: 'Old Tbilisi Alleys, Sulfur Baths & Bridge of Peace',
+            desc: 'Stroll cobblestone alleys in the Abanotubani sulfur bath district, see the Legvtakhevi waterfall inside the city, walk the modern glass Bridge of Peace, and ride the funicular up Mtatsminda Park.'
+          },
+          {
+            day: 3,
+            title: 'Georgian Military Highway, Jinvali & Ananuri Fortress',
+            desc: 'Drive into the High Caucasus along the historic Georgian Military Highway. Stop at turquoise Jinvali Reservoir, explore the 17th-century Ananuri Fortress, cross the Jvari Pass (2,379m), and reach Stepantsminda (Kazbegi).'
+          },
+          {
+            day: 4,
+            title: '4x4 Climb to Gergeti Trinity Church & Khinkali Making',
+            desc: 'Board a 4x4 for the dramatic climb to the iconic Gergeti Trinity Church perched at 2,170m beneath the snowy peak of Mount Kazbek (5,047m). Enjoy a culinary workshop learning to make traditional khinkali dumplings.'
+          },
+          {
+            day: 5,
+            title: 'Mtskheta UNESCO Cathedral & Departure',
+            desc: 'Drive south, visiting the ancient royal capital of Mtskheta and the 11th-century Svetitskhoveli UNESCO Cathedral. Transfer to Tbilisi Airport for your return Emirates flight.'
+          }
+        ],
+        finePrint: [
+          'UAE residence visa holders enjoy visa-on-arrival or visa-free entry into Georgia.',
+          'Warm alpine jackets and sturdy walking shoes recommended for Kazbegi year-round.',
+          '0% Tabby installment financing options available.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Majestic Georgia & Kazbegi Alpine Tour'
       }
     ]
   },
@@ -4009,7 +4460,55 @@ const COUNTRY_SHOWCASE_DATA = {
           'Nusa Penida Day Tour (Kelingking Beach)',
           'Private Pool Villa in Ubud & Seminyak Resort'
         ],
-        whatsappMsg: 'Hi Star Plus, I would like to book the Bali Cultural & Nusa Penida package (AED 2,450).'
+        inclusions: [
+          '3 Nights in Private Pool Villa in Ubud + 2 Nights at Beach Resort in Seminyak',
+          'Daily Ã  la carte breakfast with floating breakfast option in villa',
+          'Private AC vehicle throughout with friendly English-speaking Balinese driver guide',
+          'Return high-speed boat tickets between Sanur and Nusa Penida island',
+          'Full-day private Nusa Penida island tour (Kelingking, Broken Beach, Angelâ€™s Billabong)',
+          'Uluwatu Temple & Kecak Fire Dance sunset performance tickets',
+          'Tegallalang Giant Jungle Swing and Ubud Monkey Forest passes',
+          'Emirates flight booking support & airport transfers',
+          '24/7 dedicated travel concierge'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Warm Balinese Welcome & Ubud Private Pool Villa',
+            desc: 'Arrival at Denpasar International Airport (DPS). Meet your chauffeur with fragrant frangipani flower garlands and transfer to your luxury private pool villa in lush Ubud.'
+          },
+          {
+            day: 2,
+            title: 'Tegallalang Emerald Terraces & Jungle Swing',
+            desc: 'Morning swing over the picturesque Tegallalang rice terraces. Wander through the Sacred Monkey Forest Sanctuary and explore Ubud Art Market and royal palace.'
+          },
+          {
+            day: 3,
+            title: 'Tirta Empul Holy Springs & Transfer to Seminyak',
+            desc: 'Experience spiritual water cleansing at Tirta Empul temple and visit Tegenungan waterfall. Afternoon drive to fashionable Seminyak for beachfront sunset cocktails.'
+          },
+          {
+            day: 4,
+            title: 'Nusa Penida Island Expedition: Kelingking T-Rex',
+            desc: 'Early morning speed boat to Nusa Penida. Stand above the famous T-Rex shaped cliff at Kelingking Beach, marvel at natural sea arches at Broken Beach, and swim in Angelâ€™s Billabong natural infinity pool.'
+          },
+          {
+            day: 5,
+            title: 'Clifftop Uluwatu Temple & Sunset Kecak Fire Dance',
+            desc: 'Relax on Seminyak beach. Late afternoon visit to dramatic 70-meter clifftop Uluwatu Temple, followed by the enchanting rhythmic Kecak Fire Dance against the Indian Ocean sunset.'
+          },
+          {
+            day: 6,
+            title: 'Seminyak Boutique Shopping & Airport Departure',
+            desc: 'Enjoy a leisurely breakfast and souvenir shopping in Seminyak before private transfer to Denpasar Airport for your return flight.'
+          }
+        ],
+        finePrint: [
+          'Bali tourist levy ($10/person) payable online or upon arrival.',
+          'Nusa Penida speed boat boarding may require stepping into knee-deep water.',
+          '0% Tabby installment financing options available.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Bali Cultural & Nusa Penida Hopper'
       }
     ]
   }
@@ -4174,8 +4673,10 @@ function updateShowcaseTourUI(index, animate = true) {
     altPriceElem.textContent = tour.priceLKR ? `/ person (${tour.priceLKR})` : '/ person';
   }
 
+  // WhatsApp button dynamic pre-fill
   if (whatsAppBtn) {
-    whatsAppBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(tour.whatsappMsg)}`;
+    const dynamicMsg = `Hello Star Plus Travels, I'm interested in booking the ${tour.title}`;
+    whatsAppBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(dynamicMsg)}`;
   }
 
   if (currentIdxElem) {
@@ -4235,17 +4736,321 @@ function closeCountryShowcase() {
   document.body.style.overflow = '';
 }
 
+// "VIEW PACKAGE DETAILS" Handler -> Opens comprehensive itinerary modal
 function handleShowcaseDetailsAction() {
   const data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
   if (!data || !data.tours) return;
   const currentTour = data.tours[currentShowcaseTourIndex];
   if (!currentTour) return;
-  const whatsappUrl = `https://wa.me/971527582293?text=${encodeURIComponent(currentTour.whatsappMsg)}`;
-  window.open(whatsappUrl, '_blank');
+  openShowcaseItinerary(currentTour);
 }
 
-// Keyboard navigation for Country Showcase Modal
+// LEVEL 3: Comprehensive Package Itinerary & Inclusions Modal Logic
+function openShowcaseItinerary(tour) {
+  if (!tour) return;
+
+  const modal = document.getElementById('showcaseItineraryModal');
+  if (!modal) return;
+
+  const imgElem = document.getElementById('showcaseItineraryImg');
+  const badgeElem = document.getElementById('showcaseItineraryBadge');
+  const durationElem = document.getElementById('showcaseItineraryDuration');
+  const ratingElem = document.getElementById('showcaseItineraryRating');
+  const titleElem = document.getElementById('showcaseItineraryTitle');
+  const subtitleElem = document.getElementById('showcaseItinerarySubtitle');
+  const descElem = document.getElementById('showcaseItineraryDesc');
+  const inclusionsElem = document.getElementById('showcaseItineraryInclusions');
+  const daysElem = document.getElementById('showcaseItineraryDays');
+  const finePrintElem = document.getElementById('showcaseItineraryFinePrint');
+  const priceElem = document.getElementById('showcaseItineraryPrice');
+  const altPriceElem = document.getElementById('showcaseItineraryAltPrice');
+  const waBtn = document.getElementById('showcaseItineraryWaBtn');
+
+  if (imgElem) imgElem.src = tour.image || tour.thumbnail;
+  if (badgeElem) badgeElem.textContent = tour.category;
+  if (durationElem) durationElem.textContent = tour.duration;
+  if (ratingElem) ratingElem.textContent = `${tour.rating} (${tour.reviews})`;
+  if (titleElem) titleElem.textContent = tour.title;
+  if (subtitleElem) subtitleElem.textContent = tour.subtitle;
+  if (descElem) descElem.textContent = tour.description;
+
+  // Render Included Services
+  if (inclusionsElem) {
+    const list = tour.inclusions || tour.checklist || [];
+    inclusionsElem.innerHTML = list.map(item => `
+      <div class="flex items-start space-x-2 bg-slate-900/70 p-2.5 rounded-xl border border-slate-800 shadow-sm">
+        <i class="fa-solid fa-circle-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+        <span class="text-slate-200 text-xs">${item}</span>
+      </div>
+    `).join('');
+  }
+
+  // Render Day-by-Day Journey Breakdown
+  if (daysElem) {
+    const itinerary = tour.itinerary || [];
+    daysElem.innerHTML = itinerary.map((item, idx) => `
+      <div class="relative pl-6 pb-4 last:pb-1 border-l-2 border-amber-500/40 last:border-transparent">
+        <div class="absolute -left-[9px] top-0.5 w-4 h-4 rounded-full bg-amber-500 border-2 border-[#070e17] flex items-center justify-center shadow-md">
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-950"></span>
+        </div>
+        <div class="inline-flex items-center space-x-1.5 px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-extrabold text-[10px] uppercase tracking-wider mb-1">
+          <span>DAY ${item.day || (idx + 1)}</span>
+        </div>
+        <h5 class="text-xs sm:text-sm font-bold text-white mb-1 font-heading">${item.title}</h5>
+        <p class="text-[11px] sm:text-xs text-slate-300 leading-relaxed">${item.desc}</p>
+      </div>
+    `).join('');
+  }
+
+  // Render Fine Print
+  if (finePrintElem) {
+    const finePrint = tour.finePrint || [
+      'Standard hotel check-in at 14:00 hrs & check-out at 12:00 hrs.',
+      'Rates are subject to peak season / festive period surcharges.',
+      'Valid passport (min. 6 months validity) and relevant tourist visa required.',
+      '0% Tabby installment financing options available upon booking confirmation.'
+    ];
+    finePrintElem.innerHTML = finePrint.map(fp => `<li>${fp}</li>`).join('');
+  }
+
+  // Price & Alt Price
+  if (priceElem) {
+    const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
+    priceElem.textContent = formattedAED;
+  }
+  if (altPriceElem) {
+    altPriceElem.textContent = tour.priceLKR ? `/ person (${tour.priceLKR})` : '/ person';
+  }
+
+  // WhatsApp Inquiry CTA
+  if (waBtn) {
+    const dynamicMsg = `Hello Star Plus Travels, I'm interested in booking the ${tour.title}`;
+    waBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(dynamicMsg)}`;
+  }
+
+  // Show modal
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeShowcaseItinerary() {
+  const modal = document.getElementById('showcaseItineraryModal');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+  modal.style.display = 'none';
+  modal.setAttribute('aria-hidden', 'true');
+  // If the country showcase is still open, keep body overflow hidden
+  const countryModal = document.getElementById('countryShowcaseModal');
+  if (!countryModal || countryModal.classList.contains('hidden')) {
+    document.body.style.overflow = '';
+  }
+}
+
+// Download PDF Brochure Function
+function downloadShowcaseBrochure() {
+  const data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
+  if (!data || !data.tours) return;
+  const tour = data.tours[currentShowcaseTourIndex];
+  if (!tour) return;
+  downloadTourBrochure(tour);
+}
+
+function downloadTourBrochure(tour) {
+  const printWindow = window.open('', '_blank', 'width=900,height=800');
+  if (!printWindow) {
+    alert('Please allow popups to download or print the PDF brochure.');
+    return;
+  }
+
+  const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
+  const priceDisplay = tour.priceLKR ? `${formattedAED} (${tour.priceLKR})` : formattedAED;
+
+  const inclusionsHtml = (tour.inclusions || tour.checklist || []).map(inc => `
+    <li style="margin-bottom: 7px; display: flex; align-items: flex-start;">
+      <span style="color: #d97706; margin-right: 8px; font-weight: bold;">âœ”</span>
+      <span>${inc}</span>
+    </li>
+  `).join('');
+
+  const itineraryHtml = (tour.itinerary || []).map(day => `
+    <div style="margin-bottom: 16px; padding-left: 14px; border-left: 2px solid #f59e0b;">
+      <div style="font-size: 11px; font-weight: 800; color: #b45309; text-transform: uppercase; letter-spacing: 1px;">Day ${day.day}: ${day.title}</div>
+      <div style="font-size: 13px; color: #334155; margin-top: 4px; line-height: 1.5;">${day.desc}</div>
+    </div>
+  `).join('');
+
+  const finePrintHtml = (tour.finePrint || []).map(fp => `
+    <li style="margin-bottom: 4px; color: #475569; font-size: 11px;">${fp}</li>
+  `).join('');
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>${tour.title} - Star Plus Travels Official Brochure</title>
+      <style>
+        @page { size: A4; margin: 15mm; }
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+          color: #0f172a;
+          background: #ffffff;
+          margin: 0;
+          padding: 24px;
+          line-height: 1.4;
+        }
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 2px solid #f59e0b;
+          padding-bottom: 16px;
+          margin-bottom: 20px;
+        }
+        .brand-title {
+          font-size: 22px;
+          font-weight: 900;
+          color: #0f172a;
+          letter-spacing: -0.5px;
+          text-transform: uppercase;
+        }
+        .brand-sub {
+          font-size: 11px;
+          color: #b45309;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+        }
+        .hero {
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 16px;
+          margin-bottom: 20px;
+        }
+        .tour-title {
+          font-size: 20px;
+          font-weight: 800;
+          color: #0f172a;
+          margin: 0 0 4px 0;
+        }
+        .tour-meta {
+          font-size: 12px;
+          font-weight: 700;
+          color: #d97706;
+          margin-bottom: 8px;
+        }
+        .tour-desc {
+          font-size: 13px;
+          color: #334155;
+          line-height: 1.5;
+        }
+        .price-tag {
+          font-size: 16px;
+          font-weight: 800;
+          color: #b45309;
+          margin-top: 8px;
+        }
+        .section-title {
+          font-size: 13px;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: #0f172a;
+          border-bottom: 1px solid #e2e8f0;
+          padding-bottom: 6px;
+          margin-top: 18px;
+          margin-bottom: 12px;
+        }
+        .footer {
+          margin-top: 24px;
+          border-top: 2px solid #f59e0b;
+          padding-top: 12px;
+          display: flex;
+          justify-content: space-between;
+          font-size: 11px;
+          color: #64748b;
+        }
+        @media print {
+          body { padding: 0; }
+          .no-print { display: none; }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="no-print" style="margin-bottom: 16px; text-align: right;">
+        <button onclick="window.print()" style="background: #f59e0b; color: #000; font-weight: bold; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Print / Save as PDF</button>
+      </div>
+      <div class="header">
+        <div>
+          <div class="brand-title">Star Plus Travels &amp; Tourism LLC</div>
+          <div class="brand-sub">Official Luxury Travel Itinerary &amp; Package Brochure</div>
+        </div>
+        <div style="text-align: right; font-size: 11px; color: #475569;">
+          <div><strong>UAE Concierge:</strong> +971 52 758 2293</div>
+          <div><strong>Landline:</strong> +971 4 227 0005</div>
+          <div><strong>Web:</strong> starplustravels.com</div>
+        </div>
+      </div>
+
+      <div class="hero">
+        <h1 class="tour-title">${tour.title}</h1>
+        <div class="tour-meta">${tour.category} &bull; ${tour.duration} &bull; Rating: ${tour.rating} â˜…</div>
+        <div class="tour-desc">${tour.description}</div>
+        <div class="price-tag">Starting Rate: ${priceDisplay}</div>
+      </div>
+
+      <div class="section-title">Included Services &amp; Highlights</div>
+      <ul style="list-style: none; padding: 0; margin: 0; font-size: 12px; color: #1e293b;">
+        ${inclusionsHtml}
+      </ul>
+
+      <div class="section-title">Day-by-Day Journey Breakdown</div>
+      <div>
+        ${itineraryHtml}
+      </div>
+
+      ${tour.finePrint && tour.finePrint.length ? `
+        <div class="section-title">Terms, Visa &amp; Fine Print</div>
+        <ul style="padding-left: 20px; margin: 0;">
+          ${finePrintHtml}
+        </ul>
+      ` : ''}
+
+      <div class="footer">
+        <div>Star Plus Travels &amp; Tourism LLC &bull; Dubai, United Arab Emirates</div>
+        <div>Inquire on WhatsApp: +971 52 758 2293 &bull; info@starplustravels.com</div>
+      </div>
+      <script>
+        window.onload = function() {
+          setTimeout(function() {
+            window.print();
+          }, 350);
+        };
+      </script>
+    </body>
+    </html>
+  `;
+
+  printWindow.document.open();
+  printWindow.document.write(htmlContent);
+  printWindow.document.close();
+}
+
+// Keyboard navigation for Country Showcase & Itinerary Modals
 document.addEventListener('keydown', (e) => {
+  const itineraryModal = document.getElementById('showcaseItineraryModal');
+  if (itineraryModal && !itineraryModal.classList.contains('hidden')) {
+    if (e.key === 'Escape') {
+      closeShowcaseItinerary();
+      return;
+    }
+  }
+
   const modal = document.getElementById('countryShowcaseModal');
   if (!modal || modal.classList.contains('hidden')) return;
   if (e.key === 'Escape') {
@@ -4276,6 +5081,10 @@ window.selectShowcaseTour = selectShowcaseTour;
 window.nextCountryShowcaseSlide = nextCountryShowcaseSlide;
 window.prevCountryShowcaseSlide = prevCountryShowcaseSlide;
 window.handleShowcaseDetailsAction = handleShowcaseDetailsAction;
+window.openShowcaseItinerary = openShowcaseItinerary;
+window.closeShowcaseItinerary = closeShowcaseItinerary;
+window.downloadShowcaseBrochure = downloadShowcaseBrochure;
+window.downloadTourBrochure = downloadTourBrochure;
 window.scrollCountryShowcaseCards = scrollCountryShowcaseCards;
 
 // Smart alias: if countryShowcaseModal exists on the page, use openCountryShowcase; otherwise fallback to classic openCountryPackages
@@ -4289,5 +5098,3 @@ window.openCountryPackages = function(countryKey) {
     return originalOpenCountryPackages(countryKey);
   }
 };
-
-
