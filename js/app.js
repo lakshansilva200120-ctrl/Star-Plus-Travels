@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Star Plus Travels - Interactive Application Logic & Video Hero Engine
  */
 
@@ -5065,7 +5065,7 @@ document.addEventListener('keydown', (e) => {
 function scrollCountryShowcaseCards(direction) {
   const track = document.getElementById('countryShowcaseCardsTrack');
   if (!track) return;
-  const cardWidth = 225;
+  const cardWidth = window.innerWidth < 768 ? 182 : 225;
   if (direction === 'left') {
     track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
     prevCountryShowcaseSlide();
