@@ -3691,10 +3691,76 @@ const COUNTRY_SHOWCASE_DATA = {
     categoryTag: 'POPULAR DESTINATIONS',
     tours: [
       {
+        id: 'sl-wildlife-safari',
+        title: 'Wildlife & Rainforest Tour',
+        subtitle: 'DISCOVER THE UNTAMED BEAUTY OF SRI LANKA',
+        category: 'Safari & Nature',
+        categoryIcon: 'fa-paw',
+        rating: '4.9',
+        reviews: '280+ reviews',
+        duration: '5 Days / 4 Nights',
+        priceAED: 2150,
+        priceLKR: 'LKR 190,000',
+        image: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=80',
+        description: 'Track the highest leopard density on the planet with customized 4x4 open-top jeep safaris in Yala and Wilpattu. Trek beneath the ancient prehistoric canopy of UNESCO Sinharaja Virgin Rainforest, observe wild elephant rehabilitation at Udawalawe, and spot rare migratory wetland birds at Bundala.',
+        checklist: [
+          'Yala National Park Big-Game Leopard 4x4 Safari',
+          'Udawalawe Elephant Transit Home & Orphan Rehabilitation',
+          'Sinharaja UNESCO Virgin Rainforest Canopy Trek',
+          'Bundala Wetland Migratory Bird Sanctuary',
+          'Wilpattu Dense Forest Sloth Bear & Leopard Safari'
+        ],
+        inclusions: [
+          '4 Nights luxury safari tented camp & eco-lodge accommodation',
+          'Daily buffet breakfast and bush dinners under the stars',
+          'Private 4x4 open-top safari jeeps with expert wildlife trackers and park rangers',
+          'All National Park entrance fees, conservation permits, and tracker tips',
+          'Guided Sinharaja rainforest nature walk with certified naturalist',
+          'Private AC transfers between all national reserves',
+          'Emirates flight booking assistance',
+          '24/7 dedicated on-trip concierge'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Arrival & Transfer to Sinharaja Rainforest Biosphere',
+            desc: 'Meet your guide at Colombo Airport and drive to the fringes of the UNESCO Sinharaja Rainforest. Settle into your eco-lodge serenaded by jungle bird calls. Evening nocturnal nature walk.'
+          },
+          {
+            day: 2,
+            title: 'Sinharaja Deep Forest Trek & Udawalawe Elephant Home',
+            desc: 'Embark on a guided morning trek beneath the ancient canopy of Sinharaja, spotting endemic birds, purple-faced langurs, and hidden streams. Afternoon drive to Udawalawe to witness baby elephant milk feeding at the Elephant Transit Home.'
+          },
+          {
+            day: 3,
+            title: 'Yala National Park Big-Game Afternoon Safari',
+            desc: 'Check in to your luxury safari tented camp near Yala. Board your custom 4x4 open safari jeep for an intensive game drive in Yala Block 1, home to the world\'s densest wild leopard population, sloth bears, and crocodiles.'
+          },
+          {
+            day: 4,
+            title: 'Dawn Leopard Tracking & Bundala Bird Sanctuary',
+            desc: 'Early morning game drive at first light when big cats are most active on the granite rocks. In the afternoon, visit the coastal wetlands of Bundala National Park, a UNESCO Biosphere sanctuary hosting thousands of migratory flamingos and waterfowl.'
+          },
+          {
+            day: 5,
+            title: 'Southern Coastal Drive & Colombo Airport Departure',
+            desc: 'Enjoy a leisurely breakfast listening to peacocks in the bush. Take the southern expressway back to Colombo Airport for your departure flight.'
+          }
+        ],
+        finePrint: [
+          'Yala Block 1 undergoes annual dry-season maintenance in Sept/Oct; safaris redirected to Block 5/Lunugamvehera.',
+          'Neutral clothing (khaki, olive, brown) recommended for all wildlife game drives.',
+          'Safari jeeps are fully insured and operated by certified professional trackers.',
+          '0% Tabby installment financing options available.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Wildlife & Rainforest Tour'
+      },
+      {
         id: 'sl-galle-south',
-        title: 'Galle & Down South',
-        subtitle: 'GOLDEN COASTLINES & COLONIAL RAMPARTS',
-        category: 'Beach & Coastal',
+        title: 'Down South Beach Tour',
+        subtitle: 'GOLDEN BEACHES, SURFING & COASTAL CHARM',
+        category: 'Coastal Escape',
         categoryIcon: 'fa-umbrella-beach',
         rating: '4.9',
         reviews: '315+ reviews',
@@ -3703,7 +3769,7 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 165,000',
         image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-        description: 'Unwind along Sri Lankaâ€™s sun-drenched southern coastline. Stroll the 17th-century ramparts and cobblestone paths of UNESCO World Heritage Galle Dutch Fort, watch stilt fishermen at Koggala, catch premier surf breaks at Weligama and Hiriketiya, and cruise through mangrove tunnels on the Madu River boat safari.',
+        description: 'Unwind along Sri Lanka\'s sun-drenched southern coastline. Stroll the 17th-century ramparts and cobblestone paths of UNESCO World Heritage Galle Dutch Fort, watch stilt fishermen at Koggala, catch premier surf breaks at Weligama and Hiriketiya, and cruise through mangrove tunnels on the Madu River boat safari.',
         checklist: [
           'UNESCO Galle Dutch Fort & Lighthouse Ramparts',
           'Mirissa Secret Beach & Whale Watching Harbor',
@@ -3750,13 +3816,72 @@ const COUNTRY_SHOWCASE_DATA = {
           'Valid passport with at least 6 months validity and Sri Lanka ETA required.',
           'Flexible booking with 0% Tabby installment options available upon checkout.'
         ],
-        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Galle & Down South'
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Down South Beach Tour'
+      },
+      {
+        id: 'sl-jaffna-north',
+        title: 'Jaffna & Northern Tour',
+        subtitle: 'UNVEILING THE RICH HERITAGE OF THE NORTH',
+        category: 'Heritage & Culture',
+        categoryIcon: 'fa-place-of-worship',
+        rating: '4.8',
+        reviews: '190+ reviews',
+        duration: '4 Days / 3 Nights',
+        priceAED: 1950,
+        priceLKR: 'LKR 170,000',
+        image: 'https://images.unsplash.com/photo-1588258524675-c6353d9e8790?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1588258524675-c6353d9e8790?auto=format&fit=crop&w=800&q=80',
+        description: 'Discover the vibrant Tamil cultural capital of Northern Sri Lanka. Experience spiritual reverence at the golden Nallur Kandaswamy Kovil, explore the star-shaped Dutch fort, take scenic ferries across the Palk Strait to sacred Nagadeepa Temple, and witness wild horses on remote coral-walled Delft Island.',
+        checklist: [
+          'Star-Shaped Historic Jaffna Dutch Fort & Ramparts',
+          'Golden Nallur Kandaswamy Kovil Puja Experience',
+          'Nagadeepa (Nainativu) Island Ferry Crossing',
+          'Delft Island Wild Horses & Ancient Baobab Tree',
+          'Keerimalai Sacred Natural Healing Springs'
+        ],
+        inclusions: [
+          '3 Nights stay at premier heritage boutique hotel in Jaffna City',
+          'Daily traditional Northern Ceylon breakfast and Jaffna crab curry dinner',
+          'Private AC vehicle throughout with regional specialist chauffeur guide',
+          'Public and speed ferry boat transfers to Nainativu & Delft Islands',
+          'Jaffna Dutch Fort and historical site entrance permits',
+          'Emirates flight booking assistance',
+          '24/7 travel concierge support'
+        ],
+        itinerary: [
+          {
+            day: 1,
+            title: 'Gateway to the North & Jaffna Dutch Fort',
+            desc: 'Cross Elephant Pass into the Jaffna Peninsula. Check in to your boutique city hotel. Afternoon walking tour around the grand star-shaped Jaffna Dutch Fort and restored colonial public library. Taste the famous Jaffna mango ice cream at Rio.'
+          },
+          {
+            day: 2,
+            title: 'Nallur Kandaswamy Kovil & Heritage Discovery',
+            desc: 'Witness the morning temple ceremonies and rhythmic drumming at the magnificent golden Nallur Kandaswamy Kovil. Visit the historic ruins of the Jaffna Kingdom (Sangiliyan Thoranam) and explore bustling local bazaars filled with Palmyra sweets and spices.'
+          },
+          {
+            day: 3,
+            title: 'Island Hopping: Nainativu & Delft Island',
+            desc: 'Drive to Kurikadduwan jetty and take the ferry to sacred Nainativu island to visit Nagadeepa Buddhist Vihara and Nagapooshani Amman Hindu Kovil. Continue to remote Delft Island to see wild descendant horses of Portuguese cavalry, coral wall lanes, and the colossal ancient Baobab tree.'
+          },
+          {
+            day: 4,
+            title: 'Keerimalai Healing Springs, Point Pedro & Departure',
+            desc: 'Visit Keerimalai Sacred Natural Springs overlooking the Palk Strait and stand at Point Pedro, the northernmost point of Sri Lanka. Transfer to Jaffna station for the luxury air-conditioned express train or drive south to Colombo Airport.'
+          }
+        ],
+        finePrint: [
+          'Conservative clothing required at temples (men remove shirts at Nallur inner sanctum).',
+          'Island boat ferries are subject to sea weather and maritime authority scheduling.',
+          '0% Tabby installment financing options available.'
+        ],
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Jaffna & Northern Tour'
       },
       {
         id: 'sl-sigiriya-cultural',
-        title: 'Sigiriya & Cultural Triangle',
-        subtitle: 'ANCIENT KINGDOMS & UNESCO CITADELS',
-        category: 'Cultural',
+        title: 'Historical & Heritage Tour',
+        subtitle: 'STEP BACK IN TIME & WITNESS ANCIENT WONDERS',
+        category: 'Ancient Citadels',
         categoryIcon: 'fa-landmark',
         rating: '5.0',
         reviews: '340+ reviews',
@@ -3817,13 +3942,13 @@ const COUNTRY_SHOWCASE_DATA = {
           'Peak season supplement applies during festive dates and Kandy Esala Perahera.',
           '0% Tabby installment plans available.'
         ],
-        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Sigiriya & Cultural Triangle'
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Historical & Heritage Tour'
       },
       {
         id: 'sl-ella-nuwaraeliya',
-        title: 'Ella & Nuwara Eliya',
-        subtitle: 'MISTY HIGHLANDS & ALPINE TEA VALLEYS',
-        category: 'Hill Country',
+        title: 'Mountains & Waterfalls Tour',
+        subtitle: 'ESCAPE TO MISTY HILLS AND COOL GREEN VISTAS',
+        category: 'Highlands & Nature',
         categoryIcon: 'fa-mountain',
         rating: '5.0',
         reviews: '420+ reviews',
@@ -3832,12 +3957,12 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 180,000',
         image: 'assets/sri-lanka-destination.jpg',
         thumbnail: 'assets/sri-lanka-destination.jpg',
-        description: 'Ride the legendary blue train as it weaves across misty valleys and the architectural marvel of the Demodara Nine Arches Bridge. Wander through the crisp, emerald Ceylon tea plantations of Nuwara Eliya, stand above the clouds at Worldâ€™s End in Horton Plains, and hike to cascading waterfalls.',
+        description: 'Ride the legendary blue train as it weaves across misty valleys and the architectural marvel of the Demodara Nine Arches Bridge. Wander through the crisp, emerald Ceylon tea plantations of Nuwara Eliya, stand above the clouds at World\'s End in Horton Plains, and hike to cascading waterfalls.',
         checklist: [
           'World-Famous Scenic Hill Country Blue Train Journey',
           'Demodara Nine Arches Bridge Photography Stop',
-          'Ravana Falls & Little Adamâ€™s Peak Panoramic Hike',
-          'Horton Plains National Park & Worldâ€™s End Precipice',
+          'Ravana Falls & Little Adam\'s Peak Panoramic Hike',
+          'Horton Plains National Park & World\'s End Precipice',
           'Colonial Ceylon Tea Plantation & Estate Tasting'
         ],
         inclusions: [
@@ -3858,18 +3983,18 @@ const COUNTRY_SHOWCASE_DATA = {
           },
           {
             day: 2,
-            title: 'Horton Plains & 880m Worldâ€™s End Cliff Trek',
-            desc: 'Early morning expedition to Horton Plains National Park. Trek through cloud forests to the breathtaking 880m drop at Worldâ€™s End and admire Bakerâ€™s Falls. Afternoon visit to a working British-era tea factory with tea master tasting.'
+            title: 'Horton Plains & 880m World\'s End Cliff Trek',
+            desc: 'Early morning expedition to Horton Plains National Park. Trek through cloud forests to the breathtaking 880m drop at World\'s End and admire Baker\'s Falls. Afternoon visit to a working British-era tea factory with tea master tasting.'
           },
           {
             day: 3,
             title: 'Scenic Blue Train Ride to Ella & Nine Arches Bridge',
-            desc: 'Board the iconic blue train at Nanu Oya for one of the worldâ€™s most scenic rail journeys, winding through misty mountain passes. Arrive in bohemian Ella; walk along the tracks to the majestic 1921 Demodara Nine Arches Bridge as trains pass through.'
+            desc: 'Board the iconic blue train at Nanu Oya for one of the world\'s most scenic rail journeys, winding through misty mountain passes. Arrive in bohemian Ella; walk along the tracks to the majestic 1921 Demodara Nine Arches Bridge as trains pass through.'
           },
           {
             day: 4,
-            title: 'Hike Little Adamâ€™s Peak & Ravana Waterfall Cascade',
-            desc: 'Embark on an easy morning hike up Little Adamâ€™s Peak for 360-degree vistas across Ella Gap. Visit the thundering Ravana Falls and unwind at one of Ellaâ€™s trendy clifftop cafes.'
+            title: 'Hike Little Adam\'s Peak & Ravana Waterfall Cascade',
+            desc: 'Embark on an easy morning hike up Little Adam\'s Peak for 360-degree vistas across Ella Gap. Visit the thundering Ravana Falls and unwind at one of Ella\'s trendy clifftop cafes.'
           },
           {
             day: 5,
@@ -3879,136 +4004,11 @@ const COUNTRY_SHOWCASE_DATA = {
         ],
         finePrint: [
           'Train tickets are subject to government railway reservation windows; guaranteed seating prioritized.',
-          'Light jackets/warm clothing recommended for Nuwara Eliya evenings (12Â°C - 16Â°C).',
+          'Light jackets/warm clothing recommended for Nuwara Eliya evenings (12°C - 16°C).',
           'Horton Plains trek is approximately 9 km loop; suitable for active travelers.',
           '0% Tabby installment financing options available.'
         ],
-        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Ella & Nuwara Eliya'
-      },
-      {
-        id: 'sl-wildlife-safari',
-        title: 'Wildlife & Rainforest Safari',
-        subtitle: 'LEOPARD SANCTUARIES & JUNGLE EXPEDITIONS',
-        category: 'Wildlife',
-        categoryIcon: 'fa-paw',
-        rating: '4.9',
-        reviews: '280+ reviews',
-        duration: '5 Days / 4 Nights',
-        priceAED: 2150,
-        priceLKR: 'LKR 190,000',
-        image: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1920&q=85',
-        thumbnail: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=80',
-        description: 'Track the highest leopard density on the planet with customized 4x4 open-top jeep safaris in Yala and Wilpattu. Trek beneath the ancient prehistoric canopy of UNESCO Sinharaja Virgin Rainforest, observe wild elephant rehabilitation at Udawalawe, and spot rare migratory wetland birds at Bundala.',
-        checklist: [
-          'Yala National Park Big-Game Leopard 4x4 Safari',
-          'Udawalawe Elephant Transit Home & Orphan Rehabilitation',
-          'Sinharaja UNESCO Virgin Rainforest Canopy Trek',
-          'Bundala Wetland Migratory Bird Sanctuary',
-          'Wilpattu Dense Forest Sloth Bear & Leopard Safari'
-        ],
-        inclusions: [
-          '4 Nights luxury safari tented camp & eco-lodge accommodation',
-          'Daily buffet breakfast and bush dinners under the stars',
-          'Private 4x4 open-top safari jeeps with expert wildlife trackers and park rangers',
-          'All National Park entrance fees, conservation permits, and tracker tips',
-          'Guided Sinharaja rainforest nature walk with certified naturalist',
-          'Private AC transfers between all national reserves',
-          'Emirates flight booking assistance',
-          '24/7 dedicated on-trip concierge'
-        ],
-        itinerary: [
-          {
-            day: 1,
-            title: 'Arrival & Transfer to Sinharaja Rainforest Biosphere',
-            desc: 'Meet your guide at Colombo Airport and drive to the fringes of the UNESCO Sinharaja Rainforest. Settle into your eco-lodge serenaded by jungle bird calls. Evening nocturnal nature walk.'
-          },
-          {
-            day: 2,
-            title: 'Sinharaja Deep Forest Trek & Udawalawe Elephant Home',
-            desc: 'Embark on a guided morning trek beneath the ancient canopy of Sinharaja, spotting endemic birds, purple-faced langurs, and hidden streams. Afternoon drive to Udawalawe to witness baby elephant milk feeding at the Elephant Transit Home.'
-          },
-          {
-            day: 3,
-            title: 'Yala National Park Big-Game Afternoon Safari',
-            desc: 'Check in to your luxury safari tented camp near Yala. Board your custom 4x4 open safari jeep for an intensive game drive in Yala Block 1, home to the worldâ€™s densest wild leopard population, sloth bears, and crocodiles.'
-          },
-          {
-            day: 4,
-            title: 'Dawn Leopard Tracking & Bundala Bird Sanctuary',
-            desc: 'Early morning game drive at first light when big cats are most active on the granite rocks. In the afternoon, visit the coastal wetlands of Bundala National Park, a UNESCO Biosphere sanctuary hosting thousands of migratory flamingos and waterfowl.'
-          },
-          {
-            day: 5,
-            title: 'Southern Coastal Drive & Colombo Airport Departure',
-            desc: 'Enjoy a leisurely breakfast listening to peacocks in the bush. Take the southern expressway back to Colombo Airport for your departure flight.'
-          }
-        ],
-        finePrint: [
-          'Yala Block 1 undergoes annual dry-season maintenance in Sept/Oct; safaris redirected to Block 5/Lunugamvehera.',
-          'Neutral clothing (khaki, olive, brown) recommended for all wildlife game drives.',
-          'Safari jeeps are fully insured and operated by certified professional trackers.',
-          '0% Tabby installment financing options available.'
-        ],
-        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Wildlife & Rainforest Safari'
-      },
-      {
-        id: 'sl-jaffna-north',
-        title: 'Jaffna & Untouched North',
-        subtitle: 'VIBRANT TAMIL HERITAGE & PALK STRAIT ISLANDS',
-        category: 'Northern Heritage',
-        categoryIcon: 'fa-place-of-worship',
-        rating: '4.8',
-        reviews: '190+ reviews',
-        duration: '4 Days / 3 Nights',
-        priceAED: 1950,
-        priceLKR: 'LKR 170,000',
-        image: 'https://images.unsplash.com/photo-1588258524675-c6353d9e8790?auto=format&fit=crop&w=1920&q=85',
-        thumbnail: 'https://images.unsplash.com/photo-1588258524675-c6353d9e8790?auto=format&fit=crop&w=800&q=80',
-        description: 'Discover the vibrant Tamil cultural capital of Northern Sri Lanka. Experience spiritual reverence at the golden Nallur Kandaswamy Kovil, explore the star-shaped Dutch fort, take scenic ferries across the Palk Strait to sacred Nagadeepa Temple, and witness wild horses on remote coral-walled Delft Island.',
-        checklist: [
-          'Star-Shaped Historic Jaffna Dutch Fort & Ramparts',
-          'Golden Nallur Kandaswamy Kovil Puja Experience',
-          'Nagadeepa (Nainativu) Island Ferry Crossing',
-          'Delft Island Wild Horses & Ancient Baobab Tree',
-          'Keerimalai Sacred Natural Healing Springs'
-        ],
-        inclusions: [
-          '3 Nights stay at premier heritage boutique hotel in Jaffna City',
-          'Daily traditional Northern Ceylon breakfast and Jaffna crab curry dinner',
-          'Private AC vehicle throughout with regional specialist chauffeur guide',
-          'Public and speed ferry boat transfers to Nainativu & Delft Islands',
-          'Jaffna Dutch Fort and historical site entrance permits',
-          'Emirates flight booking assistance',
-          '24/7 travel concierge support'
-        ],
-        itinerary: [
-          {
-            day: 1,
-            title: 'Gateway to the North & Jaffna Dutch Fort',
-            desc: 'Cross Elephant Pass into the Jaffna Peninsula. Check in to your boutique city hotel. Afternoon walking tour around the grand star-shaped Jaffna Dutch Fort and restored colonial public library. Taste the famous Jaffna mango ice cream at Rio.'
-          },
-          {
-            day: 2,
-            title: 'Nallur Kandaswamy Kovil & Heritage Discovery',
-            desc: 'Witness the morning temple ceremonies and rhythmic drumming at the magnificent golden Nallur Kandaswamy Kovil. Visit the historic ruins of the Jaffna Kingdom (Sangiliyan Thoranam) and explore bustling local bazaars filled with Palmyra sweets and spices.'
-          },
-          {
-            day: 3,
-            title: 'Island Hopping: Nainativu & Delft Island',
-            desc: 'Drive to Kurikadduwan jetty and take the ferry to sacred Nainativu island to visit Nagadeepa Buddhist Vihara and Nagapooshani Amman Hindu Kovil. Continue to remote Delft Island to see wild descendant horses of Portuguese cavalry, coral wall lanes, and the colossal ancient Baobab tree.'
-          },
-          {
-            day: 4,
-            title: 'Keerimalai Healing Springs, Point Pedro & Departure',
-            desc: 'Visit Keerimalai Sacred Natural Springs overlooking the Palk Strait and stand at Point Pedro, the northernmost point of Sri Lanka. Transfer to Jaffna station for the luxury air-conditioned express train or drive south to Colombo Airport.'
-          }
-        ],
-        finePrint: [
-          'Conservative clothing required at temples (men remove shirts at Nallur inner sanctum).',
-          'Island boat ferries are subject to sea weather and maritime authority scheduling.',
-          '0% Tabby installment financing options available.'
-        ],
-        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Jaffna & Untouched North'
+        whatsappMsg: 'Hello Star Plus Travels, I\'m interested in booking the Mountains & Waterfalls Tour'
       }
     ]
   },
