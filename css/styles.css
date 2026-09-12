@@ -1684,6 +1684,32 @@ html.light .cat-chip.active {
   -webkit-backdrop-filter: blur(10px);
 }
 
+@keyframes modalSlideUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-content-animate {
+  animation: modalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Regional Tour Cards styling & hover effects */
+.regional-tour-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.regional-tour-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.45);
+}
+
 select option {
   padding: 10px;
 }

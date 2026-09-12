@@ -2308,6 +2308,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') {
       closeBookingModal();
       closeItineraryModal();
+      closeCountryPackagesModal();
     }
   });
 
@@ -2907,4 +2908,436 @@ function initStatsCounters() {
   }
 }
 window.initStatsCounters = initStatsCounters;
+
+/* ==========================================================================
+   Interactive Country-to-Destination Packages Data & Modal Management
+   ========================================================================== */
+const DESTINATION_COUNTRY_PACKAGES = {
+  dubai: {
+    country: 'Dubai & Abu Dhabi, UAE',
+    badge: 'Flagship Hub & Arabian Glamour',
+    season: 'October – April (Pleasant & Cool)',
+    icon: 'fa-city',
+    packages: [
+      {
+        id: 'dubai-family-3n4d',
+        title: '3N / 4D Dubai Family Package (Signature Special)',
+        badge: 'Flagship Family Deal',
+        duration: '4 Days / 3 Nights',
+        stay: 'Avani Deira Dubai Hotel (4-Star Deluxe)',
+        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
+        description: 'The ultimate Dubai family vacation featuring 4-star luxury at Avani Deira Hotel, iconic landmark access, thrilling red dune desert safaris, and Arabian dhow cruise dining.',
+        highlights: [
+          '3 Nights stay at Avani Deira Dubai Hotel with daily international buffet breakfast',
+          'Roundtrip Private Dubai International Airport (DXB) transfers in luxury AC vehicle',
+          'Burj Khalifa "At The Top" Observation Deck (124th & 125th Floor Tickets)',
+          'Dubai Marina Luxury Dhow Cruise Dinner with 5-star buffet & live Tanoura dance show',
+          'VIP 4x4 Desert Safari: Dune Bashing, Camel Rides, Sandboarding, Fire Show & BBQ Dinner',
+          'Half-day guided Dubai City Tour (Dubai Frame photo stop, abra ride, Gold & Spice Souks)'
+        ],
+        priceAED: 1850,
+        whatsappMsg: 'Hi Star Plus, I am interested in the 3N/4D Dubai Family Package with Avani Deira Hotel (AED 1,850/person). Please share availability and booking details!'
+      },
+      {
+        id: 'dubai-abudhabi-5d4n',
+        title: '5D / 4N Dubai & Abu Dhabi Grand Experience',
+        badge: 'Luxury Twin City',
+        duration: '5 Days / 4 Nights',
+        stay: '5-Star Waterfront Hotel (Radisson Blu / Swissôtel)',
+        image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80',
+        description: 'Comprehensive luxury tour combining the futuristic skyline of Dubai with the imperial cultural heritage and palatial sights of Abu Dhabi.',
+        highlights: [
+          'Full-day Abu Dhabi Tour: Sheikh Zayed Grand Mosque, Emirates Palace & Louvre Abu Dhabi',
+          'Private 2-Hour Yacht Cruise past Dubai Marina, JBR, and Atlantis The Palm',
+          'Museum of the Future VIP Priority Entry & Dubai Mall Fountain Boardwalk',
+          'Red Dune VIP Desert Safari with private majlis table and live BBQ entertainment',
+          'Dedicated private chauffeur throughout the entire journey'
+        ],
+        priceAED: 2750,
+        whatsappMsg: 'Hi Star Plus, I would like to inquire about the 5D/4N Dubai & Abu Dhabi Grand Experience (AED 2,750/person).'
+      }
+    ]
+  },
+  srilanka: {
+    country: 'Sri Lanka Island Odyssey',
+    badge: 'Cultural Triangle & Emerald Pearl',
+    season: 'Year-Round Travel Circuits',
+    icon: 'fa-gem',
+    packages: [
+      {
+        id: 'sl-wildlife-rainforest',
+        title: 'Wildlife & Rainforest Expedition',
+        badge: 'Safari & Rainforest',
+        duration: '5 Days / 4 Nights',
+        stay: 'Luxury Eco-Lodges & Safari Tented Camps',
+        image: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=80',
+        description: 'Immerse in Sri Lanka’s wild sanctuary with big-game leopard safaris, UNESCO virgin rainforest trekking, and ocean whale encounters.',
+        highlights: [
+          'Exclusive 4x4 Jeep Safari in Yala National Park (World’s highest leopard density)',
+          'Guided biodiversity trek through Sinharaja UNESCO Virgin Rainforest Biosphere',
+          'Udawalawe Elephant Transit Home & wild herd rehabilitation observation',
+          'Scenic Mirissa blue whale and dolphin watching expedition off the southern coast'
+        ],
+        priceAED: 2150,
+        whatsappMsg: 'Hi Star Plus, I am interested in the Sri Lanka Wildlife & Rainforest Expedition regional package (AED 2,150/person). Please provide details.'
+      },
+      {
+        id: 'sl-down-south-beach',
+        title: 'Down South Beach & Coastal Getaway',
+        badge: 'Beach & Coastal',
+        duration: '4 Days / 3 Nights',
+        stay: '4-Star Beachfront Luxury Resort (Bentota / Galle)',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+        description: 'Unwind along sun-drenched golden sands, UNESCO heritage fortress ramparts, and exhilarating coastal river and water adventures.',
+        highlights: [
+          'Guided walking tour of UNESCO World Heritage Galle Dutch Fort & Lighthouse',
+          'Bentota watersports (Jet ski, banana boat) & Madu River mangrove safari with fish therapy',
+          'Mirissa Secret Beach sunset viewpoints and beginner-friendly surfing at Weligama bay',
+          'Kosgoda Sea Turtle Conservation & Hatchery project visit'
+        ],
+        priceAED: 1890,
+        whatsappMsg: 'Hi Star Plus, I would like to book the Sri Lanka Down South Beach & Coastal Getaway package (AED 1,890/person).'
+      },
+      {
+        id: 'sl-jaffna-northern',
+        title: 'Jaffna & Northern Cultural Discovery',
+        badge: 'Northern Heritage',
+        duration: '4 Days / 3 Nights',
+        stay: 'Premier Heritage Boutique Hotels in Jaffna City',
+        image: 'https://images.unsplash.com/photo-1588258524675-c6353d9e8790?auto=format&fit=crop&w=800&q=80',
+        description: 'Explore the vibrant Tamil cultural heartland of Northern Sri Lanka, ancient island temples, and untouched colonial architecture.',
+        highlights: [
+          'Majestic golden Nallur Kandaswamy Kovil spiritual experience and puja ritual',
+          'Historic star-shaped Jaffna Dutch Fort and restored colonial public library',
+          'Scenic boat ferry excursion across Palk Strait to Nainativu Island (Nagapooshani Amman Temple)',
+          'Keerimalai Sacred Natural Springs, Casuarina Beach & Point Pedro northernmost tip'
+        ],
+        priceAED: 1950,
+        whatsappMsg: 'Hi Star Plus, I would like to inquire about the Jaffna & Northern Cultural Discovery package (AED 1,950/person).'
+      },
+      {
+        id: 'sl-historical-heritage',
+        title: 'Historical & Cultural Heritage Triangle',
+        badge: 'UNESCO Heritage',
+        duration: '5 Days / 4 Nights',
+        stay: 'Heritage Garden Retreats & 4-Star Kandy Hotel',
+        image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+        description: 'Step back through millennia of royal dynasties, sacred Buddhist monasteries, and dramatic stone citadels in the heart of Ceylon.',
+        highlights: [
+          'Ascend the iconic Sigiriya 5th-century Lion Rock Fortress and ancient fresco galleries',
+          'Dambulla Golden Cave Temple complex with over 150 serene Buddha statues',
+          'Sacred Temple of the Tooth Relic (Sri Dalada Maligawa) & evening Kandy cultural dance show',
+          'Guided bicycle tour through Polonnaruwa Ancient Kingdom royal ruins'
+        ],
+        priceAED: 2250,
+        whatsappMsg: 'Hi Star Plus, please send me details and availability for the Sri Lanka Historical & Cultural Heritage Triangle tour (AED 2,250/person).'
+      },
+      {
+        id: 'sl-mountains-waterfalls',
+        title: 'Mountains, Waterfalls & Misty Tea Hills',
+        badge: 'Highlands & Scenic',
+        duration: '5 Days / 4 Nights',
+        stay: 'Colonial Tea Estate Bungalows & Misty Ella Resorts',
+        image: 'assets/sri-lanka-destination.jpg',
+        description: 'Journey across emerald tea carpet valleys, ride the world-renowned blue train, and stand above the clouds at World’s End.',
+        highlights: [
+          'World-famous scenic blue train journey across Demodara Nine Arch Bridge in Ella',
+          'Nuwara Eliya "Little England" Ceylon tea plantation tour & fresh estate tea tasting',
+          'Horton Plains National Park trek to the dramatic 880m World’s End sheer precipice',
+          'Ramboda Falls, Ravana Waterfall and Little Adam’s Peak sunrise summit hike'
+        ],
+        priceAED: 2050,
+        whatsappMsg: 'Hi Star Plus, I am interested in the Mountains, Waterfalls & Misty Tea Hills package for Sri Lanka (AED 2,050/person).'
+      }
+    ]
+  },
+  maldives: {
+    country: 'Maldives Island Retreats',
+    badge: 'Turquoise Atolls & Luxury Seclusion',
+    season: 'November – April (Dry Sun Season)',
+    icon: 'fa-umbrella-beach',
+    packages: [
+      {
+        id: 'maldives-overwater-luxury',
+        title: '4D / 3N Overwater Villa Luxury Escape',
+        badge: 'Honeymoon Luxury',
+        duration: '4 Days / 3 Nights',
+        stay: '5-Star Private Island Overwater Pool Villa',
+        image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80',
+        description: 'Ultimate romantic retreat featuring overwater villa with private plunge pool, scenic seaplane arrival, and all-inclusive gourmet dining.',
+        highlights: [
+          'Roundtrip scenic seaplane transfers from Velana Male International Airport',
+          'All-Inclusive Dine-Around: daily champagne breakfast, lunch & fine dinner',
+          'Guided house reef snorkeling safari with marine biologists & sea turtles',
+          'Sunset luxury dolphin cruise with sparkling drinks and chef canapés'
+        ],
+        priceAED: 4499,
+        whatsappMsg: 'Hi Star Plus, I am interested in the 4D/3N Maldives Overwater Villa Luxury Escape (AED 4,499/person).'
+      },
+      {
+        id: 'maldives-beach-family',
+        title: '5D / 4N Beachfront Island Oasis',
+        badge: 'Family Beach Retreat',
+        duration: '5 Days / 4 Nights',
+        stay: '4-Star Superior Island Resort (Beach Villa)',
+        image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=800&q=80',
+        description: 'Sun-soaked tropical getaway with direct powder-white beach access, non-motorized water sports, and tranquil turquoise lagoons.',
+        highlights: [
+          'Speedboat transfers from Male Velana Airport',
+          'Full Board meal plan (Breakfast, lunch, and dinner buffet included)',
+          'Complimentary kayaks, stand-up paddleboards, and snorkeling gear',
+          'Island hopping tour and local fishing village excursion'
+        ],
+        priceAED: 3250,
+        whatsappMsg: 'Hi Star Plus, I would like to book the 5D/4N Maldives Beachfront Island Oasis (AED 3,250/person).'
+      }
+    ]
+  },
+  azerbaijan: {
+    country: 'Baku & Caucasus, Azerbaijan',
+    badge: 'Land of Fire & Silk Road',
+    season: 'April – June & Sept – Nov',
+    icon: 'fa-mountain-sun',
+    packages: [
+      {
+        id: 'baku-shahdag-5d4n',
+        title: '5D / 4N Baku & Shahdag Mountain Escape',
+        badge: 'City & Alpine Blend',
+        duration: '5 Days / 4 Nights',
+        stay: '4-Star Central Baku Hotel + Shahdag Mountain Resort',
+        image: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=800&q=80',
+        description: 'Explore the modern marvels and medieval history of Baku followed by breathtaking alpine adventures in the high Caucasus.',
+        highlights: [
+          'Baku Old City (Icherisheher UNESCO) with Maiden Tower & Shirvanshah Palace',
+          'Gobustan National Park: bubbling mud volcanoes and prehistoric petroglyphs',
+          'Ateshgah Zoroastrian Fire Temple and Yanar Dag perpetually burning flames',
+          'Shahdag Mountain Resort with scenic panoramic cable car ride',
+          'Daily buffet breakfast, private chauffeur, and certified English guide'
+        ],
+        priceAED: 1950,
+        whatsappMsg: 'Hi Star Plus, I would like to inquire about the Baku & Shahdag Mountain Escape package (AED 1,950/person).'
+      },
+      {
+        id: 'azerbaijan-silkroad-6d5n',
+        title: '6D / 5N Azerbaijan Silk Road & Sheki Tour',
+        badge: 'Silk Road Explorer',
+        duration: '6 Days / 5 Nights',
+        stay: '4-Star Hotels in Baku, Gabala & Sheki',
+        image: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=800&q=80',
+        description: 'Journey through Caucasus mountain passes, picturesque alpine lakes, and ancient Silk Road trading cities.',
+        highlights: [
+          'Baku panoramic boulevard and Heydar Aliyev Cultural Centre photo stop',
+          'Gabala Tufandag Mountain cable cars and peaceful Nohur Lake boat ride',
+          'Sheki Khan Palace with mesmerizing handcrafted Shebeke stained glass',
+          'Ancient Caravanserai tour and authentic Azerbaijani tea tasting'
+        ],
+        priceAED: 2390,
+        whatsappMsg: 'Hi Star Plus, I am interested in the 6D/5N Azerbaijan Silk Road & Sheki Tour (AED 2,390/person).'
+      }
+    ]
+  },
+  georgia: {
+    country: 'Tbilisi & Kazbegi, Georgia',
+    badge: 'Caucasus Marvel & Ancient Heritage',
+    season: 'May – October / Winter Ski',
+    icon: 'fa-snowflake',
+    packages: [
+      {
+        id: 'georgia-kazbegi-5d4n',
+        title: '5D / 4N Majestic Georgia & Kazbegi Alpine Tour',
+        badge: 'Caucasian Peaks',
+        duration: '5 Days / 4 Nights',
+        stay: '4-Star Boutique Hotel in Old Tbilisi & Gudauri Resort',
+        image: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=800&q=80',
+        description: 'Ascend dramatic Caucasus mountain passes, explore historic sulfur bath districts, and stand under snow-capped Mount Kazbek.',
+        highlights: [
+          'Old Tbilisi walking tour: Narikala Fortress cable car and sulfur bath district',
+          'Scenic Georgian Military Highway, Ananuri Fortress & Jinvali blue reservoir',
+          '4x4 Off-road ascent to 14th-century Gergeti Trinity Church under Mount Kazbek',
+          'Traditional Georgian Supra feast with khachapuri, khinkali, and folk music'
+        ],
+        priceAED: 1890,
+        whatsappMsg: 'Hi Star Plus, I am interested in the 5D/4N Georgia & Kazbegi Alpine Tour (AED 1,890/person).'
+      },
+      {
+        id: 'georgia-wine-mountain-6d5n',
+        title: '6D / 5N Georgia Wine & Mountain Splendor',
+        badge: 'Wine & Romance',
+        duration: '6 Days / 5 Nights',
+        stay: '4-Star Hotels in Tbilisi & Kakheti Wine Valley',
+        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80',
+        description: 'Delve into the cradle of wine in Kakheti, charming walled cities, and scenic Caucasian mountain valleys.',
+        highlights: [
+          'Sighnaghi "City of Love" cobblestone streets & Alazani Valley views',
+          'Kvareli historic wine tunnel visit and ancient Qvevri method masterclass',
+          'Borjomi mineral water national park walk and Rabati Castle fortress',
+          'Private roundtrip airport transfers & full English-speaking guide'
+        ],
+        priceAED: 2290,
+        whatsappMsg: 'Hi Star Plus, please share details for the 6D/5N Georgia Wine & Mountain Splendor package (AED 2,290/person).'
+      }
+    ]
+  },
+  bali: {
+    country: 'Bali & Nusa Penida, Indonesia',
+    badge: 'Island of the Gods & Tropical Bliss',
+    season: 'April – October (Dry Season)',
+    icon: 'fa-leaf',
+    packages: [
+      {
+        id: 'bali-cultural-tropical-6d5n',
+        title: '6D / 5N Bali Cultural & Tropical Wonder',
+        badge: 'Tropical Bliss',
+        duration: '6 Days / 5 Nights',
+        stay: 'Private Pool Villa in Ubud & 4-Star Beach Resort Seminyak',
+        image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80',
+        description: 'Immerse in Bali’s spiritual sanctuary, lush emerald rice terraces, giant jungle swings, and clifftop sunset temples.',
+        highlights: [
+          'Tegallalang emerald rice terraces & world-famous giant jungle swing',
+          'Sacred Monkey Forest sanctuary and Ubud Royal Palace art market',
+          'Tirta Empul ancient holy water temple blessing ceremony',
+          'Uluwatu dramatic clifftop temple & traditional sunset Kecak fire dance'
+        ],
+        priceAED: 2450,
+        whatsappMsg: 'Hi Star Plus, I would like to inquire about the 6D/5N Bali Cultural & Tropical Wonder package (AED 2,450/person).'
+      },
+      {
+        id: 'bali-nusapenida-7d6n',
+        title: '7D / 6N Bali & Nusa Penida Island Hopper',
+        badge: 'Island Explorer',
+        duration: '7 Days / 6 Nights',
+        stay: '4-Star Pool Villa Ubud + Sanur Beach Resort',
+        image: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80',
+        description: 'Combine Bali’s cultural heart with the pristine white sands, crystal manta ray bays, and towering cliffs of Nusa Penida.',
+        highlights: [
+          'Speedboat day tour to Nusa Penida: Kelingking T-Rex Beach & Angel’s Billabong',
+          'Snorkeling at Broken Beach and swimming in Crystal Bay',
+          'Mount Batur sunrise 4x4 jeep safari and natural hot spring soak',
+          'Tegenungan Waterfall trek and romantic Jimbaran beach seafood dinner'
+        ],
+        priceAED: 2890,
+        whatsappMsg: 'Hi Star Plus, I am interested in the 7D/6N Bali & Nusa Penida Island Hopper package (AED 2,890/person).'
+      }
+    ]
+  }
+};
+
+function openCountryPackages(countryKey) {
+  const data = DESTINATION_COUNTRY_PACKAGES[countryKey];
+  if (!data) return;
+
+  const modal = document.getElementById('countryPackagesModal');
+  const titleElem = document.getElementById('countryModalTitle');
+  const badgeElem = document.getElementById('countryModalBadge');
+  const seasonElem = document.getElementById('countryModalSeason');
+  const iconElem = document.getElementById('countryModalIcon');
+  const bodyElem = document.getElementById('countryModalBody');
+  const customBtn = document.getElementById('countryModalCustomBtn');
+
+  if (!modal || !bodyElem) return;
+
+  if (titleElem) titleElem.textContent = data.country;
+  if (badgeElem) badgeElem.textContent = data.badge;
+  if (seasonElem) {
+    seasonElem.innerHTML = `<i class="fa-solid fa-calendar text-amber-400/80 mr-1.5"></i>Best Season: ${data.season}`;
+  }
+  if (iconElem) {
+    iconElem.className = `fa-solid ${data.icon || 'fa-earth-asia'}`;
+  }
+  if (customBtn) {
+    customBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(`Hi Star Plus, I would like to design a customized holiday itinerary for ${data.country}. Please connect me with a specialist.`)}`;
+  }
+
+  bodyElem.innerHTML = `
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      ${data.packages.map(pkg => {
+        const formattedPrice = typeof formatPrice === 'function' ? formatPrice(pkg.priceAED) : `AED ${pkg.priceAED.toLocaleString()}`;
+        const installmentAmount = Math.round(pkg.priceAED / 4);
+        const formattedInstallment = typeof formatPrice === 'function' ? formatPrice(installmentAmount) : `AED ${installmentAmount.toLocaleString()}`;
+        
+        return `
+          <div class="regional-tour-card glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/40 bg-slate-900/80 flex flex-col justify-between shadow-xl">
+            <div>
+              <div class="relative h-48 overflow-hidden group">
+                <img src="${pkg.image}" alt="${pkg.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#09111e] via-[#09111e]/40 to-transparent"></div>
+                <div class="absolute top-3 left-3 flex items-center gap-1.5 flex-wrap">
+                  <span class="px-2.5 py-0.5 rounded-full bg-slate-950/85 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-slate-700/80">
+                    <i class="fa-solid fa-tag mr-1"></i>${pkg.badge}
+                  </span>
+                  <span class="px-2.5 py-0.5 rounded-full bg-slate-950/85 backdrop-blur-md text-emerald-400 text-[10px] font-bold border border-slate-700/80">
+                    <i class="fa-solid fa-clock mr-1"></i>${pkg.duration}
+                  </span>
+                </div>
+                <div class="absolute bottom-3 left-3 right-3">
+                  <h4 class="text-base sm:text-lg font-bold text-white font-heading drop-shadow-md leading-tight">${pkg.title}</h4>
+                </div>
+              </div>
+
+              <div class="p-4 sm:p-5 space-y-3">
+                <p class="text-xs text-slate-300 leading-relaxed">${pkg.description}</p>
+                
+                <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800/80 space-y-1.5">
+                  <div class="text-[11px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
+                    <i class="fa-solid fa-star text-[10px]"></i> Tour Highlights & Inclusions
+                  </div>
+                  <ul class="text-[11px] text-slate-300 space-y-1">
+                    ${pkg.highlights.map(h => `<li class="flex items-start space-x-1.5"><i class="fa-solid fa-check text-amber-400 mt-0.5 text-[10px] flex-shrink-0"></i><span>${h}</span></li>`).join('')}
+                  </ul>
+                </div>
+
+                ${pkg.stay ? `
+                <div class="flex items-center space-x-2 text-[11px] text-slate-400 pt-1">
+                  <i class="fa-solid fa-hotel text-amber-400/80"></i>
+                  <span><strong class="text-slate-300">Stay:</strong> ${pkg.stay}</span>
+                </div>
+                ` : ''}
+              </div>
+            </div>
+
+            <div class="p-4 sm:p-5 pt-0 border-t border-slate-800/80 mt-2">
+              <div class="flex items-baseline justify-between pt-3 pb-3">
+                <div>
+                  <span class="text-[10px] text-slate-400 block uppercase tracking-wider">Starting from</span>
+                  <span class="text-lg sm:text-xl font-black text-amber-400 font-heading">${formattedPrice}</span>
+                  <span class="text-[10px] text-slate-400">/ person</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-[10px] text-emerald-400 font-semibold block">Tabby 4x ${formattedInstallment}/mo</span>
+                  <span class="text-[9px] text-slate-500">Taxes & Transfers Included</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <a href="https://wa.me/971527582293?text=${encodeURIComponent(pkg.whatsappMsg)}" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-1.5 shadow-lg shadow-amber-500/20">
+                  <i class="fa-brands fa-whatsapp text-sm"></i>
+                  <span>Inquire Package</span>
+                </a>
+                <a href="packages.html" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition-all flex items-center justify-center" title="Full Itinerary">
+                  <span>Itinerary</span>
+                  <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCountryPackagesModal() {
+  const modal = document.getElementById('countryPackagesModal');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+  document.body.style.overflow = '';
+}
+
+window.openCountryPackages = openCountryPackages;
+window.closeCountryPackagesModal = closeCountryPackagesModal;
 
