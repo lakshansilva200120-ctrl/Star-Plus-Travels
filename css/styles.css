@@ -2843,4 +2843,23 @@ main > section:first-of-type {
   }
 }
 
+/* ==========================================================================
+   Hero Headline Typography Hierarchy (Brand Entity Name Scaling)
+   ========================================================================== */
+.brand-primary {
+  font-size: 1em;
+  font-weight: 800;
+  color: #F59E0B;
+  display: inline;
+}
 
+.brand-secondary {
+  font-size: 0.65em;
+  font-weight: 600;
+  color: #F59E0B;
+  letter-spacing: 1px;
+  vertical-align: baseline;
+  display: inline;
+  margin-left: 0.25rem;
+  white-space: nowrap;
+}
