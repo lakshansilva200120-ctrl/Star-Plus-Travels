@@ -4071,6 +4071,8 @@ function openCountryShowcase(countryKey) {
   // Show modal
   modal.classList.remove('hidden');
   modal.classList.add('flex');
+  modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 }
 
@@ -4205,6 +4207,8 @@ function closeCountryShowcase() {
   if (!modal) return;
   modal.classList.add('hidden');
   modal.classList.remove('flex');
+  modal.style.display = 'none';
+  modal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
 
