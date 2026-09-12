@@ -2336,9 +2336,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Animated Statistics Number Counters
   initStatsCounters();
 
-  // Initialize Roxaval-style Interactive Destinations Showcase Slider
-  initDestinationSlider();
-
   // Smooth scroll to top when clicking Home link or brand logo on the homepage
   document.querySelectorAll('a[href="/"], a[href="/#hero"], a[href="#hero"]').forEach(link => {
     link.addEventListener('click', (e) => {
@@ -4517,14 +4514,13 @@ const COUNTRY_SHOWCASE_DATA = {
 let currentShowcaseCountryKey = 'srilanka';
 let currentShowcaseTourIndex = 0;
 
-function openCountryShowcase(countryKey) {
+function populateShowcaseData(countryKey) {
   const data = COUNTRY_SHOWCASE_DATA[countryKey];
-  if (!data || !data.tours || data.tours.length === 0) return;
+  if (!data || !data.tours || data.tours.length === 0) return false;
 
   currentShowcaseCountryKey = countryKey;
   currentShowcaseTourIndex = 0;
 
-  const modal = document.getElementById('countryShowcaseModal');
   const headerTitle = document.getElementById('countryShowcaseHeaderTitle');
   const headerBadge = document.getElementById('countryShowcaseHeaderBadge');
   const headerIcon = document.getElementById('countryShowcaseIcon');
@@ -4533,47 +4529,47 @@ function openCountryShowcase(countryKey) {
   const dotsContainer = document.getElementById('showcaseDotsContainer');
   const totalCountElem = document.getElementById('showcaseTotalCount');
 
-  if (!modal || !cardsTrack) return;
-
   if (headerTitle) headerTitle.textContent = data.country;
   if (headerBadge) headerBadge.textContent = data.badge;
   if (headerIcon) headerIcon.className = `fa-solid ${data.icon || 'fa-gem'}`;
   if (categoryTag) categoryTag.textContent = data.categoryTag || 'POPULAR DESTINATIONS';
 
   // Render Horizontal Floating Cards (Compact ~205px x 275px)
-  cardsTrack.innerHTML = data.tours.map((tour, idx) => {
-    const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
-    return `
-      <div class="showcase-preview-card ${idx === 0 ? 'active' : ''}" 
-           data-tour-index="${idx}" 
-           onclick="selectShowcaseTour(${idx})"
-           role="button"
-           tabindex="0"
-           aria-label="Select circuit ${tour.title}">
-        <img src="${tour.thumbnail}" alt="${tour.title}" class="w-full h-full object-cover transition-transform duration-700 pointer-events-none" loading="lazy">
-        <div class="showcase-card-overlay"></div>
-        
-        <!-- Category Pill Badge (0.7rem, compact 3px 8px padding, whitespace-nowrap) -->
-        <div class="showcase-category-badge">
-          <i class="fa-solid ${tour.categoryIcon || 'fa-tag'} text-[9px] flex-shrink-0"></i>
-          <span>${tour.category}</span>
-        </div>
+  if (cardsTrack) {
+    cardsTrack.innerHTML = data.tours.map((tour, idx) => {
+      const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
+      return `
+        <div class="showcase-preview-card ${idx === 0 ? 'active' : ''}" 
+             data-tour-index="${idx}" 
+             onclick="selectShowcaseTour(${idx})"
+             role="button"
+             tabindex="0"
+             aria-label="Select circuit ${tour.title}">
+          <img src="${tour.thumbnail}" alt="${tour.title}" class="w-full h-full object-cover transition-transform duration-700 pointer-events-none" loading="lazy">
+          <div class="showcase-card-overlay"></div>
+          
+          <!-- Category Pill Badge (0.7rem, compact 3px 8px padding, whitespace-nowrap) -->
+          <div class="showcase-category-badge">
+            <i class="fa-solid ${tour.categoryIcon || 'fa-tag'} text-[9px] flex-shrink-0"></i>
+            <span>${tour.category}</span>
+          </div>
 
-        <!-- Bottom Card Info -->
-        <div class="absolute bottom-3 left-3 right-3 z-10 text-white pointer-events-none">
-          <div class="flex items-center text-amber-400 text-[10px] gap-1 mb-0.5 font-semibold">
-            <i class="fa-solid fa-star text-[9px]"></i>
-            <span class="text-white font-bold ml-0.5">${tour.rating}</span>
-          </div>
-          <h4 class="showcase-card-title drop-shadow-md">${tour.title}</h4>
-          <div class="showcase-card-meta flex items-center justify-between text-slate-300 mt-1 font-medium pt-1.5 border-t border-white/15">
-            <span class="flex items-center gap-1"><i class="fa-regular fa-clock text-amber-400 text-[9px]"></i>${tour.duration}</span>
-            <span class="showcase-card-price text-amber-400 font-mono">${formattedAED}</span>
+          <!-- Bottom Card Info -->
+          <div class="absolute bottom-3 left-3 right-3 z-10 text-white pointer-events-none">
+            <div class="flex items-center text-amber-400 text-[10px] gap-1 mb-0.5 font-semibold">
+              <i class="fa-solid fa-star text-[9px]"></i>
+              <span class="text-white font-bold ml-0.5">${tour.rating}</span>
+            </div>
+            <h4 class="showcase-card-title drop-shadow-md">${tour.title}</h4>
+            <div class="showcase-card-meta flex items-center justify-between text-slate-300 mt-1 font-medium pt-1.5 border-t border-white/15">
+              <span class="flex items-center gap-1"><i class="fa-regular fa-clock text-amber-400 text-[9px]"></i>${tour.duration}</span>
+              <span class="showcase-card-price text-amber-400 font-mono">${formattedAED}</span>
+            </div>
           </div>
         </div>
-      </div>
-    `;
-  }).join('');
+      `;
+    }).join('');
+  }
 
   // Render Indicator Dots
   if (dotsContainer) {
@@ -4589,10 +4585,18 @@ function openCountryShowcase(countryKey) {
 
   // Update initial active tour
   updateShowcaseTourUI(0, false);
+  return true;
+}
 
-  // Show modal
+function openCountryShowcase(countryKey) {
+  const modal = document.getElementById('destinationsModal') || document.getElementById('countryShowcaseModal') || document.querySelector('.showcase-modal-overlay');
+  if (!modal) return;
+
+  const populated = populateShowcaseData(countryKey);
+  if (!populated) return;
+
+  modal.classList.add('active');
   modal.classList.remove('hidden');
-  modal.classList.add('flex');
   modal.style.display = 'flex';
   modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
@@ -4727,13 +4731,14 @@ function prevCountryShowcaseSlide() {
 }
 
 function closeCountryShowcase() {
-  const modal = document.getElementById('countryShowcaseModal');
+  const modal = document.getElementById('destinationsModal') || document.getElementById('countryShowcaseModal') || document.querySelector('.showcase-modal-overlay');
   if (!modal) return;
+  modal.classList.remove('active');
   modal.classList.add('hidden');
   modal.classList.remove('flex');
   modal.style.display = 'none';
   modal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
+  document.body.style.overflow = 'auto';
 }
 
 // "VIEW PACKAGE DETAILS" Handler -> Opens comprehensive itinerary modal
@@ -5087,10 +5092,9 @@ window.downloadShowcaseBrochure = downloadShowcaseBrochure;
 window.downloadTourBrochure = downloadTourBrochure;
 window.scrollCountryShowcaseCards = scrollCountryShowcaseCards;
 
-// Smart alias: if countryShowcaseModal exists on the page, use openCountryShowcase; otherwise fallback to classic openCountryPackages
-const originalOpenCountryPackages = typeof openCountryPackages === 'function' ? openCountryPackages : null;
+window.populateShowcaseData = populateShowcaseData;
 window.openCountryPackages = function(countryKey) {
-  const showcaseModal = document.getElementById('countryShowcaseModal');
+  const showcaseModal = document.getElementById('destinationsModal') || document.getElementById('countryShowcaseModal') || document.querySelector('.showcase-modal-overlay');
   if (showcaseModal && COUNTRY_SHOWCASE_DATA[countryKey]) {
     return openCountryShowcase(countryKey);
   }
@@ -5098,3 +5102,4 @@ window.openCountryPackages = function(countryKey) {
     return originalOpenCountryPackages(countryKey);
   }
 };
+window.closeCountryPackages = closeCountryShowcase;

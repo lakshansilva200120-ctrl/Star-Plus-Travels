@@ -1718,19 +1718,29 @@ html.light .cat-chip.active {
 /* ==========================================================================
    Roxaval-style Interactive Destinations Showcase Slider
    ========================================================================== */
-/* Country Showcase Modal Overlay (Hidden by default, fixed overlay on click) */
-#countryShowcaseModal {
-  display: none;
+/* Country Showcase Modal Overlay (Strictly hidden by default, fixed overlay on click) */
+.showcase-modal-overlay,
+#destinationsModal,
+#countryShowcaseModal,
+.destinations-showcase-wrapper {
+  display: none !important;
   position: fixed;
-  inset: 0;
-  z-index: 9999;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  background: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  background: rgba(5, 10, 18, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  align-items: center;
+  justify-content: center;
 }
 
-#countryShowcaseModal.flex,
-#countryShowcaseModal:not(.hidden) {
+.showcase-modal-overlay.active,
+#destinationsModal.active,
+#countryShowcaseModal.active,
+.destinations-showcase-wrapper.active {
   display: flex !important;
 }
 
