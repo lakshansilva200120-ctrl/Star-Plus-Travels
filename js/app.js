@@ -4779,6 +4779,18 @@ function openShowcaseItinerary(tour) {
   if (subtitleElem) subtitleElem.textContent = tour.subtitle;
   if (descElem) descElem.textContent = tour.description;
 
+  // Render Accommodation & Hotel Stay Tier
+  const stayElem = document.getElementById('showcaseItineraryStay');
+  if (stayElem) {
+    if (tour.stay) {
+      stayElem.textContent = tour.stay;
+    } else {
+      // Look for hotel/accommodation items in inclusions or default
+      const stayItem = (tour.inclusions || []).find(inc => /night|hotel|resort|lodge|accommodation|stay/i.test(inc));
+      stayElem.textContent = stayItem || `${tour.duration || 'Multi-day'} Luxury 4-Star & 5-Star Handpicked Lodging`;
+    }
+  }
+
   // Render Included Services
   if (inclusionsElem) {
     const list = tour.inclusions || tour.checklist || [];
@@ -4876,7 +4888,7 @@ function downloadTourBrochure(tour) {
 
   const inclusionsHtml = (tour.inclusions || tour.checklist || []).map(inc => `
     <li style="margin-bottom: 7px; display: flex; align-items: flex-start;">
-      <span style="color: #d97706; margin-right: 8px; font-weight: bold;">âœ”</span>
+      <span style="color: #d97706; margin-right: 8px; font-weight: bold;">&#10004;</span>
       <span>${inc}</span>
     </li>
   `).join('');
@@ -5103,3 +5115,21 @@ window.openCountryPackages = function(countryKey) {
   }
 };
 window.closeCountryPackages = closeCountryShowcase;
+
+// Explicit Event Listener Bindings for "VIEW PACKAGE DETAILS" CTA
+document.addEventListener('DOMContentLoaded', () => {
+  const detailsBtn = document.getElementById('showcaseDetailsBtn');
+  if (detailsBtn) {
+    detailsBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleShowcaseDetailsAction();
+    });
+  }
+
+  document.querySelectorAll('.view-package-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      handleShowcaseDetailsAction();
+    });
+  });
+});

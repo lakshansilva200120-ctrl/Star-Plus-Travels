@@ -1113,13 +1113,19 @@
   <div id="showcaseItineraryModal" class="fixed inset-0 z-[10001] items-center justify-center p-3 sm:p-5 lg:p-8 overflow-y-auto hidden" style="display: none; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);" onclick="if(event.target === this) closeShowcaseItinerary()" role="dialog" aria-modal="true" aria-labelledby="showcaseItineraryTitle">
     <div class="relative w-full max-w-3xl max-h-[90vh] bg-[#070e17] border border-amber-500/40 rounded-[28px] overflow-hidden flex flex-col shadow-2xl modal-content-animate my-auto text-slate-200">
       
-      <!-- Close Button -->
-      <button type="button" onclick="closeShowcaseItinerary()" class="pointer-events-auto absolute top-4 right-4 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-950/80 hover:bg-amber-500 hover:text-slate-950 text-white border border-slate-700/80 hover:border-amber-500 flex items-center justify-center text-sm transition-all duration-200 shadow-xl cursor-pointer group" aria-label="Close Itinerary Details">
-        <i class="fa-solid fa-xmark transition-transform group-hover:scale-110"></i>
-      </button>
+      <!-- Top Action Bar (Back to Overview & Close Buttons) -->
+      <div class="pointer-events-auto absolute top-4 left-4 right-4 z-50 flex items-center justify-between">
+        <button type="button" onclick="closeShowcaseItinerary()" class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-slate-950/85 hover:bg-slate-900 text-amber-400 hover:text-amber-300 border border-amber-500/40 hover:border-amber-400 text-xs font-bold transition-all shadow-xl cursor-pointer group" aria-label="Back to Tour Overview">
+          <i class="fa-solid fa-arrow-left text-[11px] transition-transform group-hover:-translate-x-0.5"></i>
+          <span>Back to Tour Overview</span>
+        </button>
+        <button type="button" onclick="closeShowcaseItinerary()" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-950/85 hover:bg-amber-500 hover:text-slate-950 text-white border border-slate-700/80 hover:border-amber-500 flex items-center justify-center text-sm transition-all duration-200 shadow-xl cursor-pointer group" aria-label="Close Itinerary Details">
+          <i class="fa-solid fa-xmark transition-transform group-hover:scale-110"></i>
+        </button>
+      </div>
 
       <!-- Scrollable Modal Content -->
-      <div class="overflow-y-auto flex-1 p-5 sm:p-8 space-y-6">
+      <div class="overflow-y-auto flex-1 p-5 sm:p-8 space-y-6 pt-16">
         
         <!-- Header / Hero Banner -->
         <div class="relative rounded-2xl overflow-hidden min-h-[160px] sm:min-h-[190px] p-5 sm:p-6 flex flex-col justify-end bg-slate-900 border border-white/10 shadow-lg">
@@ -1142,6 +1148,17 @@
 
         <!-- Description -->
         <p id="showcaseItineraryDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed"></p>
+
+        <!-- Accommodation & Stay Tier Details -->
+        <div id="showcaseItineraryStayContainer" class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-start space-x-3 text-xs">
+          <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i class="fa-solid fa-hotel text-sm"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400 block mb-0.5">Accommodation &amp; Hotel Stay Tier</span>
+            <span id="showcaseItineraryStay" class="text-white font-semibold text-xs leading-relaxed">Luxury 4-Star &amp; 5-Star Boutique Lodging</span>
+          </div>
+        </div>
 
         <!-- Included Services Grid -->
         <div>
