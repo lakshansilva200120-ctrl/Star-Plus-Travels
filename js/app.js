@@ -4018,7 +4018,7 @@ function openCountryShowcase(countryKey) {
   if (headerIcon) headerIcon.className = `fa-solid ${data.icon || 'fa-gem'}`;
   if (categoryTag) categoryTag.textContent = data.categoryTag || 'POPULAR DESTINATIONS';
 
-  // Render Horizontal Floating Cards (border-radius: 20px)
+  // Render Horizontal Floating Cards (Compact ~205px x 275px)
   cardsTrack.innerHTML = data.tours.map((tour, idx) => {
     const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
     return `
@@ -4031,22 +4031,22 @@ function openCountryShowcase(countryKey) {
         <img src="${tour.thumbnail}" alt="${tour.title}" class="w-full h-full object-cover transition-transform duration-700 pointer-events-none" loading="lazy">
         <div class="showcase-card-overlay"></div>
         
-        <!-- Category Pill Badge with whitespace-nowrap -->
+        <!-- Category Pill Badge (0.7rem, compact 3px 8px padding, whitespace-nowrap) -->
         <div class="showcase-category-badge">
-          <i class="fa-solid ${tour.categoryIcon || 'fa-tag'} text-[10px] flex-shrink-0"></i>
+          <i class="fa-solid ${tour.categoryIcon || 'fa-tag'} text-[9px] flex-shrink-0"></i>
           <span>${tour.category}</span>
         </div>
 
         <!-- Bottom Card Info -->
-        <div class="absolute bottom-4 left-4 right-4 z-10 text-white pointer-events-none">
-          <div class="flex items-center text-amber-400 text-[11px] gap-1 mb-1.5 font-semibold">
-            <i class="fa-solid fa-star text-[10px]"></i>
+        <div class="absolute bottom-3 left-3 right-3 z-10 text-white pointer-events-none">
+          <div class="flex items-center text-amber-400 text-[10px] gap-1 mb-0.5 font-semibold">
+            <i class="fa-solid fa-star text-[9px]"></i>
             <span class="text-white font-bold ml-0.5">${tour.rating}</span>
           </div>
-          <h4 class="text-sm sm:text-base font-bold text-white font-heading leading-snug drop-shadow-md line-clamp-2">${tour.title}</h4>
-          <div class="flex items-center justify-between text-[11px] text-slate-300 mt-2 font-medium pt-2 border-t border-white/15">
-            <span class="flex items-center gap-1.5"><i class="fa-regular fa-clock text-amber-400 text-[10px]"></i>${tour.duration}</span>
-            <span class="text-amber-400 font-bold font-mono text-xs">${formattedAED}</span>
+          <h4 class="showcase-card-title drop-shadow-md">${tour.title}</h4>
+          <div class="showcase-card-meta flex items-center justify-between text-slate-300 mt-1 font-medium pt-1.5 border-t border-white/15">
+            <span class="flex items-center gap-1"><i class="fa-regular fa-clock text-amber-400 text-[9px]"></i>${tour.duration}</span>
+            <span class="showcase-card-price text-amber-400 font-mono">${formattedAED}</span>
           </div>
         </div>
       </div>
@@ -4233,7 +4233,7 @@ document.addEventListener('keydown', (e) => {
 function scrollCountryShowcaseCards(direction) {
   const track = document.getElementById('countryShowcaseCardsTrack');
   if (!track) return;
-  const cardWidth = 285;
+  const cardWidth = 225;
   if (direction === 'left') {
     track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
     prevCountryShowcaseSlide();
