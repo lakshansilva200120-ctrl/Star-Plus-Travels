@@ -1801,6 +1801,44 @@ html.light .cat-chip.active {
   transform: translateY(-8px) scale(1.04);
 }
 
+/* Modal Showcase Floating Preview Cards (border-radius: 20px) */
+.showcase-preview-card {
+  width: 240px;
+  min-width: 240px;
+  height: 350px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, opacity 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  opacity: 0.82;
+}
+
+@media (min-width: 640px) {
+  .showcase-preview-card {
+    width: 260px;
+    min-width: 260px;
+    height: 370px;
+    border-radius: 20px;
+  }
+}
+
+.showcase-preview-card:hover {
+  opacity: 1;
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.45);
+}
+
+.showcase-preview-card.active {
+  opacity: 1;
+  border-color: #f59e0b !important;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 158, 11, 0.4);
+  transform: translateY(-8px) scale(1.03);
+}
+
 .dest-text-fade {
   animation: destTextFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }

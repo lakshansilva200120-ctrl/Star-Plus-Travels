@@ -2303,12 +2303,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile menu button listener
   document.getElementById('mobileMenuBtn')?.addEventListener('click', toggleMobileMenu);
 
-  // Close modals on escape key
+  // Close modals on escape key & navigate showcase with arrow keys
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeBookingModal();
       closeItineraryModal();
       closeCountryPackagesModal();
+      closeCountryShowcase();
+    }
+    const showcaseModal = document.getElementById('countryShowcaseModal');
+    if (showcaseModal && !showcaseModal.classList.contains('hidden')) {
+      if (e.key === 'ArrowRight') {
+        nextCountryShowcaseSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevCountryShowcaseSlide();
+      }
     }
   });
 
@@ -3650,4 +3659,593 @@ window.goToDestinationSlide = goToDestinationSlide;
 window.nextDestinationSlide = nextDestinationSlide;
 window.prevDestinationSlide = prevDestinationSlide;
 window.handleSliderExplore = handleSliderExplore;
+
+/* ==========================================================================
+   LEVEL 2: Country-Specific Interactive Showcase Modal System (Image 2)
+   ========================================================================== */
+const COUNTRY_SHOWCASE_DATA = {
+  srilanka: {
+    country: 'Sri Lanka Island Odyssey',
+    badge: 'Cultural Triangle & Emerald Pearl',
+    icon: 'fa-gem',
+    categoryTag: 'POPULAR DESTINATIONS',
+    tours: [
+      {
+        id: 'sl-galle-south',
+        title: 'Galle & Down South',
+        subtitle: 'GOLDEN COASTLINES & COLONIAL RAMPARTS',
+        category: 'Beach & Coastal',
+        categoryIcon: 'fa-umbrella-beach',
+        rating: '4.9',
+        reviews: '315+ reviews',
+        duration: '4 Days / 3 Nights',
+        priceAED: 1890,
+        priceLKR: 'LKR 165,000',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+        description: 'Unwind along Sri Lanka’s sun-drenched southern coastline. Stroll the 17th-century ramparts and cobblestone paths of UNESCO World Heritage Galle Dutch Fort, watch stilt fishermen at Koggala, catch premier surf breaks at Weligama and Hiriketiya, and cruise through mangrove tunnels on the Madu River boat safari.',
+        checklist: [
+          'UNESCO Galle Dutch Fort & Lighthouse',
+          'Mirissa Secret Beach & Whale Harbor',
+          'Unawatuna Japanese Peace Pagoda',
+          'Hikkaduwa Coral Reef Snorkeling',
+          'Hiriketiya Horseshoe Surf Bay',
+          'Bentota & Madu River Mangrove Safari'
+        ],
+        whatsappMsg: 'Hi Star Plus, I would like to book the Sri Lanka "Galle & Down South" regional tour (AED 1,890 / LKR 165,000).'
+      },
+      {
+        id: 'sl-sigiriya-cultural',
+        title: 'Sigiriya & Cultural Triangle',
+        subtitle: 'ANCIENT KINGDOMS & UNESCO CITADELS',
+        category: 'Cultural',
+        categoryIcon: 'fa-landmark',
+        rating: '5.0',
+        reviews: '340+ reviews',
+        duration: '5 Days / 4 Nights',
+        priceAED: 2250,
+        priceLKR: 'LKR 195,000',
+        image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+        description: 'Journey through 2,500 years of royal Sri Lankan heritage. Scale the iconic 5th-century Lion Rock of Sigiriya, admire 150+ Buddha statues in Dambulla Cave Temples, explore the sprawling ruins of Anuradhapura and Polonnaruwa, and witness sacred relic ceremonies in Kandy.',
+        checklist: [
+          'Sigiriya 5th-Century Lion Rock Fortress',
+          'Golden Dambulla Cave Temple Complex',
+          'Anuradhapura Sacred Bodhi Tree',
+          'Polonnaruwa Ancient Kingdom Ruins',
+          'Kandy Temple of the Tooth Relic'
+        ],
+        whatsappMsg: 'Hi Star Plus, I am interested in the Sri Lanka "Sigiriya & Cultural Triangle" tour (AED 2,250 / LKR 195,000).'
+      },
+      {
+        id: 'sl-ella-nuwaraeliya',
+        title: 'Ella & Nuwara Eliya',
+        subtitle: 'MISTY HIGHLANDS & ALPINE TEA VALLEYS',
+        category: 'Hill Country',
+        categoryIcon: 'fa-mountain',
+        rating: '5.0',
+        reviews: '420+ reviews',
+        duration: '5 Days / 4 Nights',
+        priceAED: 2050,
+        priceLKR: 'LKR 180,000',
+        image: 'assets/sri-lanka-destination.jpg',
+        thumbnail: 'assets/sri-lanka-destination.jpg',
+        description: 'Ride the legendary blue train as it weaves across misty valleys and the architectural marvel of the Demodara Nine Arches Bridge. Wander through the crisp, emerald Ceylon tea plantations of Nuwara Eliya, stand above the clouds at World’s End in Horton Plains, and hike to cascading waterfalls.',
+        checklist: [
+          'Hill Country Scenic Blue Train Journey',
+          'Demodara Nine Arches Bridge Viewpoint',
+          'Ravana Falls & Little Adam’s Peak Hike',
+          'Horton Plains & 880m World’s End Precipice',
+          'Ceylon Tea Plantation & Estate Tasting'
+        ],
+        whatsappMsg: 'Hi Star Plus, I would like to inquire about the "Ella & Nuwara Eliya" Hill Country tour (AED 2,050 / LKR 180,000).'
+      },
+      {
+        id: 'sl-wildlife-safari',
+        title: 'Wildlife & Rainforest Safari',
+        subtitle: 'LEOPARD SANCTUARIES & JUNGLE EXPEDITIONS',
+        category: 'Wildlife',
+        categoryIcon: 'fa-paw',
+        rating: '4.9',
+        reviews: '280+ reviews',
+        duration: '5 Days / 4 Nights',
+        priceAED: 2150,
+        priceLKR: 'LKR 190,000',
+        image: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=80',
+        description: 'Track the highest leopard density on the planet with customized 4x4 open-top jeep safaris in Yala and Wilpattu. Trek beneath the ancient prehistoric canopy of UNESCO Sinharaja Virgin Rainforest, observe wild elephant rehabilitation at Udawalawe, and spot rare migratory wetland birds at Bundala.',
+        checklist: [
+          'Yala Big-Game Leopard 4x4 Safari',
+          'Udawalawe Elephant Transit Home Visit',
+          'Sinharaja UNESCO Virgin Rainforest Trek',
+          'Bundala Wetland Migratory Bird Sanctuary',
+          'Wilpattu Dense Forest Leopard Safari'
+        ],
+        whatsappMsg: 'Hi Star Plus, I would like to book the "Wildlife & Rainforest Safari" package (AED 2,150 / LKR 190,000).'
+      },
+      {
+        id: 'sl-jaffna-north',
+        title: 'Jaffna & Untouched North',
+        subtitle: 'VIBRANT TAMIL HERITAGE & PALK STRAIT ISLANDS',
+        category: 'Northern Heritage',
+        categoryIcon: 'fa-place-of-worship',
+        rating: '4.8',
+        reviews: '190+ reviews',
+        duration: '4 Days / 3 Nights',
+        priceAED: 1950,
+        priceLKR: 'LKR 170,000',
+        image: 'https://images.unsplash.com/photo-1588258524675-c6353d9e8790?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1588258524675-c6353d9e8790?auto=format&fit=crop&w=800&q=80',
+        description: 'Discover the vibrant Tamil cultural capital of Northern Sri Lanka. Experience spiritual reverence at the golden Nallur Kandaswamy Kovil, explore the star-shaped Dutch fort, take scenic ferries across the Palk Strait to sacred Nagadeepa Temple, and witness wild horses on remote coral-walled Delft Island.',
+        checklist: [
+          'Star-Shaped Historic Jaffna Dutch Fort',
+          'Golden Nallur Kandaswamy Kovil Experience',
+          'Nagadeepa (Nainativu) Island Ferry Crossing',
+          'Delft Island Wild Horses & Baobab Tree',
+          'Keerimalai Sacred Natural Springs'
+        ],
+        whatsappMsg: 'Hi Star Plus, please provide details for the "Jaffna & Untouched North" tour (AED 1,950 / LKR 170,000).'
+      }
+    ]
+  },
+  dubai: {
+    country: 'Dubai & Abu Dhabi, UAE',
+    badge: 'Arabian Glamour & Flagship Hub',
+    icon: 'fa-city',
+    categoryTag: 'POPULAR DESTINATIONS',
+    tours: [
+      {
+        id: 'dubai-family-escape',
+        title: 'Dubai 4D / 3N Family Escape',
+        subtitle: 'GLAMOUR, ICONIC LANDMARKS & LUXURY DESERT',
+        category: 'Family Holiday',
+        categoryIcon: 'fa-star',
+        rating: '5.0',
+        reviews: '510+ reviews',
+        duration: '4 Days / 3 Nights',
+        priceAED: 1850,
+        priceLKR: 'LKR 380,000 / Adult (Child LKR 320,000)',
+        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
+        description: 'The signature Dubai luxury family getaway. Stay in 4-star deluxe comfort at Avani Deira Hotel with daily international breakfast, ascend to the 124th/125th floor of the Burj Khalifa, explore the aquatic wonders of Dubai Aquarium & Underwater Zoo, sail Dubai Marina on a 5-star Dhow Cruise Dinner with live Tanoura dance, and visit Dubai Miracle Garden and Global Village.',
+        checklist: [
+          'Avani Deira Dubai Hotel 4-Star Deluxe Stay',
+          'Burj Khalifa 124th/125th Floor Observation Deck',
+          'Dubai Aquarium & Underwater Zoo Experience',
+          'Dubai Marina Luxury Dhow Cruise Dinner & Show',
+          'Dubai Miracle Garden & Global Village Entry',
+          'VIP 4x4 Desert Safari with Dune Bashing & BBQ'
+        ],
+        whatsappMsg: 'Hi Star Plus, I am interested in the "Dubai 4D / 3N Family Escape" with Avani Deira Hotel (LKR 380,000 / Adult).'
+      },
+      {
+        id: 'dubai-abudhabi-grand',
+        title: 'Dubai & Abu Dhabi Grand Tour',
+        subtitle: 'EMIRATES TWIN CITY & CULTURAL MARVEL',
+        category: 'Luxury City',
+        categoryIcon: 'fa-building-columns',
+        rating: '5.0',
+        reviews: '390+ reviews',
+        duration: '5 Days / 4 Nights',
+        priceAED: 2750,
+        priceLKR: 'LKR 560,000',
+        image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80',
+        description: 'Experience the peak of Arabian architecture and opulence. Enjoy a private chauffeur-driven tour to Abu Dhabi\'s majestic Sheikh Zayed Grand Mosque and Louvre Museum, cruise around the Palm Jumeirah on a private yacht, and dine under desert stars in a VIP desert camp.',
+        checklist: [
+          'Sheikh Zayed Grand Mosque & Louvre Abu Dhabi',
+          'Palm Jumeirah & Atlantis Private 2-Hr Yacht Cruise',
+          'Museum of the Future Priority Access Passes',
+          'Red Dune VIP Desert Safari with Private Majlis',
+          'Dedicated Chauffeur & 5-Star Waterfront Hotel'
+        ],
+        whatsappMsg: 'Hi Star Plus, I would like to book the "Dubai & Abu Dhabi Grand Tour" (AED 2,750 / LKR 560,000).'
+      }
+    ]
+  },
+  maldives: {
+    country: 'Maldives Island Retreats',
+    badge: 'Turquoise Atolls & Seclusion',
+    icon: 'fa-umbrella-beach',
+    categoryTag: 'POPULAR DESTINATIONS',
+    tours: [
+      {
+        id: 'maldives-overwater',
+        title: 'Overwater Villa Luxury Escape',
+        subtitle: 'TURQUOISE LAGOONS & PRIVATE POOLS',
+        category: 'Honeymoon',
+        categoryIcon: 'fa-heart',
+        rating: '5.0',
+        reviews: '230+ reviews',
+        duration: '4 Days / 3 Nights',
+        priceAED: 4499,
+        priceLKR: 'LKR 890,000',
+        image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80',
+        description: 'Wake up above crystal lagoons in your private overwater pool villa. Includes scenic return seaplane transfers from Male, all-inclusive dine-around fine dining, guided coral reef snorkeling with sea turtles, and sunset champagne dolphin cruises.',
+        checklist: [
+          '5-Star Overwater Pool Villa Accommodation',
+          'Roundtrip Scenic Seaplane Transfers',
+          'All-Inclusive Fine Dining & Champagne Breakfast',
+          'Guided Coral Reef Turtle Snorkeling',
+          'Sunset Dolphin Yacht Cruise with Canapes'
+        ],
+        whatsappMsg: 'Hi Star Plus, I am interested in the Maldives Overwater Villa Luxury Escape (AED 4,499).'
+      },
+      {
+        id: 'maldives-family-oasis',
+        title: 'Beachfront Island Family Oasis',
+        subtitle: 'WHITE SANDS & TROPICAL RELAXATION',
+        category: 'Family Island',
+        categoryIcon: 'fa-umbrella-beach',
+        rating: '4.9',
+        reviews: '175+ reviews',
+        duration: '5 Days / 4 Nights',
+        priceAED: 3250,
+        priceLKR: 'LKR 640,000',
+        image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=800&q=80',
+        description: 'Direct powder-soft beach access from your beachfront villa. Enjoy full board gourmet buffet dining, unlimited non-motorized watersports, children\'s club activities, and boat excursions to nearby coral atolls.',
+        checklist: [
+          'Beachfront Villa with Direct Lagoon Access',
+          'Speedboat Airport Transfers from Male',
+          'Full Board Meal Plan (Breakfast, Lunch, Dinner)',
+          'Kayaks, Paddleboards & Snorkel Gear',
+          'Island Hopping & Sandbank Excursion'
+        ],
+        whatsappMsg: 'Hi Star Plus, please share details for the Maldives Beachfront Island Family Oasis (AED 3,250).'
+      }
+    ]
+  },
+  azerbaijan: {
+    country: 'Baku & Caucasus, Azerbaijan',
+    badge: 'Land of Fire & Silk Road',
+    icon: 'fa-mountain-sun',
+    categoryTag: 'POPULAR DESTINATIONS',
+    tours: [
+      {
+        id: 'baku-shahdag',
+        title: 'Baku & Shahdag Mountain Escape',
+        subtitle: 'CASPIAN GLAMOUR & HIGH CAUCASUS PEAKS',
+        category: 'City & Alpine',
+        categoryIcon: 'fa-mountain',
+        rating: '4.9',
+        reviews: '210+ reviews',
+        duration: '5 Days / 4 Nights',
+        priceAED: 1950,
+        priceLKR: 'LKR 390,000',
+        image: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=800&q=80',
+        description: 'Explore the historic alleys of UNESCO Icherisheher, stand beneath the futuristic Flame Towers, marvel at bubbling mud volcanoes in Gobustan, and ride panoramic cable cars into Shahdag Alpine Resort.',
+        checklist: [
+          'Baku Old City UNESCO Walk & Maiden Tower',
+          'Gobustan Mud Volcanoes & Prehistoric Petroglyphs',
+          'Ateshgah Fire Temple & Yanar Dag Burning Hill',
+          'Shahdag Alpine Resort Mountain Cable Car',
+          'English-Speaking Guide & Chauffeur'
+        ],
+        whatsappMsg: 'Hi Star Plus, I would like to inquire about the Baku & Shahdag Mountain Escape (AED 1,950).'
+      }
+    ]
+  },
+  georgia: {
+    country: 'Tbilisi & Kazbegi, Georgia',
+    badge: 'Caucasian Peaks & Ancient Wine',
+    icon: 'fa-snowflake',
+    categoryTag: 'POPULAR DESTINATIONS',
+    tours: [
+      {
+        id: 'georgia-kazbegi',
+        title: 'Majestic Georgia & Kazbegi Alpine Tour',
+        subtitle: 'OLD TBILISI & CAUCASIAN SNOW CAPS',
+        category: 'Mountains',
+        categoryIcon: 'fa-mountain',
+        rating: '5.0',
+        reviews: '260+ reviews',
+        duration: '5 Days / 4 Nights',
+        priceAED: 1890,
+        priceLKR: 'LKR 375,000',
+        image: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=800&q=80',
+        description: 'Wander the sulfur bath cobblestone streets of Old Tbilisi, drive the scenic Georgian Military Highway past Ananuri Fortress and Jinvali Reservoir, and take a 4x4 up to 14th-century Gergeti Trinity Church under Mount Kazbek.',
+        checklist: [
+          'Old Tbilisi Walking Tour & Narikala Cable Car',
+          'Scenic Georgian Military Highway Drive',
+          'Ananuri Fortress & Turquoise Jinvali Lake',
+          '4x4 Ascent to Gergeti Trinity Church',
+          'Traditional Georgian Supra Feast with Wine'
+        ],
+        whatsappMsg: 'Hi Star Plus, I am interested in the Georgia & Kazbegi Alpine Tour (AED 1,890).'
+      }
+    ]
+  },
+  bali: {
+    country: 'Bali & Nusa Penida, Indonesia',
+    badge: 'Island of the Gods & Spiritual Bliss',
+    icon: 'fa-leaf',
+    categoryTag: 'POPULAR DESTINATIONS',
+    tours: [
+      {
+        id: 'bali-cultural-island',
+        title: 'Bali Cultural & Nusa Penida Hopper',
+        subtitle: 'EMERALD TERRACES & DRAMATIC CLIFFS',
+        category: 'Tropical Bliss',
+        categoryIcon: 'fa-umbrella-beach',
+        rating: '5.0',
+        reviews: '290+ reviews',
+        duration: '6 Days / 5 Nights',
+        priceAED: 2450,
+        priceLKR: 'LKR 490,000',
+        image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=85',
+        thumbnail: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80',
+        description: 'Swing high over Tegallalang emerald rice terraces, witness the sunset Kecak fire dance on Uluwatu cliffs, and speed across the strait to explore Kelingking T-Rex Beach and Angel\'s Billabong on Nusa Penida.',
+        checklist: [
+          'Tegallalang Rice Terraces & Giant Jungle Swing',
+          'Ubud Sacred Monkey Forest Sanctuary',
+          'Uluwatu Clifftop Temple & Sunset Fire Dance',
+          'Nusa Penida Day Tour (Kelingking Beach)',
+          'Private Pool Villa in Ubud & Seminyak Resort'
+        ],
+        whatsappMsg: 'Hi Star Plus, I would like to book the Bali Cultural & Nusa Penida package (AED 2,450).'
+      }
+    ]
+  }
+};
+
+let currentShowcaseCountryKey = 'srilanka';
+let currentShowcaseTourIndex = 0;
+
+function openCountryShowcase(countryKey) {
+  const data = COUNTRY_SHOWCASE_DATA[countryKey];
+  if (!data || !data.tours || data.tours.length === 0) return;
+
+  currentShowcaseCountryKey = countryKey;
+  currentShowcaseTourIndex = 0;
+
+  const modal = document.getElementById('countryShowcaseModal');
+  const headerTitle = document.getElementById('countryShowcaseHeaderTitle');
+  const headerBadge = document.getElementById('countryShowcaseHeaderBadge');
+  const headerIcon = document.getElementById('countryShowcaseIcon');
+  const categoryTag = document.getElementById('showcaseCategoryTag');
+  const cardsTrack = document.getElementById('countryShowcaseCardsTrack');
+  const dotsContainer = document.getElementById('showcaseDotsContainer');
+  const totalCountElem = document.getElementById('showcaseTotalCount');
+
+  if (!modal || !cardsTrack) return;
+
+  if (headerTitle) headerTitle.textContent = data.country;
+  if (headerBadge) headerBadge.textContent = data.badge;
+  if (headerIcon) headerIcon.className = `fa-solid ${data.icon || 'fa-gem'}`;
+  if (categoryTag) categoryTag.textContent = data.categoryTag || 'POPULAR DESTINATIONS';
+
+  // Render Horizontal Floating Cards (border-radius: 20px)
+  cardsTrack.innerHTML = data.tours.map((tour, idx) => {
+    const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
+    return `
+      <div class="showcase-preview-card ${idx === 0 ? 'active' : ''}" 
+           data-tour-index="${idx}" 
+           onclick="selectShowcaseTour(${idx})"
+           role="button"
+           tabindex="0"
+           aria-label="Select circuit ${tour.title}">
+        <img src="${tour.thumbnail}" alt="${tour.title}" class="w-full h-full object-cover transition-transform duration-700 pointer-events-none" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/40 to-transparent pointer-events-none"></div>
+        
+        <!-- Category Pill Badge -->
+        <div class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-950/85 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-slate-700/80 flex items-center gap-1.5 shadow-md">
+          <i class="fa-solid ${tour.categoryIcon || 'fa-tag'} text-[9px]"></i>
+          <span>${tour.category}</span>
+        </div>
+
+        <!-- Bottom Card Info -->
+        <div class="absolute bottom-3.5 left-3.5 right-3.5 text-white pointer-events-none">
+          <div class="flex items-center text-amber-400 text-[10px] gap-1 mb-1">
+            <i class="fa-solid fa-star"></i>
+            <span class="text-white font-bold ml-0.5">${tour.rating}</span>
+          </div>
+          <h4 class="text-sm sm:text-base font-bold text-white font-heading leading-tight drop-shadow-md">${tour.title}</h4>
+          <div class="flex items-center justify-between text-[10px] text-slate-300 mt-1 font-medium">
+            <span>${tour.duration}</span>
+            <span class="text-amber-400 font-bold">${formattedAED}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Render Indicator Dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = data.tours.map((_, idx) => `
+      <span class="dest-dot ${idx === 0 ? 'active' : ''}" onclick="selectShowcaseTour(${idx})" title="Tour ${idx + 1}"></span>
+    `).join('');
+  }
+
+  // Set Total Count
+  if (totalCountElem) {
+    totalCountElem.textContent = String(data.tours.length).padStart(2, '0');
+  }
+
+  // Update initial active tour
+  updateShowcaseTourUI(0, false);
+
+  // Show modal
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+
+function updateShowcaseTourUI(index, animate = true) {
+  const data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
+  if (!data || !data.tours || !data.tours[index]) return;
+
+  const tour = data.tours[index];
+  const bgImg = document.getElementById('countryShowcaseBg');
+  const titleElem = document.getElementById('showcaseActiveTitle');
+  const subtitleElem = document.getElementById('showcaseActiveSubtitle');
+  const ratingElem = document.getElementById('showcaseActiveRating');
+  const reviewsElem = document.getElementById('showcaseActiveReviews');
+  const durationElem = document.getElementById('showcaseActiveDuration');
+  const descElem = document.getElementById('showcaseActiveDesc');
+  const checklistElem = document.getElementById('showcaseActiveChecklist');
+  const priceElem = document.getElementById('showcaseActivePrice');
+  const altPriceElem = document.getElementById('showcaseActiveAltPrice');
+  const whatsAppBtn = document.getElementById('showcaseWhatsAppBtn');
+  const currentIdxElem = document.getElementById('showcaseCurrentIndex');
+
+  // Background Image smooth transition
+  if (bgImg) {
+    if (animate) {
+      bgImg.style.opacity = '0.35';
+      bgImg.classList.add('zoom');
+      setTimeout(() => {
+        bgImg.src = tour.image;
+        bgImg.style.opacity = '1';
+        bgImg.classList.remove('zoom');
+      }, 180);
+    } else {
+      bgImg.src = tour.image;
+      bgImg.style.opacity = '1';
+    }
+  }
+
+  // Text Animation
+  if (animate) {
+    if (titleElem) {
+      titleElem.classList.remove('dest-text-fade');
+      void titleElem.offsetWidth;
+      titleElem.classList.add('dest-text-fade');
+    }
+    if (descElem) {
+      descElem.classList.remove('dest-text-fade');
+      void descElem.offsetWidth;
+      descElem.classList.add('dest-text-fade');
+    }
+  }
+
+  if (titleElem) titleElem.textContent = tour.title;
+  if (subtitleElem) {
+    subtitleElem.innerHTML = `<i class="fa-solid ${tour.categoryIcon || 'fa-tag'} text-amber-400 mr-1.5"></i>${tour.subtitle}`;
+  }
+  if (ratingElem) ratingElem.textContent = tour.rating;
+  if (reviewsElem) reviewsElem.textContent = tour.reviews;
+  if (durationElem) durationElem.textContent = tour.duration;
+  if (descElem) descElem.textContent = tour.description;
+
+  // Checklist with orange checkmarks
+  if (checklistElem && tour.checklist) {
+    checklistElem.innerHTML = tour.checklist.map(item => `
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-circle-check text-amber-500 text-xs flex-shrink-0"></i>
+        <span class="truncate">${item}</span>
+      </div>
+    `).join('');
+  }
+
+  if (priceElem) {
+    const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
+    priceElem.textContent = formattedAED;
+  }
+  if (altPriceElem) {
+    altPriceElem.textContent = tour.priceLKR ? `/ person (${tour.priceLKR})` : '/ person';
+  }
+
+  if (whatsAppBtn) {
+    whatsAppBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(tour.whatsappMsg)}`;
+  }
+
+  if (currentIdxElem) {
+    currentIdxElem.textContent = String(index + 1).padStart(2, '0');
+  }
+
+  // Update card active states
+  const cards = document.querySelectorAll('.showcase-preview-card');
+  cards.forEach((c, idx) => {
+    if (idx === index) {
+      c.classList.add('active');
+      c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    } else {
+      c.classList.remove('active');
+    }
+  });
+
+  // Update dots
+  const dots = document.querySelectorAll('#showcaseDotsContainer .dest-dot');
+  dots.forEach((d, idx) => {
+    if (idx === index) {
+      d.classList.add('active');
+    } else {
+      d.classList.remove('active');
+    }
+  });
+}
+
+function selectShowcaseTour(index) {
+  const data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
+  if (!data || !data.tours || index < 0 || index >= data.tours.length) return;
+  currentShowcaseTourIndex = index;
+  updateShowcaseTourUI(index, true);
+}
+
+function nextCountryShowcaseSlide() {
+  const data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
+  if (!data || !data.tours) return;
+  const nextIdx = (currentShowcaseTourIndex + 1) % data.tours.length;
+  selectShowcaseTour(nextIdx);
+}
+
+function prevCountryShowcaseSlide() {
+  const data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
+  if (!data || !data.tours) return;
+  const prevIdx = (currentShowcaseTourIndex - 1 + data.tours.length) % data.tours.length;
+  selectShowcaseTour(prevIdx);
+}
+
+function closeCountryShowcase() {
+  const modal = document.getElementById('countryShowcaseModal');
+  if (!modal) return;
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+  document.body.style.overflow = '';
+}
+
+function handleShowcaseDetailsAction() {
+  const data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
+  if (!data || !data.tours) return;
+  const currentTour = data.tours[currentShowcaseTourIndex];
+  if (!currentTour) return;
+  const whatsappUrl = `https://wa.me/971527582293?text=${encodeURIComponent(currentTour.whatsappMsg)}`;
+  window.open(whatsappUrl, '_blank');
+}
+
+// Keyboard navigation for Country Showcase Modal
+document.addEventListener('keydown', (e) => {
+  const modal = document.getElementById('countryShowcaseModal');
+  if (!modal || modal.classList.contains('hidden')) return;
+  if (e.key === 'Escape') {
+    closeCountryShowcase();
+  } else if (e.key === 'ArrowRight') {
+    nextCountryShowcaseSlide();
+  } else if (e.key === 'ArrowLeft') {
+    prevCountryShowcaseSlide();
+  }
+});
+
+window.openCountryShowcase = openCountryShowcase;
+window.closeCountryShowcase = closeCountryShowcase;
+window.selectShowcaseTour = selectShowcaseTour;
+window.nextCountryShowcaseSlide = nextCountryShowcaseSlide;
+window.prevCountryShowcaseSlide = prevCountryShowcaseSlide;
+window.handleShowcaseDetailsAction = handleShowcaseDetailsAction;
+
+// Smart alias: if countryShowcaseModal exists on the page, use openCountryShowcase; otherwise fallback to classic openCountryPackages
+const originalOpenCountryPackages = typeof openCountryPackages === 'function' ? openCountryPackages : null;
+window.openCountryPackages = function(countryKey) {
+  const showcaseModal = document.getElementById('countryShowcaseModal');
+  if (showcaseModal && COUNTRY_SHOWCASE_DATA[countryKey]) {
+    return openCountryShowcase(countryKey);
+  }
+  if (typeof originalOpenCountryPackages === 'function') {
+    return originalOpenCountryPackages(countryKey);
+  }
+};
 
