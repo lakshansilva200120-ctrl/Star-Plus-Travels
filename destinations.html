@@ -962,27 +962,25 @@
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_70%_at_20%_40%,rgba(245,158,11,0.15),transparent_75%)]"></div>
       </div>
 
-      <!-- Top Header Bar: Country Badge / Title (Left) and Close Button (Right) -->
-      <div class="relative z-20 px-4 sm:px-7 py-3 sm:py-4 flex items-center justify-between border-b border-slate-800/60 bg-slate-950/40 backdrop-blur-sm">
-        <div class="flex items-center space-x-3 pointer-events-auto">
-          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-sm sm:text-base backdrop-blur-md shadow-md">
+      <!-- Floating Top-Left Country Breadcrumb Badge -->
+      <div class="absolute top-4 sm:top-5 left-4 sm:left-6 z-40 flex items-center space-x-2 pointer-events-auto">
+        <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-950/70 border border-amber-500/30 backdrop-blur-md text-slate-200 text-xs shadow-xl">
+          <div class="w-5 h-5 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-[10px]">
             <i id="countryShowcaseIcon" class="fa-solid fa-gem"></i>
           </div>
-          <div>
-            <div class="flex items-center space-x-2">
-              <span id="countryShowcaseHeaderBadge" class="text-[10px] font-extrabold uppercase tracking-widest text-amber-400 bg-amber-500/15 px-2 py-0.5 rounded-full border border-amber-500/30">Cultural Triangle</span>
-            </div>
-            <h3 id="countryShowcaseHeaderTitle" class="text-sm sm:text-base font-extrabold text-white font-heading drop-shadow-md">Sri Lanka Island Odyssey</h3>
-          </div>
+          <span id="countryShowcaseHeaderTitle" class="font-extrabold text-white tracking-wide text-xs">Sri Lanka Island Odyssey</span>
+          <span class="text-slate-600">&bull;</span>
+          <span id="countryShowcaseHeaderBadge" class="text-[10px] text-amber-400 font-bold uppercase tracking-wider">Cultural Triangle</span>
         </div>
-
-        <button type="button" onclick="closeCountryShowcase()" class="pointer-events-auto w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900/80 hover:bg-amber-500 hover:text-slate-950 text-white border border-slate-700/80 flex items-center justify-center text-sm transition-all shadow-md backdrop-blur-md cursor-pointer group" aria-label="Close Showcase">
-          <i class="fa-solid fa-xmark transition-transform group-hover:scale-110"></i>
-        </button>
       </div>
 
-      <!-- Main Showcase Grid Content (Vertically Center-Aligned & Fit within 90vh) -->
-      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center my-auto px-4 sm:px-7 py-3 sm:py-4 flex-1 overflow-y-auto">
+      <!-- Floating Top-Right Close Button -->
+      <button type="button" onclick="closeCountryShowcase()" class="pointer-events-auto absolute top-4 sm:top-5 right-4 sm:right-6 z-50 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-950/80 hover:bg-amber-500 hover:text-slate-950 text-white border border-slate-700/80 hover:border-amber-500 flex items-center justify-center text-sm transition-all duration-200 shadow-xl backdrop-blur-md cursor-pointer group" aria-label="Close Showcase">
+        <i class="fa-solid fa-xmark transition-transform group-hover:scale-110"></i>
+      </button>
+
+      <!-- Main Showcase Grid Content (Seamless from top edge, reclaimed vertical space) -->
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center my-auto px-4 sm:px-7 pt-16 sm:pt-16 pb-4 flex-1 overflow-y-auto">
         
         <!-- Left Column: Active Tour Package Info (Vertically Centered & Compact Spacing) -->
         <div class="lg:col-span-5 flex flex-col justify-center space-y-2.5 my-auto">
