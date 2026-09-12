@@ -2702,7 +2702,7 @@ function initNavPillIndicator() {
 
     const isDark = document.documentElement.classList.contains('dark') ||
       (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    const logoSrc = isDark ? 'assets/logo-white-text.png?v=8.2.0' : 'assets/original-removebg-preview.png?v=8.2.0';
+    const logoSrc = isDark ? 'assets/logo-white-text.png?v=2' : 'assets/logo.png?v=2';
 
     targetPreloader.innerHTML = `
       <div class="ny-loader-card">
