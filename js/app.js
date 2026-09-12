@@ -3002,7 +3002,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Safari & Rainforest',
         duration: '5 Days / 4 Nights',
         stay: 'Luxury Eco-Lodges & Safari Tented Camps',
-        image: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=80',
+        image: 'assets/sri-lanka-wildlife-elephant.jpg',
         description: 'Immerse in Sri Lanka’s wild sanctuary with big-game leopard safaris, UNESCO virgin rainforest trekking, and ocean whale encounters.',
         highlights: [
           'Exclusive 4x4 Jeep Safari in Yala National Park (World’s highest leopard density)',
@@ -3036,7 +3036,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Northern Heritage',
         duration: '4 Days / 3 Nights',
         stay: 'Premier Heritage Boutique Hotels in Jaffna City',
-        image: 'https://images.unsplash.com/photo-1588258524675-c6353d9e8790?auto=format&fit=crop&w=800&q=80',
+        image: 'assets/sri-lanka-jaffna-nallur-kovil.jpg',
         description: 'Explore the vibrant Tamil cultural heartland of Northern Sri Lanka, ancient island temples, and untouched colonial architecture.',
         highlights: [
           'Majestic golden Nallur Kandaswamy Kovil spiritual experience and puja ritual',
@@ -3053,7 +3053,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'UNESCO Heritage',
         duration: '5 Days / 4 Nights',
         stay: 'Heritage Garden Retreats & 4-Star Kandy Hotel',
-        image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+        image: 'assets/sri-lanka-sigiriya-rock.jpg',
         description: 'Step back through millennia of royal dynasties, sacred Buddhist monasteries, and dramatic stone citadels in the heart of Ceylon.',
         highlights: [
           'Ascend the iconic Sigiriya 5th-century Lion Rock Fortress and ancient fresco galleries',
@@ -3388,8 +3388,8 @@ const POPULAR_DESTINATIONS_SLIDES = [
     duration: '5 Days / 4 Nights',
     priceAED: 2250,
     countryKey: 'srilanka',
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1920&q=85',
-    thumbnail: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+    image: 'assets/sri-lanka-sigiriya-rock.jpg',
+    thumbnail: 'assets/sri-lanka-sigiriya-rock-thumb.jpg',
     description: 'Ascend the legendary 5th-century UNESCO Sigiriya Lion Rock Fortress rising 200 meters above emerald jungle canopies. Wander through celestial royal water gardens, marvel at golden Dambulla Rock Cave temples, and witness the sacred evening puja at the Temple of the Sacred Tooth Relic in Kandy.',
     highlights: [
       'Sigiriya 5th-Century Lion Rock Fortress',
@@ -3454,8 +3454,8 @@ const POPULAR_DESTINATIONS_SLIDES = [
     duration: '5 Days / 4 Nights',
     priceAED: 2150,
     countryKey: 'srilanka',
-    image: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1920&q=85',
-    thumbnail: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=80',
+    image: 'assets/sri-lanka-wildlife-elephant.jpg',
+    thumbnail: 'assets/sri-lanka-wildlife-elephant-thumb.jpg',
     description: 'Venture into the heart of Sri Lanka’s untamed wilderness. Embark on custom 4x4 open-top jeep safaris in Yala National Park, tracking the highest density of wild leopards in the world. Trek beneath the ancient canopy of UNESCO Sinharaja Virgin Rainforest, visit orphaned elephants at Udawalawe, and set sail on ocean blue whale encounters in Mirissa.',
     highlights: [
       'Yala National Park Big-Game Leopard Safari',
@@ -3701,8 +3701,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 2150,
         priceLKR: 'LKR 190,000',
-        image: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1920&q=85',
-        thumbnail: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=80',
+        image: 'assets/sri-lanka-wildlife-elephant.jpg',
+        thumbnail: 'assets/sri-lanka-wildlife-elephant-thumb.jpg',
         description: 'Track the highest leopard density on the planet with customized 4x4 open-top jeep safaris in Yala and Wilpattu. Trek beneath the ancient prehistoric canopy of UNESCO Sinharaja Virgin Rainforest, observe wild elephant rehabilitation at Udawalawe, and spot rare migratory wetland birds at Bundala.',
         checklist: [
           'Yala National Park Big-Game Leopard 4x4 Safari',
@@ -3829,8 +3829,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '4 Days / 3 Nights',
         priceAED: 1950,
         priceLKR: 'LKR 170,000',
-        image: 'https://images.unsplash.com/photo-1588258524675-c6353d9e8790?auto=format&fit=crop&w=1920&q=85',
-        thumbnail: 'https://images.unsplash.com/photo-1588258524675-c6353d9e8790?auto=format&fit=crop&w=800&q=80',
+        image: 'assets/sri-lanka-jaffna-nallur-kovil.jpg',
+        thumbnail: 'assets/sri-lanka-jaffna-nallur-kovil-thumb.jpg',
         description: 'Discover the vibrant Tamil cultural capital of Northern Sri Lanka. Experience spiritual reverence at the golden Nallur Kandaswamy Kovil, explore the star-shaped Dutch fort, take scenic ferries across the Palk Strait to sacred Nagadeepa Temple, and witness wild horses on remote coral-walled Delft Island.',
         checklist: [
           'Star-Shaped Historic Jaffna Dutch Fort & Ramparts',
@@ -3888,8 +3888,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 2250,
         priceLKR: 'LKR 195,000',
-        image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1920&q=85',
-        thumbnail: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+        image: 'assets/sri-lanka-sigiriya-rock.jpg',
+        thumbnail: 'assets/sri-lanka-sigiriya-rock-thumb.jpg',
         description: 'Journey through 2,500 years of royal Sri Lankan heritage. Scale the iconic 5th-century Lion Rock of Sigiriya, admire 150+ Buddha statues in Dambulla Cave Temples, explore the sprawling ruins of Anuradhapura and Polonnaruwa, and witness sacred relic ceremonies in Kandy.',
         checklist: [
           'Sigiriya 5th-Century Lion Rock Fortress Ascent',
