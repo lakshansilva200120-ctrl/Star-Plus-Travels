@@ -1755,14 +1755,21 @@ html.light .cat-chip.active {
   display: flex;
   gap: 1.25rem;
   overflow-x: auto;
+  overflow-y: visible;
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 0.75rem 0.5rem 1.5rem 0.5rem;
+  padding: 1rem 40px 1.75rem 1rem;
+  scroll-padding-right: 40px;
+  scroll-padding-left: 1rem;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
 }
 
 .dest-cards-track::-webkit-scrollbar {
   display: none;
+  width: 0;
+  height: 0;
 }
 
 .dest-preview-card {
@@ -1803,24 +1810,38 @@ html.light .cat-chip.active {
 
 /* Modal Showcase Floating Preview Cards (border-radius: 20px) */
 .showcase-preview-card {
-  width: 240px;
-  min-width: 240px;
+  width: 245px;
+  min-width: 245px;
   height: 350px;
+  max-height: 52vh;
   border-radius: 20px;
   overflow: hidden;
   position: relative;
   cursor: pointer;
   flex-shrink: 0;
+  scroll-snap-align: start;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, opacity 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  opacity: 0.82;
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  opacity: 0.85;
+  background-color: #0b1523;
 }
 
 @media (min-width: 640px) {
   .showcase-preview-card {
-    width: 260px;
-    min-width: 260px;
-    height: 370px;
+    width: 265px;
+    min-width: 265px;
+    height: 365px;
+    max-height: 55vh;
+    border-radius: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .showcase-preview-card {
+    width: 270px;
+    min-width: 270px;
+    height: 375px;
+    max-height: 56vh;
     border-radius: 20px;
   }
 }
@@ -1828,15 +1849,116 @@ html.light .cat-chip.active {
 .showcase-preview-card:hover {
   opacity: 1;
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.2);
-  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 18px 36px -8px rgba(0, 0, 0, 0.7), 0 0 22px rgba(245, 158, 11, 0.25);
+  border-color: rgba(245, 158, 11, 0.5);
 }
 
 .showcase-preview-card.active {
   opacity: 1;
   border-color: #f59e0b !important;
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.85), 0 0 32px rgba(245, 158, 11, 0.45);
   transform: translateY(-8px) scale(1.03);
+}
+
+.showcase-preview-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Card Gradient Overlay */
+.showcase-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.65) 45%, rgba(7, 14, 23, 0.2) 70%, transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+  transition: background 0.3s ease;
+}
+
+.showcase-preview-card:hover .showcase-card-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.72) 45%, rgba(7, 14, 23, 0.25) 70%, transparent 100%);
+}
+
+/* Category Badge with whitespace-nowrap and clean pill padding */
+.showcase-category-badge {
+  position: absolute;
+  top: 0.875rem;
+  left: 0.875rem;
+  z-index: 10;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.375rem;
+  padding: 0.35rem 0.75rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.6875rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(7, 14, 23, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  color: #fbbf24 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  max-width: calc(100% - 1.75rem);
+  user-select: none;
+}
+
+.showcase-category-badge span {
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Floating Circular Navigation Arrows for Cards Carousel Track */
+.showcase-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(7, 14, 23, 0.88);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 30;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.75), 0 0 18px rgba(245, 158, 11, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showcase-carousel-arrow:hover {
+  background: #f59e0b;
+  color: #070e17;
+  border-color: #f59e0b;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 12px 30px -5px rgba(245, 158, 11, 0.45);
+}
+
+.showcase-carousel-arrow-prev {
+  left: 0.25rem;
+}
+
+.showcase-carousel-arrow-next {
+  right: 0.25rem;
+}
+
+@media (min-width: 640px) {
+  .showcase-carousel-arrow-prev {
+    left: 0.5rem;
+  }
+  .showcase-carousel-arrow-next {
+    right: 0.5rem;
+  }
 }
 
 .dest-text-fade {

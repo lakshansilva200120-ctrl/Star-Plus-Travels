@@ -4029,24 +4029,24 @@ function openCountryShowcase(countryKey) {
            tabindex="0"
            aria-label="Select circuit ${tour.title}">
         <img src="${tour.thumbnail}" alt="${tour.title}" class="w-full h-full object-cover transition-transform duration-700 pointer-events-none" loading="lazy">
-        <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/40 to-transparent pointer-events-none"></div>
+        <div class="showcase-card-overlay"></div>
         
-        <!-- Category Pill Badge -->
-        <div class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-950/85 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-slate-700/80 flex items-center gap-1.5 shadow-md">
-          <i class="fa-solid ${tour.categoryIcon || 'fa-tag'} text-[9px]"></i>
+        <!-- Category Pill Badge with whitespace-nowrap -->
+        <div class="showcase-category-badge">
+          <i class="fa-solid ${tour.categoryIcon || 'fa-tag'} text-[10px] flex-shrink-0"></i>
           <span>${tour.category}</span>
         </div>
 
         <!-- Bottom Card Info -->
-        <div class="absolute bottom-3.5 left-3.5 right-3.5 text-white pointer-events-none">
-          <div class="flex items-center text-amber-400 text-[10px] gap-1 mb-1">
-            <i class="fa-solid fa-star"></i>
+        <div class="absolute bottom-4 left-4 right-4 z-10 text-white pointer-events-none">
+          <div class="flex items-center text-amber-400 text-[11px] gap-1 mb-1.5 font-semibold">
+            <i class="fa-solid fa-star text-[10px]"></i>
             <span class="text-white font-bold ml-0.5">${tour.rating}</span>
           </div>
-          <h4 class="text-sm sm:text-base font-bold text-white font-heading leading-tight drop-shadow-md">${tour.title}</h4>
-          <div class="flex items-center justify-between text-[10px] text-slate-300 mt-1 font-medium">
-            <span>${tour.duration}</span>
-            <span class="text-amber-400 font-bold">${formattedAED}</span>
+          <h4 class="text-sm sm:text-base font-bold text-white font-heading leading-snug drop-shadow-md line-clamp-2">${tour.title}</h4>
+          <div class="flex items-center justify-between text-[11px] text-slate-300 mt-2 font-medium pt-2 border-t border-white/15">
+            <span class="flex items-center gap-1.5"><i class="fa-regular fa-clock text-amber-400 text-[10px]"></i>${tour.duration}</span>
+            <span class="text-amber-400 font-bold font-mono text-xs">${formattedAED}</span>
           </div>
         </div>
       </div>
@@ -4230,12 +4230,26 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+function scrollCountryShowcaseCards(direction) {
+  const track = document.getElementById('countryShowcaseCardsTrack');
+  if (!track) return;
+  const cardWidth = 285;
+  if (direction === 'left') {
+    track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    prevCountryShowcaseSlide();
+  } else {
+    track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    nextCountryShowcaseSlide();
+  }
+}
+
 window.openCountryShowcase = openCountryShowcase;
 window.closeCountryShowcase = closeCountryShowcase;
 window.selectShowcaseTour = selectShowcaseTour;
 window.nextCountryShowcaseSlide = nextCountryShowcaseSlide;
 window.prevCountryShowcaseSlide = prevCountryShowcaseSlide;
 window.handleShowcaseDetailsAction = handleShowcaseDetailsAction;
+window.scrollCountryShowcaseCards = scrollCountryShowcaseCards;
 
 // Smart alias: if countryShowcaseModal exists on the page, use openCountryShowcase; otherwise fallback to classic openCountryPackages
 const originalOpenCountryPackages = typeof openCountryPackages === 'function' ? openCountryPackages : null;
@@ -4248,4 +4262,5 @@ window.openCountryPackages = function(countryKey) {
     return originalOpenCountryPackages(countryKey);
   }
 };
+
 
