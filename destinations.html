@@ -459,8 +459,132 @@
     </div>
   </section>
 
+  <!-- Roxaval-Style Interactive Popular Destinations Showcase Slider -->
+  <section id="destinationsShowcase" class="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full relative z-10">
+    <div class="dest-showcase-container rounded-[32px] p-6 sm:p-10 lg:p-12 relative overflow-hidden border border-amber-500/30 shadow-2xl">
+      
+      <!-- Dynamic Background Image Layer with Gradient Overlay -->
+      <div class="dest-showcase-bg-layer absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <img id="sliderBgImage" src="https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1920&q=85" alt="Active Destination Background" class="dest-showcase-bg">
+        <div class="dest-showcase-overlay"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_70%_at_20%_40%,rgba(245,158,11,0.15),transparent_75%)]"></div>
+      </div>
+
+      <!-- Main Showcase Grid Content -->
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Left Column: Active Destination Info -->
+        <div class="lg:col-span-5 flex flex-col justify-between space-y-4 sm:space-y-5">
+          <div>
+            <!-- Subtitle Tag -->
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/35 text-amber-400 text-xs font-extrabold uppercase tracking-widest mb-3 backdrop-blur-md">
+              <i class="fa-solid fa-location-dot text-amber-400"></i>
+              <span>POPULAR DESTINATIONS</span>
+            </div>
+
+            <!-- Large Heading & Subheading -->
+            <h2 id="sliderActiveTitle" class="dest-text-fade text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-heading tracking-tight leading-tight mb-2 drop-shadow-lg">
+              Sigiriya &amp; Kandy
+            </h2>
+            <div id="sliderActiveSubtitle" class="text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-400/90 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-landmark text-amber-400 mr-1.5"></i>Cultural Triangle &amp; Ancient Citadels
+            </div>
+
+            <!-- Rating & Duration Meta -->
+            <div class="flex items-center space-x-3 mb-4 text-xs">
+              <div class="flex items-center text-amber-400 gap-1">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <span id="sliderActiveRating" class="text-white font-bold ml-1">5.0</span>
+              </div>
+              <span class="text-slate-500">&bull;</span>
+              <span id="sliderActiveReviews" class="text-slate-300">340+ reviews</span>
+              <span class="text-slate-500">&bull;</span>
+              <span id="sliderActiveDuration" class="px-2.5 py-0.5 rounded-full bg-slate-900/80 border border-slate-700/80 text-amber-400 font-semibold">5 Days / 4 Nights</span>
+            </div>
+
+            <!-- Curated Narrative Description -->
+            <p id="sliderActiveDesc" class="dest-text-fade text-xs sm:text-sm md:text-base text-slate-200 leading-relaxed max-w-xl mb-5 drop-shadow-sm">
+              Ascend the legendary 5th-century UNESCO Sigiriya Lion Rock Fortress rising 200 meters above emerald jungle canopies. Wander through celestial royal water gardens, marvel at golden Dambulla Rock Cave temples, and witness the sacred evening puja at the Temple of the Sacred Tooth Relic in Kandy.
+            </p>
+
+            <!-- Curated Highlights Checklist -->
+            <div id="sliderActiveHighlights" class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6 max-w-xl text-xs text-slate-200">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center gap-3">
+              <button id="sliderExploreBtn" type="button" onclick="handleSliderExplore()" class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-xl shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-[1.02] flex items-center space-x-2 cursor-pointer">
+                <span>View Package Details</span>
+                <i class="fa-solid fa-arrow-right text-[11px]"></i>
+              </button>
+              <a id="sliderWhatsAppBtn" href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20interested%20in%20Sigiriya%20and%20Kandy" target="_blank" rel="noopener noreferrer" class="px-4 py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 hover:text-emerald-300 font-bold text-xs transition-all flex items-center space-x-2 shadow-lg cursor-pointer">
+                <i class="fa-brands fa-whatsapp text-sm"></i>
+                <span>Direct Inquiry</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Slider Pagination & Arrow Navigation -->
+          <div class="flex items-center justify-between sm:justify-start sm:space-x-6 pt-6 border-t border-slate-800/80">
+            <div class="flex items-center space-x-3">
+              <button type="button" onclick="prevDestinationSlide()" class="dest-nav-arrow" aria-label="Previous destination">
+                <i class="fa-solid fa-chevron-left text-sm"></i>
+              </button>
+              <button type="button" onclick="nextDestinationSlide()" class="dest-nav-arrow" aria-label="Next destination">
+                <i class="fa-solid fa-chevron-right text-sm"></i>
+              </button>
+            </div>
+            <div class="flex items-center space-x-2 font-mono text-xs">
+              <span id="sliderCurrentIndex" class="text-amber-400 font-bold text-sm">01</span>
+              <span class="text-slate-600">/</span>
+              <span id="sliderTotalCount" class="text-slate-400">05</span>
+            </div>
+            <div id="sliderDotsContainer" class="flex items-center space-x-1.5">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Horizontal Carousel of Floating Preview Cards -->
+        <div class="lg:col-span-7 relative w-full overflow-hidden">
+          <div class="text-right mb-2 pr-2 hidden sm:block">
+            <span class="text-[11px] text-slate-400 font-medium"><i class="fa-solid fa-hand-pointer text-amber-400 mr-1.5"></i>Click any card to explore</span>
+          </div>
+          <div id="destCardsTrack" class="dest-cards-track select-none">
+            <!-- Cards populated dynamically by initDestinationSlider() -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Destinations Regional Showcase Section Header -->
+  <section class="pt-8 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+      <div>
+        <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">All Country Hubs</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white font-heading mt-2">
+          Country Regional Circuits &amp; Hubs
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
+          Explore complete multi-day regional circuits with private chauffeurs, 4-star &amp; 5-star hotel stays, and custom extensions.
+        </p>
+      </div>
+      <div class="text-xs text-slate-400 flex items-center space-x-2">
+        <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+        <span>Best Price Guaranteed &bull; Tabby 4x Installments</span>
+      </div>
+    </div>
+  </section>
+
   <!-- Destinations Showcase Grid -->
-  <section class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+  <section class="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       
       <!-- Destination 1: Dubai & UAE -->

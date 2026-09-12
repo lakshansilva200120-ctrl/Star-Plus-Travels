@@ -2326,6 +2326,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Animated Statistics Number Counters
   initStatsCounters();
+
+  // Initialize Roxaval-style Interactive Destinations Showcase Slider
+  initDestinationSlider();
 });
 
 /* ==========================================================================
@@ -3340,4 +3343,311 @@ function closeCountryPackagesModal() {
 
 window.openCountryPackages = openCountryPackages;
 window.closeCountryPackagesModal = closeCountryPackagesModal;
+
+/* ==========================================================================
+   Roxaval-style Interactive Destinations Showcase Slider Controller
+   ========================================================================== */
+const POPULAR_DESTINATIONS_SLIDES = [
+  {
+    id: 'sigiriya-kandy',
+    title: 'Sigiriya & Kandy',
+    subtitle: 'Cultural Triangle & Ancient Citadels',
+    category: 'Cultural',
+    categoryIcon: 'fa-landmark',
+    rating: '5.0',
+    reviews: '340+ reviews',
+    duration: '5 Days / 4 Nights',
+    priceAED: 2250,
+    countryKey: 'srilanka',
+    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1920&q=85',
+    thumbnail: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+    description: 'Ascend the legendary 5th-century UNESCO Sigiriya Lion Rock Fortress rising 200 meters above emerald jungle canopies. Wander through celestial royal water gardens, marvel at golden Dambulla Rock Cave temples, and witness the sacred evening puja at the Temple of the Sacred Tooth Relic in Kandy.',
+    highlights: [
+      'Sigiriya 5th-Century Lion Rock Fortress',
+      'Golden Dambulla Rock Cave Temple Complex',
+      'Temple of the Sacred Tooth Relic (Kandy)',
+      'Polonnaruwa Ancient Kingdom Royal Ruins'
+    ],
+    whatsappMsg: 'Hi Star Plus, I am interested in the Sigiriya & Kandy Cultural Triangle tour package (AED 2,250/person).'
+  },
+  {
+    id: 'ella-nuwaraeliya',
+    title: 'Ella & Nuwara Eliya',
+    subtitle: 'Misty Highlands & Alpine Tea Valleys',
+    category: 'Hill Country',
+    categoryIcon: 'fa-mountain',
+    rating: '5.0',
+    reviews: '420+ reviews',
+    duration: '5 Days / 4 Nights',
+    priceAED: 2050,
+    countryKey: 'srilanka',
+    image: 'assets/sri-lanka-destination.jpg',
+    thumbnail: 'assets/sri-lanka-destination.jpg',
+    description: 'Board the world-famous blue train as it weaves across misty valleys and the iconic Demodara Nine Arch Bridge. Savor world-renowned Ceylon tea in the cool alpine estates of "Little England", marvel at roaring waterfalls, and stand above the clouds at World’s End precipice in Horton Plains.',
+    highlights: [
+      'Scenic Blue Train across Demodara Nine Arch Bridge',
+      'Ceylon Tea Factory Tour & Fresh Estate Tasting',
+      'Horton Plains & 880m World’s End Cliff Drop',
+      'Little Adam’s Peak & Ravana Waterfall Summit'
+    ],
+    whatsappMsg: 'Hi Star Plus, I would like to book the Ella & Nuwara Eliya Hill Country package (AED 2,050/person).'
+  },
+  {
+    id: 'dubai-experience',
+    title: 'Dubai & Abu Dhabi',
+    subtitle: '3N / 4D Signature Family Experience',
+    category: 'Luxury City',
+    categoryIcon: 'fa-city',
+    rating: '5.0',
+    reviews: '510+ reviews',
+    duration: '4 Days / 3 Nights',
+    priceAED: 1850,
+    countryKey: 'dubai',
+    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1920&q=85',
+    thumbnail: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
+    description: 'Immerse your family in the glittering capital of modern luxury. Enjoy 4-star deluxe comfort at Avani Deira Hotel with daily buffet breakfast, take in 360° panoramic views from Burj Khalifa At The Top (124th/125th floor), sail Dubai Marina on a 5-star dhow dinner cruise with Tanoura dance, and conquer the Lahbab red dunes on a VIP 4x4 desert safari.',
+    highlights: [
+      'Avani Deira Dubai 4-Star Hotel Stay + Breakfast',
+      'Burj Khalifa 124th/125th Floor Observation Deck',
+      'Dubai Marina Luxury Dhow Dinner Cruise & Show',
+      'VIP 4x4 Desert Safari, Camel Rides & BBQ Dinner'
+    ],
+    whatsappMsg: 'Hi Star Plus, I am interested in the 3N/4D Dubai Family Package with Avani Deira Hotel (AED 1,850/person).'
+  },
+  {
+    id: 'yala-wildlife',
+    title: 'Yala & Sinharaja',
+    subtitle: 'Leopard Safari & Virgin Rainforest',
+    category: 'Wildlife',
+    categoryIcon: 'fa-paw',
+    rating: '4.9',
+    reviews: '280+ reviews',
+    duration: '5 Days / 4 Nights',
+    priceAED: 2150,
+    countryKey: 'srilanka',
+    image: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=1920&q=85',
+    thumbnail: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=80',
+    description: 'Venture into the heart of Sri Lanka’s untamed wilderness. Embark on custom 4x4 open-top jeep safaris in Yala National Park, tracking the highest density of wild leopards in the world. Trek beneath the ancient canopy of UNESCO Sinharaja Virgin Rainforest, visit orphaned elephants at Udawalawe, and set sail on ocean blue whale encounters in Mirissa.',
+    highlights: [
+      'Yala National Park Big-Game Leopard Safari',
+      'Sinharaja UNESCO Virgin Rainforest Biosphere Trek',
+      'Udawalawe Elephant Transit Home Wild Rehab',
+      'Mirissa Blue Whale & Dolphin Ocean Safari'
+    ],
+    whatsappMsg: 'Hi Star Plus, I am interested in the Yala & Sinharaja Wildlife package (AED 2,150/person).'
+  },
+  {
+    id: 'galle-downsouth',
+    title: 'Galle & Down South',
+    subtitle: 'Golden Coastlines & Colonial Ramparts',
+    category: 'Beach & Coastal',
+    categoryIcon: 'fa-umbrella-beach',
+    rating: '4.9',
+    reviews: '315+ reviews',
+    duration: '4 Days / 3 Nights',
+    priceAED: 1890,
+    countryKey: 'srilanka',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=85',
+    thumbnail: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    description: 'Unwind along Sri Lanka’s sun-kissed southern coastline. Wander the historic ramparts, lighthouse, and cobblestone boutiques of the 17th-century UNESCO Galle Dutch Fort. Cruise through mangrove tunnels on the Madu River boat safari, participate in sea turtle conservation at Kosgoda, and surf the idyllic golden waves of Weligama and Mirissa.',
+    highlights: [
+      'UNESCO Galle Dutch Fort & Heritage Lighthouse Walk',
+      'Bentota Watersports & Madu River Boat Safari',
+      'Mirissa Secret Beach & Weligama Surfing Coast',
+      'Kosgoda Sea Turtle Conservation Project'
+    ],
+    whatsappMsg: 'Hi Star Plus, I would like to book the Galle & Down South Beach package (AED 1,890/person).'
+  }
+];
+
+let currentDestSlideIndex = 0;
+
+function initDestinationSlider() {
+  const track = document.getElementById('destCardsTrack');
+  const showcase = document.getElementById('destinationsShowcase');
+  if (!track || !showcase) return;
+
+  // Render Horizontal Cards
+  track.innerHTML = POPULAR_DESTINATIONS_SLIDES.map((slide, idx) => {
+    const formattedPrice = typeof formatPrice === 'function' ? formatPrice(slide.priceAED) : `AED ${slide.priceAED.toLocaleString()}`;
+    return `
+      <div class="dest-preview-card ${idx === 0 ? 'active' : ''}" 
+           data-slide-index="${idx}" 
+           onclick="goToDestinationSlide(${idx})"
+           role="button"
+           tabindex="0"
+           aria-label="Select destination ${slide.title}">
+        <img src="${slide.thumbnail}" alt="${slide.title}" class="w-full h-full object-cover transition-transform duration-700 pointer-events-none" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/40 to-transparent pointer-events-none"></div>
+        
+        <!-- Category Badge -->
+        <div class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-slate-950/85 backdrop-blur-md text-amber-400 text-[11px] font-bold border border-slate-700/80 flex items-center gap-1.5 shadow-md">
+          <i class="fa-solid ${slide.categoryIcon} text-[10px]"></i>
+          <span>${slide.category}</span>
+        </div>
+
+        <!-- Bottom Card Info -->
+        <div class="absolute bottom-4 left-4 right-4 text-white pointer-events-none">
+          <div class="flex items-center text-amber-400 text-[11px] gap-1 mb-1.5">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="text-white font-bold ml-1">${slide.rating}</span>
+          </div>
+          <h4 class="text-base sm:text-lg font-bold text-white font-heading leading-tight drop-shadow-md">${slide.title}</h4>
+          <div class="flex items-center justify-between text-[11px] text-slate-300 mt-1 font-medium">
+            <span>${slide.duration}</span>
+            <span class="text-amber-400 font-bold">${formattedPrice}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Render Indicator Dots
+  const dotsContainer = document.getElementById('sliderDotsContainer');
+  if (dotsContainer) {
+    dotsContainer.innerHTML = POPULAR_DESTINATIONS_SLIDES.map((_, idx) => `
+      <span class="dest-dot ${idx === 0 ? 'active' : ''}" onclick="goToDestinationSlide(${idx})" title="Slide ${idx + 1}"></span>
+    `).join('');
+  }
+
+  // Set Total Count
+  const totalElem = document.getElementById('sliderTotalCount');
+  if (totalElem) {
+    totalElem.textContent = String(POPULAR_DESTINATIONS_SLIDES.length).padStart(2, '0');
+  }
+
+  // Display initial active slide content
+  updateActiveSlideUI(0, false);
+}
+
+function updateActiveSlideUI(index, animate = true) {
+  const slide = POPULAR_DESTINATIONS_SLIDES[index];
+  if (!slide) return;
+
+  const bgImg = document.getElementById('sliderBgImage');
+  const titleElem = document.getElementById('sliderActiveTitle');
+  const subtitleElem = document.getElementById('sliderActiveSubtitle');
+  const ratingElem = document.getElementById('sliderActiveRating');
+  const reviewsElem = document.getElementById('sliderActiveReviews');
+  const durationElem = document.getElementById('sliderActiveDuration');
+  const descElem = document.getElementById('sliderActiveDesc');
+  const highlightsElem = document.getElementById('sliderActiveHighlights');
+  const whatsAppBtn = document.getElementById('sliderWhatsAppBtn');
+  const currentIdxElem = document.getElementById('sliderCurrentIndex');
+
+  // Background Image smooth transition
+  if (bgImg) {
+    if (animate) {
+      bgImg.style.opacity = '0.35';
+      bgImg.classList.add('zoom');
+      setTimeout(() => {
+        bgImg.src = slide.image;
+        bgImg.style.opacity = '1';
+        bgImg.classList.remove('zoom');
+      }, 180);
+    } else {
+      bgImg.src = slide.image;
+      bgImg.style.opacity = '1';
+    }
+  }
+
+  // Text Animation
+  if (animate) {
+    if (titleElem) {
+      titleElem.classList.remove('dest-text-fade');
+      void titleElem.offsetWidth; // Trigger reflow
+      titleElem.classList.add('dest-text-fade');
+    }
+    if (descElem) {
+      descElem.classList.remove('dest-text-fade');
+      void descElem.offsetWidth;
+      descElem.classList.add('dest-text-fade');
+    }
+  }
+
+  if (titleElem) titleElem.textContent = slide.title;
+  if (subtitleElem) {
+    subtitleElem.innerHTML = `<i class="fa-solid ${slide.categoryIcon} text-amber-400 mr-1.5"></i>${slide.subtitle}`;
+  }
+  if (ratingElem) ratingElem.textContent = slide.rating;
+  if (reviewsElem) reviewsElem.textContent = slide.reviews;
+  if (durationElem) durationElem.textContent = slide.duration;
+  if (descElem) descElem.textContent = slide.description;
+
+  if (highlightsElem && slide.highlights) {
+    highlightsElem.innerHTML = slide.highlights.map(h => `
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-circle-check text-amber-400 text-xs flex-shrink-0"></i>
+        <span class="truncate">${h}</span>
+      </div>
+    `).join('');
+  }
+
+  if (whatsAppBtn) {
+    whatsAppBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(slide.whatsappMsg)}`;
+  }
+
+  if (currentIdxElem) {
+    currentIdxElem.textContent = String(index + 1).padStart(2, '0');
+  }
+
+  // Update card active classes
+  const cards = document.querySelectorAll('.dest-preview-card');
+  cards.forEach((c, idx) => {
+    if (idx === index) {
+      c.classList.add('active');
+      // Scroll into view within horizontal track
+      c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    } else {
+      c.classList.remove('active');
+    }
+  });
+
+  // Update dots
+  const dots = document.querySelectorAll('.dest-dot');
+  dots.forEach((d, idx) => {
+    if (idx === index) {
+      d.classList.add('active');
+    } else {
+      d.classList.remove('active');
+    }
+  });
+}
+
+function goToDestinationSlide(index) {
+  if (index < 0 || index >= POPULAR_DESTINATIONS_SLIDES.length) return;
+  currentDestSlideIndex = index;
+  updateActiveSlideUI(index, true);
+}
+
+function nextDestinationSlide() {
+  const nextIdx = (currentDestSlideIndex + 1) % POPULAR_DESTINATIONS_SLIDES.length;
+  goToDestinationSlide(nextIdx);
+}
+
+function prevDestinationSlide() {
+  const prevIdx = (currentDestSlideIndex - 1 + POPULAR_DESTINATIONS_SLIDES.length) % POPULAR_DESTINATIONS_SLIDES.length;
+  goToDestinationSlide(prevIdx);
+}
+
+function handleSliderExplore() {
+  const currentSlide = POPULAR_DESTINATIONS_SLIDES[currentDestSlideIndex];
+  if (!currentSlide) return;
+
+  if (currentSlide.countryKey && typeof openCountryPackages === 'function') {
+    openCountryPackages(currentSlide.countryKey);
+  } else {
+    window.location.href = 'packages.html';
+  }
+}
+
+window.initDestinationSlider = initDestinationSlider;
+window.goToDestinationSlide = goToDestinationSlide;
+window.nextDestinationSlide = nextDestinationSlide;
+window.prevDestinationSlide = prevDestinationSlide;
+window.handleSliderExplore = handleSliderExplore;
 
