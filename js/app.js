@@ -2338,6 +2338,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Roxaval-style Interactive Destinations Showcase Slider
   initDestinationSlider();
+
+  // Smooth scroll to top when clicking Home link or brand logo on the homepage
+  document.querySelectorAll('a[href="/"], a[href="/#hero"], a[href="#hero"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname === '';
+      if (isHomePage) {
+        // If already on homepage, smoothly scroll to top/hero section
+        e.preventDefault();
+        const heroSection = document.getElementById('hero') || document.body;
+        if (window.scrollY > 0) {
+          heroSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, '', '/');
+        }
+        // If mobile drawer open, close it
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+          toggleMobileMenu();
+        }
+      }
+    });
+  });
 });
 
 /* ==========================================================================
