@@ -1309,16 +1309,56 @@ function filterCategory(cat) {
     }
   }
 
+  // Update Reset button visibility and state
+  updateResetButtonVisibility();
+
   renderPackages(filtered);
+}
+
+// Dynamically toggles Reset button display/opacity based on query or non-default category
+function updateResetButtonVisibility() {
+  const searchInput = document.getElementById('heroDestinationInput');
+  const resetBtn = document.getElementById('searchResetBtn') || document.querySelector('.reset-search-btn');
+  if (!resetBtn) return;
+
+  const hasSearch = searchInput && searchInput.value.trim().length > 0;
+  const hasCategoryFilter = typeof activeCategory !== 'undefined' && activeCategory !== 'all';
+
+  if (hasSearch || hasCategoryFilter) {
+    resetBtn.style.opacity = '1';
+    resetBtn.style.pointerEvents = 'auto';
+    resetBtn.removeAttribute('aria-hidden');
+    resetBtn.classList.remove('invisible', 'pointer-events-none');
+  } else {
+    // When in pure default state, keep it gracefully subdued or hidden
+    resetBtn.style.opacity = '0.5';
+  }
 }
 
 function resetFilters() {
   const searchInput = document.getElementById('heroDestinationInput');
-  if (searchInput) searchInput.value = '';
+  if (searchInput) {
+    searchInput.value = '';
+    searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+
+  const dateInput = document.getElementById('heroDateInput');
+  if (dateInput) dateInput.value = '';
+
+  const travelersSelect = document.getElementById('heroTravelersSelect');
+  if (travelersSelect) travelersSelect.value = '2';
+
   const searchBadge = document.getElementById('searchResultBadge');
   if (searchBadge) searchBadge.classList.add('hidden');
+
   clearAllToasts();
+
+  // Reset category state and synchronously re-render full package grid
+  activeCategory = 'all';
   filterCategory('all');
+
+  // Update button visibility
+  updateResetButtonVisibility();
 }
 
 // Debounce timer variable for real-time search
@@ -1333,6 +1373,9 @@ function handleHeroSearch(event) {
   // Clear existing toasts to prevent stacking along the right margin
   clearAllToasts();
 
+  // Update reset button visibility dynamically
+  updateResetButtonVisibility();
+
   if (heroSearchDebounceTimer) {
     clearTimeout(heroSearchDebounceTimer);
   }
@@ -1344,6 +1387,7 @@ function handleHeroSearch(event) {
     const isPackagesPage = !!document.getElementById('packagesGrid') && !!document.querySelector('.package-filter-track');
     if (isPackagesPage) {
       filterCategory(activeCategory);
+      updateResetButtonVisibility();
       return;
     }
 
@@ -1367,6 +1411,7 @@ function handleHeroSearch(event) {
     }
 
     renderPackages(matches);
+    updateResetButtonVisibility();
   }, 280);
 }
 
@@ -5189,4 +5234,26 @@ document.addEventListener('DOMContentLoaded', () => {
       handleShowcaseDetailsAction();
     });
   });
+
+  // Explicit Event Listener Binding for Tour Packages Search Reset Button
+  const resetBtn = document.getElementById('searchResetBtn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      resetFilters();
+    });
+  }
+
+  document.querySelectorAll('.reset-search-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      resetFilters();
+    });
+  });
+
+  // Initialize Reset button visibility state on page load
+  if (typeof updateResetButtonVisibility === 'function') {
+    updateResetButtonVisibility();
+  }
 });
+

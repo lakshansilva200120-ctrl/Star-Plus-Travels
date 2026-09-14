@@ -2939,3 +2939,14 @@ main > section:first-of-type {
   -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
 }
+
+/* Tour Packages Search Reset Button Styling */
+.reset-search-btn {
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s ease,
+              background-color 0.2s ease !important;
+}
+
+.reset-search-btn:active {
+  transform: scale(0.96);
+}
