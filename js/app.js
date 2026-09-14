@@ -1124,15 +1124,15 @@ function renderPackages(filteredList = PACKAGES) {
     const whatsappUrl = `https://wa.me/971527582293?text=${encodeURIComponent(rawWaMsg)}`;
 
     return `
-      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10 transition-all duration-300">
+      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10 transition-all duration-300 w-full max-w-full box-border min-w-0">
         <!-- Image & Badges -->
-        <div class="img-container relative h-56 overflow-hidden bg-slate-900">
+        <div class="img-container relative h-56 overflow-hidden bg-slate-900 w-full max-w-full">
           <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover" loading="lazy">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none"></div>
           
           <!-- Category & Bestseller Badge -->
-          <div class="absolute top-3 left-3 flex flex-wrap gap-2">
-            <span class="px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${pkg.badgeColor} shadow-md">
+          <div class="absolute top-3 left-3 flex flex-wrap gap-2 max-w-[80%]">
+            <span class="px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${pkg.badgeColor} shadow-md truncate max-w-full">
               ${badge}
             </span>
           </div>
@@ -1152,23 +1152,23 @@ function renderPackages(filteredList = PACKAGES) {
         </div>
 
         <!-- Content -->
-        <div class="p-6 flex-1 flex flex-col justify-between">
-          <div>
+        <div class="p-6 flex-1 flex flex-col justify-between w-full max-w-full box-border min-w-0">
+          <div class="w-full min-w-0">
             <!-- Location -->
             <div class="flex items-center space-x-2 text-xs font-medium text-amber-600 dark:text-amber-400 mb-2">
               <span>${pkg.flag}</span>
-              <span class="uppercase tracking-wider font-semibold">${destination}</span>
+              <span class="uppercase tracking-wider font-semibold truncate">${destination}</span>
             </div>
 
             <!-- Title -->
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors leading-snug mb-3">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors leading-snug mb-3 break-words">
               ${title}
             </h3>
 
             <!-- Perks Summary -->
-            <ul class="space-y-1.5 mb-5">
+            <ul class="space-y-1.5 mb-5 w-full min-w-0">
               ${pkg.perks.slice(0, 3).map(perk => `
-                <li class="flex items-center text-xs text-slate-600 dark:text-slate-300">
+                <li class="flex items-center text-xs text-slate-600 dark:text-slate-300 min-w-0">
                   <i class="fa-solid fa-check text-emerald-500 dark:text-emerald-400 text-[10px] mr-2 shrink-0"></i>
                   <span class="truncate">${perk}</span>
                 </li>

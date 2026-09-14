@@ -1,8 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Curated International Tour Packages | Star Plus Travel &amp; Tourism</title>
   <meta name="description" content="Explore our handpicked international holiday itineraries across Dubai, Sri Lanka, Maldives, Baku, Georgia, Bali, and Umrah with Star Plus Travels.">
 
@@ -458,20 +458,20 @@
       </p>
 
       <!-- Search & Filter Controls -->
-      <div class="mt-8 max-w-3xl mx-auto">
-        <div class="glass-card p-3 sm:p-4 rounded-2xl border border-slate-700/80 shadow-2xl flex flex-col sm:flex-row gap-3 items-center">
-          <div class="relative flex-1 w-full">
+      <div class="mt-8 max-w-3xl mx-auto w-full box-border">
+        <div class="glass-card p-3 sm:p-4 rounded-2xl border border-slate-700/80 shadow-2xl flex flex-col sm:flex-row gap-3 items-center w-full box-border">
+          <div class="relative flex-1 w-full min-w-0">
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-            <input type="text" id="heroDestinationInput" oninput="handleHeroSearch(event)" placeholder="Search by country, city, or experience (e.g. Dubai, Safari, Maldives)..." class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700 rounded-xl text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-amber-500 transition-colors">
+            <input type="text" id="heroDestinationInput" oninput="handleHeroSearch(event)" placeholder="Search by country, city, or experience (e.g. Dubai, Safari, Maldives)..." class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700 rounded-xl text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-amber-500 transition-colors box-border">
           </div>
-          <button type="button" onclick="filterCategory('all')" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm tracking-wide transition-all shadow-md shrink-0 flex items-center justify-center space-x-2">
+          <button type="button" onclick="filterCategory('all')" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm tracking-wide transition-all shadow-md shrink-0 flex items-center justify-center space-x-2 cursor-pointer">
             <i class="fa-solid fa-rotate-left text-xs"></i>
             <span>Reset</span>
           </button>
         </div>
 
         <!-- Primary Segmented Category Filter Bar -->
-        <div class="mt-6 flex justify-center w-full">
+        <div class="mt-6 flex justify-center w-full max-w-full overflow-x-auto pb-1 no-scrollbar">
           <div class="package-filter-track">
             <button type="button" data-category="all" onclick="filterCategory('all')" class="package-filter-btn active">
               <i class="fa-solid fa-layer-group text-xs"></i>
@@ -529,7 +529,7 @@
     </div>
 
     <!-- Dynamic Packages Container -->
-    <div id="packagesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+    <div id="packagesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-10 w-full max-w-full box-border">
       <!-- Injected dynamically by app.js renderPackages() -->
     </div>
   </section>
@@ -703,10 +703,12 @@
       </div>
 
       <!-- Perks list -->
-      <div class="mb-6">
+      <div class="mb-6 w-full max-w-full">
         <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Package Inclusions</h4>
-        <div id="itineraryPerksList" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          <!-- Rendered dynamically -->
+        <div class="inclusions-table-wrapper w-full max-w-full overflow-x-auto">
+          <div id="itineraryPerksList" class="grid grid-cols-1 sm:grid-cols-2 gap-2 min-w-0">
+            <!-- Rendered dynamically -->
+          </div>
         </div>
       </div>
 
