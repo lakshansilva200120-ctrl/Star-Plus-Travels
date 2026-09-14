@@ -3808,28 +3808,28 @@ const COUNTRY_SHOWCASE_DATA = {
         stay: '4 Nights in Luxury Safari Tented Camps & Eco-Lodges (Chena Huts / Rainforest Edge)',
         gallery: [
           {
-            image: 'assets/sri-lanka-wildlife-elephant.jpg',
-            tag: '📍 Day 3: Yala Big-Game Leopard Safari',
-            title: 'Yala National Park Safari'
+            image: 'assets/packages/sl-yala-leopard-rock.jpg',
+            tag: '📍 Day 3: Yala Big-Game Leopard on Rock',
+            title: 'Yala National Park Leopard Safari'
           },
           {
-            image: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=85',
+            image: 'assets/packages/sl-sinharaja-rainforest.jpg',
             tag: '📍 Day 1: Sinharaja Rainforest Canopy',
             title: 'UNESCO Sinharaja Biosphere'
           },
           {
-            image: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=1200&q=85',
+            image: 'assets/packages/sl-asian-elephants-minneriya.jpg',
             tag: '📍 Day 2: Udawalawe Elephant Sanctuary',
             title: 'Elephant Transit Home'
           },
           {
-            image: 'https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 4: Wilpattu Ancient Lakes & Sloth Bears',
-            title: 'Wilpattu Wilderness Safari'
+            image: 'assets/sri-lanka-wildlife-elephant.jpg',
+            tag: '📍 Day 4: Sri Lankan Wild Elephant Gathering',
+            title: 'Wild Elephant Herds'
           }
         ],
-        image: 'assets/sri-lanka-wildlife-elephant.jpg',
-        thumbnail: 'assets/sri-lanka-wildlife-elephant-thumb.jpg',
+        image: 'assets/packages/sl-yala-leopard-rock.jpg',
+        thumbnail: 'assets/packages/sl-yala-leopard-rock.jpg',
         description: 'Track the highest leopard density on the planet with customized 4x4 open-top jeep safaris in Yala and Wilpattu. Trek beneath the ancient prehistoric canopy of UNESCO Sinharaja Virgin Rainforest, observe wild elephant rehabilitation at Udawalawe, and spot rare migratory wetland birds at Bundala.',
         checklist: [
           'Yala National Park Big-Game Leopard 4x4 Safari',
@@ -3899,28 +3899,28 @@ const COUNTRY_SHOWCASE_DATA = {
         stay: '3 Nights at 4-Star & 5-Star Beachfront Resort (Amari Galle / Heritance Ahungalla)',
         gallery: [
           {
-            image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=85',
+            image: 'assets/packages/sl-galle-fort-lighthouse.jpg',
             tag: '📍 Day 2: UNESCO Galle Dutch Fort & Lighthouse',
             title: 'Historic Galle Dutch Fort'
           },
           {
-            image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85',
+            image: 'assets/packages/sl-mirissa-coconut-hill.jpg',
             tag: '📍 Day 3: Mirissa Coconut Tree Hill & Harbor',
             title: 'Mirissa Coastal Viewpoint'
           },
           {
-            image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 1: Bentota Golden Coast & Mangrove Boat Safari',
-            title: 'Madu River Mangroves'
+            image: 'assets/packages/sl-bentota-beach.jpg',
+            tag: '📍 Day 1: Bentota Golden Coast Beach',
+            title: 'Bentota Golden Beach'
           },
           {
-            image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 4: Unawatuna & Sea Turtle Sanctuary',
-            title: 'Kosgoda Turtle Sanctuary'
+            image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 4: Madu River Mangrove Boat Safari',
+            title: 'Madu River Mangroves'
           }
         ],
-        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=85',
-        thumbnail: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+        image: 'assets/packages/sl-galle-fort-lighthouse.jpg',
+        thumbnail: 'assets/packages/sl-galle-fort-lighthouse.jpg',
         description: 'Unwind along Sri Lanka\'s sun-drenched southern coastline. Stroll the 17th-century ramparts and cobblestone paths of UNESCO World Heritage Galle Dutch Fort, watch stilt fishermen at Koggala, catch premier surf breaks at Weligama and Hiriketiya, and cruise through mangrove tunnels on the Madu River boat safari.',
         checklist: [
           'UNESCO Galle Dutch Fort & Lighthouse Ramparts',
@@ -3991,6 +3991,11 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Nallur Kandaswamy Kovil'
           },
           {
+            image: 'assets/packages/sl-delft-island.jpg',
+            tag: '📍 Day 3: Delft Island Baobab & Wild Horses',
+            title: 'Delft Island Heritage'
+          },
+          {
             image: 'https://images.unsplash.com/photo-1566833440182-140b0730d1d2?auto=format&fit=crop&w=1200&q=85',
             tag: '📍 Day 1: Star-Shaped Jaffna Dutch Fort',
             title: 'Jaffna Dutch Fort'
@@ -3999,15 +4004,10 @@ const COUNTRY_SHOWCASE_DATA = {
             image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85',
             tag: '📍 Day 4: Keerimalai Sacred Natural Springs',
             title: 'Keerimalai Healing Springs'
-          },
-          {
-            image: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 3: Delft Island Baobab & Wild Horses',
-            title: 'Delft Island Heritage'
           }
         ],
         image: 'assets/sri-lanka-jaffna-nallur-kovil.jpg',
-        thumbnail: 'assets/sri-lanka-jaffna-nallur-kovil-thumb.jpg',
+        thumbnail: 'assets/sri-lanka-jaffna-nallur-kovil.jpg',
         description: 'Discover the vibrant Tamil cultural capital of Northern Sri Lanka. Experience spiritual reverence at the golden Nallur Kandaswamy Kovil, explore the star-shaped Dutch fort, take scenic ferries across the Palk Strait to sacred Nagadeepa Temple, and witness wild horses on remote coral-walled Delft Island.',
         checklist: [
           'Star-Shaped Historic Jaffna Dutch Fort & Ramparts',
@@ -4075,7 +4075,7 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Sigiriya Rock Fortress'
           },
           {
-            image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1200&q=85',
+            image: 'assets/packages/sl-dambulla-cave-temple.jpg',
             tag: '📍 Day 4: Golden Dambulla Cave Temples',
             title: 'Dambulla Rock Temple'
           },
@@ -4091,7 +4091,7 @@ const COUNTRY_SHOWCASE_DATA = {
           }
         ],
         image: 'assets/sri-lanka-sigiriya-rock.jpg',
-        thumbnail: 'assets/sri-lanka-sigiriya-rock-thumb.jpg',
+        thumbnail: 'assets/sri-lanka-sigiriya-rock.jpg',
         description: 'Journey through 2,500 years of royal Sri Lankan heritage. Scale the iconic 5th-century Lion Rock of Sigiriya, admire 150+ Buddha statues in Dambulla Cave Temples, explore the sprawling ruins of Anuradhapura and Polonnaruwa, and witness sacred relic ceremonies in Kandy.',
         checklist: [
           'Sigiriya 5th-Century Lion Rock Fortress Ascent',
@@ -4167,7 +4167,7 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Demodara Nine Arches Bridge'
           },
           {
-            image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=85',
+            image: 'assets/packages/sl-nuwara-eliya-tea-hills.jpg',
             tag: '📍 Day 1: Nuwara Eliya Highland Tea Terraces',
             title: 'Ceylon Tea Plantations'
           },
@@ -4261,14 +4261,14 @@ const COUNTRY_SHOWCASE_DATA = {
         stay: '3 Nights Deluxe Accommodation at Avani Deira Dubai Hotel (4-Star Deluxe)',
         gallery: [
           {
-            image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=85',
+            image: 'assets/packages/dubai-burj-khalifa.jpg',
             tag: '📍 Day 2: Burj Khalifa At The Top & Dubai Mall',
             title: 'Burj Khalifa Observation Deck'
           },
           {
-            image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=85',
+            image: 'assets/packages/dubai-marina-yachts.jpg',
             tag: '📍 Day 1: Dubai Marina 5-Star Dhow Dinner Cruise',
-            title: 'Dubai Marina Dhow Cruise'
+            title: 'Dubai Marina Luxury Waterfront'
           },
           {
             image: 'assets/packages/dubai-desert-safari.jpg',
@@ -4276,13 +4276,13 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Lahbab Red Dune Safari'
           },
           {
-            image: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 3: Dubai Miracle Garden & Global Village',
-            title: 'Dubai Miracle Garden'
+            image: 'assets/packages/dubai-frame.jpg',
+            tag: '📍 Day 4: Dubai Frame Panoramic Sky Bridge',
+            title: 'Dubai Frame Landmark'
           }
         ],
-        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1920&q=85',
-        thumbnail: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
+        image: 'assets/packages/dubai-burj-khalifa.jpg',
+        thumbnail: 'assets/packages/dubai-burj-khalifa.jpg',
         description: 'The signature Dubai luxury family getaway. Stay in 4-star deluxe comfort at Avani Deira Hotel with daily international breakfast, ascend to the 124th/125th floor of the Burj Khalifa, explore the aquatic wonders of Dubai Aquarium & Underwater Zoo, sail Dubai Marina on a 5-star Dhow Cruise Dinner with live Tanoura dance, and conquer the golden dunes on a VIP 4x4 desert safari.',
         checklist: [
           'Avani Deira Dubai Hotel 4-Star Deluxe Stay',
@@ -4351,19 +4351,19 @@ const COUNTRY_SHOWCASE_DATA = {
         stay: '4 Nights at 5-Star Waterfront Hotel (Radisson Blu / Swissôtel Al Ghurair)',
         gallery: [
           {
-            image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 3: Sheikh Zayed Grand Mosque Abu Dhabi',
-            title: 'Sheikh Zayed Grand Mosque'
-          },
-          {
             image: 'assets/packages/museum-of-the-future-dubai.jpg',
             tag: '📍 Day 2: Museum of the Future VIP Priority Access',
             title: 'Museum of the Future'
           },
           {
-            image: 'https://images.unsplash.com/photo-1546412414-8035e1776c9a?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 1: Palm Jumeirah Sunset Yacht Cruise',
+            image: 'assets/packages/dubai-marina-yachts.jpg',
+            tag: '📍 Day 1: Palm Jumeirah & Marina Sunset Yacht Cruise',
             title: 'Private Dubai Marina Yacht'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 3: Sheikh Zayed Grand Mosque Abu Dhabi',
+            title: 'Sheikh Zayed Grand Mosque'
           },
           {
             image: 'assets/packages/dubai-desert-safari.jpg',
@@ -4371,8 +4371,8 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'VIP Desert Majlis Experience'
           }
         ],
-        image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1920&q=85',
-        thumbnail: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80',
+        image: 'assets/packages/museum-of-the-future-dubai.jpg',
+        thumbnail: 'assets/packages/museum-of-the-future-dubai.jpg',
         description: 'Experience the peak of Arabian architecture and opulence. Enjoy a private chauffeur-driven tour to Abu Dhabi\'s majestic Sheikh Zayed Grand Mosque and Louvre Museum, cruise around the Palm Jumeirah on a private yacht, and dine under desert stars in a VIP desert camp.',
         checklist: [
           'Sheikh Zayed Grand Mosque & Louvre Abu Dhabi',
