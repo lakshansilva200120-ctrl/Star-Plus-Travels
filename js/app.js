@@ -3805,6 +3805,29 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 190,000',
         keyStops: ['Yala Safari', 'Sinharaja Forest', 'Udawalawe'],
         destinations: ['Yala Safari', 'Sinharaja Forest', 'Udawalawe'],
+        stay: '4 Nights in Luxury Safari Tented Camps & Eco-Lodges (Chena Huts / Rainforest Edge)',
+        gallery: [
+          {
+            image: 'assets/sri-lanka-wildlife-elephant.jpg',
+            tag: '📍 Day 3: Yala Big-Game Leopard Safari',
+            title: 'Yala National Park Safari'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 1: Sinharaja Rainforest Canopy',
+            title: 'UNESCO Sinharaja Biosphere'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 2: Udawalawe Elephant Sanctuary',
+            title: 'Elephant Transit Home'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 4: Wilpattu Ancient Lakes & Sloth Bears',
+            title: 'Wilpattu Wilderness Safari'
+          }
+        ],
         image: 'assets/sri-lanka-wildlife-elephant.jpg',
         thumbnail: 'assets/sri-lanka-wildlife-elephant-thumb.jpg',
         description: 'Track the highest leopard density on the planet with customized 4x4 open-top jeep safaris in Yala and Wilpattu. Trek beneath the ancient prehistoric canopy of UNESCO Sinharaja Virgin Rainforest, observe wild elephant rehabilitation at Udawalawe, and spot rare migratory wetland birds at Bundala.',
@@ -3873,6 +3896,29 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 165,000',
         keyStops: ['Bentota', 'Galle Fort', 'Mirissa Beach'],
         destinations: ['Bentota', 'Galle Fort', 'Mirissa Beach'],
+        stay: '3 Nights at 4-Star & 5-Star Beachfront Resort (Amari Galle / Heritance Ahungalla)',
+        gallery: [
+          {
+            image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 2: UNESCO Galle Dutch Fort & Lighthouse',
+            title: 'Historic Galle Dutch Fort'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 3: Mirissa Coconut Tree Hill & Harbor',
+            title: 'Mirissa Coastal Viewpoint'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 1: Bentota Golden Coast & Mangrove Boat Safari',
+            title: 'Madu River Mangroves'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 4: Unawatuna & Sea Turtle Sanctuary',
+            title: 'Kosgoda Turtle Sanctuary'
+          }
+        ],
         image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
         description: 'Unwind along Sri Lanka\'s sun-drenched southern coastline. Stroll the 17th-century ramparts and cobblestone paths of UNESCO World Heritage Galle Dutch Fort, watch stilt fishermen at Koggala, catch premier surf breaks at Weligama and Hiriketiya, and cruise through mangrove tunnels on the Madu River boat safari.',
@@ -3937,6 +3983,29 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 170,000',
         keyStops: ['Nallur Temple', 'Jaffna Fort', 'Delft Island'],
         destinations: ['Nallur Temple', 'Jaffna Fort', 'Delft Island'],
+        stay: '3 Nights at Premier Heritage Boutique Hotel (Jetwing Jaffna / Fox Resort Jaffna)',
+        gallery: [
+          {
+            image: 'assets/sri-lanka-jaffna-nallur-kovil.jpg',
+            tag: '📍 Day 2: Golden Nallur Kandaswamy Kovil',
+            title: 'Nallur Kandaswamy Kovil'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1566833440182-140b0730d1d2?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 1: Star-Shaped Jaffna Dutch Fort',
+            title: 'Jaffna Dutch Fort'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 4: Keerimalai Sacred Natural Springs',
+            title: 'Keerimalai Healing Springs'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 3: Delft Island Baobab & Wild Horses',
+            title: 'Delft Island Heritage'
+          }
+        ],
         image: 'assets/sri-lanka-jaffna-nallur-kovil.jpg',
         thumbnail: 'assets/sri-lanka-jaffna-nallur-kovil-thumb.jpg',
         description: 'Discover the vibrant Tamil cultural capital of Northern Sri Lanka. Experience spiritual reverence at the golden Nallur Kandaswamy Kovil, explore the star-shaped Dutch fort, take scenic ferries across the Palk Strait to sacred Nagadeepa Temple, and witness wild horses on remote coral-walled Delft Island.',
@@ -3998,6 +4067,29 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 195,000',
         keyStops: ['Sigiriya Citadel', 'Dambulla Caves', 'Kandy Temple'],
         destinations: ['Sigiriya Citadel', 'Dambulla Caves', 'Kandy Temple'],
+        stay: '4 Nights at 4-Star & 5-Star Heritage Boutique Resorts (Aliya Resort / Heritance Kandalama)',
+        gallery: [
+          {
+            image: 'assets/sri-lanka-sigiriya-rock.jpg',
+            tag: '📍 Day 2: Sigiriya 5th-Century Rock Citadel',
+            title: 'Sigiriya Rock Fortress'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 4: Golden Dambulla Cave Temples',
+            title: 'Dambulla Rock Temple'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 4: Sacred Temple of the Tooth Kandy',
+            title: 'Temple of the Tooth Relic'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 3: Polonnaruwa Royal Palaces & Ruins',
+            title: 'Ancient City of Polonnaruwa'
+          }
+        ],
         image: 'assets/sri-lanka-sigiriya-rock.jpg',
         thumbnail: 'assets/sri-lanka-sigiriya-rock-thumb.jpg',
         description: 'Journey through 2,500 years of royal Sri Lankan heritage. Scale the iconic 5th-century Lion Rock of Sigiriya, admire 150+ Buddha statues in Dambulla Cave Temples, explore the sprawling ruins of Anuradhapura and Polonnaruwa, and witness sacred relic ceremonies in Kandy.',
@@ -4067,6 +4159,29 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 180,000',
         keyStops: ['Nuwara Eliya', 'Ella Nine Arch', 'Diyaluma Falls'],
         destinations: ['Nuwara Eliya', 'Ella Nine Arch', 'Diyaluma Falls'],
+        stay: '4 Nights in Colonial Tea Estate Bungalows & Boutique Mountain Resorts (Grand Hotel Nuwara Eliya / 98 Acres)',
+        gallery: [
+          {
+            image: 'assets/sri-lanka-destination.jpg',
+            tag: '📍 Day 3: Demodara Nine Arches Bridge',
+            title: 'Demodara Nine Arches Bridge'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 1: Nuwara Eliya Highland Tea Terraces',
+            title: 'Ceylon Tea Plantations'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 4: Thundering Ravana Waterfall Cascade',
+            title: 'Ravana Falls & Ella Gap'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 2: Horton Plains & World\'s End Precipice',
+            title: 'Horton Plains National Park'
+          }
+        ],
         image: 'assets/sri-lanka-destination.jpg',
         thumbnail: 'assets/sri-lanka-destination.jpg',
         description: 'Ride the legendary blue train as it weaves across misty valleys and the architectural marvel of the Demodara Nine Arches Bridge. Wander through the crisp, emerald Ceylon tea plantations of Nuwara Eliya, stand above the clouds at World\'s End in Horton Plains, and hike to cascading waterfalls.',
@@ -4143,6 +4258,29 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 380,000 / Adult (Child LKR 320,000)',
         keyStops: ['Burj Khalifa', 'Marina Dhow', 'Desert Safari'],
         destinations: ['Burj Khalifa', 'Marina Dhow', 'Desert Safari'],
+        stay: '3 Nights Deluxe Accommodation at Avani Deira Dubai Hotel (4-Star Deluxe)',
+        gallery: [
+          {
+            image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 2: Burj Khalifa At The Top & Dubai Mall',
+            title: 'Burj Khalifa Observation Deck'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 1: Dubai Marina 5-Star Dhow Dinner Cruise',
+            title: 'Dubai Marina Dhow Cruise'
+          },
+          {
+            image: 'assets/packages/dubai-desert-safari.jpg',
+            tag: '📍 Day 3: VIP Red Dune Desert Safari & BBQ Dinner',
+            title: 'Lahbab Red Dune Safari'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 3: Dubai Miracle Garden & Global Village',
+            title: 'Dubai Miracle Garden'
+          }
+        ],
         image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
         description: 'The signature Dubai luxury family getaway. Stay in 4-star deluxe comfort at Avani Deira Hotel with daily international breakfast, ascend to the 124th/125th floor of the Burj Khalifa, explore the aquatic wonders of Dubai Aquarium & Underwater Zoo, sail Dubai Marina on a 5-star Dhow Cruise Dinner with live Tanoura dance, and conquer the golden dunes on a VIP 4x4 desert safari.',
@@ -4210,6 +4348,29 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 560,000',
         keyStops: ['Sheikh Zayed Mosque', 'Palm Jumeirah', 'Museum of the Future'],
         destinations: ['Sheikh Zayed Mosque', 'Palm Jumeirah', 'Museum of the Future'],
+        stay: '4 Nights at 5-Star Waterfront Hotel (Radisson Blu / Swissôtel Al Ghurair)',
+        gallery: [
+          {
+            image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 3: Sheikh Zayed Grand Mosque Abu Dhabi',
+            title: 'Sheikh Zayed Grand Mosque'
+          },
+          {
+            image: 'assets/packages/museum-of-the-future-dubai.jpg',
+            tag: '📍 Day 2: Museum of the Future VIP Priority Access',
+            title: 'Museum of the Future'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1546412414-8035e1776c9a?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 1: Palm Jumeirah Sunset Yacht Cruise',
+            title: 'Private Dubai Marina Yacht'
+          },
+          {
+            image: 'assets/packages/dubai-desert-safari.jpg',
+            tag: '📍 Day 4: VIP Red Dune Safari & Starlight Majlis',
+            title: 'VIP Desert Majlis Experience'
+          }
+        ],
         image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80',
         description: 'Experience the peak of Arabian architecture and opulence. Enjoy a private chauffeur-driven tour to Abu Dhabi\'s majestic Sheikh Zayed Grand Mosque and Louvre Museum, cruise around the Palm Jumeirah on a private yacht, and dine under desert stars in a VIP desert camp.',
@@ -4286,6 +4447,29 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 890,000',
         keyStops: ['Male Atolls', 'Coral House Reef', 'Overwater Villa'],
         destinations: ['Male Atolls', 'Coral House Reef', 'Overwater Villa'],
+        stay: '3 Nights in 5-Star Luxury Overwater Villa with Private Infinity Pool (Adaaran / Sun Siyam)',
+        gallery: [
+          {
+            image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 1: Scenic Trans-Maldivian Seaplane Flight',
+            title: 'Scenic Seaplane Transfer'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 2: Private Lagoon Overwater Pool Villa',
+            title: 'Overwater Pool Villa'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 2: House Reef Turtle Snorkeling Safari',
+            title: 'Guided Coral Reef Snorkel'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 3: Sunset Dolphin Yacht Cruise with Champagne',
+            title: 'Traditional Dhoni Dolphin Yacht'
+          }
+        ],
         image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80',
         description: 'Wake up above crystal lagoons in your private overwater pool villa. Includes scenic return seaplane transfers from Male, all-inclusive dine-around fine dining, guided coral reef snorkeling with sea turtles, and sunset champagne dolphin cruises.',
@@ -4349,6 +4533,29 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 640,000',
         keyStops: ['Beachfront Villa', 'Private Sandbank', 'Coral Lagoon'],
         destinations: ['Beachfront Villa', 'Private Sandbank', 'Coral Lagoon'],
+        stay: '4 Nights in Deluxe Beachfront Family Villa with Private Sundeck (Bandos / Oblu Xperience)',
+        gallery: [
+          {
+            image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 1: Swift Speedboat Lagoon Welcome',
+            title: 'Speedboat Lagoon Transfer'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 2: Beachfront Villa & Lagoon Watersports',
+            title: 'Beachfront Family Villa'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 3: Deserted Sandbank Family Picnic',
+            title: 'Deserted Sandbank Cruise'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 4: Starlight Beach Cinema Under Palms',
+            title: 'Open-Air Beach Cinema'
+          }
+        ],
         image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=800&q=80',
         description: 'Direct powder-soft beach access from your beachfront villa. Enjoy full board gourmet buffet dining, unlimited non-motorized watersports, children\'s club activities, and boat excursions to nearby coral atolls.',
@@ -4423,6 +4630,29 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 390,000',
         keyStops: ['Old City Baku', 'Gobustan Volcanoes', 'Shahdag Peaks'],
         destinations: ['Old City Baku', 'Gobustan Volcanoes', 'Shahdag Peaks'],
+        stay: '3 Nights in 4-Star Baku City Center + 1 Night in Shahdag Mountain Resort',
+        gallery: [
+          {
+            image: 'assets/packages/baku-flame-towers.jpg',
+            tag: '📍 Day 1: Baku Flame Towers & Seaside Boulevard',
+            title: 'Baku Flame Towers & Caspian'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 2: UNESCO Icherisheher & Maiden Tower',
+            title: 'Baku Old City Fortress'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 3: Gobustan Mud Volcanoes & Fire Temple',
+            title: 'Gobustan Prehistoric Rocks'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 4: Shahdag Alpine Resort & Cable Cars',
+            title: 'Shahdag Mountain Resort'
+          }
+        ],
         image: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=800&q=80',
         description: 'Explore the historic alleys of UNESCO Icherisheher, stand beneath the futuristic Flame Towers, marvel at bubbling mud volcanoes in Gobustan, and ride panoramic cable cars into Shahdag Alpine Resort.',
@@ -4498,6 +4728,29 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 375,000',
         keyStops: ['Old Tbilisi', 'Ananuri Fortress', 'Gergeti Trinity'],
         destinations: ['Old Tbilisi', 'Ananuri Fortress', 'Gergeti Trinity'],
+        stay: '3 Nights in Old Tbilisi Boutique Hotel + 1 Night in Kazbegi Alpine Lodge (Rooms Hotel Kazbegi)',
+        gallery: [
+          {
+            image: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 1: Narikala Fortress & Old Tbilisi',
+            title: 'Old Tbilisi Sulfur District'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 3: Ananuri Fortress & Turquoise Jinvali',
+            title: 'Georgian Military Highway'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 4: 4x4 Ascent to Gergeti Trinity at 2,170m',
+            title: 'Gergeti Trinity & Mount Kazbek'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 5: Mtskheta UNESCO Heritage Cathedral',
+            title: 'Svetitskhoveli UNESCO Cathedral'
+          }
+        ],
         image: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=800&q=80',
         description: 'Wander the sulfur bath cobblestone streets of Old Tbilisi, drive the scenic Georgian Military Highway past Ananuri Fortress and Jinvali Reservoir, and take a 4x4 up to 14th-century Gergeti Trinity Church under Mount Kazbek.',
@@ -4573,6 +4826,29 @@ const COUNTRY_SHOWCASE_DATA = {
         priceLKR: 'LKR 490,000',
         keyStops: ['Ubud Terraces', 'Nusa Penida', 'Uluwatu Temple'],
         destinations: ['Ubud Terraces', 'Nusa Penida', 'Uluwatu Temple'],
+        stay: '3 Nights in Ubud Private Pool Villa + 2 Nights in Seminyak Beachfront Resort',
+        gallery: [
+          {
+            image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 2: Tegallalang Terraces & Ubud Jungle Swing',
+            title: 'Tegallalang Rice Terraces'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 4: Kelingking T-Rex Beach & Angel\'s Billabong',
+            title: 'Nusa Penida Coastal Cliffs'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 5: Uluwatu Clifftop Temple & Sunset Fire Dance',
+            title: 'Uluwatu Sunset Kecak Dance'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 1: Luxury Ubud Jungle Pool Villa',
+            title: 'Private Pool Villa Ubud'
+          }
+        ],
         image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80',
         description: 'Swing high over Tegallalang emerald rice terraces, witness the sunset Kecak fire dance on Uluwatu cliffs, and speed across the strait to explore Kelingking T-Rex Beach and Angel\'s Billabong on Nusa Penida.',
@@ -4890,7 +5166,42 @@ function closeCountryShowcase() {
   document.body.style.overflow = 'auto';
 }
 
-// "VIEW PACKAGE DETAILS" Handler -> Opens comprehensive itinerary modal
+// Visual Places Gallery State
+let currentShowcaseGalleryItems = [];
+let currentShowcaseGalleryIndex = 0;
+
+function switchShowcaseGallery(index) {
+  if (!currentShowcaseGalleryItems || !currentShowcaseGalleryItems[index]) return;
+  currentShowcaseGalleryIndex = index;
+  const item = currentShowcaseGalleryItems[index];
+
+  const featImg = document.getElementById('showcaseGalleryFeaturedImg');
+  const tagText = document.getElementById('showcaseGalleryTagText');
+  const thumbs = document.querySelectorAll('#showcaseGalleryThumbs .showcase-gallery-thumb');
+
+  if (featImg) {
+    featImg.style.opacity = '0.35';
+    setTimeout(() => {
+      featImg.src = item.image;
+      featImg.alt = item.title || item.tag || 'Destination Landmark';
+      featImg.style.opacity = '1';
+    }, 150);
+  }
+
+  if (tagText) {
+    tagText.textContent = item.tag || item.title || 'Featured Landmark';
+  }
+
+  thumbs.forEach((thumb, idx) => {
+    if (idx === index) {
+      thumb.classList.add('active');
+    } else {
+      thumb.classList.remove('active');
+    }
+  });
+}
+
+// "VIEW PACKAGE DETAILS" Handler -> Opens comprehensive itinerary drawer
 function handleShowcaseDetailsAction() {
   const data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
   if (!data || !data.tours) return;
@@ -4899,14 +5210,16 @@ function handleShowcaseDetailsAction() {
   openShowcaseItinerary(currentTour);
 }
 
-// LEVEL 3: Comprehensive Package Itinerary & Inclusions Modal Logic
+// LEVEL 3: Comprehensive Package Itinerary & Visual Showcase Drawer Logic
 function openShowcaseItinerary(tour) {
   if (!tour) return;
 
   const modal = document.getElementById('showcaseItineraryModal');
   if (!modal) return;
 
-  const imgElem = document.getElementById('showcaseItineraryImg');
+  const featImg = document.getElementById('showcaseGalleryFeaturedImg');
+  const fallbackImg = document.getElementById('showcaseItineraryImg');
+  const thumbsElem = document.getElementById('showcaseGalleryThumbs');
   const badgeElem = document.getElementById('showcaseItineraryBadge');
   const durationElem = document.getElementById('showcaseItineraryDuration');
   const ratingElem = document.getElementById('showcaseItineraryRating');
@@ -4920,15 +5233,42 @@ function openShowcaseItinerary(tour) {
   const altPriceElem = document.getElementById('showcaseItineraryAltPrice');
   const waBtn = document.getElementById('showcaseItineraryWaBtn');
 
-  if (imgElem) imgElem.src = tour.image || tour.thumbnail;
+  // Setup Visual Places Gallery
+  if (tour.gallery && Array.isArray(tour.gallery) && tour.gallery.length > 0) {
+    currentShowcaseGalleryItems = tour.gallery;
+  } else {
+    // Fallback gallery from stops and main image
+    const stops = tour.keyStops || tour.destinations || [];
+    currentShowcaseGalleryItems = [
+      {
+        image: tour.image || tour.thumbnail,
+        tag: stops[0] ? `📍 Day 1: ${stops[0]}` : `📍 ${tour.title}`,
+        title: stops[0] || tour.title
+      }
+    ];
+  }
+
+  // Populate Gallery Thumbnails
+  if (thumbsElem) {
+    thumbsElem.innerHTML = currentShowcaseGalleryItems.map((item, idx) => `
+      <button type="button" onclick="switchShowcaseGallery(${idx})" class="showcase-gallery-thumb ${idx === 0 ? 'active' : ''}" title="${item.title || item.tag || 'View destination'}">
+        <img src="${item.image}" alt="${item.title || 'Tour landmark'}" loading="lazy">
+      </button>
+    `).join('');
+  }
+
+  // Switch to initial photo
+  switchShowcaseGallery(0);
+  if (fallbackImg) fallbackImg.src = tour.image || tour.thumbnail;
+
   if (badgeElem) badgeElem.textContent = tour.category;
   if (durationElem) durationElem.textContent = tour.duration;
-  if (ratingElem) ratingElem.textContent = `${tour.rating} (${tour.reviews})`;
+  if (ratingElem) ratingElem.textContent = `${tour.rating} (${tour.reviews || '450+ reviews'})`;
   if (titleElem) titleElem.textContent = tour.title;
   if (subtitleElem) subtitleElem.textContent = tour.subtitle;
   if (descElem) descElem.textContent = tour.description;
 
-  // Render Key Stops in Itinerary Modal
+  // Render Key Stops in Drawer
   const itinStopsElem = document.getElementById('showcaseItineraryStopsContainer');
   if (itinStopsElem) {
     const stops = tour.keyStops || tour.destinations || [];
@@ -4946,7 +5286,6 @@ function openShowcaseItinerary(tour) {
     if (tour.stay) {
       stayElem.textContent = tour.stay;
     } else {
-      // Look for hotel/accommodation items in inclusions or default
       const stayItem = (tour.inclusions || []).find(inc => /night|hotel|resort|lodge|accommodation|stay/i.test(inc));
       stayElem.textContent = stayItem || `${tour.duration || 'Multi-day'} Luxury 4-Star & 5-Star Handpicked Lodging`;
     }
@@ -4963,21 +5302,57 @@ function openShowcaseItinerary(tour) {
     `).join('');
   }
 
-  // Render Day-by-Day Journey Breakdown
+  // Render Day-by-Day Journey Breakdown with Milestones
   if (daysElem) {
     const itinerary = tour.itinerary || [];
-    daysElem.innerHTML = itinerary.map((item, idx) => `
-      <div class="relative pl-6 pb-4 last:pb-1 border-l-2 border-amber-500/40 last:border-transparent">
-        <div class="absolute -left-[9px] top-0.5 w-4 h-4 rounded-full bg-amber-500 border-2 border-[#070e17] flex items-center justify-center shadow-md">
-          <span class="w-1.5 h-1.5 rounded-full bg-slate-950"></span>
+    daysElem.innerHTML = itinerary.map((item, idx) => {
+      const text = `${item.title} ${item.desc}`.toLowerCase();
+      
+      // Determine transport milestone
+      let transportBadge = '';
+      if (text.includes('safari') || text.includes('4x4') || text.includes('jeep') || text.includes('land cruiser')) {
+        transportBadge = `<span class="itinerary-milestone-pill bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"><i class="fa-solid fa-truck-monster text-[10px]"></i> 4x4 Safari Jeep</span>`;
+      } else if (text.includes('seaplane') || text.includes('flight') || text.includes('airport')) {
+        transportBadge = `<span class="itinerary-milestone-pill bg-sky-500/15 text-sky-300 border border-sky-500/30"><i class="fa-solid fa-plane-departure text-[10px]"></i> Seaplane / Flight</span>`;
+      } else if (text.includes('speedboat') || text.includes('cruise') || text.includes('dhow') || text.includes('boat') || text.includes('yacht') || text.includes('ferry')) {
+        transportBadge = `<span class="itinerary-milestone-pill bg-cyan-500/15 text-cyan-300 border border-cyan-500/30"><i class="fa-solid fa-ship text-[10px]"></i> Cruise / Speedboat</span>`;
+      } else if (text.includes('train') || text.includes('railway')) {
+        transportBadge = `<span class="itinerary-milestone-pill bg-indigo-500/15 text-indigo-300 border border-indigo-500/30"><i class="fa-solid fa-train text-[10px]"></i> Scenic Train</span>`;
+      } else {
+        transportBadge = `<span class="itinerary-milestone-pill bg-amber-500/15 text-amber-300 border border-amber-500/30"><i class="fa-solid fa-car-side text-[10px]"></i> Private AC Chauffeur</span>`;
+      }
+
+      // Determine meal milestone
+      let mealBadge = '';
+      if (text.includes('bbq') || text.includes('barbecue')) {
+        mealBadge = `<span class="itinerary-milestone-pill bg-rose-500/15 text-rose-300 border border-rose-500/30"><i class="fa-solid fa-fire text-[10px]"></i> VIP BBQ Dinner</span>`;
+      } else if (text.includes('all-inclusive') || text.includes('dine-around') || text.includes('full board')) {
+        mealBadge = `<span class="itinerary-milestone-pill bg-purple-500/15 text-purple-300 border border-purple-500/30"><i class="fa-solid fa-wine-glass text-[10px]"></i> All-Inclusive Dine</span>`;
+      } else if (text.includes('dinner')) {
+        mealBadge = `<span class="itinerary-milestone-pill bg-amber-500/15 text-amber-300 border border-amber-500/30"><i class="fa-solid fa-utensils text-[10px]"></i> Dinner Included</span>`;
+      } else if (text.includes('lunch')) {
+        mealBadge = `<span class="itinerary-milestone-pill bg-amber-500/15 text-amber-300 border border-amber-500/30"><i class="fa-solid fa-utensils text-[10px]"></i> Lunch Included</span>`;
+      } else if (text.includes('breakfast') || text.includes('buffet')) {
+        mealBadge = `<span class="itinerary-milestone-pill bg-blue-500/15 text-blue-300 border border-blue-500/30"><i class="fa-solid fa-mug-saucer text-[10px]"></i> Buffet Breakfast</span>`;
+      }
+
+      return `
+        <div class="itinerary-day-card">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <div class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 font-extrabold text-[10px] uppercase tracking-wider">
+              <i class="fa-solid fa-calendar-day text-[9px]"></i>
+              <span>DAY ${item.day || (idx + 1)}</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5">
+              ${transportBadge}
+              ${mealBadge}
+            </div>
+          </div>
+          <h5 class="text-xs sm:text-sm font-bold text-white mb-1.5 font-heading">${item.title}</h5>
+          <p class="text-[11px] sm:text-xs text-slate-300 leading-relaxed">${item.desc}</p>
         </div>
-        <div class="inline-flex items-center space-x-1.5 px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 font-extrabold text-[10px] uppercase tracking-wider mb-1">
-          <span>DAY ${item.day || (idx + 1)}</span>
-        </div>
-        <h5 class="text-xs sm:text-sm font-bold text-white mb-1 font-heading">${item.title}</h5>
-        <p class="text-[11px] sm:text-xs text-slate-300 leading-relaxed">${item.desc}</p>
-      </div>
-    `).join('');
+      `;
+    }).join('');
   }
 
   // Render Fine Print
@@ -5002,14 +5377,16 @@ function openShowcaseItinerary(tour) {
 
   // WhatsApp Inquiry CTA
   if (waBtn) {
-    const dynamicMsg = `Hello Star Plus Travels, I'm interested in booking the ${tour.title}`;
+    const dynamicMsg = `Hello Star Plus Travels, I'm interested in booking the ${tour.title} (${tour.duration})`;
     waBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(dynamicMsg)}`;
   }
 
-  // Show modal
+  // Show drawer with slide-in animation
   modal.classList.remove('hidden');
-  modal.classList.add('flex');
   modal.style.display = 'flex';
+  requestAnimationFrame(() => {
+    modal.classList.add('active');
+  });
   modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 }
@@ -5017,15 +5394,17 @@ function openShowcaseItinerary(tour) {
 function closeShowcaseItinerary() {
   const modal = document.getElementById('showcaseItineraryModal');
   if (!modal) return;
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
-  modal.style.display = 'none';
-  modal.setAttribute('aria-hidden', 'true');
-  // If the country showcase is still open, keep body overflow hidden
-  const countryModal = document.getElementById('countryShowcaseModal');
-  if (!countryModal || countryModal.classList.contains('hidden')) {
-    document.body.style.overflow = '';
-  }
+  modal.classList.remove('active');
+  setTimeout(() => {
+    modal.classList.add('hidden');
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    // If the country showcase is still open, keep body overflow hidden
+    const countryModal = document.getElementById('countryShowcaseModal');
+    if (!countryModal || countryModal.classList.contains('hidden')) {
+      document.body.style.overflow = '';
+    }
+  }, 350);
 }
 
 // Download PDF Brochure Function
@@ -5261,6 +5640,7 @@ window.prevCountryShowcaseSlide = prevCountryShowcaseSlide;
 window.handleShowcaseDetailsAction = handleShowcaseDetailsAction;
 window.openShowcaseItinerary = openShowcaseItinerary;
 window.closeShowcaseItinerary = closeShowcaseItinerary;
+window.switchShowcaseGallery = switchShowcaseGallery;
 window.downloadShowcaseBrochure = downloadShowcaseBrochure;
 window.downloadTourBrochure = downloadTourBrochure;
 window.scrollCountryShowcaseCards = scrollCountryShowcaseCards;

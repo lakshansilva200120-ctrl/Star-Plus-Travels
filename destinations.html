@@ -51,7 +51,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="css/styles.css?v=5.8.0">
+  <link rel="stylesheet" href="css/styles.css?v=6.0.0">
 
     <!-- Immediate Theme Initialization Script (Strict OS Auto-Sync with Preference Memory) -->
   <script>
@@ -1120,58 +1120,91 @@
     </div>
   </div>
 
-  <!-- LEVEL 3: Comprehensive Package Itinerary & Inclusions Modal -->
-  <div id="showcaseItineraryModal" class="fixed inset-0 z-[10001] items-center justify-center p-3 sm:p-5 lg:p-8 overflow-y-auto hidden" style="display: none; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);" onclick="if(event.target === this) closeShowcaseItinerary()" role="dialog" aria-modal="true" aria-labelledby="showcaseItineraryTitle">
-    <div class="relative w-full max-w-3xl max-h-[90vh] bg-[#070e17] border border-amber-500/40 rounded-[28px] overflow-hidden flex flex-col shadow-2xl modal-content-animate my-auto text-slate-200">
+  <!-- LEVEL 3: Comprehensive Package Itinerary & Destination Showcase Drawer -->
+  <div id="showcaseItineraryModal" class="showcase-drawer-overlay fixed inset-0 z-[10001] flex justify-end overflow-hidden hidden" onclick="if(event.target === this) closeShowcaseItinerary()" role="dialog" aria-modal="true" aria-labelledby="showcaseItineraryTitle">
+    <div class="showcase-drawer-panel relative w-full max-w-2xl lg:max-w-3xl xl:max-w-[840px] h-full bg-[#070e17] border-l border-amber-500/30 flex flex-col shadow-2xl text-slate-200 overflow-hidden">
       
-      <!-- Top Action Bar (Back to Overview & Close Buttons) -->
-      <div class="pointer-events-auto absolute top-4 left-4 right-4 z-50 flex items-center justify-between">
-        <button type="button" onclick="closeShowcaseItinerary()" class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-slate-950/85 hover:bg-slate-900 text-amber-400 hover:text-amber-300 border border-amber-500/40 hover:border-amber-400 text-xs font-bold transition-all shadow-xl cursor-pointer group" aria-label="Back to Tour Overview">
-          <i class="fa-solid fa-arrow-left text-[11px] transition-transform group-hover:-translate-x-0.5"></i>
-          <span>Back to Tour Overview</span>
+      <!-- Top Action Bar (Back to Packages & Close Buttons) -->
+      <div class="showcase-drawer-header flex-shrink-0 px-4 py-3 sm:px-6 sm:py-4 bg-slate-950/95 border-b border-slate-800/80 backdrop-blur-md flex items-center justify-between z-30">
+        <button type="button" onclick="closeShowcaseItinerary()" class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 hover:bg-slate-800 text-amber-400 hover:text-amber-300 border border-amber-500/40 hover:border-amber-400 text-xs font-bold transition-all shadow-md cursor-pointer group" aria-label="Back to Packages">
+          <i class="fa-solid fa-arrow-left text-[11px] transition-transform group-hover:-translate-x-1"></i>
+          <span>← Back to Packages</span>
         </button>
-        <button type="button" onclick="closeShowcaseItinerary()" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-950/85 hover:bg-amber-500 hover:text-slate-950 text-white border border-slate-700/80 hover:border-amber-500 flex items-center justify-center text-sm transition-all duration-200 shadow-xl cursor-pointer group" aria-label="Close Itinerary Details">
-          <i class="fa-solid fa-xmark transition-transform group-hover:scale-110"></i>
-        </button>
+        <div class="flex items-center space-x-3">
+          <span class="hidden sm:inline-block text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Itinerary &amp; Destination Details</span>
+          <button type="button" onclick="closeShowcaseItinerary()" class="w-9 h-9 rounded-full bg-slate-900/90 hover:bg-amber-500 hover:text-slate-950 text-slate-300 border border-slate-700/80 hover:border-amber-500 flex items-center justify-center text-sm transition-all duration-200 shadow-md cursor-pointer group" aria-label="Close Itinerary Details">
+            <i class="fa-solid fa-xmark transition-transform group-hover:scale-110"></i>
+          </button>
+        </div>
       </div>
 
-      <!-- Scrollable Modal Content -->
-      <div class="overflow-y-auto flex-1 p-5 sm:p-8 space-y-6 pt-16">
+      <!-- Scrollable Drawer Body -->
+      <div class="overflow-y-auto flex-1 p-4 sm:p-6 lg:p-7 space-y-6 custom-scrollbar">
         
-        <!-- Header / Hero Banner -->
-        <div class="relative rounded-2xl overflow-hidden min-h-[160px] sm:min-h-[190px] p-5 sm:p-6 flex flex-col justify-end bg-slate-900 border border-white/10 shadow-lg">
-          <img id="showcaseItineraryImg" src="" alt="Package Banner" class="absolute inset-0 w-full h-full object-cover select-none">
-          <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/75 to-transparent"></div>
-          
-          <div class="relative z-10">
-            <div class="flex flex-wrap items-center gap-2 mb-2">
-              <span id="showcaseItineraryBadge" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 font-extrabold text-[10px] uppercase tracking-wider"></span>
-              <span id="showcaseItineraryDuration" class="px-2.5 py-0.5 rounded-full bg-slate-900/80 border border-slate-700/80 text-white text-[10px] font-semibold"></span>
-              <div class="flex items-center text-amber-400 text-xs gap-1 ml-auto">
-                <i class="fa-solid fa-star text-[10px]"></i>
-                <span id="showcaseItineraryRating" class="text-white font-bold text-xs">5.0</span>
-              </div>
+        <!-- VISUAL PLACES SHOWCASE (PHOTO GALLERY + KEY STOPS) -->
+        <div class="showcase-gallery-container rounded-2xl overflow-hidden border border-slate-800 bg-slate-950/70 shadow-xl">
+          <!-- Featured Photo Display with Tag Overlay -->
+          <div class="relative w-full h-56 sm:h-72 lg:h-80 bg-slate-900 overflow-hidden group">
+            <img id="showcaseGalleryFeaturedImg" src="" alt="Destination Landmark Photo" class="w-full h-full object-cover transition-all duration-500 transform group-hover:scale-105 select-none">
+            <!-- Hidden fallback sync img -->
+            <img id="showcaseItineraryImg" src="" alt="" class="hidden" aria-hidden="true">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none"></div>
+            
+            <!-- Category & Duration Pill Top-Left -->
+            <div class="absolute top-3 left-3 z-10 flex flex-wrap items-center gap-1.5">
+              <span id="showcaseItineraryBadge" class="px-2.5 py-0.5 rounded-full bg-amber-500 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider shadow-lg"></span>
+              <span id="showcaseItineraryDuration" class="px-2.5 py-0.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-700/80 text-white text-[10px] font-semibold"></span>
             </div>
-            <h3 id="showcaseItineraryTitle" class="text-xl sm:text-2xl lg:text-3xl font-black text-white font-heading leading-tight drop-shadow-md"></h3>
-            <p id="showcaseItinerarySubtitle" class="text-xs sm:text-sm text-amber-400/90 font-bold uppercase tracking-wider mt-1"></p>
+
+            <!-- Rating Top-Right -->
+            <div class="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-amber-500/40 text-amber-400 text-xs shadow-lg">
+              <i class="fa-solid fa-star text-[10px]"></i>
+              <span id="showcaseItineraryRating" class="text-white font-bold text-xs">5.0</span>
+            </div>
+
+            <!-- Location Overlay Tag Bottom-Left -->
+            <div class="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-between">
+              <div id="showcaseGalleryTag" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-950/90 backdrop-blur-md border border-amber-500/50 text-amber-300 font-bold text-xs shadow-lg">
+                <i class="fa-solid fa-location-dot text-[11px] text-amber-400"></i>
+                <span id="showcaseGalleryTagText">Featured Landmark</span>
+              </div>
+              <span class="text-[10px] text-slate-300 bg-slate-900/80 px-2 py-0.5 rounded backdrop-blur-sm hidden sm:inline-block">
+                <i class="fa-regular fa-images mr-1 text-amber-400"></i>Click photo to switch
+              </span>
+            </div>
+          </div>
+
+          <!-- Thumbnail Navigation Strip -->
+          <div id="showcaseGalleryThumbs" class="p-2 sm:p-2.5 bg-slate-950/90 border-t border-slate-800/80 flex items-center gap-2 overflow-x-auto custom-scrollbar">
+            <!-- Dynamically populated thumbnail items -->
           </div>
         </div>
 
-        <!-- Description -->
-        <p id="showcaseItineraryDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed"></p>
+        <!-- Package Title, Subtitle & Overview -->
+        <div>
+          <h3 id="showcaseItineraryTitle" class="text-xl sm:text-2xl lg:text-3xl font-black text-white font-heading leading-tight drop-shadow-md"></h3>
+          <p id="showcaseItinerarySubtitle" class="text-xs sm:text-sm text-amber-400 font-bold uppercase tracking-wider mt-1"></p>
+          <p id="showcaseItineraryDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-2.5"></p>
+        </div>
 
         <!-- Route & Key Visited Landmarks -->
-        <div id="showcaseItineraryStopsContainer" class="flex flex-wrap items-center gap-1.5 my-1">
-          <!-- Dynamically populated -->
+        <div>
+          <div class="flex items-center space-x-2 mb-2">
+            <i class="fa-solid fa-map-location-dot text-amber-400 text-xs"></i>
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-400 font-heading">Key Visited Landmarks &amp; Route Stops</span>
+          </div>
+          <div id="showcaseItineraryStopsContainer" class="flex flex-wrap items-center gap-1.5">
+            <!-- Dynamically populated -->
+          </div>
         </div>
 
-        <!-- Accommodation & Stay Tier Details -->
+        <!-- Accommodation & Hotel Stay Tier Details -->
         <div id="showcaseItineraryStayContainer" class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-start space-x-3 text-xs">
-          <div class="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5">
             <i class="fa-solid fa-hotel text-sm"></i>
           </div>
-          <div>
-            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400 block mb-0.5">Accommodation &amp; Hotel Stay Tier</span>
+          <div class="flex-1">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400 block mb-0.5">Handpicked Accommodation &amp; Stay Tier</span>
             <span id="showcaseItineraryStay" class="text-white font-semibold text-xs leading-relaxed">Luxury 4-Star &amp; 5-Star Boutique Lodging</span>
           </div>
         </div>
@@ -1187,22 +1220,22 @@
           </div>
         </div>
 
-        <!-- Day-by-Day Journey Breakdown -->
+        <!-- Day-by-Day Journey Breakdown with Milestones -->
         <div>
           <div class="flex items-center space-x-2 mb-4">
             <div class="w-2 h-2 rounded-full bg-amber-400"></div>
-            <h4 class="text-xs font-black uppercase tracking-wider text-amber-400 font-heading">Day-by-Day Journey Breakdown</h4>
+            <h4 class="text-xs font-black uppercase tracking-wider text-amber-400 font-heading">Day-by-Day Journey Breakdown &amp; Milestones</h4>
           </div>
-          <div id="showcaseItineraryDays" class="space-y-3 relative pl-3">
+          <div id="showcaseItineraryDays" class="space-y-3.5 relative">
             <!-- Dynamically populated -->
           </div>
         </div>
 
-        <!-- Fine Print & Important Notes -->
+        <!-- Fine Print & Terms -->
         <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 space-y-2">
           <div class="flex items-center space-x-2 text-amber-400 font-bold text-xs uppercase tracking-wider">
             <i class="fa-solid fa-circle-info"></i>
-            <span>Terms, Visa &amp; Fine Print</span>
+            <span>Terms, Visa Requirements &amp; Payment Options</span>
           </div>
           <ul id="showcaseItineraryFinePrint" class="space-y-1.5 list-disc list-inside text-[11px] sm:text-xs text-slate-300">
             <!-- Dynamically populated -->
@@ -1211,16 +1244,16 @@
 
       </div>
 
-      <!-- Modal Footer / Actions -->
-      <div class="p-4 sm:p-6 bg-slate-950 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <!-- Drawer Sticky Footer / Action CTAs -->
+      <div class="showcase-drawer-footer flex-shrink-0 p-4 sm:p-5 bg-slate-950/95 border-t border-slate-800/90 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3 z-30">
         <div>
-          <span class="text-[10px] uppercase tracking-wider text-slate-400 block font-semibold">Starting Price</span>
+          <span class="text-[10px] uppercase tracking-wider text-slate-400 block font-semibold">All-Inclusive Starting Rate</span>
           <div class="flex items-baseline space-x-1.5">
             <span id="showcaseItineraryPrice" class="text-xl sm:text-2xl font-extrabold text-amber-400 font-heading"></span>
             <span id="showcaseItineraryAltPrice" class="text-xs text-slate-400">/ person</span>
           </div>
         </div>
-        <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+        <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
           <!-- Download PDF Brochure Button -->
           <button id="showcaseDownloadPdfBtn" type="button" onclick="downloadShowcaseBrochure()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-amber-500/50 hover:border-amber-400 text-amber-400 hover:text-amber-300 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2 cursor-pointer shadow-md">
             <i class="fa-solid fa-file-arrow-down text-sm"></i>
@@ -1228,9 +1261,9 @@
           </button>
 
           <!-- Direct WhatsApp Inquiry Button -->
-          <a id="showcaseItineraryWaBtn" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-emerald-900/30 flex items-center justify-center space-x-2 cursor-pointer">
-            <i class="fa-brands fa-whatsapp text-sm"></i>
-            <span>Direct Inquiry</span>
+          <a id="showcaseItineraryWaBtn" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-emerald-900/30 flex items-center justify-center space-x-2 cursor-pointer">
+            <i class="fa-brands fa-whatsapp text-base"></i>
+            <span>Inquire via WhatsApp</span>
           </a>
         </div>
       </div>
@@ -1245,7 +1278,7 @@
 
   <div id="toastContainer"></div>
 
-  <script src="js/app.js?v=5.9.0"></script>
+  <script src="js/app.js?v=6.0.0"></script>
   <script src="js/seasonal-theme.js?v=5.3.0"></script>
 </body>
 </html>
