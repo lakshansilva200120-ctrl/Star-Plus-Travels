@@ -1013,9 +1013,26 @@ function formatPrice(amountInAED) {
   return `${info.symbol}${converted.toLocaleString()}`;
 }
 
+function clearAllToasts() {
+  const container = document.getElementById('toastContainer');
+  if (!container) return;
+  const toasts = container.querySelectorAll('.toast');
+  toasts.forEach(t => {
+    t.classList.remove('show');
+    t.remove();
+  });
+  container.innerHTML = '';
+}
+
 function showToast(message, type = 'success') {
   const container = document.getElementById('toastContainer');
   if (!container) return;
+
+  // Prevent excess toast stacking: limit to 3 max
+  const existingToasts = container.querySelectorAll('.toast');
+  if (existingToasts.length >= 3) {
+    existingToasts[0].remove();
+  }
 
   const toast = document.createElement('div');
   const bgClass = type === 'success' ? 'bg-slate-900 border-amber-500/50 text-white' : 'bg-red-950 border-red-500/50 text-white';
@@ -1277,40 +1294,80 @@ function filterCategory(cat) {
     );
   }
 
+  // Update inline search result badge if on packages page
+  const searchBadge = document.getElementById('searchResultBadge');
+  const searchBadgeText = document.getElementById('searchResultBadgeText');
+  if (searchBadge && searchBadgeText) {
+    if (query) {
+      searchBadge.classList.remove('hidden');
+      const currentLang = getPreferredLanguage();
+      searchBadgeText.textContent = currentLang === 'si'
+        ? `ගැළපෙන පැකේජ ${filtered.length} ක් සොයා ගන්නා ලදී`
+        : `Showing ${filtered.length} matching ${filtered.length === 1 ? 'package' : 'packages'}`;
+    } else {
+      searchBadge.classList.add('hidden');
+    }
+  }
+
   renderPackages(filtered);
 }
 
 function resetFilters() {
   const searchInput = document.getElementById('heroDestinationInput');
   if (searchInput) searchInput.value = '';
+  const searchBadge = document.getElementById('searchResultBadge');
+  if (searchBadge) searchBadge.classList.add('hidden');
+  clearAllToasts();
   filterCategory('all');
 }
 
-// Hero Search Interactivity
+// Debounce timer variable for real-time search
+let heroSearchDebounceTimer = null;
+
+// Hero Search Interactivity: Silent real-time instant filtering with 280ms debounce
 function handleHeroSearch(event) {
-  if (event) event.preventDefault();
-  
-  const dest = document.getElementById('heroDestinationInput')?.value.toLowerCase().trim() || '';
-  const date = document.getElementById('heroDateInput')?.value || '';
-  const travelers = document.getElementById('heroTravelersSelect')?.value || '2';
-
-  let matches = PACKAGES;
-  if (dest) {
-    matches = PACKAGES.filter(p => 
-      p.title.toLowerCase().includes(dest) ||
-      p.destination.toLowerCase().includes(dest) ||
-      p.category.toLowerCase().includes(dest)
-    );
+  if (event && event.type === 'submit') {
+    event.preventDefault();
   }
 
-  // Scroll smoothly to packages section
-  const packagesSec = document.getElementById('packages');
-  if (packagesSec) {
-    packagesSec.scrollIntoView({ behavior: 'smooth' });
+  // Clear existing toasts to prevent stacking along the right margin
+  clearAllToasts();
+
+  if (heroSearchDebounceTimer) {
+    clearTimeout(heroSearchDebounceTimer);
   }
 
-  renderPackages(matches);
-  showToast(`Found ${matches.length} matching packages for your search!`, 'success');
+  heroSearchDebounceTimer = setTimeout(() => {
+    const dest = document.getElementById('heroDestinationInput')?.value.toLowerCase().trim() || '';
+    
+    // If on packages.html, filterCategory already handles combining activeCategory + search query
+    const isPackagesPage = !!document.getElementById('packagesGrid') && !!document.querySelector('.package-filter-track');
+    if (isPackagesPage) {
+      filterCategory(activeCategory);
+      return;
+    }
+
+    // Homepage / general hero form handling
+    let matches = PACKAGES;
+    if (dest) {
+      matches = PACKAGES.filter(p => 
+        p.title.toLowerCase().includes(dest) ||
+        p.destination.toLowerCase().includes(dest) ||
+        p.category.toLowerCase().includes(dest) ||
+        (p.perks && p.perks.some(perk => perk.toLowerCase().includes(dest)))
+      );
+    }
+
+    // Scroll smoothly to packages section only on form submission or if packages section exists
+    if (event && event.type === 'submit') {
+      const packagesSec = document.getElementById('packages');
+      if (packagesSec) {
+        packagesSec.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    renderPackages(matches);
+  }, 280);
 }
 
 // Booking Modal Functionality
