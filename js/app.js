@@ -3803,6 +3803,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 2150,
         priceLKR: 'LKR 190,000',
+        keyStops: ['Yala Safari', 'Sinharaja Forest', 'Udawalawe'],
+        destinations: ['Yala Safari', 'Sinharaja Forest', 'Udawalawe'],
         image: 'assets/sri-lanka-wildlife-elephant.jpg',
         thumbnail: 'assets/sri-lanka-wildlife-elephant-thumb.jpg',
         description: 'Track the highest leopard density on the planet with customized 4x4 open-top jeep safaris in Yala and Wilpattu. Trek beneath the ancient prehistoric canopy of UNESCO Sinharaja Virgin Rainforest, observe wild elephant rehabilitation at Udawalawe, and spot rare migratory wetland birds at Bundala.',
@@ -3869,6 +3871,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '4 Days / 3 Nights',
         priceAED: 1890,
         priceLKR: 'LKR 165,000',
+        keyStops: ['Bentota', 'Galle Fort', 'Mirissa Beach'],
+        destinations: ['Bentota', 'Galle Fort', 'Mirissa Beach'],
         image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
         description: 'Unwind along Sri Lanka\'s sun-drenched southern coastline. Stroll the 17th-century ramparts and cobblestone paths of UNESCO World Heritage Galle Dutch Fort, watch stilt fishermen at Koggala, catch premier surf breaks at Weligama and Hiriketiya, and cruise through mangrove tunnels on the Madu River boat safari.',
@@ -3931,6 +3935,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '4 Days / 3 Nights',
         priceAED: 1950,
         priceLKR: 'LKR 170,000',
+        keyStops: ['Nallur Temple', 'Jaffna Fort', 'Delft Island'],
+        destinations: ['Nallur Temple', 'Jaffna Fort', 'Delft Island'],
         image: 'assets/sri-lanka-jaffna-nallur-kovil.jpg',
         thumbnail: 'assets/sri-lanka-jaffna-nallur-kovil-thumb.jpg',
         description: 'Discover the vibrant Tamil cultural capital of Northern Sri Lanka. Experience spiritual reverence at the golden Nallur Kandaswamy Kovil, explore the star-shaped Dutch fort, take scenic ferries across the Palk Strait to sacred Nagadeepa Temple, and witness wild horses on remote coral-walled Delft Island.',
@@ -3990,6 +3996,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 2250,
         priceLKR: 'LKR 195,000',
+        keyStops: ['Sigiriya Citadel', 'Dambulla Caves', 'Kandy Temple'],
+        destinations: ['Sigiriya Citadel', 'Dambulla Caves', 'Kandy Temple'],
         image: 'assets/sri-lanka-sigiriya-rock.jpg',
         thumbnail: 'assets/sri-lanka-sigiriya-rock-thumb.jpg',
         description: 'Journey through 2,500 years of royal Sri Lankan heritage. Scale the iconic 5th-century Lion Rock of Sigiriya, admire 150+ Buddha statues in Dambulla Cave Temples, explore the sprawling ruins of Anuradhapura and Polonnaruwa, and witness sacred relic ceremonies in Kandy.',
@@ -4057,6 +4065,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 2050,
         priceLKR: 'LKR 180,000',
+        keyStops: ['Nuwara Eliya', 'Ella Nine Arch', 'Diyaluma Falls'],
+        destinations: ['Nuwara Eliya', 'Ella Nine Arch', 'Diyaluma Falls'],
         image: 'assets/sri-lanka-destination.jpg',
         thumbnail: 'assets/sri-lanka-destination.jpg',
         description: 'Ride the legendary blue train as it weaves across misty valleys and the architectural marvel of the Demodara Nine Arches Bridge. Wander through the crisp, emerald Ceylon tea plantations of Nuwara Eliya, stand above the clouds at World\'s End in Horton Plains, and hike to cascading waterfalls.',
@@ -4131,6 +4141,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '4 Days / 3 Nights',
         priceAED: 1850,
         priceLKR: 'LKR 380,000 / Adult (Child LKR 320,000)',
+        keyStops: ['Burj Khalifa', 'Marina Dhow', 'Desert Safari'],
+        destinations: ['Burj Khalifa', 'Marina Dhow', 'Desert Safari'],
         image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
         description: 'The signature Dubai luxury family getaway. Stay in 4-star deluxe comfort at Avani Deira Hotel with daily international breakfast, ascend to the 124th/125th floor of the Burj Khalifa, explore the aquatic wonders of Dubai Aquarium & Underwater Zoo, sail Dubai Marina on a 5-star Dhow Cruise Dinner with live Tanoura dance, and conquer the golden dunes on a VIP 4x4 desert safari.',
@@ -4196,6 +4208,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 2750,
         priceLKR: 'LKR 560,000',
+        keyStops: ['Sheikh Zayed Mosque', 'Palm Jumeirah', 'Museum of the Future'],
+        destinations: ['Sheikh Zayed Mosque', 'Palm Jumeirah', 'Museum of the Future'],
         image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80',
         description: 'Experience the peak of Arabian architecture and opulence. Enjoy a private chauffeur-driven tour to Abu Dhabi\'s majestic Sheikh Zayed Grand Mosque and Louvre Museum, cruise around the Palm Jumeirah on a private yacht, and dine under desert stars in a VIP desert camp.',
@@ -4270,6 +4284,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '4 Days / 3 Nights',
         priceAED: 4499,
         priceLKR: 'LKR 890,000',
+        keyStops: ['Male Atolls', 'Coral House Reef', 'Overwater Villa'],
+        destinations: ['Male Atolls', 'Coral House Reef', 'Overwater Villa'],
         image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80',
         description: 'Wake up above crystal lagoons in your private overwater pool villa. Includes scenic return seaplane transfers from Male, all-inclusive dine-around fine dining, guided coral reef snorkeling with sea turtles, and sunset champagne dolphin cruises.',
@@ -4331,6 +4347,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 3250,
         priceLKR: 'LKR 640,000',
+        keyStops: ['Beachfront Villa', 'Private Sandbank', 'Coral Lagoon'],
+        destinations: ['Beachfront Villa', 'Private Sandbank', 'Coral Lagoon'],
         image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=800&q=80',
         description: 'Direct powder-soft beach access from your beachfront villa. Enjoy full board gourmet buffet dining, unlimited non-motorized watersports, children\'s club activities, and boat excursions to nearby coral atolls.',
@@ -4403,6 +4421,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 1950,
         priceLKR: 'LKR 390,000',
+        keyStops: ['Old City Baku', 'Gobustan Volcanoes', 'Shahdag Peaks'],
+        destinations: ['Old City Baku', 'Gobustan Volcanoes', 'Shahdag Peaks'],
         image: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=800&q=80',
         description: 'Explore the historic alleys of UNESCO Icherisheher, stand beneath the futuristic Flame Towers, marvel at bubbling mud volcanoes in Gobustan, and ride panoramic cable cars into Shahdag Alpine Resort.',
@@ -4476,6 +4496,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 1890,
         priceLKR: 'LKR 375,000',
+        keyStops: ['Old Tbilisi', 'Ananuri Fortress', 'Gergeti Trinity'],
+        destinations: ['Old Tbilisi', 'Ananuri Fortress', 'Gergeti Trinity'],
         image: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=800&q=80',
         description: 'Wander the sulfur bath cobblestone streets of Old Tbilisi, drive the scenic Georgian Military Highway past Ananuri Fortress and Jinvali Reservoir, and take a 4x4 up to 14th-century Gergeti Trinity Church under Mount Kazbek.',
@@ -4549,6 +4571,8 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '6 Days / 5 Nights',
         priceAED: 2450,
         priceLKR: 'LKR 490,000',
+        keyStops: ['Ubud Terraces', 'Nusa Penida', 'Uluwatu Temple'],
+        destinations: ['Ubud Terraces', 'Nusa Penida', 'Uluwatu Temple'],
         image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1920&q=85',
         thumbnail: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80',
         description: 'Swing high over Tegallalang emerald rice terraces, witness the sunset Kecak fire dance on Uluwatu cliffs, and speed across the strait to explore Kelingking T-Rex Beach and Angel\'s Billabong on Nusa Penida.',
@@ -4663,6 +4687,13 @@ function populateShowcaseData(countryKey) {
               <span class="text-white font-bold ml-0.5">${tour.rating}</span>
             </div>
             <h4 class="showcase-card-title drop-shadow-md">${tour.title}</h4>
+            
+            <!-- Visited Places Badge Row -->
+            <div class="showcase-card-stops">
+              <i class="fa-solid fa-location-dot text-amber-400 text-[9px] mr-1 flex-shrink-0"></i>
+              <span class="truncate">${(tour.keyStops || tour.destinations || []).join(' • ')}</span>
+            </div>
+
             <div class="showcase-card-meta flex items-center justify-between text-slate-300 mt-1 font-medium pt-1.5 border-t border-white/15">
               <span class="flex items-center gap-1"><i class="fa-regular fa-clock text-amber-400 text-[9px]"></i>${tour.duration}</span>
               <span class="showcase-card-price text-amber-400 font-mono">${formattedAED}</span>
@@ -4760,6 +4791,22 @@ function updateShowcaseTourUI(index, animate = true) {
   if (reviewsElem) reviewsElem.textContent = tour.reviews;
   if (durationElem) durationElem.textContent = tour.duration;
   if (descElem) descElem.textContent = tour.description;
+
+  // Route & Key Highlights (Stops)
+  const stopsElem = document.getElementById('showcaseActiveStops');
+  const routeElem = document.getElementById('showcaseActiveRoute');
+  const stops = tour.keyStops || tour.destinations || [];
+  if (stopsElem) {
+    stopsElem.innerHTML = stops.map(stop => `
+      <span class="showcase-route-pill">
+        <i class="fa-solid fa-location-dot text-[9px] text-amber-400 flex-shrink-0"></i>
+        <span>${stop}</span>
+      </span>
+    `).join('');
+  }
+  if (routeElem) {
+    routeElem.textContent = 'Route & Key Highlights';
+  }
 
   // Checklist with orange checkmarks
   if (checklistElem && tour.checklist) {
@@ -4880,6 +4927,18 @@ function openShowcaseItinerary(tour) {
   if (titleElem) titleElem.textContent = tour.title;
   if (subtitleElem) subtitleElem.textContent = tour.subtitle;
   if (descElem) descElem.textContent = tour.description;
+
+  // Render Key Stops in Itinerary Modal
+  const itinStopsElem = document.getElementById('showcaseItineraryStopsContainer');
+  if (itinStopsElem) {
+    const stops = tour.keyStops || tour.destinations || [];
+    itinStopsElem.innerHTML = stops.map(stop => `
+      <span class="showcase-route-pill">
+        <i class="fa-solid fa-location-dot text-[9px] text-amber-400 flex-shrink-0"></i>
+        <span>${stop}</span>
+      </span>
+    `).join('');
+  }
 
   // Render Accommodation & Hotel Stay Tier
   const stayElem = document.getElementById('showcaseItineraryStay');

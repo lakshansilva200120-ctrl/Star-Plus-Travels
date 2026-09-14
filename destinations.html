@@ -1059,6 +1059,17 @@
               Immerse yourself in Dutch colonial heritage inside the 17th-century UNESCO Galle Fort, bask on golden beaches from Mirissa to Bentota, and watch legendary stilt fishermen against Indian Ocean sunsets.
             </p>
 
+            <!-- Route & Key Highlights (Visited Landmarks) -->
+            <div id="showcaseActiveRouteContainer" class="mb-2.5 max-w-xl">
+              <div class="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-amber-400 mb-1.5">
+                <i class="fa-solid fa-route text-amber-400 text-[10px]"></i>
+                <span id="showcaseActiveRoute">Route &amp; Key Highlights</span>
+              </div>
+              <div id="showcaseActiveStops" class="flex flex-wrap items-center gap-1.5">
+                <!-- Rendered dynamically by app.js -->
+              </div>
+            </div>
+
             <!-- Curated Highlights Checklist (Compact 2 columns) -->
             <div id="showcaseActiveChecklist" class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-2.5 max-w-xl text-[11px] text-slate-200">
               <!-- Rendered dynamically by app.js -->
@@ -1148,6 +1159,11 @@
 
         <!-- Description -->
         <p id="showcaseItineraryDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed"></p>
+
+        <!-- Route & Key Visited Landmarks -->
+        <div id="showcaseItineraryStopsContainer" class="flex flex-wrap items-center gap-1.5 my-1">
+          <!-- Dynamically populated -->
+        </div>
 
         <!-- Accommodation & Stay Tier Details -->
         <div id="showcaseItineraryStayContainer" class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-start space-x-3 text-xs">
