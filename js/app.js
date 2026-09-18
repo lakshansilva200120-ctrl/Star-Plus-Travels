@@ -979,42 +979,83 @@ const TESTIMONIALS = [
   }
 ];
 
-// Visa Requirements Information
+// Visa Requirements & Live Calculator Information
 const VISA_DATA = {
   uae: {
-    title: 'UAE Tourist & Freelance Visa',
-    types: ['30 Days Single Entry', '60 Days Multiple Entry', '2-Year Freelance Residence'],
-    time: '24 - 48 Hours Express',
-    priceAED: 350,
-    docs: ['Passport copy (minimum 6 months validity)', 'Passport size photo (white background)', 'Previous travel stamps or national ID']
-  },
-  schengen: {
-    title: 'Schengen European Visa Assistance',
-    types: ['Tourist Visa (C Type)', 'Business & Conference Visa'],
-    time: '10 - 15 Working Days',
-    priceAED: 650,
-    docs: ['Original Passport', 'UAE Residence Visa (3+ months validity)', '3-6 Months Bank Statements with stamp', 'NOC Letter from Employer / Sponsor', 'Flight & Hotel Reservation (Provided by us)']
-  },
-  azerbaijan: {
-    title: 'Azerbaijan Official ASAN e-Visa',
-    types: ['30-Day Single Entry e-Visa'],
-    time: '3 Hours (Urgent) / 3 Days (Standard)',
-    priceAED: 180,
-    docs: ['Clear color scan of passport bio page', 'Confirmed hotel booking & return ticket']
-  },
-  srilanka: {
-    title: 'Sri Lanka ETA / Tourist Visa',
-    types: ['30-Day Double Entry ETA', '180-Day Multiple Entry'],
-    time: 'Instant / 12 Hours',
-    priceAED: 220,
-    docs: ['Valid Passport scan', 'Email address for digital ETA delivery']
+    key: 'uae',
+    title: 'UAE Tourist & Freelance Visa (30 / 60 Days)',
+    rateHeadline: 'From 380 AED | 24–48 Hours Express',
+    badge: 'Popular • Express Approval',
+    priceAED: 380,
+    speed: '24–48 Hours Express',
+    docs: [
+      'Passport copy (valid 6+ months from travel date)',
+      'Passport-size photograph with white background',
+      'Previous UAE tourist visa copy or residence cancellation (if in UAE)',
+      'National identity card copy (for selected nationalities)'
+    ],
+    whatsappMsg: "Hello Star Plus Travel, I'd like to check requirements and book the UAE Tourist & Freelance Visa (30 / 60 Days)."
   },
   oman_change: {
-    title: 'Oman Visa Change by Luxury Coach',
-    types: ['Same-Day Dubai ⇄ Oman Border Transit + New UAE Visa'],
-    time: 'Same Day Run (Daily Departures from Deira)',
-    priceAED: 850,
-    docs: ['Current UAE Visa cancellation or tourist visa copy', 'Passport copy']
+    key: 'oman_change',
+    title: 'Oman Visa Change by Luxury Coach (Deira Departure)',
+    rateHeadline: 'From 290 AED (Same Day Coach & Visa Return)',
+    badge: 'Daily Departure • Deira Hub',
+    priceAED: 290,
+    speed: 'Same Day Coach & Visa Return',
+    docs: [
+      'Original passport with 6+ months validity',
+      'Current UAE visa cancellation paper or active tourist visa copy',
+      'Clear border travel status without active immigration fines',
+      'Luxury AC coach seat reservation & border clearance'
+    ],
+    whatsappMsg: "Hello Star Plus Travel, I'd like to check requirements and book the Oman Visa Change by Luxury Coach (Deira Departure)."
+  },
+  schengen: {
+    key: 'schengen',
+    title: 'Schengen European Visa Full Concierge & File Preparation',
+    rateHeadline: 'From 650 AED (Appointment Booking, Flight/Hotel Vouchers, Insurance)',
+    badge: 'Concierge • VFS / BLS Appointments',
+    priceAED: 650,
+    speed: '10–15 Working Days (Fast-Track Slot Booking)',
+    docs: [
+      'Original passport with 3+ months validity beyond travel date',
+      'UAE residence visa (valid for minimum 3 months)',
+      'Official 3 to 6 months bank statements stamped by your bank',
+      'No Objection Certificate (NOC) from employer or sponsor',
+      'Appointment booking, confirmed flight/hotel vouchers & Schengen insurance'
+    ],
+    whatsappMsg: "Hello Star Plus Travel, I'd like to check requirements and book the Schengen European Visa Full Concierge & File Preparation."
+  },
+  srilanka: {
+    key: 'srilanka',
+    title: 'Sri Lanka Electronic Travel Authorization (ETA)',
+    rateHeadline: 'From 210 AED | 12–24 Hours Approval',
+    badge: 'Direct Official Portal Approval',
+    priceAED: 210,
+    speed: '12–24 Hours Approval',
+    docs: [
+      'Passport copy bio-page scan (valid 6+ months from arrival)',
+      'Confirmed return flight booking or onward ticket',
+      'Active email address & WhatsApp for instant electronic PDF dispatch',
+      'Intended stay address or hotel voucher in Sri Lanka'
+    ],
+    whatsappMsg: "Hello Star Plus Travel, I'd like to check requirements and book the Sri Lanka Electronic Travel Authorization (ETA)."
+  },
+  azerbaijan: {
+    key: 'azerbaijan',
+    title: 'Azerbaijan Official ASAN e-Visa (3-Hour Express)',
+    rateHeadline: 'From 195 AED | 3-Hour Super Express',
+    badge: '3-Hour Super Express Delivery',
+    priceAED: 195,
+    speed: '3-Hour Super Express',
+    docs: [
+      'High-resolution passport bio-page scan (valid 3+ months beyond visa expiry)',
+      'Flight arrival details into Heydar Aliyev Airport (GYD)',
+      'Confirmed hotel reservation or accommodation address in Baku',
+      'Valid email address for direct government e-visa PDF delivery'
+    ],
+    whatsappMsg: "Hello Star Plus Travel, I'd like to check requirements and book the Azerbaijan Official ASAN e-Visa (3-Hour Express)."
   }
 };
 
@@ -1698,57 +1739,87 @@ function resetSlideTimer() {
   startSlideTimer();
 }
 
-// Visa Checker Widget
+// Visa Checker Widget - Interactive Live Rates & Requirements Engine
 function checkVisaRequirements() {
-  const selectedType = document.getElementById('visaSelect')?.value;
+  const selectElem = document.getElementById('visaSelect');
+  const selectedType = selectElem?.value || 'uae';
   const resultCard = document.getElementById('visaResultCard');
-  if (!resultCard || !selectedType) return;
+  if (!resultCard) return;
 
-  const data = VISA_DATA[selectedType];
+  const data = VISA_DATA[selectedType] || VISA_DATA.uae;
   if (!data) return;
 
+  const waUrl = `https://wa.me/971527582293?text=${encodeURIComponent(data.whatsappMsg)}`;
+  const curr = CURRENCIES[currentCurrency] || CURRENCIES.AED;
+  const isAED = currentCurrency === 'AED';
+  const convertedPrice = formatPrice(data.priceAED);
+
   resultCard.innerHTML = `
-    <div class="glass-card p-6 rounded-2xl border border-amber-500/30 animate-fadeIn">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+    <div class="glass-card p-5 sm:p-7 rounded-2xl border border-amber-500/30 dark:border-amber-500/25 bg-white/95 dark:bg-slate-900/95 shadow-xl transition-all duration-300 transform opacity-100 text-left">
+      <!-- Header Row: Title & Badge -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-200/80 dark:border-slate-800">
         <div>
-          <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/15 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-1">Fast-Track Assistance</span>
-          <h4 class="text-lg font-bold text-slate-900 dark:text-white">${data.title}</h4>
-        </div>
-        <div class="text-right">
-          <span class="text-xs text-slate-500 dark:text-slate-400 block font-medium">Starting Fee</span>
-          <span class="text-2xl font-extrabold text-amber-600 dark:text-amber-400 font-heading">${formatPrice(data.priceAED)}</span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-5 text-xs text-slate-700 dark:text-slate-300">
-        <div class="bg-white dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-          <span class="text-slate-500 dark:text-slate-400 block font-semibold mb-1"><i class="fa-solid fa-bolt text-amber-500 mr-1.5"></i>Turnaround Time</span>
-          <span class="text-slate-900 dark:text-white font-bold">${data.time}</span>
-        </div>
-        <div class="bg-white dark:bg-slate-900/60 p-3 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-          <span class="text-slate-500 dark:text-slate-400 block font-semibold mb-1"><i class="fa-solid fa-passport text-amber-500 mr-1.5"></i>Available Options</span>
-          <span class="text-slate-900 dark:text-white font-bold">${data.types.join(' • ')}</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/15 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-1.5">
+            <i class="fa-solid fa-bolt text-amber-500 text-[10px]"></i>
+            ${data.badge}
+          </span>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading leading-tight">${data.title}</h4>
         </div>
       </div>
 
+      <!-- Price & Processing Speed Banner -->
+      <div class="my-4 p-4 rounded-xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+        <div class="min-w-0">
+          <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 block mb-0.5">Price &amp; Processing Speed</span>
+          <p class="text-xs sm:text-sm md:text-base font-extrabold text-amber-600 dark:text-amber-400 flex items-center gap-2 flex-wrap">
+            <i class="fa-solid fa-tag text-amber-500 text-xs shrink-0"></i>
+            <span>${data.rateHeadline}</span>
+          </p>
+        </div>
+        ${!isAED ? `
+          <div class="text-left sm:text-right shrink-0 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-700">
+            <span class="text-[10px] text-slate-400 block">Converted Price</span>
+            <span class="text-xs font-bold text-amber-400">${convertedPrice} (${curr.name.split(' ')[0]})</span>
+          </div>
+        ` : ''}
+      </div>
+
+      <!-- Requirements Checklist -->
       <div class="mb-5">
-        <h5 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Key Required Documents</h5>
-        <ul class="space-y-1.5">
+        <h5 class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2.5 flex items-center gap-1.5">
+          <i class="fa-solid fa-clipboard-check text-amber-500 text-xs"></i>
+          <span>Required Documents Checklist:</span>
+        </h5>
+        <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
           ${data.docs.map(doc => `
-            <li class="flex items-center text-xs text-slate-600 dark:text-slate-300">
-              <i class="fa-solid fa-check text-emerald-500 dark:text-emerald-400 text-[10px] mr-2"></i>
-              <span>${doc}</span>
+            <li class="flex items-start gap-2.5">
+              <span class="w-4 h-4 rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 text-[9px]">
+                <i class="fa-solid fa-check"></i>
+              </span>
+              <span class="leading-relaxed font-medium">${doc}</span>
             </li>
           `).join('')}
         </ul>
       </div>
 
-      <button onclick="openVisaInquiryModal('${data.title}')" class="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-extrabold text-sm transition-all shadow-lg shadow-amber-500/20">
-        Apply for ${data.title}
-      </button>
+      <!-- Quick Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4 border-t border-slate-200/80 dark:border-slate-800">
+        <!-- Primary WhatsApp Action Button -->
+        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-slate-950 font-black text-xs sm:text-sm shadow-lg shadow-emerald-500/20 flex items-center justify-center space-x-2 transition-all group cursor-pointer" title="Inquire on WhatsApp">
+          <i class="fa-brands fa-whatsapp text-base transition-transform group-hover:scale-110"></i>
+          <span>Inquire on WhatsApp</span>
+        </a>
+
+        <!-- Fast Online Form Booking Button -->
+        <button type="button" onclick="openVisaInquiryModal('${data.title.replace(/'/g, "\\'")}')" class="py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs sm:text-sm border border-slate-300 dark:border-slate-700 flex items-center justify-center space-x-1.5 transition-colors cursor-pointer" title="Apply Online">
+          <i class="fa-solid fa-file-signature text-amber-500 text-xs"></i>
+          <span>Apply Online Form</span>
+        </button>
+      </div>
     </div>
   `;
 }
+window.checkVisaRequirements = checkVisaRequirements;
 
 function openVisaInquiryModal(visaTitle) {
   const contactForm = document.getElementById('contact');
@@ -1766,10 +1837,15 @@ function openVisaInquiryModal(visaTitle) {
       dest.value = visaTitle;
     }
     const notes = document.getElementById('contactMessage');
-    if (notes) notes.value = `I would like to apply for: ${visaTitle}. Please advise on the exact documents and earliest processing appointment.`;
+    if (notes) {
+      notes.value = `I would like to apply for: ${visaTitle}. Please advise on the exact documents and earliest processing appointment.`;
+    }
     showToast(`Pre-filled inquiry for ${visaTitle}. Please submit your details below!`, 'success');
+  } else {
+    window.location.href = `index.html?interest=visa&dest=${encodeURIComponent(visaTitle)}#contact`;
   }
 }
+window.openVisaInquiryModal = openVisaInquiryModal;
 
 // Dynamic Field Configuration for "Request a Free Travel Itinerary & Quote" Form
 function updateQuoteFormFields() {
@@ -2666,7 +2742,13 @@ function initApp() {
       startSlideTimer();
     }
   } catch (e) {}
-  try { checkVisaRequirements(); } catch (e) {}
+  try {
+    const visaSel = document.getElementById('visaSelect');
+    if (visaSel) {
+      visaSel.addEventListener('change', checkVisaRequirements);
+    }
+    checkVisaRequirements();
+  } catch (e) {}
 
   // Initialize dynamic quote form fields based on initial/default interest
   try {
