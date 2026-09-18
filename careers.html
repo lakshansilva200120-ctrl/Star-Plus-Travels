@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth w-full max-w-full">
 <head>
   <meta charset="UTF-8">
@@ -1020,10 +1020,28 @@
 
         <div>
           <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
-            Resume / CV Link or Attachment Note *
+            Attach Resume / CV <span class="text-amber-500 font-bold">*</span> <span class="text-slate-400 font-normal normal-case">(PDF, DOC, DOCX - Max 5MB)</span>
           </label>
-          <input type="text" id="applicantResumeLink" required placeholder="Paste Google Drive/Dropbox link or type 'Sending via Email'" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
-          <span class="text-[10px] text-slate-500 dark:text-slate-400 block mt-1">You can also attach your PDF file directly by clicking 'Open in Email Client' below.</span>
+          <div class="relative flex items-center">
+            <input type="file" id="applicantResumeFile" accept=".pdf,.doc,.docx" class="hidden" onchange="handleResumeFileChange(this)">
+            <label for="applicantResumeFile" class="flex-1 cursor-pointer flex items-center justify-between px-3.5 py-2.5 rounded-xl glass-input text-xs sm:text-sm border border-dashed border-amber-500/40 hover:border-amber-500 transition-colors">
+              <span id="applicantResumeFileName" class="text-slate-500 dark:text-slate-400 truncate flex items-center">
+                <i class="fa-solid fa-cloud-arrow-up mr-2 text-amber-500"></i>Choose CV/Resume document...
+              </span>
+              <span class="px-2 py-0.5 text-[11px] font-bold bg-amber-500/20 text-amber-600 dark:text-amber-400 rounded shrink-0 ml-2">Browse</span>
+            </label>
+            <button type="button" id="clearResumeFileBtn" onclick="clearResumeFile()" class="hidden ml-2 p-2 text-slate-400 hover:text-red-500 transition-colors" title="Remove file">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          
+          <div class="mt-2.5">
+            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
+              Or Resume / Portfolio Link <span class="text-slate-400 font-normal normal-case">(Google Drive, Dropbox, LinkedIn)</span>
+            </label>
+            <input type="text" id="applicantResumeLink" placeholder="Paste Google Drive/Dropbox/portfolio link" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+          </div>
+          <span class="text-[10px] text-slate-500 dark:text-slate-400 block mt-1">Please either attach your CV document directly or provide a shareable public link.</span>
         </div>
 
         <div>
@@ -1115,6 +1133,63 @@
       }
     }
 
+    function handleResumeFileChange(input) {
+      const file = input.files && input.files[0];
+      const nameElem = document.getElementById('applicantResumeFileName');
+      const clearBtn = document.getElementById('clearResumeFileBtn');
+      const linkInput = document.getElementById('applicantResumeLink');
+
+      if (!file) {
+        clearResumeFile();
+        return;
+      }
+
+      const maxBytes = 5 * 1024 * 1024; // 5MB
+      const allowedExts = ['pdf', 'doc', 'docx'];
+      const ext = file.name.split('.').pop().toLowerCase();
+
+      if (!allowedExts.includes(ext)) {
+        showToast('⚠️ Please upload a PDF, DOC, or DOCX document.', 'error');
+        input.value = '';
+        clearResumeFile();
+        return;
+      }
+
+      if (file.size > maxBytes) {
+        showToast('⚠️ Resume file exceeds 5MB limit. Please upload a smaller file or provide a cloud link.', 'error');
+        input.value = '';
+        clearResumeFile();
+        return;
+      }
+
+      const sizeStr = file.size > 1024 * 1024
+        ? (file.size / (1024 * 1024)).toFixed(1) + ' MB'
+        : Math.round(file.size / 1024) + ' KB';
+
+      if (nameElem) {
+        nameElem.innerHTML = `<i class="fa-solid fa-file-pdf mr-2 text-emerald-500"></i><strong class="text-emerald-600 dark:text-emerald-400">${file.name}</strong> <span class="text-slate-400 text-xs ml-1">(${sizeStr})</span>`;
+      }
+      if (clearBtn) clearBtn.classList.remove('hidden');
+      if (linkInput && !linkInput.value) {
+        linkInput.placeholder = "File attached above (cloud link optional)";
+      }
+    }
+
+    function clearResumeFile() {
+      const input = document.getElementById('applicantResumeFile');
+      if (input) input.value = '';
+      const nameElem = document.getElementById('applicantResumeFileName');
+      if (nameElem) {
+        nameElem.innerHTML = `<i class="fa-solid fa-cloud-arrow-up mr-2 text-amber-500"></i>Choose CV/Resume document...`;
+      }
+      const clearBtn = document.getElementById('clearResumeFileBtn');
+      if (clearBtn) clearBtn.classList.add('hidden');
+      const linkInput = document.getElementById('applicantResumeLink');
+      if (linkInput) {
+        linkInput.placeholder = "Paste Google Drive/Dropbox/portfolio link";
+      }
+    }
+
     function closeApplyModal() {
       const modal = document.getElementById('applyModal');
       if (modal) {
@@ -1122,6 +1197,7 @@
         modal.classList.remove('flex');
         const form = modal.querySelector('form');
         if (form) form.reset();
+        clearResumeFile();
       }
       selectedJobForApply = null;
     }
@@ -1148,16 +1224,45 @@
       const coverNote = document.getElementById('applicantMessage')?.value?.trim() || '';
       const position = selectedJobForApply ? selectedJobForApply.title : "Senior Travel Consultant";
 
-      if (!fullName || !email || !phone || !resumeLink) {
-        showToast('Please fill in all required fields.', 'error');
+      const fileInput = document.getElementById('applicantResumeFile');
+      const resumeFile = fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+
+      if (!fullName || !email || !phone || (!resumeFile && !resumeLink)) {
+        showToast('Please fill in your contact details and attach your CV or provide a link.', 'error');
         return;
       }
 
       const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Sending...</span>';
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Uploading &amp; Sending...</span>';
         submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+      }
+
+      let fileData = null;
+      let fileName = null;
+      let fileType = null;
+
+      if (resumeFile) {
+        try {
+          fileData = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+            reader.readAsDataURL(resumeFile);
+          });
+          fileName = resumeFile.name;
+          fileType = resumeFile.type || 'application/pdf';
+        } catch (readErr) {
+          console.error('Error reading resume file:', readErr);
+          showToast('Could not process attached file. Please try again or provide a resume link.', 'error');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnContent;
+            submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+          }
+          return;
+        }
       }
 
       const payload = {
@@ -1170,7 +1275,10 @@
         experience: experience,
         linkedin: linkedin,
         resumeLink: resumeLink,
-        coverNote: coverNote
+        coverNote: coverNote,
+        fileData: fileData,
+        fileName: fileName,
+        fileType: fileType
       };
 
       const endpoint = typeof GOOGLE_APPS_SCRIPT_ENDPOINT !== 'undefined'
@@ -1188,7 +1296,8 @@
         });
 
         form.reset();
-        showToast('Thank you! Your submission has been received.', 'success');
+        clearResumeFile();
+        showToast('Thank you! Your application has been received.', 'success');
         setTimeout(() => {
           closeApplyModal();
         }, 1200);
@@ -1205,14 +1314,17 @@
     }
 
     function sendDirectEmailApplication() {
-      const name = document.getElementById('applicantName').value || 'Applicant';
-      const email = document.getElementById('applicantEmail').value || '';
-      const phone = document.getElementById('applicantPhone').value || '';
-      const branch = document.getElementById('applicantBranch').value;
-      const resume = document.getElementById('applicantResumeLink').value || '';
-      const msg = document.getElementById('applicantMessage').value || '';
+      const name = document.getElementById('applicantName')?.value || 'Applicant';
+      const email = document.getElementById('applicantEmail')?.value || '';
+      const phone = document.getElementById('applicantPhone')?.value || '';
+      const branch = document.getElementById('applicantBranch')?.value;
+      const resume = document.getElementById('applicantResumeLink')?.value || '';
+      const msg = document.getElementById('applicantMessage')?.value || '';
       const jobTitle = selectedJobForApply ? selectedJobForApply.title : 'Career Opportunity';
       const targetEmail = branch === 'uae' ? 'info@starplustraveluae.com' : 'info@starplustravelsl.com';
+
+      const fileInput = document.getElementById('applicantResumeFile');
+      const attachedFileName = fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0].name : '';
 
       const subject = encodeURIComponent(`Application: ${jobTitle} - ${name}`);
       const body = encodeURIComponent(
@@ -1222,8 +1334,9 @@
         `- Full Name: ${name}\n` +
         `- Email: ${email}\n` +
         `- Phone: ${phone}\n` +
-        `- Resume Reference / Link: ${resume}\n\n` +
-        `Introduction:\n${msg}\n\n` +
+        (attachedFileName ? `- Attached CV: ${attachedFileName} (Please find attached)\n` : '') +
+        (resume ? `- Resume Link: ${resume}\n` : '') +
+        `\nIntroduction:\n${msg}\n\n` +
         `Thank you for your review.\n${name}`
       );
       window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;

@@ -2127,11 +2127,34 @@ async function handlePartnerSubmit(e) {
     return;
   }
 
+  const licenseNumber = document.getElementById('partnerLicense')?.value?.trim() || '';
+  const licenseFileInput = document.getElementById('partnerLicenseFile');
+  const licenseFile = licenseFileInput && licenseFileInput.files && licenseFileInput.files[0] ? licenseFileInput.files[0] : null;
+
   const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
   if (submitBtn) {
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Sending...</span>';
     submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+  }
+
+  let fileData = null;
+  let fileName = null;
+  let fileType = null;
+
+  if (licenseFile) {
+    try {
+      fileData = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+        reader.readAsDataURL(licenseFile);
+      });
+      fileName = licenseFile.name;
+      fileType = licenseFile.type || 'application/pdf';
+    } catch (readErr) {
+      console.warn('Could not encode license file:', readErr);
+    }
   }
 
   const payload = {
@@ -2142,7 +2165,11 @@ async function handlePartnerSubmit(e) {
     corporateEmail: corporateEmail,
     corporatePhone: corporatePhone,
     website: website,
-    socialProfile: socialProfile
+    socialProfile: socialProfile,
+    licenseNumber: licenseNumber,
+    fileData: fileData,
+    fileName: fileName,
+    fileType: fileType
   };
 
   try {
