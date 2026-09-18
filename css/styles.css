@@ -2538,36 +2538,86 @@ html.light .preloader-card::before {
   transition: opacity 0.5s ease-out !important;
 }
 
-/* Single Luxury Gold Spinner Indicator */
-.preloader-spinner {
-  width: 28px !important;
-  height: 28px !important;
-  border-radius: 50% !important;
-  border: 3px solid rgba(245, 158, 11, 0.2) !important;
-  border-top-color: #f59e0b !important;
-  border-right-color: #fbbf24 !important;
-  box-sizing: border-box !important;
-  margin: 0 auto !important;
+/* Sleek Brand Loading Bar & Flight Sweep */
+.preloader-loader-container {
+  width: 180px;
+  max-width: 60vw;
+  margin: 16px auto 0 auto;
   position: relative;
-  z-index: 1;
-  opacity: 0;
-  animation: preloaderSpin 0.85s linear infinite, preloaderSpinnerEntrance 0.5s ease-out 0.45s forwards !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@keyframes preloaderSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.preloader-track {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
 }
 
-@keyframes preloaderSpinnerEntrance {
+html.light .preloader-track {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.preloader-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #F59E0B, #E11D48, #3B82F6, #F59E0B);
+  background-size: 200% 100%;
+  border-radius: 9999px;
+  animation: preloaderGradientShimmer 1.8s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+@keyframes preloaderGradientShimmer {
   0% {
-    opacity: 0;
-    transform: scale(0.8);
+    background-position: 100% 0%;
   }
   100% {
-    opacity: 1;
-    transform: scale(1);
+    background-position: -100% 0%;
   }
+}
+
+.preloader-flight-sweep {
+  position: absolute;
+  top: -9px;
+  left: 0;
+  font-size: 11px;
+  color: #F59E0B;
+  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.8));
+  animation: preloaderPlaneFly 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes preloaderPlaneFly {
+  0% {
+    left: -8px;
+    opacity: 0;
+    transform: scale(0.8) rotate(0deg);
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% - 4px);
+    opacity: 0;
+    transform: scale(0.8) rotate(0deg);
+  }
+}
+
+#sitePreloader.fade-out .preloader-loader-container {
+  opacity: 0 !important;
+  transform: scale(0.9) !important;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out !important;
 }
 
 /* ==========================================================================

@@ -103,9 +103,14 @@
         class="preloader-brand-logo"
         style="display: block; width: 220px; max-width: 70vw; height: auto; max-height: 75px; object-fit: contain; flex-shrink: 0; margin: 0 auto 20px auto;"
       />
-      <!-- Single Smooth Luxury Gold Spinner -->
-      <div style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; flex-shrink: 0; margin: 0 auto;">
-        <div class="preloader-spinner" style="width: 28px; height: 28px; border-radius: 50%; border: 3px solid rgba(245, 158, 11, 0.2); border-top-color: #f59e0b; border-right-color: #fbbf24; animation: preloaderSpin 0.8s linear infinite; box-sizing: border-box;"></div>
+      <!-- Sleek Horizontal Loading Bar with Gradient Shimmer & Plane Sweep -->
+      <div class="preloader-loader-container">
+        <div class="preloader-track">
+          <div class="preloader-bar-fill"></div>
+        </div>
+        <div class="preloader-flight-sweep" aria-hidden="true">
+          <i class="fa-solid fa-plane"></i>
+        </div>
       </div>
     </div>
   </div>
@@ -114,6 +119,16 @@
     (function() {
       try {
         var urlParams = new URLSearchParams(window.location.search);
+        var forceShow = urlParams.get('ny_loader') === '1' || urlParams.get('newyear_loader') === 'true' || urlParams.get('preview_loader') === '1';
+        if (!forceShow && sessionStorage.getItem('splashShown') === 'true') {
+          var pPre = document.getElementById('sitePreloader');
+          if (pPre) {
+            pPre.style.display = 'none';
+            pPre.classList.add('fade-out');
+            return;
+          }
+        }
+
         var dateParam = urlParams.get('date');
         var d = dateParam ? new Date(dateParam) : new Date();
         var isNyParam = urlParams.get('ny_loader') === '1' || urlParams.get('newyear_loader') === 'true';
@@ -144,6 +159,7 @@
         var wait = Math.max(0, 1200 - elapsed);
         setTimeout(function() {
           p.classList.add('fade-out');
+          try { sessionStorage.setItem('splashShown', 'true'); } catch (e) {}
           setTimeout(function() {
             if (p && p.parentNode) p.style.display = 'none';
           }, 650);

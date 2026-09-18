@@ -166,7 +166,7 @@ const I18N_TRANSLATIONS = {
     contactTitle: "Let's Plan Your Next Adventure",
     contactSubtitle: "Fill out the inquiry form or contact our offices directly. Our travel specialists in Dubai and Colombo are ready to assist you.",
     contactUaeOffice: "Dubai Headquarters, UAE",
-    contactUaeAddress: "Al Maktoum Road, Deira, Dubai",
+    contactUaeAddress: "Office 204, Al Rigga Business Center, Deira, Dubai",
     contactSlOffice: "Colombo Branch, Sri Lanka",
     contactSlAddress: "Galle Road, Colombo 03",
     whatsappBtnText: "Chat Directly on WhatsApp",
@@ -421,7 +421,7 @@ const I18N_TRANSLATIONS = {
     contactTitle: "ඔබගේ ඊළඟ සංචාරය අදම සැලසුම් කරමු",
     contactSubtitle: "අභිරුචි සංචාරක සැලසුම්, ගුවන් ටිකට්පත් හෝ ක්ෂණික වීසා සේවා සඳහා ඩුබායි හෝ කොළඹ කාර්යාල හා සම්බන්ධ වන්න.",
     contactUaeOffice: "ඩුබායි ප්‍රධාන කාර්යාලය (UAE)",
-    contactUaeAddress: "අල් මක්ටූම් පාර, දෙයිරා, ඩුබායි",
+    contactUaeAddress: "කාර්යාල අංක 204, අල් රිග්ගා බිස්නස් සෙන්ටර්, දෙයිරා, ඩුබායි",
     contactSlOffice: "කොළඹ ප්‍රාදේශීය ශාඛාව (ශ්‍රී ලංකාව)",
     contactSlAddress: "ගාලු පාර, කොළඹ 03",
     whatsappBtnText: "ඍජුවම WhatsApp හරහා සම්බන්ධ වන්න",
@@ -3145,6 +3145,17 @@ function initNavPillIndicator() {
   const preloader = document.getElementById('sitePreloader');
   if (!preloader) return;
 
+  // Session-based splash display: If already shown in this session (and not preview/force param), dismiss immediately
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceShow = urlParams.get('ny_loader') === '1' || urlParams.get('newyear_loader') === 'true' || urlParams.get('preview_loader') === '1';
+    if (!forceShow && sessionStorage.getItem('splashShown') === 'true') {
+      preloader.style.display = 'none';
+      preloader.classList.add('fade-out');
+      return;
+    }
+  } catch (e) {}
+
   /**
    * Evaluates whether current date & time falls strictly within
    * the January 1st morning celebratory window: 12:00 AM (00:00:00) to 12:00 PM (12:00:00).
@@ -3360,6 +3371,7 @@ function initNavPillIndicator() {
 
     setTimeout(() => {
       preloader.classList.add('fade-out');
+      try { sessionStorage.setItem('splashShown', 'true'); } catch (e) {}
       if (cleanupConfetti) {
         cleanupConfetti();
         cleanupConfetti = null;

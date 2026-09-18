@@ -104,9 +104,14 @@
         class="preloader-brand-logo"
         style="display: block; width: 220px; max-width: 70vw; height: auto; max-height: 75px; object-fit: contain; flex-shrink: 0; margin: 0 auto 20px auto;"
       />
-      <!-- Single Smooth Luxury Gold Spinner -->
-      <div style="display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; flex-shrink: 0; margin: 0 auto;">
-        <div class="preloader-spinner" style="width: 28px; height: 28px; border-radius: 50%; border: 3px solid rgba(245, 158, 11, 0.2); border-top-color: #f59e0b; border-right-color: #fbbf24; animation: preloaderSpin 0.8s linear infinite; box-sizing: border-box;"></div>
+      <!-- Sleek Horizontal Loading Bar with Gradient Shimmer & Plane Sweep -->
+      <div class="preloader-loader-container">
+        <div class="preloader-track">
+          <div class="preloader-bar-fill"></div>
+        </div>
+        <div class="preloader-flight-sweep" aria-hidden="true">
+          <i class="fa-solid fa-plane"></i>
+        </div>
       </div>
     </div>
   </div>
@@ -115,6 +120,16 @@
     (function() {
       try {
         var urlParams = new URLSearchParams(window.location.search);
+        var forceShow = urlParams.get('ny_loader') === '1' || urlParams.get('newyear_loader') === 'true' || urlParams.get('preview_loader') === '1';
+        if (!forceShow && sessionStorage.getItem('splashShown') === 'true') {
+          var pPre = document.getElementById('sitePreloader');
+          if (pPre) {
+            pPre.style.display = 'none';
+            pPre.classList.add('fade-out');
+            return;
+          }
+        }
+
         var dateParam = urlParams.get('date');
         var d = dateParam ? new Date(dateParam) : new Date();
         var isNyParam = urlParams.get('ny_loader') === '1' || urlParams.get('newyear_loader') === 'true';
@@ -145,6 +160,7 @@
         var wait = Math.max(0, 1200 - elapsed);
         setTimeout(function() {
           p.classList.add('fade-out');
+          try { sessionStorage.setItem('splashShown', 'true'); } catch (e) {}
           setTimeout(function() {
             if (p && p.parentNode) p.style.display = 'none';
           }, 650);
@@ -478,8 +494,11 @@
           </div>
 
           <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-            Star Plus Travel & Tourism LLC<br>
-            Office 204, Al Rigga Business Center, Al Rigga Road, Deira, Dubai, UAE.
+            Star Plus Travel &amp; Tourism LLC<br>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Office+204+Al+Rigga+Business+Center+Al+Rigga+Road+Deira+Dubai+UAE" target="_blank" rel="noopener noreferrer" class="hover:text-amber-500 transition-colors inline-flex items-center gap-1 font-medium">
+              <span>Office 204, Al Rigga Business Center, Al Rigga Road, Deira, Dubai, UAE.</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-amber-500"></i>
+            </a>
           </p>
 
           <div class="space-y-2.5 pt-2 text-xs">
@@ -536,10 +555,11 @@
         </div>
 
         <div class="pt-6 border-t border-slate-200 dark:border-slate-800/80 mt-6 flex gap-3">
-          <a href="https://maps.google.com/?q=Al+Rigga+Road+Deira+Dubai" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
-            Get Directions (Dubai)
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Office+204+Al+Rigga+Business+Center+Al+Rigga+Road+Deira+Dubai+UAE" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20 flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Get Directions (Dubai)</span>
           </a>
-          <a href="https://wa.me/971527582293" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-emerald-500 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-white transition-all" title="WhatsApp Dubai Desk">
+          <a href="https://wa.me/971527582293?text=Hello%20Star%20Plus%20Travel%20Dubai%2C%20I%20need%20assistance." target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-emerald-500 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-white transition-all" title="WhatsApp Dubai Desk">
             <i class="fa-brands fa-whatsapp text-base"></i>
           </a>
         </div>
@@ -561,7 +581,10 @@
 
           <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
             Star Plus Travel (PVT) LTD<br>
-            No. 45, Galle Road, Colombo 03, Western Province, Sri Lanka.
+            <a href="https://www.google.com/maps/dir/?api=1&destination=No+45+Galle+Road+Colombo+03+Western+Province+Sri+Lanka" target="_blank" rel="noopener noreferrer" class="hover:text-amber-500 transition-colors inline-flex items-center gap-1 font-medium">
+              <span>No. 45, Galle Road, Colombo 03, Western Province, Sri Lanka.</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-amber-500"></i>
+            </a>
           </p>
 
           <div class="space-y-2.5 pt-2 text-xs">
@@ -585,7 +608,7 @@
               </div>
               <div>
                 <span class="text-[10px] text-slate-500 block">WhatsApp Travel Specialist</span>
-                <a href="https://wa.me/94766969799" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 font-semibold transition-colors">+94 76 696 9799</a>
+                <a href="https://wa.me/94766969799?text=Hello%20Star%20Plus%20Travel%20Colombo%2C%20I%20need%20assistance." target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 font-semibold transition-colors">+94 76 696 9799</a>
               </div>
             </div>
 
@@ -612,10 +635,11 @@
         </div>
 
         <div class="pt-6 border-t border-slate-200 dark:border-slate-800/80 mt-6 flex gap-3">
-          <a href="https://maps.google.com/?q=Galle+Road+Colombo+03+Sri+Lanka" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
-            Get Directions (Colombo)
+          <a href="https://www.google.com/maps/dir/?api=1&destination=No+45+Galle+Road+Colombo+03+Western+Province+Sri+Lanka" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20 flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Get Directions (Colombo)</span>
           </a>
-          <a href="https://wa.me/94766969799" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-emerald-500 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-white transition-all" title="WhatsApp Colombo Desk">
+          <a href="https://wa.me/94766969799?text=Hello%20Star%20Plus%20Travel%20Colombo%2C%20I%20need%20assistance." target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-emerald-500 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-white transition-all" title="WhatsApp Colombo Desk">
             <i class="fa-brands fa-whatsapp text-base"></i>
           </a>
         </div>
