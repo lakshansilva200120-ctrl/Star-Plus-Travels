@@ -1781,42 +1781,83 @@ function updateQuoteFormFields() {
   const field1Input = document.getElementById('contactDest');
   const field2Label = document.getElementById('quoteField2Label');
   const travelersWrapper = document.getElementById('quoteTravelersSelectWrapper');
+  const travelersSelect = document.getElementById('contactTravelers');
   const customField2Wrapper = document.getElementById('quoteCustomField2Wrapper');
   const customField2Input = document.getElementById('contactCustomField2');
   const messageInput = document.getElementById('contactMessage');
 
+  const lang = (typeof getPreferredLanguage === 'function') ? getPreferredLanguage() : 'en';
+
   if (interest === 'visa') {
     // Fast-Track Visa Processing
-    if (field1Label) field1Label.textContent = 'Target Country / Visa Type';
-    if (field1Input) field1Input.placeholder = 'e.g., UAE 60-Day Tourist, Schengen, UK';
-    if (field2Label) field2Label.textContent = 'Current Nationality';
+    if (field1Label) {
+      field1Label.textContent = lang === 'si' ? 'අපේක්ෂිත රට / වීසා වර්ගය *' : 'TARGET COUNTRY / VISA TYPE *';
+    }
+    if (field1Input) {
+      field1Input.placeholder = 'e.g., UAE 60-Day Tourist, Schengen, UK, US';
+      field1Input.setAttribute('aria-label', 'Target Country or Visa Type');
+      field1Input.required = true;
+    }
+    if (field2Label) {
+      field2Label.textContent = lang === 'si' ? 'වත්මන් පුරවැසිභාවය *' : 'CURRENT NATIONALITY *';
+    }
     if (travelersWrapper) travelersWrapper.classList.add('hidden');
+    if (travelersSelect) travelersSelect.required = false;
     if (customField2Wrapper) customField2Wrapper.classList.remove('hidden');
     if (customField2Input) {
       customField2Input.placeholder = 'e.g., Indian, Filipino, Sri Lankan, Pakistani';
       customField2Input.setAttribute('aria-label', 'Current Nationality');
+      customField2Input.required = true;
     }
-    if (messageInput) messageInput.placeholder = 'State your travel date, current residency status, or specific questions...';
+    if (messageInput) {
+      messageInput.placeholder = 'State your expected travel dates, residency status, or specific visa requirements...';
+    }
   } else if (interest === 'flight') {
     // Cheap Airline Tickets
-    if (field1Label) field1Label.textContent = 'Route (From - To)';
-    if (field1Input) field1Input.placeholder = 'e.g., Dubai (DXB) to Colombo (CMB)';
-    if (field2Label) field2Label.textContent = 'Travel Dates & Trip Type';
+    if (field1Label) {
+      field1Label.textContent = lang === 'si' ? 'ගුවන් ගමන් මාර්ගය (සිට - දක්වා) *' : 'FLIGHT ROUTE (FROM – TO) *';
+    }
+    if (field1Input) {
+      field1Input.placeholder = 'e.g., Dubai (DXB) to Colombo (CMB)';
+      field1Input.setAttribute('aria-label', 'Flight Route (From - To)');
+      field1Input.required = true;
+    }
+    if (field2Label) {
+      field2Label.textContent = lang === 'si' ? 'ගමන් වර්ගය සහ අපේක්ෂිත දිනයන් *' : 'TRIP TYPE & TENTATIVE DATES *';
+    }
     if (travelersWrapper) travelersWrapper.classList.add('hidden');
+    if (travelersSelect) travelersSelect.required = false;
     if (customField2Wrapper) customField2Wrapper.classList.remove('hidden');
     if (customField2Input) {
-      customField2Input.placeholder = 'e.g., One-way / Return, mid-October';
-      customField2Input.setAttribute('aria-label', 'Travel Dates & Trip Type');
+      customField2Input.placeholder = 'e.g., Return / One-Way, mid-October';
+      customField2Input.setAttribute('aria-label', 'Trip Type & Tentative Dates');
+      customField2Input.required = true;
     }
-    if (messageInput) messageInput.placeholder = 'Preferred airlines, number of passengers, baggage requirements...';
+    if (messageInput) {
+      messageInput.placeholder = 'Preferred airlines, number of passengers, cabin class, or baggage needs...';
+    }
   } else {
-    // Holiday Tour Package ("package") or Custom Tailor-Made Itinerary ("custom")
-    if (field1Label) field1Label.textContent = 'Preferred Destination';
-    if (field1Input) field1Input.placeholder = 'e.g., Sri Lanka, Georgia, Bali, Europe';
-    if (field2Label) field2Label.textContent = 'Estimated Travelers';
+    // Holiday Tour Package ("package") OR Custom Tailor-Made Itinerary ("custom")
+    if (field1Label) {
+      field1Label.textContent = lang === 'si' ? 'කැමති ගමනාන්තය' : 'PREFERRED DESTINATION';
+    }
+    if (field1Input) {
+      field1Input.placeholder = 'e.g., Sri Lanka, Georgia, Bali, Europe';
+      field1Input.setAttribute('aria-label', 'Preferred Destination');
+      field1Input.required = false;
+    }
+    if (field2Label) {
+      field2Label.textContent = lang === 'si' ? 'සංචාරකයින් ගණන' : 'ESTIMATED TRAVELERS';
+    }
     if (travelersWrapper) travelersWrapper.classList.remove('hidden');
+    if (travelersSelect) travelersSelect.required = false;
     if (customField2Wrapper) customField2Wrapper.classList.add('hidden');
-    if (messageInput) messageInput.placeholder = 'Tell us about your preferred travel dates, hotel rating preference, or special requests...';
+    if (customField2Input) {
+      customField2Input.required = false;
+    }
+    if (messageInput) {
+      messageInput.placeholder = 'Tell us about your preferred travel dates, hotel rating preference, or special requests...';
+    }
   }
 }
 window.updateQuoteFormFields = updateQuoteFormFields;
@@ -1850,7 +1891,8 @@ async function handleContactSubmit(e) {
   const email = form.querySelector('#contactEmail')?.value?.trim() || '';
   const phone = form.querySelector('#contactPhone')?.value?.trim() || '';
   const interestSelect = form.querySelector('#contactInterest') || form.querySelector('#contactTopic');
-  const interest = interestSelect?.value || 'package';
+  const rawInterestValue = interestSelect?.value || 'package';
+  const interest = interestSelect?.options?.[interestSelect.selectedIndex]?.text || rawInterestValue;
   const destination = form.querySelector('#contactDest')?.value?.trim() || '';
 
   // Determine Field 2 value based on dynamic mode
@@ -1866,9 +1908,35 @@ async function handleContactSubmit(e) {
 
   const notes = form.querySelector('#contactMessage')?.value?.trim() || '';
 
+  // Base validation (Always fixed)
   if (!fullName || !email || !phone) {
     showToast('Please complete all required fields (Name, Email, Phone).', 'error');
     return;
+  }
+
+  // Dynamic field validation
+  if (rawInterestValue === 'visa') {
+    if (!destination) {
+      showToast('Please specify your Target Country / Visa Type.', 'error');
+      form.querySelector('#contactDest')?.focus();
+      return;
+    }
+    if (!travelers) {
+      showToast('Please specify your Current Nationality.', 'error');
+      form.querySelector('#contactCustomField2')?.focus();
+      return;
+    }
+  } else if (rawInterestValue === 'flight') {
+    if (!destination) {
+      showToast('Please specify your Flight Route (From - To).', 'error');
+      form.querySelector('#contactDest')?.focus();
+      return;
+    }
+    if (!travelers) {
+      showToast('Please specify Trip Type & Tentative Dates.', 'error');
+      form.querySelector('#contactCustomField2')?.focus();
+      return;
+    }
   }
 
   // Preserve original button UI and show loading state
@@ -2599,6 +2667,15 @@ function initApp() {
     }
   } catch (e) {}
   try { checkVisaRequirements(); } catch (e) {}
+
+  // Initialize dynamic quote form fields based on initial/default interest
+  try {
+    const interestSel = document.getElementById('contactInterest');
+    if (interestSel) {
+      interestSel.addEventListener('change', updateQuoteFormFields);
+      updateQuoteFormFields();
+    }
+  } catch (e) {}
 
   // Sticky header scroll elevation listener
   try {
@@ -5932,7 +6009,8 @@ window.openCountryPackages = function(countryKey) {
 window.closeCountryPackages = closeCountryShowcase;
 
 // Explicit Event Listener Bindings for "VIEW PACKAGE DETAILS" CTA
-document.addEventListener('DOMContentLoaded', () => {
+// Explicit Event Listener Bindings for "VIEW PACKAGE DETAILS" CTA & Search Reset
+function initShowcaseAndSearch() {
   const detailsBtn = document.getElementById('showcaseDetailsBtn');
   if (detailsBtn) {
     detailsBtn.addEventListener('click', (e) => {
@@ -5973,5 +6051,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typeof updateQuoteFormFields === 'function') {
     updateQuoteFormFields();
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initShowcaseAndSearch);
+} else {
+  initShowcaseAndSearch();
+}
 
