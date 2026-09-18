@@ -1018,30 +1018,69 @@
           </div>
         </div>
 
+        <!-- Resume / CV Drag-and-Drop Upload Component -->
         <div>
-          <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
-            Attach Resume / CV <span class="text-amber-500 font-bold">*</span> <span class="text-slate-400 font-normal normal-case">(PDF, DOC, DOCX - Max 5MB)</span>
+          <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1 flex items-center justify-between">
+            <span>Resume / CV Document <span class="text-amber-500 font-bold">*</span></span>
+            <span class="text-[10px] text-slate-400 font-normal">PDF, DOC, DOCX up to 5MB</span>
           </label>
-          <div class="relative flex items-center">
-            <input type="file" id="applicantResumeFile" accept=".pdf,.doc,.docx" class="hidden" onchange="handleResumeFileChange(this)">
-            <label for="applicantResumeFile" class="flex-1 cursor-pointer flex items-center justify-between px-3.5 py-2.5 rounded-xl glass-input text-xs sm:text-sm border border-dashed border-amber-500/40 hover:border-amber-500 transition-colors">
-              <span id="applicantResumeFileName" class="text-slate-500 dark:text-slate-400 truncate flex items-center">
-                <i class="fa-solid fa-cloud-arrow-up mr-2 text-amber-500"></i>Choose CV/Resume document...
-              </span>
-              <span class="px-2 py-0.5 text-[11px] font-bold bg-amber-500/20 text-amber-600 dark:text-amber-400 rounded shrink-0 ml-2">Browse</span>
-            </label>
-            <button type="button" id="clearResumeFileBtn" onclick="clearResumeFile()" class="hidden ml-2 p-2 text-slate-400 hover:text-red-500 transition-colors" title="Remove file">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
+
+          <!-- Hidden Native File Input -->
+          <input type="file" id="applicantResumeFile" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="hidden">
+
+          <!-- Drag & Drop Dropzone Container -->
+          <div id="resumeDropzone" class="relative group border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-amber-500 dark:hover:border-amber-500 rounded-xl p-4 sm:p-5 text-center cursor-pointer transition-all duration-200 bg-slate-50/70 dark:bg-slate-900/60 select-none" role="button" tabindex="0" aria-label="Click or drag and drop your Resume or CV">
+            
+            <!-- Idle / Initial Upload State -->
+            <div id="resumeDropzoneIdle" class="flex flex-col items-center justify-center pointer-events-none">
+              <div class="w-11 h-11 mb-2.5 rounded-full bg-amber-500/10 dark:bg-amber-500/20 text-amber-500 flex items-center justify-center text-xl transition-transform group-hover:scale-110">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+              </div>
+              <p class="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 mb-0.5">
+                Click or drag &amp; drop your Resume/CV <span class="text-slate-500 dark:text-slate-400 font-normal">(PDF, DOCX up to 5MB)</span>
+              </p>
+              <p class="text-[11px] text-slate-400 dark:text-slate-500 flex items-center space-x-1.5 mt-0.5">
+                <i class="fa-solid fa-paperclip text-[10px] text-amber-500"></i>
+                <span>Supported file types: .pdf, .doc, .docx (Max 5 MB)</span>
+              </p>
+            </div>
+
+            <!-- Active / File Chosen Preview State (hidden by default) -->
+            <div id="resumeDropzoneActive" class="hidden flex items-center justify-between p-2 rounded-lg bg-white dark:bg-slate-800 border border-emerald-500/40 shadow-sm">
+              <div class="flex items-center space-x-3 truncate min-w-0 pr-2">
+                <div class="w-9 h-9 rounded-lg bg-emerald-500/15 text-emerald-500 dark:text-emerald-400 flex items-center justify-center text-base shrink-0">
+                  <i id="resumeFileIcon" class="fa-solid fa-file-pdf"></i>
+                </div>
+                <div class="text-left truncate">
+                  <p id="resumeFileName" class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100 truncate">resume.pdf</p>
+                  <p id="resumeFileSize" class="text-[11px] text-slate-400 dark:text-slate-500 font-medium">1.2 MB</p>
+                </div>
+              </div>
+              <button type="button" id="removeResumeFileBtn" onclick="removeSelectedResume(event)" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-700 hover:bg-red-500 hover:text-white dark:hover:bg-red-500 dark:hover:text-white text-slate-400 dark:text-slate-300 transition-colors flex items-center justify-center shrink-0" title="Remove file" aria-label="Remove uploaded file">
+                <i class="fa-solid fa-xmark text-sm"></i>
+              </button>
+            </div>
+
           </div>
-          
+
+          <!-- Client-Side Validation Error Message Banner -->
+          <div id="resumeUploadError" class="hidden mt-2 p-2.5 rounded-lg bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/50 text-xs text-red-600 dark:text-red-400 font-medium flex items-center space-x-2">
+            <i class="fa-solid fa-circle-exclamation shrink-0"></i>
+            <span id="resumeUploadErrorText"></span>
+          </div>
+
+          <!-- Fallback Link Toggle -->
           <div class="mt-2.5">
-            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
-              Or Resume / Portfolio Link <span class="text-slate-400 font-normal normal-case">(Google Drive, Dropbox, LinkedIn)</span>
-            </label>
-            <input type="text" id="applicantResumeLink" placeholder="Paste Google Drive/Dropbox/portfolio link" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+            <button type="button" id="toggleResumeLinkBtn" onclick="toggleResumeLinkInput()" class="text-[11px] font-semibold text-amber-600 dark:text-amber-400 hover:text-amber-500 flex items-center space-x-1 transition-colors">
+              <i class="fa-solid fa-link text-[10px]"></i>
+              <span id="toggleResumeLinkText">Prefer sharing a portfolio or cloud link instead?</span>
+            </button>
+            
+            <div id="resumeLinkContainer" class="hidden mt-2">
+              <input type="url" id="applicantResumeLink" placeholder="Paste Google Drive, Dropbox, or LinkedIn URL" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+              <span class="text-[10px] text-slate-500 dark:text-slate-400 block mt-1">Please ensure public view permissions are enabled on your link.</span>
+            </div>
           </div>
-          <span class="text-[10px] text-slate-500 dark:text-slate-400 block mt-1">Please either attach your CV document directly or provide a shareable public link.</span>
         </div>
 
         <div>
@@ -1117,6 +1156,8 @@
       }
       
       updateRoutingBadge();
+      clearResumeError();
+      initResumeDropzone();
 
       const modal = document.getElementById('applyModal');
       modal.classList.remove('hidden');
@@ -1133,60 +1174,176 @@
       }
     }
 
-    function handleResumeFileChange(input) {
-      const file = input.files && input.files[0];
-      const nameElem = document.getElementById('applicantResumeFileName');
-      const clearBtn = document.getElementById('clearResumeFileBtn');
-      const linkInput = document.getElementById('applicantResumeLink');
+    let selectedResumeFile = null;
 
-      if (!file) {
-        clearResumeFile();
-        return;
-      }
+    function initResumeDropzone() {
+      const dropzone = document.getElementById('resumeDropzone');
+      const fileInput = document.getElementById('applicantResumeFile');
+      if (!dropzone || !fileInput) return;
 
-      const maxBytes = 5 * 1024 * 1024; // 5MB
-      const allowedExts = ['pdf', 'doc', 'docx'];
+      if (dropzone.dataset.dropzoneInitialized === 'true') return;
+      dropzone.dataset.dropzoneInitialized = 'true';
+
+      // Click dropzone to open native file dialog
+      dropzone.addEventListener('click', (e) => {
+        if (e.target.closest('#removeResumeFileBtn')) return;
+        fileInput.click();
+      });
+
+      // Keyboard accessibility (Enter or Space)
+      dropzone.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          if (e.target.closest('#removeResumeFileBtn')) return;
+          e.preventDefault();
+          fileInput.click();
+        }
+      });
+
+      // Native file input change
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files && fileInput.files[0]) {
+          processResumeFile(fileInput.files[0]);
+        }
+      });
+
+      // Drag & drop highlight events
+      ['dragenter', 'dragover'].forEach(eventName => {
+        dropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropzone.classList.add('border-amber-500', 'bg-amber-500/10', 'dark:bg-amber-500/15', 'scale-[1.01]');
+        });
+      });
+
+      ['dragleave', 'dragend'].forEach(eventName => {
+        dropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          dropzone.classList.remove('border-amber-500', 'bg-amber-500/10', 'dark:bg-amber-500/15', 'scale-[1.01]');
+        });
+      });
+
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove('border-amber-500', 'bg-amber-500/10', 'dark:bg-amber-500/15', 'scale-[1.01]');
+        
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+          processResumeFile(e.dataTransfer.files[0]);
+        }
+      });
+    }
+
+    function processResumeFile(file) {
+      if (!file) return;
+
+      const maxBytes = 5 * 1024 * 1024; // 5 MB
+      const allowedExtensions = ['pdf', 'doc', 'docx'];
       const ext = file.name.split('.').pop().toLowerCase();
 
-      if (!allowedExts.includes(ext)) {
-        showToast('⚠️ Please upload a PDF, DOC, or DOCX document.', 'error');
-        input.value = '';
-        clearResumeFile();
+      // Client-Side Validation 1: Allowed file types (.pdf, .doc, .docx)
+      if (!allowedExtensions.includes(ext)) {
+        showResumeError("Only PDF and DOC/DOCX files are supported");
+        resetResumeFileInput();
         return;
       }
 
+      // Client-Side Validation 2: Max file size (5MB)
       if (file.size > maxBytes) {
-        showToast('⚠️ Resume file exceeds 5MB limit. Please upload a smaller file or provide a cloud link.', 'error');
-        input.value = '';
-        clearResumeFile();
+        showResumeError("File size exceeds 5MB limit. Please upload a smaller file.");
+        resetResumeFileInput();
         return;
       }
 
-      const sizeStr = file.size > 1024 * 1024
-        ? (file.size / (1024 * 1024)).toFixed(1) + ' MB'
-        : Math.round(file.size / 1024) + ' KB';
+      // Clear any prior errors
+      clearResumeError();
 
-      if (nameElem) {
-        nameElem.innerHTML = `<i class="fa-solid fa-file-pdf mr-2 text-emerald-500"></i><strong class="text-emerald-600 dark:text-emerald-400">${file.name}</strong> <span class="text-slate-400 text-xs ml-1">(${sizeStr})</span>`;
+      // Store valid file
+      selectedResumeFile = file;
+
+      // Update UI to Active / Selected File state
+      const idleElem = document.getElementById('resumeDropzoneIdle');
+      const activeElem = document.getElementById('resumeDropzoneActive');
+      const nameElem = document.getElementById('resumeFileName');
+      const sizeElem = document.getElementById('resumeFileSize');
+      const iconElem = document.getElementById('resumeFileIcon');
+
+      if (idleElem) idleElem.classList.add('hidden');
+      if (activeElem) {
+        activeElem.classList.remove('hidden');
+        activeElem.classList.add('flex');
       }
-      if (clearBtn) clearBtn.classList.remove('hidden');
-      if (linkInput && !linkInput.value) {
-        linkInput.placeholder = "File attached above (cloud link optional)";
+      if (nameElem) nameElem.textContent = file.name;
+      if (sizeElem) {
+        sizeElem.textContent = file.size > 1024 * 1024
+          ? (file.size / (1024 * 1024)).toFixed(1) + ' MB'
+          : Math.round(file.size / 1024) + ' KB';
+      }
+      if (iconElem) {
+        if (ext === 'pdf') {
+          iconElem.className = 'fa-solid fa-file-pdf text-red-500';
+        } else {
+          iconElem.className = 'fa-solid fa-file-word text-blue-500';
+        }
       }
     }
 
-    function clearResumeFile() {
-      const input = document.getElementById('applicantResumeFile');
-      if (input) input.value = '';
-      const nameElem = document.getElementById('applicantResumeFileName');
-      if (nameElem) {
-        nameElem.innerHTML = `<i class="fa-solid fa-cloud-arrow-up mr-2 text-amber-500"></i>Choose CV/Resume document...`;
+    function showResumeError(message) {
+      const errorContainer = document.getElementById('resumeUploadError');
+      const errorText = document.getElementById('resumeUploadErrorText');
+      if (errorContainer && errorText) {
+        errorText.textContent = message;
+        errorContainer.classList.remove('hidden');
       }
-      const clearBtn = document.getElementById('clearResumeFileBtn');
-      if (clearBtn) clearBtn.classList.add('hidden');
-      const linkInput = document.getElementById('applicantResumeLink');
-      if (linkInput) {
-        linkInput.placeholder = "Paste Google Drive/Dropbox/portfolio link";
+      if (typeof showToast === 'function') {
+        showToast(message, 'error');
+      }
+    }
+
+    function clearResumeError() {
+      const errorContainer = document.getElementById('resumeUploadError');
+      const errorText = document.getElementById('resumeUploadErrorText');
+      if (errorContainer && errorText) {
+        errorText.textContent = '';
+        errorContainer.classList.add('hidden');
+      }
+    }
+
+    function resetResumeFileInput() {
+      const fileInput = document.getElementById('applicantResumeFile');
+      if (fileInput) fileInput.value = '';
+      selectedResumeFile = null;
+    }
+
+    function removeSelectedResume(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      resetResumeFileInput();
+      clearResumeError();
+
+      const idleElem = document.getElementById('resumeDropzoneIdle');
+      const activeElem = document.getElementById('resumeDropzoneActive');
+      if (idleElem) idleElem.classList.remove('hidden');
+      if (activeElem) {
+        activeElem.classList.add('hidden');
+        activeElem.classList.remove('flex');
+      }
+    }
+
+    function toggleResumeLinkInput() {
+      const container = document.getElementById('resumeLinkContainer');
+      const text = document.getElementById('toggleResumeLinkText');
+      if (!container) return;
+
+      if (container.classList.contains('hidden')) {
+        container.classList.remove('hidden');
+        if (text) text.textContent = 'Hide portfolio/cloud link input';
+        document.getElementById('applicantResumeLink')?.focus();
+      } else {
+        container.classList.add('hidden');
+        if (text) text.textContent = 'Prefer sharing a portfolio or cloud link instead?';
       }
     }
 
@@ -1197,7 +1354,11 @@
         modal.classList.remove('flex');
         const form = modal.querySelector('form');
         if (form) form.reset();
-        clearResumeFile();
+        removeSelectedResume();
+        const linkContainer = document.getElementById('resumeLinkContainer');
+        const toggleText = document.getElementById('toggleResumeLinkText');
+        if (linkContainer) linkContainer.classList.add('hidden');
+        if (toggleText) toggleText.textContent = 'Prefer sharing a portfolio or cloud link instead?';
       }
       selectedJobForApply = null;
     }
@@ -1224,11 +1385,17 @@
       const coverNote = document.getElementById('applicantMessage')?.value?.trim() || '';
       const position = selectedJobForApply ? selectedJobForApply.title : "Senior Travel Consultant";
 
-      const fileInput = document.getElementById('applicantResumeFile');
-      const resumeFile = fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0] : null;
+      if (!fullName || !email || !phone || (!selectedResumeFile && !resumeLink)) {
+        if (!selectedResumeFile && !resumeLink) {
+          showResumeError("Please upload your Resume/CV document or provide a link.");
+        }
+        showToast('Please fill in all required fields.', 'error');
+        return;
+      }
 
-      if (!fullName || !email || !phone || (!resumeFile && !resumeLink)) {
-        showToast('Please fill in your contact details and attach your CV or provide a link.', 'error');
+      // Check file size again to ensure strict adherence
+      if (selectedResumeFile && selectedResumeFile.size > 5 * 1024 * 1024) {
+        showResumeError("File size exceeds 5MB limit. Please upload a smaller file.");
         return;
       }
 
@@ -1243,16 +1410,16 @@
       let fileName = null;
       let fileType = null;
 
-      if (resumeFile) {
+      if (selectedResumeFile) {
         try {
           fileData = await new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onload = () => resolve(reader.result);
             reader.onerror = error => reject(error);
-            reader.readAsDataURL(resumeFile);
+            reader.readAsDataURL(selectedResumeFile);
           });
-          fileName = resumeFile.name;
-          fileType = resumeFile.type || 'application/pdf';
+          fileName = selectedResumeFile.name;
+          fileType = selectedResumeFile.type || (selectedResumeFile.name.endsWith('.docx') ? 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' : 'application/pdf');
         } catch (readErr) {
           console.error('Error reading resume file:', readErr);
           showToast('Could not process attached file. Please try again or provide a resume link.', 'error');
@@ -1274,12 +1441,15 @@
         branch: branch,
         experience: experience,
         linkedin: linkedin,
-        resumeLink: resumeLink,
         coverNote: coverNote,
-        fileData: fileData,
         fileName: fileName,
-        fileType: fileType
+        fileType: fileType,
+        fileData: fileData
       };
+
+      if (resumeLink) {
+        payload.resumeLink = resumeLink;
+      }
 
       const endpoint = typeof GOOGLE_APPS_SCRIPT_ENDPOINT !== 'undefined'
         ? GOOGLE_APPS_SCRIPT_ENDPOINT
@@ -1296,7 +1466,7 @@
         });
 
         form.reset();
-        clearResumeFile();
+        removeSelectedResume();
         showToast('Thank you! Your application has been received.', 'success');
         setTimeout(() => {
           closeApplyModal();
@@ -1320,11 +1490,10 @@
       const branch = document.getElementById('applicantBranch')?.value;
       const resume = document.getElementById('applicantResumeLink')?.value || '';
       const msg = document.getElementById('applicantMessage')?.value || '';
-      const jobTitle = selectedJobForApply ? selectedJobForApply.title : 'Career Opportunity';
+      const jobTitle = selectedJobForApply ? selectedJobForApply.title : 'Senior Travel Consultant';
       const targetEmail = branch === 'uae' ? 'info@starplustraveluae.com' : 'info@starplustravelsl.com';
 
-      const fileInput = document.getElementById('applicantResumeFile');
-      const attachedFileName = fileInput && fileInput.files && fileInput.files[0] ? fileInput.files[0].name : '';
+      const attachedFileName = selectedResumeFile ? selectedResumeFile.name : '';
 
       const subject = encodeURIComponent(`Application: ${jobTitle} - ${name}`);
       const body = encodeURIComponent(
@@ -1334,13 +1503,18 @@
         `- Full Name: ${name}\n` +
         `- Email: ${email}\n` +
         `- Phone: ${phone}\n` +
-        (attachedFileName ? `- Attached CV: ${attachedFileName} (Please find attached)\n` : '') +
+        (attachedFileName ? `- Attached CV File: ${attachedFileName} (Attached to this email)\n` : '') +
         (resume ? `- Resume Link: ${resume}\n` : '') +
         `\nIntroduction:\n${msg}\n\n` +
         `Thank you for your review.\n${name}`
       );
       window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
     }
+
+    // Initialize dropzone on DOM content ready
+    document.addEventListener('DOMContentLoaded', () => {
+      initResumeDropzone();
+    });
   </script>
 </body>
 </html>
