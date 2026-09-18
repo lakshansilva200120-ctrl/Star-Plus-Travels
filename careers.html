@@ -964,6 +964,8 @@
 
       <!-- Application Form -->
       <form onsubmit="submitApplicationForm(event)" class="mt-5 space-y-4">
+        <!-- Dynamic Captured Job Position -->
+        <input type="hidden" id="applicantPosition" name="position" value="">
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
@@ -1144,15 +1146,25 @@
     function openApplyModal(title, dept, location, target) {
       selectedJobForApply = { title, dept, location, target };
       
-      document.getElementById('modalJobTitle').textContent = title;
-      document.getElementById('modalJobDept').textContent = dept;
-      document.getElementById('modalJobLocation').textContent = `Location: ${location}`;
+      const titleElem = document.getElementById('modalJobTitle');
+      if (titleElem) titleElem.textContent = title;
+      
+      const deptElem = document.getElementById('modalJobDept');
+      if (deptElem) deptElem.textContent = dept;
+      
+      const locElem = document.getElementById('modalJobLocation');
+      if (locElem) locElem.textContent = `Location: ${location}`;
+
+      const posInput = document.getElementById('applicantPosition');
+      if (posInput) posInput.value = title;
       
       const branchSelect = document.getElementById('applicantBranch');
-      if (target === 'uae') {
-        branchSelect.value = 'uae';
-      } else if (target === 'sl') {
-        branchSelect.value = 'sl';
+      if (branchSelect) {
+        if (target === 'uae') {
+          branchSelect.value = 'uae';
+        } else if (target === 'sl') {
+          branchSelect.value = 'sl';
+        }
       }
       
       updateRoutingBadge();
@@ -1160,8 +1172,10 @@
       initResumeDropzone();
 
       const modal = document.getElementById('applyModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
     }
 
     function updateRoutingBadge() {
@@ -1360,6 +1374,8 @@
         if (linkContainer) linkContainer.classList.add('hidden');
         if (toggleText) toggleText.textContent = 'Prefer sharing a portfolio or cloud link instead?';
       }
+      const posInput = document.getElementById('applicantPosition');
+      if (posInput) posInput.value = '';
       selectedJobForApply = null;
     }
     window.closeApplyModal = closeApplyModal;
@@ -1375,15 +1391,10 @@
       const form = e.target;
       const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
 
+      const positionInput = document.getElementById('applicantPosition')?.value?.trim();
+      const position = positionInput || (selectedJobForApply ? selectedJobForApply.title : "Travel Consultant");
+
       const fullName = document.getElementById('applicantName')?.value?.trim() || '';
-      const email = document.getElementById('applicantEmail')?.value?.trim() || '';
-      const phone = document.getElementById('applicantPhone')?.value?.trim() || '';
-      const branch = document.getElementById('applicantBranch')?.value || '';
-      const experience = document.getElementById('applicantExp')?.value || '';
-      const linkedin = document.getElementById('applicantPortfolio')?.value?.trim() || '';
-      const resumeLink = document.getElementById('applicantResumeLink')?.value?.trim() || '';
-      const coverNote = document.getElementById('applicantMessage')?.value?.trim() || '';
-      const position = selectedJobForApply ? selectedJobForApply.title : "Senior Travel Consultant";
 
       if (!fullName || !email || !phone || (!selectedResumeFile && !resumeLink)) {
         if (!selectedResumeFile && !resumeLink) {
@@ -1490,7 +1501,8 @@
       const branch = document.getElementById('applicantBranch')?.value;
       const resume = document.getElementById('applicantResumeLink')?.value || '';
       const msg = document.getElementById('applicantMessage')?.value || '';
-      const jobTitle = selectedJobForApply ? selectedJobForApply.title : 'Senior Travel Consultant';
+      const positionInput = document.getElementById('applicantPosition')?.value?.trim();
+      const jobTitle = positionInput || (selectedJobForApply ? selectedJobForApply.title : 'Travel Consultant');
       const targetEmail = branch === 'uae' ? 'info@starplustraveluae.com' : 'info@starplustravelsl.com';
 
       const attachedFileName = selectedResumeFile ? selectedResumeFile.name : '';
