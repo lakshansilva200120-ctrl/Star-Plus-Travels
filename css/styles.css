@@ -2389,11 +2389,11 @@ html:not(.season-active) #holidayBannerTrack {
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  background-color: #070e17 !important;
-  background-image: radial-gradient(circle at 50% 48%, #0d1e33 0%, #070e17 80%) !important;
+  background-color: #070b14 !important;
+  background-image: radial-gradient(circle at 50% 50%, #0B132B 0%, #070b14 85%) !important;
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden !important;
   touch-action: none !important;
   overscroll-behavior: none !important;
@@ -2402,14 +2402,10 @@ html:not(.season-active) #holidayBannerTrack {
 
 #sitePreloader,
 html.dark #sitePreloader,
-:root:not(.light) #sitePreloader {
-  background-color: #070e17 !important;
-  background-image: radial-gradient(circle at 50% 48%, #0d1e33 0%, #070e17 80%) !important;
-}
-
+:root:not(.light) #sitePreloader,
 html.light #sitePreloader {
-  background-color: #ffffff !important;
-  background-image: radial-gradient(circle at 50% 48%, #ffffff 0%, #f8fafc 85%) !important;
+  background-color: #070b14 !important;
+  background-image: radial-gradient(circle at 50% 50%, #0B132B 0%, #070b14 85%) !important;
 }
 
 #sitePreloader.fade-out,
@@ -2434,172 +2430,79 @@ html.light #sitePreloader {
   z-index: 2;
 }
 
-/* Ambient Backlight Radiant Aura behind the Logo */
+/* Subtle Backlight Radiant Aura behind the Logo */
 #sitePreloader > div::before,
 .preloader-card::before {
   content: '';
   position: absolute;
-  top: 38%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 260px;
+  width: 240px;
   max-width: 80vw;
-  height: 120px;
-  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.28) 0%, rgba(245, 158, 11, 0.08) 50%, transparent 75%);
+  height: 100px;
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.2) 0%, rgba(2, 132, 199, 0.1) 45%, transparent 75%);
   border-radius: 50%;
-  filter: blur(20px);
+  filter: blur(22px);
   pointer-events: none;
-  animation: preloaderAuraPulse 2.4s ease-in-out infinite;
+  animation: preloaderAuraPulse 1.8s ease-in-out infinite;
   z-index: 0;
-}
-
-html.light #sitePreloader > div::before,
-html.light .preloader-card::before {
-  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.22) 0%, rgba(245, 158, 11, 0.05) 50%, transparent 75%);
-  filter: blur(16px);
 }
 
 @keyframes preloaderAuraPulse {
   0%, 100% {
-    opacity: 0.65;
-    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(0.95);
   }
   50% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: translate(-50%, -50%) scale(1.08);
   }
 }
 
-/* Centered Logo: Smooth Fade-In + Scale-Up (88% to 100%) + Radiant Pulse */
-.preloader-brand-logo {
-  display: block !important;
-  width: 230px !important;
-  max-width: 72vw !important;
-  height: auto !important;
-  max-height: 80px !important;
-  object-fit: contain !important;
-  flex-shrink: 0 !important;
-  margin: 0 auto 22px auto !important;
-  position: relative;
+/* Precise Neon Trace Wrapper & Logo Container */
+.preloader-logo-wrap {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto !important;
+  padding: 6px 10px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.45));
   z-index: 1;
-  opacity: 0;
-  transform: scale(0.88);
-  animation: preloaderLogoIntro 1.25s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-             preloaderLogoPulse 2.6s ease-in-out 1.25s infinite;
-  will-change: transform, opacity, filter;
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-@keyframes preloaderLogoIntro {
+/* Neon Tracer Light Slit (40px width, skewX(-25deg), 1.2s sweep) */
+.preloader-logo-wrap::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 40px !important;
+  height: 100% !important;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(245, 158, 11, 0.75) 25%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(2, 132, 199, 0.75) 75%,
+    transparent 100%
+  ) !important;
+  transform: translateX(-100%) skewX(-25deg) !important;
+  animation: preloaderNeonTrace 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
+  pointer-events: none !important;
+  z-index: 3 !important;
+  mix-blend-mode: screen !important;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.6), 0 0 12px rgba(2, 132, 199, 0.5);
+}
+
+@keyframes preloaderNeonTrace {
   0% {
+    transform: translateX(-120%) skewX(-25deg);
     opacity: 0;
-    transform: scale(0.88);
-    filter: drop-shadow(0 0 0 rgba(245, 158, 11, 0));
-  }
-  60% {
-    opacity: 1;
-    transform: scale(1.02);
-    filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 20px rgba(245, 158, 11, 0.5));
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 10px rgba(245, 158, 11, 0.3));
-  }
-}
-
-@keyframes preloaderLogoPulse {
-  0%, 100% {
-    filter: drop-shadow(0 4px 14px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 10px rgba(245, 158, 11, 0.25));
-    transform: scale(1);
-  }
-  50% {
-    filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.32)) drop-shadow(0 0 26px rgba(245, 158, 11, 0.6));
-    transform: scale(1.015);
-  }
-}
-
-/* Smooth Outward Transition when Preloader Dissolves */
-#sitePreloader.fade-out .preloader-brand-logo {
-  transform: scale(0.96) !important;
-  opacity: 0 !important;
-  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0)) !important;
-  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1), filter 0.55s ease !important;
-}
-
-#sitePreloader.fade-out .preloader-spinner {
-  opacity: 0 !important;
-  transform: scale(0.8) !important;
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out !important;
-}
-
-#sitePreloader.fade-out > div::before,
-#sitePreloader.fade-out .preloader-card::before {
-  opacity: 0 !important;
-  transition: opacity 0.5s ease-out !important;
-}
-
-/* Sleek Brand Loading Bar & Flight Sweep */
-.preloader-loader-container {
-  width: 180px;
-  max-width: 60vw;
-  margin: 16px auto 0 auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.preloader-track {
-  width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 9999px;
-  overflow: hidden;
-  position: relative;
-}
-
-html.light .preloader-track {
-  background: rgba(0, 0, 0, 0.08);
-}
-
-.preloader-bar-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(90deg, #F59E0B, #E11D48, #3B82F6, #F59E0B);
-  background-size: 200% 100%;
-  border-radius: 9999px;
-  animation: preloaderGradientShimmer 1.8s ease-in-out infinite;
-  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
-}
-
-@keyframes preloaderGradientShimmer {
-  0% {
-    background-position: 100% 0%;
-  }
-  100% {
-    background-position: -100% 0%;
-  }
-}
-
-.preloader-flight-sweep {
-  position: absolute;
-  top: -9px;
-  left: 0;
-  font-size: 11px;
-  color: #F59E0B;
-  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.8));
-  animation: preloaderPlaneFly 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  pointer-events: none;
-}
-
-@keyframes preloaderPlaneFly {
-  0% {
-    left: -8px;
-    opacity: 0;
-    transform: scale(0.8) rotate(0deg);
   }
   15% {
     opacity: 1;
@@ -2608,16 +2511,43 @@ html.light .preloader-track {
     opacity: 1;
   }
   100% {
-    left: calc(100% - 4px);
+    transform: translateX(250%) skewX(-25deg);
     opacity: 0;
-    transform: scale(0.8) rotate(0deg);
   }
 }
 
-#sitePreloader.fade-out .preloader-loader-container {
+/* Centered Original Logo Image (Untouched Image Asset, h-14 md:h-16 w-auto object-contain) */
+.preloader-brand-logo {
+  display: block !important;
+  height: 3.5rem !important; /* h-14 */
+  width: auto !important;
+  max-width: 80vw !important;
+  object-fit: contain !important;
+  flex-shrink: 0 !important;
+  position: relative !important;
+  z-index: 2 !important;
+  margin: 0 auto !important;
+  transform: translateZ(0);
+}
+
+@media (min-width: 768px) {
+  .preloader-brand-logo {
+    height: 4rem !important; /* md:h-16 */
+  }
+}
+
+/* Dissolve Transitions */
+#sitePreloader.fade-out .preloader-logo-wrap {
+  transform: scale(0.96) !important;
   opacity: 0 !important;
-  transform: scale(0.9) !important;
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out !important;
+  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0)) !important;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease !important;
+}
+
+#sitePreloader.fade-out > div::before,
+#sitePreloader.fade-out .preloader-card::before {
+  opacity: 0 !important;
+  transition: opacity 0.35s ease-out !important;
 }
 
 /* ==========================================================================

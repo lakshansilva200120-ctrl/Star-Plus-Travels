@@ -2480,10 +2480,10 @@ function applyTheme(mode = getThemeMode(), save = false) {
   // Update brand logos and images between white text (dark mode) and dark text (light mode)
   updateBrandLogoTheme();
 
-  // Update preloader background if still present
+  // Update preloader background if still present (strictly site dark navy #070b14)
   const preloader = document.getElementById('sitePreloader');
   if (preloader) {
-    preloader.style.backgroundColor = isDark ? '#070e17' : '#ffffff';
+    preloader.style.backgroundColor = '#070b14';
   }
 
   // Notify seasonal particle engine if present
@@ -2535,9 +2535,9 @@ function updateBrandLogoTheme() {
       return;
     }
 
-    // Preloader handles its own background switch or uses darkSrc for dark background
+    // Preloader background is strictly site dark navy (#070b14 / #0B132B) across both themes
     if (img.id === 'preloaderLogoImg' || img.classList.contains('preloader-brand-logo') || img.closest('#sitePreloader')) {
-      img.src = isDark ? darkSrc : lightSrc;
+      img.src = darkSrc || img.src;
       return;
     }
 
@@ -3365,8 +3365,8 @@ function initNavPillIndicator() {
 
     const start = window.__preloaderStartTime || Date.now();
     const elapsed = Date.now() - start;
-    // On New Year morning, give visitors ~2600ms to enjoy the celebration, otherwise standard luxury 1200ms
-    const minWait = isNyActive ? 2600 : 1200;
+    // Keep total duration under 1.4 seconds (default 900ms wait + 400ms fade = 1.3s total)
+    const minWait = isNyActive ? 2600 : 900;
     const remaining = Math.max(0, minWait - elapsed);
 
     setTimeout(() => {
@@ -3380,7 +3380,7 @@ function initNavPillIndicator() {
         if (preloader && preloader.parentNode) {
           preloader.style.display = 'none';
         }
-      }, 650);
+      }, 400);
     }, remaining);
   }
 
@@ -3388,7 +3388,7 @@ function initNavPillIndicator() {
     dismissPreloader();
   } else {
     window.addEventListener('load', dismissPreloader);
-    setTimeout(dismissPreloader, isNyActive ? 3600 : 2500);
+    setTimeout(dismissPreloader, isNyActive ? 3600 : 1400);
   }
 
   // Expose public API for developer preview & verification
