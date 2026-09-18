@@ -1117,37 +1117,75 @@
       selectedJobForApply = null;
     }
 
-    function submitApplicationForm(e) {
+    async function submitApplicationForm(e) {
       e.preventDefault();
-      const name = document.getElementById('applicantName').value;
-      const email = document.getElementById('applicantEmail').value;
-      const phone = document.getElementById('applicantPhone').value;
-      const branch = document.getElementById('applicantBranch').value;
-      const resume = document.getElementById('applicantResumeLink').value;
-      const msg = document.getElementById('applicantMessage').value;
-      const jobTitle = selectedJobForApply ? selectedJobForApply.title : 'General Position';
-      const targetEmail = branch === 'uae' ? 'info@starplustraveluae.com' : 'info@starplustravelsl.com';
+      const form = e.target;
+      const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
 
-      showToast(`Thank you, ${name}! Your application for "${jobTitle}" has been queued for ${targetEmail}.`, 'success');
-      
-      // Also offer direct mailto trigger
-      setTimeout(() => {
-        const subject = encodeURIComponent(`Job Application: ${jobTitle} - ${name}`);
-        const body = encodeURIComponent(
-          `Dear Star Plus HR Team,\n\n` +
-          `I am applying for the position of ${jobTitle}.\n\n` +
-          `Applicant Details:\n` +
-          `- Full Name: ${name}\n` +
-          `- Email: ${email}\n` +
-          `- Phone/WhatsApp: ${phone}\n` +
-          `- Target Branch: ${branch.toUpperCase()}\n` +
-          `- Resume Link: ${resume}\n\n` +
-          `Cover Note:\n${msg}\n\n` +
-          `Best regards,\n${name}`
-        );
-        window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
-        closeApplyModal();
-      }, 1000);
+      const fullName = document.getElementById('applicantName')?.value?.trim() || '';
+      const email = document.getElementById('applicantEmail')?.value?.trim() || '';
+      const phone = document.getElementById('applicantPhone')?.value?.trim() || '';
+      const branch = document.getElementById('applicantBranch')?.value || '';
+      const experience = document.getElementById('applicantExp')?.value || '';
+      const linkedin = document.getElementById('applicantPortfolio')?.value?.trim() || '';
+      const resumeLink = document.getElementById('applicantResumeLink')?.value?.trim() || '';
+      const coverNote = document.getElementById('applicantMessage')?.value?.trim() || '';
+      const position = selectedJobForApply ? selectedJobForApply.title : "Senior Travel Consultant";
+
+      if (!fullName || !email || !phone || !resumeLink) {
+        showToast('Please fill in all required fields.', 'error');
+        return;
+      }
+
+      const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Sending...</span>';
+        submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+      }
+
+      const payload = {
+        formType: "job",
+        position: position,
+        fullName: fullName,
+        email: email,
+        phone: phone,
+        branch: branch,
+        experience: experience,
+        linkedin: linkedin,
+        resumeLink: resumeLink,
+        coverNote: coverNote
+      };
+
+      const endpoint = typeof GOOGLE_APPS_SCRIPT_ENDPOINT !== 'undefined'
+        ? GOOGLE_APPS_SCRIPT_ENDPOINT
+        : 'https://script.google.com/macros/s/AKfycbz7vtBsDq--xmYbATR1Zszv2aO-aZeIIeJRvrj4OJgpYhPu9ZJjRTWDPu88y5_sW0DN/exec';
+
+      try {
+        await fetch(endpoint, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        form.reset();
+        showToast('Thank you! Your submission has been received.', 'success');
+        setTimeout(() => {
+          closeApplyModal();
+        }, 1200);
+      } catch (err) {
+        console.error('Job application submission error:', err);
+        showToast('Network error while submitting application. Please try again.', 'error');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnContent;
+          submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+        }
+      }
     }
 
     function sendDirectEmailApplication() {

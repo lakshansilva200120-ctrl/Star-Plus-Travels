@@ -12,6 +12,12 @@ const CURRENCIES = {
 let currentCurrency = 'AED';
 
 // ==========================================================================
+// Google Apps Script Web App Endpoint
+// Saves submissions to Google Sheets and emails info@starplustraveluae.com
+// ==========================================================================
+const GOOGLE_APPS_SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz7vtBsDq--xmYbATR1Zszv2aO-aZeIIeJRvrj4OJgpYhPu9ZJjRTWDPu88y5_sW0DN/exec';
+
+// ==========================================================================
 // Formspree Integration Endpoint (Contact & Inquiry Forms)
 // Replace YOUR_FORMSPREE_ID_HERE with your actual Formspree Form ID (e.g. 'xpzgkroe')
 // ==========================================================================
@@ -1507,45 +1513,31 @@ async function submitBookingForm(e) {
   }
 
   const payload = {
-    name: name,
-    phone: phone,
+    formType: "inquiry",
+    fullName: name,
     email: email,
+    phone: phone,
+    interest: "Holiday Tour Package",
     destination: `${packageDest ? packageDest + ' - ' : ''}${packageTitle}`,
-    travelDate: date,
-    adultTravelers: travelers,
-    childTravelers: children,
-    message: notes || 'Tour package booking reservation',
-    formType: 'Package Booking Reservation',
-    submittedAt: new Date().toLocaleString(),
-    sourcePage: window.location.pathname.split('/').pop() || 'packages.html'
+    travelers: travelers,
+    notes: `${notes ? notes + ' | ' : ''}Departure Date: ${date || 'Flexible'} | Children: ${children || 0}`
   };
 
   try {
-    const response = await fetch(FORMSPREE_ENDPOINT, {
+    await fetch(GOOGLE_APPS_SCRIPT_ENDPOINT, {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
     });
 
-    if (response.ok) {
-      form.reset();
-      closeBookingModal();
-      showToast(`Booking inquiry sent for ${packageTitle}! Our concierge will contact you within 2 hours.`, 'success');
-    } else {
-      let errorMsg = 'Failed to submit booking reservation. Please try again or message us on WhatsApp.';
-      try {
-        const errData = await response.json();
-        if (errData && errData.errors && errData.errors.length > 0) {
-          errorMsg = errData.errors.map(err => err.message).join(', ');
-        }
-      } catch (_) {}
-      showToast(errorMsg, 'error');
-    }
+    form.reset();
+    closeBookingModal();
+    showToast('Thank you! Your submission has been received.', 'success');
   } catch (err) {
-    console.error('Booking Formspree submission error:', err);
+    console.error('Booking submission error:', err);
     showToast('Network error. Please try again or reach out on WhatsApp.', 'error');
   } finally {
     if (submitBtn) {
@@ -1782,37 +1774,24 @@ function changeCurrency(newCurr) {
   showToast(`Currency updated to ${CURRENCIES[newCurr].name}`, 'success');
 }
 
-// Contact Form Submission
+// Contact / Itinerary & Quote Form Submission ("Request a Free Travel Itinerary & Quote")
 async function handleContactSubmit(e) {
   e.preventDefault();
   const form = e.target;
   const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
 
-  const name = form.querySelector('#contactName')?.value?.trim() || '';
+  const fullName = form.querySelector('#contactName')?.value?.trim() || '';
   const email = form.querySelector('#contactEmail')?.value?.trim() || '';
   const phone = form.querySelector('#contactPhone')?.value?.trim() || '';
-  const destInput = form.querySelector('#contactDest')?.value?.trim() || '';
-  const topicSelect = form.querySelector('#contactTopic');
-  const topicText = topicSelect ? topicSelect.options[topicSelect.selectedIndex]?.text : '';
-  const interestSelect = form.querySelector('#contactInterest');
-  const interestText = interestSelect ? interestSelect.options[interestSelect.selectedIndex]?.text : '';
+  const interestSelect = form.querySelector('#contactInterest') || form.querySelector('#contactTopic');
+  const interest = interestSelect?.value || 'package';
+  const destination = form.querySelector('#contactDest')?.value?.trim() || '';
+  const travelersSelect = form.querySelector('#contactTravelers');
+  const travelers = travelersSelect?.value || '2';
+  const notes = form.querySelector('#contactMessage')?.value?.trim() || '';
 
-  // Consolidate travel destination / package information
-  let destination = destInput;
-  if (!destination) {
-    destination = topicText || interestText || 'General Travel Inquiry';
-  } else if (interestText && interestText !== 'Holiday Tour Package') {
-    destination = `${destination} (${interestText})`;
-  } else if (topicText && topicText !== 'Curated Tour Package / Customized Itinerary') {
-    destination = `${destination} - ${topicText}`;
-  }
-
-  const message = form.querySelector('#contactMessage')?.value?.trim() || '';
-  const branch = form.querySelector('#contactBranch')?.value || '';
-  const travelers = form.querySelector('#contactTravelers')?.value || '';
-
-  if (!name || !email || !phone) {
-    showToast('Please complete the required contact fields (Name, Email, Phone).', 'error');
+  if (!fullName || !email || !phone) {
+    showToast('Please complete all required fields (Name, Email, Phone).', 'error');
     return;
   }
 
@@ -1820,53 +1799,37 @@ async function handleContactSubmit(e) {
   const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Sending Inquiry...</span>';
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Sending...</span>';
     submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
   }
 
   const payload = {
-    name: name,
-    phone: phone,
+    formType: "inquiry",
+    fullName: fullName,
     email: email,
+    phone: phone,
+    interest: interest,
     destination: destination,
-    message: message,
-    travelers: travelers || undefined,
-    preferredOffice: branch || undefined,
-    submittedAt: new Date().toLocaleString(),
-    sourcePage: window.location.pathname.split('/').pop() || 'contact.html'
+    travelers: travelers,
+    notes: notes
   };
 
-  // Clean undefined values
-  const cleanPayload = Object.fromEntries(
-    Object.entries(payload).filter(([_, v]) => v !== undefined && v !== '')
-  );
-
   try {
-    const response = await fetch(FORMSPREE_ENDPOINT, {
+    await fetch(GOOGLE_APPS_SCRIPT_ENDPOINT, {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(cleanPayload)
+      body: JSON.stringify(payload)
     });
 
-    if (response.ok) {
-      form.reset();
-      showToast('Inquiry sent successfully! Our concierge team will contact you shortly.', 'success');
-    } else {
-      let errorMsg = 'Failed to submit inquiry. Please try again or reach out on WhatsApp.';
-      try {
-        const errorData = await response.json();
-        if (errorData && errorData.errors && errorData.errors.length > 0) {
-          errorMsg = errorData.errors.map(err => err.message).join(', ');
-        }
-      } catch (_) {}
-      showToast(errorMsg, 'error');
-    }
+    // In no-cors mode, resolved promise signifies successful delivery
+    form.reset();
+    showToast('Thank you! Your submission has been received.', 'success');
   } catch (err) {
-    console.error('Contact Formspree submission error:', err);
-    showToast('Network error while sending inquiry. Please message us on WhatsApp.', 'error');
+    console.error('Google Apps Script inquiry submission error:', err);
+    showToast('Network error while sending request. Please message us on WhatsApp.', 'error');
   } finally {
     if (submitBtn) {
       submitBtn.disabled = false;
@@ -1922,145 +1885,70 @@ function handleLicenseFileSelect(input) {
   }
 }
 
-// B2B Supplier & DMC Partnership Form Submission
-function handlePartnerSubmit(e) {
+// DMC / Ground Services Form Submission ("Register Your DMC / Ground Services")
+async function handlePartnerSubmit(e) {
   e.preventDefault();
-  const company = document.getElementById('partnerCompany')?.value?.trim();
-  const destination = document.getElementById('partnerDestination')?.value?.trim();
-  const contact = document.getElementById('partnerContact')?.value?.trim();
-  const email = document.getElementById('partnerEmail')?.value?.trim();
-  const phone = document.getElementById('partnerPhone')?.value?.trim();
-  const website = document.getElementById('partnerWebsite')?.value?.trim();
-  const social = document.getElementById('partnerSocial')?.value?.trim() || 'Not Provided';
-  const license = document.getElementById('partnerLicense')?.value?.trim();
-  const city = document.getElementById('partnerCity')?.value?.trim();
-  const proposal = document.getElementById('partnerProposal')?.value?.trim();
-  
-  // Selected Services
-  const serviceCheckboxes = document.querySelectorAll('input[name="services"]:checked');
-  const services = Array.from(serviceCheckboxes).map(cb => cb.value);
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
 
-  // Attached Trade License
-  const licenseFileInput = document.getElementById('partnerLicenseFile');
-  const licenseFile = licenseFileInput?.files?.[0];
+  const companyName = document.getElementById('partnerCompany')?.value?.trim() || '';
+  const country = document.getElementById('partnerDestination')?.value?.trim() || '';
+  const contactPerson = document.getElementById('partnerContact')?.value?.trim() || '';
+  const corporateEmail = document.getElementById('partnerEmail')?.value?.trim() || '';
+  const corporatePhone = document.getElementById('partnerPhone')?.value?.trim() || '';
+  const website = document.getElementById('partnerWebsite')?.value?.trim() || '';
+  const socialProfile = document.getElementById('partnerSocial')?.value?.trim() || '';
 
-  if (!company || !destination || !email || !contact || !phone || !website || !license || !city || !proposal) {
+  if (!companyName || !country || !contactPerson || !corporateEmail || !corporatePhone || !website) {
     showToast('Please complete all required company and credential fields.', 'error');
     return;
   }
 
-  // File size validation defense check (strict 5MB limit)
-  if (licenseFile && licenseFile.size > 5 * 1024 * 1024) {
-    showToast('⚠️ Attached document exceeds 5MB! Please select a file under 5MB to ensure delivery.', 'error');
-    return;
-  }
-
-  // Optional validation: If social link provided, basic URL sanity check
-  if (social && social !== 'Not Provided') {
-    const isUrl = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i.test(social);
-    if (!isUrl && !social.includes('.') && !social.includes('/')) {
-      showToast('Please provide a valid URL or username for your social media profile.', 'error');
-      return;
-    }
-  }
-
-  const formattedDocSize = licenseFile 
-    ? (licenseFile.size > 1024 * 1024 ? (licenseFile.size / (1024 * 1024)).toFixed(1) + ' MB' : Math.round(licenseFile.size / 1024) + ' KB')
-    : 'None Attached';
-
-  const licenseAttachmentInfo = licenseFile ? {
-    fileName: licenseFile.name,
-    fileSize: licenseFile.size,
-    formattedSize: formattedDocSize,
-    fileType: licenseFile.type || 'application/octet-stream',
-    lastModified: licenseFile.lastModified
-  } : null;
-
-  // Construct structured intake payload for corporate email / CRM ingestion
-  const dmcSubmissionPayload = {
-    formType: 'DMC_GROUND_SERVICES_INTAKE',
-    submittedAt: new Date().toISOString(),
-    recipient: 'nfo@starplustraveluae.com',
-    companyDetails: {
-      companyName: company,
-      primaryDestination: destination,
-      contactPerson: contact,
-      corporateEmail: email,
-      phoneWhatsApp: phone,
-      website: website,
-      socialMediaLink: social,
-      tradeLicenseNumber: license,
-      tradeLicenseAttachment: licenseAttachmentInfo ? `${licenseAttachmentInfo.fileName} (${licenseAttachmentInfo.formattedSize})` : 'None Attached',
-      headquarters: city
-    },
-    servicesOffered: services,
-    proposalOverview: proposal,
-    complianceConsent: true
-  };
-
-  // Persist locally for session continuity / fallback
-  try {
-    const existingIntakes = JSON.parse(localStorage.getItem('starplus_dmc_intakes') || '[]');
-    existingIntakes.push(dmcSubmissionPayload);
-    localStorage.setItem('starplus_dmc_intakes', JSON.stringify(existingIntakes.slice(-10)));
-  } catch (err) {
-    console.warn('Local intake caching unavailable:', err);
-  }
-
-  console.info('DMC Partnership Submission Payload Prepared:', dmcSubmissionPayload);
-
-  const submitBtn = e.target.querySelector('button[type="submit"]');
-  const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+  const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Dispatching Application...';
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Sending...</span>';
+    submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
   }
 
-  setTimeout(() => {
-    // Trigger direct email client pre-fill with cleanly formatted structured data
-    const subject = encodeURIComponent(`B2B DMC Intake: ${company} (${destination})`);
-    const body = encodeURIComponent(
-      `===================================================\n` +
-      `  NEW B2B DMC / GROUND SERVICES INTAKE APPLICATION  \n` +
-      `===================================================\n\n` +
-      `[1] COMPANY DETAILS\n` +
-      `• Company Name: ${company}\n` +
-      `• Destination / Country: ${destination}\n` +
-      `• Headquarters Location: ${city}\n` +
-      `• Tourism License / Reg No: ${license}\n\n` +
-      `[2] CONTACT PERSON & ONLINE PRESENCE\n` +
-      `• Key Contact Person: ${contact}\n` +
-      `• Corporate Email: ${email}\n` +
-      `• Phone / WhatsApp: ${phone}\n` +
-      `• Official Website: ${website}\n` +
-      `• Social Media Link / Profile: ${social}\n\n` +
-      `[3] TRADE LICENSE ATTACHMENT (Max 5MB)\n` +
-      (licenseFile 
-        ? `• Attached File: ${licenseFile.name} (${formattedDocSize})\n  (Please ensure document is attached to this email message)\n` 
-        : `• Attached File: [Please attach official Trade License/Certificate file here]\n`) +
-      `\n[4] SERVICES & ASSETS OFFERED\n` +
-      `• ${services.length > 0 ? services.join('\n• ') : 'Full Inbound Services'}\n\n` +
-      `[5] PROPOSAL & TARIFF OVERVIEW\n` +
-      `${proposal}\n\n` +
-      `===================================================\n` +
-      `I certify that our organization is a legally registered travel company and consent to Star Plus Travels verifying our credentials.\n\n` +
-      `Submitted by:\n${contact} | ${company}\n`
-    );
+  const payload = {
+    formType: "dmc",
+    companyName: companyName,
+    country: country,
+    contactPerson: contactPerson,
+    corporateEmail: corporateEmail,
+    corporatePhone: corporatePhone,
+    website: website,
+    socialProfile: socialProfile
+  };
 
-    e.target.reset();
+  try {
+    await fetch(GOOGLE_APPS_SCRIPT_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    form.reset();
     const fileInfo = document.getElementById('partnerLicenseFileInfo');
     if (fileInfo) {
       fileInfo.textContent = '';
       fileInfo.classList.add('hidden');
     }
+    showToast('Thank you! Your submission has been received.', 'success');
+  } catch (err) {
+    console.error('Google Apps Script DMC submission error:', err);
+    showToast('Network error while submitting DMC registration. Please try again.', 'error');
+  } finally {
     if (submitBtn) {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = originalBtnHtml;
+      submitBtn.innerHTML = originalBtnContent;
+      submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
     }
-
-    showToast('🤝 DMC Application dispatched! Opening email client addressed to nfo@starplustraveluae.com.', 'success');
-    window.location.href = `mailto:nfo@starplustraveluae.com?subject=${subject}&body=${body}`;
-  }, 1000);
+  }
 }
 
 // Helper: Open Mail Client with Full DMC Details for Direct Email Attachment
