@@ -1461,7 +1461,7 @@
                   <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formInterest">
                     Primary Interest
                   </label>
-                  <select id="contactInterest" name="interest" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
+                  <select id="contactInterest" name="interest" onchange="updateQuoteFormFields()" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
                     <option value="package" data-i18n="formInterestPackage">Holiday Tour Package</option>
                     <option value="visa" data-i18n="formInterestVisa">Fast-Track Visa Processing</option>
                     <option value="flight" data-i18n="formInterestFlight">Cheap Airline Tickets</option>
@@ -1470,23 +1470,31 @@
                 </div>
               </div>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Dynamic Middle Fields Row based on Primary Interest -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="quoteDynamicFieldsRow">
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formDestination">
+                  <label id="quoteField1Label" for="contactDest" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                     Preferred Destination
                   </label>
-                  <input type="text" id="contactDest" name="destination" placeholder="e.g. Sri Lanka, Dubai, Georgia" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
+                  <input type="text" id="contactDest" name="destination" placeholder="e.g., Sri Lanka, Georgia, Bali, Europe" class="w-full glass-input px-4 py-3 rounded-xl text-sm transition-all duration-200">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formTravelers">
+                  <label id="quoteField2Label" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                     Estimated Travelers
                   </label>
-                  <select id="contactTravelers" name="travelers" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
-                    <option value="1">1 Solo</option>
-                    <option value="2" selected>2 Adults (Couple)</option>
-                    <option value="3">3 - 5 (Family)</option>
-                    <option value="6">6+ (Group)</option>
-                  </select>
+                  <!-- Select element for Tour / Custom packages -->
+                  <div id="quoteTravelersSelectWrapper">
+                    <select id="contactTravelers" name="travelers" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer transition-all duration-200">
+                      <option value="Solo">Solo</option>
+                      <option value="Couple / 2 Adults" selected>Couple / 2 Adults</option>
+                      <option value="Family with Kids">Family with Kids</option>
+                      <option value="Group 4+">Group 4+</option>
+                    </select>
+                  </div>
+                  <!-- Text input element for Visa (Nationality) or Flight (Dates & Type) -->
+                  <div id="quoteCustomField2Wrapper" class="hidden">
+                    <input type="text" id="contactCustomField2" name="customField2" placeholder="" class="w-full glass-input px-4 py-3 rounded-xl text-sm transition-all duration-200">
+                  </div>
                 </div>
               </div>
 
@@ -1494,7 +1502,7 @@
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formNotes">
                   Trip Notes / Special Requests
                 </label>
-                <textarea id="contactMessage" name="message" rows="3" placeholder="Tell us about your preferred travel dates, hotel rating preference, or special requests..." data-i18n-placeholder="formNotesPlaceholder" class="w-full glass-input px-4 py-3 rounded-xl text-sm"></textarea>
+                <textarea id="contactMessage" name="message" rows="3" placeholder="Tell us about your preferred travel dates, hotel rating preference, or special requests..." class="w-full glass-input px-4 py-3 rounded-xl text-sm transition-all duration-200"></textarea>
               </div>
 
               <!-- Secure Payment Alert Notice -->
