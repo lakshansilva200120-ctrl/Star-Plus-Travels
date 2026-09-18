@@ -2366,7 +2366,7 @@ html:not(.season-active) #holidayBannerTrack {
 }
 
 /* ==========================================================================
-   Isolated & Bulletproof Luxury Preloader (Full-Screen Solid Overlay)
+   Runway Horizon Luxury Preloader (High-End Travel Transition)
    ========================================================================== */
 #sitePreloader,
 .site-preloader {
@@ -2389,165 +2389,91 @@ html:not(.season-active) #holidayBannerTrack {
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  background-color: #070b14 !important;
-  background-image: radial-gradient(circle at 50% 50%, #0B132B 0%, #070b14 85%) !important;
+  background-color: #070B14 !important;
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none !important;
+  -webkit-user-select: none !important;
   overflow: hidden !important;
   touch-action: none !important;
   overscroll-behavior: none !important;
   pointer-events: auto !important;
+  will-change: transform, opacity;
+  transform: translateY(0);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease !important;
 }
 
 #sitePreloader,
 html.dark #sitePreloader,
 :root:not(.light) #sitePreloader,
 html.light #sitePreloader {
-  background-color: #070b14 !important;
-  background-image: radial-gradient(circle at 50% 50%, #0B132B 0%, #070b14 85%) !important;
+  background-color: #070B14 !important;
 }
 
+/* Curtain Lift Exit Motion (Slide vertically upward, then fade) */
+#sitePreloader.preloader-exit,
 #sitePreloader.fade-out,
+.site-preloader.preloader-exit,
 .site-preloader.fade-out {
+  transform: translateY(-100%) !important;
   opacity: 0 !important;
-  visibility: hidden !important;
   pointer-events: none !important;
 }
 
-/* Preloader Card Container */
-#sitePreloader > div,
-.preloader-card {
-  position: relative !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin: 0 auto !important;
-  padding: 24px !important;
-  max-width: 90vw !important;
-  text-align: center !important;
-  z-index: 2;
+/* Curved Flight Path Golden Arc Animation (0.9s stroke-dashoffset) */
+.runway-flight-arc {
+  animation: runwayArcFadeIn 0.3s ease-out forwards;
 }
 
-/* Subtle Backlight Radiant Aura behind the Logo */
-#sitePreloader > div::before,
-.preloader-card::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 240px;
-  max-width: 80vw;
-  height: 100px;
-  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.2) 0%, rgba(2, 132, 199, 0.1) 45%, transparent 75%);
-  border-radius: 50%;
-  filter: blur(22px);
-  pointer-events: none;
-  animation: preloaderAuraPulse 1.8s ease-in-out infinite;
-  z-index: 0;
+.runway-arc-path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: runwayArcDraw 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes preloaderAuraPulse {
-  0%, 100% {
-    opacity: 0.7;
-    transform: translate(-50%, -50%) scale(0.95);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1.08);
-  }
-}
-
-/* Precise Neon Trace Wrapper & Logo Container */
-.preloader-logo-wrap {
-  position: relative !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin: 0 auto !important;
-  padding: 6px 10px !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.45));
-  z-index: 1;
-  transition: transform 0.4s ease, filter 0.4s ease;
-}
-
-/* Neon Tracer Light Slit (40px width, skewX(-25deg), 1.2s sweep) */
-.preloader-logo-wrap::after {
-  content: '' !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 40px !important;
-  height: 100% !important;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(245, 158, 11, 0.75) 25%,
-    rgba(255, 255, 255, 0.95) 50%,
-    rgba(2, 132, 199, 0.75) 75%,
-    transparent 100%
-  ) !important;
-  transform: translateX(-100%) skewX(-25deg) !important;
-  animation: preloaderNeonTrace 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite !important;
-  pointer-events: none !important;
-  z-index: 3 !important;
-  mix-blend-mode: screen !important;
-  box-shadow: 0 0 16px rgba(245, 158, 11, 0.6), 0 0 12px rgba(2, 132, 199, 0.5);
-}
-
-@keyframes preloaderNeonTrace {
+@keyframes runwayArcDraw {
   0% {
-    transform: translateX(-120%) skewX(-25deg);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
+    stroke-dashoffset: 100;
   }
   100% {
-    transform: translateX(250%) skewX(-25deg);
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes runwayArcFadeIn {
+  from {
     opacity: 0;
   }
-}
-
-/* Centered Original Logo Image (Untouched Image Asset, h-14 md:h-16 w-auto object-contain) */
-.preloader-brand-logo {
-  display: block !important;
-  height: 3.5rem !important; /* h-14 */
-  width: auto !important;
-  max-width: 80vw !important;
-  object-fit: contain !important;
-  flex-shrink: 0 !important;
-  position: relative !important;
-  z-index: 2 !important;
-  margin: 0 auto !important;
-  transform: translateZ(0);
-}
-
-@media (min-width: 768px) {
-  .preloader-brand-logo {
-    height: 4rem !important; /* md:h-16 */
+  to {
+    opacity: 1;
   }
 }
 
-/* Dissolve Transitions */
-#sitePreloader.fade-out .preloader-logo-wrap {
-  transform: scale(0.96) !important;
-  opacity: 0 !important;
-  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0)) !important;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), filter 0.4s ease !important;
+/* Sleek Minimalist Progress Bar (0% to 100% in 1.0s ease-out) */
+.runway-progress-track {
+  width: 140px;
+  height: 2px;
+  background-color: rgba(30, 41, 59, 0.8);
+  border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
 }
 
-#sitePreloader.fade-out > div::before,
-#sitePreloader.fade-out .preloader-card::before {
-  opacity: 0 !important;
-  transition: opacity 0.35s ease-out !important;
+.runway-progress-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #F59E0B 0%, #FBBF24 100%);
+  animation: runwayProgressFill 1.0s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes runwayProgressFill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
 }
 
 /* ==========================================================================

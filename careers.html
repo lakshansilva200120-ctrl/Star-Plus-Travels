@@ -70,20 +70,36 @@
 
 <body class="bg-[#f8fafc] dark:bg-[#070e17] text-slate-900 dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col transition-colors duration-300 w-full max-w-full relative">
 
-    <!-- Isolated Bulletproof Luxury Splash Preloader -->
-  <div id="sitePreloader" style="position: fixed; inset: 0; top: 0; left: 0; right: 0; bottom: 0; width: 100vw; height: 100dvh; max-width: 100vw; max-height: 100dvh; z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0; padding: 0; box-sizing: border-box; overflow: hidden; touch-action: none; overscroll-behavior: none; pointer-events: auto; background-color: #070b14;" aria-hidden="true" role="status">
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; max-width: 90vw; margin: 0 auto; padding: 16px;">
-      <!-- Centered Original Logo Image with Sleek Neon Tracer Overlay -->
-      <div class="preloader-logo-wrap">
+  <!-- Isolated Bulletproof Luxury Splash Preloader (Runway Horizon) -->
+  <div id="sitePreloader" class="fixed inset-0 z-[9999] bg-[#070B14] flex flex-col items-center justify-center select-none" aria-hidden="true" role="status">
+    <div class="relative flex flex-col items-center justify-center text-center px-4">
+      <!-- Centered Crisp Original Logo with Golden Flight Path Arc -->
+      <div class="relative flex items-center justify-center">
+        <!-- Curved Flight Path Golden Arc (0.9s stroke-dashoffset across upper corner) -->
+        <svg class="runway-flight-arc pointer-events-none absolute -top-4 -right-6 w-16 h-16 sm:w-20 sm:h-20 overflow-visible" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M 5 68 C 22 42, 48 20, 75 10" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.4" pathLength="100" class="runway-arc-path" />
+        </svg>
+
+        <!-- Crisp Original Logo (zero distortion, no heavy neon) -->
         <img
           id="preloaderLogoImg"
           src="assets/logo-white-text.png?v=2"
           data-dark-src="assets/logo-white-text.png?v=2"
           data-light-src="assets/logo-white-text.png?v=2"
           alt="Star Plus Travel & Tourism LLC"
-          class="preloader-brand-logo"
+          class="h-14 md:h-16 w-auto object-contain block"
         />
       </div>
+
+      <!-- Progress Track (28px below logo: mt-7, 140px width, 2px height) -->
+      <div class="mt-7 w-[140px] h-[2px] bg-slate-800/80 rounded-full overflow-hidden relative">
+        <div class="runway-progress-fill h-full w-full rounded-full bg-gradient-to-r from-[#F59E0B] to-[#FBBF24]"></div>
+      </div>
+
+      <!-- Subtitle -->
+      <span class="text-[10px] tracking-[0.28em] text-slate-400 font-medium uppercase mt-3">
+        DUBAI • COLOMBO • WORLDWIDE
+      </span>
     </div>
   </div>
   <script>
@@ -91,12 +107,12 @@
     (function() {
       try {
         var urlParams = new URLSearchParams(window.location.search);
-        var forceShow = urlParams.get('ny_loader') === '1' || urlParams.get('newyear_loader') === 'true' || urlParams.get('preview_loader') === '1';
+        var forceShow = urlParams.get('preview_loader') === '1' || urlParams.get('runway_loader') === '1' || urlParams.get('ny_loader') === '1';
         if (!forceShow && sessionStorage.getItem('splashShown') === 'true') {
           var pPre = document.getElementById('sitePreloader');
           if (pPre) {
             pPre.style.display = 'none';
-            pPre.classList.add('fade-out');
+            if (pPre.parentNode) pPre.parentNode.removeChild(pPre);
             return;
           }
         }
@@ -110,34 +126,35 @@
         if (isNyParam || (isJan1 && isMorning)) {
           window.__isNewYearLoaderActive = true;
         }
-
-        var pBox = document.getElementById('sitePreloader');
-        if (pBox) {
-          pBox.style.backgroundColor = '#070b14';
-        }
       } catch (e) {}
 
       function dismissPreloader() {
         if (window.__isNewYearLoaderActive) return;
         var p = document.getElementById('sitePreloader');
-        if (!p || p.classList.contains('fade-out')) return;
-        var elapsed = Date.now() - (window.__preloaderStartTime || Date.now());
-        var wait = Math.max(0, 900 - elapsed);
+        if (!p || p._dismissed) return;
+        p._dismissed = true;
+
+        p.classList.add('preloader-exit');
+        try { sessionStorage.setItem('splashShown', 'true'); } catch (e) {}
+
         setTimeout(function() {
-          p.classList.add('fade-out');
-          try { sessionStorage.setItem('splashShown', 'true'); } catch (e) {}
-          setTimeout(function() {
-            if (p && p.parentNode) p.style.display = 'none';
-          }, 400);
-        }, wait);
+          if (p) {
+            p.style.display = 'none';
+            if (p.parentNode) p.parentNode.removeChild(p);
+          }
+        }, 460);
       }
 
-      if (document.readyState === 'complete') {
-        dismissPreloader();
-      } else {
-        window.addEventListener('load', dismissPreloader);
-      }
-      setTimeout(dismissPreloader, 1400);
+      var timer = setTimeout(dismissPreloader, 1000);
+
+      window.addEventListener('load', function() {
+        var elapsed = Date.now() - (window.__preloaderStartTime || Date.now());
+        if (elapsed >= 800) {
+          clearTimeout(timer);
+          dismissPreloader();
+        }
+      });
+      setTimeout(dismissPreloader, 1200);
     })();
   </script>
 

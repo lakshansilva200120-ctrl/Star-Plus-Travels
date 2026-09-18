@@ -3148,10 +3148,11 @@ function initNavPillIndicator() {
   // Session-based splash display: If already shown in this session (and not preview/force param), dismiss immediately
   try {
     const urlParams = new URLSearchParams(window.location.search);
-    const forceShow = urlParams.get('ny_loader') === '1' || urlParams.get('newyear_loader') === 'true' || urlParams.get('preview_loader') === '1';
+    const forceShow = urlParams.get('ny_loader') === '1' || urlParams.get('newyear_loader') === 'true' || urlParams.get('preview_loader') === '1' || urlParams.get('runway_loader') === '1';
     if (!forceShow && sessionStorage.getItem('splashShown') === 'true') {
       preloader.style.display = 'none';
-      preloader.classList.add('fade-out');
+      preloader.classList.add('preloader-exit');
+      if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
       return;
     }
   } catch (e) {}
@@ -3195,6 +3196,94 @@ function initNavPillIndicator() {
     if (h < 0 || h > 12) return false;
     if (h === 12 && (m > 0 || s > 0 || ms > 0)) return false;
     return true;
+  }
+
+  /**
+   * Renders the Luxury Festive Greeting Card inside #sitePreloader
+   */
+  function renderNewYearCard(targetPreloader, year) {
+    targetPreloader.classList.add('ny-celebration-active');
+
+    const isDark = document.documentElement.classList.contains('dark') ||
+      (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const logoSrc = isDark ? 'assets/logo-white-text.png?v=2' : 'assets/logo.png?v=2';
+
+    targetPreloader.innerHTML = `
+      <div class="ny-loader-card">
+        <div class="ny-logo-container">
+          <img src="${logoSrc}" alt="Star Plus Travel & Tourism LLC" class="ny-brand-logo" />
+        </div>
+
+        <div class="ny-badge-container">
+          <span class="ny-festive-badge">
+            HAPPY NEW YEAR • <span class="ny-year-text">${year}</span>
+          </span>
+        </div>
+
+        <h2 class="ny-celebration-heading">
+          Wishing You Extraordinary Journeys In <span class="ny-gold-year">${year}</span>
+        </h2>
+
+        <p class="ny-celebration-subheading">
+          May your new year unfold timeless voyages, bespoke luxury &amp; unforgettable horizons across the globe.
+        </p>
+
+        <div class="ny-progress-wrapper">
+          <div class="ny-progress-bar-track">
+            <div class="ny-progress-bar-fill"></div>
+          </div>
+          <div class="ny-progress-status-text">PREPARING YOUR LUXURY EXPERIENCE</div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Determine active state
+  const isNyActive = isNewYearMorningActive();
+  window.__isNewYearLoaderActive = isNyActive;
+
+  let cleanupConfetti = null;
+
+  if (isNyActive) {
+    const currentYear = new Date().getFullYear();
+    renderNewYearCard(preloader, currentYear);
+    cleanupConfetti = initConfettiCanvas(preloader);
+  }
+
+  // Dismiss logic with Runway Horizon curtain lift (slide upward)
+  function dismissPreloader() {
+    if (preloader.classList.contains('preloader-exit') || preloader._dismissed) return;
+
+    const start = window.__preloaderStartTime || Date.now();
+    const elapsed = Date.now() - start;
+    // Total display time strictly does not exceed 1.2s
+    const minWait = isNyActive ? 2600 : 1000;
+    const remaining = Math.max(0, minWait - elapsed);
+
+    setTimeout(() => {
+      preloader._dismissed = true;
+      preloader.classList.add('preloader-exit');
+      try { sessionStorage.setItem('splashShown', 'true'); } catch (e) {}
+      if (cleanupConfetti) {
+        cleanupConfetti();
+        cleanupConfetti = null;
+      }
+      setTimeout(() => {
+        if (preloader) {
+          preloader.style.display = 'none';
+          if (preloader.parentNode) {
+            preloader.parentNode.removeChild(preloader);
+          }
+        }
+      }, 460);
+    }, remaining);
+  }
+
+  if (document.readyState === 'complete') {
+    dismissPreloader();
+  } else {
+    window.addEventListener('load', dismissPreloader);
+    setTimeout(dismissPreloader, isNyActive ? 3200 : 1200);
   }
 
   /**
@@ -3298,97 +3387,6 @@ function initNavPillIndicator() {
         canvas.remove();
       }
     };
-  }
-
-  /**
-   * Renders the Luxury Festive Greeting Card inside #sitePreloader
-   */
-  function renderNewYearCard(targetPreloader, year) {
-    targetPreloader.classList.add('ny-celebration-active');
-
-    const isDark = document.documentElement.classList.contains('dark') ||
-      (!document.documentElement.classList.contains('light') && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    const logoSrc = isDark ? 'assets/logo-white-text.png?v=2' : 'assets/logo.png?v=2';
-
-    targetPreloader.innerHTML = `
-      <div class="ny-loader-card">
-        <div class="ny-logo-container">
-          <img src="${logoSrc}" alt="Star Plus Travel & Tourism LLC" class="ny-brand-logo" />
-        </div>
-
-        <div class="ny-badge-container">
-          <span class="ny-festive-badge">
-            HAPPY NEW YEAR • <span class="ny-year-text">${year}</span>
-          </span>
-        </div>
-
-        <h2 class="ny-celebration-heading">
-          Wishing You Extraordinary Journeys In <span class="ny-gold-year">${year}</span>
-        </h2>
-
-        <p class="ny-celebration-subheading">
-          May your new year unfold timeless voyages, bespoke luxury &amp; unforgettable horizons across the globe.
-        </p>
-
-        <div class="ny-progress-wrapper">
-          <div class="ny-progress-bar-track">
-            <div class="ny-progress-bar-fill"></div>
-          </div>
-          <div class="ny-progress-status-text">PREPARING YOUR LUXURY EXPERIENCE</div>
-        </div>
-      </div>
-    `;
-  }
-
-  // Determine active state
-  const isNyActive = isNewYearMorningActive();
-  window.__isNewYearLoaderActive = isNyActive;
-
-  let cleanupConfetti = null;
-
-  if (isNyActive) {
-    let year = new Date().getFullYear();
-    try {
-      const p = new URLSearchParams(window.location.search);
-      const dp = p.get('date');
-      if (dp) {
-        const parsed = new Date(dp);
-        if (!isNaN(parsed.getTime())) year = parsed.getFullYear();
-      }
-    } catch (e) {}
-    renderNewYearCard(preloader, year);
-    cleanupConfetti = initConfettiCanvas(preloader);
-  }
-
-  function dismissPreloader() {
-    if (!preloader || preloader.classList.contains('fade-out')) return;
-
-    const start = window.__preloaderStartTime || Date.now();
-    const elapsed = Date.now() - start;
-    // Keep total duration under 1.4 seconds (default 900ms wait + 400ms fade = 1.3s total)
-    const minWait = isNyActive ? 2600 : 900;
-    const remaining = Math.max(0, minWait - elapsed);
-
-    setTimeout(() => {
-      preloader.classList.add('fade-out');
-      try { sessionStorage.setItem('splashShown', 'true'); } catch (e) {}
-      if (cleanupConfetti) {
-        cleanupConfetti();
-        cleanupConfetti = null;
-      }
-      setTimeout(() => {
-        if (preloader && preloader.parentNode) {
-          preloader.style.display = 'none';
-        }
-      }, 400);
-    }, remaining);
-  }
-
-  if (document.readyState === 'complete') {
-    dismissPreloader();
-  } else {
-    window.addEventListener('load', dismissPreloader);
-    setTimeout(dismissPreloader, isNyActive ? 3600 : 1400);
   }
 
   // Expose public API for developer preview & verification
