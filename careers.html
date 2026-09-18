@@ -1372,6 +1372,27 @@
       const position = positionInput || (selectedJobForApply ? selectedJobForApply.title : "Travel Consultant");
 
       const fullName = document.getElementById('applicantName')?.value?.trim() || '';
+      const email = document.getElementById('applicantEmail')?.value?.trim() || '';
+      const phoneInput = document.getElementById('applicantPhone');
+      let phone = phoneInput?.value?.trim() || '';
+
+      if (phoneInput && phoneInput._iti) {
+        if (typeof phoneInput._iti.isValidNumber === 'function' && phone) {
+          if (!phoneInput._iti.isValidNumber()) {
+            showToast('Please enter a valid phone number for the selected country.', 'error');
+            phoneInput.focus();
+            return;
+          }
+        }
+        const fullNumber = phoneInput._iti.getNumber();
+        if (fullNumber) phone = fullNumber;
+      }
+
+      const branch = document.getElementById('applicantBranch')?.value || 'uae';
+      const experience = document.getElementById('applicantExperience')?.value || '';
+      const linkedin = document.getElementById('applicantLinkedin')?.value?.trim() || '';
+      const coverNote = document.getElementById('applicantCoverNote')?.value?.trim() || '';
+      const resumeLink = document.getElementById('applicantResumeLink')?.value?.trim() || '';
 
       if (!fullName || !email || !phone || (!selectedResumeFile && !resumeLink)) {
         if (!selectedResumeFile && !resumeLink) {
@@ -1474,7 +1495,8 @@
     function sendDirectEmailApplication() {
       const name = document.getElementById('applicantName')?.value || 'Applicant';
       const email = document.getElementById('applicantEmail')?.value || '';
-      const phone = document.getElementById('applicantPhone')?.value || '';
+      const phoneInput = document.getElementById('applicantPhone');
+      const phone = (phoneInput && phoneInput._iti) ? (phoneInput._iti.getNumber() || phoneInput.value.trim()) : (phoneInput?.value?.trim() || '');
       const branch = document.getElementById('applicantBranch')?.value;
       const resume = document.getElementById('applicantResumeLink')?.value || '';
       const msg = document.getElementById('applicantMessage')?.value || '';

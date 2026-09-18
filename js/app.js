@@ -1488,7 +1488,13 @@ function openBookingModal(pkgId) {
   document.getElementById('bookingChildren').value = '0';
   document.getElementById('bookingName').value = '';
   document.getElementById('bookingEmail').value = '';
-  document.getElementById('bookingPhone').value = '';
+  const bookingPhone = document.getElementById('bookingPhone');
+  if (bookingPhone) {
+    bookingPhone.value = '';
+    if (bookingPhone._iti) {
+      bookingPhone._iti.setCountry('ae');
+    }
+  }
   document.getElementById('bookingNotes').value = '';
 
   // Default date to next week
@@ -1501,6 +1507,11 @@ function openBookingModal(pkgId) {
   const modal = document.getElementById('bookingModal');
   modal.classList.remove('hidden');
   modal.classList.add('flex');
+
+  // Ensure intl-tel-input is initialized on modal display
+  if (typeof initIntlTelInputs === 'function') {
+    initIntlTelInputs();
+  }
 }
 
 function closeBookingModal() {
@@ -1540,7 +1551,21 @@ async function submitBookingForm(e) {
 
   const name = document.getElementById('bookingName')?.value?.trim();
   const email = document.getElementById('bookingEmail')?.value?.trim();
-  const phone = document.getElementById('bookingPhone')?.value?.trim();
+  const phoneInput = document.getElementById('bookingPhone');
+  let phone = phoneInput?.value?.trim() || '';
+
+  if (phoneInput && phoneInput._iti) {
+    if (typeof phoneInput._iti.isValidNumber === 'function' && phone) {
+      if (!phoneInput._iti.isValidNumber()) {
+        showToast('Please enter a valid phone number for the selected country.', 'error');
+        phoneInput.focus();
+        return;
+      }
+    }
+    const fullNumber = phoneInput._iti.getNumber();
+    if (fullNumber) phone = fullNumber;
+  }
+
   const date = document.getElementById('bookingDate')?.value;
   const travelers = document.getElementById('bookingTravelers')?.value;
   const children = document.getElementById('bookingChildren')?.value;
@@ -1965,7 +1990,20 @@ async function handleContactSubmit(e) {
 
   const fullName = form.querySelector('#contactName')?.value?.trim() || '';
   const email = form.querySelector('#contactEmail')?.value?.trim() || '';
-  const phone = form.querySelector('#contactPhone')?.value?.trim() || '';
+  const phoneInput = form.querySelector('#contactPhone');
+  let phone = phoneInput?.value?.trim() || '';
+
+  if (phoneInput && phoneInput._iti) {
+    if (typeof phoneInput._iti.isValidNumber === 'function' && phone) {
+      if (!phoneInput._iti.isValidNumber()) {
+        showToast('Please enter a valid phone/WhatsApp number for the selected country.', 'error');
+        phoneInput.focus();
+        return;
+      }
+    }
+    const fullNumber = phoneInput._iti.getNumber();
+    if (fullNumber) phone = fullNumber;
+  }
   const interestSelect = form.querySelector('#contactInterest') || form.querySelector('#contactTopic');
   const rawInterestValue = interestSelect?.value || 'package';
   const interest = interestSelect?.options?.[interestSelect.selectedIndex]?.text || rawInterestValue;
@@ -2118,7 +2156,21 @@ async function handlePartnerSubmit(e) {
   const country = document.getElementById('partnerDestination')?.value?.trim() || '';
   const contactPerson = document.getElementById('partnerContact')?.value?.trim() || '';
   const corporateEmail = document.getElementById('partnerEmail')?.value?.trim() || '';
-  const corporatePhone = document.getElementById('partnerPhone')?.value?.trim() || '';
+  const partnerPhoneInput = document.getElementById('partnerPhone');
+  let corporatePhone = partnerPhoneInput?.value?.trim() || '';
+
+  if (partnerPhoneInput && partnerPhoneInput._iti) {
+    if (typeof partnerPhoneInput._iti.isValidNumber === 'function' && corporatePhone) {
+      if (!partnerPhoneInput._iti.isValidNumber()) {
+        showToast('Please enter a valid corporate phone number for the selected country.', 'error');
+        partnerPhoneInput.focus();
+        return;
+      }
+    }
+    const fullNumber = partnerPhoneInput._iti.getNumber();
+    if (fullNumber) corporatePhone = fullNumber;
+  }
+
   const website = document.getElementById('partnerWebsite')?.value?.trim() || '';
   const socialProfile = document.getElementById('partnerSocial')?.value?.trim() || '';
 
@@ -2206,8 +2258,8 @@ function sendDirectDmcEmail() {
   const company = document.getElementById('partnerCompany')?.value?.trim() || 'Partner Company';
   const destination = document.getElementById('partnerDestination')?.value?.trim() || 'Destination';
   const contact = document.getElementById('partnerContact')?.value?.trim() || 'Managing Director';
-  const email = document.getElementById('partnerEmail')?.value?.trim() || '';
-  const phone = document.getElementById('partnerPhone')?.value?.trim() || '';
+  const partnerPhoneInput = document.getElementById('partnerPhone');
+  const phone = (partnerPhoneInput && partnerPhoneInput._iti) ? (partnerPhoneInput._iti.getNumber() || partnerPhoneInput.value.trim()) : (partnerPhoneInput?.value?.trim() || '');
   const website = document.getElementById('partnerWebsite')?.value?.trim() || '';
   const social = document.getElementById('partnerSocial')?.value?.trim() || 'Not Provided';
   const license = document.getElementById('partnerLicense')?.value?.trim() || 'Pending';
@@ -6170,11 +6222,59 @@ function initShowcaseAndSearch() {
   if (typeof updateQuoteFormFields === 'function') {
     updateQuoteFormFields();
   }
+
+  // Initialize international telephone inputs
+  initIntlTelInputs();
 }
 
+// ============================================================================
+// International Telephone Input (intl-tel-input) Setup & Initialization
+// ============================================================================
+function initIntlTelInputs() {
+  if (typeof window.intlTelInput !== 'function') return;
+
+  const phoneSelectors = [
+    '#contactPhone',
+    '#bookingPhone',
+    '#applicantPhone',
+    '#partnerPhone',
+    'input[type="tel"]'
+  ];
+
+  phoneSelectors.forEach(selector => {
+    const inputs = document.querySelectorAll(selector);
+    inputs.forEach(input => {
+      // Prevent duplicate attachment
+      if (input._iti || input.dataset.itiInitialized === 'true') return;
+
+      try {
+        const iti = window.intlTelInput(input, {
+          initialCountry: "ae",
+          preferredCountries: ["ae", "lk", "in", "pk", "ph", "gb", "sa", "om"],
+          separateDialCode: true,
+          autoPlaceholder: "polite",
+          utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.6/build/js/utils.js"
+        });
+        input._iti = iti;
+        input.dataset.itiInitialized = 'true';
+      } catch (err) {
+        console.warn('intl-tel-input init error on element:', input, err);
+      }
+    });
+  });
+}
+window.initIntlTelInputs = initIntlTelInputs;
+
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initShowcaseAndSearch);
+  document.addEventListener('DOMContentLoaded', () => {
+    initShowcaseAndSearch();
+    initIntlTelInputs();
+  });
 } else {
   initShowcaseAndSearch();
+  initIntlTelInputs();
 }
+
+window.addEventListener('load', initIntlTelInputs);
+
 
