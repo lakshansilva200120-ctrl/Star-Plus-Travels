@@ -1,10 +1,18 @@
-﻿# Production Build & Verification Script for Star Plus Travels
+# Production Build & Verification Script for Star Plus Travels
 Write-Host "========================================================" -ForegroundColor Cyan
 Write-Host " Running Star Plus Travels Production Build & Audit... " -ForegroundColor Yellow
 Write-Host "========================================================" -ForegroundColor Cyan
 
 $root = $PSScriptRoot
 if (-not $root) { $root = Get-Location }
+
+# 0. Compile Production Tailwind CSS if CLI binary is available
+$twCli = Join-Path $root "tailwindcss.exe"
+if (Test-Path $twCli) {
+    Write-Host " [BUILD] Compiling Static Tailwind CSS..." -ForegroundColor Cyan
+    & $twCli -c (Join-Path $root "tailwind.config.js") -i (Join-Path $root "css\tailwind-input.css") -o (Join-Path $root "css\tailwind.min.css") --minify
+    Write-Host " [OK] Tailwind CSS Compiled: css/tailwind.min.css" -ForegroundColor Green
+}
 
 $errors = @()
 $warnings = @()

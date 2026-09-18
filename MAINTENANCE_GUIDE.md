@@ -1,4 +1,4 @@
-﻿# 🌟 Star Plus Travel & Tourism LLC - Website Maintenance & Deployment Guide
+# 🌟 Star Plus Travel & Tourism LLC - Website Maintenance & Deployment Guide
 
 Welcome to the maintenance and deployment manual for the official Star Plus Travel & Tourism LLC website. This guide provides quick, clear instructions on making future text/image edits and deploying updates live automatically.
 
@@ -98,7 +98,11 @@ The website automatically enables celebratory animations during holiday periods 
 Whenever you make any edits:
 
 1. **Make your changes** in your code editor (e.g. edit text in `index.html` or `js/app.js`).
-2. **Test locally** by opening `http://localhost:3000/`.
+2. **Build & Validate locally** by running:
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File .\build.ps1
+   ```
+   *(Compiles static Tailwind CSS with zero runtime warnings and verifies all links, scripts, and media assets).*
 3. **Commit & Push to GitHub**:
    ```bash
    git add .
