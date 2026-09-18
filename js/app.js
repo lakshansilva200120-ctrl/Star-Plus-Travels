@@ -9,6 +9,8 @@ const CURRENCIES = {
   EUR: { symbol: '€', rate: 0.252, name: 'Euro (EUR)' },
   GBP: { symbol: '£', rate: 0.215, name: 'British Pound (GBP)' },
   LKR: { symbol: 'LKR ', rate: 82.5, name: 'Sri Lankan Rupee (LKR)' }
+};
+
 let currentCurrency = 'AED';
 
 // ==========================================================================
