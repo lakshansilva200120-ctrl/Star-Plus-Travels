@@ -213,6 +213,9 @@
     </div>
   </div>
 
+  <!-- Mobile Menu Frosted Backdrop Overlay -->
+  <div id="mobileMenuBackdrop" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity duration-300" onclick="closeMobileMenu()" aria-hidden="true"></div>
+
   <!-- Sticky Navbar with Scaled Brand Logo -->
   <header id="mainHeader" class="sticky top-0 z-50 glass-nav border-none border-b-0 transition-all duration-300 w-full">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -283,14 +286,15 @@
             <span class="desktop-lang-text font-bold text-xs text-center tracking-wide">සිංහල</span>
           </button>
 
-          <button id="mobileMenuBtn" class="lg:hidden p-2 h-9 w-9 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-300 hover:text-white hover:border-amber-500/50 shadow-md flex items-center justify-center cursor-pointer shrink-0 flex-shrink-0 transition-colors" aria-label="Toggle menu">
+          <!-- Mobile Hamburger Menu Button (Hidden on lg+ screens) -->
+          <button type="button" id="mobileMenuBtn" onclick="toggleMobileMenu(event)" aria-expanded="false" aria-controls="mobileMenu" class="lg:hidden p-2 h-9 w-9 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-300 hover:text-white hover:border-amber-500/50 shadow-md flex items-center justify-center cursor-pointer shrink-0 flex-shrink-0 transition-colors" aria-label="Toggle menu">
             <i class="fa-solid fa-bars-staggered text-sm"></i>
           </button>
         </div>
       </div>
     </div>
     <!-- Mobile Slide-out Menu (Frosted Glass Translucent Drawer) -->
-    <div id="mobileMenu" class="hidden lg:hidden backdrop-blur-xl bg-white/80 dark:bg-slate-950/80 border-b border-white/20 dark:border-slate-800/50 px-5 sm:px-6 pt-5 pb-16 space-y-4 transition-all duration-300 shadow-xl shadow-slate-900/5 dark:shadow-black/40">
+    <div id="mobileMenu" class="hidden lg:hidden backdrop-blur-xl bg-white/80 dark:bg-slate-950/80 border-b border-white/20 dark:border-slate-800/50 px-5 sm:px-6 pt-5 pb-16 space-y-4 transition-all duration-300 shadow-xl shadow-slate-900/5 dark:shadow-black/40 max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain">
       <!-- Mobile Menu Brand Logo Header -->
       <div class="flex items-center justify-between pb-3 border-b border-slate-200/80 dark:border-slate-800/80">
         <a href="/" class="inline-block py-1" aria-label="Star Plus Travel & Tourism LLC Home">
@@ -300,7 +304,7 @@
                alt="Star Plus Travel & Tourism LLC"
                class="mobile-brand-logo h-8 sm:h-9 w-auto object-contain">
         </a>
-        <button onclick="toggleMobileMenu()" class="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors" aria-label="Close menu">
+        <button type="button" onclick="closeMobileMenu()" class="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors cursor-pointer" aria-label="Close menu">
           <i class="fa-solid fa-xmark text-lg"></i>
         </button>
       </div>

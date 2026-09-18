@@ -2110,50 +2110,117 @@ function toggleFaq(btn) {
   }
 }
 
-// Mobile Menu Toggle & Helpers
+// Mobile Menu Toggle & Backdrop Helpers
+let _mobileMenuDebounce = 0;
+
+function getOrCreateMobileMenuBackdrop() {
+  let backdrop = document.getElementById('mobileMenuBackdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.id = 'mobileMenuBackdrop';
+    backdrop.className = 'fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity duration-300';
+    backdrop.setAttribute('aria-hidden', 'true');
+    const header = document.getElementById('mainHeader') || document.querySelector('header');
+    if (header && header.parentNode) {
+      header.parentNode.insertBefore(backdrop, header);
+    } else {
+      document.body.appendChild(backdrop);
+    }
+  }
+  return backdrop;
+}
+
 function closeMobileMenu() {
   const menu = document.getElementById('mobileMenu');
-  if (!menu || menu.classList.contains('hidden')) return;
-  menu.classList.add('hidden');
+  if (menu) {
+    menu.classList.add('hidden');
+  }
+
   const btn = document.getElementById('mobileMenuBtn');
   if (btn) {
+    btn.setAttribute('aria-expanded', 'false');
     const icon = btn.querySelector('i');
     if (icon) icon.className = 'fa-solid fa-bars-staggered text-sm';
   }
+
+  const backdrop = document.getElementById('mobileMenuBackdrop');
+  if (backdrop) {
+    backdrop.classList.add('hidden');
+  }
+  document.body.style.overflow = '';
+
   const header = document.getElementById('mainHeader') || document.querySelector('header');
   if (header) {
     header.classList.remove('menu-open');
-    updateBrandLogoTheme();
+    if (typeof updateBrandLogoTheme === 'function') {
+      updateBrandLogoTheme();
+    }
   }
 }
 window.closeMobileMenu = closeMobileMenu;
 
-function toggleMobileMenu() {
-  const menu = document.getElementById('mobileMenu');
-  if (!menu) return;
-  const isHidden = menu.classList.toggle('hidden');
-  const btn = document.getElementById('mobileMenuBtn');
-  if (btn) {
-    const icon = btn.querySelector('i');
-    if (icon) {
-      if (isHidden) {
-        icon.className = 'fa-solid fa-bars-staggered text-sm';
-      } else {
-        icon.className = 'fa-solid fa-xmark text-sm';
-      }
+function toggleMobileMenu(e) {
+  if (e) {
+    if (e.stopPropagation) e.stopPropagation();
+    if (e.target && e.target.tagName !== 'A' && e.preventDefault) {
+      e.preventDefault();
     }
   }
+
+  const now = Date.now();
+  if (now - _mobileMenuDebounce < 160) return; // Debounce rapid multi-triggers
+  _mobileMenuDebounce = now;
+
+  const menu = document.getElementById('mobileMenu');
+  if (!menu) return;
+
+  const willBeOpen = menu.classList.contains('hidden');
+  if (willBeOpen) {
+    menu.classList.remove('hidden');
+  } else {
+    menu.classList.add('hidden');
+  }
+
+  const btn = document.getElementById('mobileMenuBtn');
+  if (btn) {
+    btn.setAttribute('aria-expanded', willBeOpen ? 'true' : 'false');
+    const icon = btn.querySelector('i');
+    if (icon) {
+      icon.className = willBeOpen ? 'fa-solid fa-xmark text-sm' : 'fa-solid fa-bars-staggered text-sm';
+    }
+  }
+
+  const backdrop = getOrCreateMobileMenuBackdrop();
+  if (backdrop) {
+    if (willBeOpen) {
+      backdrop.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    } else {
+      backdrop.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  }
+
   const header = document.getElementById('mainHeader') || document.querySelector('header');
   if (header) {
-    if (!isHidden) {
+    if (willBeOpen) {
       header.classList.add('menu-open');
     } else {
       header.classList.remove('menu-open');
     }
-    updateBrandLogoTheme();
+    if (typeof updateBrandLogoTheme === 'function') {
+      updateBrandLogoTheme();
+    }
   }
 }
 window.toggleMobileMenu = toggleMobileMenu;
+
+function openMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  if (!menu || !menu.classList.contains('hidden')) return;
+  toggleMobileMenu();
+}
+window.openMobileMenu = openMobileMenu;
 
 // ==========================================================================
 // Theme Management (System Preferences Live Auto-Sync with Tri-State Toggle)
@@ -2482,61 +2549,104 @@ window.getPreferredLanguage = getPreferredLanguage;
 window.changeLanguage = changeLanguage;
 window.toggleLanguage = toggleLanguage;
 
-// Setup Event Listeners on DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. Initialize language preference (syncs button label and DOM text)
-  changeLanguage(getPreferredLanguage(), false);
+// Setup Application & Event Listeners
+function initApp() {
+  try {
+    // 1. Initialize language preference (syncs button label and DOM text)
+    changeLanguage(getPreferredLanguage(), false);
+  } catch (e) {
+    console.error('Language preference init error:', e);
+  }
 
-  // Attach direct click listener to language toggle buttons to guarantee responsive triggers
-  document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (!_toggleLanguageBusy) {
-        toggleLanguage();
-      }
+  try {
+    // Attach direct click listener to language toggle buttons to guarantee responsive triggers
+    document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (!_toggleLanguageBusy) {
+          toggleLanguage();
+        }
+      });
     });
-  });
-
-  // 2. Initialize theme strictly from system preference or explicit manual mode
-  applyTheme(getThemeMode(), false);
-
-  // 3. Prevent refresh jump to FAQ or anchor hashes (always default cleanly to top of page)
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
+  } catch (e) {
+    console.error('Lang btn listener error:', e);
   }
-  if (window.location.hash) {
-    try {
-      history.replaceState(null, '', window.location.pathname + window.location.search);
-    } catch (e) {}
-  }
-  window.scrollTo(0, 0);
 
-  renderPackages(PACKAGES);
-  renderTestimonial();
-  startSlideTimer();
-  checkVisaRequirements();
+  try {
+    // 2. Initialize theme strictly from system preference or explicit manual mode
+    applyTheme(getThemeMode(), false);
+  } catch (e) {
+    console.error('Theme init error:', e);
+  }
+
+  try {
+    // 3. Prevent refresh jump to FAQ or anchor hashes (always default cleanly to top of page)
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    if (window.location.hash) {
+      try {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      } catch (e) {}
+    }
+    window.scrollTo(0, 0);
+  } catch (e) {}
+
+  try { renderPackages(PACKAGES); } catch (e) {}
+  try { renderTestimonial(); } catch (e) {}
+  try {
+    if (document.getElementById('testimonialSlide')) {
+      startSlideTimer();
+    }
+  } catch (e) {}
+  try { checkVisaRequirements(); } catch (e) {}
 
   // Sticky header scroll elevation listener
-  const updateHeaderScroll = () => {
-    const header = document.getElementById('mainHeader') || document.querySelector('header');
-    if (header) {
-      if (window.scrollY > 15) {
-        header.classList.add('header-scrolled');
-      } else {
-        header.classList.remove('header-scrolled');
+  try {
+    const updateHeaderScroll = () => {
+      const header = document.getElementById('mainHeader') || document.querySelector('header');
+      if (header) {
+        if (window.scrollY > 15) {
+          header.classList.add('header-scrolled');
+        } else {
+          header.classList.remove('header-scrolled');
+        }
+        updateBrandLogoTheme();
       }
-      updateBrandLogoTheme();
-    }
-  };
-  window.addEventListener('scroll', updateHeaderScroll, { passive: true });
-  updateHeaderScroll();
+    };
+    window.addEventListener('scroll', updateHeaderScroll, { passive: true });
+    updateHeaderScroll();
+  } catch (e) {}
 
   // Mobile menu button listener
-  document.getElementById('mobileMenuBtn')?.addEventListener('click', toggleMobileMenu);
+  try {
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    if (mobileBtn) {
+      mobileBtn.setAttribute('aria-expanded', 'false');
+      mobileBtn.setAttribute('aria-controls', 'mobileMenu');
+      mobileBtn.removeEventListener('click', toggleMobileMenu);
+      mobileBtn.addEventListener('click', toggleMobileMenu);
+    }
+  } catch (e) {}
 
   // Close mobile menu when clicking any navigation link inside it
-  document.querySelectorAll('#mobileMenu a').forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-  });
+  try {
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    });
+  } catch (e) {}
+
+  // Close mobile menu when backdrop overlay is clicked
+  try {
+    const backdrop = getOrCreateMobileMenuBackdrop();
+    if (backdrop) {
+      backdrop.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeMobileMenu();
+      });
+    }
+  } catch (e) {}
 
   // Global click listener for modal backdrops and outside mobile menu click
   document.addEventListener('click', (e) => {
@@ -2545,7 +2655,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target && e.target.id === 'itineraryModal') closeItineraryModal();
     if (e.target && e.target.id === 'applyModal' && typeof closeApplyModal === 'function') closeApplyModal();
 
-    // Close mobile menu on click outside
+    // Close mobile menu on click outside (fallback if backdrop isn't clicked directly)
     const menu = document.getElementById('mobileMenu');
     const btn = document.getElementById('mobileMenuBtn');
     if (menu && !menu.classList.contains('hidden') && btn) {
@@ -2577,44 +2687,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Automatically close mobile menu when window expands to desktop size
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024) {
+      closeMobileMenu();
+    }
+  }, { passive: true });
+
   // Attach search listeners
-  document.getElementById('heroSearchForm')?.addEventListener('submit', handleHeroSearch);
+  try { document.getElementById('heroSearchForm')?.addEventListener('submit', handleHeroSearch); } catch (e) {}
 
   // Initialize Dynamic Hero Slideshow if present
-  initHeroSlideshow();
+  try { initHeroSlideshow(); } catch (e) {}
 
   // Initialize Navigation Dropdown interactions
-  initNavDropdowns();
+  try { initNavDropdowns(); } catch (e) {}
 
   // Initialize Desktop Sliding Glass Pill Navigation Indicator
-  initNavPillIndicator();
+  try { initNavPillIndicator(); } catch (e) {}
 
   // Initialize Animated Statistics Number Counters
-  initStatsCounters();
+  try { initStatsCounters(); } catch (e) {}
 
   // Smooth scroll to top when clicking Home link or brand logo on the homepage
-  document.querySelectorAll('a[href="/"], a[href="/#hero"], a[href="#hero"]').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname === '';
-      if (isHomePage) {
-        // If already on homepage, smoothly scroll to top/hero section
-        e.preventDefault();
-        const heroSection = document.getElementById('hero') || document.body;
-        if (window.scrollY > 0) {
-          heroSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  try {
+    document.querySelectorAll('a[href="/"], a[href="/#hero"], a[href="#hero"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html') || window.location.pathname === '';
+        if (isHomePage) {
+          e.preventDefault();
+          const heroSection = document.getElementById('hero') || document.body;
+          if (window.scrollY > 0) {
+            heroSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+          if (window.history && window.history.pushState) {
+            window.history.pushState(null, '', '/');
+          }
+          closeMobileMenu();
         }
-        if (window.history && window.history.pushState) {
-          window.history.pushState(null, '', '/');
-        }
-        // If mobile drawer open, close it
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-          toggleMobileMenu();
-        }
-      }
+      });
     });
-  });
-});
+  } catch (e) {}
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
 
 /* ==========================================================================
    Dynamic Hero Slideshow Controller
