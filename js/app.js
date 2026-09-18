@@ -9,9 +9,13 @@ const CURRENCIES = {
   EUR: { symbol: '€', rate: 0.252, name: 'Euro (EUR)' },
   GBP: { symbol: '£', rate: 0.215, name: 'British Pound (GBP)' },
   LKR: { symbol: 'LKR ', rate: 82.5, name: 'Sri Lankan Rupee (LKR)' }
-};
-
 let currentCurrency = 'AED';
+
+// ==========================================================================
+// Formspree Integration Endpoint (Contact & Inquiry Forms)
+// Replace YOUR_FORMSPREE_ID_HERE with your actual Formspree Form ID (e.g. 'xpzgkroe')
+// ==========================================================================
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORMSPREE_ID_HERE';
 
 // ==========================================================================
 // Localization / Internationalization (i18n) Engine (English & Sinhala)
@@ -1475,19 +1479,81 @@ function calculateBookingTotal() {
   if (installmentElem) installmentElem.textContent = `or 4x ${installmentFormatted}/month interest-free with Tabby / Tamara`;
 }
 
-function submitBookingForm(e) {
+async function submitBookingForm(e) {
   e.preventDefault();
-  const name = document.getElementById('bookingName').value;
-  const email = document.getElementById('bookingEmail').value;
-  const phone = document.getElementById('bookingPhone').value;
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
+
+  const name = document.getElementById('bookingName')?.value?.trim();
+  const email = document.getElementById('bookingEmail')?.value?.trim();
+  const phone = document.getElementById('bookingPhone')?.value?.trim();
+  const date = document.getElementById('bookingDate')?.value;
+  const travelers = document.getElementById('bookingTravelers')?.value;
+  const children = document.getElementById('bookingChildren')?.value;
+  const notes = document.getElementById('bookingNotes')?.value?.trim() || '';
+  const packageTitle = selectedPackageForBooking?.title || document.getElementById('modalPkgTitle')?.textContent || 'Tour Package';
+  const packageDest = selectedPackageForBooking?.destination || document.getElementById('modalPkgDestination')?.textContent || '';
 
   if (!name || !email || !phone) {
     showToast('Please fill in all required contact details.', 'error');
     return;
   }
 
-  closeBookingModal();
-  showToast(`Booking inquiry sent for ${selectedPackageForBooking?.title || 'Tour'}! Our Dubai concierge will contact you within 2 hours.`, 'success');
+  const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Submitting Reservation...</span>';
+    submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+  }
+
+  const payload = {
+    name: name,
+    phone: phone,
+    email: email,
+    destination: `${packageDest ? packageDest + ' - ' : ''}${packageTitle}`,
+    travelDate: date,
+    adultTravelers: travelers,
+    childTravelers: children,
+    message: notes || 'Tour package booking reservation',
+    formType: 'Package Booking Reservation',
+    submittedAt: new Date().toLocaleString(),
+    sourcePage: window.location.pathname.split('/').pop() || 'packages.html'
+  };
+
+  try {
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+      form.reset();
+      closeBookingModal();
+      showToast(`Booking inquiry sent for ${packageTitle}! Our concierge will contact you within 2 hours.`, 'success');
+    } else {
+      let errorMsg = 'Failed to submit booking reservation. Please try again or message us on WhatsApp.';
+      try {
+        const errData = await response.json();
+        if (errData && errData.errors && errData.errors.length > 0) {
+          errorMsg = errData.errors.map(err => err.message).join(', ');
+        }
+      } catch (_) {}
+      showToast(errorMsg, 'error');
+    }
+  } catch (err) {
+    console.error('Booking Formspree submission error:', err);
+    showToast('Network error. Please try again or reach out on WhatsApp.', 'error');
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnContent;
+      submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+    }
+  }
 }
 
 // Itinerary Modal Functionality
@@ -1717,20 +1783,97 @@ function changeCurrency(newCurr) {
 }
 
 // Contact Form Submission
-function handleContactSubmit(e) {
+async function handleContactSubmit(e) {
   e.preventDefault();
-  const name = document.getElementById('contactName')?.value;
-  const email = document.getElementById('contactEmail')?.value;
-  const phone = document.getElementById('contactPhone')?.value;
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
+
+  const name = form.querySelector('#contactName')?.value?.trim() || '';
+  const email = form.querySelector('#contactEmail')?.value?.trim() || '';
+  const phone = form.querySelector('#contactPhone')?.value?.trim() || '';
+  const destInput = form.querySelector('#contactDest')?.value?.trim() || '';
+  const topicSelect = form.querySelector('#contactTopic');
+  const topicText = topicSelect ? topicSelect.options[topicSelect.selectedIndex]?.text : '';
+  const interestSelect = form.querySelector('#contactInterest');
+  const interestText = interestSelect ? interestSelect.options[interestSelect.selectedIndex]?.text : '';
+
+  // Consolidate travel destination / package information
+  let destination = destInput;
+  if (!destination) {
+    destination = topicText || interestText || 'General Travel Inquiry';
+  } else if (interestText && interestText !== 'Holiday Tour Package') {
+    destination = `${destination} (${interestText})`;
+  } else if (topicText && topicText !== 'Curated Tour Package / Customized Itinerary') {
+    destination = `${destination} - ${topicText}`;
+  }
+
+  const message = form.querySelector('#contactMessage')?.value?.trim() || '';
+  const branch = form.querySelector('#contactBranch')?.value || '';
+  const travelers = form.querySelector('#contactTravelers')?.value || '';
 
   if (!name || !email || !phone) {
-    showToast('Please complete the required contact fields.', 'error');
+    showToast('Please complete the required contact fields (Name, Email, Phone).', 'error');
     return;
   }
 
-  // Reset form
-  e.target.reset();
-  showToast('Inquiry received! A Star Plus Travels specialist will contact you with a customized quote shortly.', 'success');
+  // Preserve original button UI and show loading state
+  const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Sending Inquiry...</span>';
+    submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+  }
+
+  const payload = {
+    name: name,
+    phone: phone,
+    email: email,
+    destination: destination,
+    message: message,
+    travelers: travelers || undefined,
+    preferredOffice: branch || undefined,
+    submittedAt: new Date().toLocaleString(),
+    sourcePage: window.location.pathname.split('/').pop() || 'contact.html'
+  };
+
+  // Clean undefined values
+  const cleanPayload = Object.fromEntries(
+    Object.entries(payload).filter(([_, v]) => v !== undefined && v !== '')
+  );
+
+  try {
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(cleanPayload)
+    });
+
+    if (response.ok) {
+      form.reset();
+      showToast('Inquiry sent successfully! Our concierge team will contact you shortly.', 'success');
+    } else {
+      let errorMsg = 'Failed to submit inquiry. Please try again or reach out on WhatsApp.';
+      try {
+        const errorData = await response.json();
+        if (errorData && errorData.errors && errorData.errors.length > 0) {
+          errorMsg = errorData.errors.map(err => err.message).join(', ');
+        }
+      } catch (_) {}
+      showToast(errorMsg, 'error');
+    }
+  } catch (err) {
+    console.error('Contact Formspree submission error:', err);
+    showToast('Network error while sending inquiry. Please message us on WhatsApp.', 'error');
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnContent;
+      submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+    }
+  }
 }
 
 // DMC Trade License File Selection Helper (Strict 5MB direct email attachment limit)

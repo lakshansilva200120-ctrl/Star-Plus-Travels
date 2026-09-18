@@ -1440,13 +1440,13 @@
                   <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formFullName">
                     Your Full Name *
                   </label>
-                  <input type="text" id="contactName" required placeholder="e.g. John Doe" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
+                  <input type="text" id="contactName" name="name" required placeholder="e.g. John Doe" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
                 </div>
                 <div>
                   <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formEmail">
                     Email Address *
                   </label>
-                  <input type="email" id="contactEmail" required placeholder="name@domain.com" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
+                  <input type="email" id="contactEmail" name="email" required placeholder="name@domain.com" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
                 </div>
               </div>
 
@@ -1455,13 +1455,13 @@
                   <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formPhone">
                     Phone / WhatsApp Number *
                   </label>
-                  <input type="tel" id="contactPhone" required placeholder="+971 50 123 4567" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
+                  <input type="tel" id="contactPhone" name="phone" required placeholder="+971 50 123 4567" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
                 </div>
                 <div>
                   <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formInterest">
                     Primary Interest
                   </label>
-                  <select id="contactInterest" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
+                  <select id="contactInterest" name="interest" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
                     <option value="package" data-i18n="formInterestPackage">Holiday Tour Package</option>
                     <option value="visa" data-i18n="formInterestVisa">Fast-Track Visa Processing</option>
                     <option value="flight" data-i18n="formInterestFlight">Cheap Airline Tickets</option>
@@ -1475,13 +1475,13 @@
                   <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formDestination">
                     Preferred Destination
                   </label>
-                  <input type="text" id="contactDest" placeholder="e.g. Sri Lanka, Dubai, Georgia" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
+                  <input type="text" id="contactDest" name="destination" placeholder="e.g. Sri Lanka, Dubai, Georgia" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
                 </div>
                 <div>
                   <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formTravelers">
                     Estimated Travelers
                   </label>
-                  <select id="contactTravelers" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
+                  <select id="contactTravelers" name="travelers" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
                     <option value="1">1 Solo</option>
                     <option value="2" selected>2 Adults (Couple)</option>
                     <option value="3">3 - 5 (Family)</option>
@@ -1494,7 +1494,7 @@
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formNotes">
                   Trip Notes / Special Requests
                 </label>
-                <textarea id="contactMessage" rows="3" placeholder="Tell us about your preferred travel dates, hotel rating preference, or special requests..." data-i18n-placeholder="formNotesPlaceholder" class="w-full glass-input px-4 py-3 rounded-xl text-sm"></textarea>
+                <textarea id="contactMessage" name="message" rows="3" placeholder="Tell us about your preferred travel dates, hotel rating preference, or special requests..." data-i18n-placeholder="formNotesPlaceholder" class="w-full glass-input px-4 py-3 rounded-xl text-sm"></textarea>
               </div>
 
               <!-- Secure Payment Alert Notice -->
