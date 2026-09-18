@@ -1462,10 +1462,15 @@ function openBookingModal(pkgId) {
 
 function closeBookingModal() {
   const modal = document.getElementById('bookingModal');
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    const form = modal.querySelector('form');
+    if (form) form.reset();
+  }
   selectedPackageForBooking = null;
 }
+window.closeBookingModal = closeBookingModal;
 
 function calculateBookingTotal() {
   if (!selectedPackageForBooking) return;
@@ -2103,7 +2108,24 @@ function toggleFaq(btn) {
   }
 }
 
-// Mobile Menu Toggle
+// Mobile Menu Toggle & Helpers
+function closeMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  if (!menu || menu.classList.contains('hidden')) return;
+  menu.classList.add('hidden');
+  const btn = document.getElementById('mobileMenuBtn');
+  if (btn) {
+    const icon = btn.querySelector('i');
+    if (icon) icon.className = 'fa-solid fa-bars-staggered text-sm';
+  }
+  const header = document.getElementById('mainHeader') || document.querySelector('header');
+  if (header) {
+    header.classList.remove('menu-open');
+    updateBrandLogoTheme();
+  }
+}
+window.closeMobileMenu = closeMobileMenu;
+
 function toggleMobileMenu() {
   const menu = document.getElementById('mobileMenu');
   if (!menu) return;
@@ -2129,6 +2151,7 @@ function toggleMobileMenu() {
     updateBrandLogoTheme();
   }
 }
+window.toggleMobileMenu = toggleMobileMenu;
 
 // ==========================================================================
 // Theme Management (System Preferences Live Auto-Sync with Tri-State Toggle)
@@ -2508,13 +2531,39 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile menu button listener
   document.getElementById('mobileMenuBtn')?.addEventListener('click', toggleMobileMenu);
 
-  // Close modals on escape key & navigate showcase with arrow keys
+  // Close mobile menu when clicking any navigation link inside it
+  document.querySelectorAll('#mobileMenu a').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  // Global click listener for modal backdrops and outside mobile menu click
+  document.addEventListener('click', (e) => {
+    // Backdrop clicks for main modals
+    if (e.target && e.target.id === 'bookingModal') closeBookingModal();
+    if (e.target && e.target.id === 'itineraryModal') closeItineraryModal();
+    if (e.target && e.target.id === 'applyModal' && typeof closeApplyModal === 'function') closeApplyModal();
+
+    // Close mobile menu on click outside
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('mobileMenuBtn');
+    if (menu && !menu.classList.contains('hidden') && btn) {
+      if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        closeMobileMenu();
+      }
+    }
+  });
+
+  // Close modals & mobile menu on escape key & navigate showcase with arrow keys
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeBookingModal();
       closeItineraryModal();
       closeCountryPackagesModal();
       closeCountryShowcase();
+      closeMobileMenu();
+      if (typeof closeApplyModal === 'function') {
+        closeApplyModal();
+      }
     }
     const showcaseModal = document.getElementById('countryShowcaseModal');
     if (showcaseModal && !showcaseModal.classList.contains('hidden')) {
