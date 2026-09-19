@@ -3129,5 +3129,22 @@ input.phone-input-error {
   line-height: 1.25;
 }
 
+/* Star Plus Golden Amber Brand Button */
+.bg-\[\#F59E0B\] {
+  background-color: #F59E0B !important;
+}
+
+.hover\:bg-\[\#D97706\]:hover {
+  background-color: #D97706 !important;
+}
+
+.text-\[\#070B14\] {
+  color: #070B14 !important;
+}
+
+.active\:scale-95:active {
+  transform: scale(0.95) !important;
+}
+
 
 

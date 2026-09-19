@@ -1884,8 +1884,8 @@ function checkVisaRequirements() {
         </a>
 
         <!-- Fast Online Form Booking Button -->
-        <button type="button" onclick="openVisaInquiryModal('${data.title.replace(/'/g, "\\'")}', event)" class="py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs sm:text-sm border border-slate-300 dark:border-slate-700 flex items-center justify-center space-x-1.5 transition-colors cursor-pointer" title="Apply Online">
-          <i class="fa-solid fa-file-signature text-amber-500 text-xs"></i>
+        <button type="button" onclick="openVisaInquiryModal('${data.title.replace(/'/g, "\\'")}', event)" class="flex-1 py-3 px-5 rounded-xl bg-[#F59E0B] hover:bg-[#D97706] text-[#070B14] font-bold text-xs sm:text-sm shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 transition-all duration-200 active:scale-95 cursor-pointer" title="Apply Online Form">
+          <i class="fa-solid fa-file-signature text-[#070B14] text-xs sm:text-sm"></i>
           <span>Apply Online Form</span>
         </button>
       </div>
