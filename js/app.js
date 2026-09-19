@@ -1738,12 +1738,7 @@ function openItineraryModal(pkgId) {
   // Pre-fill WhatsApp Inquiry
   const itineraryWaBtn = document.getElementById('itineraryWhatsAppButton');
   if (itineraryWaBtn) {
-    const formattedPrice = formatPrice(pkg.priceAED);
-    const currentLang = getPreferredLanguage();
-    const rawWaMsg = currentLang === 'si'
-      ? `හෙලෝ Star Plus Travels, මම "${pkg.title}" (${formattedPrice}) පැකේජයේ සම්පූර්ණ විස්තර සහ දින සැලසුම පිළිබඳව විමසීමට කැමතියි.`
-      : `Hello Star Plus Travels, I am reviewing the itinerary for "${pkg.title}" (${formattedPrice}) and would like to inquire about booking availability and custom details.`;
-    itineraryWaBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(rawWaMsg)}`;
+    itineraryWaBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(`Hello Star Plus, I am interested in the ${pkg.title} package.`)}`;
   }
 
   const modal = document.getElementById('itineraryModal');
@@ -5993,6 +5988,7 @@ function closeCountryShowcase() {
 // Visual Places Gallery State
 let currentShowcaseGalleryItems = [];
 let currentShowcaseGalleryIndex = 0;
+let currentActiveShowcaseTour = null;
 
 function switchShowcaseGallery(index) {
   if (!currentShowcaseGalleryItems || !currentShowcaseGalleryItems[index]) return;
@@ -6018,9 +6014,11 @@ function switchShowcaseGallery(index) {
 
   thumbs.forEach((thumb, idx) => {
     if (idx === index) {
-      thumb.classList.add('active');
+      thumb.classList.add('ring-2', 'ring-[#F59E0B]', 'active');
+      thumb.classList.remove('opacity-70');
     } else {
-      thumb.classList.remove('active');
+      thumb.classList.remove('ring-2', 'ring-[#F59E0B]', 'active');
+      thumb.classList.add('opacity-70');
     }
   });
 }
@@ -6034,6 +6032,91 @@ function handleShowcaseDetailsAction() {
   openShowcaseItinerary(currentTour);
 }
 
+// Normalize destination data across any tour/package format into dynamic editorial schema
+function normalizeDestinationModalData(raw) {
+  if (!raw) return null;
+  const title = raw.title || raw.name || 'Star Plus Curated Package';
+
+  // Category Tag: normalize to luxury uppercase categories
+  let category = (raw.category || raw.destination || '').toUpperCase();
+  if (category.includes('DUBAI') || category.includes('CITY') || category.includes('UAE') || category.includes('FAMILY')) {
+    category = 'CITY BREAK & LUXURY';
+  } else if (category.includes('SRI LANKA') || category.includes('SAFARI') || category.includes('NATURE') || category.includes('WILDLIFE')) {
+    category = 'SAFARI & NATURE';
+  } else if (category.includes('AZERBAIJAN') || category.includes('GEORGIA') || category.includes('CAUCASUS') || category.includes('ALPINE') || category.includes('MOUNTAIN') || category.includes('HERITAGE')) {
+    category = 'ALPINE & HERITAGE';
+  } else if (category.includes('MALDIVES') || category.includes('BALI') || category.includes('BEACH') || category.includes('ISLAND') || category.includes('HONEYMOON') || category.includes('TROPICAL')) {
+    category = 'TROPICAL ESCAPE';
+  } else {
+    category = raw.category ? raw.category.toUpperCase() : 'LUXURY GETAWAY';
+  }
+
+  const rating = raw.rating ? String(raw.rating) : '5.0';
+  const reviewCount = raw.reviewCount || raw.reviews || '450+ reviews';
+  const duration = raw.duration || '5 Days / 4 Nights';
+
+  // Gallery Images & Thumbnails: dynamic array for hero view and thumbnail strip
+  let galleryImages = [];
+  if (Array.isArray(raw.galleryImages) && raw.galleryImages.length > 0) {
+    galleryImages = raw.galleryImages.map(g => typeof g === 'string' ? { image: g, title } : g);
+  } else if (Array.isArray(raw.gallery) && raw.gallery.length > 0) {
+    galleryImages = raw.gallery.map(g => typeof g === 'string' ? { image: g, title } : { image: g.image, title: g.title || g.tag || title });
+  } else if (raw.image) {
+    galleryImages = [{ image: raw.image, title }];
+  } else {
+    galleryImages = [{ image: 'assets/packages/dubai-burj-khalifa.jpg', title }];
+  }
+
+  // 3 Highlights / Key Inclusions: array of 3 distinct features per destination
+  let highlights = [];
+  if (Array.isArray(raw.highlights) && raw.highlights.length >= 3) {
+    highlights = raw.highlights.slice(0, 3);
+  } else {
+    const pool = raw.inclusions || raw.perks || raw.checklist || [];
+    const stayFeature = raw.stay 
+      ? raw.stay 
+      : pool.find(i => /hotel|resort|lodge|villa|stay|night/i.test(i)) 
+      || 'Handpicked 4-Star & 5-Star Luxury Boutique Accommodation';
+
+    const transferFeature = pool.find(i => /transfer|chauffeur|jeep|seaplane|boat|flight|vehicle/i.test(i)) 
+      || 'VIP Private Airport Transfers & Dedicated Chauffeur Logistics';
+
+    const excursionFeature = pool.find(i => /tour|safari|excursion|entry|cruise|ticket|pass|sightseeing|guided/i.test(i) && i !== transferFeature && i !== stayFeature)
+      || (raw.keyStops && raw.keyStops.length > 0 ? `Curated Excursions across ${raw.keyStops.join(', ')}` : 'Curated Guided Excursions & Signature Landmark Access');
+
+    highlights = [stayFeature, transferFeature, excursionFeature];
+  }
+
+  // Pricing & Currency
+  const priceAED = Number(raw.priceAED || raw.price || 1890);
+  let priceSecondary = raw.priceSecondary || '';
+  if (!priceSecondary) {
+    if (raw.priceLKR) {
+      priceSecondary = raw.priceLKR;
+    } else {
+      const approxUSD = Math.round(priceAED * 0.272);
+      priceSecondary = `approx. $${approxUSD.toLocaleString()} USD`;
+    }
+  }
+
+  // Pre-fill WhatsApp link with specific destination title
+  const whatsappUrl = `https://wa.me/971527582293?text=Hello%20Star%20Plus,%20I%20am%20interested%20in%20the%20${encodeURIComponent(title)}%20package.`;
+
+  return {
+    ...raw,
+    title,
+    category,
+    rating,
+    reviewCount,
+    duration,
+    galleryImages,
+    highlights,
+    priceAED,
+    priceSecondary,
+    whatsappUrl
+  };
+}
+
 // LEVEL 3: Comprehensive Package Itinerary & Visual Showcase Drawer Logic
 function openShowcaseItinerary(tour) {
   if (!tour) return;
@@ -6041,15 +6124,22 @@ function openShowcaseItinerary(tour) {
   const modal = document.getElementById('showcaseItineraryModal');
   if (!modal) return;
 
+  const data = normalizeDestinationModalData(tour);
+  if (!data) return;
+
+  currentActiveShowcaseTour = data;
+
   const featImg = document.getElementById('showcaseGalleryFeaturedImg');
   const fallbackImg = document.getElementById('showcaseItineraryImg');
   const thumbsElem = document.getElementById('showcaseGalleryThumbs');
   const badgeElem = document.getElementById('showcaseItineraryBadge');
   const durationElem = document.getElementById('showcaseItineraryDuration');
   const ratingElem = document.getElementById('showcaseItineraryRating');
+  const reviewsElem = document.getElementById('showcaseItineraryReviews');
   const titleElem = document.getElementById('showcaseItineraryTitle');
   const subtitleElem = document.getElementById('showcaseItinerarySubtitle');
   const descElem = document.getElementById('showcaseItineraryDesc');
+  const highlightsGrid = document.getElementById('showcaseItineraryHighlightsGrid');
   const inclusionsElem = document.getElementById('showcaseItineraryInclusions');
   const daysElem = document.getElementById('showcaseItineraryDays');
   const finePrintElem = document.getElementById('showcaseItineraryFinePrint');
@@ -6058,47 +6148,58 @@ function openShowcaseItinerary(tour) {
   const waBtn = document.getElementById('showcaseItineraryWaBtn');
 
   // Setup Visual Places Gallery
-  if (tour.gallery && Array.isArray(tour.gallery) && tour.gallery.length > 0) {
-    currentShowcaseGalleryItems = tour.gallery;
-  } else {
-    // Fallback gallery from stops and main image
-    const stops = tour.keyStops || tour.destinations || [];
-    currentShowcaseGalleryItems = [
-      {
-        image: tour.image || tour.thumbnail,
-        tag: stops[0] ? `📍 Day 1: ${stops[0]}` : `📍 ${tour.title}`,
-        title: stops[0] || tour.title
-      }
-    ];
-  }
+  currentShowcaseGalleryItems = data.galleryImages;
 
-  // Populate Gallery Thumbnails
+  // Populate Gallery Thumbnails with 16:9 ratio and active ring-2 ring-[#F59E0B]
   if (thumbsElem) {
     thumbsElem.innerHTML = currentShowcaseGalleryItems.map((item, idx) => `
-      <button type="button" onclick="switchShowcaseGallery(${idx})" class="showcase-gallery-thumb ${idx === 0 ? 'active' : ''}" title="${item.title || item.tag || 'View destination'}">
-        <img src="${item.image}" alt="${item.title || 'Tour landmark'}" loading="lazy">
+      <button type="button" 
+              onclick="switchShowcaseGallery(${idx})" 
+              class="showcase-gallery-thumb flex-shrink-0 w-20 sm:w-24 aspect-[16/9] rounded-lg overflow-hidden border border-[#1E293B] transition-all cursor-pointer ${idx === 0 ? 'ring-2 ring-[#F59E0B] active' : 'opacity-70 hover:opacity-100'}" 
+              title="${item.title || 'Tour landmark'}">
+        <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover pointer-events-none" loading="lazy">
       </button>
     `).join('');
   }
 
   // Switch to initial photo
   switchShowcaseGallery(0);
-  if (fallbackImg) fallbackImg.src = tour.image || tour.thumbnail;
+  if (fallbackImg) fallbackImg.src = data.galleryImages[0]?.image || data.image || '';
 
-  if (badgeElem) badgeElem.textContent = tour.category;
-  if (durationElem) durationElem.textContent = tour.duration;
-  if (ratingElem) ratingElem.textContent = `${tour.rating} (${tour.reviews || '450+ reviews'})`;
-  if (titleElem) titleElem.textContent = tour.title;
-  if (subtitleElem) subtitleElem.textContent = tour.subtitle;
-  if (descElem) descElem.textContent = tour.description;
+  if (badgeElem) badgeElem.textContent = data.category;
+  if (durationElem) durationElem.textContent = data.duration;
+  if (ratingElem) ratingElem.textContent = data.rating;
+  if (reviewsElem) reviewsElem.textContent = data.reviewCount;
+  if (titleElem) titleElem.textContent = data.title;
+  if (subtitleElem) {
+    subtitleElem.innerHTML = `<i class="fa-solid ${data.categoryIcon || 'fa-tag'} text-[#F59E0B] mr-1.5"></i>${data.subtitle || data.duration + ' Curated Journey'}`;
+  }
+  if (descElem) descElem.textContent = data.description;
+
+  // Render 3 Highlights Grid (Responsive 3-column layout below media section)
+  if (highlightsGrid) {
+    const icons = ['fa-hotel', 'fa-car-side', 'fa-compass'];
+    const labels = ['HANDPICKED LODGING', 'VIP PRIVATE TRANSFERS', 'SIGNATURE EXPERIENCES'];
+    highlightsGrid.innerHTML = data.highlights.map((h, i) => `
+      <div class="p-3.5 sm:p-4 rounded-2xl bg-[#070B14] border border-[#1E293B] hover:border-[#F59E0B]/40 transition-colors flex items-start space-x-3 shadow-md">
+        <div class="w-8 h-8 rounded-xl bg-[#F59E0B]/15 text-[#F59E0B] flex items-center justify-center flex-shrink-0 mt-0.5">
+          <i class="fa-solid ${icons[i] || 'fa-gem'} text-sm"></i>
+        </div>
+        <div class="flex-1 min-w-0">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-[#F59E0B] block mb-0.5">${labels[i] || 'HIGHLIGHT'}</span>
+          <span class="text-slate-200 text-xs font-medium leading-snug line-clamp-3">${h}</span>
+        </div>
+      </div>
+    `).join('');
+  }
 
   // Render Key Stops in Drawer
   const itinStopsElem = document.getElementById('showcaseItineraryStopsContainer');
   if (itinStopsElem) {
-    const stops = tour.keyStops || tour.destinations || [];
+    const stops = data.keyStops || data.destinations || [];
     itinStopsElem.innerHTML = stops.map(stop => `
       <span class="showcase-route-pill">
-        <i class="fa-solid fa-location-dot text-[9px] text-amber-400 flex-shrink-0"></i>
+        <i class="fa-solid fa-location-dot text-[9px] text-[#F59E0B] flex-shrink-0"></i>
         <span>${stop}</span>
       </span>
     `).join('');
@@ -6107,20 +6208,19 @@ function openShowcaseItinerary(tour) {
   // Render Accommodation & Hotel Stay Tier
   const stayElem = document.getElementById('showcaseItineraryStay');
   if (stayElem) {
-    if (tour.stay) {
-      stayElem.textContent = tour.stay;
+    if (data.stay) {
+      stayElem.textContent = data.stay;
     } else {
-      const stayItem = (tour.inclusions || []).find(inc => /night|hotel|resort|lodge|accommodation|stay/i.test(inc));
-      stayElem.textContent = stayItem || `${tour.duration || 'Multi-day'} Luxury 4-Star & 5-Star Handpicked Lodging`;
+      stayElem.textContent = data.highlights[0] || `${data.duration || 'Multi-day'} Luxury 4-Star & 5-Star Handpicked Lodging`;
     }
   }
 
   // Render Included Services
   if (inclusionsElem) {
-    const list = tour.inclusions || tour.checklist || [];
+    const list = data.inclusions || data.checklist || [];
     inclusionsElem.innerHTML = list.map(item => `
       <div class="flex items-start space-x-2 bg-slate-900/70 p-2.5 rounded-xl border border-slate-800 shadow-sm">
-        <i class="fa-solid fa-circle-check text-amber-400 text-xs mt-0.5 flex-shrink-0"></i>
+        <i class="fa-solid fa-circle-check text-[#F59E0B] text-xs mt-0.5 flex-shrink-0"></i>
         <span class="text-slate-200 text-xs">${item}</span>
       </div>
     `).join('');
@@ -6128,9 +6228,9 @@ function openShowcaseItinerary(tour) {
 
   // Render Day-by-Day Journey Breakdown with Milestones
   if (daysElem) {
-    const itinerary = tour.itinerary || [];
+    const itinerary = data.itinerary || [];
     daysElem.innerHTML = itinerary.map((item, idx) => {
-      const text = `${item.title} ${item.desc}`.toLowerCase();
+      const text = `${item.title} ${item.desc || ''}`.toLowerCase();
       
       // Determine transport milestone
       let transportBadge = '';
@@ -6163,7 +6263,7 @@ function openShowcaseItinerary(tour) {
       return `
         <div class="itinerary-day-card">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-            <div class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 font-extrabold text-[10px] uppercase tracking-wider">
+            <div class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-[#F59E0B] font-extrabold text-[10px] uppercase tracking-wider">
               <i class="fa-solid fa-calendar-day text-[9px]"></i>
               <span>DAY ${item.day || (idx + 1)}</span>
             </div>
@@ -6173,7 +6273,7 @@ function openShowcaseItinerary(tour) {
             </div>
           </div>
           <h5 class="text-xs sm:text-sm font-bold text-white mb-1.5 font-heading">${item.title}</h5>
-          <p class="text-[11px] sm:text-xs text-slate-300 leading-relaxed">${item.desc}</p>
+          <p class="text-[11px] sm:text-xs text-slate-300 leading-relaxed">${item.desc || ''}</p>
         </div>
       `;
     }).join('');
@@ -6181,7 +6281,7 @@ function openShowcaseItinerary(tour) {
 
   // Render Fine Print
   if (finePrintElem) {
-    const finePrint = tour.finePrint || [
+    const finePrint = data.finePrint || [
       'Standard hotel check-in at 14:00 hrs & check-out at 12:00 hrs.',
       'Rates are subject to peak season / festive period surcharges.',
       'Valid passport (min. 6 months validity) and relevant tourist visa required.',
@@ -6190,19 +6290,18 @@ function openShowcaseItinerary(tour) {
     finePrintElem.innerHTML = finePrint.map(fp => `<li>${fp}</li>`).join('');
   }
 
-  // Price & Alt Price
+  // Price Display
   if (priceElem) {
-    const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
+    const formattedAED = typeof formatPrice === 'function' ? formatPrice(data.priceAED) : `AED ${data.priceAED.toLocaleString()}`;
     priceElem.textContent = formattedAED;
   }
   if (altPriceElem) {
-    altPriceElem.textContent = tour.priceLKR ? `/ person (${tour.priceLKR})` : '/ person';
+    altPriceElem.textContent = data.priceSecondary ? `/ person (${data.priceSecondary})` : '/ person';
   }
 
   // WhatsApp Inquiry CTA
   if (waBtn) {
-    const dynamicMsg = `Hello Star Plus Travels, I'm interested in booking the ${tour.title} (${tour.duration})`;
-    waBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(dynamicMsg)}`;
+    waBtn.href = data.whatsappUrl;
   }
 
   // Show drawer with slide-in animation
@@ -6233,6 +6332,10 @@ function closeShowcaseItinerary() {
 
 // Download PDF Brochure Function
 function downloadShowcaseBrochure() {
+  if (currentActiveShowcaseTour) {
+    downloadTourBrochure(currentActiveShowcaseTour);
+    return;
+  }
   const data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
   if (!data || !data.tours) return;
   const tour = data.tours[currentShowcaseTourIndex];
@@ -6468,6 +6571,7 @@ window.switchShowcaseGallery = switchShowcaseGallery;
 window.downloadShowcaseBrochure = downloadShowcaseBrochure;
 window.downloadTourBrochure = downloadTourBrochure;
 window.scrollCountryShowcaseCards = scrollCountryShowcaseCards;
+window.normalizeDestinationModalData = normalizeDestinationModalData;
 
 window.populateShowcaseData = populateShowcaseData;
 window.openCountryPackages = function(countryKey) {

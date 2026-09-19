@@ -1742,48 +1742,65 @@
   </div>
 
   <!-- Detailed Itinerary Modal -->
-  <div id="itineraryModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
-    <div class="glass-card max-w-2xl w-full rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative animate-fadeIn">
+  <div id="itineraryModal" class="fixed inset-0 z-50 hidden items-center justify-center p-3 sm:p-6 modal-backdrop">
+    <div class="max-w-2xl w-full rounded-3xl border border-[#1E293B] bg-[#070B14] shadow-2xl p-5 sm:p-7 max-h-[92vh] overflow-y-auto relative animate-fadeIn custom-scrollbar">
       
       <!-- Close Button -->
-      <button onclick="closeItineraryModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white flex items-center justify-center transition-colors">
+      <button onclick="closeItineraryModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 rounded-full bg-slate-900/90 hover:bg-[#F59E0B] hover:text-slate-950 text-slate-300 border border-[#1E293B] hover:border-[#F59E0B] flex items-center justify-center transition-colors z-20 cursor-pointer" aria-label="Close itinerary details">
         <i class="fa-solid fa-xmark text-sm"></i>
       </button>
 
-      <div class="relative h-44 rounded-2xl overflow-hidden mb-5 bg-slate-900">
+      <!-- 16:9 Hero Container with Bottom Shadow Gradient Overlay -->
+      <div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-5 bg-[#070B14] border border-[#1E293B] shadow-lg">
         <img id="itineraryModalImage" src="" alt="" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-        <div class="absolute bottom-4 left-4 right-4">
-          <span id="itineraryModalMeta" class="text-xs text-amber-400 font-bold block mb-1"></span>
-          <h3 id="itineraryModalTitle" class="text-xl sm:text-2xl font-black text-white font-heading leading-tight"></h3>
+        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, #070B14 0%, rgba(7, 11, 20, 0.4) 35%, transparent 65%);"></div>
+        <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-10">
+          <span id="itineraryModalMeta" class="text-xs text-[#F59E0B] font-bold block mb-1"></span>
+          <h3 id="itineraryModalTitle" class="text-xl sm:text-2xl font-black text-white font-heading leading-tight drop-shadow-md"></h3>
         </div>
       </div>
 
       <!-- Perks list -->
-      <div class="mb-6">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Package Inclusions</h4>
-        <div id="itineraryPerksList" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      <div class="mb-5 w-full max-w-full">
+        <div class="flex items-center space-x-2 mb-2">
+          <span class="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
+          <h4 class="text-xs font-black uppercase tracking-wider text-[#F59E0B] font-heading">Package Inclusions &amp; Privileges</h4>
+        </div>
+        <div id="itineraryPerksList" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
           <!-- Rendered dynamically -->
         </div>
       </div>
 
       <!-- Timeline Days -->
       <div class="mb-6">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">Day-by-Day Journey</h4>
+        <div class="flex items-center space-x-2 mb-3">
+          <span class="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
+          <h4 class="text-xs font-black uppercase tracking-wider text-[#F59E0B] font-heading">Day-by-Day Journey</h4>
+        </div>
         <div id="itineraryDaysContainer" class="space-y-2">
           <!-- Rendered dynamically -->
         </div>
       </div>
 
-      <!-- Modal Footer -->
-      <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+      <!-- Modal Footer (Action Dock) -->
+      <div class="pt-4 border-t border-[#1E293B] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Starting from</span>
-          <span id="itineraryModalPrice" class="text-2xl font-black text-amber-600 dark:text-amber-400 font-heading"></span>
+          <span class="text-[10px] uppercase tracking-wider text-slate-400 block font-semibold">Starting from</span>
+          <div class="flex items-baseline space-x-1.5">
+            <span id="itineraryModalPrice" class="text-2xl font-bold text-[#F59E0B] font-heading"></span>
+            <span class="text-xs text-slate-400 font-medium">/ person</span>
+          </div>
         </div>
-        <button id="itineraryBookButton" class="py-3 px-6 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20">
-          Book This Package
-        </button>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <a id="itineraryWhatsAppButton" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial py-3 px-4 rounded-xl bg-[#10B981] hover:bg-[#059669] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-emerald-950/20 flex items-center justify-center space-x-2 cursor-pointer">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>Inquire via WhatsApp</span>
+          </a>
+          <button id="itineraryBookButton" class="flex-1 sm:flex-initial py-3 px-5 rounded-xl bg-[#070B14] hover:bg-[#1E293B]/60 border border-[#1E293B] hover:border-[#F59E0B]/50 text-slate-200 hover:text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-1.5 cursor-pointer shadow-md">
+            <span>Request Quote</span>
+            <i class="fa-solid fa-arrow-right text-[10px] text-[#F59E0B]"></i>
+          </button>
+        </div>
       </div>
 
     </div>

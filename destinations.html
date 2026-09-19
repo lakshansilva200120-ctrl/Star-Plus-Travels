@@ -953,9 +953,9 @@
           <div class="w-5 h-5 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-[10px] flex-shrink-0">
             <i id="countryShowcaseIcon" class="fa-solid fa-gem"></i>
           </div>
-          <span id="countryShowcaseHeaderTitle" class="font-extrabold text-white tracking-wide text-xs truncate">Sri Lanka Island Odyssey</span>
+          <span id="countryShowcaseHeaderTitle" class="font-extrabold text-white tracking-wide text-xs truncate">Destination Showcase</span>
           <span class="text-slate-600 hidden sm:inline">&bull;</span>
-          <span id="countryShowcaseHeaderBadge" class="text-[10px] text-amber-400 font-bold uppercase tracking-wider hidden sm:inline">Cultural Triangle</span>
+          <span id="countryShowcaseHeaderBadge" class="text-[10px] text-amber-400 font-bold uppercase tracking-wider hidden sm:inline">Luxury Packages</span>
         </div>
       </div>
 
@@ -1016,11 +1016,11 @@
 
             <!-- Large Heading & Subheading (Scaled for mobile) -->
             <h2 id="showcaseActiveTitle" class="dest-text-fade text-2xl sm:text-2xl lg:text-3xl font-extrabold text-white font-heading tracking-tight leading-tight mb-1 drop-shadow-md">
-              Wildlife &amp; Rainforest Tour
+              Featured Package Circuit
             </h2>
             <div id="showcaseActiveSubtitle" class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-400/90 mb-2 flex items-center gap-1.5">
-              <i class="fa-solid fa-paw text-amber-400 text-[11px]"></i>
-              <span>DISCOVER THE UNTAMED BEAUTY OF SRI LANKA</span>
+              <i class="fa-solid fa-compass text-amber-400 text-[11px]"></i>
+              <span>DISCOVER BESPOKE LUXURY CIRCUITS</span>
             </div>
 
             <!-- Rating & Duration Meta -->
@@ -1034,14 +1034,14 @@
                 <span id="showcaseActiveRating" class="text-white font-bold ml-1">5.0</span>
               </div>
               <span class="text-slate-600">&bull;</span>
-              <span id="showcaseActiveReviews" class="text-slate-300">420+ reviews</span>
+              <span id="showcaseActiveReviews" class="text-slate-300">450+ reviews</span>
               <span class="text-slate-600">&bull;</span>
               <span id="showcaseActiveDuration" class="px-2 py-0.5 rounded-full bg-slate-900/80 border border-slate-700/80 text-amber-400 font-semibold text-[10px]">5 Days / 4 Nights</span>
             </div>
 
             <!-- Curated Narrative Description (2-3 lines clamped) -->
             <p id="showcaseActiveDesc" class="dest-text-fade text-xs text-slate-200 leading-relaxed max-w-xl mb-2.5 line-clamp-2 sm:line-clamp-3 drop-shadow-sm">
-              Immerse yourself in Dutch colonial heritage inside the 17th-century UNESCO Galle Fort, bask on golden beaches from Mirissa to Bentota, and watch legendary stilt fishermen against Indian Ocean sunsets.
+              Select any regional circuit to explore curated itineraries, luxury stay tiers, and included privileges.
             </p>
 
             <!-- Route & Key Highlights (Visited Landmarks) -->
@@ -1103,89 +1103,104 @@
 
       </div>
       <!-- LEVEL 3: Comprehensive Package Details Full Panel Overlay -->
-      <div id="showcaseItineraryModal" class="showcase-details-panel absolute inset-0 z-[70] w-full h-full bg-[#0B132B] flex flex-col overflow-hidden hidden" role="dialog" aria-modal="true" aria-labelledby="showcaseItineraryTitle">
+      <div id="showcaseItineraryModal" class="showcase-details-panel absolute inset-0 z-[70] w-full h-full bg-[#070B14] flex flex-col overflow-hidden hidden" role="dialog" aria-modal="true" aria-labelledby="showcaseItineraryTitle">
         
         <!-- Top Action Bar (Back to Packages & Close Buttons) -->
-        <div class="showcase-drawer-header flex-shrink-0 px-4 py-3 sm:px-6 sm:py-3.5 bg-slate-950/95 border-b border-slate-800/80 backdrop-blur-md flex items-center justify-between z-30">
-          <button type="button" onclick="closeShowcaseItinerary()" class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 hover:bg-slate-800 text-amber-400 hover:text-amber-300 border border-amber-500/40 hover:border-amber-400 text-xs font-bold transition-all shadow-md cursor-pointer group" aria-label="Back to Packages">
+        <div class="showcase-drawer-header flex-shrink-0 px-4 py-3 sm:px-6 sm:py-3.5 bg-[#070B14]/95 border-b border-[#1E293B] backdrop-blur-md flex items-center justify-between z-30">
+          <button type="button" onclick="closeShowcaseItinerary()" class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 hover:bg-slate-800 text-[#F59E0B] hover:text-amber-300 border border-[#F59E0B]/40 hover:border-amber-400 text-xs font-bold transition-all shadow-md cursor-pointer group" aria-label="Back to Packages">
             <i class="fa-solid fa-arrow-left text-[11px] transition-transform group-hover:-translate-x-1"></i>
-            <span>← Back to Packages</span>
+            <span>&larr; Back to Packages</span>
           </button>
           <div class="flex items-center space-x-3">
             <span class="hidden sm:inline-block text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Itinerary &amp; Destination Details</span>
-            <button type="button" onclick="closeShowcaseItinerary()" class="w-9 h-9 rounded-full bg-slate-900/90 hover:bg-amber-500 hover:text-slate-950 text-slate-300 border border-slate-700/80 hover:border-amber-500 flex items-center justify-center text-sm transition-all duration-200 shadow-md cursor-pointer group" aria-label="Close Itinerary Details">
+            <button type="button" onclick="closeShowcaseItinerary()" class="w-9 h-9 rounded-full bg-slate-900/90 hover:bg-[#F59E0B] hover:text-slate-950 text-slate-300 border border-[#1E293B] hover:border-[#F59E0B] flex items-center justify-center text-sm transition-all duration-200 shadow-md cursor-pointer group" aria-label="Close Itinerary Details">
               <i class="fa-solid fa-xmark transition-transform group-hover:scale-110"></i>
             </button>
           </div>
         </div>
 
         <!-- Scrollable Drawer Body -->
-        <div class="overflow-y-auto flex-1 p-4 sm:p-6 lg:p-7 space-y-6 custom-scrollbar">
+        <div class="overflow-y-auto flex-1 p-4 sm:p-6 lg:p-7 space-y-6 custom-scrollbar bg-[#070B14]">
           
-          <!-- VISUAL PLACES SHOWCASE (PHOTO GALLERY + KEY STOPS) -->
-          <div class="showcase-gallery-container rounded-2xl overflow-hidden border border-slate-800/90 bg-slate-950/80 shadow-xl">
-            <!-- Featured Photo Display with Tag Overlay -->
-            <div class="relative w-full h-56 sm:h-72 lg:h-80 bg-slate-900 overflow-hidden group">
-              <img id="showcaseGalleryFeaturedImg" src="" alt="Destination Landmark Photo" class="w-full h-full object-cover transition-all duration-500 transform group-hover:scale-105 select-none">
+          <!-- VISUAL MEDIA SECTION (HERO 16:9 + THUMBNAIL STRIP) -->
+          <div class="space-y-3">
+            <!-- 16:9 Hero Image Viewport with Bottom Shadow Gradient Overlay -->
+            <div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-[#1E293B] bg-[#070B14] shadow-2xl group">
+              <img id="showcaseGalleryFeaturedImg" src="" alt="Destination Landmark" class="w-full h-full object-cover transition-opacity duration-300 transform group-hover:scale-105 select-none">
               <!-- Hidden fallback sync img -->
               <img id="showcaseItineraryImg" src="" alt="" class="hidden" aria-hidden="true">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#0B132B] via-slate-950/30 to-transparent pointer-events-none"></div>
+              
+              <!-- Bottom Shadow Gradient Overlay -->
+              <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, #070B14 0%, rgba(7, 11, 20, 0.4) 35%, transparent 65%);"></div>
               
               <!-- Category & Duration Pill Top-Left -->
-              <div class="absolute top-3 left-3 z-10 flex flex-wrap items-center gap-1.5">
-                <span id="showcaseItineraryBadge" class="px-2.5 py-0.5 rounded-full bg-amber-500 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider shadow-lg"></span>
-                <span id="showcaseItineraryDuration" class="px-2.5 py-0.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-slate-700/80 text-white text-[10px] font-semibold"></span>
+              <div class="absolute top-3.5 left-3.5 z-10 flex flex-wrap items-center gap-2">
+                <span id="showcaseItineraryBadge" class="px-3 py-1 rounded-full bg-[#F59E0B] text-[#070B14] font-extrabold text-[10px] sm:text-[11px] uppercase tracking-wider shadow-lg"></span>
+                <span id="showcaseItineraryDuration" class="px-3 py-1 rounded-full bg-[#070B14]/80 backdrop-blur-md border border-[#1E293B] text-white text-[10px] sm:text-[11px] font-semibold"></span>
               </div>
 
-              <!-- Rating Top-Right -->
-              <div class="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-amber-500/40 text-amber-400 text-xs shadow-lg">
+              <!-- Rating & Reviews Top-Right -->
+              <div class="absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#070B14]/85 backdrop-blur-md border border-[#1E293B] text-[#F59E0B] text-xs shadow-lg">
                 <i class="fa-solid fa-star text-[10px]"></i>
                 <span id="showcaseItineraryRating" class="text-white font-bold text-xs">5.0</span>
+                <span class="text-slate-500 text-[10px]">&bull;</span>
+                <span id="showcaseItineraryReviews" class="text-slate-300 text-xs"></span>
               </div>
 
               <!-- Location Overlay Tag Bottom-Left -->
-              <div class="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-between">
-                <div id="showcaseGalleryTag" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-950/90 backdrop-blur-md border border-amber-500/50 text-amber-300 font-bold text-xs shadow-lg">
-                  <i class="fa-solid fa-location-dot text-[11px] text-amber-400"></i>
+              <div class="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
+                <div id="showcaseGalleryTag" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#070B14]/90 backdrop-blur-md border border-[#F59E0B]/50 text-amber-300 font-bold text-xs shadow-lg pointer-events-auto">
+                  <i class="fa-solid fa-location-dot text-[11px] text-[#F59E0B]"></i>
                   <span id="showcaseGalleryTagText">Featured Landmark</span>
                 </div>
-                <span class="text-[10px] text-slate-300 bg-slate-900/80 px-2 py-0.5 rounded backdrop-blur-sm hidden sm:inline-block">
-                  <i class="fa-regular fa-images mr-1 text-amber-400"></i>Click photo to switch
+                <span class="text-[10px] text-slate-400 bg-[#070B14]/80 px-2.5 py-1 rounded-lg backdrop-blur-sm hidden sm:inline-block border border-[#1E293B]">
+                  <i class="fa-regular fa-images mr-1.5 text-[#F59E0B]"></i>Click thumbnails to explore
                 </span>
               </div>
             </div>
 
-            <!-- 16:9 Thumbnail Navigation Strip -->
-            <div id="showcaseGalleryThumbs" class="p-2.5 sm:p-3 bg-slate-950/95 border-t border-slate-800/80 flex items-center gap-2.5 sm:gap-3 overflow-x-auto custom-scrollbar">
-              <!-- Dynamically populated 16:9 thumbnail items -->
+            <!-- Thumbnail Strip directly below hero viewport -->
+            <div id="showcaseGalleryThumbs" class="p-2 sm:p-2.5 bg-[#070B14] border border-[#1E293B] rounded-xl flex items-center gap-2 sm:gap-2.5 overflow-x-auto custom-scrollbar">
+              <!-- Dynamically populated 16:9 thumbnails with active ring-2 ring-[#F59E0B] -->
             </div>
           </div>
 
-          <!-- Package Title, Subtitle & Overview -->
-          <div>
+          <!-- Destination Title, Subtitle & Overview Description -->
+          <div class="pt-1">
             <h3 id="showcaseItineraryTitle" class="text-xl sm:text-2xl lg:text-3xl font-black text-white font-heading leading-tight drop-shadow-md"></h3>
-            <p id="showcaseItinerarySubtitle" class="text-xs sm:text-sm text-amber-400 font-bold uppercase tracking-wider mt-1"></p>
+            <p id="showcaseItinerarySubtitle" class="text-xs sm:text-sm text-[#F59E0B] font-bold uppercase tracking-wider mt-1.5 flex items-center gap-1.5"></p>
             <p id="showcaseItineraryDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-2.5"></p>
+          </div>
+
+          <!-- 3 HIGHLIGHTS / KEY INCLUSIONS GRID (Responsive 3-column layout below media section) -->
+          <div class="space-y-2.5">
+            <div class="flex items-center space-x-2">
+              <span class="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
+              <h4 class="text-xs font-black uppercase tracking-wider text-[#F59E0B] font-heading">Key Package Inclusions &amp; Privileges</h4>
+            </div>
+            <div id="showcaseItineraryHighlightsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <!-- Dynamically populated: 3 distinct features per destination -->
+            </div>
           </div>
 
           <!-- Route & Key Visited Landmarks -->
           <div>
             <div class="flex items-center space-x-2 mb-2">
-              <i class="fa-solid fa-map-location-dot text-amber-400 text-xs"></i>
-              <span class="text-xs font-bold uppercase tracking-wider text-amber-400 font-heading">Key Visited Landmarks &amp; Route Stops</span>
+              <i class="fa-solid fa-map-location-dot text-[#F59E0B] text-xs"></i>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#F59E0B] font-heading">Key Visited Landmarks &amp; Route Stops</span>
             </div>
             <div id="showcaseItineraryStopsContainer" class="flex flex-wrap items-center gap-1.5">
               <!-- Dynamically populated -->
             </div>
           </div>
 
-          <!-- Accommodation & Hotel Stay Tier Details -->
-          <div id="showcaseItineraryStayContainer" class="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/25 flex items-start space-x-3 text-xs">
-            <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <!-- Handpicked Accommodation Tier -->
+          <div id="showcaseItineraryStayContainer" class="p-4 rounded-2xl bg-[#070B14] border border-[#1E293B] flex items-start space-x-3 text-xs">
+            <div class="w-9 h-9 rounded-xl bg-[#F59E0B]/15 text-[#F59E0B] flex items-center justify-center flex-shrink-0 mt-0.5">
               <i class="fa-solid fa-hotel text-sm"></i>
             </div>
             <div class="flex-1">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400 block mb-0.5">Handpicked Accommodation &amp; Stay Tier</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-[#F59E0B] block mb-0.5">Handpicked Accommodation &amp; Stay Tier</span>
               <span id="showcaseItineraryStay" class="text-white font-semibold text-xs leading-relaxed">Luxury 4-Star &amp; 5-Star Boutique Lodging</span>
             </div>
           </div>
@@ -1193,8 +1208,8 @@
           <!-- Included Services Grid -->
           <div>
             <div class="flex items-center space-x-2 mb-3">
-              <div class="w-2 h-2 rounded-full bg-amber-400"></div>
-              <h4 class="text-xs font-black uppercase tracking-wider text-amber-400 font-heading">Included Services &amp; Luxury Privileges</h4>
+              <div class="w-2 h-2 rounded-full bg-[#F59E0B]"></div>
+              <h4 class="text-xs font-black uppercase tracking-wider text-[#F59E0B] font-heading">Included Services &amp; Luxury Privileges</h4>
             </div>
             <div id="showcaseItineraryInclusions" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               <!-- Dynamically populated -->
@@ -1204,8 +1219,8 @@
           <!-- Day-by-Day Journey Breakdown with Milestones -->
           <div>
             <div class="flex items-center space-x-2 mb-4">
-              <div class="w-2 h-2 rounded-full bg-amber-400"></div>
-              <h4 class="text-xs font-black uppercase tracking-wider text-amber-400 font-heading">Day-by-Day Journey Breakdown &amp; Milestones</h4>
+              <div class="w-2 h-2 rounded-full bg-[#F59E0B]"></div>
+              <h4 class="text-xs font-black uppercase tracking-wider text-[#F59E0B] font-heading">Day-by-Day Journey Breakdown &amp; Milestones</h4>
             </div>
             <div id="showcaseItineraryDays" class="space-y-3.5 relative">
               <!-- Dynamically populated -->
@@ -1213,8 +1228,8 @@
           </div>
 
           <!-- Fine Print & Terms -->
-          <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 space-y-2">
-            <div class="flex items-center space-x-2 text-amber-400 font-bold text-xs uppercase tracking-wider">
+          <div class="p-4 rounded-2xl bg-[#070B14] border border-[#1E293B] text-xs text-slate-300 space-y-2">
+            <div class="flex items-center space-x-2 text-[#F59E0B] font-bold text-xs uppercase tracking-wider">
               <i class="fa-solid fa-circle-info"></i>
               <span>Terms, Visa Requirements &amp; Payment Options</span>
             </div>
@@ -1225,24 +1240,24 @@
 
         </div>
 
-        <!-- Sticky Footer -->
-        <div class="showcase-drawer-footer flex-shrink-0 p-4 sm:p-5 bg-slate-950/95 border-t border-slate-800/90 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3 z-30">
-          <div>
+        <!-- Bottom Action Dock (Sticky Footer) -->
+        <div class="showcase-drawer-footer flex-shrink-0 p-4 sm:p-5 bg-[#070B14]/95 border-t border-[#1E293B] backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3 z-30">
+          <div class="w-full sm:w-auto">
             <span class="text-[10px] uppercase tracking-wider text-slate-400 block font-semibold">All-Inclusive Starting Rate</span>
-            <div class="flex items-baseline space-x-1.5">
-              <span id="showcaseItineraryPrice" class="text-xl sm:text-2xl font-extrabold text-amber-400 font-heading"></span>
-              <span id="showcaseItineraryAltPrice" class="text-xs text-slate-400">/ person</span>
+            <div class="flex items-baseline space-x-2">
+              <span id="showcaseItineraryPrice" class="text-2xl font-bold text-[#F59E0B] font-heading"></span>
+              <span id="showcaseItineraryAltPrice" class="text-xs text-slate-400 font-medium"></span>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
             <!-- Download PDF Brochure Button -->
-            <button id="showcaseDownloadPdfBtn" type="button" onclick="downloadShowcaseBrochure()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-amber-500/50 hover:border-amber-400 text-amber-400 hover:text-amber-300 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2 cursor-pointer shadow-md">
-              <i class="fa-solid fa-file-arrow-down text-sm"></i>
+            <button id="showcaseDownloadPdfBtn" type="button" onclick="downloadShowcaseBrochure()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-[#070B14] hover:bg-[#1E293B]/60 border border-[#1E293B] hover:border-[#F59E0B]/50 text-slate-200 hover:text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2 cursor-pointer shadow-md">
+              <i class="fa-solid fa-file-arrow-down text-sm text-[#F59E0B]"></i>
               <span>Download PDF Brochure</span>
             </button>
 
-            <!-- Direct WhatsApp Inquiry Button -->
-            <a id="showcaseItineraryWaBtn" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-emerald-900/30 flex items-center justify-center space-x-2 cursor-pointer">
+            <!-- Direct WhatsApp Inquiry Button (Emerald Green #10B981) -->
+            <a id="showcaseItineraryWaBtn" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-[#10B981] hover:bg-[#059669] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-emerald-950/30 flex items-center justify-center space-x-2 cursor-pointer">
               <i class="fa-brands fa-whatsapp text-base"></i>
               <span>Inquire via WhatsApp</span>
             </a>
