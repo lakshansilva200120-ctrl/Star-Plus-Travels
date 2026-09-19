@@ -591,7 +591,7 @@
         <!-- Search Form Body -->
         <div class="p-3.5 sm:p-5 lg:p-6 w-full max-w-full box-border overflow-hidden">
           <!-- Search Form -->
-          <form id="heroSearchForm" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 items-end w-full max-w-full box-border">
+          <form id="heroSearchForm" novalidate class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 items-end w-full max-w-full box-border">
             <!-- Destination Input -->
             <div class="min-w-0 w-full max-w-full box-border">
               <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1 sm:mb-1.5">
@@ -1414,7 +1414,7 @@
               <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-i18n="formSubtitle">We respond with comprehensive options and transparent pricing within 2 hours.</p>
             </div>
 
-            <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+            <form onsubmit="handleContactSubmit(event)" novalidate class="space-y-4">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formFullName">
@@ -1614,7 +1614,7 @@
       <div class="space-y-3">
         <h4 class="text-xs font-bold text-white uppercase tracking-wider">VIP Travel Deals</h4>
         <p class="text-xs text-slate-400">Subscribe for unpublished secret airline rates and discount flash sales.</p>
-        <form onsubmit="handleNewsletter(event)" class="space-y-2">
+        <form onsubmit="handleNewsletter(event)" novalidate class="space-y-2">
           <input type="email" id="newsletterEmail" placeholder="Enter your email" required class="w-full glass-input px-3 py-2 rounded-xl text-xs">
           <button type="submit" class="w-full py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
             Subscribe
@@ -1663,7 +1663,7 @@
       </div>
 
       <!-- Booking Form -->
-      <form onsubmit="submitBookingForm(event)" class="mt-5 space-y-4 text-left">
+      <form onsubmit="submitBookingForm(event)" novalidate class="mt-5 space-y-4 text-left">
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">Adult Travelers (12+ yrs)</label>

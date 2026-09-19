@@ -935,7 +935,7 @@
       </div>
 
       <!-- Application Form -->
-      <form onsubmit="submitApplicationForm(event)" class="mt-5 space-y-4">
+      <form onsubmit="submitApplicationForm(event)" novalidate class="mt-5 space-y-4">
         <!-- Dynamic Captured Job Position -->
         <input type="hidden" id="applicantPosition" name="position" value="">
         
@@ -1373,40 +1373,73 @@
       const positionInput = document.getElementById('applicantPosition')?.value?.trim();
       const position = positionInput || (selectedJobForApply ? selectedJobForApply.title : "Travel Consultant");
 
-      const fullName = document.getElementById('applicantName')?.value?.trim() || '';
-      const email = document.getElementById('applicantEmail')?.value?.trim() || '';
+      const nameInput = document.getElementById('applicantName');
+      const emailInput = document.getElementById('applicantEmail');
       const phoneInput = document.getElementById('applicantPhone');
+      const resumeLinkInput = document.getElementById('applicantResumeLink');
+
+      const fullName = nameInput?.value?.trim() || '';
+      const email = emailInput?.value?.trim() || '';
+      const resumeLink = resumeLinkInput?.value?.trim() || '';
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const invalidFields = [];
+
+      if (!fullName) {
+        if (typeof showFieldError === 'function') {
+          showFieldError(nameInput, "Please provide your full name");
+        }
+        if (nameInput) invalidFields.push(nameInput);
+      } else if (typeof clearFieldError === 'function') {
+        clearFieldError(nameInput);
+      }
+
+      if (!email || !emailRegex.test(email)) {
+        if (typeof showFieldError === 'function') {
+          showFieldError(emailInput, "Please enter a valid email address");
+        }
+        if (emailInput) invalidFields.push(emailInput);
+      } else if (typeof clearFieldError === 'function') {
+        clearFieldError(emailInput);
+      }
+
       if (typeof validatePhoneField === 'function') {
         if (!validatePhoneField(phoneInput)) {
-          return;
+          if (phoneInput && !invalidFields.includes(phoneInput)) invalidFields.push(phoneInput);
         }
       } else {
         const digits = phoneInput?.value?.replace(/\D/g, '') || '';
         if (!digits || digits.length < 9) {
-          if (typeof showPhoneError === 'function') {
-            showPhoneError(phoneInput, "Please enter a valid phone number for the selected country.");
-          } else {
-            showToast('Please enter a valid phone number for the selected country.', 'error');
-            phoneInput?.focus();
+          if (typeof showFieldError === 'function') {
+            showFieldError(phoneInput, "Please enter a complete phone number for the selected country");
           }
-          return;
+          if (phoneInput && !invalidFields.includes(phoneInput)) invalidFields.push(phoneInput);
         }
       }
+
+      if (!selectedResumeFile && !resumeLink) {
+        showResumeError("Please upload your Resume/CV document or provide a link.");
+        const resumeAnchor = document.getElementById('resumeDropzone') || resumeLinkInput;
+        if (resumeAnchor && !invalidFields.includes(resumeAnchor)) invalidFields.push(resumeAnchor);
+      } else {
+        clearResumeError();
+      }
+
+      if (invalidFields.length > 0) {
+        if (typeof focusFirstInvalidField === 'function') {
+          focusFirstInvalidField(invalidFields);
+        } else if (invalidFields[0]) {
+          invalidFields[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+          try { invalidFields[0].focus(); } catch (err) {}
+        }
+        return;
+      }
+
       const phone = (phoneInput && phoneInput._iti) ? (phoneInput._iti.getNumber() || phoneInput.value.trim()) : (phoneInput?.value?.trim() || '');
 
       const branch = document.getElementById('applicantBranch')?.value || 'uae';
       const experience = document.getElementById('applicantExperience')?.value || '';
       const linkedin = document.getElementById('applicantLinkedin')?.value?.trim() || '';
       const coverNote = document.getElementById('applicantCoverNote')?.value?.trim() || '';
-      const resumeLink = document.getElementById('applicantResumeLink')?.value?.trim() || '';
-
-      if (!fullName || !email || !phone || (!selectedResumeFile && !resumeLink)) {
-        if (!selectedResumeFile && !resumeLink) {
-          showResumeError("Please upload your Resume/CV document or provide a link.");
-        }
-        showToast('Please fill in all required fields.', 'error');
-        return;
-      }
 
       // Check file size again to ensure strict adherence
       if (selectedResumeFile && selectedResumeFile.size > 5 * 1024 * 1024) {

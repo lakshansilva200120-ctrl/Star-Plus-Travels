@@ -3146,5 +3146,52 @@ input.phone-input-error {
   transform: scale(0.95) !important;
 }
 
+/* ==========================================================================
+   Custom Luxury Inline Form Validation & Error States
+   ========================================================================== */
+@keyframes inputShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+.input-shake {
+  animation: inputShake 0.3s ease-in-out !important;
+}
+
+.border-rose-500\/80 {
+  border-color: rgba(244, 63, 94, 0.8) !important;
+}
+
+.focus\:border-rose-500:focus {
+  border-color: rgb(244, 63, 94) !important;
+}
+
+.focus\:ring-rose-500\/40:focus {
+  --tw-ring-color: rgba(244, 63, 94, 0.4) !important;
+  box-shadow: 0 0 0 1px rgba(244, 63, 94, 0.4) !important;
+}
+
+.field-error-border,
+.phone-input-error,
+input.field-error-border,
+textarea.field-error-border,
+select.field-error-border {
+  border-color: rgba(244, 63, 94, 0.8) !important;
+  box-shadow: 0 0 0 1px rgba(244, 63, 94, 0.4) !important;
+}
+
+.custom-inline-error {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.custom-inline-error.error-fade-out {
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+}
+
 
 

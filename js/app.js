@@ -1606,25 +1606,51 @@ async function submitBookingForm(e) {
   const form = e.target;
   const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
 
-  const name = document.getElementById('bookingName')?.value?.trim();
-  const email = document.getElementById('bookingEmail')?.value?.trim();
-  const phoneInput = document.getElementById('bookingPhone');
+  const nameInput = form.querySelector('#bookingName') || document.getElementById('bookingName');
+  const emailInput = form.querySelector('#bookingEmail') || document.getElementById('bookingEmail');
+  const phoneInput = form.querySelector('#bookingPhone') || document.getElementById('bookingPhone');
+  const dateInput = form.querySelector('#bookingDate') || document.getElementById('bookingDate');
+
+  const name = nameInput?.value?.trim() || '';
+  const email = emailInput?.value?.trim() || '';
+  const date = dateInput?.value || '';
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const invalidFields = [];
+
+  if (dateInput && dateInput.hasAttribute('required') && !date) {
+    checkFieldValidity(dateInput, false, "Please select your departure date", invalidFields);
+  } else if (dateInput) {
+    clearFieldError(dateInput);
+  }
+
+  if (!name) {
+    checkFieldValidity(nameInput, false, "Please provide your full name", invalidFields);
+  } else {
+    clearFieldError(nameInput);
+  }
+
+  if (!email || !emailRegex.test(email)) {
+    checkFieldValidity(emailInput, false, "Please enter a valid email address", invalidFields);
+  } else {
+    clearFieldError(emailInput);
+  }
+
   if (!validatePhoneField(phoneInput)) {
+    if (phoneInput && !invalidFields.includes(phoneInput)) invalidFields.push(phoneInput);
+  }
+
+  if (invalidFields.length > 0) {
+    focusFirstInvalidField(invalidFields);
     return;
   }
+
   const phone = (phoneInput && phoneInput._iti) ? (phoneInput._iti.getNumber() || phoneInput.value.trim()) : (phoneInput?.value?.trim() || '');
 
-  const date = document.getElementById('bookingDate')?.value;
   const travelers = document.getElementById('bookingTravelers')?.value;
   const children = document.getElementById('bookingChildren')?.value;
   const notes = document.getElementById('bookingNotes')?.value?.trim() || '';
   const packageTitle = selectedPackageForBooking?.title || document.getElementById('modalPkgTitle')?.textContent || 'Tour Package';
   const packageDest = selectedPackageForBooking?.destination || document.getElementById('modalPkgDestination')?.textContent || '';
-
-  if (!name || !email || !phone) {
-    showToast('Please fill in all required contact details.', 'error');
-    return;
-  }
 
   const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
   if (submitBtn) {
@@ -2118,22 +2144,22 @@ async function handleContactSubmit(e) {
   const form = e.target;
   const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
 
-  const fullName = form.querySelector('#contactName')?.value?.trim() || '';
-  const email = form.querySelector('#contactEmail')?.value?.trim() || '';
+  const nameInput = form.querySelector('#contactName') || document.getElementById('contactName');
+  const emailInput = form.querySelector('#contactEmail') || document.getElementById('contactEmail');
   const phoneInput = form.querySelector('#contactPhone') || document.getElementById('contactPhone');
-  if (!validatePhoneField(phoneInput)) {
-    return;
-  }
-  const phone = (phoneInput && phoneInput._iti) ? (phoneInput._iti.getNumber() || phoneInput.value.trim()) : (phoneInput?.value?.trim() || '');
+  const destInput = form.querySelector('#contactDest') || document.getElementById('contactDest');
+  const customField2 = form.querySelector('#contactCustomField2');
+  const customField2Wrapper = form.querySelector('#quoteCustomField2Wrapper');
   const interestSelect = form.querySelector('#contactInterest') || form.querySelector('#contactTopic');
   const rawInterestValue = interestSelect?.value || 'package';
   const interest = interestSelect?.options?.[interestSelect.selectedIndex]?.text || rawInterestValue;
-  const destination = form.querySelector('#contactDest')?.value?.trim() || '';
+
+  const fullName = nameInput?.value?.trim() || '';
+  const email = emailInput?.value?.trim() || '';
+  const destination = destInput?.value?.trim() || '';
 
   // Determine Field 2 value based on dynamic mode
   let travelers = '';
-  const customField2Wrapper = form.querySelector('#quoteCustomField2Wrapper');
-  const customField2 = form.querySelector('#contactCustomField2');
   if (customField2Wrapper && !customField2Wrapper.classList.contains('hidden') && customField2) {
     travelers = customField2.value.trim();
   } else {
@@ -2141,38 +2167,65 @@ async function handleContactSubmit(e) {
     travelers = travelersSelect?.value || 'Couple / 2 Adults';
   }
 
-  const notes = form.querySelector('#contactMessage')?.value?.trim() || '';
+  const notesInput = form.querySelector('#contactMessage') || document.getElementById('contactMessage');
+  const notes = notesInput?.value?.trim() || '';
 
-  // Base validation (Always fixed)
-  if (!fullName || !email || !phone) {
-    showToast('Please complete all required fields (Name, Email, Phone).', 'error');
-    return;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const invalidFields = [];
+
+  // Required Field 1: Full Name
+  if (!fullName) {
+    checkFieldValidity(nameInput, false, "Please provide your full name", invalidFields);
+  } else {
+    clearFieldError(nameInput);
+  }
+
+  // Required Field 2: Email
+  if (!email || !emailRegex.test(email)) {
+    checkFieldValidity(emailInput, false, "Please enter a valid email address", invalidFields);
+  } else {
+    clearFieldError(emailInput);
+  }
+
+  // Required Field 3: Phone
+  if (!validatePhoneField(phoneInput)) {
+    if (phoneInput && !invalidFields.includes(phoneInput)) invalidFields.push(phoneInput);
   }
 
   // Dynamic field validation
   if (rawInterestValue === 'visa') {
     if (!destination) {
-      showToast('Please specify your Target Country / Visa Type.', 'error');
-      form.querySelector('#contactDest')?.focus();
-      return;
+      checkFieldValidity(destInput, false, "Please specify your Target Country / Visa Type", invalidFields);
+    } else {
+      clearFieldError(destInput);
     }
     if (!travelers) {
-      showToast('Please specify your Current Nationality.', 'error');
-      form.querySelector('#contactCustomField2')?.focus();
-      return;
+      checkFieldValidity(customField2, false, "Please specify your Current Nationality", invalidFields);
+    } else {
+      clearFieldError(customField2);
     }
   } else if (rawInterestValue === 'flight') {
     if (!destination) {
-      showToast('Please specify your Flight Route (From - To).', 'error');
-      form.querySelector('#contactDest')?.focus();
-      return;
+      checkFieldValidity(destInput, false, "Please specify your Flight Route (From - To)", invalidFields);
+    } else {
+      clearFieldError(destInput);
     }
     if (!travelers) {
-      showToast('Please specify Trip Type & Tentative Dates.', 'error');
-      form.querySelector('#contactCustomField2')?.focus();
-      return;
+      checkFieldValidity(customField2, false, "Please specify Trip Type & Tentative Dates", invalidFields);
+    } else {
+      clearFieldError(customField2);
     }
+  } else {
+    if (destInput) clearFieldError(destInput);
+    if (customField2) clearFieldError(customField2);
   }
+
+  if (invalidFields.length > 0) {
+    focusFirstInvalidField(invalidFields);
+    return;
+  }
+
+  const phone = (phoneInput && phoneInput._iti) ? (phoneInput._iti.getNumber() || phoneInput.value.trim()) : (phoneInput?.value?.trim() || '');
 
   // Preserve original button UI and show loading state
   const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
@@ -2273,23 +2326,63 @@ async function handlePartnerSubmit(e) {
   const form = e.target;
   const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('button');
 
-  const companyName = document.getElementById('partnerCompany')?.value?.trim() || '';
-  const country = document.getElementById('partnerDestination')?.value?.trim() || '';
-  const contactPerson = document.getElementById('partnerContact')?.value?.trim() || '';
-  const corporateEmail = document.getElementById('partnerEmail')?.value?.trim() || '';
+  const companyInput = document.getElementById('partnerCompany');
+  const destInput = document.getElementById('partnerDestination');
+  const contactInput = document.getElementById('partnerContact');
+  const emailInput = document.getElementById('partnerEmail');
   const partnerPhoneInput = document.getElementById('partnerPhone');
-  if (!validatePhoneField(partnerPhoneInput)) {
-    return;
-  }
-  const corporatePhone = (partnerPhoneInput && partnerPhoneInput._iti) ? (partnerPhoneInput._iti.getNumber() || partnerPhoneInput.value.trim()) : (partnerPhoneInput?.value?.trim() || '');
+  const websiteInput = document.getElementById('partnerWebsite');
 
-  const website = document.getElementById('partnerWebsite')?.value?.trim() || '';
+  const companyName = companyInput?.value?.trim() || '';
+  const country = destInput?.value?.trim() || '';
+  const contactPerson = contactInput?.value?.trim() || '';
+  const corporateEmail = emailInput?.value?.trim() || '';
+  const website = websiteInput?.value?.trim() || '';
   const socialProfile = document.getElementById('partnerSocial')?.value?.trim() || '';
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!companyName || !country || !contactPerson || !corporateEmail || !corporatePhone || !website) {
-    showToast('Please complete all required company and credential fields.', 'error');
+  const invalidFields = [];
+
+  if (!companyName) {
+    checkFieldValidity(companyInput, false, "Please provide your company or agency name", invalidFields);
+  } else {
+    clearFieldError(companyInput);
+  }
+
+  if (!country) {
+    checkFieldValidity(destInput, false, "Please provide your operational country / destination", invalidFields);
+  } else {
+    clearFieldError(destInput);
+  }
+
+  if (!contactPerson) {
+    checkFieldValidity(contactInput, false, "Please provide your full name", invalidFields);
+  } else {
+    clearFieldError(contactInput);
+  }
+
+  if (!corporateEmail || !emailRegex.test(corporateEmail)) {
+    checkFieldValidity(emailInput, false, "Please enter a valid corporate email address", invalidFields);
+  } else {
+    clearFieldError(emailInput);
+  }
+
+  if (!validatePhoneField(partnerPhoneInput)) {
+    if (partnerPhoneInput && !invalidFields.includes(partnerPhoneInput)) invalidFields.push(partnerPhoneInput);
+  }
+
+  if (!website) {
+    checkFieldValidity(websiteInput, false, "Please provide your company website or official profile", invalidFields);
+  } else {
+    clearFieldError(websiteInput);
+  }
+
+  if (invalidFields.length > 0) {
+    focusFirstInvalidField(invalidFields);
     return;
   }
+
+  const corporatePhone = (partnerPhoneInput && partnerPhoneInput._iti) ? (partnerPhoneInput._iti.getNumber() || partnerPhoneInput.value.trim()) : (partnerPhoneInput?.value?.trim() || '');
 
   const licenseNumber = document.getElementById('partnerLicense')?.value?.trim() || '';
   const licenseFileInput = document.getElementById('partnerLicenseFile');
@@ -2441,13 +2534,16 @@ async function handleNewsletter(e) {
 
   // Validate that the email field is not empty and has a valid structure
   if (!email || !emailRegex.test(email)) {
-    if (typeof showToast === 'function') {
+    if (emailInput) {
+      showFieldError(emailInput, "Please enter a valid email address");
+      focusFirstInvalidField([emailInput]);
+    } else if (typeof showToast === 'function') {
       showToast('Please enter a valid email address.', 'error');
     }
-    if (emailInput) {
-      emailInput.focus();
-    }
     return;
+  }
+  if (emailInput) {
+    clearFieldError(emailInput);
   }
 
   // Change button text to "Subscribing..." and disable it temporarily to prevent duplicate clicks
@@ -6455,43 +6551,109 @@ function initNewsletterForms() {
 window.initNewsletterForms = initNewsletterForms;
 
 // ============================================================================
-// Phone Validation, Formatting & Keystroke Restrictions
+// Custom Luxury Form Validation & Inline Error System
 // ============================================================================
-function showPhoneError(input, message = "Please enter a valid phone number for the selected country.") {
+const EXCLAMATION_SVG = `<svg class="w-3.5 h-3.5 shrink-0 text-rose-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>`;
+
+function showFieldError(input, message) {
   if (!input) return;
 
-  input.classList.add('phone-input-error');
-  input.style.borderColor = '#f43f5e';
-  input.style.boxShadow = '0 0 0 2.5px rgba(244, 63, 94, 0.25)';
+  // 1. Refined crimson/coral border with gentle 300ms CSS shake animation
+  input.classList.remove('input-shake');
+  void input.offsetWidth; // Force DOM reflow to re-trigger animation
+  input.classList.add(
+    'border-rose-500/80',
+    'focus:border-rose-500',
+    'focus:ring-1',
+    'focus:ring-rose-500/40',
+    'field-error-border',
+    'input-shake'
+  );
+  setTimeout(() => {
+    input.classList.remove('input-shake');
+  }, 350);
 
-  const container = input.closest('.iti') || input;
-  let errEl = container.parentElement ? container.parentElement.querySelector('.phone-error-msg') : null;
-  if (!errEl) {
-    errEl = document.createElement('p');
-    errEl.className = 'phone-error-msg text-xs text-rose-500 font-medium mt-1.5 leading-snug flex items-center gap-1 transition-all';
-    container.insertAdjacentElement('afterend', errEl);
+  // 2. Determine container anchor for phone inputs or relative wrappers
+  const itiContainer = input.closest('.iti');
+  let anchor = itiContainer || input;
+  if (anchor.parentElement && anchor.parentElement.classList.contains('relative') && !itiContainer) {
+    anchor = anchor.parentElement;
   }
-  errEl.textContent = message;
-  errEl.classList.remove('hidden');
+
+  // 3. Render or update elegant error microcopy underneath the input
+  const errorKey = input.id || input.name || 'field';
+  let errEl = anchor.parentElement ? anchor.parentElement.querySelector(`[data-field-error-for="${errorKey}"]`) : null;
+  if (!errEl && anchor.nextElementSibling && anchor.nextElementSibling.classList.contains('custom-inline-error')) {
+    errEl = anchor.nextElementSibling;
+  }
+
+  if (!errEl) {
+    errEl = document.createElement('div');
+    errEl.className = 'custom-inline-error text-xs text-rose-400 mt-1.5 flex items-center gap-1.5 font-medium';
+    errEl.setAttribute('data-field-error-for', errorKey);
+    anchor.insertAdjacentElement('afterend', errEl);
+  }
+
+  errEl.innerHTML = `${EXCLAMATION_SVG}<span>${message}</span>`;
+  errEl.classList.remove('hidden', 'error-fade-out');
   errEl.style.display = 'flex';
 
-  input.focus();
+  // 4. Live Dismissal: typing or changing value immediately clears error state
+  if (!input._hasLiveDismissal) {
+    input._hasLiveDismissal = true;
+    const dismissHandler = () => clearFieldError(input);
+    input.addEventListener('input', dismissHandler);
+    input.addEventListener('change', dismissHandler);
+  }
+}
+window.showFieldError = showFieldError;
+
+function clearFieldError(input) {
+  if (!input) return;
+
+  input.classList.remove(
+    'border-rose-500/80',
+    'focus:border-rose-500',
+    'focus:ring-1',
+    'focus:ring-rose-500/40',
+    'field-error-border',
+    'phone-input-error',
+    'input-shake'
+  );
+  input.style.borderColor = '';
+  input.style.boxShadow = '';
+
+  const itiContainer = input.closest('.iti');
+  let anchor = itiContainer || input;
+  if (anchor.parentElement && anchor.parentElement.classList.contains('relative') && !itiContainer) {
+    anchor = anchor.parentElement;
+  }
+
+  const errorKey = input.id || input.name || 'field';
+  const errEl = (anchor.parentElement ? anchor.parentElement.querySelector(`[data-field-error-for="${errorKey}"]`) : null)
+    || (anchor.nextElementSibling && anchor.nextElementSibling.classList.contains('custom-inline-error') ? anchor.nextElementSibling : null)
+    || (anchor.parentElement ? anchor.parentElement.querySelector('.phone-error-msg') : null);
+
+  if (errEl) {
+    errEl.classList.add('error-fade-out');
+    setTimeout(() => {
+      if (errEl.classList.contains('error-fade-out')) {
+        errEl.classList.add('hidden');
+        errEl.style.display = 'none';
+        errEl.remove();
+      }
+    }, 200);
+  }
+}
+window.clearFieldError = clearFieldError;
+
+function showPhoneError(input, message = "Please enter a complete phone number for the selected country") {
+  showFieldError(input, message);
 }
 window.showPhoneError = showPhoneError;
 
 function clearPhoneError(input) {
-  if (!input) return;
-
-  input.classList.remove('phone-input-error');
-  input.style.borderColor = '';
-  input.style.boxShadow = '';
-
-  const container = input.closest('.iti') || input;
-  const errEl = container.parentElement ? container.parentElement.querySelector('.phone-error-msg') : null;
-  if (errEl) {
-    errEl.classList.add('hidden');
-    errEl.style.display = 'none';
-  }
+  clearFieldError(input);
 }
 window.clearPhoneError = clearPhoneError;
 
@@ -6514,7 +6676,7 @@ function setupPhoneKeystrokeLimit(input, iti) {
       input.value = truncated;
     }
 
-    clearPhoneError(input);
+    clearFieldError(input);
   }
 
   // Set initial limit
@@ -6526,7 +6688,7 @@ function setupPhoneKeystrokeLimit(input, iti) {
   });
   input.addEventListener('countrychange', () => {
     applyLimit();
-    clearPhoneError(input);
+    clearFieldError(input);
   });
 }
 window.setupPhoneKeystrokeLimit = setupPhoneKeystrokeLimit;
@@ -6537,9 +6699,10 @@ function validatePhoneField(input) {
   const rawVal = input.value || '';
   const digits = rawVal.replace(/\D/g, '');
   const iti = input._iti;
+  const errorMsg = "Please enter a complete phone number for the selected country";
 
   if (!digits) {
-    showPhoneError(input, "Please enter a valid phone number for the selected country.");
+    showFieldError(input, errorMsg);
     return false;
   }
 
@@ -6549,12 +6712,12 @@ function validatePhoneField(input) {
   // UAE rule: exactly 9 digits (e.g. 50 123 4567)
   if (iso2 === 'ae') {
     if (digits.length !== 9) {
-      showPhoneError(input, "Please enter a valid phone number for the selected country.");
+      showFieldError(input, errorMsg);
       return false;
     }
   } else {
     if (digits.length < 6 || digits.length > 15) {
-      showPhoneError(input, "Please enter a valid phone number for the selected country.");
+      showFieldError(input, errorMsg);
       return false;
     }
   }
@@ -6563,15 +6726,67 @@ function validatePhoneField(input) {
   if (iti && typeof iti.isValidNumber === 'function') {
     const isValid = iti.isValidNumber();
     if (!isValid) {
-      showPhoneError(input, "Please enter a valid phone number for the selected country.");
+      showFieldError(input, errorMsg);
       return false;
     }
   }
 
-  clearPhoneError(input);
+  clearFieldError(input);
   return true;
 }
 window.validatePhoneField = validatePhoneField;
+
+function checkFieldValidity(input, isValid, errorMessage, invalidList) {
+  if (!input) return isValid;
+  if (!isValid) {
+    showFieldError(input, errorMessage);
+    if (invalidList && Array.isArray(invalidList) && !invalidList.includes(input)) {
+      invalidList.push(input);
+    }
+    return false;
+  } else {
+    clearFieldError(input);
+    return true;
+  }
+}
+window.checkFieldValidity = checkFieldValidity;
+
+function focusFirstInvalidField(invalidList) {
+  if (!invalidList || !invalidList.length) return;
+  const first = invalidList[0];
+  const target = first.closest('.iti') || first;
+  target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  setTimeout(() => {
+    try {
+      first.focus({ preventScroll: true });
+    } catch (err) {
+      first.focus();
+    }
+  }, 250);
+}
+window.focusFirstInvalidField = focusFirstInvalidField;
+
+function initUniversalFormValidation() {
+  // Disable native browser validation tooltips across all forms
+  document.querySelectorAll('form').forEach(form => {
+    form.setAttribute('novalidate', 'true');
+  });
+
+  // Attach live dismissal for required fields on user typing or select change
+  document.querySelectorAll('input, textarea, select').forEach(field => {
+    if (!field._hasUniversalDismissal) {
+      field._hasUniversalDismissal = true;
+      const clearHandler = () => {
+        if (field.value && field.value.trim().length > 0) {
+          clearFieldError(field);
+        }
+      };
+      field.addEventListener('input', clearHandler);
+      field.addEventListener('change', clearHandler);
+    }
+  });
+}
+window.initUniversalFormValidation = initUniversalFormValidation;
 
 // ============================================================================
 // International Telephone Input (intl-tel-input) Setup & Initialization
@@ -6644,16 +6859,19 @@ if (document.readyState === 'loading') {
     initShowcaseAndSearch();
     initIntlTelInputs();
     initNewsletterForms();
+    initUniversalFormValidation();
   });
 } else {
   initShowcaseAndSearch();
   initIntlTelInputs();
   initNewsletterForms();
+  initUniversalFormValidation();
 }
 
 window.addEventListener('load', () => {
   initIntlTelInputs();
   initNewsletterForms();
+  initUniversalFormValidation();
 });
 
 
