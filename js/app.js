@@ -1552,19 +1552,10 @@ async function submitBookingForm(e) {
   const name = document.getElementById('bookingName')?.value?.trim();
   const email = document.getElementById('bookingEmail')?.value?.trim();
   const phoneInput = document.getElementById('bookingPhone');
-  let phone = phoneInput?.value?.trim() || '';
-
-  if (phoneInput && phoneInput._iti) {
-    if (typeof phoneInput._iti.isValidNumber === 'function' && phone) {
-      if (!phoneInput._iti.isValidNumber()) {
-        showToast('Please enter a valid phone number for the selected country.', 'error');
-        phoneInput.focus();
-        return;
-      }
-    }
-    const fullNumber = phoneInput._iti.getNumber();
-    if (fullNumber) phone = fullNumber;
+  if (!validatePhoneField(phoneInput)) {
+    return;
   }
+  const phone = (phoneInput && phoneInput._iti) ? (phoneInput._iti.getNumber() || phoneInput.value.trim()) : (phoneInput?.value?.trim() || '');
 
   const date = document.getElementById('bookingDate')?.value;
   const travelers = document.getElementById('bookingTravelers')?.value;
@@ -1990,20 +1981,11 @@ async function handleContactSubmit(e) {
 
   const fullName = form.querySelector('#contactName')?.value?.trim() || '';
   const email = form.querySelector('#contactEmail')?.value?.trim() || '';
-  const phoneInput = form.querySelector('#contactPhone');
-  let phone = phoneInput?.value?.trim() || '';
-
-  if (phoneInput && phoneInput._iti) {
-    if (typeof phoneInput._iti.isValidNumber === 'function' && phone) {
-      if (!phoneInput._iti.isValidNumber()) {
-        showToast('Please enter a valid phone/WhatsApp number for the selected country.', 'error');
-        phoneInput.focus();
-        return;
-      }
-    }
-    const fullNumber = phoneInput._iti.getNumber();
-    if (fullNumber) phone = fullNumber;
+  const phoneInput = form.querySelector('#contactPhone') || document.getElementById('contactPhone');
+  if (!validatePhoneField(phoneInput)) {
+    return;
   }
+  const phone = (phoneInput && phoneInput._iti) ? (phoneInput._iti.getNumber() || phoneInput.value.trim()) : (phoneInput?.value?.trim() || '');
   const interestSelect = form.querySelector('#contactInterest') || form.querySelector('#contactTopic');
   const rawInterestValue = interestSelect?.value || 'package';
   const interest = interestSelect?.options?.[interestSelect.selectedIndex]?.text || rawInterestValue;
@@ -2157,19 +2139,10 @@ async function handlePartnerSubmit(e) {
   const contactPerson = document.getElementById('partnerContact')?.value?.trim() || '';
   const corporateEmail = document.getElementById('partnerEmail')?.value?.trim() || '';
   const partnerPhoneInput = document.getElementById('partnerPhone');
-  let corporatePhone = partnerPhoneInput?.value?.trim() || '';
-
-  if (partnerPhoneInput && partnerPhoneInput._iti) {
-    if (typeof partnerPhoneInput._iti.isValidNumber === 'function' && corporatePhone) {
-      if (!partnerPhoneInput._iti.isValidNumber()) {
-        showToast('Please enter a valid corporate phone number for the selected country.', 'error');
-        partnerPhoneInput.focus();
-        return;
-      }
-    }
-    const fullNumber = partnerPhoneInput._iti.getNumber();
-    if (fullNumber) corporatePhone = fullNumber;
+  if (!validatePhoneField(partnerPhoneInput)) {
+    return;
   }
+  const corporatePhone = (partnerPhoneInput && partnerPhoneInput._iti) ? (partnerPhoneInput._iti.getNumber() || partnerPhoneInput.value.trim()) : (partnerPhoneInput?.value?.trim() || '');
 
   const website = document.getElementById('partnerWebsite')?.value?.trim() || '';
   const socialProfile = document.getElementById('partnerSocial')?.value?.trim() || '';
@@ -6342,11 +6315,128 @@ function initNewsletterForms() {
 window.initNewsletterForms = initNewsletterForms;
 
 // ============================================================================
+// Phone Validation, Formatting & Keystroke Restrictions
+// ============================================================================
+function showPhoneError(input, message = "Please enter a valid phone number for the selected country.") {
+  if (!input) return;
+
+  input.classList.add('phone-input-error');
+  input.style.borderColor = '#f43f5e';
+  input.style.boxShadow = '0 0 0 2.5px rgba(244, 63, 94, 0.25)';
+
+  const container = input.closest('.iti') || input;
+  let errEl = container.parentElement ? container.parentElement.querySelector('.phone-error-msg') : null;
+  if (!errEl) {
+    errEl = document.createElement('p');
+    errEl.className = 'phone-error-msg text-xs text-rose-500 font-medium mt-1.5 leading-snug flex items-center gap-1 transition-all';
+    container.insertAdjacentElement('afterend', errEl);
+  }
+  errEl.textContent = message;
+  errEl.classList.remove('hidden');
+  errEl.style.display = 'flex';
+
+  input.focus();
+}
+window.showPhoneError = showPhoneError;
+
+function clearPhoneError(input) {
+  if (!input) return;
+
+  input.classList.remove('phone-input-error');
+  input.style.borderColor = '';
+  input.style.boxShadow = '';
+
+  const container = input.closest('.iti') || input;
+  const errEl = container.parentElement ? container.parentElement.querySelector('.phone-error-msg') : null;
+  if (errEl) {
+    errEl.classList.add('hidden');
+    errEl.style.display = 'none';
+  }
+}
+window.clearPhoneError = clearPhoneError;
+
+function setupPhoneKeystrokeLimit(input, iti) {
+  if (!input || input._hasKeystrokeLimit) return;
+  input._hasKeystrokeLimit = true;
+
+  function applyLimit() {
+    const countryData = iti && typeof iti.getSelectedCountryData === 'function' ? iti.getSelectedCountryData() : null;
+    const iso2 = countryData?.iso2 || (iti?.getCountry ? iti.getCountry() : 'ae');
+    const isUae = (iso2 === 'ae');
+    const maxLen = isUae ? 9 : 15;
+
+    input.setAttribute('maxlength', maxLen.toString());
+
+    // Automatically strip any non-digit character (allow only numbers)
+    const cleaned = input.value.replace(/\D/g, '');
+    const truncated = cleaned.slice(0, maxLen);
+    if (input.value !== truncated) {
+      input.value = truncated;
+    }
+
+    clearPhoneError(input);
+  }
+
+  // Set initial limit
+  applyLimit();
+
+  input.addEventListener('input', applyLimit);
+  input.addEventListener('paste', () => {
+    setTimeout(applyLimit, 10);
+  });
+  input.addEventListener('countrychange', () => {
+    applyLimit();
+    clearPhoneError(input);
+  });
+}
+window.setupPhoneKeystrokeLimit = setupPhoneKeystrokeLimit;
+
+function validatePhoneField(input) {
+  if (!input) return false;
+
+  const rawVal = input.value || '';
+  const digits = rawVal.replace(/\D/g, '');
+  const iti = input._iti;
+
+  if (!digits) {
+    showPhoneError(input, "Please enter a valid phone number for the selected country.");
+    return false;
+  }
+
+  const countryData = iti && typeof iti.getSelectedCountryData === 'function' ? iti.getSelectedCountryData() : null;
+  const iso2 = countryData?.iso2 || (iti?.getCountry ? iti.getCountry() : 'ae');
+
+  // UAE rule: exactly 9 digits (e.g. 50 123 4567)
+  if (iso2 === 'ae') {
+    if (digits.length !== 9) {
+      showPhoneError(input, "Please enter a valid phone number for the selected country.");
+      return false;
+    }
+  } else {
+    if (digits.length < 6 || digits.length > 15) {
+      showPhoneError(input, "Please enter a valid phone number for the selected country.");
+      return false;
+    }
+  }
+
+  // Run iti.isValidNumber() if available
+  if (iti && typeof iti.isValidNumber === 'function') {
+    const isValid = iti.isValidNumber();
+    if (!isValid) {
+      showPhoneError(input, "Please enter a valid phone number for the selected country.");
+      return false;
+    }
+  }
+
+  clearPhoneError(input);
+  return true;
+}
+window.validatePhoneField = validatePhoneField;
+
+// ============================================================================
 // International Telephone Input (intl-tel-input) Setup & Initialization
 // ============================================================================
 function initIntlTelInputs() {
-  if (typeof window.intlTelInput !== 'function') return;
-
   const phoneSelectors = [
     '#contactPhone',
     '#bookingPhone',
@@ -6355,22 +6445,52 @@ function initIntlTelInputs() {
     'input[type="tel"]'
   ];
 
+  // Attach immediate keystroke limit even before/without intl-tel-input
   phoneSelectors.forEach(selector => {
     const inputs = document.querySelectorAll(selector);
     inputs.forEach(input => {
-      // Prevent duplicate attachment
-      if (input._iti || input.dataset.itiInitialized === 'true') return;
+      if (!input._hasInitialKeystrokeLimit) {
+        input._hasInitialKeystrokeLimit = true;
+        input.setAttribute('maxlength', '15');
+        input.addEventListener('input', () => {
+          const iso = input._iti?.getSelectedCountryData?.()?.iso2 || 'ae';
+          const max = iso === 'ae' ? 9 : 15;
+          input.setAttribute('maxlength', max.toString());
+          const digits = input.value.replace(/\D/g, '');
+          if (input.value !== digits.slice(0, max)) {
+            input.value = digits.slice(0, max);
+          }
+        });
+      }
+    });
+  });
+
+  if (typeof window.intlTelInput !== 'function') return;
+
+  phoneSelectors.forEach(selector => {
+    const inputs = document.querySelectorAll(selector);
+    inputs.forEach(input => {
+      // If already initialized, ensure keystroke limit is attached
+      if (input._iti || input.dataset.itiInitialized === 'true') {
+        if (input._iti) {
+          setupPhoneKeystrokeLimit(input, input._iti);
+        }
+        return;
+      }
 
       try {
         const iti = window.intlTelInput(input, {
           initialCountry: "ae",
           preferredCountries: ["ae", "lk", "in", "pk", "ph", "gb", "sa", "om"],
           separateDialCode: true,
-          autoPlaceholder: "polite",
+          strictMode: true,
+          autoPlaceholder: "aggressive",
           utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.6/build/js/utils.js"
         });
         input._iti = iti;
         input.dataset.itiInitialized = 'true';
+
+        setupPhoneKeystrokeLimit(input, iti);
       } catch (err) {
         console.warn('intl-tel-input init error on element:', input, err);
       }
