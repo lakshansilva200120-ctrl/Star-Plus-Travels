@@ -1997,9 +1997,6 @@ function openVisaInquiryModal(visaTitle, e) {
       initIntlTelInputs();
     }
 
-    if (typeof showToast === 'function') {
-      showToast(`Visa application form opened for ${visaTitle}.`, 'info');
-    }
     return;
   }
 
