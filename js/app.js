@@ -3430,14 +3430,13 @@ function initNavPillIndicator() {
     cleanupConfetti = initConfettiCanvas(preloader);
   }
 
-  // Dismiss logic with Runway Horizon curtain lift (slide upward)
+  // Dismiss logic with smooth 0.6s fade-out transition
   function dismissPreloader() {
     if (preloader.classList.contains('preloader-exit') || preloader._dismissed) return;
 
     const start = window.__preloaderStartTime || Date.now();
     const elapsed = Date.now() - start;
-    // Total display time strictly does not exceed 1.2s
-    const minWait = isNyActive ? 2600 : 1000;
+    const minWait = isNyActive ? 2600 : 400;
     const remaining = Math.max(0, minWait - elapsed);
 
     setTimeout(() => {
@@ -3455,7 +3454,7 @@ function initNavPillIndicator() {
             preloader.parentNode.removeChild(preloader);
           }
         }
-      }, 460);
+      }, 600);
     }, remaining);
   }
 
@@ -3463,7 +3462,7 @@ function initNavPillIndicator() {
     dismissPreloader();
   } else {
     window.addEventListener('load', dismissPreloader);
-    setTimeout(dismissPreloader, isNyActive ? 3200 : 1200);
+    setTimeout(dismissPreloader, isNyActive ? 3200 : 2500);
   }
 
   /**

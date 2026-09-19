@@ -68,35 +68,27 @@
   </script>
 </head>
 <body class="bg-[#f8fafc] dark:bg-[#070e17] text-slate-900 dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col transition-colors duration-300 w-full max-w-full relative">
-  <!-- Isolated Bulletproof Luxury Splash Preloader (Runway Horizon) -->
-  <div id="sitePreloader" class="fixed inset-0 z-[9999] bg-[#070B14] flex flex-col items-center justify-center select-none" aria-hidden="true" role="status">
+  <!-- Elegant Luxury Preloader -->
+  <div id="sitePreloader" class="fixed inset-0 z-[99999] bg-[#070B14] flex flex-col items-center justify-center select-none" aria-hidden="true" role="status">
     <div class="relative flex flex-col items-center justify-center text-center px-4">
-      <!-- Centered Crisp Original Logo with Golden Flight Path Arc -->
-      <div class="relative flex items-center justify-center">
-        <!-- Curved Flight Path Golden Arc (0.9s stroke-dashoffset across upper corner) -->
-        <svg class="runway-flight-arc pointer-events-none absolute -top-4 -right-6 w-16 h-16 sm:w-20 sm:h-20 overflow-visible" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M 5 68 C 22 42, 48 20, 75 10" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.4" pathLength="100" class="runway-arc-path" />
-        </svg>
+      <!-- Star Plus Brand Logo (Natural proportions, no CSS filters) -->
+      <img
+        id="preloaderLogoImg"
+        src="assets/logo-white-text.png?v=2"
+        data-dark-src="assets/logo-white-text.png?v=2"
+        data-light-src="assets/logo-white-text.png?v=2"
+        alt="Star Plus Travel & Tourism LLC"
+        class="h-14 md:h-16 w-auto object-contain block"
+      />
 
-        <!-- Crisp Original Logo (zero distortion, no heavy neon) -->
-        <img
-          id="preloaderLogoImg"
-          src="assets/logo-white-text.png?v=2"
-          data-dark-src="assets/logo-white-text.png?v=2"
-          data-light-src="assets/logo-white-text.png?v=2"
-          alt="Star Plus Travel & Tourism LLC"
-          class="h-14 md:h-16 w-auto object-contain block"
-        />
+      <!-- Minimalist Progress Line (180px wide, 2px height, subtle runway track) -->
+      <div class="mt-6 w-[180px] h-[2px] bg-[rgba(255,255,255,0.08)] rounded-full overflow-hidden relative">
+        <div class="runway-progress-fill h-full w-full rounded-full bg-[#F59E0B]"></div>
       </div>
 
-      <!-- Progress Track (28px below logo: mt-7, 140px width, 2px height) -->
-      <div class="mt-7 w-[140px] h-[2px] bg-slate-800/80 rounded-full overflow-hidden relative">
-        <div class="runway-progress-fill h-full w-full rounded-full bg-gradient-to-r from-[#F59E0B] to-[#FBBF24]"></div>
-      </div>
-
-      <!-- Subtitle -->
-      <span class="text-[10px] tracking-[0.28em] text-slate-400 font-medium uppercase mt-3">
-        DUBAI • COLOMBO • WORLDWIDE
+      <!-- Subtitle Text -->
+      <span class="text-[11px] tracking-[0.2em] text-[#94A3B8] uppercase font-sans mt-3">
+        CURATING LUXURY TRAVEL EXPERIENCES
       </span>
     </div>
   </div>
@@ -140,19 +132,18 @@
             p.style.display = 'none';
             if (p.parentNode) p.parentNode.removeChild(p);
           }
-        }, 460);
+        }, 600);
       }
 
-      var timer = setTimeout(dismissPreloader, 1000);
+      if (document.readyState === 'complete') {
+        setTimeout(dismissPreloader, 400);
+      } else {
+        window.addEventListener('load', function() {
+          setTimeout(dismissPreloader, 300);
+        });
+      }
 
-      window.addEventListener('load', function() {
-        var elapsed = Date.now() - (window.__preloaderStartTime || Date.now());
-        if (elapsed >= 800) {
-          clearTimeout(timer);
-          dismissPreloader();
-        }
-      });
-      setTimeout(dismissPreloader, 1200);
+      setTimeout(dismissPreloader, 2500);
     })();
   </script>
 

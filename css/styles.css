@@ -2377,7 +2377,8 @@ html:not(.season-active) #holidayBannerTrack {
 }
 
 /* ==========================================================================
-   Runway Horizon Luxury Preloader (High-End Travel Transition)
+/* ==========================================================================
+   Elegant Luxury Preloader (Star Plus Midnight & Amber Horizon)
    ========================================================================== */
 #sitePreloader,
 .site-preloader {
@@ -2409,9 +2410,8 @@ html:not(.season-active) #holidayBannerTrack {
   touch-action: none !important;
   overscroll-behavior: none !important;
   pointer-events: auto !important;
-  will-change: transform, opacity;
-  transform: translateY(0);
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease !important;
+  will-change: opacity, visibility;
+  transition: opacity 0.6s ease, visibility 0.6s ease !important;
 }
 
 #sitePreloader,
@@ -2421,50 +2421,21 @@ html.light #sitePreloader {
   background-color: #070B14 !important;
 }
 
-/* Curtain Lift Exit Motion (Slide vertically upward, then fade) */
+/* Smooth 0.6s Fade-Out Transition */
 #sitePreloader.preloader-exit,
 #sitePreloader.fade-out,
 .site-preloader.preloader-exit,
 .site-preloader.fade-out {
-  transform: translateY(-100%) !important;
   opacity: 0 !important;
+  visibility: hidden !important;
   pointer-events: none !important;
 }
 
-/* Curved Flight Path Golden Arc Animation (0.9s stroke-dashoffset) */
-.runway-flight-arc {
-  animation: runwayArcFadeIn 0.3s ease-out forwards;
-}
-
-.runway-arc-path {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: runwayArcDraw 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes runwayArcDraw {
-  0% {
-    stroke-dashoffset: 100;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes runwayArcFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* Sleek Minimalist Progress Bar (0% to 100% in 1.0s ease-out) */
+/* Minimalist Progress Line (180px wide, 2px height, subtle runway track) */
 .runway-progress-track {
-  width: 140px;
+  width: 180px;
   height: 2px;
-  background-color: rgba(30, 41, 59, 0.8);
+  background-color: rgba(255, 255, 255, 0.08);
   border-radius: 9999px;
   overflow: hidden;
   position: relative;
@@ -2474,7 +2445,7 @@ html.light #sitePreloader {
   height: 100%;
   width: 0%;
   border-radius: 9999px;
-  background: linear-gradient(90deg, #F59E0B 0%, #FBBF24 100%);
+  background-color: #F59E0B;
   animation: runwayProgressFill 1.0s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
@@ -2485,6 +2456,15 @@ html.light #sitePreloader {
   100% {
     width: 100%;
   }
+}
+
+.preloader-subtitle {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: #94A3B8;
+  text-transform: uppercase;
+  font-family: inherit;
+  margin-top: 0.75rem;
 }
 
 /* ==========================================================================
