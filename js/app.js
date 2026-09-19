@@ -1629,7 +1629,7 @@ async function submitBookingForm(e) {
   const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
   if (submitBtn) {
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Submitting Reservation...</span>';
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Submitting Request...</span>';
     submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
   }
 
@@ -1638,7 +1638,7 @@ async function submitBookingForm(e) {
     fullName: name,
     email: email,
     phone: phone,
-    interest: "Holiday Tour Package",
+    interest: selectedPackageForBooking ? "Holiday Tour Package" : "Visa & Immigration Services",
     destination: `${packageDest ? packageDest + ' - ' : ''}${packageTitle}`,
     travelers: travelers,
     notes: `${notes ? notes + ' | ' : ''}Departure Date: ${date || 'Flexible'} | Children: ${children || 0}`
@@ -1884,7 +1884,7 @@ function checkVisaRequirements() {
         </a>
 
         <!-- Fast Online Form Booking Button -->
-        <button type="button" onclick="openVisaInquiryModal('${data.title.replace(/'/g, "\\'")}')" class="py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs sm:text-sm border border-slate-300 dark:border-slate-700 flex items-center justify-center space-x-1.5 transition-colors cursor-pointer" title="Apply Online">
+        <button type="button" onclick="openVisaInquiryModal('${data.title.replace(/'/g, "\\'")}', event)" class="py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs sm:text-sm border border-slate-300 dark:border-slate-700 flex items-center justify-center space-x-1.5 transition-colors cursor-pointer" title="Apply Online">
           <i class="fa-solid fa-file-signature text-amber-500 text-xs"></i>
           <span>Apply Online Form</span>
         </button>
@@ -1894,8 +1894,90 @@ function checkVisaRequirements() {
 }
 window.checkVisaRequirements = checkVisaRequirements;
 
-function openVisaInquiryModal(visaTitle) {
+function openVisaInquiryModal(visaTitle, e) {
+  if (e && e.preventDefault) {
+    e.preventDefault();
+  }
+
+  const bookingModal = document.getElementById('bookingModal');
   const contactForm = document.getElementById('contact');
+
+  // If a booking/inquiry modal is present on the page, open it directly without redirecting
+  if (bookingModal) {
+    selectedPackageForBooking = null;
+
+    const titleElem = document.getElementById('modalPkgTitle');
+    if (titleElem) titleElem.textContent = visaTitle || 'Visa Application';
+
+    const destElem = document.getElementById('modalPkgDestination');
+    if (destElem) {
+      destElem.innerHTML = `<i class="fa-solid fa-passport text-amber-500 mr-1.5"></i> <span class="font-semibold">Visa &amp; Immigration Services</span> &bull; <span>Express Processing</span>`;
+    }
+
+    const imgElem = document.getElementById('modalPkgImage');
+    if (imgElem) {
+      imgElem.src = 'assets/logo.png';
+      imgElem.alt = visaTitle || 'Visa Application';
+    }
+
+    const priceElem = document.getElementById('modalPkgBasePrice');
+    if (priceElem) priceElem.textContent = 'Official Rate';
+
+    const travelers = document.getElementById('bookingTravelers');
+    if (travelers) travelers.value = '1';
+
+    const children = document.getElementById('bookingChildren');
+    if (children) children.value = '0';
+
+    const nameInput = document.getElementById('bookingName');
+    if (nameInput) nameInput.value = '';
+
+    const emailInput = document.getElementById('bookingEmail');
+    if (emailInput) emailInput.value = '';
+
+    const phoneInput = document.getElementById('bookingPhone');
+    if (phoneInput) {
+      phoneInput.value = '';
+      if (phoneInput._iti) {
+        phoneInput._iti.setCountry('ae');
+      }
+    }
+
+    const nextWeek = new Date();
+    nextWeek.setDate(nextWeek.getDate() + 3);
+    const dateInput = document.getElementById('bookingDate');
+    if (dateInput) dateInput.value = nextWeek.toISOString().split('T')[0];
+
+    const notesInput = document.getElementById('bookingNotes');
+    if (notesInput) {
+      notesInput.value = `I would like to apply for: ${visaTitle}. Please advise on the required documents, processing timeline, and visa appointment availability.`;
+    }
+
+    const calcTotal = document.getElementById('modalTotalCalculation');
+    if (calcTotal) calcTotal.textContent = 'Direct Submission';
+
+    const installmentElem = document.getElementById('modalTabbyInstallment');
+    if (installmentElem) installmentElem.textContent = 'Tabby & Tamara 4x interest-free available on eligible services';
+
+    const submitBtn = bookingModal.querySelector('button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.textContent = 'Confirm Application Request';
+    }
+
+    bookingModal.classList.remove('hidden');
+    bookingModal.classList.add('flex');
+
+    if (typeof initIntlTelInputs === 'function') {
+      initIntlTelInputs();
+    }
+
+    if (typeof showToast === 'function') {
+      showToast(`Visa application form opened for ${visaTitle}.`, 'info');
+    }
+    return;
+  }
+
+  // If an embedded contact/quote form is on the current page, scroll and pre-fill
   if (contactForm) {
     contactForm.scrollIntoView({ behavior: 'smooth' });
     const interest = document.getElementById('contactInterest');
