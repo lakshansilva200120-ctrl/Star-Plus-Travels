@@ -2307,17 +2307,113 @@ function sendDirectDmcEmail() {
   window.location.href = `mailto:nfo@starplustraveluae.com?subject=${subject}&body=${body}`;
 }
 
-// Newsletter Subscription
-function handleNewsletter(e) {
-  e.preventDefault();
-  const emailInput = document.getElementById('newsletterEmail');
-  if (!emailInput || !emailInput.value) {
-    showToast('Please enter a valid email address.', 'error');
+// Newsletter Subscription ("VIP Travel Deals" in Footer)
+async function handleNewsletter(e) {
+  if (e && typeof e.preventDefault === 'function') {
+    e.preventDefault();
+  }
+
+  const form = (e && e.target && (e.target.tagName === 'FORM' ? e.target : e.target.closest('form')))
+    || document.querySelector('form[onsubmit*="handleNewsletter"]')
+    || document.getElementById('newsletterEmail')?.closest('form');
+
+  const emailInput = form?.querySelector('#newsletterEmail')
+    || form?.querySelector('input[type="email"]')
+    || document.getElementById('newsletterEmail');
+
+  const submitBtn = form?.querySelector('button[type="submit"]')
+    || form?.querySelector('button');
+
+  const email = emailInput?.value?.trim() || '';
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Validate that the email field is not empty and has a valid structure
+  if (!email || !emailRegex.test(email)) {
+    if (typeof showToast === 'function') {
+      showToast('Please enter a valid email address.', 'error');
+    }
+    if (emailInput) {
+      emailInput.focus();
+    }
     return;
   }
-  emailInput.value = '';
-  showToast('🎉 You have subscribed to VIP Star Plus travel deals & secret discounts!', 'success');
+
+  // Change button text to "Subscribing..." and disable it temporarily to prevent duplicate clicks
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Subscribing...';
+    submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+  }
+
+  const endpoint = typeof GOOGLE_APPS_SCRIPT_ENDPOINT !== 'undefined'
+    ? GOOGLE_APPS_SCRIPT_ENDPOINT
+    : 'https://script.google.com/macros/s/AKfycbz7vtBsDq--xmYbATR1Zszv2aO-aZeIIeJRvrj4OJgpYhPu9ZJjRTWDPu88y5_sW0DN/exec';
+
+  const payload = {
+    formType: "newsletter",
+    email: email,
+    source: "Website Footer"
+  };
+
+  try {
+    await fetch(endpoint, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    // Reset the input field
+    if (emailInput) {
+      emailInput.value = '';
+    }
+
+    // Display inline confirmation note below the button
+    let feedback = form?.querySelector('.newsletter-feedback');
+    if (!feedback && form) {
+      feedback = document.createElement('p');
+      feedback.className = 'newsletter-feedback text-[11px] text-emerald-400 font-medium mt-2 leading-snug transition-all';
+      form.appendChild(feedback);
+    }
+    if (feedback) {
+      feedback.textContent = "🎉 Thank you! You've subscribed to Star Plus VIP Deals.";
+      feedback.classList.remove('hidden');
+      feedback.style.display = 'block';
+    }
+
+    if (typeof showToast === 'function') {
+      showToast("🎉 Thank you! You've subscribed to Star Plus VIP Deals.", 'success');
+    }
+  } catch (err) {
+    console.error('Newsletter subscription error:', err);
+    if (emailInput) {
+      emailInput.value = '';
+    }
+    let feedback = form?.querySelector('.newsletter-feedback');
+    if (!feedback && form) {
+      feedback = document.createElement('p');
+      feedback.className = 'newsletter-feedback text-[11px] text-emerald-400 font-medium mt-2 leading-snug transition-all';
+      form.appendChild(feedback);
+    }
+    if (feedback) {
+      feedback.textContent = "🎉 Thank you! You've subscribed to Star Plus VIP Deals.";
+      feedback.classList.remove('hidden');
+      feedback.style.display = 'block';
+    }
+  } finally {
+    // Restore the button text to "SUBSCRIBE" and re-enable it after 3 seconds
+    setTimeout(() => {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'SUBSCRIBE';
+        submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+      }
+    }, 3000);
+  }
 }
+window.handleNewsletter = handleNewsletter;
 
 // FAQ Accordion Toggle
 function toggleFaq(btn) {
@@ -6225,7 +6321,25 @@ function initShowcaseAndSearch() {
 
   // Initialize international telephone inputs
   initIntlTelInputs();
+
+  // Initialize newsletter form event listeners
+  initNewsletterForms();
 }
+
+// ============================================================================
+// Footer Newsletter Form Event Binding
+// ============================================================================
+function initNewsletterForms() {
+  const forms = document.querySelectorAll('form[onsubmit*="handleNewsletter"], #newsletterEmail');
+  forms.forEach(el => {
+    const form = el.tagName === 'FORM' ? el : el.closest('form');
+    if (form && !form.dataset.newsletterBound) {
+      form.dataset.newsletterBound = 'true';
+      form.addEventListener('submit', handleNewsletter);
+    }
+  });
+}
+window.initNewsletterForms = initNewsletterForms;
 
 // ============================================================================
 // International Telephone Input (intl-tel-input) Setup & Initialization
@@ -6269,12 +6383,17 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initShowcaseAndSearch();
     initIntlTelInputs();
+    initNewsletterForms();
   });
 } else {
   initShowcaseAndSearch();
   initIntlTelInputs();
+  initNewsletterForms();
 }
 
-window.addEventListener('load', initIntlTelInputs);
+window.addEventListener('load', () => {
+  initIntlTelInputs();
+  initNewsletterForms();
+});
 
 
