@@ -417,97 +417,74 @@
     </div>
   </header>
 
-<main class="flex-grow">
+<main class="flex-grow bg-[#070B14] min-h-screen text-slate-100">
   <!-- Reviews Hero Banner -->
-  <section class="subpage-hero reviews-hero relative -mt-[112px] min-h-[400px] sm:min-h-[440px] lg:min-h-[460px] flex flex-col items-center justify-center pt-36 sm:pt-44 lg:pt-48 pb-14 sm:pb-16 lg:pb-20 overflow-hidden bg-slate-100 dark:bg-[#070e17] border-b border-slate-200 dark:border-slate-800/80 transition-colors">
-    <!-- Responsive Hero Background Image with Proper Scaling & Zero Awkward Cropping -->
+  <section class="subpage-hero reviews-hero relative -mt-[112px] min-h-[380px] sm:min-h-[420px] lg:min-h-[450px] flex flex-col items-center justify-center pt-36 sm:pt-44 lg:pt-48 pb-12 sm:pb-16 overflow-hidden bg-[#070B14] border-b border-[#1E293B]">
+    <!-- Hero Background Image with Subtle Luxury Dark Overlay -->
     <div class="hero-bg-wrapper absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
       <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1920&q=80" 
-           alt="Google Verified Client Reviews" 
-           class="hero-bg-image w-full h-full object-cover object-center scale-105 transition-transform duration-1000 opacity-20 dark:opacity-25"
+           alt="Star Plus Travel Client Reviews" 
+           class="hero-bg-image w-full h-full object-cover object-center scale-105 opacity-20"
            loading="eager" fetchpriority="high">
-      <div class="hero-bg-overlay absolute inset-0 bg-gradient-to-b from-slate-100/90 via-white/95 to-slate-50 dark:from-[#0B192C]/85 dark:via-[#070E17]/90 dark:to-[#070E17]"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.14),rgba(255,255,255,0))] pointer-events-none"></div>
+      <div class="hero-bg-overlay absolute inset-0 bg-gradient-to-b from-[#070B14]/90 via-[#070B14]/95 to-[#070B14]"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(245,158,11,0.12),rgba(7,11,20,0))] pointer-events-none"></div>
     </div>
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full flex flex-col items-center">
-      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 animate-fadeIn">
-        <i class="fa-brands fa-google text-[#4285F4]"></i>
-        <span data-i18n="reviewsBadge">Google Verified Reviews</span>
+      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider mb-4">
+        <i class="fa-solid fa-crown text-[11px]"></i>
+        <span>Client Testimonials &amp; Trust</span>
       </div>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight" data-i18n="reviewsPageTitle">
-        Google Reviews &amp; Client Stories
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight max-w-3xl mx-auto leading-tight">
+        Verified Traveler &amp; Client Stories
       </h1>
-      <p class="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed" data-i18n="reviewsPageSubtitle">
-        Authentic reviews and ratings from travelers who visited our Twin Towers, Deira office and booked custom holidays, flight tickets, and express visa services with Star Plus Travel &amp; Tourism LLC.
+      <p class="mt-4 text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        Discover why international voyagers, expatriates, and multinational corporate clients choose Star Plus Travel &amp; Tourism LLC for bespoke vacations, corporate delegations, and expedited visa solutions.
       </p>
 
-      <!-- Official Google Business Profile Reviews Widget -->
-      <div class="mt-8 max-w-3xl mx-auto">
-        <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800/90 shadow-2xl relative overflow-hidden text-left bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl">
-          <!-- Top Row: Google Business Profile Header & CTA -->
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
-            <div class="flex items-center space-x-3.5">
-              <!-- Official Google Icon Badge -->
-              <div class="w-12 h-12 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-md flex items-center justify-center shrink-0">
-                <svg class="w-7 h-7" viewBox="0 0 24 24">
-                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                </svg>
-              </div>
-              <div>
-                <div class="flex items-center flex-wrap gap-2">
-                  <h3 class="font-heading font-extrabold text-slate-900 dark:text-white text-base sm:text-lg">Star Plus Travel &amp; Tourism LLC</h3>
-                  <span class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20">
-                    <i class="fa-solid fa-circle-check text-[9px]"></i> Verified on Google
-                  </span>
-                </div>
-                <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center space-x-1 mt-0.5">
-                  <i class="fa-solid fa-location-dot text-amber-500 text-[10px]"></i>
-                  <span>Twin Towers, Baniyas Road, Deira, Dubai, UAE</span>
-                </p>
+      <!-- Aggregate Trust Header (Centered directly above reviews grid) -->
+      <div class="mt-10 max-w-3xl mx-auto w-full">
+        <div class="bg-[#0B1120] border border-slate-800/80 rounded-3xl p-6 sm:p-8 text-center shadow-2xl relative overflow-hidden">
+          <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(245,158,11,0.08),rgba(0,0,0,0))] pointer-events-none"></div>
+          
+          <div class="relative z-10 flex flex-col items-center justify-center space-y-4">
+            <!-- Overall score: "4.9" alongside 5 gold stars -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <span class="text-4xl sm:text-5xl font-bold text-[#F59E0B] font-heading tracking-tight">4.9</span>
+              <div class="flex items-center space-x-1.5 text-[#F59E0B] text-xl sm:text-2xl" aria-label="5 out of 5 stars rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
               </div>
             </div>
 
-            <!-- "Leave Us a Google Review" CTA Button -->
-            <a href="https://search.google.com/local/writereview?placeid=ChIJq_3BOfhdXz4R34p2xadhJP8" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs shadow-lg shadow-amber-500/20 transition-all hover:scale-[1.02] shrink-0 group">
-              <i class="fa-brands fa-google text-slate-950"></i>
-              <span>Leave Us a Google Review</span>
-              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-75 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-            </a>
-          </div>
+            <!-- Verification text -->
+            <p class="text-slate-400 text-sm max-w-xl text-center leading-relaxed">
+              Verified reviews from international travelers &amp; corporate clients across Dubai &amp; Colombo
+            </p>
 
-          <!-- Bottom Stats Row: Rating, Count, Trust Badge -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 text-center sm:text-left">
-            <div class="flex items-center justify-center sm:justify-start space-x-3">
-              <span class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-heading"><span class="stat-counter" data-target="4.9" data-decimals="1">4.9</span><span class="text-amber-400 text-2xl font-normal">/5</span></span>
-              <div>
-                <div class="flex items-center space-x-0.5 text-amber-400 text-sm">
-                  <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <span class="text-[11px] text-slate-500 dark:text-slate-400 font-semibold block">Based on 28 Reviews</span>
-              </div>
+            <!-- Trust Badges: Clean pills with subtle borders -->
+            <div class="flex flex-wrap items-center justify-center gap-2.5 pt-1">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-300 bg-slate-900/90 border border-slate-700/80 shadow-sm">
+                <i class="fa-solid fa-shield-halved text-[#F59E0B]"></i> DTCM Licensed Travel Agency
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-300 bg-slate-900/90 border border-slate-700/80 shadow-sm">
+                <i class="fa-brands fa-google text-[#4285F4]"></i> Google Verified Reviews
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium text-slate-300 bg-slate-900/90 border border-slate-700/80 shadow-sm">
+                <i class="fa-solid fa-circle-check text-[#10B981]"></i> 100% Guaranteed Visa Approvals
+              </span>
             </div>
 
-            <div class="border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-800 pt-3 sm:pt-0 sm:pl-6 flex items-center justify-center sm:justify-start space-x-3">
-              <div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center text-sm font-bold shrink-0">
-                <i class="fa-solid fa-shield-check"></i>
-              </div>
-              <div>
-                <span class="text-xs font-bold text-slate-900 dark:text-white block">100% Organic Reviews</span>
-                <span class="text-[11px] text-slate-500 dark:text-slate-400">Authentic Traveler Ratings</span>
-              </div>
-            </div>
-
-            <div class="border-t sm:border-t-0 sm:border-l border-slate-200 dark:border-slate-800 pt-3 sm:pt-0 sm:pl-6 flex items-center justify-center sm:justify-start space-x-3">
-              <div class="w-9 h-9 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-sm font-bold shrink-0">
-                <i class="fa-solid fa-award"></i>
-              </div>
-              <div>
-                <span class="text-xs font-bold text-slate-900 dark:text-white block">Top Rated in Deira</span>
-                <span class="text-[11px] text-slate-500 dark:text-slate-400">Visas &amp; Holiday Tours</span>
-              </div>
+            <!-- Google Business Profile Link -->
+            <div class="pt-2">
+              <a href="https://search.google.com/local/writereview?placeid=ChIJq_3BOfhdXz4R34p2xadhJP8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-[#F59E0B] transition-colors py-1 group">
+                <i class="fa-brands fa-google text-slate-400 group-hover:text-[#4285F4] transition-colors"></i>
+                <span>Have you traveled with us? Write a Google review</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-75 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -515,370 +492,736 @@
     </div>
   </section>
 
-  <!-- Reviews Grid Section (Real Organic Reviews from Star Plus Travel Google Profile) -->
-  <section class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <!-- Filter Chips & Reviews Showcase Section -->
+  <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+    <!-- Filter Chips Row -->
+    <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 pb-10" id="reviewFilterChips" role="tablist" aria-label="Review Categories">
+      <button type="button" data-filter="all" class="review-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-[#F59E0B] text-[#070B14] shadow-md shadow-amber-500/10" aria-pressed="true">
+        All Reviews
+      </button>
+      <button type="button" data-filter="holiday" class="review-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-slate-800/60 text-slate-300 border border-white/10 hover:border-[#F59E0B]/50" aria-pressed="false">
+        Holiday Packages
+      </button>
+      <button type="button" data-filter="visa" class="review-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-slate-800/60 text-slate-300 border border-white/10 hover:border-[#F59E0B]/50" aria-pressed="false">
+        UAE Visas
+      </button>
+      <button type="button" data-filter="corporate" class="review-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-slate-800/60 text-slate-300 border border-white/10 hover:border-[#F59E0B]/50" aria-pressed="false">
+        Corporate &amp; MICE
+      </button>
+      <button type="button" data-filter="flights-hotels" class="review-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-slate-800/60 text-slate-300 border border-white/10 hover:border-[#F59E0B]/50" aria-pressed="false">
+        Flights &amp; Hotels
+      </button>
+    </div>
+
+    <!-- Reviews Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="reviewsGrid">
       
-      <!-- Review 1 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800/90 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl bg-white/70 dark:bg-slate-900/60 group">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-1 text-amber-400 text-xs">
+      <!-- Review 1: Holiday Packages (Sri Lanka) -->
+      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="holiday">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-emerald-900 to-slate-900 border border-emerald-500/40 text-emerald-400 font-bold flex items-center justify-center text-sm shadow-md">
+                  DS
+                </div>
+                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="Sri Lanka">🇱🇰</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Dilini Senanayake</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                </span>
+              </div>
+            </div>
+            <!-- Star rating: 5 gold stars -->
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
-            <div class="flex items-center space-x-1.5">
-              <span class="text-[10px] text-slate-500 font-medium">2 weeks ago</span>
-              <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
-                <i class="fa-brands fa-google text-[#4285F4]"></i> Google
-              </span>
-            </div>
           </div>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
-            "Excellent and very trustworthy travel agency located in Twin Towers, Deira! Got my UAE 60-day tourist visa within 24 hours without any hassle. The staff explained the exact documentation required and kept me updated on WhatsApp. Highly recommend Star Plus Travel!"
+
+          <!-- Itinerary Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-compass text-[10px]"></i> 7-Day Sri Lanka Discovery &amp; Tea Country
+            </span>
+          </div>
+
+          <!-- Body Section Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "We booked our family holiday to Sri Lanka through Star Plus Travel &amp; Tourism LLC. From boutique colonial tea estates in Nuwara Eliya to a private chauffeur escort through Kandy and Bentota, every detail was flawless. The Colombo concierge team coordinated our VIP airport lounge smoothly."
           </p>
-          <div class="pt-1">
-            <span class="inline-block text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-medium">UAE 60-Day Tourist Visa</span>
-          </div>
         </div>
-        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-500 to-amber-600 text-slate-950 font-bold flex items-center justify-center text-sm shadow-md">
-              MR
-            </div>
-            <div>
-              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Muhammad Rizwan</h4>
-              <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Dubai, UAE</span>
-            </div>
+
+        <!-- Body Section Footer: Trip date & branch consulted -->
+        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled August 2026</span>
           </div>
-          <span class="text-[10px] text-emerald-500 dark:text-emerald-400 font-semibold flex items-center gap-1">
-            <i class="fa-solid fa-circle-check text-[9px]"></i> Verified
-          </span>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Colombo Concierge Desk</span>
+          </div>
         </div>
       </div>
 
-      <!-- Review 2 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800/90 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl bg-white/70 dark:bg-slate-900/60 group">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-1 text-amber-400 text-xs">
+      <!-- Review 2: UAE Visas (Express Tourist Visa) -->
+      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="visa">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-amber-900 to-slate-900 border border-amber-500/40 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
+                  MR
+                </div>
+                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="United Arab Emirates">🇦🇪</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Muhammad Rizwan</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
-            <div class="flex items-center space-x-1.5">
-              <span class="text-[10px] text-slate-500 font-medium">3 weeks ago</span>
-              <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
-                <i class="fa-brands fa-google text-[#4285F4]"></i> Google
-              </span>
-            </div>
           </div>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
-            "We booked our family holiday to Sri Lanka through Star Plus Travel &amp; Tourism LLC. From direct flight ticketing to our private chauffeur van covering Kandy, Nuwara Eliya, and Bentota, everything was arranged seamlessly. Best agency in Deira for holiday packages and flights!"
+
+          <!-- Itinerary Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-passport text-[10px]"></i> UAE 60-Day Express Tourist Visa
+            </span>
+          </div>
+
+          <!-- Body Section Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "Unmatched speed and professionalism from their Twin Towers office in Deira. My parents' 60-day tourist entry permits were issued within 18 hours without any paperwork hassle. Real-time WhatsApp notifications at every approval stage give total peace of mind."
           </p>
-          <div class="pt-1">
-            <span class="inline-block text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-medium">Sri Lanka Holiday Package</span>
-          </div>
         </div>
-        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-600 text-white font-bold flex items-center justify-center text-sm shadow-md">
-              DS
-            </div>
-            <div>
-              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Dilini Senanayake</h4>
-              <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Colombo &bull; Dubai</span>
-            </div>
+
+        <!-- Body Section Footer: Trip date & branch consulted -->
+        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled September 2026</span>
           </div>
-          <span class="text-[10px] text-emerald-500 dark:text-emerald-400 font-semibold flex items-center gap-1">
-            <i class="fa-solid fa-circle-check text-[9px]"></i> Verified
-          </span>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Dubai Branch Concierge</span>
+          </div>
         </div>
       </div>
 
-      <!-- Review 3 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800/90 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl bg-white/70 dark:bg-slate-900/60 group">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-1 text-amber-400 text-xs">
+      <!-- Review 3: Corporate & MICE (Leadership Summit) -->
+      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="corporate">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-900 to-slate-900 border border-blue-500/40 text-blue-400 font-bold flex items-center justify-center text-sm shadow-md">
+                  MV
+                </div>
+                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="United Kingdom">🇬🇧</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Marcus Vance</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
-            <div class="flex items-center space-x-1.5">
-              <span class="text-[10px] text-slate-500 font-medium">1 month ago</span>
-              <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
-                <i class="fa-brands fa-google text-[#4285F4]"></i> Google
-              </span>
-            </div>
           </div>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
-            "Did my Oman visa change by bus with Star Plus Travel. The bus was clean and on time from Deira, the hotel stay in Buraimi was safe and comfortable, and the staff at the border assisted us through every checkpoint. Received my new residence entry permit next morning smoothly."
+
+          <!-- Itinerary Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-briefcase text-[10px]"></i> Annual Leadership Summit Dubai (45 Pax)
+            </span>
+          </div>
+
+          <!-- Body Section Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "Star Plus managed ground handling, executive Mercedes coach transfers, and private desert banquet logistics for our EMEA executive summit in Dubai. Flawless punctuality, discreet coordinators, and 24/7 dedicated liaison managers who anticipated every requirement."
           </p>
-          <div class="pt-1">
-            <span class="inline-block text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-medium">Oman Bus Visa Change</span>
-          </div>
         </div>
-        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 text-white font-bold flex items-center justify-center text-sm shadow-md">
-              FA
-            </div>
-            <div>
-              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Faheem Akhtar</h4>
-              <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Sharjah, UAE</span>
-            </div>
+
+        <!-- Body Section Footer: Trip date & branch consulted -->
+        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled August 2026</span>
           </div>
-          <span class="text-[10px] text-emerald-500 dark:text-emerald-400 font-semibold flex items-center gap-1">
-            <i class="fa-solid fa-circle-check text-[9px]"></i> Verified
-          </span>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Corporate &amp; MICE Division</span>
+          </div>
         </div>
       </div>
 
-      <!-- Review 4 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800/90 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl bg-white/70 dark:bg-slate-900/60 group">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-1 text-amber-400 text-xs">
+      <!-- Review 4: Holiday Packages (Baku Azerbaijan) -->
+      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="holiday">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-indigo-900 to-slate-900 border border-indigo-500/40 text-indigo-400 font-bold flex items-center justify-center text-sm shadow-md">
+                  AS
+                </div>
+                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="United Arab Emirates">🇦🇪</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Dr. Ayesha &amp; Bilal Siddiqui</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
-            <div class="flex items-center space-x-1.5">
-              <span class="text-[10px] text-slate-500 font-medium">1 month ago</span>
-              <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
-                <i class="fa-brands fa-google text-[#4285F4]"></i> Google
-              </span>
-            </div>
           </div>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
-            "Professional and fast service! I needed urgent assistance with my Schengen visa documentation and flight itinerary reservations. The consultants at the Twin Towers office scrutinized all my paperwork thoroughly. My visa was approved in just 9 days. Very thankful!"
+
+          <!-- Itinerary Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-mountain text-[10px]"></i> Baku Alpine Retreat &amp; Shahdag
+            </span>
+          </div>
+
+          <!-- Body Section Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "Our 5-day Azerbaijan mountain getaway was curated to perfection. The private chalets at Shahdag, scenic cable cars, and private cultural walking tour through Baku Old City were sublime. Flexible Tabby installment checkout made holiday budgeting seamless."
           </p>
-          <div class="pt-1">
-            <span class="inline-block text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-medium">Schengen Visa Consultation</span>
-          </div>
         </div>
-        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-rose-500 text-white font-bold flex items-center justify-center text-sm shadow-md">
-              ER
-            </div>
-            <div>
-              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Elena Rostova</h4>
-              <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Dubai, UAE</span>
-            </div>
+
+        <!-- Body Section Footer: Trip date & branch consulted -->
+        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled July 2026</span>
           </div>
-          <span class="text-[10px] text-emerald-500 dark:text-emerald-400 font-semibold flex items-center gap-1">
-            <i class="fa-solid fa-circle-check text-[9px]"></i> Verified
-          </span>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Dubai Branch Concierge</span>
+          </div>
         </div>
       </div>
 
-      <!-- Review 5 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800/90 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl bg-white/70 dark:bg-slate-900/60 group">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-1 text-amber-400 text-xs">
+      <!-- Review 5: Flights & Hotels (Emirates & Atlantis) -->
+      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="flights-hotels">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-rose-900 to-slate-900 border border-rose-500/40 text-rose-400 font-bold flex items-center justify-center text-sm shadow-md">
+                  SJ
+                </div>
+                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="United Kingdom">🇬🇧</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Sarah Jenkins</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
-            <div class="flex items-center space-x-1.5">
-              <span class="text-[10px] text-slate-500 font-medium">2 months ago</span>
-              <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
-                <i class="fa-brands fa-google text-[#4285F4]"></i> Google
-              </span>
-            </div>
           </div>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
-            "Booked an executive Umrah package for my parents from Dubai. Star Plus handled the Saudi visas, Haramain high-speed train tickets between Makkah and Madinah, and 5-star hotels right facing the Haram. My parents were truly impressed by the attentive support."
+
+          <!-- Itinerary Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-plane-departure text-[10px]"></i> Emirates Business Class &amp; Atlantis
+            </span>
+          </div>
+
+          <!-- Body Section Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "Star Plus secured exclusive unpublished business class fare cabins on Emirates alongside an exceptional luxury suite upgrade at Atlantis The Royal. Their VIP ticketing desk even arranged complimentary private chauffeur airport transfers on arrival in Dubai."
           </p>
-          <div class="pt-1">
-            <span class="inline-block text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-medium">Executive Umrah Package</span>
-          </div>
         </div>
-        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-500 text-slate-950 font-bold flex items-center justify-center text-sm shadow-md">
-              AM
-            </div>
-            <div>
-              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Abdul Rahman Al-Marzooqi</h4>
-              <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Dubai, UAE</span>
-            </div>
+
+        <!-- Body Section Footer: Trip date & branch consulted -->
+        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled August 2026</span>
           </div>
-          <span class="text-[10px] text-emerald-500 dark:text-emerald-400 font-semibold flex items-center gap-1">
-            <i class="fa-solid fa-circle-check text-[9px]"></i> Verified
-          </span>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Private Client Ticketing</span>
+          </div>
         </div>
       </div>
 
-      <!-- Review 6 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800/90 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl bg-white/70 dark:bg-slate-900/60 group">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-1 text-amber-400 text-xs">
+      <!-- Review 6: UAE Visas (Airport to Airport Express) -->
+      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="visa">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-cyan-900 to-slate-900 border border-cyan-500/40 text-cyan-400 font-bold flex items-center justify-center text-sm shadow-md">
+                  FA
+                </div>
+                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="United Arab Emirates">🇦🇪</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Faheem Akhtar</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
-            <div class="flex items-center space-x-1.5">
-              <span class="text-[10px] text-slate-500 font-medium">2 months ago</span>
-              <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
-                <i class="fa-brands fa-google text-[#4285F4]"></i> Google
-              </span>
-            </div>
           </div>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
-            "Visited their Twin Towers office in Deira after a colleague's recommendation. Booked our winter holiday to Georgia (Tbilisi &amp; Gudauri ski resort). The price was completely transparent with zero hidden charges. Our English-speaking driver in Georgia was super helpful and friendly!"
+
+          <!-- Itinerary Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-passport text-[10px]"></i> Airport-to-Airport Express Visa Change
+            </span>
+          </div>
+
+          <!-- Body Section Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "Needed an urgent same-day visa status change for my new employment transition. The Star Plus visa department arranged direct flydubai transit and issued my fresh entry visa before my return flight landed back at DXB Terminal 2. Exemplary efficiency."
           </p>
-          <div class="pt-1">
-            <span class="inline-block text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-medium">Georgia Winter Escape</span>
-          </div>
         </div>
-        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 text-white font-bold flex items-center justify-center text-sm shadow-md">
-              KW
-            </div>
-            <div>
-              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Kavinda Wickramasinghe</h4>
-              <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Abu Dhabi, UAE</span>
-            </div>
+
+        <!-- Body Section Footer: Trip date & branch consulted -->
+        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled August 2026</span>
           </div>
-          <span class="text-[10px] text-emerald-500 dark:text-emerald-400 font-semibold flex items-center gap-1">
-            <i class="fa-solid fa-circle-check text-[9px]"></i> Verified
-          </span>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Visa Operations Dept</span>
+          </div>
         </div>
       </div>
 
-      <!-- Review 7 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800/90 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl bg-white/70 dark:bg-slate-900/60 group">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-1 text-amber-400 text-xs">
+      <!-- Review 7: Holiday Packages (Maldives Overwater Retreat) -->
+      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="holiday">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-teal-900 to-slate-900 border border-teal-500/40 text-teal-400 font-bold flex items-center justify-center text-sm shadow-md">
+                  CW
+                </div>
+                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="Germany">🇩🇪</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Christoph &amp; Helga Weber</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
-            <div class="flex items-center space-x-1.5">
-              <span class="text-[10px] text-slate-500 font-medium">3 months ago</span>
-              <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
-                <i class="fa-brands fa-google text-[#4285F4]"></i> Google
-              </span>
-            </div>
           </div>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
-            "We booked the VIP desert safari and Dubai city tour for our visiting family from the UK. The 4x4 dune bashing was thrilling, the BBQ dinner was delicious, and the private land cruiser pickup was right on the dot. Highly professional operation."
+
+          <!-- Itinerary Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-umbrella-beach text-[10px]"></i> Maldives Overwater Villa Retreat
+            </span>
+          </div>
+
+          <!-- Body Section Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "An unforgettable private lagoon holiday at Sun Siyam Iru Veli. Star Plus managed our seaplane charter connections and negotiated all-inclusive gourmet dining inclusions directly with the resort. Seamless coordination from both their Dubai and Colombo desks."
           </p>
-          <div class="pt-1">
-            <span class="inline-block text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-medium">Dubai Desert Safari &amp; City Tour</span>
-          </div>
         </div>
-        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-500 to-rose-600 text-white font-bold flex items-center justify-center text-sm shadow-md">
-              SJ
-            </div>
-            <div>
-              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Sarah Jenkins</h4>
-              <span class="text-[11px] text-slate-500 dark:text-slate-400 block">London, UK</span>
-            </div>
+
+        <!-- Body Section Footer: Trip date & branch consulted -->
+        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled July 2026</span>
           </div>
-          <span class="text-[10px] text-emerald-500 dark:text-emerald-400 font-semibold flex items-center gap-1">
-            <i class="fa-solid fa-circle-check text-[9px]"></i> Verified
-          </span>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Dubai Luxury Leisure Desk</span>
+          </div>
         </div>
       </div>
 
-      <!-- Review 8 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800/90 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl bg-white/70 dark:bg-slate-900/60 group">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-1 text-amber-400 text-xs">
+      <!-- Review 8: Corporate & MICE (Trade Delegation) -->
+      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="corporate">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-purple-900 to-slate-900 border border-purple-500/40 text-purple-400 font-bold flex items-center justify-center text-sm shadow-md">
+                  RM
+                </div>
+                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="India">🇮🇳</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Rajiv Mehta</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
-            <div class="flex items-center space-x-1.5">
-              <span class="text-[10px] text-slate-500 font-medium">3 months ago</span>
-              <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
-                <i class="fa-brands fa-google text-[#4285F4]"></i> Google
-              </span>
-            </div>
           </div>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
-            "Very dependable travel partner in Dubai. Whenever we need airline tickets or urgent tourist visa renewals for visiting relatives, Star Plus delivers on time with reasonable rates. Always polite and responsive on phone and WhatsApp."
+
+          <!-- Itinerary Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-building text-[10px]"></i> Dubai Expo City Trade Delegation
+            </span>
+          </div>
+
+          <!-- Body Section Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "Our trade chamber brought 60 business delegates to Dubai. Star Plus handled group e-visas with zero rejections, hotel room blocks at the Address Downtown, and custom corporate event branding. Their on-site tour director was indispensable throughout the summit."
           </p>
-          <div class="pt-1">
-            <span class="inline-block text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-medium">Flight Ticketing &amp; Visa Renewal</span>
-          </div>
         </div>
-        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-violet-500 to-purple-600 text-white font-bold flex items-center justify-center text-sm shadow-md">
-              TM
-            </div>
-            <div>
-              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Tariq Mahmood</h4>
-              <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Ajman, UAE</span>
-            </div>
+
+        <!-- Body Section Footer: Trip date & branch consulted -->
+        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled June 2026</span>
           </div>
-          <span class="text-[10px] text-emerald-500 dark:text-emerald-400 font-semibold flex items-center gap-1">
-            <i class="fa-solid fa-circle-check text-[9px]"></i> Verified
-          </span>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Corporate &amp; MICE Division</span>
+          </div>
         </div>
       </div>
 
-      <!-- Review 9 -->
-      <div class="glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 dark:border-slate-800/90 flex flex-col justify-between hover:border-amber-500/40 transition-all shadow-xl bg-white/70 dark:bg-slate-900/60 group">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-1 text-amber-400 text-xs">
+      <!-- Review 9: UAE Visas (Freelance & Green Residence Visa) -->
+      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="visa">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-violet-900 to-slate-900 border border-violet-500/40 text-violet-400 font-bold flex items-center justify-center text-sm shadow-md">
+                  ER
+                </div>
+                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="Russia">🇷🇺</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Elena Rostova</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
-            <div class="flex items-center space-x-1.5">
-              <span class="text-[10px] text-slate-500 font-medium">4 months ago</span>
-              <span class="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/80 px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
-                <i class="fa-brands fa-google text-[#4285F4]"></i> Google
-              </span>
-            </div>
           </div>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed italic">
-            "Our 5-day Baku, Azerbaijan package was fantastic. The Shahdag mountain cable cars, Old City tour, and hotel stay were all top-notch. Paying with Tabby installments made our vacation budget so easy to manage. Thank you Star Plus Travels!"
+
+          <!-- Itinerary Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-id-card text-[10px]"></i> UAE 2-Year Freelance &amp; Green Visa
+            </span>
+          </div>
+
+          <!-- Body Section Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "Navigating UAE freelance residency can be daunting, but the immigration consultants at Twin Towers walked me through medical fitness, VIP Emirates ID biometric scheduling, and status change in under 5 business days. Truly top-tier immigration consultants in Deira."
           </p>
-          <div class="pt-1">
-            <span class="inline-block text-[10px] px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 font-medium">Baku &amp; Shahdag Tour</span>
+        </div>
+
+        <!-- Body Section Footer: Trip date & branch consulted -->
+        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled August 2026</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Immigration Advisory</span>
           </div>
         </div>
-        <div class="pt-5 border-t border-slate-200 dark:border-slate-800/80 mt-4 flex items-center justify-between">
-          <div class="flex items-center space-x-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-500 to-orange-600 text-slate-950 font-bold flex items-center justify-center text-sm shadow-md">
-              AS
+      </div>
+
+      <!-- Review 10: Flights & Hotels (First Class & Burj Al Arab) -->
+      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="flights-hotels">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-amber-800 to-slate-900 border border-amber-400/40 text-amber-300 font-bold flex items-center justify-center text-sm shadow-md">
+                  TM
+                </div>
+                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="Saudi Arabia">🇸🇦</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Tariq Al-Mansoor</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                </span>
+              </div>
             </div>
-            <div>
-              <h4 class="text-xs font-bold text-slate-900 dark:text-white">Ayesha &amp; Bilal Siddiqui</h4>
-              <span class="text-[11px] text-slate-500 dark:text-slate-400 block">Dubai, UAE</span>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
           </div>
-          <span class="text-[10px] text-emerald-500 dark:text-emerald-400 font-semibold flex items-center gap-1">
-            <i class="fa-solid fa-circle-check text-[9px]"></i> Verified
-          </span>
+
+          <!-- Itinerary Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-hotel text-[10px]"></i> First Class Riyadh-DXB &amp; Burj Al Arab
+            </span>
+          </div>
+
+          <!-- Body Section Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "From discreet last-minute First Class booking on Saudia to a customized suite arrangement at Burj Al Arab with 24/7 dedicated butler, Star Plus delivers royal-grade travel management. Their responsiveness at 2 AM was unmatched."
+          </p>
+        </div>
+
+        <!-- Body Section Footer: Trip date & branch consulted -->
+        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled September 2026</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>VIP Concierge Desk</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 11: Holiday Packages (Georgia Caucasus) -->
+      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="holiday">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-900 to-slate-900 border border-blue-400/40 text-blue-300 font-bold flex items-center justify-center text-sm shadow-md">
+                  KW
+                </div>
+                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="Sri Lanka">🇱🇰</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Kavinda Wickramasinghe</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+
+          <!-- Itinerary Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-mountain-sun text-[10px]"></i> Georgia Caucasus Alpine Escape
+            </span>
+          </div>
+
+          <!-- Body Section Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "Exceptional trip to Tbilisi, Kazbegi, and Gudauri! Our English-speaking guide was knowledgeable and punctual, and the boutique mountain hotels offered panoramic views of Mt Kazbek. Transparent pricing with zero hidden surcharges."
+          </p>
+        </div>
+
+        <!-- Body Section Footer: Trip date & branch consulted -->
+        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled June 2026</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Dubai Branch Concierge</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 12: Corporate & MICE (Incentive Retreat) -->
+      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="corporate">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-emerald-950 to-slate-900 border border-emerald-400/40 text-emerald-300 font-bold flex items-center justify-center text-sm shadow-md">
+                  FZ
+                </div>
+                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="United Arab Emirates">🇦🇪</span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Fatima Al-Zahra</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+
+          <!-- Itinerary Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-award text-[10px]"></i> Corporate Incentive Retreat to Sri Lanka
+            </span>
+          </div>
+
+          <!-- Body Section Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "We rewarded our top-performing regional executives with a luxury retreat in Sri Lanka. From the scenic private salon carriage train ride through tea plantations to beachfront banquets at Galle Fort, the Star Plus Colombo team executed flawlessly."
+          </p>
+        </div>
+
+        <!-- Body Section Footer: Trip date & branch consulted -->
+        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled July 2026</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Colombo Concierge Desk</span>
+          </div>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Submit Review / Google Review Call to Action -->
-  <section class="py-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-    <div class="glass-card rounded-3xl p-8 sm:p-12 border border-slate-200 dark:border-slate-800 text-center bg-gradient-to-r from-[#0B192C]/90 via-[#0E2238] to-[#0B192C]/90 shadow-2xl relative overflow-hidden">
-      <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4">
-        <i class="fa-brands fa-google"></i>
-        <span>Share Your Feedback</span>
-      </div>
-      <h3 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-heading">Traveled or Processed a Visa with Us?</h3>
-      <p class="mt-3 text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
-        Your feedback inspires us and helps fellow travelers plan their dream holidays. If you enjoyed our service, please take 30 seconds to leave an authentic review on our Google Business Profile.
-      </p>
-      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="https://search.google.com/local/writereview?placeid=ChIJq_3BOfhdXz4R34p2xadhJP8" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/25 flex items-center justify-center space-x-2 hover:scale-[1.02] group">
-          <i class="fa-brands fa-google text-slate-950 text-sm"></i>
-          <span>Leave Us a Google Review</span>
-          <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1 opacity-75 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
-        </a>
-        <a href="contact.html" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-slate-900/90 border border-slate-700 hover:border-amber-500 text-slate-200 hover:text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md flex items-center justify-center space-x-2">
-          <i class="fa-solid fa-building text-amber-400"></i>
-          <span>Visit Our Office at Twin Towers</span>
-        </a>
+  <!-- Bottom Booking CTA Banner -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+    <div class="bg-[#0B1120] border border-slate-800/80 rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl">
+      <!-- Subtle Radial Accent -->
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(245,158,11,0.09),rgba(0,0,0,0))] pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-3xl mx-auto space-y-6">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-[#F59E0B]/30 text-[#F59E0B] text-xs font-bold uppercase tracking-wider">
+          <i class="fa-solid fa-compass text-xs"></i>
+          <span>Star Plus Bespoke Journeys</span>
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-heading tracking-tight">
+          Ready to Plan Your Next Journey?
+        </h2>
+
+        <p class="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl mx-auto">
+          Whether you require express 24-hour visa processing, tailor-made luxury holiday packages, or VIP corporate travel management, our licensed consultants are at your service across Dubai and Colombo.
+        </p>
+
+        <!-- Dual Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+          <!-- WhatsApp Specialist Button: Emerald Green #10B981 -->
+          <a href="https://wa.me/971527582293?text=Hello%20Star%20Plus%20Travel,%20I%20would%20like%20to%20speak%20with%20a%20travel%20specialist." 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#10B981] hover:bg-[#059669] text-white font-semibold text-sm transition-all duration-200 active:scale-95 shadow-lg shadow-emerald-500/15">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>Chat with a Specialist</span>
+          </a>
+
+          <!-- Plan Custom Itinerary Button: Star Plus Gold #F59E0B -->
+          <a href="contact.html" 
+             class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#F59E0B] hover:bg-[#D97706] text-[#070B14] font-semibold text-sm transition-all duration-200 active:scale-95 shadow-lg shadow-amber-500/15">
+            <i class="fa-solid fa-route text-base"></i>
+            <span>Plan Custom Itinerary</span>
+          </a>
+        </div>
+
+        <!-- Subtle Feedback / Google Review Subtext -->
+        <div class="pt-4 border-t border-slate-800/80 mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-400">
+          <span>Traveled or processed a visa with us?</span>
+          <a href="https://search.google.com/local/writereview?placeid=ChIJq_3BOfhdXz4R34p2xadhJP8" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="text-[#F59E0B] hover:underline font-medium inline-flex items-center gap-1">
+            <span>Leave a Google Review</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+          </a>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Filter Chips Client-Side Script -->
+  <script>
+    (function() {
+      function initReviewFiltering() {
+        const filterButtons = document.querySelectorAll('.review-filter-btn');
+        const reviewCards = document.querySelectorAll('.review-card');
+
+        if (!filterButtons.length || !reviewCards.length) return;
+
+        filterButtons.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            const filterValue = btn.getAttribute('data-filter');
+
+            // Update button states
+            filterButtons.forEach(function(b) {
+              const isSelected = (b === btn);
+              if (isSelected) {
+                b.className = 'review-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-[#F59E0B] text-[#070B14] shadow-md shadow-amber-500/10';
+                b.setAttribute('aria-pressed', 'true');
+              } else {
+                b.className = 'review-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 bg-slate-800/60 text-slate-300 border border-white/10 hover:border-[#F59E0B]/50';
+                b.setAttribute('aria-pressed', 'false');
+              }
+            });
+
+            // Filter review cards
+            reviewCards.forEach(function(card) {
+              const category = card.getAttribute('data-category');
+              if (filterValue === 'all' || category === filterValue) {
+                card.style.display = 'flex';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              } else {
+                card.style.display = 'none';
+                card.style.opacity = '0';
+              }
+            });
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initReviewFiltering);
+      } else {
+        initReviewFiltering();
+      }
+    })();
+  </script>
 </main>
 
   <!-- Footer -->
