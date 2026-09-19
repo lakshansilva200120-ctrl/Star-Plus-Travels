@@ -1659,10 +1659,15 @@ html.light .package-filter-btn.active {
 }
 
 .cat-chip.active {
-  background: rgba(245, 158, 11, 0.16);
+  background: linear-gradient(135deg, #f59e0b, #d97706);
   border-color: #f59e0b;
-  color: #fbbf24;
+  color: #0b1320 !important;
   font-weight: 700;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+}
+
+.cat-chip.active i {
+  color: #0b1320 !important;
 }
 
 html.light .cat-chip {
@@ -1678,9 +1683,15 @@ html.light .cat-chip:hover {
 }
 
 html.light .cat-chip.active {
-  background: rgba(245, 158, 11, 0.15);
+  background: linear-gradient(135deg, #f59e0b, #d97706);
   border-color: #d97706;
-  color: #b45309;
+  color: #0f172a !important;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+}
+
+html.light .cat-chip.active i {
+  color: #0f172a !important;
 }
 
 /* Testimonial slider transitions */
@@ -2836,6 +2847,8 @@ main > section:first-of-type {
 /* Container containment and fluid widths */
 .package-card,
 .packages-carousel-track,
+#packages-grid,
+.packages-container,
 #packagesGrid {
   width: 100%;
   max-width: 100%;
@@ -2844,6 +2857,8 @@ main > section:first-of-type {
 
 /* Single column on mobile screens (<768px) to prevent 320px blowout */
 @media (max-width: 767.98px) {
+  #packages-grid,
+  .packages-container,
   #packagesGrid {
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;

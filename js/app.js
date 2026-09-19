@@ -1139,7 +1139,7 @@ function getActiveFilteredPackages() {
 }
 
 function renderPackages(filteredList = PACKAGES) {
-  const grid = document.getElementById('packagesGrid');
+  const grid = document.getElementById('packages-grid') || document.getElementById('packagesGrid') || document.querySelector('.packages-container');
   const countElem = document.getElementById('packagesCount');
   if (!grid) return;
 
@@ -1159,9 +1159,9 @@ function renderPackages(filteredList = PACKAGES) {
           <i class="fa-solid fa-compass"></i>
         </div>
         <h3 class="text-xl font-bold text-white mb-2">${currentLang === 'si' ? 'ගැළපෙන පැකේජ හමු නොවීය' : 'No matching packages found'}</h3>
-        <p class="text-slate-400 text-sm max-w-md mx-auto mb-6">${currentLang === 'si' ? 'ඩුබායි, ශ්‍රී ලංකාව, ආයතනික හෝ වීසා පැකේජ වැනි වෙනත් විකල්ප සොයන්න.' : 'Try selecting All Packages or searching for corporate, holiday, or visa bundles.'}</p>
+        <p class="text-slate-400 text-sm max-w-md mx-auto mb-6">${currentLang === 'si' ? 'සෙවුමට ගැළපෙන පැකේජ කිසිවක් හමු නොවීය. වෙනත් ගමනාන්තයක් තෝරන්න හෝ නැවත සකසන්න.' : 'No packages found matching your search. Try another destination or click Reset.'}</p>
         <button onclick="resetFilters()" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition-all shadow-lg shadow-amber-500/20 cursor-pointer">
-          ${currentLang === 'si' ? 'සියලු පැකේජ බලන්න' : 'View All Packages'}
+          ${currentLang === 'si' ? 'නැවත සකසන්න' : 'Reset'}
         </button>
       </div>
     `;
@@ -1291,7 +1291,7 @@ function renderPackages(filteredList = PACKAGES) {
 // Category filter
 let activeCategory = 'all';
 
-function filterCategory(cat) {
+function filterCategory(cat, shouldScroll = false) {
   activeCategory = cat;
   
   // Synchronize all filter buttons & pills on page
@@ -1366,6 +1366,13 @@ function filterCategory(cat) {
   updateResetButtonVisibility();
 
   renderPackages(filtered);
+
+  if (shouldScroll) {
+    const target = document.getElementById('packages-grid') || document.querySelector('.packages-container');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 }
 
 // Dynamically toggles Reset button display/opacity based on query or non-default category
@@ -1437,7 +1444,7 @@ function handleHeroSearch(event) {
     const dest = document.getElementById('heroDestinationInput')?.value.toLowerCase().trim() || '';
     
     // If on packages.html, filterCategory already handles combining activeCategory + search query
-    const isPackagesPage = !!document.getElementById('packagesGrid') && !!document.querySelector('.package-filter-track');
+    const isPackagesPage = (!!document.getElementById('packages-grid') || !!document.getElementById('packagesGrid') || !!document.querySelector('.packages-container')) && !!document.querySelector('.package-filter-track');
     if (isPackagesPage) {
       filterCategory(activeCategory);
       updateResetButtonVisibility();
@@ -1467,6 +1474,56 @@ function handleHeroSearch(event) {
     updateResetButtonVisibility();
   }, 280);
 }
+
+// Attach Enter key behavior to package search input
+function setupPackageSearchKeydown() {
+  const searchInput = document.getElementById('heroDestinationInput');
+  if (!searchInput || searchInput._hasEnterListener) return;
+  searchInput._hasEnterListener = true;
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (e.target && e.target.form) {
+        e.stopPropagation();
+      }
+
+      if (heroSearchDebounceTimer) {
+        clearTimeout(heroSearchDebounceTimer);
+      }
+
+      const isPackagesPage = (!!document.getElementById('packages-grid') || !!document.getElementById('packagesGrid') || !!document.querySelector('.packages-container')) && !!document.querySelector('.package-filter-track');
+      if (isPackagesPage) {
+        filterCategory(activeCategory || 'all');
+        updateResetButtonVisibility();
+      } else if (typeof handleHeroSearch === 'function') {
+        handleHeroSearch(e);
+      }
+
+      const target = document.getElementById('packages-grid') || document.querySelector('.packages-container');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+}
+window.setupPackageSearchKeydown = setupPackageSearchKeydown;
+
+// Attach click listeners to Category & Destination Filter Chips for smooth scrolling
+function setupPackageFilterChips() {
+  const chips = document.querySelectorAll('.cat-chip, .package-filter-btn, .category-pill, .cat-pill');
+  chips.forEach(chip => {
+    if (chip._hasScrollListener) return;
+    chip._hasScrollListener = true;
+    chip.addEventListener('click', () => {
+      const target = document.getElementById('packages-grid') || document.querySelector('.packages-container');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+}
+window.setupPackageFilterChips = setupPackageFilterChips;
 
 // Booking Modal Functionality
 let selectedPackageForBooking = null;
@@ -3003,6 +3060,8 @@ function initApp() {
 
   // Attach search listeners
   try { document.getElementById('heroSearchForm')?.addEventListener('submit', handleHeroSearch); } catch (e) {}
+  try { setupPackageSearchKeydown(); } catch (e) {}
+  try { setupPackageFilterChips(); } catch (e) {}
 
   // Initialize Dynamic Hero Slideshow if present
   try { initHeroSlideshow(); } catch (e) {}

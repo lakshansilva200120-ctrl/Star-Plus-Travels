@@ -482,19 +482,19 @@
         <!-- Primary Segmented Category Filter Bar -->
         <div class="mt-6 flex justify-center w-full max-w-full overflow-x-auto pb-1 no-scrollbar">
           <div class="package-filter-track">
-            <button type="button" data-category="all" onclick="filterCategory('all')" class="package-filter-btn active">
+            <button type="button" data-category="all" onclick="filterCategory('all', true)" class="package-filter-btn active">
               <i class="fa-solid fa-layer-group text-xs"></i>
               <span data-i18n="catAll">All Packages</span>
             </button>
-            <button type="button" data-category="holiday" onclick="filterCategory('holiday')" class="package-filter-btn">
+            <button type="button" data-category="holiday" onclick="filterCategory('holiday', true)" class="package-filter-btn">
               <i class="fa-solid fa-umbrella-beach text-xs text-amber-500"></i>
               <span data-i18n="catHoliday">Holiday Packages</span>
             </button>
-            <button type="button" data-category="corporate" onclick="filterCategory('corporate')" class="package-filter-btn">
+            <button type="button" data-category="corporate" onclick="filterCategory('corporate', true)" class="package-filter-btn">
               <i class="fa-solid fa-briefcase text-xs text-amber-500"></i>
               <span data-i18n="catCorporate">Corporate &amp; MICE</span>
             </button>
-            <button type="button" data-category="visa-bundle" onclick="filterCategory('visa-bundle')" class="package-filter-btn">
+            <button type="button" data-category="visa-bundle" onclick="filterCategory('visa-bundle', true)" class="package-filter-btn">
               <i class="fa-solid fa-passport text-xs text-amber-500"></i>
               <span data-i18n="catVisaBundle">Visa Bundles</span>
             </button>
@@ -504,19 +504,19 @@
         <!-- Quick Destination Sub-Chips -->
         <div class="flex items-center justify-center flex-wrap gap-2 pt-3">
           <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline">Destination:</span>
-          <button type="button" data-category="dubai" onclick="filterCategory('dubai')" class="cat-chip">
+          <button type="button" data-category="dubai" onclick="filterCategory('dubai', true)" class="cat-chip">
             <i class="fa-solid fa-city text-amber-400 text-[10px]"></i>Dubai &amp; UAE
           </button>
-          <button type="button" data-category="srilanka" onclick="filterCategory('srilanka')" class="cat-chip">
+          <button type="button" data-category="srilanka" onclick="filterCategory('srilanka', true)" class="cat-chip">
             <i class="fa-solid fa-gem text-amber-400 text-[10px]"></i>Sri Lanka
           </button>
-          <button type="button" data-category="caucasus" onclick="filterCategory('caucasus')" class="cat-chip">
+          <button type="button" data-category="caucasus" onclick="filterCategory('caucasus', true)" class="cat-chip">
             <i class="fa-solid fa-mountain-sun text-amber-400 text-[10px]"></i>Caucasus &amp; Baku
           </button>
-          <button type="button" data-category="tropical" onclick="filterCategory('tropical')" class="cat-chip">
+          <button type="button" data-category="tropical" onclick="filterCategory('tropical', true)" class="cat-chip">
             <i class="fa-solid fa-water-ladder text-amber-400 text-[10px]"></i>Tropical &amp; Beach
           </button>
-          <button type="button" data-category="spiritual" onclick="filterCategory('spiritual')" class="cat-chip">
+          <button type="button" data-category="spiritual" onclick="filterCategory('spiritual', true)" class="cat-chip">
             <i class="fa-solid fa-mosque text-amber-400 text-[10px]"></i>Spiritual &amp; Umrah
           </button>
         </div>
@@ -538,7 +538,7 @@
     </div>
 
     <!-- Dynamic Packages Container -->
-    <div id="packagesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-10 w-full max-w-full box-border">
+    <div id="packages-grid" class="packages-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-10 w-full max-w-full box-border">
       <!-- Injected dynamically by app.js renderPackages() -->
     </div>
   </section>
