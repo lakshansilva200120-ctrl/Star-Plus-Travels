@@ -3290,7 +3290,7 @@ function applyTheme(mode = getThemeMode(), save = false) {
   updateBrandLogoTheme();
 
   // Update preloader background if still present (strictly site dark navy #070b14)
-  const preloader = document.getElementById('sitePreloader');
+  const preloader = document.getElementById('starplus-preloader') || document.getElementById('sitePreloader');
   if (preloader) {
     preloader.style.backgroundColor = '#070b14';
   }
@@ -4188,7 +4188,7 @@ function initNavPillIndicator() {
    Condition: Only active on January 1st strictly between 12:00 AM & 12:00 PM
    ========================================================================== */
 (function setupLuxuryPreloader() {
-  const preloader = document.getElementById('sitePreloader');
+  const preloader = document.getElementById('starplus-preloader') || document.getElementById('sitePreloader');
   if (!preloader) return;
 
   // Session-based splash display: If already shown in this session (and not preview/force param), dismiss immediately

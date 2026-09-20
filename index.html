@@ -125,28 +125,18 @@
 <body class="bg-[#f8fafc] dark:bg-[#070e17] text-slate-900 dark:text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950 transition-colors duration-300 w-full max-w-full">
 
   <!-- Elegant Luxury Preloader -->
-  <div id="sitePreloader" class="fixed inset-0 z-[99999] bg-[#070B14] flex flex-col items-center justify-center select-none" aria-hidden="true" role="status">
-    <div class="relative flex flex-col items-center justify-center text-center px-4">
-      <!-- Star Plus Brand Logo (Natural proportions, no CSS filters) -->
-      <img
-        id="preloaderLogoImg"
-        src="assets/logo-white-text.png?v=2"
-        data-dark-src="assets/logo-white-text.png?v=2"
-        data-light-src="assets/logo-white-text.png?v=2"
-        alt="Star Plus Travel & Tourism LLC"
-        class="h-14 md:h-16 w-auto object-contain block"
-      />
+  <div id="starplus-preloader" class="luxury-preloader" aria-hidden="true" role="status">
+    <div class="preloader-orbit-wrapper">
+      <!-- Neon Circular Spinner Ring -->
+      <div class="neon-ring"></div>
 
-      <!-- Minimalist Progress Line (180px wide, 2px height, subtle runway track) -->
-      <div class="mt-6 w-[180px] h-[2px] bg-[rgba(255,255,255,0.08)] rounded-full overflow-hidden relative">
-        <div class="runway-progress-fill h-full w-full rounded-full bg-[#F59E0B]"></div>
+      <!-- Center Logo Shield -->
+      <div class="logo-core">
+        <img src="assets/images/logo.png" alt="Star Plus Travel & Tourism" class="preloader-brand-img" />
       </div>
-
-      <!-- Subtitle Text -->
-      <span class="text-[11px] tracking-[0.2em] text-[#94A3B8] uppercase font-sans mt-3">
-        CURATING LUXURY TRAVEL EXPERIENCES
-      </span>
     </div>
+
+    <p class="preloader-tagline">CURATING LUXURY EXPERIENCES</p>
   </div>
   <script>
     window.__preloaderStartTime = Date.now();
@@ -155,7 +145,7 @@
         var urlParams = new URLSearchParams(window.location.search);
         var forceShow = urlParams.get('preview_loader') === '1' || urlParams.get('runway_loader') === '1' || urlParams.get('ny_loader') === '1';
         if (!forceShow && sessionStorage.getItem('splashShown') === 'true') {
-          var pPre = document.getElementById('sitePreloader');
+          var pPre = document.getElementById('starplus-preloader') || document.getElementById('sitePreloader');
           if (pPre) {
             pPre.style.display = 'none';
             if (pPre.parentNode) pPre.parentNode.removeChild(pPre);
@@ -176,7 +166,7 @@
 
       function dismissPreloader() {
         if (window.__isNewYearLoaderActive) return;
-        var p = document.getElementById('sitePreloader');
+        var p = document.getElementById('starplus-preloader') || document.getElementById('sitePreloader');
         if (!p || p._dismissed) return;
         p._dismissed = true;
 
