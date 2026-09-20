@@ -6732,6 +6732,10 @@ function switchShowcaseGallery(index) {
     setTimeout(() => {
       featImg.src = item.image;
       featImg.alt = item.title || item.tag || 'Destination Landmark';
+      featImg.onerror = function() {
+        this.onerror = null;
+        this.src = 'assets/packages/dubai-burj-khalifa.jpg';
+      };
       featImg.style.opacity = '1';
     }, 150);
   }
@@ -6742,10 +6746,10 @@ function switchShowcaseGallery(index) {
 
   thumbs.forEach((thumb, idx) => {
     if (idx === index) {
-      thumb.classList.add('ring-2', 'ring-[#F59E0B]', 'active');
+      thumb.classList.add('ring-2', 'ring-[#F59E0B]', 'shadow-lg', 'scale-105', 'active');
       thumb.classList.remove('opacity-70');
     } else {
-      thumb.classList.remove('ring-2', 'ring-[#F59E0B]', 'active');
+      thumb.classList.remove('ring-2', 'ring-[#F59E0B]', 'shadow-lg', 'scale-105', 'active');
       thumb.classList.add('opacity-70');
     }
   });
@@ -6878,14 +6882,14 @@ function openShowcaseItinerary(tour) {
   // Setup Visual Places Gallery
   currentShowcaseGalleryItems = data.galleryImages;
 
-  // Populate Gallery Thumbnails with 16:9 ratio and active ring-2 ring-[#F59E0B]
+  // Populate Gallery Thumbnails with 16:9 ratio, onerror fallback, and active ring-2 ring-[#F59E0B] shadow-lg scale-105
   if (thumbsElem) {
     thumbsElem.innerHTML = currentShowcaseGalleryItems.map((item, idx) => `
       <button type="button" 
               onclick="switchShowcaseGallery(${idx})" 
-              class="showcase-gallery-thumb flex-shrink-0 w-20 sm:w-24 aspect-[16/9] rounded-lg overflow-hidden border border-[#1E293B] transition-all cursor-pointer ${idx === 0 ? 'ring-2 ring-[#F59E0B] active' : 'opacity-70 hover:opacity-100'}" 
+              class="showcase-gallery-thumb flex-shrink-0 w-20 sm:w-24 aspect-[16/9] rounded-lg overflow-hidden border border-white/10 transition-all cursor-pointer ${idx === 0 ? 'ring-2 ring-[#F59E0B] shadow-lg scale-105 active' : 'opacity-70 hover:opacity-100'}" 
               title="${item.title || 'Tour landmark'}">
-        <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover pointer-events-none" loading="lazy">
+        <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='assets/packages/dubai-burj-khalifa.jpg';">
       </button>
     `).join('');
   }
@@ -6900,7 +6904,7 @@ function openShowcaseItinerary(tour) {
   if (reviewsElem) reviewsElem.textContent = data.reviewCount;
   if (titleElem) titleElem.textContent = data.title;
   if (subtitleElem) {
-    subtitleElem.innerHTML = `<i class="fa-solid ${data.categoryIcon || 'fa-tag'} text-[#F59E0B] mr-1.5"></i>${data.subtitle || data.duration + ' Curated Journey'}`;
+    subtitleElem.innerHTML = `<i class="fa-solid ${data.categoryIcon || 'fa-tag'} text-[#F59E0B]"></i><span>${data.subtitle || data.duration + ' CURATED JOURNEY'}</span>`;
   }
   if (descElem) descElem.textContent = data.description;
 
@@ -7028,9 +7032,9 @@ function openShowcaseItinerary(tour) {
   if (altPriceElem) {
     altPriceElem.classList.add('price-secondary');
     altPriceElem.setAttribute('data-secondary-for', data.priceAED);
-    altPriceElem.setAttribute('data-template', '/ person ({secondary})');
+    altPriceElem.setAttribute('data-template', '({secondary})');
     const secFormatted = formatSecondaryPrice(data.priceAED);
-    altPriceElem.textContent = `/ person (${secFormatted})`;
+    altPriceElem.textContent = `(${secFormatted})`;
   }
 
   // WhatsApp Inquiry CTA

@@ -983,7 +983,7 @@
 
   <!-- LEVEL 2: Interactive Country-Specific Showcase Modal -->
   <div id="countryShowcaseModal" data-modal="destinationsModal" class="showcase-modal-overlay destinations-showcase-wrapper fixed inset-0 z-[9999] items-center justify-center p-0 sm:p-4 lg:p-6 overflow-hidden hidden" style="display: none;" onclick="if(event.target === this) closeCountryShowcase()" role="dialog" aria-modal="true" aria-labelledby="showcaseActiveTitle">
-    <div class="relative w-full h-full sm:h-auto max-w-6xl sm:max-h-[90vh] bg-[#0B132B] border-0 sm:border border-amber-500/30 rounded-none sm:rounded-[24px] lg:rounded-[32px] overflow-hidden flex flex-col shadow-2xl modal-content-animate my-auto">
+    <div class="relative w-full h-full sm:h-auto max-w-6xl sm:max-h-[90vh] bg-[#070B14] border border-slate-800/80 rounded-2xl overflow-hidden flex flex-col shadow-2xl modal-content-animate my-auto">
       
       <!-- Clean, Solid Dark Slate/Navy Background Layer (No Bleed) -->
       <div class="absolute inset-0 z-0 bg-gradient-to-b from-[#0F1D38] via-[#0B132B] to-[#070E1A] pointer-events-none select-none">
@@ -1151,14 +1151,14 @@
       <div id="showcaseItineraryModal" class="showcase-details-panel absolute inset-0 z-[70] w-full h-full bg-[#070B14] flex flex-col overflow-hidden hidden" role="dialog" aria-modal="true" aria-labelledby="showcaseItineraryTitle">
         
         <!-- Top Action Bar (Back to Packages & Close Buttons) -->
-        <div class="showcase-drawer-header flex-shrink-0 px-4 py-3 sm:px-6 sm:py-3.5 bg-[#070B14]/95 border-b border-[#1E293B] backdrop-blur-md flex items-center justify-between z-30">
+        <div class="showcase-drawer-header flex-shrink-0 px-4 py-3 sm:px-6 sm:py-3.5 bg-[#070B14]/95 border-b border-slate-800/80 backdrop-blur-md flex items-center justify-between z-30">
           <button type="button" onclick="closeShowcaseItinerary()" class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 hover:bg-slate-800 text-[#F59E0B] hover:text-amber-300 border border-[#F59E0B]/40 hover:border-amber-400 text-xs font-bold transition-all shadow-md cursor-pointer group" aria-label="Back to Packages">
             <i class="fa-solid fa-arrow-left text-[11px] transition-transform group-hover:-translate-x-1"></i>
             <span>&larr; Back to Packages</span>
           </button>
           <div class="flex items-center space-x-3">
             <span class="hidden sm:inline-block text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Itinerary &amp; Destination Details</span>
-            <button type="button" onclick="closeShowcaseItinerary()" class="w-9 h-9 rounded-full bg-slate-900/90 hover:bg-[#F59E0B] hover:text-slate-950 text-slate-300 border border-[#1E293B] hover:border-[#F59E0B] flex items-center justify-center text-sm transition-all duration-200 shadow-md cursor-pointer group" aria-label="Close Itinerary Details">
+            <button type="button" onclick="closeShowcaseItinerary()" class="w-9 h-9 rounded-full bg-slate-900/90 hover:bg-[#F59E0B] hover:text-slate-950 text-slate-300 border border-slate-800 hover:border-[#F59E0B] flex items-center justify-center text-sm transition-all duration-200 shadow-md cursor-pointer group" aria-label="Close Itinerary Details">
               <i class="fa-solid fa-xmark transition-transform group-hover:scale-110"></i>
             </button>
           </div>
@@ -1167,54 +1167,51 @@
         <!-- Scrollable Drawer Body -->
         <div class="overflow-y-auto flex-1 p-4 sm:p-6 lg:p-7 space-y-6 custom-scrollbar bg-[#070B14]">
           
-          <!-- VISUAL MEDIA SECTION (HERO 16:9 + THUMBNAIL STRIP) -->
+          <!-- VISUAL MEDIA SECTION (HERO 16:9 + FLOATING THUMBNAIL DOCK) -->
           <div class="space-y-3">
             <!-- 16:9 Hero Image Viewport with Bottom Shadow Gradient Overlay -->
-            <div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-[#1E293B] bg-[#070B14] shadow-2xl group">
-              <img id="showcaseGalleryFeaturedImg" src="" alt="Destination Landmark" class="w-full h-full object-cover transition-opacity duration-300 transform group-hover:scale-105 select-none">
+            <div class="relative w-full aspect-[16/9] min-h-[340px] md:min-h-[420px] rounded-2xl overflow-hidden bg-[#070B14] shadow-2xl group">
+              <img id="showcaseGalleryFeaturedImg" src="" alt="Destination Landmark" class="w-full h-full object-cover object-center transition-opacity duration-300 transform group-hover:scale-105 select-none" onerror="this.onerror=null;this.src='assets/packages/dubai-burj-khalifa.jpg';">
               <!-- Hidden fallback sync img -->
               <img id="showcaseItineraryImg" src="" alt="" class="hidden" aria-hidden="true">
               
-              <!-- Bottom Shadow Gradient Overlay -->
-              <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, #070B14 0%, rgba(7, 11, 20, 0.4) 35%, transparent 65%);"></div>
+              <!-- Subtle Bottom Gradient Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent pointer-events-none"></div>
               
               <!-- Category & Duration Pill Top-Left -->
               <div class="absolute top-3.5 left-3.5 z-10 flex flex-wrap items-center gap-2">
                 <span id="showcaseItineraryBadge" class="px-3 py-1 rounded-full bg-[#F59E0B] text-[#070B14] font-extrabold text-[10px] sm:text-[11px] uppercase tracking-wider shadow-lg"></span>
-                <span id="showcaseItineraryDuration" class="px-3 py-1 rounded-full bg-[#070B14]/80 backdrop-blur-md border border-[#1E293B] text-white text-[10px] sm:text-[11px] font-semibold"></span>
+                <span id="showcaseItineraryDuration" class="px-3 py-1 rounded-full bg-[#070B14]/80 backdrop-blur-md border border-white/10 text-white text-[10px] sm:text-[11px] font-semibold"></span>
               </div>
 
               <!-- Rating & Reviews Top-Right -->
-              <div class="absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#070B14]/85 backdrop-blur-md border border-[#1E293B] text-[#F59E0B] text-xs shadow-lg">
+              <div class="absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#070B14]/85 backdrop-blur-md border border-white/10 text-[#F59E0B] text-xs shadow-lg">
                 <i class="fa-solid fa-star text-[10px]"></i>
                 <span id="showcaseItineraryRating" class="text-white font-bold text-xs">5.0</span>
                 <span class="text-slate-500 text-[10px]">&bull;</span>
                 <span id="showcaseItineraryReviews" class="text-slate-300 text-xs"></span>
               </div>
 
-              <!-- Location Overlay Tag Bottom-Left -->
-              <div class="absolute bottom-3 left-3 right-3 z-10 flex items-center justify-between pointer-events-none">
-                <div id="showcaseGalleryTag" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-[#070B14]/90 backdrop-blur-md border border-[#F59E0B]/50 text-amber-300 font-bold text-xs shadow-lg pointer-events-auto">
+              <!-- Bottom Overlay: Location Tag & Floating Thumbnail Gallery Dock -->
+              <div class="absolute bottom-3.5 left-3.5 right-3.5 z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-3 pointer-events-none">
+                <div id="showcaseGalleryTag" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900/80 backdrop-blur-md border border-[#F59E0B]/40 text-amber-300 font-bold text-xs shadow-lg pointer-events-auto w-fit">
                   <i class="fa-solid fa-location-dot text-[11px] text-[#F59E0B]"></i>
                   <span id="showcaseGalleryTagText">Featured Landmark</span>
                 </div>
-                <span class="text-[10px] text-slate-400 bg-[#070B14]/80 px-2.5 py-1 rounded-lg backdrop-blur-sm hidden sm:inline-block border border-[#1E293B]">
-                  <i class="fa-regular fa-images mr-1.5 text-[#F59E0B]"></i>Click thumbnails to explore
-                </span>
-              </div>
-            </div>
 
-            <!-- Thumbnail Strip directly below hero viewport -->
-            <div id="showcaseGalleryThumbs" class="p-2 sm:p-2.5 bg-[#070B14] border border-[#1E293B] rounded-xl flex items-center gap-2 sm:gap-2.5 overflow-x-auto custom-scrollbar">
-              <!-- Dynamically populated 16:9 thumbnails with active ring-2 ring-[#F59E0B] -->
+                <!-- Floating Dark Translucent Thumbnail Bar -->
+                <div id="showcaseGalleryThumbs" class="bg-slate-900/70 backdrop-blur-md p-2 rounded-xl border border-white/10 flex gap-2.5 overflow-x-auto custom-scrollbar pointer-events-auto max-w-full sm:max-w-md shadow-xl">
+                  <!-- Dynamically populated 16:9 thumbnails with active ring-2 ring-[#F59E0B] shadow-lg scale-105 transition-all -->
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Destination Title, Subtitle & Overview Description -->
-          <div class="pt-1">
-            <h3 id="showcaseItineraryTitle" class="text-xl sm:text-2xl lg:text-3xl font-black text-white font-heading leading-tight drop-shadow-md"></h3>
-            <p id="showcaseItinerarySubtitle" class="text-xs sm:text-sm text-[#F59E0B] font-bold uppercase tracking-wider mt-1.5 flex items-center gap-1.5"></p>
-            <p id="showcaseItineraryDesc" class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-2.5"></p>
+          <div class="pt-2">
+            <span id="showcaseItinerarySubtitle" class="text-xs font-semibold text-[#F59E0B] tracking-wider uppercase inline-flex items-center gap-1.5 mb-2"></span>
+            <h3 id="showcaseItineraryTitle" class="text-2xl md:text-3xl font-bold text-white tracking-tight leading-tight"></h3>
+            <p id="showcaseItineraryDesc" class="text-sm text-slate-300 leading-relaxed mt-3"></p>
           </div>
 
           <!-- 3 HIGHLIGHTS / KEY INCLUSIONS GRID (Responsive 3-column layout below media section) -->
@@ -1240,7 +1237,7 @@
           </div>
 
           <!-- Handpicked Accommodation Tier -->
-          <div id="showcaseItineraryStayContainer" class="p-4 rounded-2xl bg-[#070B14] border border-[#1E293B] flex items-start space-x-3 text-xs">
+          <div id="showcaseItineraryStayContainer" class="p-4 rounded-2xl bg-slate-900/40 border border-slate-800/80 flex items-start space-x-3 text-xs">
             <div class="w-9 h-9 rounded-xl bg-[#F59E0B]/15 text-[#F59E0B] flex items-center justify-center flex-shrink-0 mt-0.5">
               <i class="fa-solid fa-hotel text-sm"></i>
             </div>
@@ -1273,7 +1270,7 @@
           </div>
 
           <!-- Fine Print & Terms -->
-          <div class="p-4 rounded-2xl bg-[#070B14] border border-[#1E293B] text-xs text-slate-300 space-y-2">
+          <div class="p-4 rounded-2xl bg-slate-900/40 border border-slate-800/80 text-xs text-slate-300 space-y-2">
             <div class="flex items-center space-x-2 text-[#F59E0B] font-bold text-xs uppercase tracking-wider">
               <i class="fa-solid fa-circle-info"></i>
               <span>Terms, Visa Requirements &amp; Payment Options</span>
@@ -1286,23 +1283,23 @@
         </div>
 
         <!-- Bottom Action Dock (Sticky Footer) -->
-        <div class="showcase-drawer-footer flex-shrink-0 p-4 sm:p-5 bg-[#070B14]/95 border-t border-[#1E293B] backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3 z-30">
+        <div class="showcase-drawer-footer flex-shrink-0 p-4 sm:p-5 bg-[#070B14]/95 border-t border-slate-800/80 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4 z-30">
           <div class="w-full sm:w-auto">
-            <span class="text-[10px] uppercase tracking-wider text-slate-400 block font-semibold">All-Inclusive Starting Rate</span>
+            <span class="text-[10px] uppercase tracking-wider text-slate-400 block font-semibold mb-0.5">All-Inclusive Starting Rate</span>
             <div class="flex items-baseline space-x-2">
-              <span id="showcaseItineraryPrice" class="price-aed text-2xl font-bold text-[#F59E0B] font-heading" data-base-aed="0"></span>
+              <span id="showcaseItineraryPrice" class="price-aed text-2xl font-bold text-white tracking-tight" data-base-aed="0"></span>
               <span id="showcaseItineraryAltPrice" class="price-secondary text-xs text-slate-400 font-medium" data-secondary-for="0"></span>
             </div>
           </div>
-          <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
+          <div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
             <!-- Download PDF Brochure Button -->
-            <button id="showcaseDownloadPdfBtn" type="button" onclick="downloadShowcaseBrochure()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-[#070B14] hover:bg-[#1E293B]/60 border border-[#1E293B] hover:border-[#F59E0B]/50 text-slate-200 hover:text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-2 cursor-pointer shadow-md">
+            <button id="showcaseDownloadPdfBtn" type="button" onclick="downloadShowcaseBrochure()" class="flex-1 sm:flex-initial bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-sm px-4 py-2.5 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm">
               <i class="fa-solid fa-file-arrow-down text-sm text-[#F59E0B]"></i>
               <span>Download PDF Brochure</span>
             </button>
 
             <!-- Direct WhatsApp Inquiry Button (Emerald Green #10B981) -->
-            <a id="showcaseItineraryWaBtn" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-[#10B981] hover:bg-[#059669] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-emerald-950/30 flex items-center justify-center space-x-2 cursor-pointer">
+            <a id="showcaseItineraryWaBtn" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-initial bg-[#10B981] hover:bg-[#059669] text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow-lg flex items-center justify-center gap-2 cursor-pointer transition-all">
               <i class="fa-brands fa-whatsapp text-base"></i>
               <span>Inquire via WhatsApp</span>
             </a>
