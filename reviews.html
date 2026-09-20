@@ -118,7 +118,7 @@
         if (!p || p._dismissed) return;
         p._dismissed = true;
 
-        p.classList.add('preloader-exit');
+        p.classList.add('fade-out', 'preloader-exit');
         try { sessionStorage.setItem('splashShown', 'true'); } catch (e) {}
 
         setTimeout(function() {

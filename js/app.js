@@ -4197,7 +4197,7 @@ function initNavPillIndicator() {
     const forceShow = urlParams.get('ny_loader') === '1' || urlParams.get('newyear_loader') === 'true' || urlParams.get('preview_loader') === '1' || urlParams.get('runway_loader') === '1';
     if (!forceShow && sessionStorage.getItem('splashShown') === 'true') {
       preloader.style.display = 'none';
-      preloader.classList.add('preloader-exit');
+      preloader.classList.add('fade-out', 'preloader-exit');
       if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
       return;
     }
@@ -4307,7 +4307,7 @@ function initNavPillIndicator() {
 
     setTimeout(() => {
       preloader._dismissed = true;
-      preloader.classList.add('preloader-exit');
+      preloader.classList.add('fade-out', 'preloader-exit');
       try { sessionStorage.setItem('splashShown', 'true'); } catch (e) {}
       if (cleanupConfetti) {
         cleanupConfetti();
