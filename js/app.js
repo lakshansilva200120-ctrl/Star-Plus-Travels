@@ -950,7 +950,7 @@ const PACKAGES = [
     reviews: 118,
     badge: 'Winter Special',
     badgeColor: 'from-indigo-500 to-purple-500',
-    image: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=1200&q=85',
+    image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
     alt: 'Gergeti Trinity Church and Mount Kazbek Caucasus Mountains, Georgia',
     priceAED: 2290,
     originalPriceAED: 2950,
@@ -2107,9 +2107,19 @@ function openItineraryModal(pkgId) {
   const pkg = PACKAGES.find(p => p.id === pkgId);
   if (!pkg) return;
 
-  document.getElementById('itineraryModalTitle').textContent = pkg.title;
-  document.getElementById('itineraryModalMeta').innerHTML = `${pkg.flag} <span class="font-semibold">${pkg.destination}</span> &bull; <span>${pkg.duration}</span> &bull; <span class="text-amber-400 font-bold"><i class="fa-solid fa-star text-xs"></i> ${pkg.rating}</span>`;
-  document.getElementById('itineraryModalImage').src = pkg.image;
+  const metaElem = document.getElementById('itineraryModalMeta');
+  if (metaElem) {
+    metaElem.className = 'text-xs font-semibold text-[#F59E0B] tracking-widest uppercase flex items-center gap-1.5 mb-2';
+    metaElem.innerHTML = `${pkg.flag} <span class="font-semibold">${pkg.destination}</span> &bull; <span>${pkg.duration}</span> &bull; <span class="text-amber-400 font-bold"><i class="fa-solid fa-star text-xs"></i> ${pkg.rating}</span>`;
+  }
+  const modalImg = document.getElementById('itineraryModalImage');
+  if (modalImg) {
+    modalImg.src = pkg.image;
+    modalImg.onerror = function() {
+      this.onerror = null;
+      this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
+    };
+  }
 
   // Itinerary timeline
   const timelineElem = document.getElementById('itineraryDaysContainer');
@@ -5524,28 +5534,28 @@ const COUNTRY_SHOWCASE_DATA = {
         stay: '3 Nights at Premier Heritage Boutique Hotel (Jetwing Jaffna / Fox Resort Jaffna)',
         gallery: [
           {
-            image: 'assets/sri-lanka-jaffna-nallur-kovil.jpg',
+            image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 2: Golden Nallur Kandaswamy Kovil',
             title: 'Nallur Kandaswamy Kovil'
           },
           {
-            image: 'assets/packages/sl-delft-island.jpg',
-            tag: '📍 Day 3: Delft Island Baobab & Wild Horses',
-            title: 'Delft Island Heritage'
-          },
-          {
-            image: 'https://images.unsplash.com/photo-1566833440182-140b0730d1d2?auto=format&fit=crop&w=1200&q=85',
+            image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 1: Star-Shaped Jaffna Dutch Fort',
             title: 'Jaffna Dutch Fort'
           },
           {
-            image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 4: Keerimalai Sacred Natural Springs',
-            title: 'Keerimalai Healing Springs'
+            image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+            tag: '📍 Day 4: Casuarina Beach & Northern Coastline',
+            title: 'Casuarina Beach & Coast'
+          },
+          {
+            image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80',
+            tag: '📍 Day 3: Minneriya / Yala Wild Elephants',
+            title: 'Sri Lanka Wildlife & Elephants'
           }
         ],
-        image: 'assets/sri-lanka-jaffna-nallur-kovil.jpg',
-        thumbnail: 'assets/sri-lanka-jaffna-nallur-kovil.jpg',
+        image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
         description: 'Discover the vibrant Tamil cultural capital of Northern Sri Lanka. Experience spiritual reverence at the golden Nallur Kandaswamy Kovil, explore the star-shaped Dutch fort, take scenic ferries across the Palk Strait to sacred Nagadeepa Temple, and witness wild horses on remote coral-walled Delft Island.',
         checklist: [
           'Star-Shaped Historic Jaffna Dutch Fort & Ramparts',
@@ -5799,28 +5809,28 @@ const COUNTRY_SHOWCASE_DATA = {
         stay: '3 Nights Deluxe Accommodation at Avani Deira Dubai Hotel (4-Star Deluxe)',
         gallery: [
           {
-            image: 'assets/packages/dubai-burj-khalifa.jpg',
-            tag: '📍 Day 2: Burj Khalifa At The Top & Dubai Mall',
+            image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
+            tag: '📍 Day 2: Burj Khalifa At The Top & Downtown Skyline',
             title: 'Burj Khalifa Observation Deck'
           },
           {
-            image: 'assets/packages/dubai-marina-yachts.jpg',
-            tag: '📍 Day 1: Dubai Marina 5-Star Dhow Dinner Cruise',
+            image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80',
+            tag: '📍 Day 1: Dubai Marina & Luxury Yacht Cruise',
             title: 'Dubai Marina Luxury Waterfront'
           },
           {
-            image: 'assets/packages/dubai-desert-safari.jpg',
+            image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 3: VIP Red Dune Desert Safari & BBQ Dinner',
             title: 'Lahbab Red Dune Safari'
           },
           {
-            image: 'assets/packages/dubai-frame.jpg',
-            tag: '📍 Day 4: Dubai Frame Panoramic Sky Bridge',
-            title: 'Dubai Frame Landmark'
+            image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 4: Sheikh Zayed Grand Mosque Architectural Marvel',
+            title: 'Sheikh Zayed Grand Mosque'
           }
         ],
-        image: 'assets/packages/dubai-burj-khalifa.jpg',
-        thumbnail: 'assets/packages/dubai-burj-khalifa.jpg',
+        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
         description: 'The signature Dubai luxury family getaway. Stay in 4-star deluxe comfort at Avani Deira Hotel with daily international breakfast, ascend to the 124th/125th floor of the Burj Khalifa, explore the aquatic wonders of Dubai Aquarium & Underwater Zoo, sail Dubai Marina on a 5-star Dhow Cruise Dinner with live Tanoura dance, and conquer the golden dunes on a VIP 4x4 desert safari.',
         checklist: [
           'Avani Deira Dubai Hotel 4-Star Deluxe Stay',
@@ -5889,12 +5899,12 @@ const COUNTRY_SHOWCASE_DATA = {
         stay: '4 Nights at 5-Star Waterfront Hotel (Radisson Blu / Swissôtel Al Ghurair)',
         gallery: [
           {
-            image: 'assets/packages/museum-of-the-future-dubai.jpg',
-            tag: '📍 Day 2: Museum of the Future VIP Priority Access',
-            title: 'Museum of the Future'
+            image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
+            tag: '📍 Day 2: Burj Khalifa Skyline & Museum of the Future',
+            title: 'Downtown Dubai Skyline'
           },
           {
-            image: 'assets/packages/dubai-marina-yachts.jpg',
+            image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 1: Palm Jumeirah & Marina Sunset Yacht Cruise',
             title: 'Private Dubai Marina Yacht'
           },
@@ -5904,13 +5914,13 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Sheikh Zayed Grand Mosque'
           },
           {
-            image: 'assets/packages/dubai-desert-safari.jpg',
+            image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 4: VIP Red Dune Safari & Starlight Majlis',
             title: 'VIP Desert Majlis Experience'
           }
         ],
-        image: 'assets/packages/museum-of-the-future-dubai.jpg',
-        thumbnail: 'assets/packages/museum-of-the-future-dubai.jpg',
+        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
         description: 'Experience the peak of Arabian architecture and opulence. Enjoy a private chauffeur-driven tour to Abu Dhabi\'s majestic Sheikh Zayed Grand Mosque and Louvre Museum, cruise around the Palm Jumeirah on a private yacht, and dine under desert stars in a VIP desert camp.',
         checklist: [
           'Sheikh Zayed Grand Mosque & Louvre Abu Dhabi',
@@ -6269,28 +6279,28 @@ const COUNTRY_SHOWCASE_DATA = {
         stay: '3 Nights in Old Tbilisi Boutique Hotel + 1 Night in Kazbegi Alpine Lodge (Rooms Hotel Kazbegi)',
         gallery: [
           {
-            image: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 1: Narikala Fortress & Old Tbilisi',
-            title: 'Old Tbilisi Sulfur District'
+            image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80',
+            tag: '📍 Day 1: Historic Old Tbilisi Architecture & Sulfur Baths',
+            title: 'Old Tbilisi City Architecture'
           },
           {
-            image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 3: Ananuri Fortress & Turquoise Jinvali',
-            title: 'Georgian Military Highway'
-          },
-          {
-            image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 4: 4x4 Ascent to Gergeti Trinity at 2,170m',
+            image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
+            tag: '📍 Day 4: Gergeti Trinity Church & High Caucasus Peaks',
             title: 'Gergeti Trinity & Mount Kazbek'
           },
           {
+            image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=1200&q=85',
+            tag: '📍 Day 3: Ananuri Fortress & Turquoise Jinvali Reservoir',
+            title: 'Georgian Military Highway'
+          },
+          {
             image: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 5: Mtskheta UNESCO Heritage Cathedral',
+            tag: '📍 Day 5: Mtskheta Ancient UNESCO Heritage Cathedral',
             title: 'Svetitskhoveli UNESCO Cathedral'
           }
         ],
-        image: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=1920&q=85',
-        thumbnail: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
         description: 'Wander the sulfur bath cobblestone streets of Old Tbilisi, drive the scenic Georgian Military Highway past Ananuri Fortress and Jinvali Reservoir, and take a 4x4 up to 14th-century Gergeti Trinity Church under Mount Kazbek.',
         checklist: [
           'Old Tbilisi Walking Tour & Narikala Cable Car',
@@ -6734,7 +6744,7 @@ function switchShowcaseGallery(index) {
       featImg.alt = item.title || item.tag || 'Destination Landmark';
       featImg.onerror = function() {
         this.onerror = null;
-        this.src = 'assets/packages/dubai-burj-khalifa.jpg';
+        this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
       };
       featImg.style.opacity = '1';
     }, 150);
@@ -6746,11 +6756,11 @@ function switchShowcaseGallery(index) {
 
   thumbs.forEach((thumb, idx) => {
     if (idx === index) {
-      thumb.classList.add('ring-2', 'ring-[#F59E0B]', 'shadow-lg', 'scale-105', 'active');
-      thumb.classList.remove('opacity-70');
+      thumb.classList.add('ring-2', 'ring-[#F59E0B]', 'scale-105', 'border-transparent', 'active');
+      thumb.classList.remove('border-slate-700', 'opacity-70');
     } else {
-      thumb.classList.remove('ring-2', 'ring-[#F59E0B]', 'shadow-lg', 'scale-105', 'active');
-      thumb.classList.add('opacity-70');
+      thumb.classList.remove('ring-2', 'ring-[#F59E0B]', 'scale-105', 'border-transparent', 'active');
+      thumb.classList.add('border-slate-700', 'opacity-70');
     }
   });
 }
@@ -6882,14 +6892,14 @@ function openShowcaseItinerary(tour) {
   // Setup Visual Places Gallery
   currentShowcaseGalleryItems = data.galleryImages;
 
-  // Populate Gallery Thumbnails with 16:9 ratio, onerror fallback, and active ring-2 ring-[#F59E0B] shadow-lg scale-105
+  // Populate Gallery Thumbnails with w-16 h-12 md:w-20 md:h-14, onerror fallback, and active ring-2 ring-[#F59E0B] scale-105
   if (thumbsElem) {
     thumbsElem.innerHTML = currentShowcaseGalleryItems.map((item, idx) => `
       <button type="button" 
               onclick="switchShowcaseGallery(${idx})" 
-              class="showcase-gallery-thumb flex-shrink-0 w-20 sm:w-24 aspect-[16/9] rounded-lg overflow-hidden border border-white/10 transition-all cursor-pointer ${idx === 0 ? 'ring-2 ring-[#F59E0B] shadow-lg scale-105 active' : 'opacity-70 hover:opacity-100'}" 
+              class="showcase-gallery-thumb flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-lg overflow-hidden border cursor-pointer transition-all ${idx === 0 ? 'ring-2 ring-[#F59E0B] scale-105 border-transparent active' : 'border-slate-700 hover:border-amber-400 opacity-70 hover:opacity-100'}" 
               title="${item.title || 'Tour landmark'}">
-        <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='assets/packages/dubai-burj-khalifa.jpg';">
+        <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
       </button>
     `).join('');
   }
@@ -6904,6 +6914,7 @@ function openShowcaseItinerary(tour) {
   if (reviewsElem) reviewsElem.textContent = data.reviewCount;
   if (titleElem) titleElem.textContent = data.title;
   if (subtitleElem) {
+    subtitleElem.className = 'text-xs font-semibold text-[#F59E0B] tracking-widest uppercase flex items-center gap-1.5 mb-2';
     subtitleElem.innerHTML = `<i class="fa-solid ${data.categoryIcon || 'fa-tag'} text-[#F59E0B]"></i><span>${data.subtitle || data.duration + ' CURATED JOURNEY'}</span>`;
   }
   if (descElem) descElem.textContent = data.description;
