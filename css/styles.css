@@ -1694,9 +1694,35 @@ html.light .cat-chip.active i {
   color: #0f172a !important;
 }
 
-/* Testimonial slider transitions */
+/* Testimonial slider transitions & continuous marquee */
 .testimonial-slide {
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation-play-state: paused;
+  }
 }
 
 /* Modal styles */

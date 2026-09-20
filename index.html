@@ -1183,8 +1183,8 @@
   </section>
 
   <!-- Customer Testimonials Carousel -->
-  <section id="testimonials" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden w-full bg-[#070B14]">
-    <div class="max-w-5xl mx-auto text-center">
+  <section id="testimonials" class="py-24 relative overflow-hidden w-full bg-[#070B14]">
+    <div class="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       
       <span class="text-xs font-extrabold uppercase tracking-widest text-[#F59E0B] bg-[#F59E0B]/10 px-3 py-1 rounded-full border border-[#F59E0B]/20" data-i18n="testimonialsBadge">Google Verified Reviews</span>
       <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 font-heading" data-i18n="testimonialsTitle">
@@ -1217,32 +1217,23 @@
           <i class="fa-solid fa-arrow-up-right-from-square text-[10px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
         </a>
       </div>
+    </div>
 
-      <!-- Testimonial Slider Card -->
-      <div class="max-w-3xl mx-auto mt-8 py-8 px-8 md:px-10 rounded-2xl bg-[#0B1120]/80 border border-slate-800 shadow-xl backdrop-blur-sm relative overflow-hidden">
-        <div id="testimonialSlide" class="relative z-10">
-          <!-- Rendered dynamically by js/app.js -->
-        </div>
-
-        <!-- Slider Navigation Controls -->
-        <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between relative z-10">
-          <button onclick="prevSlide()" class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-[#F59E0B] text-slate-300 hover:text-white transition-all shadow-sm" aria-label="Previous review">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-
-          <!-- Slider Dots -->
-          <div id="testimonialDots" class="flex items-center space-x-2">
-            <!-- Rendered by js/app.js -->
-          </div>
-
-          <button onclick="nextSlide()" class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-[#F59E0B] text-slate-300 hover:text-white transition-all shadow-sm" aria-label="Next review">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-        </div>
+    <!-- Continuous Infinite Testimonials Marquee Ticker -->
+    <div class="relative w-full overflow-hidden py-6 mt-8">
+      <!-- Soft left and right edge gradient masks (vignette) -->
+      <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#070B14] to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#070B14] to-transparent z-10 pointer-events-none"></div>
+      
+      <!-- Scrolling Track -->
+      <div id="testimonialMarqueeTrack" class="flex gap-6 w-max animate-marquee hover:[animation-play-state:paused]">
+        <!-- Rendered dynamically by js/app.js -->
       </div>
+    </div>
 
-      <!-- Review Action Buttons -->
-      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+    <!-- Review Action Buttons -->
+    <div class="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <div class="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href="https://search.google.com/local/writereview?placeid=ChIJq_3BOfhdXz4R34p2xadhJP8" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-[#070B14] font-bold text-xs uppercase tracking-wider shadow-lg shadow-amber-500/20 transition-all hover:scale-[1.02] group">
           <i class="fa-brands fa-google text-[#070B14]"></i>
           <span data-i18n="btnLeaveGoogleReview">Leave Us a Google Review</span>
@@ -1253,7 +1244,6 @@
           <span data-i18n="btnReadAllReviews">Read All Customer Reviews</span>
         </a>
       </div>
-
     </div>
   </section>
 

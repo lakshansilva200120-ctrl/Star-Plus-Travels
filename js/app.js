@@ -1221,6 +1221,62 @@ const TESTIMONIALS = [
     date: 'Verified on Google',
     comment: 'Outstanding, trustworthy service from start to finish. The team guided us through every step with clear updates and care. Special thanks to Dharshana Thilakerathne for the dedicated support and attention to detail that made the journey completely worry-free.',
     commentSi: 'ආරම්භයේ සිට අවසානය දක්වා විශිෂ්ට, විශ්වාසනීය සේවාවක්. සෑම පියවරකදීම පැහැදිලි තොරතුරු සමඟ අපව මඟපෙන්වූ අතර, විශේෂයෙන් දර්ශන තිලකරත්න මහතාගේ කැපවීම සහ කඩිනම් සහාය නිසා කිසිදු ප්‍රමාදයකින් තොරව අපගේ පවුලේ වීසා අනුමත විය.'
+  },
+  {
+    name: 'Client Review (Corporate Delegation)',
+    nameSi: 'සේවාදායක ඇගයීම (ආයතනික නියෝජිත)',
+    initials: 'CD',
+    role: 'Verified Google Reviewer',
+    trip: 'Annual Leadership Summit Dubai (45 Pax)',
+    tripSi: 'වාර්ෂික නායකත්ව සමුළුව ඩුබායි (පුද්ගලයින් 45)',
+    serviceTag: 'Corporate & MICE Logistics',
+    serviceTagSi: 'ආයතනික සහ MICE සේවා',
+    stars: 5,
+    date: 'Verified on Google',
+    comment: 'Star Plus managed ground handling, executive Mercedes coach transfers, and private desert banquet logistics for our EMEA executive summit in Dubai. Flawless punctuality, discreet coordinators, and 24/7 dedicated liaison managers who anticipated every requirement.',
+    commentSi: 'ඩුබායි හි පැවති අපගේ විධායක සමුළුව සඳහා සුඛෝපභෝගී මර්සිඩීස් බස් රථ, ගුවන් තොටුපළ ප්‍රවාහනය සහ කාන්තාර උත්සව කටයුතු Star Plus ආයතනය විසින් නියමිත වේලාවට හා ඉතා විශිෂ්ට ලෙස සංවිධානය කරන ලදී.'
+  },
+  {
+    name: 'Client Review (VIP Ticketing & Luxury Stay)',
+    nameSi: 'සේවාදායක ඇගයීම (VIP ගුවන් හා හෝටල්)',
+    initials: 'VT',
+    role: 'Verified Google Reviewer',
+    trip: 'Emirates Business Class & Atlantis',
+    tripSi: 'එමිරේට්ස් ව්‍යාපාරික පන්තිය සහ ඇට්ලැන්ටිස්',
+    serviceTag: 'Luxury Flights & Resorts',
+    serviceTagSi: 'සුඛෝපභෝගී ගුවන් හා හෝටල්',
+    stars: 5,
+    date: 'Verified on Google',
+    comment: 'Star Plus secured exclusive unpublished business class fare cabins on Emirates alongside an exceptional luxury suite upgrade at Atlantis The Royal. Their VIP ticketing desk even arranged complimentary private chauffeur airport transfers on arrival in Dubai.',
+    commentSi: 'එමිරේට්ස් ව්‍යාපාරික පන්තියේ විශේෂ වට්ටම් සහිත ගුවන් ටිකට්පත් සහ ඇට්ලැන්ටිස් ද රෝයල් හි සුඛෝපභෝගී කාමර Star Plus හරහා වෙන්කරවා ගත්තෙමු. ගුවන් තොටුපළ සිට හෝටලය දක්වා නොමිලේ VIP ප්‍රවාහන පහසුකම්ද සපයා තිබුණි.'
+  },
+  {
+    name: 'Client Review (Airport Visa Change)',
+    nameSi: 'සේවාදායක ඇගයීම (ගුවන් තොටුපළ වීසා මාරුව)',
+    initials: 'AV',
+    role: 'Verified Google Reviewer',
+    trip: 'Airport-to-Airport Express Visa Change',
+    tripSi: 'ගුවන් තොටුපළ හරහා ක්ෂණික වීසා මාරුව',
+    serviceTag: 'Airport Visa Change Express',
+    serviceTagSi: 'ක්ෂණික වීසා මාරුව',
+    stars: 5,
+    date: 'Verified on Google',
+    comment: 'Needed an urgent same-day visa status change for my new employment transition. The Star Plus visa department arranged direct flydubai transit and issued my fresh entry visa before my return flight landed back at DXB Terminal 2. Exemplary efficiency.',
+    commentSi: 'මගේ නව රැකියා වීසාව සඳහා කඩිනම් තත්ත්ව වෙනසක් අවශ්‍ය වූ අතර, Star Plus වීසා අංශය මගින් flydubai සංක්‍රමණ පහසුකම් සලසා මගේ නව වීසාව මා නැවත පැමිණීමටත් පෙරම නිකුත් කර දෙන ලදී. විශිෂ්ට කාර්යක්ෂමතාවයකි.'
+  },
+  {
+    name: 'Client Review (Bespoke Island Getaway)',
+    nameSi: 'සේවාදායක ඇගයීම (මාලදිවයින දූපත් නිවාඩුව)',
+    initials: 'BG',
+    role: 'Verified Google Reviewer',
+    trip: 'Maldives Overwater Villa Retreat',
+    tripSi: 'මාලදිවයින සුඛෝපභෝගී දූපත් නිවාඩුව',
+    serviceTag: 'Maldives Overwater Villa',
+    serviceTagSi: 'මාලදිවයින දූපත් නිවාඩුව',
+    stars: 5,
+    date: 'Verified on Google',
+    comment: 'An unforgettable private lagoon holiday at Sun Siyam Iru Veli. Star Plus managed our seaplane charter connections and negotiated all-inclusive gourmet dining inclusions directly with the resort. Seamless coordination from both their Dubai and Colombo desks.',
+    commentSi: 'Sun Siyam Iru Veli හි ගතකළ අමතක නොවන දූපත් නිවාඩුවක්. සීප්ලේන් ගුවන් ප්‍රවාහනය සහ සියලු පහසුකම් සහිත ආහාර වේල් Star Plus හරහා සකසා තිබුණි. ඩුබායි සහ කොළඹ කාර්යාල දෙකෙන්ම අඛණ්ඩ සහාය හිමිවිය.'
   }
 ];
 
@@ -2181,16 +2237,82 @@ function closeItineraryModal() {
 }
 
 // Testimonials Slider Logic
+// Testimonials Continuous Marquee Logic
 let currentSlide = 0;
 let slideInterval = null;
 
 function renderTestimonial() {
+  const marqueeTrack = document.getElementById('testimonialMarqueeTrack');
   const container = document.getElementById('testimonialSlide');
   const dotsContainer = document.getElementById('testimonialDots');
-  if (!container) return;
 
   const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : 'en';
   const isSi = (currentLang === 'si' || document.documentElement.lang === 'si');
+  const googleVerifiedText = isSi ? 'Google මගින් තහවුරු කළ' : 'Google Verified';
+  const verifiedClientText = isSi ? 'තහවුරු කළ සංචාරකයා' : 'Verified Client';
+  const profileReviewText = isSi ? 'Google Business Profile ඇගයීම' : 'Google Review';
+
+  // Render Infinite Marquee Ticker if marquee track is present
+  if (marqueeTrack) {
+    // Duplicate array so CSS @keyframes marquee (-50%) loops infinitely and seamlessly
+    const marqueeItems = [...TESTIMONIALS, ...TESTIMONIALS];
+
+    marqueeTrack.innerHTML = marqueeItems.map(t => {
+      const tName = (isSi && t.nameSi) ? t.nameSi : t.name;
+      const tTrip = (isSi && t.tripSi) ? t.tripSi : t.trip;
+      const tServiceTag = (isSi && t.serviceTagSi) ? t.serviceTagSi : (t.serviceTag || t.trip);
+      const tComment = (isSi && t.commentSi) ? t.commentSi : t.comment;
+
+      return `
+        <div class="w-[360px] md:w-[400px] flex-shrink-0 flex flex-col justify-between p-6 rounded-2xl bg-[#0B1120]/90 border border-slate-800 shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-amber-500/40 hover:-translate-y-1 select-none">
+          <!-- Top Row: Stars, Google Verified Pill, Service Tag -->
+          <div class="flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2 flex-wrap">
+              <div class="flex items-center space-x-0.5 text-amber-400 text-xs tracking-wider shrink-0">
+                ${Array(t.stars || 5).fill('<i class="fa-solid fa-star"></i>').join('')}
+              </div>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-800/80 border border-slate-700/60 text-[10px] text-slate-300 shrink-0">
+                <svg class="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                </svg>
+                <span class="font-medium whitespace-nowrap">${googleVerifiedText}</span>
+              </span>
+            </div>
+            <span class="text-[10px] text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-0.5 rounded-full whitespace-nowrap truncate max-w-[130px] shrink-0" title="${tServiceTag}">
+              ${tServiceTag}
+            </span>
+          </div>
+
+          <!-- Review Body: Truncated Quote -->
+          <p class="text-sm text-slate-200 italic font-normal leading-relaxed my-4 line-clamp-4 text-left">
+            "${tComment}"
+          </p>
+
+          <!-- Bottom Row: Author Avatar & Meta -->
+          <div class="flex items-center gap-3 pt-3 border-t border-slate-800/80 mt-auto">
+            <div class="w-9 h-9 rounded-full bg-slate-800 border border-amber-500/30 text-amber-400 text-xs font-semibold flex items-center justify-center flex-shrink-0">
+              ${t.initials}
+            </div>
+            <div class="text-left overflow-hidden min-w-0 flex-1">
+              <div class="flex items-center gap-1.5">
+                <h4 class="text-xs font-semibold text-white truncate">${tName}</h4>
+                <i class="fa-solid fa-circle-check text-[10px] text-emerald-400 shrink-0" title="${verifiedClientText}"></i>
+              </div>
+              <p class="text-[11px] text-slate-400 truncate mt-0.5">${profileReviewText} · ${tTrip}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    return;
+  }
+
+  // Fallback for single slide if testimonialSlide is present
+  if (!container) return;
+
   const t = TESTIMONIALS[currentSlide];
   if (!t) return;
 
@@ -2198,13 +2320,9 @@ function renderTestimonial() {
   const tTrip = (isSi && t.tripSi) ? t.tripSi : t.trip;
   const tServiceTag = (isSi && t.serviceTagSi) ? t.serviceTagSi : (t.serviceTag || t.trip);
   const tComment = (isSi && t.commentSi) ? t.commentSi : t.comment;
-  const googleVerifiedText = isSi ? 'Google මගින් තහවුරු කළ ඇගයීමක්' : 'Google Verified Review';
-  const verifiedClientText = isSi ? 'තහවුරු කළ සංචාරකයා' : 'Verified Client';
-  const profileReviewText = isSi ? 'Google Business Profile ඇගයීම' : 'Google Business Profile Review';
 
   container.innerHTML = `
     <div class="testimonial-slide flex flex-col justify-between text-left relative z-10">
-      <!-- Clean Single-Row Header: Stars, Divider, Compact Google Badge & Far-Right Destination Tag -->
       <div class="flex items-center justify-between gap-4 mb-6">
         <div class="flex items-center gap-3">
           <div class="flex items-center space-x-1 text-amber-400 text-sm tracking-widest shrink-0">
@@ -2221,18 +2339,13 @@ function renderTestimonial() {
             <span class="text-xs font-medium text-slate-300 whitespace-nowrap">${googleVerifiedText}</span>
           </span>
         </div>
-
         <span class="text-xs text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full whitespace-nowrap shrink-0">
           ${tServiceTag}
         </span>
       </div>
-
-      <!-- Quote Content (clean without unstyled quotes) -->
       <p class="text-sm md:text-base text-slate-200 font-normal leading-relaxed italic mb-6">
         ${tComment}
       </p>
-
-      <!-- Bottom Author Signature with Avatar -->
       <div class="flex items-center gap-3 pt-2">
         <div class="w-11 h-11 rounded-full bg-slate-800 border border-amber-500/30 text-amber-400 text-sm font-semibold flex items-center justify-center flex-shrink-0">
           ${t.initials}
@@ -2250,7 +2363,6 @@ function renderTestimonial() {
     </div>
   `;
 
-  // Render dots
   if (dotsContainer) {
     dotsContainer.innerHTML = TESTIMONIALS.map((_, idx) => `
       <button onclick="goToSlide(${idx})" class="w-2.5 h-2.5 rounded-full transition-all ${idx === currentSlide ? 'bg-amber-500 w-8' : 'bg-slate-700 hover:bg-slate-500'}" aria-label="Go to slide ${idx + 1}"></button>
@@ -2275,12 +2387,16 @@ function goToSlide(idx) {
 }
 
 function startSlideTimer() {
-  slideInterval = setInterval(nextSlide, 6000);
+  if (document.getElementById('testimonialSlide')) {
+    slideInterval = setInterval(nextSlide, 6000);
+  }
 }
 
 function resetSlideTimer() {
-  clearInterval(slideInterval);
-  startSlideTimer();
+  if (slideInterval) {
+    clearInterval(slideInterval);
+    startSlideTimer();
+  }
 }
 
 // Visa Checker Widget - Interactive Live Rates & Requirements Engine
