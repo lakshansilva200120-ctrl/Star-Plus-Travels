@@ -870,80 +870,116 @@ const PACKAGES = [
     id: 'dubai-luxury',
     title: 'Ultimate Dubai & Desert Safari Extravaganza',
     category: 'dubai',
-    destination: 'Dubai, UAE',
+    categoryTag: 'CITY BREAK & LUXURY',
+    destination: 'Dubai & Abu Dhabi, UAE',
+    tagline: 'GLAMOUR, ICONIC LANDMARKS & LUXURY DESERT',
+    editorialSummary: 'Experience the pinnacle of Arabian glamour with luxury 5-star hotel stays, VIP red dune desert safaris with dune bashing and BBQ dinners, private marina yacht cruises, and priority Burj Khalifa observation deck entry.',
+    highlightTags: ['🏜️ Desert Safari & BBQ', '🏙️ Burj Khalifa At The Top', '⛵ Marina Luxury Yacht'],
     flag: '<i class="fa-solid fa-city text-amber-400"></i>',
     duration: '5 Days / 4 Nights',
     rating: 4.9,
     reviews: 184,
     badge: 'Bestseller',
     badgeColor: 'from-amber-500 to-yellow-500',
-    image: 'assets/packages/dubai-desert-safari.jpg',
-    alt: 'Iconic sunset skyline of Dubai featuring the Burj Khalifa and illuminated city highways',
+    image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Sunset over Dubai red sand dunes during evening desert safari',
+    galleryImages: [
+      { image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80', title: 'VIP Red Dune Desert Safari & BBQ' },
+      { image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80', title: 'Dubai Marina & Skyline Panorama' },
+      { image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80', title: 'Dubai Marina Luxury Yacht Cruise' },
+      { image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80', title: 'Sheikh Zayed Grand Mosque Abu Dhabi' }
+    ],
     priceAED: 2450,
     originalPriceAED: 3100,
+    priceLKR: 'LKR 215,000',
     perks: ['5★ Luxury Hotel Stay', 'VIP Desert Safari & BBQ', 'Burj Khalifa Top Deck', 'Luxury Marina Yacht Cruise', 'Private Airport Transfers'],
     itinerary: [
-      { day: 1, title: 'Arrival & Marina Dhow Cruise Dinner' },
-      { day: 2, title: 'Modern Dubai City Tour & Burj Khalifa At The Top' },
-      { day: 3, title: 'VIP Desert Safari with Dune Bashing & BBQ Feast' },
-      { day: 4, title: 'Miracle Garden & Museum of the Future Tour' },
-      { day: 5, title: 'Luxury Shopping Leisure & Airport Departure' }
+      { day: 1, title: 'Arrival & Marina Dhow Cruise Dinner', desc: 'VIP airport chauffeur greeting, 5-star marina dhow cruise with live entertainment.' },
+      { day: 2, title: 'Modern Dubai City Tour & Burj Khalifa At The Top', desc: 'Ascend the 124th/125th floor of Burj Khalifa, explore Dubai Mall and fountain shows.' },
+      { day: 3, title: 'VIP Desert Safari with Dune Bashing & BBQ Feast', desc: '4x4 red dune bashing in Lahbab, sandboarding, camel rides, and Arabic barbecue dinner under the stars.' },
+      { day: 4, title: 'Miracle Garden & Museum of the Future Tour', desc: 'Admire millions of floral blooms and explore futuristic innovations.' },
+      { day: 5, title: 'Luxury Shopping Leisure & Airport Departure', desc: 'Morning leisure in Gold & Spice souks, private chauffeur transfer to DXB Airport.' }
     ]
   },
   {
     id: 'sri-lanka-wildlife',
     title: 'Scenic Sri Lanka: Tea Hills, Wildlife & Beaches',
     category: 'srilanka',
-    destination: 'Colombo, Kandy & Bentota',
+    categoryTag: 'SAFARI & WILDLIFE',
+    destination: 'Colombo, Kandy, Ella & Yala',
+    tagline: 'TEA HILLS, WILD LEOPARDS & COASTAL ESCAPES',
+    editorialSummary: 'Track wild leopards and elephant herds across Yala National Park, ride the world-famous scenic mountain railway through misty emerald tea plantations, and unwind on golden southern beaches.',
+    highlightTags: ['🐆 Leopard Safari', '🚂 Scenic Train Journey', '🏖️ Coastal Escapes'],
     flag: '<i class="fa-solid fa-gem text-amber-400"></i>',
     duration: '6 Days / 5 Nights',
     rating: 5.0,
     reviews: 142,
     badge: 'Trending',
     badgeColor: 'from-emerald-500 to-teal-500',
-    image: 'assets/sri-lanka-destination.jpg',
-    alt: 'Sri Lanka Ella Nine Arch Bridge and Tea Hills',
+    image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80',
+    alt: 'Yala National Park wild leopard resting on rocky outcrop in Sri Lanka',
+    galleryImages: [
+      { image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80', title: 'Yala National Park Wild Leopard Safari' },
+      { image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80', title: 'Ella Nine Arch Bridge & Tea Estates' },
+      { image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80', title: 'Sacred Heritage & Kovil Culture' },
+      { image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80', title: 'Bentota Golden Beach Coastline' }
+    ],
     priceAED: 1890,
     originalPriceAED: 2400,
-    perks: ['Scenic Scenic Train to Ella', 'Sigiriya Rock Fortress Tour', 'Yala Safari Wildlife Encounter', 'Private English Chauffeur', 'Daily Gourmet Breakfast'],
+    priceLKR: 'LKR 165,000',
+    perks: ['Scenic Train to Ella & Tea Estates', 'Sigiriya Rock Fortress Tour', 'Yala Safari Wildlife Encounter', 'Private English-Speaking Chauffeur', 'Daily Gourmet Breakfast'],
     itinerary: [
-      { day: 1, title: 'Arrival in Colombo & Transfer to Kandy' },
-      { day: 2, title: 'Temple of the Tooth & Royal Botanical Gardens' },
-      { day: 3, title: 'Scenic Train Ride to Nuwara Eliya & Tea Estates' },
-      { day: 4, title: 'Ella Rock Trek & Yala National Park Safari' },
-      { day: 5, title: 'Bentota Golden Beach Relaxation & Water Sports' },
-      { day: 6, title: 'Colombo City Tour & Departure' }
+      { day: 1, title: 'Arrival in Colombo & Transfer to Kandy', desc: 'VIP meet and assist at CMB Airport, scenic highway drive to Kandy, evening lakeside stroll.' },
+      { day: 2, title: 'Temple of the Tooth & Royal Botanical Gardens', desc: 'Visit the sacred relic temple and stroll 147-acre Peradeniya botanical grounds.' },
+      { day: 3, title: 'Scenic Train Ride to Nuwara Eliya & Tea Estates', desc: 'Board the world-famous blue train through misty highlands and visit a tea factory.' },
+      { day: 4, title: 'Ella Rock Trek & Yala National Park Safari', desc: 'Marvel at Nine Arch Bridge, descend to Yala for an open 4x4 sunset wildlife safari.' },
+      { day: 5, title: 'Bentota Golden Beach Relaxation & Water Sports', desc: 'Relax at a 5-star beachfront resort, Madu River boat safari, and fresh seafood.' },
+      { day: 6, title: 'Colombo City Tour & Airport Departure', desc: 'Explore historic Colombo Fort, Dutch Hospital precinct, and transfer for departure flight.' }
     ]
   },
   {
     id: 'baku-azerbaijan',
     title: 'Baku & Caucasus Wonders of Azerbaijan',
     category: 'caucasus',
+    categoryTag: 'ALPINE & HERITAGE',
     destination: 'Baku & Gabala, Azerbaijan',
+    tagline: 'LAND OF FIRE, CASPIAN BREEZES & FLAME TOWERS',
+    editorialSummary: 'Discover the crossroads of Europe and Asia in Baku. Stroll the UNESCO Old City (Icherisheher), marvel at the architectural wonder of the Flame Towers, and take cable cars into the alpine grandeur of Gabala.',
+    highlightTags: ['🔥 Flame Towers Baku', '🏔️ Gabala Cable Car', '🌋 Gobustan Mud Volcanoes'],
     flag: '<i class="fa-solid fa-mountain-sun text-amber-400"></i>',
     duration: '5 Days / 4 Nights',
     rating: 4.8,
     reviews: 96,
     badge: 'Popular',
     badgeColor: 'from-blue-600 to-cyan-500',
-    image: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
     alt: 'Baku Flame Towers and Caspian Sea Waterfront Skyline, Azerbaijan',
+    galleryImages: [
+      { image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80', title: 'Caucasus Mountain Vistas' },
+      { image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80', title: 'Old Town Heritage & Architecture' },
+      { image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=1200&q=80', title: 'Historic Citadels & Mountain Passes' }
+    ],
     priceAED: 2150,
     originalPriceAED: 2750,
+    priceLKR: 'LKR 190,000',
     perks: ['Return Flights Included', '4★ Central Baku Hotel', 'Gabala Cable Car & Lake Tour', 'Gobustan Rock Art & Mud Volcanoes', 'English Speaking Guide'],
     itinerary: [
-      { day: 1, title: 'Arrival in Baku & Boulevard Evening Walk' },
-      { day: 2, title: 'Old City (Icherisheher) & Flame Towers Tour' },
-      { day: 3, title: 'Full Day Gabala Mountains & Tufandag Resort' },
-      { day: 4, title: 'Gobustan Mud Volcanoes & Fire Temple (Ateshgah)' },
-      { day: 5, title: 'Heydar Aliyev Center & Airport Transfer' }
+      { day: 1, title: 'Arrival in Baku & Boulevard Evening Walk', desc: 'Meet and greet at GYD Airport, evening stroll along Baku Boulevard and Caspian waterfront.' },
+      { day: 2, title: 'Old City (Icherisheher) & Flame Towers Tour', desc: 'Visit Maiden Tower, Palace of the Shirvanshahs, and illuminated Flame Towers.' },
+      { day: 3, title: 'Full Day Gabala Mountains & Tufandag Resort', desc: 'Take scenic cable cars up Tufandag mountain, visit Nohur Lake and 7 Beauties waterfall.' },
+      { day: 4, title: 'Gobustan Mud Volcanoes & Fire Temple (Ateshgah)', desc: 'Explore prehistoric petroglyphs, bubbling mud volcanoes, and eternal burning mountain Yanar Dag.' },
+      { day: 5, title: 'Heydar Aliyev Center & Airport Transfer', desc: 'Photo stop at Zaha Hadid architectural icon and transfer to airport.' }
     ]
   },
   {
     id: 'georgia-kazbegi',
     title: 'Magical Georgia: Tbilisi, Kazbegi & Gudauri',
     category: 'caucasus',
+    categoryTag: 'ALPINE & HERITAGE',
     destination: 'Tbilisi & Caucasus, Georgia',
+    tagline: 'OLD TBILISI & CAUCASIAN SNOW CAPS',
+    editorialSummary: 'Wander the cobblestone sulfur bath alleys of Old Tbilisi, drive the dramatic Georgian Military Highway past turquoise Jinvali Reservoir, and take a 4x4 up to the 14th-century Gergeti Trinity Church under Mount Kazbek.',
+    highlightTags: ['⛪ Gergeti Trinity Church', '🏔️ Mount Kazbek 4x4', '🍷 Old Tbilisi Wine & Baths'],
     flag: '<i class="fa-solid fa-snowflake text-amber-400"></i>',
     duration: '6 Days / 5 Nights',
     rating: 4.9,
@@ -952,72 +988,102 @@ const PACKAGES = [
     badgeColor: 'from-indigo-500 to-purple-500',
     image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
     alt: 'Gergeti Trinity Church and Mount Kazbek Caucasus Mountains, Georgia',
+    galleryImages: [
+      { image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80', title: 'Gergeti Trinity Church & Mount Kazbek' },
+      { image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80', title: 'Historic Old Tbilisi & Sulfur Baths' },
+      { image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=1200&q=80', title: 'Ananuri Fortress & Jinvali Reservoir' }
+    ],
     priceAED: 2290,
     originalPriceAED: 2950,
+    priceLKR: 'LKR 200,000',
     perks: ['Direct Flights Option', '4★ Boutique Hotel in Old Tbilisi', 'Kazbegi 4x4 Mountain Excursion', 'Traditional Georgian Feast & Wine', 'Roundtrip Transfers'],
     itinerary: [
-      { day: 1, title: 'Welcome to Tbilisi & Narikala Fortress Cable Car' },
-      { day: 2, title: 'Mtskheta Ancient Capital & Jvari Monastery' },
-      { day: 3, title: 'Ananuri Fortress, Gudauri & Gergeti Trinity Church' },
-      { day: 4, title: 'Kakheti Wine Region & Bodbe Monastery' },
-      { day: 5, title: 'Tbilisi Sulphur Baths & Shopping Leisure' },
-      { day: 6, title: 'Departure Flight Transfer' }
+      { day: 1, title: 'Welcome to Tbilisi & Narikala Fortress Cable Car', desc: 'Private airport greeting, ride the cable car over the old town, explore sulfur bath district.' },
+      { day: 2, title: 'Mtskheta Ancient Capital & Jvari Monastery', desc: 'Visit UNESCO World Heritage sites at the confluence of Mtkvari and Aragvi rivers.' },
+      { day: 3, title: 'Ananuri Fortress, Gudauri & Gergeti Trinity Church', desc: 'Drive the Military Highway, stop at Ananuri fortress, 4x4 trek to Gergeti church.' },
+      { day: 4, title: 'Kakheti Wine Region & Bodbe Monastery', desc: 'Tour cradle of wine in Kakheti, taste Qvevri wines, visit Bodbe convent.' },
+      { day: 5, title: 'Tbilisi Sulphur Baths & Shopping Leisure', desc: 'Relax in historic sulfur thermal baths and stroll Rustaveli Avenue.' },
+      { day: 6, title: 'Departure Flight Transfer', desc: 'Leisurely breakfast and private chauffeur transfer to TBS Airport.' }
     ]
   },
   {
     id: 'maldives-all-inclusive',
     title: 'Maldives Overwater Villa Paradise Escape',
     category: 'tropical',
+    categoryTag: 'TROPICAL ESCAPE',
     destination: 'North Malé Atoll, Maldives',
+    tagline: 'TURQUOISE LAGOONS & OVERWATER LUXURY',
+    editorialSummary: 'Escape to pristine coral atolls with overwater private pool villas, all-inclusive luxury dining and premium beverages, vibrant coral reef snorkeling, and romantic sunset dolphin cruises.',
+    highlightTags: ['🏝️ Overwater Pool Villa', '🐬 Sunset Dolphin Cruise', '🍹 All-Inclusive Dine'],
     flag: '<i class="fa-solid fa-umbrella-beach text-amber-400"></i>',
     duration: '4 Days / 3 Nights',
     rating: 5.0,
     reviews: 210,
     badge: 'Luxury Romance',
     badgeColor: 'from-pink-500 to-rose-500',
-    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80',
     alt: 'Maldives Overwater Villas and Turquoise Lagoon',
+    galleryImages: [
+      { image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80', title: 'Maldives Overwater Villa & Lagoon' },
+      { image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80', title: 'White Sand Beach & Coconut Palms' },
+      { image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80', title: 'Turquoise Coral Reef Waters' }
+    ],
     priceAED: 4650,
     originalPriceAED: 5900,
+    priceLKR: 'LKR 410,000',
     perks: ['Overwater Pool Villa', 'All-Inclusive Dine & Drinks', 'Speedboat Airport Transfers', 'Sunset Dolphin Cruise', 'Complimentary Snorkeling Gear'],
     itinerary: [
-      { day: 1, title: 'Speedboat Arrival & Overwater Villa Check-in' },
-      { day: 2, title: 'Coral Reef Snorkeling & Sunset Dolphin Cruise' },
-      { day: 3, title: 'Luxury Spa Treatment & Private Candlelight Beach Dinner' },
-      { day: 4, title: 'Floating Lagoon Breakfast & Departure' }
+      { day: 1, title: 'Speedboat Arrival & Overwater Villa Check-in', desc: 'Scenic speedboat arrival across crystalline waters, champagne check-in to overwater villa.' },
+      { day: 2, title: 'Coral Reef Snorkeling & Sunset Dolphin Cruise', desc: 'Guided house reef snorkeling with sea turtles, late afternoon sunset dolphin cruise.' },
+      { day: 3, title: 'Luxury Spa Treatment & Private Candlelight Beach Dinner', desc: 'Balinese massage at overwater spa, followed by 5-course beachfront dining under stars.' },
+      { day: 4, title: 'Floating Lagoon Breakfast & Departure', desc: 'Enjoy floating breakfast in your private plunge pool before speedboat transfer to MLE Airport.' }
     ]
   },
   {
     id: 'bali-luxury-nature',
     title: 'Bali Heavenly Getaway: Ubud & Seminyak',
     category: 'tropical',
+    categoryTag: 'TROPICAL ESCAPE',
     destination: 'Bali, Indonesia',
+    tagline: 'EMERALD RICE TERRACES & PRIVATE POOL VILLAS',
+    editorialSummary: 'Immerse in the spiritual serenity of Bali with private pool villas in Ubud, sunrise jeep treks across Mount Batur, island excursions to Nusa Penida Kelingking Beach, and sunset seafood at Jimbaran.',
+    highlightTags: ['🌴 Ubud Private Pool Villa', '🌋 Mount Batur Sunrise', '🌊 Nusa Penida Island'],
     flag: '<i class="fa-solid fa-leaf text-amber-400"></i>',
     duration: '7 Days / 6 Nights',
     rating: 4.9,
     reviews: 165,
     badge: 'Bestseller',
     badgeColor: 'from-emerald-600 to-lime-600',
-    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80',
     alt: 'Bali Temple and Tropical Landscape',
+    galleryImages: [
+      { image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80', title: 'Bali Temple & Jungle Flora' },
+      { image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80', title: 'Kelingking Beach Nusa Penida' },
+      { image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80', title: 'Jimbaran Bay Sunset' }
+    ],
     priceAED: 2850,
     originalPriceAED: 3600,
+    priceLKR: 'LKR 250,000',
     perks: ['Private Pool Villa in Ubud', 'Nusa Penida Island Tour', 'Floating Breakfast Experience', 'Mount Batur Sunrise Jeep Trek', 'Private Chauffeur Throughout'],
     itinerary: [
-      { day: 1, title: 'Denpasar Arrival & Ubud Villa Check-in' },
-      { day: 2, title: 'Tegalalang Rice Terraces & Jungle Swing' },
-      { day: 3, title: 'Mount Batur Sunrise Adventure & Hot Springs' },
-      { day: 4, title: 'Nusa Penida Kelingking Beach Day Excursion' },
-      { day: 5, title: 'Seminyak Beach Club & Sunset Seafood at Jimbaran' },
-      { day: 6, title: 'Uluwatu Cliff Temple & Kecak Fire Dance' },
-      { day: 7, title: 'Spa & Departure Airport Transfer' }
+      { day: 1, title: 'Denpasar Arrival & Ubud Villa Check-in', desc: 'VIP meet at DPS Airport, transfer to luxury private pool villa nestled in Ubud jungle.' },
+      { day: 2, title: 'Tegalalang Rice Terraces & Jungle Swing', desc: 'Explore lush tiered rice paddies, soar on iconic jungle swing, and taste Luwak coffee.' },
+      { day: 3, title: 'Mount Batur Sunrise Adventure & Hot Springs', desc: 'Early morning 4x4 jeep safari up volcanic black lava fields, soak in natural hot springs.' },
+      { day: 4, title: 'Nusa Penida Kelingking Beach Day Excursion', desc: 'Speedboat to Nusa Penida, witness T-Rex cliffs, Broken Beach, and Angel Billabong.' },
+      { day: 5, title: 'Seminyak Beach Club & Sunset Seafood at Jimbaran', desc: 'Move to Seminyak beachfront, beach club afternoon, candlelight seafood feast on sand.' },
+      { day: 6, title: 'Uluwatu Cliff Temple & Kecak Fire Dance', desc: 'Visit ancient clifftop temple 70m above crashing waves, witness hypnotic Kecak fire dance.' },
+      { day: 7, title: 'Spa & Departure Airport Transfer', desc: 'Traditional Balinese reflexology spa session and private transfer to airport.' }
     ]
   },
   {
     id: 'turkey-istanbul-cappadocia',
     title: 'Classic Turkey: Istanbul & Cappadocia Balloons',
     category: 'caucasus',
+    categoryTag: 'ALPINE & HERITAGE',
     destination: 'Istanbul & Cappadocia, Turkey',
+    tagline: 'FAIRY CHIMNEYS & BOSPHORUS SUNSETS',
+    editorialSummary: 'Experience the magic of Turkey with cave hotels in Cappadocia, sunrise hot air balloon flights over fairy chimneys, and private yacht sunset cruises along the Bosphorus strait in Istanbul.',
+    highlightTags: ['🎈 Cappadocia Hot Air Balloon', '🏰 Cave Suite Experience', '⛵ Bosphorus Yacht Cruise'],
     flag: '<i class="fa-solid fa-landmark-dome text-amber-400"></i>',
     duration: '6 Days / 5 Nights',
     rating: 4.9,
@@ -1026,24 +1092,33 @@ const PACKAGES = [
     badgeColor: 'from-purple-600 to-pink-600',
     image: 'assets/packages/turkey-cappadocia-balloons.jpg',
     alt: 'Cappadocia colorful hot air balloons rising over fairy chimneys at sunrise, Turkey',
+    galleryImages: [
+      { image: 'assets/packages/turkey-cappadocia-balloons.jpg', title: 'Cappadocia Sunrise Balloons' },
+      { image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80', title: 'Bosphorus Waterfront Skyline' }
+    ],
     priceAED: 3350,
     originalPriceAED: 4200,
+    priceLKR: 'LKR 295,000',
     perks: ['Domestic Flights (Istanbul-Cappadocia)', 'Authentic Cave Hotel Stay', 'Bosphorus Sunset Yacht Cruise', 'Hagia Sophia & Grand Bazaar Tour', 'Hot Air Balloon Booking Assistance'],
     itinerary: [
-      { day: 1, title: 'Arrival in Istanbul & Bosphorus Yacht Sunset Cruise' },
-      { day: 2, title: 'Hagia Sophia, Blue Mosque & Topkapi Palace' },
-      { day: 3, title: 'Flight to Cappadocia & Cave Suite Check-in' },
-      { day: 4, title: 'Sunrise Hot Air Balloon & Goreme Open-Air Museum' },
-      { day: 5, title: 'Underground City & Pigeon Valley Exploration' },
-      { day: 6, title: 'Return Flight to Istanbul & International Departure' }
+      { day: 1, title: 'Arrival in Istanbul & Bosphorus Yacht Sunset Cruise', desc: 'VIP meet and transfer, sunset yacht cruise along Bosphorus between Europe and Asia.' },
+      { day: 2, title: 'Hagia Sophia, Blue Mosque & Topkapi Palace', desc: 'Guided full-day heritage tour of Sultanahmet imperial monuments.' },
+      { day: 3, title: 'Flight to Cappadocia & Cave Suite Check-in', desc: 'Domestic flight to Nevsehir/Kayseri, luxury cave hotel check-in.' },
+      { day: 4, title: 'Sunrise Hot Air Balloon & Goreme Open-Air Museum', desc: 'Spectacular sunrise balloon flight, fairy chimney valleys and cave churches.' },
+      { day: 5, title: 'Underground City & Pigeon Valley Exploration', desc: 'Explore multi-level subterranean cities and panoramic valleys.' },
+      { day: 6, title: 'Return Flight to Istanbul & International Departure', desc: 'Return flight to Istanbul for your connecting departure flight.' }
     ]
   },
   {
     id: 'umrah-spiritual-package',
     title: 'Premium Umrah Spiritual Journey',
     category: 'spiritual',
+    categoryTag: 'SPIRITUAL JOURNEY',
     duration: '7 Days / 6 Nights',
     destination: 'Makkah & Madinah, KSA',
+    tagline: 'PEACE OF MIND IN MAKKAH & MADINAH',
+    editorialSummary: 'A spiritually enriching pilgrimage featuring 5-star clock tower accommodations facing Masjid al-Haram, luxury Haramain high-speed train transit, and dedicated bilingual guides throughout.',
+    highlightTags: ['🕋 5★ Clock Tower Front', '🚅 Haramain High-Speed Train', '🤲 Guided Ziyarat Tours'],
     flag: '<i class="fa-solid fa-mosque text-amber-400"></i>',
     rating: 5.0,
     reviews: 245,
@@ -1051,25 +1126,34 @@ const PACKAGES = [
     badgeColor: 'from-amber-600 to-yellow-600',
     image: 'assets/packages/umrah-grand-mosque.jpg',
     alt: 'Atmospheric evening view of the Kaaba and illuminated minarets at Masjid al-Haram with warm golden lighting',
+    galleryImages: [
+      { image: 'assets/packages/umrah-grand-mosque.jpg', title: 'Masjid al-Haram Makkah' },
+      { image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80', title: 'Spiritual Heritage' }
+    ],
     priceAED: 2990,
     originalPriceAED: 3800,
+    priceLKR: 'LKR 265,000',
     perks: ['5★ Clock Tower Front Hotel', 'Direct Luxury High-Speed Train Haramain', 'Complete Umrah Visa Processing', 'Comprehensive Ziyarat Tours', '24/7 Dedicated Arabic/English Guide'],
     itinerary: [
-      { day: 1, title: 'Arrival in Jeddah & VIP Transfer to Makkah' },
-      { day: 2, title: 'Performance of Umrah with Experienced Muallim' },
-      { day: 3, title: 'Makkah Historical Ziyarat (Jabal Al-Noor, Mina, Arafat)' },
-      { day: 4, title: 'Haramain High-Speed Train to Madinah Munawwarah' },
-      { day: 5, title: 'Masjid An-Nabawi & Rawdah Sharif Visits' },
-      { day: 6, title: 'Madinah Ziyarat (Masjid Quba, Mount Uhud)' },
-      { day: 7, title: 'Final Prayers & Departure Transfer to Airport' }
+      { day: 1, title: 'Arrival in Jeddah & VIP Transfer to Makkah', desc: 'Meet and assist at JED airport, private transfer to Makkah clock tower hotel.' },
+      { day: 2, title: 'Performance of Umrah with Experienced Muallim', desc: 'Perform Umrah rituals with step-by-step scholar guidance.' },
+      { day: 3, title: 'Makkah Historical Ziyarat (Jabal Al-Noor, Mina, Arafat)', desc: 'Guided visits to Cave of Hira, Mina tent city, Muzdalifah, and Mount Arafat.' },
+      { day: 4, title: 'Haramain High-Speed Train to Madinah Munawwarah', desc: 'Luxury first-class train ride across the desert to Madinah.' },
+      { day: 5, title: 'Masjid An-Nabawi & Rawdah Sharif Visits', desc: 'Prayers in the Prophet’s Mosque and organized Rawdah Sharif entry permits.' },
+      { day: 6, title: 'Madinah Ziyarat (Masjid Quba, Mount Uhud)', desc: 'Historical ziyarat to the first mosque of Islam and Uhud battlefield.' },
+      { day: 7, title: 'Final Prayers & Departure Transfer to Airport', desc: 'Farewell prayers and private transfer to MED airport.' }
     ]
   },
   {
     id: 'dubai-corporate-mice',
     title: 'Executive Dubai MICE, Gala & Corporate Summit',
     category: 'corporate',
+    categoryTag: 'CORPORATE & MICE',
     tags: ['corporate', 'dubai', 'mice'],
     destination: 'Dubai & Abu Dhabi, UAE',
+    tagline: 'PRESTIGIOUS SUMMITS & LUXURY TEAM INCENTIVES',
+    editorialSummary: 'End-to-end corporate event logistics in Dubai and Abu Dhabi featuring state-of-the-art conference facilities, luxury executive fleet chauffeur transfers, and exclusive marina yacht gala dinners.',
+    highlightTags: ['🏢 5★ Conference Venues', '🚗 Executive Chauffeur Fleet', '🛥️ Marina Gala Banquet'],
     flag: '<i class="fa-solid fa-briefcase text-amber-400"></i>',
     duration: '4 Days / 3 Nights',
     rating: 5.0,
@@ -1078,22 +1162,31 @@ const PACKAGES = [
     badgeColor: 'from-blue-600 to-indigo-600',
     image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=85',
     alt: 'Luxury corporate gala conference and executive summit in Dubai',
+    galleryImages: [
+      { image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=85', title: 'Executive Summit & Keynote' },
+      { image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80', title: 'Dubai Marina Gala Reception' }
+    ],
     priceAED: 3450,
     originalPriceAED: 4400,
+    priceLKR: 'LKR 300,000',
     perks: ['5★ Luxury Business Hotel Stay', 'State-of-the-Art Conference Hall Setup', 'Private Executive Fleet Chauffeur', 'Exclusive Marina Yacht Gala Dinner', 'VIP Fast-Track Airport Protocols'],
     itinerary: [
-      { day: 1, title: 'VIP Airport Arrival & Luxury Executive Check-in' },
-      { day: 2, title: 'Corporate Keynote, Breakouts & Team Workshops' },
-      { day: 3, title: 'Innovation Safari, Museum of the Future & Gala Dinner' },
-      { day: 4, title: 'Executive Debrief & Airport Escort' }
+      { day: 1, title: 'VIP Airport Arrival & Luxury Executive Check-in', desc: 'Fast-track airport meet, luxury fleet transfer, executive welcome cocktail.' },
+      { day: 2, title: 'Corporate Keynote, Breakouts & Team Workshops', desc: 'Full-day conference facility with dedicated AV engineers and catering.' },
+      { day: 3, title: 'Innovation Safari, Museum of the Future & Gala Dinner', desc: 'VIP access to tech landmarks, evening charter yacht gala banquet.' },
+      { day: 4, title: 'Executive Debrief & Airport Escort', desc: 'Strategy wrap-up and private executive departures.' }
     ]
   },
   {
     id: 'baku-corporate-retreat',
     title: 'Caucasus Executive Leadership & Team Incentive Retreat',
     category: 'corporate',
+    categoryTag: 'CORPORATE & RETREAT',
     tags: ['corporate', 'caucasus'],
     destination: 'Baku & Shahdag, Azerbaijan',
+    tagline: 'LEADERSHIP EXCELLENCE IN THE CAUCASUS',
+    editorialSummary: 'Combine high-level strategic alignment with alpine team-building in Shahdag Mountain Resort and formal banquets along the Caspian Sea waterfront.',
+    highlightTags: ['🏔️ Shahdag Mountain Retreat', '🔥 Flame Towers Suites', '🍽️ Caspian Gala Banquet'],
     flag: '<i class="fa-solid fa-building-user text-amber-400"></i>',
     duration: '5 Days / 4 Nights',
     rating: 4.9,
@@ -1102,23 +1195,32 @@ const PACKAGES = [
     badgeColor: 'from-amber-600 to-orange-600',
     image: 'assets/packages/baku-flame-towers.jpg',
     alt: 'Baku Flame Towers and Caspian Sea Waterfront illuminated against the skyline in Azerbaijan',
+    galleryImages: [
+      { image: 'assets/packages/baku-flame-towers.jpg', title: 'Baku Flame Towers' },
+      { image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80', title: 'Shahdag Mountain Range' }
+    ],
     priceAED: 2650,
     originalPriceAED: 3300,
+    priceLKR: 'LKR 235,000',
     perks: ['Direct Return Airline Bookings', 'Flame Towers 5★ Luxury Suites', 'Alpine Team Building in Shahdag Resort', 'Private Caspian Waterfront Gala Dinner', 'Dedicated 24/7 Corporate Account Lead'],
     itinerary: [
-      { day: 1, title: 'Arrival in Baku & Boulevard Executive Reception' },
-      { day: 2, title: 'Leadership Strategy Sessions & Old City Walk' },
-      { day: 3, title: 'Alpine Team Building & Mountain Activities in Shahdag' },
-      { day: 4, title: 'Ateshgah Cultural Discovery & Formal Gala Banquet' },
-      { day: 5, title: 'Executive Farewell & Airport Transfer' }
+      { day: 1, title: 'Arrival in Baku & Boulevard Executive Reception', desc: 'Private VIP airport transfer to Flame Towers suites.' },
+      { day: 2, title: 'Leadership Strategy Sessions & Old City Walk', desc: 'Morning boardroom strategy sessions, afternoon guided UNESCO city walk.' },
+      { day: 3, title: 'Alpine Team Building & Mountain Activities in Shahdag', desc: 'Day trip into the Greater Caucasus for leadership challenges and alpine sports.' },
+      { day: 4, title: 'Ateshgah Cultural Discovery & Formal Gala Banquet', desc: 'Visit ancient Fire Temple, evening private banquet on the Caspian.' },
+      { day: 5, title: 'Executive Farewell & Airport Transfer', desc: 'Breakfast debrief and executive transfers to GYD airport.' }
     ]
   },
   {
     id: 'uae-golden-visa-bundle',
     title: 'UAE 10-Year Golden Visa & Concierge Relocation Bundle',
     category: 'visa-bundle',
+    categoryTag: 'RESIDENCY & CONCIERGE',
     tags: ['visa-bundle', 'dubai'],
     destination: 'Dubai, United Arab Emirates',
+    tagline: '10-YEAR SECURE UAE RESIDENCY FAST-TRACK',
+    editorialSummary: 'White-glove 10-year UAE Golden Visa processing including government nomination, VIP medical fast-track, biometrics escort, Emirates ID issuance, and corporate banking concierge.',
+    highlightTags: ['🛂 10-Year Golden Visa', '⚡ VIP Medical Fast-Track', '🏦 Corporate Banking Introductions'],
     flag: '<i class="fa-solid fa-passport text-amber-400"></i>',
     duration: 'Express 5-7 Days',
     rating: 5.0,
@@ -1127,22 +1229,31 @@ const PACKAGES = [
     badgeColor: 'from-amber-500 to-yellow-500',
     image: 'assets/packages/museum-of-the-future-dubai.jpg',
     alt: 'Architectural marvel of the Museum of the Future and prestigious skyline in Dubai UAE',
+    galleryImages: [
+      { image: 'assets/packages/museum-of-the-future-dubai.jpg', title: 'Museum of the Future Dubai' },
+      { image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80', title: 'Dubai Marina Prestige' }
+    ],
     priceAED: 4950,
     originalPriceAED: 6500,
+    priceLKR: 'LKR 435,000',
     perks: ['Complete 10-Year Golden Visa Clearance', 'VIP Medical & Emirates ID Fast-Track', 'Corporate Bank Account Introductions', 'Luxury Chauffeur to Government Centers', '100% Legal & Regulatory Assurance'],
     itinerary: [
-      { day: 1, title: 'Document Vetting & Initial Authority Nomination' },
-      { day: 2, title: 'VIP Medical Fitness & Biometrics Fast-Track' },
-      { day: 3, title: 'Emirates ID Issuance & Residency Stamping' },
-      { day: 4, title: 'Corporate Banking & Personal Relocation Handover' }
+      { day: 1, title: 'Document Vetting & Initial Authority Nomination', desc: 'Lawyer review of degrees, property titles, or salary certificates; ICP nomination.' },
+      { day: 2, title: 'VIP Medical Fitness & Biometrics Fast-Track', desc: 'Chauffeured VIP lounge medical testing (results in 2 hours) and biometrics.' },
+      { day: 3, title: 'Emirates ID Issuance & Residency Stamping', desc: 'Final residency approval and digital Emirates ID delivery.' },
+      { day: 4, title: 'Corporate Banking & Personal Relocation Handover', desc: 'Priority appointment with leading UAE banks for personal & business accounts.' }
     ]
   },
   {
     id: 'schengen-visa-travel-bundle',
     title: 'Schengen Europe Express Visa + Flight Booking Bundle',
     category: 'visa-bundle',
+    categoryTag: 'VISA & TRAVEL BUNDLE',
     tags: ['visa-bundle', 'caucasus'],
     destination: 'France, Switzerland & Italy',
+    tagline: 'EFFORTLESS EUROPEAN TRAVEL CLEARANCE',
+    editorialSummary: 'Guaranteed embassy appointment slots, official flight and hotel booking certificates, personalized day-by-day itineraries, and comprehensive Schengen travel insurance.',
+    highlightTags: ['🇪🇺 Guaranteed Embassy Slot', '📄 Verified Flight & Hotel Vouchers', '🛡️ Full Travel Insurance'],
     flag: '<i class="fa-solid fa-file-shield text-amber-400"></i>',
     duration: '10-15 Days Processing',
     rating: 4.9,
@@ -1151,15 +1262,20 @@ const PACKAGES = [
     badgeColor: 'from-emerald-600 to-teal-600',
     image: 'assets/packages/schengen-europe-express.jpg',
     alt: 'Iconic Eiffel Tower in Paris along the Seine river representing European Schengen journey across France, Switzerland and Italy',
+    galleryImages: [
+      { image: 'assets/packages/schengen-europe-express.jpg', title: 'Paris Eiffel Tower Europe' },
+      { image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80', title: 'Alpine Landscapes' }
+    ],
     priceAED: 1450,
     originalPriceAED: 1950,
+    priceLKR: 'LKR 125,000',
     perks: ['Guaranteed Embassy Appointment Slot', 'Official Confirmed Flight & Hotel Vouchers', 'Custom Day-by-Day Travel Itinerary', 'Comprehensive Schengen Travel Insurance', 'Senior Immigration Specialist Review'],
     itinerary: [
-      { day: 1, title: 'Profile Assessment & Required Checklist Formulation' },
-      { day: 2, title: 'Embassy Slot Confirmation & Application Submission' },
-      { day: 3, title: 'Flight & Hotel Reservation Certificate Issuance' },
-      { day: 4, title: 'Biometrics Appointment Attendance Support' },
-      { day: 5, title: 'Passport Retrieval with Valid Visa Stamping' }
+      { day: 1, title: 'Profile Assessment & Required Checklist Formulation', desc: 'Case officer review of bank statements, NOC letter, and flight dates.' },
+      { day: 2, title: 'Embassy Slot Confirmation & Application Submission', desc: 'Securing premium VFS/TLS/BLS appointment slot and online form submission.' },
+      { day: 3, title: 'Flight & Hotel Reservation Certificate Issuance', desc: 'Issuance of verifiably confirmed PNR flight itineraries and hotel bookings.' },
+      { day: 4, title: 'Biometrics Appointment Attendance Support', desc: 'Document pack handover and embassy interview briefing.' },
+      { day: 5, title: 'Passport Retrieval with Valid Visa Stamping', desc: 'Tracking and delivery of stamped passport to client doorstep.' }
     ]
   }
 ];
@@ -2158,55 +2274,173 @@ async function submitBookingForm(e) {
   }
 }
 
+// Visual Gallery State & Current Package State for Packages Itinerary Modal
+let currentActivePackage = null;
+let currentPackageGalleryItems = [];
+let currentPackageGalleryIndex = 0;
+
+function switchPackageGallery(index) {
+  if (!currentPackageGalleryItems || !currentPackageGalleryItems[index]) return;
+  currentPackageGalleryIndex = index;
+  const item = currentPackageGalleryItems[index];
+  const modalImg = document.getElementById('itineraryModalImage');
+  if (modalImg) {
+    modalImg.style.opacity = '0.35';
+    setTimeout(() => {
+      modalImg.src = item.image;
+      modalImg.alt = item.title || 'Tour package photo';
+      modalImg.onerror = function() {
+        this.onerror = null;
+        this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
+      };
+      modalImg.style.opacity = '1';
+    }, 150);
+  }
+  const thumbs = document.querySelectorAll('#itineraryThumbnailDock .package-gallery-thumb');
+  thumbs.forEach((thumb, idx) => {
+    if (idx === index) {
+      thumb.classList.add('ring-2', 'ring-amber-400', 'border-transparent', 'active');
+      thumb.classList.remove('border-slate-700', 'opacity-70');
+    } else {
+      thumb.classList.remove('ring-2', 'ring-amber-400', 'border-transparent', 'active');
+      thumb.classList.add('border-slate-700', 'opacity-70');
+    }
+  });
+}
+
+function downloadCurrentPackageBrochure() {
+  if (!currentActivePackage) return;
+  downloadTourBrochure({
+    ...currentActivePackage,
+    priceLKR: currentActivePackage.priceLKR || `LKR ${(currentActivePackage.priceAED * 85).toLocaleString()}`,
+    inclusions: currentActivePackage.perks || currentActivePackage.inclusions || [],
+    itinerary: currentActivePackage.itinerary || []
+  });
+}
+
 // Itinerary Modal Functionality
 function openItineraryModal(pkgId) {
   const pkg = PACKAGES.find(p => p.id === pkgId);
   if (!pkg) return;
+  currentActivePackage = pkg;
 
-  const metaElem = document.getElementById('itineraryModalMeta');
-  if (metaElem) {
-    metaElem.className = 'text-xs font-semibold text-[#F59E0B] tracking-widest uppercase flex items-center gap-1.5 mb-2';
-    metaElem.innerHTML = `${pkg.flag} <span class="font-semibold">${pkg.destination}</span> &bull; <span>${pkg.duration}</span> &bull; <span class="text-amber-400 font-bold"><i class="fa-solid fa-star text-xs"></i> ${pkg.rating}</span>`;
+  // Badges on Image (Top Row)
+  const categoryBadge = document.getElementById('itineraryCategoryBadge');
+  if (categoryBadge) {
+    categoryBadge.textContent = pkg.categoryTag || (pkg.category ? pkg.category.toUpperCase() : 'SIGNATURE TOUR');
   }
+  const durationBadge = document.getElementById('itineraryDurationBadge');
+  if (durationBadge) {
+    durationBadge.textContent = pkg.duration;
+  }
+  const ratingVal = document.getElementById('itineraryRatingValue');
+  if (ratingVal) {
+    ratingVal.textContent = pkg.rating ? pkg.rating.toFixed(1) : '5.0';
+  }
+  const reviewsVal = document.getElementById('itineraryReviewsValue');
+  if (reviewsVal) {
+    reviewsVal.textContent = `(${pkg.reviews || '150+'})`;
+  }
+
+  // Visual Media Setup with 16:9 Aspect Ratio Container
+  currentPackageGalleryItems = Array.isArray(pkg.galleryImages) && pkg.galleryImages.length > 0
+    ? pkg.galleryImages
+    : [{ image: pkg.image, title: pkg.title }];
+  currentPackageGalleryIndex = 0;
+
   const modalImg = document.getElementById('itineraryModalImage');
   if (modalImg) {
-    modalImg.src = pkg.image;
+    modalImg.src = currentPackageGalleryItems[0]?.image || pkg.image;
     modalImg.onerror = function() {
       this.onerror = null;
       this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
     };
   }
 
+  // Title, Tagline & Editorial Summary
+  const titleElem = document.getElementById('itineraryModalTitle');
+  if (titleElem) titleElem.textContent = pkg.title;
+
+  const taglineElem = document.getElementById('itineraryModalTagline');
+  if (taglineElem) {
+    taglineElem.textContent = pkg.tagline || `${pkg.destination ? pkg.destination.toUpperCase() + ' • ' : ''}EXCLUSIVE SIGNATURE ITINERARY`;
+  }
+
+  const summaryElem = document.getElementById('itineraryModalSummary');
+  if (summaryElem) {
+    summaryElem.textContent = pkg.editorialSummary || pkg.description || 'Experience an unforgettable journey crafted with 4★ and 5★ handpicked luxury stays, private chauffeur transfers, and exclusive signature landmark excursions.';
+  }
+
+  // Highlights Pill Row (3–4 quick tags)
+  const highlightTagsElem = document.getElementById('itineraryHighlightTags');
+  if (highlightTagsElem) {
+    const tags = pkg.highlightTags || [
+      '✨ Handpicked Boutique Stays',
+      '🚗 Private Chauffeur Logistics',
+      '🎟️ VIP Landmark Privileges'
+    ];
+    highlightTagsElem.innerHTML = tags.map(tag => `
+      <span class="bg-slate-800/60 border border-slate-700/60 text-slate-300 text-xs px-3 py-1 rounded-lg flex items-center gap-1.5 shadow-sm">
+        ${tag}
+      </span>
+    `).join('');
+  }
+
+  // Thumbnail Dock
+  const thumbsElem = document.getElementById('itineraryThumbnailDock');
+  if (thumbsElem) {
+    if (currentPackageGalleryItems.length > 1) {
+      thumbsElem.style.display = 'flex';
+      thumbsElem.innerHTML = currentPackageGalleryItems.map((item, idx) => `
+        <button type="button" 
+                onclick="switchPackageGallery(${idx})" 
+                class="package-gallery-thumb flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-lg overflow-hidden border cursor-pointer transition-all ${idx === 0 ? 'ring-2 ring-amber-400 border-transparent active' : 'border-slate-700 hover:border-amber-400 opacity-70 hover:opacity-100'}" 
+                title="${item.title || 'Tour landmark'}">
+          <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
+        </button>
+      `).join('');
+    } else {
+      thumbsElem.innerHTML = '';
+      thumbsElem.style.display = 'none';
+    }
+  }
+
   // Itinerary timeline
   const timelineElem = document.getElementById('itineraryDaysContainer');
-  timelineElem.innerHTML = pkg.itinerary.map(item => `
-    <div class="relative pl-7 pb-5 last:pb-0 border-l border-amber-500/40 last:border-transparent">
-      <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-amber-500 border-2 border-white dark:border-slate-900 shadow-md"></div>
-      <span class="inline-block px-2 py-0.5 rounded text-[11px] font-extrabold uppercase tracking-wider bg-amber-500/15 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400 mb-1">Day ${item.day}</span>
-      <h4 class="text-sm font-bold text-slate-900 dark:text-white">${item.title}</h4>
-    </div>
-  `).join('');
+  if (timelineElem) {
+    timelineElem.innerHTML = pkg.itinerary.map(item => `
+      <div class="relative pl-7 pb-4 last:pb-0 border-l border-amber-500/40 last:border-transparent">
+        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-amber-500 border-2 border-white dark:border-slate-900 shadow-md"></div>
+        <span class="inline-block px-2 py-0.5 rounded text-[11px] font-extrabold uppercase tracking-wider bg-amber-500/15 dark:bg-amber-500/20 text-amber-400 mb-1">Day ${item.day}</span>
+        <h4 class="text-sm font-bold text-white">${item.title}</h4>
+        ${item.desc ? `<p class="text-xs text-slate-300 mt-1 leading-relaxed">${item.desc}</p>` : ''}
+      </div>
+    `).join('');
+  }
 
-  // Perks list
+  // Perks list (Package Inclusions & Privileges)
   const perksElem = document.getElementById('itineraryPerksList');
-  perksElem.innerHTML = pkg.perks.map(perk => `
-    <div class="flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/40 p-2 rounded-lg border border-slate-200 dark:border-slate-700/50 shadow-sm">
-      <i class="fa-solid fa-circle-check text-amber-500"></i>
-      <span>${perk}</span>
-    </div>
-  `).join('');
+  if (perksElem) {
+    perksElem.innerHTML = (pkg.perks || []).map(perk => `
+      <div class="flex items-center space-x-2 text-xs text-slate-300 bg-slate-900/40 p-2.5 rounded-xl border border-slate-800/80 shadow-sm">
+        <i class="fa-solid fa-circle-check text-amber-500 text-xs flex-shrink-0"></i>
+        <span>${perk}</span>
+      </div>
+    `).join('');
+  }
 
   // Price & CTA
   const priceElem = document.getElementById('itineraryModalPrice');
   if (priceElem) {
     priceElem.classList.add('price-aed');
     priceElem.setAttribute('data-base-aed', pkg.priceAED);
-    priceElem.textContent = formatPrice(pkg.priceAED);
+    priceElem.textContent = typeof formatPrice === 'function' ? formatPrice(pkg.priceAED) : `AED ${pkg.priceAED.toLocaleString()}`;
   }
   const secPriceElem = document.getElementById('itineraryModalSecondaryPrice');
   if (secPriceElem) {
     secPriceElem.setAttribute('data-secondary-for', pkg.priceAED);
-    secPriceElem.textContent = `(${formatSecondaryPrice(pkg.priceAED)})`;
+    const secFormatted = pkg.priceLKR ? pkg.priceLKR : (typeof formatSecondaryPrice === 'function' ? formatSecondaryPrice(pkg.priceAED) : '');
+    secPriceElem.textContent = secFormatted ? `(${secFormatted})` : '';
   }
 
   const bookBtn = document.getElementById('itineraryBookButton');
@@ -2220,20 +2454,24 @@ function openItineraryModal(pkgId) {
   // Pre-fill WhatsApp Inquiry
   const itineraryWaBtn = document.getElementById('itineraryWhatsAppButton');
   if (itineraryWaBtn) {
-    itineraryWaBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(`Hello Star Plus, I am interested in the ${pkg.title} package.`)}`;
+    itineraryWaBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(`Hello Star Plus Travels, I am interested in booking the ${pkg.title} package (${pkg.duration}).`)}`;
   }
 
   const modal = document.getElementById('itineraryModal');
   if (modal) {
     modal.classList.remove('hidden');
     modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
   }
 }
 
 function closeItineraryModal() {
   const modal = document.getElementById('itineraryModal');
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
+  if (modal) {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
 }
 
 // Testimonials Slider Logic
@@ -5466,12 +5704,13 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 2150,
         priceLKR: 'LKR 190,000',
+        highlightTags: ['🐆 Leopard Safari', '🐘 Udawalawe Sanctuary', '🌿 Sinharaja Rainforest', '🦩 Bundala Bird Sanctuary'],
         keyStops: ['Yala Safari', 'Sinharaja Forest', 'Udawalawe'],
         destinations: ['Yala Safari', 'Sinharaja Forest', 'Udawalawe'],
         stay: '4 Nights in Luxury Safari Tented Camps & Eco-Lodges (Chena Huts / Rainforest Edge)',
         gallery: [
           {
-            image: 'assets/packages/sl-yala-leopard-rock.jpg',
+            image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 3: Yala Big-Game Leopard on Rock',
             title: 'Yala National Park Leopard Safari'
           },
@@ -5491,8 +5730,8 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Wild Elephant Herds'
           }
         ],
-        image: 'assets/packages/sl-yala-leopard-rock.jpg',
-        thumbnail: 'assets/packages/sl-yala-leopard-rock.jpg',
+        image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80',
         description: 'Track the highest leopard density on the planet with customized 4x4 open-top jeep safaris in Yala and Wilpattu. Trek beneath the ancient prehistoric canopy of UNESCO Sinharaja Virgin Rainforest, observe wild elephant rehabilitation at Udawalawe, and spot rare migratory wetland birds at Bundala.',
         checklist: [
           'Yala National Park Big-Game Leopard 4x4 Safari',
@@ -5557,6 +5796,7 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '4 Days / 3 Nights',
         priceAED: 1890,
         priceLKR: 'LKR 165,000',
+        highlightTags: ['🏖️ Mirissa & Bentota Beach', '🏰 UNESCO Galle Dutch Fort', '🚤 Madu River Safari', '🐢 Turtle Conservation'],
         keyStops: ['Bentota', 'Galle Fort', 'Mirissa Beach'],
         destinations: ['Bentota', 'Galle Fort', 'Mirissa Beach'],
         stay: '3 Nights at 4-Star & 5-Star Beachfront Resort (Amari Galle / Heritance Ahungalla)',
@@ -5644,6 +5884,7 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '4 Days / 3 Nights',
         priceAED: 1950,
         priceLKR: 'LKR 170,000',
+        highlightTags: ['🛕 Nallur Golden Kovil', '🏰 Jaffna Dutch Fort', '🐎 Delft Island Wild Horses', '⛵ Sacred Nainativu Ferry'],
         keyStops: ['Nallur Temple', 'Jaffna Fort', 'Delft Island'],
         destinations: ['Nallur Temple', 'Jaffna Fort', 'Delft Island'],
         stay: '3 Nights at Premier Heritage Boutique Hotel (Jetwing Jaffna / Fox Resort Jaffna)',
@@ -5728,6 +5969,7 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 2250,
         priceLKR: 'LKR 195,000',
+        highlightTags: ['🦁 Sigiriya Lion Rock', '🪨 Dambulla Cave Temples', '👑 Polonnaruwa Ruins', '🐘 Minneriya Elephant Gathering'],
         keyStops: ['Sigiriya Citadel', 'Dambulla Caves', 'Kandy Temple'],
         destinations: ['Sigiriya Citadel', 'Dambulla Caves', 'Kandy Temple'],
         stay: '4 Nights at 4-Star & 5-Star Heritage Boutique Resorts (Aliya Resort / Heritance Kandalama)',
@@ -5820,13 +6062,14 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 2050,
         priceLKR: 'LKR 180,000',
+        highlightTags: ['🚂 Scenic Hill Train', '🌉 Nine Arches Bridge', '🍃 Ceylon Tea Terraces', '💧 Ravana Falls'],
         keyStops: ['Nuwara Eliya', 'Ella Nine Arch', 'Diyaluma Falls'],
         destinations: ['Nuwara Eliya', 'Ella Nine Arch', 'Diyaluma Falls'],
         stay: '4 Nights in Colonial Tea Estate Bungalows & Boutique Mountain Resorts (Grand Hotel Nuwara Eliya / 98 Acres)',
         gallery: [
           {
-            image: 'assets/sri-lanka-destination.jpg',
-            tag: '📍 Day 3: Demodara Nine Arches Bridge',
+            image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
+            tag: '📍 Day 3: Demodara Nine Arches Bridge & Blue Train',
             title: 'Demodara Nine Arches Bridge'
           },
           {
@@ -5845,8 +6088,8 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Horton Plains National Park'
           }
         ],
-        image: 'assets/sri-lanka-destination.jpg',
-        thumbnail: 'assets/sri-lanka-destination.jpg',
+        image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
         description: 'Ride the legendary blue train as it weaves across misty valleys and the architectural marvel of the Demodara Nine Arches Bridge. Wander through the crisp, emerald Ceylon tea plantations of Nuwara Eliya, stand above the clouds at World\'s End in Horton Plains, and hike to cascading waterfalls.',
         checklist: [
           'World-Famous Scenic Hill Country Blue Train Journey',
@@ -5919,6 +6162,7 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '4 Days / 3 Nights',
         priceAED: 1850,
         priceLKR: 'LKR 380,000 / Adult (Child LKR 320,000)',
+        highlightTags: ['🏙️ Burj Khalifa At The Top', '🏎️ VIP Red Dune Safari', '⛵ Marina Dhow Cruise', '🐠 Dubai Aquarium'],
         keyStops: ['Burj Khalifa', 'Marina Dhow', 'Desert Safari'],
         destinations: ['Burj Khalifa', 'Marina Dhow', 'Desert Safari'],
         stay: '3 Nights Deluxe Accommodation at Avani Deira Dubai Hotel (4-Star Deluxe)',
@@ -6108,6 +6352,7 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '4 Days / 3 Nights',
         priceAED: 4499,
         priceLKR: 'LKR 890,000',
+        highlightTags: ['🏝️ Overwater Pool Villa', '🛩️ Scenic Seaplane Flight', '🐢 House Reef Snorkeling', '🐬 Sunset Dolphin Cruise'],
         keyStops: ['Male Atolls', 'Coral House Reef', 'Overwater Villa'],
         destinations: ['Male Atolls', 'Coral House Reef', 'Overwater Villa'],
         stay: '3 Nights in 5-Star Luxury Overwater Villa with Private Infinity Pool (Adaaran / Sun Siyam)',
@@ -6194,6 +6439,7 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 3250,
         priceLKR: 'LKR 640,000',
+        highlightTags: ['🏖️ Beachfront Family Villa', '🚤 Swift Speedboat Transfer', '🏝️ Deserted Sandbank Picnic', '🍿 Starlight Beach Cinema'],
         keyStops: ['Beachfront Villa', 'Private Sandbank', 'Coral Lagoon'],
         destinations: ['Beachfront Villa', 'Private Sandbank', 'Coral Lagoon'],
         stay: '4 Nights in Deluxe Beachfront Family Villa with Private Sundeck (Bandos / Oblu Xperience)',
@@ -6291,6 +6537,7 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 1950,
         priceLKR: 'LKR 390,000',
+        highlightTags: ['🔥 Flame Towers & Caspian', '🏰 UNESCO Old Baku City', '🌋 Gobustan Mud Volcanoes', '🏔️ Shahdag Alpine Peaks'],
         keyStops: ['Old City Baku', 'Gobustan Volcanoes', 'Shahdag Peaks'],
         destinations: ['Old City Baku', 'Gobustan Volcanoes', 'Shahdag Peaks'],
         stay: '3 Nights in 4-Star Baku City Center + 1 Night in Shahdag Mountain Resort',
@@ -6389,6 +6636,7 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '5 Days / 4 Nights',
         priceAED: 1890,
         priceLKR: 'LKR 375,000',
+        highlightTags: ['🏔️ Mount Kazbek & Caucasus', '⛪ Gergeti Trinity Church', '🏰 Ananuri Fortress', '🍷 Old Tbilisi & Sulfur Baths'],
         keyStops: ['Old Tbilisi', 'Ananuri Fortress', 'Gergeti Trinity'],
         destinations: ['Old Tbilisi', 'Ananuri Fortress', 'Gergeti Trinity'],
         stay: '3 Nights in Old Tbilisi Boutique Hotel + 1 Night in Kazbegi Alpine Lodge (Rooms Hotel Kazbegi)',
@@ -6487,6 +6735,7 @@ const COUNTRY_SHOWCASE_DATA = {
         duration: '6 Days / 5 Nights',
         priceAED: 2450,
         priceLKR: 'LKR 490,000',
+        highlightTags: ['🌴 Ubud Jungle Swing', '🌾 Tegallalang Rice Terraces', '🦖 Nusa Penida Kelingking', '🔥 Uluwatu Sunset Fire Dance'],
         keyStops: ['Ubud Terraces', 'Nusa Penida', 'Uluwatu Temple'],
         destinations: ['Ubud Terraces', 'Nusa Penida', 'Uluwatu Temple'],
         stay: '3 Nights in Ubud Private Pool Villa + 2 Nights in Seminyak Beachfront Resort',
@@ -6871,10 +7120,10 @@ function switchShowcaseGallery(index) {
 
   thumbs.forEach((thumb, idx) => {
     if (idx === index) {
-      thumb.classList.add('ring-2', 'ring-[#F59E0B]', 'scale-105', 'border-transparent', 'active');
+      thumb.classList.add('ring-2', 'ring-amber-400', 'border-transparent', 'active');
       thumb.classList.remove('border-slate-700', 'opacity-70');
     } else {
-      thumb.classList.remove('ring-2', 'ring-[#F59E0B]', 'scale-105', 'border-transparent', 'active');
+      thumb.classList.remove('ring-2', 'ring-amber-400', 'border-transparent', 'active');
       thumb.classList.add('border-slate-700', 'opacity-70');
     }
   });
@@ -6899,7 +7148,7 @@ function normalizeDestinationModalData(raw) {
   if (category.includes('DUBAI') || category.includes('CITY') || category.includes('UAE') || category.includes('FAMILY')) {
     category = 'CITY BREAK & LUXURY';
   } else if (category.includes('SRI LANKA') || category.includes('SAFARI') || category.includes('NATURE') || category.includes('WILDLIFE')) {
-    category = 'SAFARI & NATURE';
+    category = 'SAFARI & WILDLIFE';
   } else if (category.includes('AZERBAIJAN') || category.includes('GEORGIA') || category.includes('CAUCASUS') || category.includes('ALPINE') || category.includes('MOUNTAIN') || category.includes('HERITAGE')) {
     category = 'ALPINE & HERITAGE';
   } else if (category.includes('MALDIVES') || category.includes('BALI') || category.includes('BEACH') || category.includes('ISLAND') || category.includes('HONEYMOON') || category.includes('TROPICAL')) {
@@ -6921,7 +7170,7 @@ function normalizeDestinationModalData(raw) {
   } else if (raw.image) {
     galleryImages = [{ image: raw.image, title }];
   } else {
-    galleryImages = [{ image: 'assets/packages/dubai-burj-khalifa.jpg', title }];
+    galleryImages = [{ image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80', title }];
   }
 
   // 3 Highlights / Key Inclusions: array of 3 distinct features per destination
@@ -6942,6 +7191,19 @@ function normalizeDestinationModalData(raw) {
       || (raw.keyStops && raw.keyStops.length > 0 ? `Curated Excursions across ${raw.keyStops.join(', ')}` : 'Curated Guided Excursions & Signature Landmark Access');
 
     highlights = [stayFeature, transferFeature, excursionFeature];
+  }
+
+  // Highlights Pill Row: 3-4 quick tags
+  let highlightTags = [];
+  if (Array.isArray(raw.highlightTags) && raw.highlightTags.length > 0) {
+    highlightTags = raw.highlightTags;
+  } else if (Array.isArray(raw.keyStops) && raw.keyStops.length > 0) {
+    const emojis = ['🐆', '🚂', '🏖️', '🏔️', '🕌', '🏝️', '⛵', '🌋'];
+    highlightTags = raw.keyStops.slice(0, 4).map((s, idx) => `${emojis[idx % emojis.length]} ${s}`);
+  } else if (Array.isArray(raw.highlights) && raw.highlights.length > 0) {
+    highlightTags = raw.highlights.slice(0, 3).map(h => `✨ ${h.split(' ').slice(0, 4).join(' ')}`);
+  } else {
+    highlightTags = ['⭐ VIP Transfers', '🏨 Handpicked Stays', '✨ Curated Experiences'];
   }
 
   // Pricing & Currency
@@ -6968,6 +7230,7 @@ function normalizeDestinationModalData(raw) {
     duration,
     galleryImages,
     highlights,
+    highlightTags,
     priceAED,
     priceSecondary,
     whatsappUrl
@@ -6996,6 +7259,7 @@ function openShowcaseItinerary(tour) {
   const titleElem = document.getElementById('showcaseItineraryTitle');
   const subtitleElem = document.getElementById('showcaseItinerarySubtitle');
   const descElem = document.getElementById('showcaseItineraryDesc');
+  const highlightTagsElem = document.getElementById('showcaseItineraryHighlightTags');
   const highlightsGrid = document.getElementById('showcaseItineraryHighlightsGrid');
   const inclusionsElem = document.getElementById('showcaseItineraryInclusions');
   const daysElem = document.getElementById('showcaseItineraryDays');
@@ -7007,12 +7271,12 @@ function openShowcaseItinerary(tour) {
   // Setup Visual Places Gallery
   currentShowcaseGalleryItems = data.galleryImages;
 
-  // Populate Gallery Thumbnails with w-16 h-12 md:w-20 md:h-14, onerror fallback, and active ring-2 ring-[#F59E0B] scale-105
+  // Populate Gallery Thumbnails with w-16 h-12 md:w-20 md:h-14, onerror fallback, and active ring-2 ring-amber-400
   if (thumbsElem) {
     thumbsElem.innerHTML = currentShowcaseGalleryItems.map((item, idx) => `
       <button type="button" 
               onclick="switchShowcaseGallery(${idx})" 
-              class="showcase-gallery-thumb flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-lg overflow-hidden border cursor-pointer transition-all ${idx === 0 ? 'ring-2 ring-[#F59E0B] scale-105 border-transparent active' : 'border-slate-700 hover:border-amber-400 opacity-70 hover:opacity-100'}" 
+              class="showcase-gallery-thumb flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-lg overflow-hidden border cursor-pointer transition-all ${idx === 0 ? 'ring-2 ring-amber-400 border-transparent active' : 'border-slate-700 hover:border-amber-400 opacity-70 hover:opacity-100'}" 
               title="${item.title || 'Tour landmark'}">
         <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
       </button>
@@ -7029,27 +7293,38 @@ function openShowcaseItinerary(tour) {
   if (reviewsElem) reviewsElem.textContent = data.reviewCount;
   if (titleElem) titleElem.textContent = data.title;
   if (subtitleElem) {
-    subtitleElem.className = 'text-xs font-semibold text-[#F59E0B] tracking-widest uppercase flex items-center gap-1.5 mb-2';
-    subtitleElem.innerHTML = `<i class="fa-solid ${data.categoryIcon || 'fa-tag'} text-[#F59E0B]"></i><span>${data.subtitle || data.duration + ' CURATED JOURNEY'}</span>`;
+    subtitleElem.className = 'text-xs md:text-sm font-medium text-amber-400/90 tracking-wide uppercase mt-1 flex items-center gap-1.5';
+    subtitleElem.innerHTML = `<i class="fa-solid ${data.categoryIcon || 'fa-tag'} text-amber-400"></i><span>${data.subtitle || data.duration + ' CURATED JOURNEY'}</span>`;
   }
   if (descElem) descElem.textContent = data.description;
+
+  // Render Highlights Pill Row: 3–4 quick tags
+  if (highlightTagsElem) {
+    const tags = data.highlightTags || [];
+    highlightTagsElem.innerHTML = tags.map(tag => `
+      <span class="bg-slate-800/60 border border-slate-700/60 text-slate-300 text-xs px-3 py-1 rounded-lg flex items-center gap-1.5 shadow-sm">
+        ${tag}
+      </span>
+    `).join('');
+  }
 
   // Render 3 Highlights Grid (Responsive 3-column layout below media section)
   if (highlightsGrid) {
     const icons = ['fa-hotel', 'fa-car-side', 'fa-compass'];
     const labels = ['HANDPICKED LODGING', 'VIP PRIVATE TRANSFERS', 'SIGNATURE EXPERIENCES'];
     highlightsGrid.innerHTML = data.highlights.map((h, i) => `
-      <div class="p-3.5 sm:p-4 rounded-2xl bg-[#070B14] border border-[#1E293B] hover:border-[#F59E0B]/40 transition-colors flex items-start space-x-3 shadow-md">
-        <div class="w-8 h-8 rounded-xl bg-[#F59E0B]/15 text-[#F59E0B] flex items-center justify-center flex-shrink-0 mt-0.5">
+      <div class="p-3.5 sm:p-4 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-amber-500/40 transition-colors flex items-start space-x-3 shadow-md">
+        <div class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5">
           <i class="fa-solid ${icons[i] || 'fa-gem'} text-sm"></i>
         </div>
         <div class="flex-1 min-w-0">
-          <span class="text-[10px] font-bold uppercase tracking-wider text-[#F59E0B] block mb-0.5">${labels[i] || 'HIGHLIGHT'}</span>
+          <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400 block mb-0.5">${labels[i] || 'HIGHLIGHT'}</span>
           <span class="text-slate-200 text-xs font-medium leading-snug line-clamp-3">${h}</span>
         </div>
       </div>
     `).join('');
   }
+
 
   // Render Key Stops in Drawer
   const itinStopsElem = document.getElementById('showcaseItineraryStopsContainer');
@@ -7436,6 +7711,10 @@ window.downloadShowcaseBrochure = downloadShowcaseBrochure;
 window.downloadTourBrochure = downloadTourBrochure;
 window.scrollCountryShowcaseCards = scrollCountryShowcaseCards;
 window.normalizeDestinationModalData = normalizeDestinationModalData;
+window.openItineraryModal = openItineraryModal;
+window.closeItineraryModal = closeItineraryModal;
+window.switchPackageGallery = switchPackageGallery;
+window.downloadCurrentPackageBrochure = downloadCurrentPackageBrochure;
 
 window.populateShowcaseData = populateShowcaseData;
 window.openCountryPackages = function(countryKey) {
