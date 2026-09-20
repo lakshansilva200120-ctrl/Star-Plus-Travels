@@ -1748,6 +1748,22 @@ html.light .cat-chip.active i {
   }
 }
 
+/* Review SVG strict boundary safeguards */
+.review-track svg,
+#testimonialMarqueeTrack svg,
+#reviewsMarqueeTrack svg,
+#reviewsGrid svg,
+.review-card svg {
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px !important;
+  max-width: 16px !important;
+  min-height: 16px !important;
+  max-height: 16px !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+}
+
 /* Modal styles */
 .modal-backdrop {
   background-color: var(--theme-modal-backdrop);
