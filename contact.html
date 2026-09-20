@@ -129,12 +129,25 @@
       if (document.readyState === 'complete') {
         setTimeout(dismissPreloader, 400);
       } else {
-        window.addEventListener('load', function() {
-          setTimeout(dismissPreloader, 300);
+        window.addEventListener('load', () => {
+          const preloader = document.getElementById('starplus-preloader');
+          if (preloader) {
+            setTimeout(() => {
+              preloader.classList.add('fade-out');
+              dismissPreloader();
+            }, 400);
+          }
         });
       }
 
-      setTimeout(dismissPreloader, 2500);
+      // Fallback safety dismissal after 2.5s
+      setTimeout(() => {
+        const preloader = document.getElementById('starplus-preloader');
+        if (preloader && !preloader.classList.contains('fade-out')) {
+          preloader.classList.add('fade-out');
+          dismissPreloader();
+        }
+      }, 2500);
     })();
   </script>
 

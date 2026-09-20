@@ -4296,9 +4296,9 @@ function initNavPillIndicator() {
     cleanupConfetti = initConfettiCanvas(preloader);
   }
 
-  // Dismiss logic with smooth 0.6s fade-out transition
+  // Dismiss logic with smooth fade-out transition
   function dismissPreloader() {
-    if (preloader.classList.contains('preloader-exit') || preloader._dismissed) return;
+    if (preloader._dismissed) return;
 
     const start = window.__preloaderStartTime || Date.now();
     const elapsed = Date.now() - start;
@@ -4320,16 +4320,32 @@ function initNavPillIndicator() {
             preloader.parentNode.removeChild(preloader);
           }
         }
-      }, 600);
+      }, 700);
     }, remaining);
   }
 
   if (document.readyState === 'complete') {
     dismissPreloader();
   } else {
-    window.addEventListener('load', dismissPreloader);
-    setTimeout(dismissPreloader, isNyActive ? 3200 : 2500);
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('starplus-preloader') || document.getElementById('sitePreloader');
+      if (preloader) {
+        setTimeout(() => {
+          preloader.classList.add('fade-out');
+          dismissPreloader();
+        }, 400);
+      }
+    });
   }
+
+  // Fallback safety dismissal after 2.5s
+  setTimeout(() => {
+    const preloader = document.getElementById('starplus-preloader') || document.getElementById('sitePreloader');
+    if (preloader && !preloader.classList.contains('fade-out')) {
+      preloader.classList.add('fade-out');
+      dismissPreloader();
+    }
+  }, 2500);
 
   /**
    * Lightweight 60 FPS Canvas Particle Engine for Gold Confetti & Star Sparkles
