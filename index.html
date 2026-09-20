@@ -1219,14 +1219,17 @@
       </div>
 
       <!-- Testimonial Slider Card -->
-      <div class="max-w-4xl mx-auto mt-8 py-8 px-8 md:px-12 rounded-3xl border border-[#1E293B] shadow-2xl relative bg-[#0B1120]">
-        <div id="testimonialSlide">
+      <div class="max-w-4xl mx-auto mt-8 p-8 md:p-10 rounded-2xl bg-gradient-to-b from-slate-900/80 to-[#070B14]/90 border border-slate-800/80 shadow-2xl relative overflow-hidden">
+        <!-- Subtle decorative watermark quote mark -->
+        <div class="absolute top-2 right-6 text-7xl md:text-8xl font-serif text-slate-800/40 select-none pointer-events-none leading-none z-0" aria-hidden="true">&ldquo;</div>
+
+        <div id="testimonialSlide" class="relative z-10">
           <!-- Rendered dynamically by js/app.js -->
         </div>
 
         <!-- Slider Navigation Controls -->
-        <div class="mt-8 pt-6 border-t border-[#1E293B] flex items-center justify-between">
-          <button onclick="prevSlide()" class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-[#F59E0B] text-slate-300 hover:text-white transition-all shadow-sm" aria-label="Previous review">
+        <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between relative z-10">
+          <button onclick="prevSlide()" class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-[#F59E0B] text-slate-300 hover:text-white transition-all shadow-sm" aria-label="Previous review">
             <i class="fa-solid fa-chevron-left"></i>
           </button>
 
@@ -1235,7 +1238,7 @@
             <!-- Rendered by js/app.js -->
           </div>
 
-          <button onclick="nextSlide()" class="p-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-[#F59E0B] text-slate-300 hover:text-white transition-all shadow-sm" aria-label="Next review">
+          <button onclick="nextSlide()" class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-[#F59E0B] text-slate-300 hover:text-white transition-all shadow-sm" aria-label="Next review">
             <i class="fa-solid fa-chevron-right"></i>
           </button>
         </div>
