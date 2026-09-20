@@ -69,18 +69,18 @@
 </head>
 <body class="bg-[#f8fafc] dark:bg-[#070e17] text-slate-900 dark:text-slate-100 selection:bg-amber-500 selection:text-slate-950 font-sans antialiased min-h-screen flex flex-col transition-colors duration-300 w-full max-w-full relative">
   <!-- Elegant Luxury Preloader -->
-  <div id="starplus-preloader" class="luxury-preloader" aria-hidden="true" role="status">
-    <div class="preloader-orbit-wrapper">
+  <div id="starplus-preloader" class="luxury-preloader fixed inset-0 z-[99999] bg-[#070B14] flex flex-col items-center justify-center gap-7" aria-hidden="true" role="status">
+    <div class="preloader-orbit-wrapper relative w-[140px] h-[140px] flex items-center justify-center">
       <!-- Neon Circular Spinner Ring -->
       <div class="neon-ring"></div>
 
       <!-- Center Logo Shield -->
-      <div class="logo-core">
-        <img src="assets/images/logo.png" alt="Star Plus Travel & Tourism" class="preloader-brand-img" />
+      <div class="logo-core w-[108px] h-[108px] rounded-full border border-[#F59E0B]/20 flex items-center justify-center p-3.5 shadow-2xl">
+        <img src="assets/images/logo.png" alt="Star Plus Travel & Tourism" class="preloader-brand-img max-w-full max-h-full object-contain" />
       </div>
     </div>
 
-    <p class="preloader-tagline">CURATING LUXURY EXPERIENCES</p>
+    <p class="preloader-tagline text-[#94A3B8] uppercase tracking-[0.25em] text-xs font-semibold m-0">CURATING LUXURY EXPERIENCES</p>
   </div>
   <script>
     window.__preloaderStartTime = Date.now();
