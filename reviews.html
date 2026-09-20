@@ -444,7 +444,7 @@
 
       <!-- Aggregate Trust Header (Centered directly above reviews grid) -->
       <div class="mt-10 max-w-3xl mx-auto w-full">
-        <div class="bg-[#0B1120] border border-slate-800/80 rounded-3xl p-6 sm:p-8 text-center shadow-2xl relative overflow-hidden">
+        <div class="bg-[#0B1120] border border-[#1E293B] rounded-3xl p-6 sm:p-8 text-center shadow-2xl relative overflow-hidden">
           <div class="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(245,158,11,0.08),rgba(0,0,0,0))] pointer-events-none"></div>
           
           <div class="relative z-10 flex flex-col items-center justify-center space-y-4">
@@ -458,6 +458,12 @@
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
               </div>
+            </div>
+
+            <!-- Aggregate Verification Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F59E0B]/10 border border-[#F59E0B]/30 text-[#F59E0B] text-xs font-semibold">
+              <i class="fa-solid fa-star text-xs"></i>
+              <span>★ 4.9 Rating based on Google Business Profile Reviews</span>
             </div>
 
             <!-- Verification text -->
@@ -478,12 +484,16 @@
               </span>
             </div>
 
-            <!-- Google Business Profile Link -->
-            <div class="pt-2">
-              <a href="https://search.google.com/local/writereview?placeid=ChIJq_3BOfhdXz4R34p2xadhJP8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-[#F59E0B] transition-colors py-1 group">
-                <i class="fa-brands fa-google text-slate-400 group-hover:text-[#4285F4] transition-colors"></i>
-                <span>Have you traveled with us? Write a Google review</span>
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-75 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+            <!-- Google Maps listing link button & review action -->
+            <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+              <a href="https://www.google.com/maps/place/?q=place_id:ChIJq_3BOfhdXz4R34p2xadhJP8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300 hover:text-white transition-all group">
+                <i class="fa-solid fa-map-location-dot text-[#F59E0B]"></i>
+                <span>Read all reviews on Google Maps</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+              </a>
+              <a href="https://search.google.com/local/writereview?placeid=ChIJq_3BOfhdXz4R34p2xadhJP8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#F59E0B]/10 hover:bg-[#F59E0B]/20 border border-[#F59E0B]/30 text-xs font-semibold text-[#F59E0B] transition-all">
+                <i class="fa-brands fa-google text-[#4285F4]"></i>
+                <span>Leave a Google Review</span>
               </a>
             </div>
           </div>
@@ -516,73 +526,86 @@
     <!-- Reviews Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="reviewsGrid">
       
-      <!-- Review 1: Holiday Packages (Sri Lanka) -->
-      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="holiday">
+      <!-- Review 1: Client Review (Georgia Holiday) -->
+      <div class="review-card bg-[#0B1120] border border-[#1E293B] rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="holiday">
         <div>
-          <!-- Header Section -->
+          <!-- Header Section: Initials Badge alongside Google G icon badge -->
           <div class="flex items-start justify-between gap-3 pb-3.5">
             <div class="flex items-center space-x-3">
               <div class="relative shrink-0">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-emerald-900 to-slate-900 border border-emerald-500/40 text-emerald-400 font-bold flex items-center justify-center text-sm shadow-md">
-                  DS
+                <div class="w-11 h-11 rounded-full bg-slate-900 border border-slate-700/90 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
+                  SL
                 </div>
-                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="Sri Lanka">🇱🇰</span>
+                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow" title="Google Verified Review">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </span>
               </div>
               <div>
-                <h3 class="text-sm font-bold text-white leading-snug">Dilini Senanayake</h3>
+                <h3 class="text-sm font-bold text-white leading-snug">Client Review (Georgia Holiday)</h3>
                 <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Client
                 </span>
               </div>
             </div>
-            <!-- Star rating: 5 gold stars -->
             <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
           </div>
 
-          <!-- Itinerary Tag -->
+          <!-- Service Tag -->
           <div class="pb-3.5">
             <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
-              <i class="fa-solid fa-compass text-[10px]"></i> 7-Day Sri Lanka Discovery &amp; Tea Country
+              <i class="fa-solid fa-mountain-sun text-[10px]"></i> Georgia Tour, Hotels &amp; Logistics
             </span>
           </div>
 
-          <!-- Body Section Testimonial Copy -->
+          <!-- Testimonial Copy -->
           <p class="text-slate-300 leading-relaxed text-sm">
-            "We booked our family holiday to Sri Lanka through Star Plus Travel &amp; Tourism LLC. From boutique colonial tea estates in Nuwara Eliya to a private chauffeur escort through Kandy and Bentota, every detail was flawless. The Colombo concierge team coordinated our VIP airport lounge smoothly."
+            "We booked a trip to Georgia with Mr. Sasan Lakmal of Star Plus Travel and Tourism LLC—he was awesome. He handled our entire trip from flights to rental car and hotels. It was reassuring to pass that responsibility to someone so competent and timely. He was available throughout to assist with questions and logistics. Highly recommend!"
           </p>
         </div>
 
-        <!-- Body Section Footer: Trip date & branch consulted -->
-        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+        <!-- Footer -->
+        <div class="pt-4 border-t border-[#1E293B] mt-5 flex items-center justify-between text-xs text-slate-400">
           <div class="flex items-center gap-1.5">
             <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
             <span>Travelled August 2026</span>
           </div>
           <div class="flex items-center gap-1.5 text-slate-300">
             <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
-            <span>Colombo Concierge Desk</span>
+            <span>Twin Towers, Deira Office</span>
           </div>
         </div>
       </div>
 
-      <!-- Review 2: UAE Visas (Express Tourist Visa) -->
-      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="visa">
+      <!-- Review 2: Client Review (Express Visa) -->
+      <div class="review-card bg-[#0B1120] border border-[#1E293B] rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="visa">
         <div>
           <!-- Header Section -->
           <div class="flex items-start justify-between gap-3 pb-3.5">
             <div class="flex items-center space-x-3">
               <div class="relative shrink-0">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-amber-900 to-slate-900 border border-amber-500/40 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
-                  MR
+                <div class="w-11 h-11 rounded-full bg-slate-900 border border-slate-700/90 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
+                  EV
                 </div>
-                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="United Arab Emirates">🇦🇪</span>
+                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow" title="Google Verified Review">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </span>
               </div>
               <div>
-                <h3 class="text-sm font-bold text-white leading-snug">Muhammad Rizwan</h3>
+                <h3 class="text-sm font-bold text-white leading-snug">Client Review (Express Visa)</h3>
                 <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Client
                 </span>
               </div>
             </div>
@@ -591,48 +614,55 @@
             </div>
           </div>
 
-          <!-- Itinerary Tag -->
+          <!-- Service Tag -->
           <div class="pb-3.5">
             <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
-              <i class="fa-solid fa-passport text-[10px]"></i> UAE 60-Day Express Tourist Visa
+              <i class="fa-solid fa-passport text-[10px]"></i> Kuwait &amp; UAE Visa Renewal
             </span>
           </div>
 
-          <!-- Body Section Testimonial Copy -->
+          <!-- Testimonial Copy -->
           <p class="text-slate-300 leading-relaxed text-sm">
-            "Unmatched speed and professionalism from their Twin Towers office in Deira. My parents' 60-day tourist entry permits were issued within 18 hours without any paperwork hassle. Real-time WhatsApp notifications at every approval stage give total peace of mind."
+            "I traveled from Dubai to Kuwait to renew my visa, and had an outstanding experience thanks to Lakmal. Everything was arranged with impressive speed and professionalism. Even before I left the country, my new visa had already been processed and sent to me. Smooth, fast, and completely stress-free."
           </p>
         </div>
 
-        <!-- Body Section Footer: Trip date & branch consulted -->
-        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+        <!-- Footer -->
+        <div class="pt-4 border-t border-[#1E293B] mt-5 flex items-center justify-between text-xs text-slate-400">
           <div class="flex items-center gap-1.5">
             <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
             <span>Travelled September 2026</span>
           </div>
           <div class="flex items-center gap-1.5 text-slate-300">
             <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
-            <span>Dubai Branch Concierge</span>
+            <span>Visa Operations Desk</span>
           </div>
         </div>
       </div>
 
-      <!-- Review 3: Corporate & MICE (Leadership Summit) -->
-      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="corporate">
+      <!-- Review 3: Client Review (Dubai Package) -->
+      <div class="review-card bg-[#0B1120] border border-[#1E293B] rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="holiday">
         <div>
           <!-- Header Section -->
           <div class="flex items-start justify-between gap-3 pb-3.5">
             <div class="flex items-center space-x-3">
               <div class="relative shrink-0">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-900 to-slate-900 border border-blue-500/40 text-blue-400 font-bold flex items-center justify-center text-sm shadow-md">
-                  MV
+                <div class="w-11 h-11 rounded-full bg-slate-900 border border-slate-700/90 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
+                  DP
                 </div>
-                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="United Kingdom">🇬🇧</span>
+                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow" title="Google Verified Review">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </span>
               </div>
               <div>
-                <h3 class="text-sm font-bold text-white leading-snug">Marcus Vance</h3>
+                <h3 class="text-sm font-bold text-white leading-snug">Client Review (Dubai Package)</h3>
                 <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Client
                 </span>
               </div>
             </div>
@@ -641,21 +671,135 @@
             </div>
           </div>
 
-          <!-- Itinerary Tag -->
+          <!-- Service Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-city text-[10px]"></i> 10-Day Dubai Tour &amp; Visa
+            </span>
+          </div>
+
+          <!-- Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "I recently booked a tour to Dubai with Star Plus Travels and the service they provided was next level. The visa process was smooth and hassle-free. The team was cooperative, prompt, and organized a comprehensive 10-day tour covering Dubai’s premier attractions."
+          </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="pt-4 border-t border-[#1E293B] mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled August 2026</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Dubai Inbound Division</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 4: Client Review (Dedicated Visa Processing) -->
+      <div class="review-card bg-[#0B1120] border border-[#1E293B] rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="visa">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-slate-900 border border-slate-700/90 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
+                  DT
+                </div>
+                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow" title="Google Verified Review">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Client Review (Dedicated Visa Processing)</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Client
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+
+          <!-- Service Tag -->
+          <div class="pb-3.5">
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
+              <i class="fa-solid fa-id-card text-[10px]"></i> UAE Visa Processing Assistance
+            </span>
+          </div>
+
+          <!-- Testimonial Copy -->
+          <p class="text-slate-300 leading-relaxed text-sm">
+            "Outstanding, trustworthy service from start to finish. The team guided us through every step with clear updates and care. Special thanks to Dharshana Thilakerathne for the dedicated support and attention to detail that made the journey completely worry-free."
+          </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="pt-4 border-t border-[#1E293B] mt-5 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
+            <span>Travelled July 2026</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-slate-300">
+            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
+            <span>Immigration Advisory</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 5: Corporate & MICE (Leadership Summit) -->
+      <div class="review-card bg-[#0B1120] border border-[#1E293B] rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="corporate">
+        <div>
+          <!-- Header Section -->
+          <div class="flex items-start justify-between gap-3 pb-3.5">
+            <div class="flex items-center space-x-3">
+              <div class="relative shrink-0">
+                <div class="w-11 h-11 rounded-full bg-slate-900 border border-slate-700/90 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
+                  MV
+                </div>
+                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow" title="Google Verified Review">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </span>
+              </div>
+              <div>
+                <h3 class="text-sm font-bold text-white leading-snug">Client Review (Corporate Delegation)</h3>
+                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Client
+                </span>
+              </div>
+            </div>
+            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+          </div>
+
+          <!-- Service Tag -->
           <div class="pb-3.5">
             <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
               <i class="fa-solid fa-briefcase text-[10px]"></i> Annual Leadership Summit Dubai (45 Pax)
             </span>
           </div>
 
-          <!-- Body Section Testimonial Copy -->
+          <!-- Testimonial Copy -->
           <p class="text-slate-300 leading-relaxed text-sm">
             "Star Plus managed ground handling, executive Mercedes coach transfers, and private desert banquet logistics for our EMEA executive summit in Dubai. Flawless punctuality, discreet coordinators, and 24/7 dedicated liaison managers who anticipated every requirement."
           </p>
         </div>
 
-        <!-- Body Section Footer: Trip date & branch consulted -->
-        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+        <!-- Footer -->
+        <div class="pt-4 border-t border-[#1E293B] mt-5 flex items-center justify-between text-xs text-slate-400">
           <div class="flex items-center gap-1.5">
             <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
             <span>Travelled August 2026</span>
@@ -667,72 +811,29 @@
         </div>
       </div>
 
-      <!-- Review 4: Holiday Packages (Baku Azerbaijan) -->
-      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="holiday">
+      <!-- Review 6: Flights & Hotels (Emirates & Atlantis) -->
+      <div class="review-card bg-[#0B1120] border border-[#1E293B] rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="flights-hotels">
         <div>
           <!-- Header Section -->
           <div class="flex items-start justify-between gap-3 pb-3.5">
             <div class="flex items-center space-x-3">
               <div class="relative shrink-0">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-indigo-900 to-slate-900 border border-indigo-500/40 text-indigo-400 font-bold flex items-center justify-center text-sm shadow-md">
-                  AS
-                </div>
-                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="United Arab Emirates">🇦🇪</span>
-              </div>
-              <div>
-                <h3 class="text-sm font-bold text-white leading-snug">Dr. Ayesha &amp; Bilal Siddiqui</h3>
-                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
-                </span>
-              </div>
-            </div>
-            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
-              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            </div>
-          </div>
-
-          <!-- Itinerary Tag -->
-          <div class="pb-3.5">
-            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
-              <i class="fa-solid fa-mountain text-[10px]"></i> Baku Alpine Retreat &amp; Shahdag
-            </span>
-          </div>
-
-          <!-- Body Section Testimonial Copy -->
-          <p class="text-slate-300 leading-relaxed text-sm">
-            "Our 5-day Azerbaijan mountain getaway was curated to perfection. The private chalets at Shahdag, scenic cable cars, and private cultural walking tour through Baku Old City were sublime. Flexible Tabby installment checkout made holiday budgeting seamless."
-          </p>
-        </div>
-
-        <!-- Body Section Footer: Trip date & branch consulted -->
-        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
-          <div class="flex items-center gap-1.5">
-            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
-            <span>Travelled July 2026</span>
-          </div>
-          <div class="flex items-center gap-1.5 text-slate-300">
-            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
-            <span>Dubai Branch Concierge</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Review 5: Flights & Hotels (Emirates & Atlantis) -->
-      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="flights-hotels">
-        <div>
-          <!-- Header Section -->
-          <div class="flex items-start justify-between gap-3 pb-3.5">
-            <div class="flex items-center space-x-3">
-              <div class="relative shrink-0">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-rose-900 to-slate-900 border border-rose-500/40 text-rose-400 font-bold flex items-center justify-center text-sm shadow-md">
+                <div class="w-11 h-11 rounded-full bg-slate-900 border border-slate-700/90 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
                   SJ
                 </div>
-                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="United Kingdom">🇬🇧</span>
+                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow" title="Google Verified Review">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </span>
               </div>
               <div>
-                <h3 class="text-sm font-bold text-white leading-snug">Sarah Jenkins</h3>
+                <h3 class="text-sm font-bold text-white leading-snug">Client Review (VIP Ticketing &amp; Luxury Stay)</h3>
                 <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Client
                 </span>
               </div>
             </div>
@@ -741,21 +842,21 @@
             </div>
           </div>
 
-          <!-- Itinerary Tag -->
+          <!-- Service Tag -->
           <div class="pb-3.5">
             <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
               <i class="fa-solid fa-plane-departure text-[10px]"></i> Emirates Business Class &amp; Atlantis
             </span>
           </div>
 
-          <!-- Body Section Testimonial Copy -->
+          <!-- Testimonial Copy -->
           <p class="text-slate-300 leading-relaxed text-sm">
             "Star Plus secured exclusive unpublished business class fare cabins on Emirates alongside an exceptional luxury suite upgrade at Atlantis The Royal. Their VIP ticketing desk even arranged complimentary private chauffeur airport transfers on arrival in Dubai."
           </p>
         </div>
 
-        <!-- Body Section Footer: Trip date & branch consulted -->
-        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+        <!-- Footer -->
+        <div class="pt-4 border-t border-[#1E293B] mt-5 flex items-center justify-between text-xs text-slate-400">
           <div class="flex items-center gap-1.5">
             <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
             <span>Travelled August 2026</span>
@@ -767,22 +868,29 @@
         </div>
       </div>
 
-      <!-- Review 6: UAE Visas (Airport to Airport Express) -->
-      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="visa">
+      <!-- Review 7: UAE Visas (Airport to Airport Express) -->
+      <div class="review-card bg-[#0B1120] border border-[#1E293B] rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="visa">
         <div>
           <!-- Header Section -->
           <div class="flex items-start justify-between gap-3 pb-3.5">
             <div class="flex items-center space-x-3">
               <div class="relative shrink-0">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-cyan-900 to-slate-900 border border-cyan-500/40 text-cyan-400 font-bold flex items-center justify-center text-sm shadow-md">
+                <div class="w-11 h-11 rounded-full bg-slate-900 border border-slate-700/90 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
                   FA
                 </div>
-                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="United Arab Emirates">🇦🇪</span>
+                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow" title="Google Verified Review">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </span>
               </div>
               <div>
-                <h3 class="text-sm font-bold text-white leading-snug">Faheem Akhtar</h3>
+                <h3 class="text-sm font-bold text-white leading-snug">Client Review (Airport Visa Change)</h3>
                 <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Client
                 </span>
               </div>
             </div>
@@ -791,21 +899,21 @@
             </div>
           </div>
 
-          <!-- Itinerary Tag -->
+          <!-- Service Tag -->
           <div class="pb-3.5">
             <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
-              <i class="fa-solid fa-passport text-[10px]"></i> Airport-to-Airport Express Visa Change
+              <i class="fa-solid fa-plane text-[10px]"></i> Airport-to-Airport Express Visa Change
             </span>
           </div>
 
-          <!-- Body Section Testimonial Copy -->
+          <!-- Testimonial Copy -->
           <p class="text-slate-300 leading-relaxed text-sm">
             "Needed an urgent same-day visa status change for my new employment transition. The Star Plus visa department arranged direct flydubai transit and issued my fresh entry visa before my return flight landed back at DXB Terminal 2. Exemplary efficiency."
           </p>
         </div>
 
-        <!-- Body Section Footer: Trip date & branch consulted -->
-        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+        <!-- Footer -->
+        <div class="pt-4 border-t border-[#1E293B] mt-5 flex items-center justify-between text-xs text-slate-400">
           <div class="flex items-center gap-1.5">
             <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
             <span>Travelled August 2026</span>
@@ -817,22 +925,29 @@
         </div>
       </div>
 
-      <!-- Review 7: Holiday Packages (Maldives Overwater Retreat) -->
-      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="holiday">
+      <!-- Review 8: Holiday Packages (Maldives Overwater Retreat) -->
+      <div class="review-card bg-[#0B1120] border border-[#1E293B] rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="holiday">
         <div>
           <!-- Header Section -->
           <div class="flex items-start justify-between gap-3 pb-3.5">
             <div class="flex items-center space-x-3">
               <div class="relative shrink-0">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-teal-900 to-slate-900 border border-teal-500/40 text-teal-400 font-bold flex items-center justify-center text-sm shadow-md">
+                <div class="w-11 h-11 rounded-full bg-slate-900 border border-slate-700/90 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
                   CW
                 </div>
-                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="Germany">🇩🇪</span>
+                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow" title="Google Verified Review">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </span>
               </div>
               <div>
-                <h3 class="text-sm font-bold text-white leading-snug">Christoph &amp; Helga Weber</h3>
+                <h3 class="text-sm font-bold text-white leading-snug">Client Review (Bespoke Island Getaway)</h3>
                 <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Client
                 </span>
               </div>
             </div>
@@ -841,48 +956,55 @@
             </div>
           </div>
 
-          <!-- Itinerary Tag -->
+          <!-- Service Tag -->
           <div class="pb-3.5">
             <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
               <i class="fa-solid fa-umbrella-beach text-[10px]"></i> Maldives Overwater Villa Retreat
             </span>
           </div>
 
-          <!-- Body Section Testimonial Copy -->
+          <!-- Testimonial Copy -->
           <p class="text-slate-300 leading-relaxed text-sm">
             "An unforgettable private lagoon holiday at Sun Siyam Iru Veli. Star Plus managed our seaplane charter connections and negotiated all-inclusive gourmet dining inclusions directly with the resort. Seamless coordination from both their Dubai and Colombo desks."
           </p>
         </div>
 
-        <!-- Body Section Footer: Trip date & branch consulted -->
-        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+        <!-- Footer -->
+        <div class="pt-4 border-t border-[#1E293B] mt-5 flex items-center justify-between text-xs text-slate-400">
           <div class="flex items-center gap-1.5">
             <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
             <span>Travelled July 2026</span>
           </div>
           <div class="flex items-center gap-1.5 text-slate-300">
             <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
-            <span>Dubai Luxury Leisure Desk</span>
+            <span>Luxury Leisure Desk</span>
           </div>
         </div>
       </div>
 
-      <!-- Review 8: Corporate & MICE (Trade Delegation) -->
-      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="corporate">
+      <!-- Review 9: Corporate & MICE (Trade Delegation) -->
+      <div class="review-card bg-[#0B1120] border border-[#1E293B] rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="corporate">
         <div>
           <!-- Header Section -->
           <div class="flex items-start justify-between gap-3 pb-3.5">
             <div class="flex items-center space-x-3">
               <div class="relative shrink-0">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-purple-900 to-slate-900 border border-purple-500/40 text-purple-400 font-bold flex items-center justify-center text-sm shadow-md">
+                <div class="w-11 h-11 rounded-full bg-slate-900 border border-slate-700/90 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
                   RM
                 </div>
-                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="India">🇮🇳</span>
+                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow" title="Google Verified Review">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </span>
               </div>
               <div>
-                <h3 class="text-sm font-bold text-white leading-snug">Rajiv Mehta</h3>
+                <h3 class="text-sm font-bold text-white leading-snug">Client Review (Trade Mission &amp; MICE)</h3>
                 <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Client
                 </span>
               </div>
             </div>
@@ -891,21 +1013,21 @@
             </div>
           </div>
 
-          <!-- Itinerary Tag -->
+          <!-- Service Tag -->
           <div class="pb-3.5">
             <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
               <i class="fa-solid fa-building text-[10px]"></i> Dubai Expo City Trade Delegation
             </span>
           </div>
 
-          <!-- Body Section Testimonial Copy -->
+          <!-- Testimonial Copy -->
           <p class="text-slate-300 leading-relaxed text-sm">
             "Our trade chamber brought 60 business delegates to Dubai. Star Plus handled group e-visas with zero rejections, hotel room blocks at the Address Downtown, and custom corporate event branding. Their on-site tour director was indispensable throughout the summit."
           </p>
         </div>
 
-        <!-- Body Section Footer: Trip date & branch consulted -->
-        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+        <!-- Footer -->
+        <div class="pt-4 border-t border-[#1E293B] mt-5 flex items-center justify-between text-xs text-slate-400">
           <div class="flex items-center gap-1.5">
             <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
             <span>Travelled June 2026</span>
@@ -917,72 +1039,29 @@
         </div>
       </div>
 
-      <!-- Review 9: UAE Visas (Freelance & Green Residence Visa) -->
-      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="visa">
-        <div>
-          <!-- Header Section -->
-          <div class="flex items-start justify-between gap-3 pb-3.5">
-            <div class="flex items-center space-x-3">
-              <div class="relative shrink-0">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-violet-900 to-slate-900 border border-violet-500/40 text-violet-400 font-bold flex items-center justify-center text-sm shadow-md">
-                  ER
-                </div>
-                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="Russia">🇷🇺</span>
-              </div>
-              <div>
-                <h3 class="text-sm font-bold text-white leading-snug">Elena Rostova</h3>
-                <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
-                </span>
-              </div>
-            </div>
-            <div class="flex items-center space-x-0.5 text-[#F59E0B] text-xs pt-1 shrink-0" aria-label="5 stars">
-              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            </div>
-          </div>
-
-          <!-- Itinerary Tag -->
-          <div class="pb-3.5">
-            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
-              <i class="fa-solid fa-id-card text-[10px]"></i> UAE 2-Year Freelance &amp; Green Visa
-            </span>
-          </div>
-
-          <!-- Body Section Testimonial Copy -->
-          <p class="text-slate-300 leading-relaxed text-sm">
-            "Navigating UAE freelance residency can be daunting, but the immigration consultants at Twin Towers walked me through medical fitness, VIP Emirates ID biometric scheduling, and status change in under 5 business days. Truly top-tier immigration consultants in Deira."
-          </p>
-        </div>
-
-        <!-- Body Section Footer: Trip date & branch consulted -->
-        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
-          <div class="flex items-center gap-1.5">
-            <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
-            <span>Travelled August 2026</span>
-          </div>
-          <div class="flex items-center gap-1.5 text-slate-300">
-            <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
-            <span>Immigration Advisory</span>
-          </div>
-        </div>
-      </div>
-
       <!-- Review 10: Flights & Hotels (First Class & Burj Al Arab) -->
-      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="flights-hotels">
+      <div class="review-card bg-[#0B1120] border border-[#1E293B] rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="flights-hotels">
         <div>
           <!-- Header Section -->
           <div class="flex items-start justify-between gap-3 pb-3.5">
             <div class="flex items-center space-x-3">
               <div class="relative shrink-0">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-amber-800 to-slate-900 border border-amber-400/40 text-amber-300 font-bold flex items-center justify-center text-sm shadow-md">
+                <div class="w-11 h-11 rounded-full bg-slate-900 border border-slate-700/90 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
                   TM
                 </div>
-                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="Saudi Arabia">🇸🇦</span>
+                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow" title="Google Verified Review">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </span>
               </div>
               <div>
-                <h3 class="text-sm font-bold text-white leading-snug">Tariq Al-Mansoor</h3>
+                <h3 class="text-sm font-bold text-white leading-snug">Client Review (Royal Suite &amp; Flights)</h3>
                 <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Client
                 </span>
               </div>
             </div>
@@ -991,21 +1070,21 @@
             </div>
           </div>
 
-          <!-- Itinerary Tag -->
+          <!-- Service Tag -->
           <div class="pb-3.5">
             <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
               <i class="fa-solid fa-hotel text-[10px]"></i> First Class Riyadh-DXB &amp; Burj Al Arab
             </span>
           </div>
 
-          <!-- Body Section Testimonial Copy -->
+          <!-- Testimonial Copy -->
           <p class="text-slate-300 leading-relaxed text-sm">
             "From discreet last-minute First Class booking on Saudia to a customized suite arrangement at Burj Al Arab with 24/7 dedicated butler, Star Plus delivers royal-grade travel management. Their responsiveness at 2 AM was unmatched."
           </p>
         </div>
 
-        <!-- Body Section Footer: Trip date & branch consulted -->
-        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+        <!-- Footer -->
+        <div class="pt-4 border-t border-[#1E293B] mt-5 flex items-center justify-between text-xs text-slate-400">
           <div class="flex items-center gap-1.5">
             <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
             <span>Travelled September 2026</span>
@@ -1017,22 +1096,29 @@
         </div>
       </div>
 
-      <!-- Review 11: Holiday Packages (Georgia Caucasus) -->
-      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="holiday">
+      <!-- Review 11: Holiday Packages (Baku Azerbaijan) -->
+      <div class="review-card bg-[#0B1120] border border-[#1E293B] rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="holiday">
         <div>
           <!-- Header Section -->
           <div class="flex items-start justify-between gap-3 pb-3.5">
             <div class="flex items-center space-x-3">
               <div class="relative shrink-0">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-blue-900 to-slate-900 border border-blue-400/40 text-blue-300 font-bold flex items-center justify-center text-sm shadow-md">
-                  KW
+                <div class="w-11 h-11 rounded-full bg-slate-900 border border-slate-700/90 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
+                  AS
                 </div>
-                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="Sri Lanka">🇱🇰</span>
+                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow" title="Google Verified Review">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </span>
               </div>
               <div>
-                <h3 class="text-sm font-bold text-white leading-snug">Kavinda Wickramasinghe</h3>
+                <h3 class="text-sm font-bold text-white leading-snug">Client Review (Shahdag Ski Tour)</h3>
                 <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Client
                 </span>
               </div>
             </div>
@@ -1041,48 +1127,55 @@
             </div>
           </div>
 
-          <!-- Itinerary Tag -->
+          <!-- Service Tag -->
           <div class="pb-3.5">
             <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
-              <i class="fa-solid fa-mountain-sun text-[10px]"></i> Georgia Caucasus Alpine Escape
+              <i class="fa-solid fa-mountain text-[10px]"></i> Baku Alpine Retreat &amp; Shahdag
             </span>
           </div>
 
-          <!-- Body Section Testimonial Copy -->
+          <!-- Testimonial Copy -->
           <p class="text-slate-300 leading-relaxed text-sm">
-            "Exceptional trip to Tbilisi, Kazbegi, and Gudauri! Our English-speaking guide was knowledgeable and punctual, and the boutique mountain hotels offered panoramic views of Mt Kazbek. Transparent pricing with zero hidden surcharges."
+            "Our 5-day Azerbaijan mountain getaway was curated to perfection. The private chalets at Shahdag, scenic cable cars, and private cultural walking tour through Baku Old City were sublime. Flexible Tabby installment checkout made holiday budgeting seamless."
           </p>
         </div>
 
-        <!-- Body Section Footer: Trip date & branch consulted -->
-        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+        <!-- Footer -->
+        <div class="pt-4 border-t border-[#1E293B] mt-5 flex items-center justify-between text-xs text-slate-400">
           <div class="flex items-center gap-1.5">
             <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
-            <span>Travelled June 2026</span>
+            <span>Travelled July 2026</span>
           </div>
           <div class="flex items-center gap-1.5 text-slate-300">
             <i class="fa-solid fa-location-dot text-[#F59E0B] text-[11px]"></i>
-            <span>Dubai Branch Concierge</span>
+            <span>Holiday Packages Desk</span>
           </div>
         </div>
       </div>
 
       <!-- Review 12: Corporate & MICE (Incentive Retreat) -->
-      <div class="review-card bg-[#0B1120] border border-slate-800/80 rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="corporate">
+      <div class="review-card bg-[#0B1120] border border-[#1E293B] rounded-2xl p-6 hover:border-[#F59E0B]/40 transition-all duration-300 flex flex-col justify-between" data-category="corporate">
         <div>
           <!-- Header Section -->
           <div class="flex items-start justify-between gap-3 pb-3.5">
             <div class="flex items-center space-x-3">
               <div class="relative shrink-0">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-emerald-950 to-slate-900 border border-emerald-400/40 text-emerald-300 font-bold flex items-center justify-center text-sm shadow-md">
+                <div class="w-11 h-11 rounded-full bg-slate-900 border border-slate-700/90 text-[#F59E0B] font-bold flex items-center justify-center text-sm shadow-md">
                   FZ
                 </div>
-                <span class="absolute -bottom-1 -right-1 text-sm leading-none" title="United Arab Emirates">🇦🇪</span>
+                <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow" title="Google Verified Review">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </span>
               </div>
               <div>
-                <h3 class="text-sm font-bold text-white leading-snug">Fatima Al-Zahra</h3>
+                <h3 class="text-sm font-bold text-white leading-snug">Client Review (Sales Incentive Tour)</h3>
                 <span class="text-[11px] text-[#10B981] font-medium flex items-center gap-1 mt-0.5">
-                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Traveler
+                  <i class="fa-solid fa-circle-check text-[10px]"></i> Verified Client
                 </span>
               </div>
             </div>
@@ -1091,21 +1184,21 @@
             </div>
           </div>
 
-          <!-- Itinerary Tag -->
+          <!-- Service Tag -->
           <div class="pb-3.5">
             <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
               <i class="fa-solid fa-award text-[10px]"></i> Corporate Incentive Retreat to Sri Lanka
             </span>
           </div>
 
-          <!-- Body Section Testimonial Copy -->
+          <!-- Testimonial Copy -->
           <p class="text-slate-300 leading-relaxed text-sm">
             "We rewarded our top-performing regional executives with a luxury retreat in Sri Lanka. From the scenic private salon carriage train ride through tea plantations to beachfront banquets at Galle Fort, the Star Plus Colombo team executed flawlessly."
           </p>
         </div>
 
-        <!-- Body Section Footer: Trip date & branch consulted -->
-        <div class="pt-4 border-t border-slate-800/80 mt-5 flex items-center justify-between text-xs text-slate-400">
+        <!-- Footer -->
+        <div class="pt-4 border-t border-[#1E293B] mt-5 flex items-center justify-between text-xs text-slate-400">
           <div class="flex items-center gap-1.5">
             <i class="fa-regular fa-calendar text-slate-500 text-[11px]"></i>
             <span>Travelled July 2026</span>
