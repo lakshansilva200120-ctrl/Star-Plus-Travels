@@ -1167,20 +1167,6 @@ const PACKAGES = [
 // Testimonials Data (Authentic Google Business Profile Reviews - Star Plus Travel & Tourism LLC, Twin Towers, Deira, Dubai)
 const TESTIMONIALS = [
   {
-    name: 'Client Review (Georgia Holiday)',
-    nameSi: 'සේවාදායක ඇගයීම (ජෝර්ජියා නිවාඩුව)',
-    initials: 'SL',
-    role: 'Verified Google Reviewer',
-    trip: 'Georgia Tour, Hotels & Logistics',
-    tripSi: 'ජෝර්ජියා සංචාරය, හෝටල් සහ ප්‍රවාහන සේවා',
-    serviceTag: 'Georgia Tour, Hotels & Logistics',
-    serviceTagSi: 'ජෝර්ජියා සංචාරය, හෝටල් සහ ප්‍රවාහන සේවා',
-    stars: 5,
-    date: 'Verified on Google',
-    comment: 'We booked a trip to Georgia with Mr. Sasan Lakmal of Star Plus Travel and Tourism LLC—he was awesome. He handled our entire trip from flights to rental car and hotels. It was reassuring to pass that responsibility to someone so competent and timely. He was available throughout to assist with questions and logistics. Highly recommend!',
-    commentSi: 'අපි Star Plus Travel සමාගමේ සසන් ලක්මාල් මහතා හරහා ජෝර්ජියා සංචාරයක් වෙන්කරවා ගත්තෙමු—ඔහුගේ සේවාව විශිෂ්ටයි. ගුවන් ටිකට්පත්, කුලී රථ සහ හෝටල් දක්වා අපගේ සම්පූර්ණ සංචාරයම ඔහු ඉතා කාර්යක්ෂමව සැලසුම් කළේය. ඕනෑම ප්‍රශ්නයකදී හෝ අවශ්‍යතාවකදී ඔහු නිරතුරුව සහාය විය. බෙහෙවින් නිර්දේශ කරමි!'
-  },
-  {
     name: 'Client Review (Express Visa)',
     nameSi: 'සේවාදායක ඇගයීම (ක්ෂණික වීසා)',
     initials: 'EV',
@@ -1193,6 +1179,20 @@ const TESTIMONIALS = [
     date: 'Verified on Google',
     comment: 'I traveled from Dubai to Kuwait to renew my visa, and had an outstanding experience thanks to Lakmal. Everything was arranged with impressive speed and professionalism. Even before I left the country, my new visa had already been processed and sent to me. Smooth, fast, and completely stress-free.',
     commentSi: 'මගේ වීසා බලපත්‍රය අලුත් කරගැනීමට මම ඩුබායි සිට කුවේට් බලා ගිය අතර, ලක්මාල් මහතාට පින්සිදුවන්නට එය ඉතා පහසු අත්දැකීමක් විය. සියල්ල ඉතා වේගවත්ව සහ වෘත්තීය මට්ටමින් සංවිධානය කර තිබුණි. මා මෙරටින් පිටවීමටත් පෙරම මගේ නව වීසාව සකසා මා වෙත එවා තිබුණි. ඉතා සුමට, වේගවත් සහ විශ්වාසනීය සේවාවක්.'
+  },
+  {
+    name: 'Client Review (Georgia Holiday)',
+    nameSi: 'සේවාදායක ඇගයීම (ජෝර්ජියා නිවාඩුව)',
+    initials: 'SL',
+    role: 'Verified Google Reviewer',
+    trip: 'Georgia Tour, Hotels & Logistics',
+    tripSi: 'ජෝර්ජියා සංචාරය, හෝටල් සහ ප්‍රවාහන සේවා',
+    serviceTag: 'Georgia Tour, Hotels & Logistics',
+    serviceTagSi: 'ජෝර්ජියා සංචාරය, හෝටල් සහ ප්‍රවාහන සේවා',
+    stars: 5,
+    date: 'Verified on Google',
+    comment: 'We booked a trip to Georgia with Mr. Sasan Lakmal of Star Plus Travel and Tourism LLC—he was awesome. He handled our entire trip from flights to rental car and hotels. It was reassuring to pass that responsibility to someone so competent and timely. He was available throughout to assist with questions and logistics. Highly recommend!',
+    commentSi: 'අපි Star Plus Travel සමාගමේ සසන් ලක්මාල් මහතා හරහා ජෝර්ජියා සංචාරයක් වෙන්කරවා ගත්තෙමු—ඔහුගේ සේවාව විශිෂ්ටයි. ගුවන් ටිකට්පත්, කුලී රථ සහ හෝටල් දක්වා අපගේ සම්පූර්ණ සංචාරයම ඔහු ඉතා කාර්යක්ෂමව සැලසුම් කළේය. ඕනෑම ප්‍රශ්නයකදී හෝ අවශ්‍යතාවකදී ඔහු නිරතුරුව සහාය විය. බෙහෙවින් නිර්දේශ කරමි!'
   },
   {
     name: 'Client Review (Dubai Package)',
@@ -2204,47 +2204,47 @@ function renderTestimonial() {
 
   container.innerHTML = `
     <div class="testimonial-slide flex flex-col justify-between text-left relative z-10">
-      <!-- Top Bar: Stars, Divider, Sleek Google Badge & Far-Right Service Pill -->
-      <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
-        <div class="flex items-center gap-2.5">
-          <div class="flex items-center space-x-1 text-[#F59E0B] text-sm shrink-0">
+      <!-- Clean Single-Row Header: Stars, Divider, Compact Google Badge & Far-Right Destination Tag -->
+      <div class="flex items-center justify-between gap-4 mb-6">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center space-x-1 text-amber-400 text-sm tracking-widest shrink-0">
             ${Array(t.stars).fill('<i class="fa-solid fa-star"></i>').join('')}
           </div>
-          <span class="text-slate-700 select-none">|</span>
-          <span class="h-6 px-2.5 rounded-full bg-slate-800/60 border border-slate-700/60 text-[11px] font-medium text-slate-300 flex items-center gap-1.5 shadow-sm" title="${googleVerifiedText}">
-            <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24">
+          <span class="h-3 w-px bg-slate-700 select-none"></span>
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/70 border border-slate-700/60" title="${googleVerifiedText}">
+            <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
             </svg>
-            <span>${googleVerifiedText}</span>
+            <span class="text-xs font-medium text-slate-300 whitespace-nowrap">${googleVerifiedText}</span>
           </span>
         </div>
 
-        <span class="text-xs text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-full px-3 py-1 font-medium shrink-0">
+        <span class="text-xs text-amber-400 bg-amber-500/10 border border-amber-500/20 px-3 py-1 rounded-full whitespace-nowrap shrink-0">
           ${tServiceTag}
         </span>
       </div>
 
-      <!-- Quote Content -->
-      <p class="text-base md:text-lg text-slate-200 font-normal leading-relaxed italic mb-6">
-        "${tComment}"
+      <!-- Quote Content (clean without unstyled quotes) -->
+      <p class="text-sm md:text-base text-slate-200 font-normal leading-relaxed italic mb-6">
+        ${tComment}
       </p>
 
       <!-- Bottom Author Signature with Avatar -->
-      <div class="flex items-center gap-3.5 pt-2">
-        <div class="w-12 h-12 rounded-full bg-slate-800 border border-amber-500/40 flex items-center justify-center text-sm font-semibold text-amber-400 shrink-0 shadow-md">
+      <div class="flex items-center gap-3 pt-2">
+        <div class="w-11 h-11 rounded-full bg-slate-800 border border-amber-500/30 text-amber-400 text-sm font-semibold flex items-center justify-center flex-shrink-0">
           ${t.initials}
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <h4 class="text-base font-bold text-white">${tName}</h4>
-            <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+            <h4 class="text-sm font-bold text-white leading-tight">${tName}</h4>
+            <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-500/20 leading-tight">
               <i class="fa-solid fa-circle-check text-[9px]"></i> ${verifiedClientText}
             </span>
           </div>
-          <p class="text-xs text-slate-400 font-normal mt-0.5">${profileReviewText}</p>
+          <p class="text-xs text-slate-400 font-normal leading-tight mt-1">${profileReviewText}</p>
         </div>
       </div>
     </div>
@@ -3434,7 +3434,7 @@ function translateReviewsPage(lang) {
       googleTooltipEl.setAttribute('title', isSi ? 'Google මගින් තහවුරු කළ ඇගයීමක්' : 'Google Verified Review');
       const googleSpan = googleTooltipEl.querySelector('span');
       if (googleSpan) {
-        googleSpan.textContent = isSi ? 'Google තහවුරු කළ' : 'Google Verified';
+        googleSpan.textContent = isSi ? 'Google තහවුරු කළ ඇගයීමක්' : 'Google Verified Review';
       }
     }
 
@@ -3449,7 +3449,7 @@ function translateReviewsPage(lang) {
     // 5. Testimonial quote text
     const quoteEl = card.querySelector('.quote-text, p.text-slate-200, p.text-slate-300');
     if (quoteEl) {
-      quoteEl.textContent = `"${isSi ? item.commentSi : item.commentEn}"`;
+      quoteEl.textContent = isSi ? item.commentSi : item.commentEn;
     }
 
     // 6. Travelled date
