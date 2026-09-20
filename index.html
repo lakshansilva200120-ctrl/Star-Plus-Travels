@@ -81,6 +81,13 @@
   <script>
     (function() {
       try {
+        const lang = localStorage.getItem('pref_lang') || localStorage.getItem('starplus_lang') || 'en';
+        if (lang === 'si') {
+          document.documentElement.lang = 'si';
+          document.documentElement.classList.add('lang-si');
+        }
+      } catch (e) {}
+      try {
         const mode = localStorage.getItem('starplus_theme_mode') || 'system';
         const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         let isDark;
@@ -1199,11 +1206,11 @@
           </div>
         </div>
         <span class="text-slate-700 hidden sm:inline">|</span>
-        <span class="text-xs font-semibold text-slate-300">★ 4.9 Rating based on Google Business Profile Reviews</span>
+        <span class="text-xs font-semibold text-slate-300" data-i18n="reviewsAggregateScore">★ 4.9 Rating based on Google Business Profile Reviews</span>
         <span class="text-slate-700 hidden sm:inline">|</span>
         <a href="https://www.google.com/maps/place/?q=place_id:ChIJq_3BOfhdXz4R34p2xadhJP8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 text-xs font-bold text-[#F59E0B] hover:text-amber-400 transition-colors group">
           <i class="fa-solid fa-map-location-dot text-[11px]"></i>
-          <span>Read all reviews on Google Maps</span>
+          <span data-i18n="btnReadGoogleReviews">Read all reviews on Google Maps</span>
           <i class="fa-solid fa-arrow-up-right-from-square text-[10px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
         </a>
       </div>
@@ -1235,12 +1242,12 @@
       <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
         <a href="https://search.google.com/local/writereview?placeid=ChIJq_3BOfhdXz4R34p2xadhJP8" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-[#070B14] font-bold text-xs uppercase tracking-wider shadow-lg shadow-amber-500/20 transition-all hover:scale-[1.02] group">
           <i class="fa-brands fa-google text-[#070B14]"></i>
-          <span>Leave Us a Google Review</span>
+          <span data-i18n="btnLeaveGoogleReview">Leave Us a Google Review</span>
           <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-1 opacity-75 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
         </a>
         <a href="reviews.html" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 rounded-xl bg-[#0B1120] border border-[#1E293B] hover:border-[#F59E0B] text-slate-200 hover:text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md">
           <i class="fa-solid fa-comments text-[#F59E0B]"></i>
-          <span>Read All Customer Reviews</span>
+          <span data-i18n="btnReadAllReviews">Read All Customer Reviews</span>
         </a>
       </div>
 

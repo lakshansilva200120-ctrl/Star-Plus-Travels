@@ -276,6 +276,45 @@ const I18N_TRANSLATIONS = {
     termsFooterEmailPlaceholder: "Enter your email",
     termsFooterAcceptedPayment: "Accepted Payment:",
 
+    // Reviews Page & Showcase
+    reviewsHeroBadge: "Client Testimonials &amp; Trust",
+    reviewsHeroTitle: "Verified Traveler &amp; Client Stories",
+    reviewsHeroSubtitle: "Discover why international voyagers, expatriates, and multinational corporate clients choose Star Plus Travel &amp; Tourism LLC for bespoke vacations, corporate delegations, and expedited visa solutions.",
+    reviewsAggregateScore: "★ 4.9 Rating based on Google Business Profile Reviews",
+    reviewsAggregateSubtitle: "Verified reviews from international travelers &amp; corporate clients across Dubai &amp; Colombo",
+    badgeDtcmLicensed: '<i class="fa-solid fa-shield-halved text-[#F59E0B]"></i> DTCM Licensed Travel Agency',
+    badgeGoogleVerified: '<i class="fa-brands fa-google text-[#4285F4]"></i> Google Verified Reviews',
+    badgeVisaGuaranteed: '<i class="fa-solid fa-circle-check text-[#10B981]"></i> 100% Guaranteed Visa Approvals',
+    btnReadGoogleReviews: "Read all reviews on Google Maps",
+    btnLeaveGoogleReview: "Leave a Google Review",
+    btnLeaveReview: "Leave a Review",
+    btnReadAllReviews: "Read All Customer Reviews",
+    filterAllReviews: "All Reviews",
+    filterHolidayPackages: "Holiday Packages",
+    filterUaeVisas: "UAE Visas",
+    filterCorporateMice: "Corporate &amp; MICE",
+    filterFlightsHotels: "Flights &amp; Hotels",
+    badgeGoogleVerifiedReview: "Google Verified Review",
+    badgeVerifiedTraveler: "Verified Traveler",
+    badgeVerifiedClient: "Verified Client",
+    bookedServicePrefix: "Booked:",
+    reviewsCtaTitle: "Ready to Plan Your Next Journey?",
+    reviewsCtaDesc: "Whether you require express 24-hour visa processing, tailor-made luxury holiday packages, or VIP corporate travel management, our licensed consultants are at your service across Dubai and Colombo.",
+    reviewsCtaSpecialistBtn: '<i class="fa-brands fa-whatsapp text-lg"></i><span>Chat with a Specialist</span>',
+    reviewsCtaPlanBtn: '<i class="fa-solid fa-compass text-sm"></i><span>Plan Custom Itinerary</span>',
+    reviewsCtaRecentlyBooked: "Recently booked with Star Plus Travels?",
+    reviewsCtaLeaveReview: '<span>Leave a Google Review</span><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>',
+
+    // Form Standard Placeholders & Buttons
+    placeholderEnterEmail: "Enter your email",
+    placeholderFullName: "Your Full Name",
+    placeholderPhone: "Phone / WhatsApp Number",
+    placeholderTripNotes: "Trip Notes / Special Requests",
+    btnConfirmAppRequest: "CONFIRM APPLICATION REQUEST",
+    btnConfirmBookingRequest: "Confirm Booking Request",
+    btnSubscribe: "SUBSCRIBE",
+    btnInquireWhatsApp: "Inquire via WhatsApp",
+
     // Dynamic strings
     startingFrom: "Starting from",
     perPerson: "per person",
@@ -530,6 +569,45 @@ const I18N_TRANSLATIONS = {
     termsFooterSubscribe: "ලියාපදිංචි වන්න",
     termsFooterEmailPlaceholder: "ඔබගේ විද්‍යුත් ලිපිනය ඇතුළත් කරන්න",
     termsFooterAcceptedPayment: "ගෙවීම් ක්‍රම:",
+
+    // Reviews Page & Showcase (Sinhala)
+    reviewsHeroBadge: "පාරිභෝගික ඇගයීම් සහ විශ්වාසය",
+    reviewsHeroTitle: "තහවුරු කළ සංචාරක හා පාරිභෝගික අත්දැකීම්",
+    reviewsHeroSubtitle: "සුඛෝපභෝගී නිවාඩු, ආයතනික නියෝජිත චාරිකා සහ කඩිනම් වීසා සේවා සඳහා ජාත්‍යන්තර සංචාරකයින් සහ ආයතන Star Plus Travel තෝරාගන්නේ ඇයිදැයි දැනගන්න.",
+    reviewsAggregateScore: "★ Google Business Profile ඇගයීම් මත පදනම් වූ 4.9 ශ්‍රේණිගත කිරීමක්",
+    reviewsAggregateSubtitle: "ඩුබායි සහ කොළඹ ජාත්‍යන්තර සංචාරකයින් සහ ආයතනික සේවාදායකයින්ගේ තහවුරු කළ ඇගයීම්",
+    badgeDtcmLicensed: '<i class="fa-solid fa-shield-halved text-[#F59E0B]"></i> DTCM බලපත්‍රලාභී සංචාරක ආයතනය',
+    badgeGoogleVerified: '<i class="fa-brands fa-google text-[#4285F4]"></i> Google සත්‍යාපිත සමාලෝචන',
+    badgeVisaGuaranteed: '<i class="fa-solid fa-circle-check text-[#10B981]"></i> 100% විශ්වාසනීය වීසා අනුමැතිය',
+    btnReadGoogleReviews: "සියලුම Google ඇගයීම් බලන්න",
+    btnLeaveGoogleReview: "ඔබේ අදහස පළ කරන්න",
+    btnLeaveReview: "ඔබේ අදහස පළ කරන්න",
+    btnReadAllReviews: "සියලුම පාරිභෝගික ඇගයීම් බලන්න",
+    filterAllReviews: "සියලුම ඇගයීම්",
+    filterHolidayPackages: "නිවාඩු පැකේජ",
+    filterUaeVisas: "එක්සත් අරාබි එමීර් වීසා",
+    filterCorporateMice: "ආයතනික සහ MICE",
+    filterFlightsHotels: "ගුවන් සහ හෝටල්",
+    badgeGoogleVerifiedReview: "Google මගින් තහවුරු කළ ඇගයීමක්",
+    badgeVerifiedTraveler: "තහවුරු කළ සංචාරකයා",
+    badgeVerifiedClient: "තහවුරු කළ සංචාරකයා",
+    bookedServicePrefix: "වෙන්කළ සේවාව:",
+    reviewsCtaTitle: "ඔබගේ මීළඟ සංචාරය සැලසුම් කිරීමට සූදානම්ද?",
+    reviewsCtaDesc: "පැය 24 ක ක්ෂණික වීසා, සුඛෝපභෝගී නිවාඩු පැකේජ හෝ VIP ආයතනික සංචාරක කළමනාකරණය සඳහා ඩුබායි සහ කොළඹ අපගේ බලපත්‍රලාභී උපදේශකයින් සූදානම්.",
+    reviewsCtaSpecialistBtn: '<i class="fa-brands fa-whatsapp text-lg"></i><span>විශේෂඥයෙකු සමඟ කතාබස් කරන්න</span>',
+    reviewsCtaPlanBtn: '<i class="fa-solid fa-compass text-sm"></i><span>අභිරුචි සංචාරයක් සැලසුම් කරන්න</span>',
+    reviewsCtaRecentlyBooked: "මෑතකදී Star Plus Travels සමඟ සංචාරය කළාද?",
+    reviewsCtaLeaveReview: '<span>ඔබේ අදහස පළ කරන්න</span><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>',
+
+    // Form Standard Placeholders & Buttons (Sinhala)
+    placeholderEnterEmail: "ඔබගේ විද්යුත් තැපෑල ඇතුළත් කරන්න",
+    placeholderFullName: "ඔබගේ සම්පූර්ණ නම",
+    placeholderPhone: "දුරකථන / WhatsApp අංකය",
+    placeholderTripNotes: "සංචාරක සටහන් / විශේෂ ඉල්ලීම්",
+    btnConfirmAppRequest: "අයදුම්පත තහවුරු කරන්න",
+    btnConfirmBookingRequest: "වෙන්කිරීම තහවුරු කරන්න",
+    btnSubscribe: "ලියාපදිංචි වන්න",
+    btnInquireWhatsApp: "WhatsApp මගින් විමසන්න",
 
     // Dynamic strings
     startingFrom: "ආරම්භක මිල",
@@ -919,43 +997,207 @@ const PACKAGES = [
 const TESTIMONIALS = [
   {
     name: 'Client Review (Georgia Holiday)',
+    nameSi: 'සේවාදායක ඇගයීම (ජෝර්ජියා නිවාඩුව)',
     initials: 'SL',
     role: 'Verified Google Reviewer',
     trip: 'Georgia Tour, Hotels & Logistics',
+    tripSi: 'ජෝර්ජියා සංචාරය, හෝටල් සහ ප්‍රවාහන සේවා',
     serviceTag: 'Georgia Tour, Hotels & Logistics',
+    serviceTagSi: 'ජෝර්ජියා සංචාරය, හෝටල් සහ ප්‍රවාහන සේවා',
     stars: 5,
     date: 'Verified on Google',
-    comment: 'We booked a trip to Georgia with Mr. Sasan Lakmal of Star Plus Travel and Tourism LLC—he was awesome. He handled our entire trip from flights to rental car and hotels. It was reassuring to pass that responsibility to someone so competent and timely. He was available throughout to assist with questions and logistics. Highly recommend!'
+    comment: 'We booked a trip to Georgia with Mr. Sasan Lakmal of Star Plus Travel and Tourism LLC—he was awesome. He handled our entire trip from flights to rental car and hotels. It was reassuring to pass that responsibility to someone so competent and timely. He was available throughout to assist with questions and logistics. Highly recommend!',
+    commentSi: 'අපි Star Plus Travel සමාගමේ සසන් ලක්මාල් මහතා හරහා ජෝර්ජියා සංචාරයක් වෙන්කරවා ගත්තෙමු—ඔහුගේ සේවාව විශිෂ්ටයි. ගුවන් ටිකට්පත්, කුලී රථ සහ හෝටල් දක්වා අපගේ සම්පූර්ණ සංචාරයම ඔහු ඉතා කාර්යක්ෂමව සැලසුම් කළේය. ඕනෑම ප්‍රශ්නයකදී හෝ අවශ්‍යතාවකදී ඔහු නිරතුරුව සහාය විය. බෙහෙවින් නිර්දේශ කරමි!'
   },
   {
     name: 'Client Review (Express Visa)',
+    nameSi: 'සේවාදායක ඇගයීම (ක්ෂණික වීසා)',
     initials: 'EV',
     role: 'Verified Google Reviewer',
     trip: 'Kuwait & UAE Visa Renewal',
+    tripSi: 'කුවේට් සහ ඩුබායි වීසා අලුත් කිරීම',
     serviceTag: 'Kuwait & UAE Visa Renewal',
+    serviceTagSi: 'කුවේට් සහ ඩුබායි වීසා අලුත් කිරීම',
     stars: 5,
     date: 'Verified on Google',
-    comment: 'I traveled from Dubai to Kuwait to renew my visa, and had an outstanding experience thanks to Lakmal. Everything was arranged with impressive speed and professionalism. Even before I left the country, my new visa had already been processed and sent to me. Smooth, fast, and completely stress-free.'
+    comment: 'I traveled from Dubai to Kuwait to renew my visa, and had an outstanding experience thanks to Lakmal. Everything was arranged with impressive speed and professionalism. Even before I left the country, my new visa had already been processed and sent to me. Smooth, fast, and completely stress-free.',
+    commentSi: 'මගේ වීසා බලපත්‍රය අලුත් කරගැනීමට මම ඩුබායි සිට කුවේට් බලා ගිය අතර, ලක්මාල් මහතාට පින්සිදුවන්නට එය ඉතා පහසු අත්දැකීමක් විය. සියල්ල ඉතා වේගවත්ව සහ වෘත්තීය මට්ටමින් සංවිධානය කර තිබුණි. මා මෙරටින් පිටවීමටත් පෙරම මගේ නව වීසාව සකසා මා වෙත එවා තිබුණි. ඉතා සුමට, වේගවත් සහ විශ්වාසනීය සේවාවක්.'
   },
   {
     name: 'Client Review (Dubai Package)',
+    nameSi: 'සේවාදායක ඇගයීම (ඩුබායි පැකේජය)',
     initials: 'DP',
     role: 'Verified Google Reviewer',
     trip: '10-Day Dubai Tour & Visa',
+    tripSi: 'දින 10 ක ඩුබායි සංචාරය සහ වීසා',
     serviceTag: '10-Day Dubai Tour & Visa',
+    serviceTagSi: 'දින 10 ක ඩුබායි සංචාරය සහ වීසා',
     stars: 5,
     date: 'Verified on Google',
-    comment: 'I recently booked a tour to Dubai with Star Plus Travels and the service they provided was next level. The visa process was smooth and hassle-free. The team was cooperative, prompt, and organized a comprehensive 10-day tour covering Dubai’s premier attractions.'
+    comment: 'I recently booked a tour to Dubai with Star Plus Travels and the service they provided was next level. The visa process was smooth and hassle-free. The team was cooperative, prompt, and organized a comprehensive 10-day tour covering Dubai’s premier attractions.',
+    commentSi: 'මම මෑතකදී Star Plus Travels හරහා ඩුබායි සංචාරයක් වෙන්කළ අතර ඔවුන් ලබාදුන් සේවාව ඉහළම මට්ටමක පැවතුණි. වීසා ක්‍රියාවලිය ඉතා පහසු සහ කරදරයකින් තොර විය. අපගේ කණ්ඩායම සඳහා ඩුබායි හි ප්‍රධාන ආකර්ෂණ ස්ථාන ආවරණය වන පරිදි දින 10 ක පුළුල් සංචාරයක් ඔවුන් ඉතා මැනවින් සංවිධානය කළේය.'
   },
   {
     name: 'Client Review (Dedicated Visa Processing)',
+    nameSi: 'සේවාදායක ඇගයීම (ක්ෂණික වීසා සේවා)',
     initials: 'DT',
     role: 'Verified Google Reviewer',
     trip: 'UAE Visa Processing Assistance',
+    tripSi: 'එක්සත් අරාබි එමීර් වීසා සහාය',
     serviceTag: 'UAE Visa Processing Assistance',
+    serviceTagSi: 'එක්සත් අරාබි එමීර් වීසා සහාය',
     stars: 5,
     date: 'Verified on Google',
-    comment: 'Outstanding, trustworthy service from start to finish. The team guided us through every step with clear updates and care. Special thanks to Dharshana Thilakerathne for the dedicated support and attention to detail that made the journey completely worry-free.'
+    comment: 'Outstanding, trustworthy service from start to finish. The team guided us through every step with clear updates and care. Special thanks to Dharshana Thilakerathne for the dedicated support and attention to detail that made the journey completely worry-free.',
+    commentSi: 'ආරම්භයේ සිට අවසානය දක්වා විශිෂ්ට, විශ්වාසනීය සේවාවක්. සෑම පියවරකදීම පැහැදිලි තොරතුරු සමඟ අපව මඟපෙන්වූ අතර, විශේෂයෙන් දර්ශන තිලකරත්න මහතාගේ කැපවීම සහ කඩිනම් සහාය නිසා කිසිදු ප්‍රමාදයකින් තොරව අපගේ පවුලේ වීසා අනුමත විය.'
+  }
+];
+
+// Full 12-Card Localization Mapping for /reviews page
+const REVIEWS_DATA_I18N = [
+  {
+    authorEn: 'Client Review (Georgia Holiday)',
+    authorSi: 'සේවාදායක ඇගයීම (ජෝර්ජියා නිවාඩුව)',
+    serviceEn: 'Georgia Tour, Hotels & Logistics',
+    serviceSi: 'ජෝර්ජියා සංචාරය, හෝටල් සහ ප්‍රවාහන සේවා',
+    commentEn: 'We booked a trip to Georgia with Mr. Sasan Lakmal of Star Plus Travel and Tourism LLC—he was awesome. He handled our entire trip from flights to rental car and hotels. It was reassuring to pass that responsibility to someone so competent and timely. He was available throughout to assist with questions and logistics. Highly recommend!',
+    commentSi: 'අපි Star Plus Travel සමාගමේ සසන් ලක්මාල් මහතා හරහා ජෝර්ජියා සංචාරයක් වෙන්කරවා ගත්තෙමු—ඔහුගේ සේවාව විශිෂ්ටයි. ගුවන් ටිකට්පත්, කුලී රථ සහ හෝටල් දක්වා අපගේ සම්පූර්ණ සංචාරයම ඔහු ඉතා කාර්යක්ෂමව සැලසුම් කළේය. ඕනෑම ප්‍රශ්නයකදී හෝ අවශ්‍යතාවකදී ඔහු නිරතුරුව සහාය විය. බෙහෙවින් නිර්දේශ කරමි!',
+    dateEn: 'Travelled August 2026',
+    dateSi: 'සංචාරය කළ දිනය: 2026 අගෝස්තු',
+    branchEn: 'Twin Towers, Deira Office',
+    branchSi: 'දෙයිරා නිවුන් කුළුණු කාර්යාලය'
+  },
+  {
+    authorEn: 'Client Review (Express Visa)',
+    authorSi: 'සේවාදායක ඇගයීම (ක්ෂණික වීසා)',
+    serviceEn: 'Kuwait & UAE Visa Renewal',
+    serviceSi: 'කුවේට් සහ ඩුබායි වීසා අලුත් කිරීම',
+    commentEn: 'I traveled from Dubai to Kuwait to renew my visa, and had an outstanding experience thanks to Lakmal. Everything was arranged with impressive speed and professionalism. Even before I left the country, my new visa had already been processed and sent to me. Smooth, fast, and completely stress-free.',
+    commentSi: 'මගේ වීසා බලපත්‍රය අලුත් කරගැනීමට මම ඩුබායි සිට කුවේට් බලා ගිය අතර, ලක්මාල් මහතාට පින්සිදුවන්නට එය ඉතා පහසු අත්දැකීමක් විය. සියල්ල ඉතා වේගවත්ව සහ වෘත්තීය මට්ටමින් සංවිධානය කර තිබුණි. මා මෙරටින් පිටවීමටත් පෙරම මගේ නව වීසාව සකසා මා වෙත එවා තිබුණි. ඉතා සුමට, වේගවත් සහ විශ්වාසනීය සේවාවක්.',
+    dateEn: 'Travelled September 2026',
+    dateSi: 'සංචාරය කළ දිනය: 2026 සැප්තැම්බර්',
+    branchEn: 'Visa Operations Desk',
+    branchSi: 'වීසා මෙහෙයුම් අංශය'
+  },
+  {
+    authorEn: 'Client Review (Dubai Package)',
+    authorSi: 'සේවාදායක ඇගයීම (ඩුබායි පැකේජය)',
+    serviceEn: '10-Day Dubai Tour & Visa',
+    serviceSi: 'දින 10 ක ඩුබායි සංචාරය සහ වීසා',
+    commentEn: 'I recently booked a tour to Dubai with Star Plus Travels and the service they provided was next level. The visa process was smooth and hassle-free. The team was cooperative, prompt, and organized a comprehensive 10-day tour covering Dubai’s premier attractions.',
+    commentSi: 'මම මෑතකදී Star Plus Travels හරහා ඩුබායි සංචාරයක් වෙන්කළ අතර ඔවුන් ලබාදුන් සේවාව ඉහළම මට්ටමක පැවතුණි. වීසා ක්‍රියාවලිය ඉතා පහසු සහ කරදරයකින් තොර විය. අපගේ කණ්ඩායම සඳහා ඩුබායි හි ප්‍රධාන ආකර්ෂණ ස්ථාන ආවරණය වන පරිදි දින 10 ක පුළුල් සංචාරයක් ඔවුන් ඉතා මැනවින් සංවිධානය කළේය.',
+    dateEn: 'Travelled August 2026',
+    dateSi: 'සංචාරය කළ දිනය: 2026 අගෝස්තු',
+    branchEn: 'Dubai Inbound Division',
+    branchSi: 'ඩුබායි සංචාරක මෙහෙයුම් අංශය'
+  },
+  {
+    authorEn: 'Client Review (Dedicated Visa Processing)',
+    authorSi: 'සේවාදායක ඇගයීම (ක්ෂණික වීසා සේවා)',
+    serviceEn: 'UAE Visa Processing Assistance',
+    serviceSi: 'එක්සත් අරාබි එමීර් වීසා සහාය',
+    commentEn: 'Outstanding, trustworthy service from start to finish. The team guided us through every step with clear updates and care. Special thanks to Dharshana Thilakerathne for the dedicated support and attention to detail that made the journey completely worry-free.',
+    commentSi: 'ආරම්භයේ සිට අවසානය දක්වා විශිෂ්ට, විශ්වාසනීය සේවාවක්. සෑම පියවරකදීම පැහැදිලි තොරතුරු සමඟ අපව මඟපෙන්වූ අතර, විශේෂයෙන් දර්ශන තිලකරත්න මහතාගේ කැපවීම සහ කඩිනම් සහාය නිසා කිසිදු ප්‍රමාදයකින් තොරව අපගේ පවුලේ වීසා අනුමත විය.',
+    dateEn: 'Travelled July 2026',
+    dateSi: 'සංචාරය කළ දිනය: 2026 ජූලි',
+    branchEn: 'Immigration Advisory',
+    branchSi: 'ආගමන විගමන උපදේශන අංශය'
+  },
+  {
+    authorEn: 'Client Review (Corporate Delegation)',
+    authorSi: 'සේවාදායක ඇගයීම (ආයතනික නියෝජිත)',
+    serviceEn: 'Annual Leadership Summit Dubai (45 Pax)',
+    serviceSi: 'වාර්ෂික නායකත්ව සමුළුව ඩුබායි (පුද්ගලයින් 45)',
+    commentEn: 'Star Plus managed ground handling, executive Mercedes coach transfers, and private desert banquet logistics for our EMEA executive summit in Dubai. Flawless punctuality, discreet coordinators, and 24/7 dedicated liaison managers who anticipated every requirement.',
+    commentSi: 'ඩුබායි හි පැවති අපගේ විධායක සමුළුව සඳහා සුඛෝපභෝගී මර්සිඩීස් බස් රථ, ගුවන් තොටුපළ ප්‍රවාහනය සහ කාන්තාර උත්සව කටයුතු Star Plus ආයතනය විසින් නියමිත වේලාවට හා ඉතා විශිෂ්ට ලෙස සංවිධානය කරන ලදී.',
+    dateEn: 'Travelled August 2026',
+    dateSi: 'සංචාරය කළ දිනය: 2026 අගෝස්තු',
+    branchEn: 'Corporate & MICE Division',
+    branchSi: 'ආයතනික සහ MICE අංශය'
+  },
+  {
+    authorEn: 'Client Review (VIP Ticketing & Luxury Stay)',
+    authorSi: 'සේවාදායක ඇගයීම (VIP ගුවන් හා හෝටල්)',
+    serviceEn: 'Emirates Business Class & Atlantis',
+    serviceSi: 'එමිරේට්ස් ව්‍යාපාරික පන්තිය සහ ඇට්ලැන්ටිස්',
+    commentEn: 'Star Plus secured exclusive unpublished business class fare cabins on Emirates alongside an exceptional luxury suite upgrade at Atlantis The Royal. Their VIP ticketing desk even arranged complimentary private chauffeur airport transfers on arrival in Dubai.',
+    commentSi: 'එමිරේට්ස් ව්‍යාපාරික පන්තියේ විශේෂ වට්ටම් සහිත ගුවන් ටිකට්පත් සහ ඇට්ලැන්ටිස් ද රෝයල් හි සුඛෝපභෝගී කාමර Star Plus හරහා වෙන්කරවා ගත්තෙමු. ගුවන් තොටුපළ සිට හෝටලය දක්වා නොමිලේ VIP ප්‍රවාහන පහසුකම්ද සපයා තිබුණි.',
+    dateEn: 'Travelled August 2026',
+    dateSi: 'සංචාරය කළ දිනය: 2026 අගෝස්තු',
+    branchEn: 'Private Client Ticketing',
+    branchSi: 'පුද්ගලික ගනුදෙනුකාර ටිකට්පත් අංශය'
+  },
+  {
+    authorEn: 'Client Review (Airport Visa Change)',
+    authorSi: 'සේවාදායක ඇගයීම (ගුවන් තොටුපළ වීසා මාරුව)',
+    serviceEn: 'Airport-to-Airport Express Visa Change',
+    serviceSi: 'ගුවන් තොටුපළ හරහා ක්ෂණික වීසා මාරුව',
+    commentEn: 'Needed an urgent same-day visa status change for my new employment transition. The Star Plus visa department arranged direct flydubai transit and issued my fresh entry visa before my return flight landed back at DXB Terminal 2. Exemplary efficiency.',
+    commentSi: 'මගේ නව රැකියා වීසාව සඳහා කඩිනම් තත්ත්ව වෙනසක් අවශ්‍ය වූ අතර, Star Plus වීසා අංශය මගින් flydubai සංක්‍රමණ පහසුකම් සලසා මගේ නව වීසාව මා නැවත පැමිණීමටත් පෙරම නිකුත් කර දෙන ලදී. විශිෂ්ට කාර්යක්ෂමතාවයකි.',
+    dateEn: 'Travelled August 2026',
+    dateSi: 'සංචාරය කළ දිනය: 2026 අගෝස්තු',
+    branchEn: 'Visa Operations Dept',
+    branchSi: 'වීසා මෙහෙයුම් අංශය'
+  },
+  {
+    authorEn: 'Client Review (Bespoke Island Getaway)',
+    authorSi: 'සේවාදායක ඇගයීම (මාලදිවයින දූපත් නිවාඩුව)',
+    serviceEn: 'Maldives Overwater Villa Retreat',
+    serviceSi: 'මාලදිවයින සුඛෝපභෝගී දූපත් නිවාඩුව',
+    commentEn: 'An unforgettable private lagoon holiday at Sun Siyam Iru Veli. Star Plus managed our seaplane charter connections and negotiated all-inclusive gourmet dining inclusions directly with the resort. Seamless coordination from both their Dubai and Colombo desks.',
+    commentSi: 'Sun Siyam Iru Veli හි ගතකළ අමතක නොවන දූපත් නිවාඩුවක්. සීප්ලේන් ගුවන් ප්‍රවාහනය සහ සියලු පහසුකම් සහිත ආහාර වේල් Star Plus හරහා සකසා තිබුණි. ඩුබායි සහ කොළඹ කාර්යාල දෙකෙන්ම අඛණ්ඩ සහාය හිමිවිය.',
+    dateEn: 'Travelled July 2026',
+    dateSi: 'සංචාරය කළ දිනය: 2026 ජූලි',
+    branchEn: 'Luxury Leisure Desk',
+    branchSi: 'සුඛෝපභෝගී නිවාඩු අංශය'
+  },
+  {
+    authorEn: 'Client Review (Trade Mission & MICE)',
+    authorSi: 'සේවාදායක ඇගයීම (වෙළඳ නියෝජිත සමුළුව)',
+    serviceEn: 'Dubai Expo City Trade Delegation',
+    serviceSi: 'ඩුබායි එක්ස්පෝ සිටි වෙළඳ නියෝජිත පිරිස',
+    commentEn: 'Our trade chamber brought 60 business delegates to Dubai. Star Plus handled group e-visas with zero rejections, hotel room blocks at the Address Downtown, and custom corporate event branding. Their on-site tour director was indispensable throughout the summit.',
+    commentSi: 'අපගේ වෙළඳ මණ්ඩලයේ ව්‍යාපාරික නියෝජිතයින් 60 දෙනෙකු සඳහා කිසිදු ප්‍රතික්ෂේප වීමකින් තොරව කණ්ඩායම් වීසා, Address Downtown හෝටල් කාමර සහ ප්‍රවාහනය Star Plus විසින් පරිපූර්ණව කළමනාකරණය කරන ලදී.',
+    dateEn: 'Travelled June 2026',
+    dateSi: 'සංචාරය කළ දිනය: 2026 ජූනි',
+    branchEn: 'Corporate & MICE Division',
+    branchSi: 'ආයතනික සහ MICE අංශය'
+  },
+  {
+    authorEn: 'Client Review (Royal Suite & Flights)',
+    authorSi: 'සේවාදායක ඇගයීම (රාජකීය හෝටල් හා ගුවන්)',
+    serviceEn: 'First Class Riyadh-DXB & Burj Al Arab',
+    serviceSi: 'රියාද්-ඩුබායි පළමු පන්තිය සහ බර්ජ් අල් අරාබ්',
+    commentEn: 'From discreet last-minute First Class booking on Saudia to a customized suite arrangement at Burj Al Arab with 24/7 dedicated butler, Star Plus delivers royal-grade travel management. Their responsiveness at 2 AM was unmatched.',
+    commentSi: 'Saudia ගුවන් සේවයේ පළමු පන්තියේ ගුවන් ටිකට්පත් සහ බර්ජ් අල් අරාබ් හි රාජකීය කාමර Star Plus මඟින් වෙන්කර දුනි. මධ්‍යම රාත්‍රී 2 ට පවා ඔවුන් ලබාදුන් ක්ෂණික ප්‍රතිචාරය සහ සේවාව අසමසමයි.',
+    dateEn: 'Travelled September 2026',
+    dateSi: 'සංචාරය කළ දිනය: 2026 සැප්තැම්බර්',
+    branchEn: 'VIP Concierge Desk',
+    branchSi: 'VIP සත්කාරක අංශය'
+  },
+  {
+    authorEn: 'Client Review (Shahdag Ski Tour)',
+    authorSi: 'සේවාදායක ඇගයීම (ෂාඩාග් හිම සංචාරය)',
+    serviceEn: 'Baku Alpine Retreat & Shahdag',
+    serviceSi: 'බාකු කඳුකර නිවාඩුව සහ ෂාඩාග්',
+    commentEn: 'Our 5-day Azerbaijan mountain getaway was curated to perfection. The private chalets at Shahdag, scenic cable cars, and private cultural walking tour through Baku Old City were sublime. Flexible Tabby installment checkout made holiday budgeting seamless.',
+    commentSi: 'අසර්බයිජානයේ දින 5 ක කඳුකර නිවාඩුව ඉතා විශිෂ්ට ලෙස සැලසුම් කර තිබුණි. ෂාඩාග් හි කඳුකර නවාතැන්, කේබල් කාර් සහ බාකු නගර සංචාරය අතිශය සුන්දර විය. Tabby පහසු වාරික ක්‍රමය නිසා ගෙවීම්ද පහසු විය.',
+    dateEn: 'Travelled July 2026',
+    dateSi: 'සංචාරය කළ දිනය: 2026 ජූලි',
+    branchEn: 'Holiday Packages Desk',
+    branchSi: 'නිවාඩු පැකේජ අංශය'
+  },
+  {
+    authorEn: 'Client Review (Sales Incentive Tour)',
+    authorSi: 'සේවාදායක ඇගයීම (දිරිගැන්වීමේ නිවාඩුව)',
+    serviceEn: 'Corporate Incentive Retreat to Sri Lanka',
+    serviceSi: 'ශ්‍රී ලංකා ආයතනික දිරිගැන්වීමේ චාරිකාව',
+    commentEn: 'We rewarded our top-performing regional executives with a luxury retreat in Sri Lanka. From the scenic private salon carriage train ride through tea plantations to beachfront banquets at Galle Fort, the Star Plus Colombo team executed flawlessly.',
+    commentSi: 'අපගේ ආයතනයේ විශිෂ්ටතම විධායක නිලධාරීන් සඳහා ශ්‍රී ලංකාවේ සුඛෝපභෝගී නිවාඩුවක් Star Plus හරහා සංවිධානය කළෙමු. තේ වතු මැදින් ගමන් කළ විශේෂ දුම්රිය මැදිරිය සහ ගාලු කොටුවේ සාද සියල්ල ඉතා සාර්ථකව සිදුකර දෙන ලදී.',
+    dateEn: 'Travelled July 2026',
+    dateSi: 'සංචාරය කළ දිනය: 2026 ජූලි',
+    branchEn: 'Colombo Concierge Desk',
+    branchSi: 'කොළඹ සත්කාරක අංශය'
   }
 ];
 
@@ -1743,7 +1985,19 @@ function renderTestimonial() {
   const dotsContainer = document.getElementById('testimonialDots');
   if (!container) return;
 
+  const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : 'en';
+  const isSi = (currentLang === 'si' || document.documentElement.lang === 'si');
   const t = TESTIMONIALS[currentSlide];
+  if (!t) return;
+
+  const tName = (isSi && t.nameSi) ? t.nameSi : t.name;
+  const tTrip = (isSi && t.tripSi) ? t.tripSi : t.trip;
+  const tServiceTag = (isSi && t.serviceTagSi) ? t.serviceTagSi : (t.serviceTag || t.trip);
+  const tComment = (isSi && t.commentSi) ? t.commentSi : t.comment;
+  const googleVerifiedText = isSi ? 'Google මගින් තහවුරු කළ ඇගයීමක්' : 'Google Verified Review';
+  const verifiedClientText = isSi ? 'තහවුරු කළ සංචාරකයා' : 'Verified Client';
+  const profileReviewText = isSi ? 'Google Business Profile ඇගයීම' : 'Google Business Profile Review';
+
   container.innerHTML = `
     <div class="testimonial-slide flex flex-col md:flex-row items-center gap-6 md:gap-8 text-left">
       <!-- Traveler Avatar: Clean circular badge with dark slate background and bold gold initials alongside Google G badge -->
@@ -1751,7 +2005,7 @@ function renderTestimonial() {
         <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-slate-900 border-2 border-[#F59E0B]/50 flex items-center justify-center shadow-xl shadow-amber-500/10">
           <span class="text-2xl md:text-3xl font-bold text-[#F59E0B] tracking-wider">${t.initials}</span>
         </div>
-        <span class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow-md" title="Google Verified Review">
+        <span class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center shadow-md" title="${googleVerifiedText}">
           <svg class="w-4 h-4" viewBox="0 0 24 24">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
             <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -1773,23 +2027,23 @@ function renderTestimonial() {
               <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-            </svg> Google Verified Review
+            </svg> ${googleVerifiedText}
           </span>
           <span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#F59E0B]/10 text-[#F59E0B] border border-[#F59E0B]/20">
-            ${t.trip}
+            ${tTrip}
           </span>
         </div>
         <p class="text-base md:text-lg text-slate-200 italic leading-relaxed mb-4">
-          "${t.comment}"
+          "${tComment}"
         </p>
         <div>
           <div class="flex items-center gap-2">
-            <h4 class="text-base font-bold text-white">${t.name}</h4>
+            <h4 class="text-base font-bold text-white">${tName}</h4>
             <span class="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
-              <i class="fa-solid fa-circle-check text-[9px]"></i> Verified Client
+              <i class="fa-solid fa-circle-check text-[9px]"></i> ${verifiedClientText}
             </span>
           </div>
-          <p class="text-xs text-[#F59E0B] font-semibold mt-0.5">${t.serviceTag || t.trip} &bull; <span class="text-slate-400 font-normal">Google Business Profile Review</span></p>
+          <p class="text-xs text-[#F59E0B] font-semibold mt-0.5">${tServiceTag} &bull; <span class="text-slate-400 font-normal">${profileReviewText}</span></p>
         </div>
       </div>
     </div>
@@ -2924,7 +3178,7 @@ window.updateBrandLogoTheme = updateBrandLogoTheme;
 // ==========================================================================
 function getPreferredLanguage() {
   try {
-    const stored = localStorage.getItem('starplus_lang');
+    const stored = localStorage.getItem('pref_lang') || localStorage.getItem('starplus_lang');
     if (stored === 'si' || stored === 'en') {
       return stored;
     }
@@ -2932,10 +3186,203 @@ function getPreferredLanguage() {
   return 'en';
 }
 
+function translateReviewsPage(lang) {
+  const isSi = (lang === 'si');
+  const reviewCards = document.querySelectorAll('.review-card');
+  if (!reviewCards || reviewCards.length === 0) return;
+
+  reviewCards.forEach((card, index) => {
+    const idxAttr = card.getAttribute('data-review-index');
+    const idx = (idxAttr !== null && idxAttr !== '') ? parseInt(idxAttr, 10) : index;
+    const item = (typeof REVIEWS_DATA_I18N !== 'undefined' && REVIEWS_DATA_I18N[idx]) ? REVIEWS_DATA_I18N[idx] : null;
+    if (!item) return;
+
+    // 1. Author title
+    const authorEl = card.querySelector('h3');
+    if (authorEl) {
+      authorEl.textContent = isSi ? item.authorSi : item.authorEn;
+    }
+
+    // 2. Verified Client / Traveler badge
+    const verifiedEl = card.querySelector('.fa-circle-check')?.parentElement;
+    if (verifiedEl) {
+      verifiedEl.innerHTML = `<i class="fa-solid fa-circle-check text-[10px]"></i> ${isSi ? 'තහවුරු කළ සංචාරකයා' : 'Verified Client'}`;
+    }
+
+    // 3. Google Verified Review tooltip
+    const googleTooltipEl = card.querySelector('[title*="Google"]');
+    if (googleTooltipEl) {
+      googleTooltipEl.setAttribute('title', isSi ? 'Google මගින් තහවුරු කළ ඇගයීමක්' : 'Google Verified Review');
+    }
+
+    // 4. Service Tag
+    const serviceTagEl = card.querySelector('.pb-3\\.5 > span, span.inline-flex.items-center.gap-1\\.5');
+    if (serviceTagEl) {
+      const icon = serviceTagEl.querySelector('i');
+      const iconHtml = icon ? icon.outerHTML + ' ' : '';
+      serviceTagEl.innerHTML = `${iconHtml}${isSi ? item.serviceSi : item.serviceEn}`;
+    }
+
+    // 5. Testimonial quote text
+    const quoteEl = card.querySelector('p.text-slate-300');
+    if (quoteEl) {
+      quoteEl.textContent = `"${isSi ? item.commentSi : item.commentEn}"`;
+    }
+
+    // 6. Travelled date
+    const calIcon = card.querySelector('.fa-calendar');
+    const dateSpan = calIcon ? calIcon.parentElement.querySelector('span') : null;
+    if (dateSpan) {
+      dateSpan.textContent = isSi ? item.dateSi : item.dateEn;
+    }
+
+    // 7. Branch / Desk location
+    const locIcon = card.querySelector('.fa-location-dot');
+    const branchSpan = locIcon ? locIcon.parentElement.querySelector('span') : null;
+    if (branchSpan) {
+      branchSpan.textContent = isSi ? item.branchSi : item.branchEn;
+    }
+  });
+
+  // Filter chips text
+  const filterMappings = {
+    'all': { en: 'All Reviews', si: 'සියලුම ඇගයීම්' },
+    'holiday': { en: 'Holiday Packages', si: 'නිවාඩු පැකේජ' },
+    'visa': { en: 'UAE Visas', si: 'එක්සත් අරාබි එමීර් වීසා' },
+    'corporate': { en: 'Corporate & MICE', si: 'ආයතනික සහ MICE' },
+    'flights-hotels': { en: 'Flights & Hotels', si: 'ගුවන් සහ හෝටල්' }
+  };
+
+  document.querySelectorAll('.review-filter-btn').forEach(btn => {
+    const filter = btn.getAttribute('data-filter');
+    if (filter && filterMappings[filter]) {
+      btn.textContent = isSi ? filterMappings[filter].si : filterMappings[filter].en;
+    }
+  });
+
+  // Booked service label prefix across review cards if any
+  document.querySelectorAll('.review-booked-prefix, [data-i18n-booked]').forEach(el => {
+    el.textContent = isSi ? 'වෙන්කළ සේවාව: ' : 'Booked: ';
+  });
+}
+
+function translateFormElements(lang) {
+  const isSi = (lang === 'si');
+  const t = I18N_TRANSLATIONS[lang] || I18N_TRANSLATIONS.en;
+
+  // 1. Inputs with data-i18n-placeholder
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[key]) {
+      el.placeholder = t[key];
+    }
+  });
+
+  // 2. Standard input placeholders by type/id if no specific key
+  document.querySelectorAll('input[type="email"], #newsletterEmail, #contactEmail, #bookingEmail, #applicantEmail, #partnerEmail').forEach(el => {
+    if (!el.getAttribute('data-i18n-placeholder')) {
+      el.placeholder = isSi ? 'ඔබගේ විද්යුත් තැපෑල ඇතුළත් කරන්න' : 'Enter your email';
+    }
+  });
+
+  document.querySelectorAll('#contactName, #bookingName, #applicantName, #partnerName, input[name="name"]').forEach(el => {
+    if (!el.getAttribute('data-i18n-placeholder')) {
+      el.placeholder = isSi ? 'ඔබගේ සම්පූර්ණ නම' : 'Your Full Name';
+    }
+  });
+
+  document.querySelectorAll('#contactPhone, #bookingPhone, #applicantPhone, #partnerPhone, input[type="tel"]').forEach(el => {
+    if (!el.getAttribute('data-i18n-placeholder')) {
+      el.placeholder = isSi ? 'දුරකථන / WhatsApp අංකය' : 'Phone / WhatsApp Number';
+    }
+  });
+
+  document.querySelectorAll('#contactMessage, #bookingNotes, #applicantCover, #partnerMessage, textarea[name="notes"], textarea[name="message"]').forEach(el => {
+    if (!el.getAttribute('data-i18n-placeholder')) {
+      el.placeholder = isSi ? 'සංචාරක සටහන් / විශේෂ ඉල්ලීම්' : 'Trip Notes / Special Requests';
+    }
+  });
+
+  // 3. Form action & submit buttons
+  // Newsletter submit
+  document.querySelectorAll('footer form button[type="submit"], form[onsubmit*="handleNewsletter"] button[type="submit"]').forEach(btn => {
+    btn.textContent = isSi ? 'ලියාපදිංචි වන්න' : 'SUBSCRIBE';
+  });
+
+  // Application confirmation button
+  document.querySelectorAll('#submitAppBtn, button.confirm-app-btn, [data-i18n="btnConfirmAppRequest"]').forEach(btn => {
+    btn.textContent = isSi ? 'අයදුම්පත තහවුරු කරන්න' : 'CONFIRM APPLICATION REQUEST';
+  });
+
+  // Booking submit button
+  const bookingSubmit = document.querySelector('#bookingModal form button[type="submit"], #bookingSubmitBtn');
+  if (bookingSubmit) {
+    bookingSubmit.textContent = isSi ? 'වෙන්කිරීම තහවුරු කරන්න' : 'Confirm Booking Request';
+  }
+
+  // Inquire via WhatsApp buttons
+  document.querySelectorAll('.btn-whatsapp-inquire, [data-i18n="btnInquireWhatsApp"]').forEach(btn => {
+    const icon = btn.querySelector('i');
+    const iconHtml = icon ? icon.outerHTML + ' ' : '';
+    btn.innerHTML = `${iconHtml}${isSi ? 'WhatsApp මගින් විමසන්න' : 'Inquire via WhatsApp'}`;
+  });
+
+  // Labels for forms
+  document.querySelectorAll('label[for="contactName"], label[for="bookingName"]').forEach(l => {
+    l.textContent = isSi ? 'ඔබගේ සම්පූර්ණ නම *' : 'Your Full Name *';
+  });
+  document.querySelectorAll('label[for="contactEmail"], label[for="bookingEmail"]').forEach(l => {
+    l.textContent = isSi ? 'විද්‍යුත් තැපෑල *' : 'Your Email Address *';
+  });
+  document.querySelectorAll('label[for="contactPhone"], label[for="bookingPhone"]').forEach(l => {
+    l.textContent = isSi ? 'දුරකථන / WhatsApp අංකය *' : 'Phone / WhatsApp Number *';
+  });
+}
+
+function updateOpenModalsLanguage(lang) {
+  const isSi = (lang === 'si');
+
+  // 1. Booking Modal
+  const bookingModal = document.getElementById('bookingModal');
+  if (bookingModal && !bookingModal.classList.contains('hidden') && typeof selectedPackageForBooking !== 'undefined' && selectedPackageForBooking) {
+    const pkg = selectedPackageForBooking;
+    const pI18n = (isSi && typeof PACKAGES_I18N !== 'undefined' && PACKAGES_I18N[pkg.id]) ? PACKAGES_I18N[pkg.id] : null;
+    const title = pI18n ? pI18n.title : pkg.title;
+    const destination = pI18n ? pI18n.destination : pkg.destination;
+    const duration = pI18n ? pI18n.duration : pkg.duration;
+    
+    const titleEl = document.getElementById('modalPkgTitle');
+    if (titleEl) titleEl.textContent = title;
+    const destEl = document.getElementById('modalPkgDestination');
+    if (destEl) destEl.innerHTML = `${pkg.flag} <span class="font-semibold">${destination}</span> &bull; <span>${duration}</span>`;
+    if (typeof calculateBookingTotal === 'function') {
+      calculateBookingTotal();
+    }
+  }
+
+  // 2. Itinerary Modal
+  const itineraryModal = document.getElementById('itineraryModal');
+  if (itineraryModal && !itineraryModal.classList.contains('hidden')) {
+    const itineraryBtn = document.getElementById('itineraryBookButton');
+    if (itineraryBtn) {
+      itineraryBtn.textContent = isSi ? 'වෙන්කරන්න' : 'Book This Package';
+    }
+  }
+
+  // 3. Country Showcase Modal
+  const showcaseModal = document.getElementById('destinationsModal') || document.getElementById('countryShowcaseModal');
+  if (showcaseModal && !showcaseModal.classList.contains('hidden') && typeof currentShowcaseCountryKey !== 'undefined' && currentShowcaseCountryKey) {
+    if (typeof updateShowcaseTourUI === 'function') {
+      updateShowcaseTourUI(typeof currentTourIndex !== 'undefined' ? currentTourIndex : 0, false);
+    }
+  }
+}
+
 function changeLanguage(lang, notify = true) {
   if (lang !== 'en' && lang !== 'si') lang = 'en';
 
   try {
+    localStorage.setItem('pref_lang', lang);
     localStorage.setItem('starplus_lang', lang);
   } catch (e) {}
 
@@ -3023,9 +3470,29 @@ function changeLanguage(lang, notify = true) {
     }
   });
 
+  // Comprehensive Form & Placeholder Translations
+  if (typeof translateFormElements === 'function') {
+    translateFormElements(lang);
+  }
+
+  // Dynamic Reviews Page and Review Cards Translation
+  if (typeof translateReviewsPage === 'function') {
+    translateReviewsPage(lang);
+  }
+
   // Re-render dynamic tour packages with localized titles & descriptions
   if (typeof renderPackages === 'function') {
     renderPackages(typeof getActiveFilteredPackages === 'function' ? getActiveFilteredPackages() : PACKAGES);
+  }
+
+  // Re-render testimonial slider if present
+  if (typeof renderTestimonial === 'function') {
+    renderTestimonial();
+  }
+
+  // Update open modals if active
+  if (typeof updateOpenModalsLanguage === 'function') {
+    updateOpenModalsLanguage(lang);
   }
 
   // Dispatch custom language change event
