@@ -2242,14 +2242,13 @@ let currentSlide = 0;
 let slideInterval = null;
 
 function renderTestimonial() {
-  const marqueeTrack = document.getElementById('testimonialMarqueeTrack');
-  const reviewsMarqueeTrack = document.getElementById('reviewsMarqueeTrack');
+  const tracks = document.querySelectorAll('.review-track, #testimonialMarqueeTrack, #reviewsMarqueeTrack');
   const container = document.getElementById('testimonialSlide');
   const dotsContainer = document.getElementById('testimonialDots');
 
   const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : 'en';
   const isSi = (currentLang === 'si' || document.documentElement.lang === 'si');
-  const profileReviewText = isSi ? 'Google ඇගයීම' : 'Google Review';
+  const verifiedReviewText = isSi ? 'Google තහවුරු කළ ඇගයීම' : 'Google Verified Review';
 
   const generateCardHTML = (t) => {
     const tName = (isSi && t.nameSi) ? t.nameSi : (t.name || t.authorEn);
@@ -2258,41 +2257,41 @@ function renderTestimonial() {
     const initials = t.initials || (tName.match(/\(([^)]+)\)/)?.[1]?.slice(0, 2).toUpperCase() || 'SP');
 
     return `
-      <div class="w-[320px] md:w-[350px] min-w-[320px] max-w-[350px] shrink-0 bg-[#0B1120]/90 border border-slate-800/90 rounded-xl p-5 shadow-lg flex flex-col justify-between hover:border-amber-500/40 transition-all select-none">
-        <!-- TOP ROW: 5 Gold Stars & Micro Service Pill -->
+      <div class="w-[340px] min-w-[340px] max-w-[340px] shrink-0 bg-[#0B1120] border border-slate-800/90 rounded-xl p-5 flex flex-col justify-between shadow-lg select-none">
+        <!-- Header -->
         <div class="flex items-center justify-between gap-2">
-          <div class="text-amber-400 text-xs tracking-wider flex items-center space-x-1 shrink-0" aria-label="5 stars">
+          <div class="text-amber-400 text-xs flex items-center space-x-1 shrink-0" aria-label="5 stars">
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
           </div>
-          <span class="text-[10px] font-medium text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-md truncate max-w-[170px]" title="${tServiceTag}">
+          <span class="text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-full truncate max-w-[170px]" title="${tServiceTag}">
             ${tServiceTag}
           </span>
         </div>
 
-        <!-- MIDDLE: Quote Content -->
-        <p class="text-xs md:text-sm text-slate-200 font-normal leading-relaxed my-3 line-clamp-4 italic text-left">
+        <!-- Body -->
+        <p class="text-sm text-slate-200 font-normal leading-relaxed my-3 line-clamp-4 italic text-left">
           "${tComment}"
         </p>
 
-        <!-- BOTTOM ROW: Reviewer Info with Divider, Avatar & Source -->
+        <!-- Footer -->
         <div class="pt-3 border-t border-slate-800/80 flex items-center gap-3 mt-auto">
           <div class="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-semibold text-amber-400 shrink-0">
             ${initials}
           </div>
-          <div class="text-left overflow-hidden min-w-0 flex-1">
-            <h4 class="text-xs font-semibold text-white tracking-wide truncate">${tName}</h4>
-            <div class="text-[10px] text-slate-400 flex items-center gap-1 mt-0.5">
-              <svg class="w-3 h-3 flex-shrink-0" viewBox="0 0 24 24">
+          <div class="overflow-hidden min-w-0 flex-1 text-left">
+            <h4 class="text-xs font-semibold text-white truncate">${tName}</h4>
+            <div class="text-[10px] text-slate-400 flex items-center gap-1.5 mt-0.5">
+              <svg class="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                 <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
                 <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
                 <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
               </svg>
-              <span class="whitespace-nowrap">${profileReviewText}</span>
+              <span class="whitespace-nowrap">${verifiedReviewText}</span>
             </div>
           </div>
         </div>
@@ -2300,13 +2299,14 @@ function renderTestimonial() {
     `;
   };
 
-  // Render Infinite Marquee Ticker if marquee track is present
-  if (marqueeTrack || reviewsMarqueeTrack) {
-    // Duplicate array so CSS @keyframes marquee (-50%) loops infinitely and seamlessly
+  // Render Infinite Marquee Ticker across all matching tracks
+  if (tracks.length > 0) {
+    // Duplicate array so CSS @keyframes scrollTrack (-50%) loops infinitely and seamlessly
     const marqueeItems = [...TESTIMONIALS, ...TESTIMONIALS];
     const marqueeHTML = marqueeItems.map(generateCardHTML).join('');
-    if (marqueeTrack) marqueeTrack.innerHTML = marqueeHTML;
-    if (reviewsMarqueeTrack) reviewsMarqueeTrack.innerHTML = marqueeHTML;
+    tracks.forEach(track => {
+      track.innerHTML = marqueeHTML;
+    });
   }
 
   // Fallback for single slide if testimonialSlide is present

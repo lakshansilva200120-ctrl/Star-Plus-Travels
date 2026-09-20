@@ -1725,6 +1725,29 @@ html.light .cat-chip.active i {
   }
 }
 
+/* Strict Compact Review Track Ticker */
+@keyframes scrollTrack {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.review-track {
+  display: flex;
+  width: max-content;
+  animation: scrollTrack 30s linear infinite;
+  will-change: transform;
+}
+
+.review-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .review-track {
+    animation-play-state: paused;
+  }
+}
+
 /* Modal styles */
 .modal-backdrop {
   background-color: var(--theme-modal-backdrop);
