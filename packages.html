@@ -611,7 +611,7 @@
         <div>
           <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block" id="modalPkgDestination"></span>
           <h3 id="modalPkgTitle" class="text-base font-bold text-white font-heading leading-snug"></h3>
-          <span class="text-xs text-slate-400">Base Price: <strong id="modalPkgBasePrice" class="text-amber-400"></strong> / person</span>
+          <span class="text-xs text-slate-400">Base Price: <strong id="modalPkgBasePrice" class="price-aed text-amber-400" data-base-aed="0"></strong> <span id="modalPkgSecondaryPrice" class="price-secondary text-amber-400/90 font-semibold" data-secondary-for="0"></span> / person</span>
         </div>
       </div>
 
@@ -731,8 +731,9 @@
       <div class="pt-4 border-t border-[#1E293B] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <span class="text-[10px] uppercase tracking-wider text-slate-400 block font-semibold">Starting from</span>
-          <div class="flex items-baseline space-x-1.5">
-            <span id="itineraryModalPrice" class="text-2xl font-bold text-[#F59E0B] font-heading"></span>
+          <div class="flex items-baseline space-x-1.5 flex-wrap">
+            <span id="itineraryModalPrice" class="price-aed text-2xl font-bold text-[#F59E0B] font-heading" data-base-aed="0"></span>
+            <span id="itineraryModalSecondaryPrice" class="price-secondary text-xs text-amber-400/90 font-medium" data-secondary-for="0"></span>
             <span class="text-xs text-slate-400 font-medium">/ person</span>
           </div>
         </div>

@@ -6,12 +6,181 @@
 const CURRENCIES = {
   AED: { symbol: 'AED ', rate: 1, name: 'UAE Dirham (AED)' },
   USD: { symbol: '$', rate: 0.272, name: 'US Dollar (USD)' },
-  EUR: { symbol: '€', rate: 0.252, name: 'Euro (EUR)' },
-  GBP: { symbol: '£', rate: 0.215, name: 'British Pound (GBP)' },
+  EUR: { symbol: '€', rate: 0.237, name: 'Euro (EUR)' },
+  GBP: { symbol: '£', rate: 0.204, name: 'British Pound (GBP)' },
   LKR: { symbol: 'LKR ', rate: 82.5, name: 'Sri Lankan Rupee (LKR)' }
 };
 
 let currentCurrency = 'AED';
+try {
+  const savedCurrency = localStorage.getItem('starplus_pref_currency');
+  if (savedCurrency && CURRENCIES[savedCurrency]) {
+    currentCurrency = savedCurrency;
+  }
+} catch (e) {}
+
+// ==========================================================================
+// Real-Time Currency Conversion & Exchange Rate Engine
+// Base Currency: AED (United Arab Emirates Dirham)
+// Open Rate API: https://open.er-api.com/v6/latest/AED
+// Caches live rates in localStorage ('starplus_fx_rates') for 24 hours.
+// ==========================================================================
+const FX_CONFIG = {
+  endpoint: 'https://open.er-api.com/v6/latest/AED',
+  cacheKey: 'starplus_fx_rates',
+  prefKey: 'starplus_pref_currency',
+  cacheTTL: 24 * 60 * 60 * 1000, // 24 hours in ms
+  baselineRates: {
+    AED: 1,
+    USD: 0.272,
+    EUR: 0.237,
+    GBP: 0.204,
+    LKR: 82.5
+  }
+};
+
+/**
+ * Format secondary price with luxury rounding to the nearest 500 for LKR:
+ * Math.round((baseAed * rateLKR) / 500) * 500
+ */
+function formatSecondaryPrice(baseAED, targetCurrency) {
+  const numAED = parseFloat(baseAED);
+  if (isNaN(numAED) || numAED <= 0) return '';
+
+  const target = targetCurrency || (currentCurrency === 'LKR' ? 'USD' : 'LKR');
+  const rate = (CURRENCIES[target] && CURRENCIES[target].rate) ? CURRENCIES[target].rate : (FX_CONFIG.baselineRates[target] || 1);
+
+  if (target === 'LKR') {
+    const lkrRaw = numAED * rate;
+    const lkrPrice = Math.round(lkrRaw / 500) * 500;
+    return `LKR ${new Intl.NumberFormat('en-LK').format(lkrPrice)}`;
+  } else if (target === 'USD') {
+    const usdPrice = Math.round(numAED * rate);
+    return `$${new Intl.NumberFormat('en-US').format(usdPrice)}`;
+  } else if (target === 'EUR') {
+    const eurPrice = Math.round(numAED * rate);
+    return `€${new Intl.NumberFormat('en-DE').format(eurPrice)}`;
+  } else if (target === 'GBP') {
+    const gbpPrice = Math.round(numAED * rate);
+    return `£${new Intl.NumberFormat('en-GB').format(gbpPrice)}`;
+  } else {
+    return `AED ${new Intl.NumberFormat('en-AE').format(numAED)}`;
+  }
+}
+window.formatSecondaryPrice = formatSecondaryPrice;
+
+/**
+ * Update all elements across the DOM matching .price-aed / [data-base-aed]
+ * and .price-secondary / [data-secondary-for]
+ */
+function updateAllPriceDisplays() {
+  // 1. Update elements with [data-base-aed] or .price-aed
+  document.querySelectorAll('.price-aed, [data-base-aed]').forEach(el => {
+    const rawAED = el.getAttribute('data-base-aed');
+    if (!rawAED) return;
+    const baseAED = parseFloat(rawAED);
+    if (isNaN(baseAED) || baseAED <= 0) return;
+
+    const formatted = typeof formatPrice === 'function' ? formatPrice(baseAED) : `AED ${baseAED.toLocaleString()}`;
+    if (el.hasAttribute('data-price-template')) {
+      const tpl = el.getAttribute('data-price-template');
+      el.textContent = tpl.replace('{price}', formatted);
+    } else {
+      const prefix = el.getAttribute('data-prefix') || '';
+      const suffix = el.getAttribute('data-suffix') || '';
+      if (prefix || suffix) {
+        el.textContent = `${prefix}${formatted}${suffix}`;
+      } else {
+        el.textContent = formatted;
+      }
+    }
+  });
+
+  // 2. Update elements with [data-secondary-for] or .price-secondary
+  document.querySelectorAll('.price-secondary, [data-secondary-for]').forEach(el => {
+    const rawFor = el.getAttribute('data-secondary-for');
+    if (!rawFor) return;
+    const baseAED = parseFloat(rawFor);
+    if (isNaN(baseAED) || baseAED <= 0) return;
+
+    const secFormatted = formatSecondaryPrice(baseAED);
+    if (!secFormatted) return;
+
+    if (el.hasAttribute('data-template')) {
+      const tpl = el.getAttribute('data-template');
+      el.textContent = tpl.replace('{secondary}', secFormatted);
+    } else if (el.hasAttribute('data-with-slash')) {
+      el.textContent = `/ person (${secFormatted})`;
+    } else {
+      el.textContent = `(${secFormatted})`;
+    }
+  });
+}
+window.updateAllPriceDisplays = updateAllPriceDisplays;
+
+function applyExchangeRates(rates) {
+  if (!rates) return;
+  if (rates.LKR && CURRENCIES.LKR) CURRENCIES.LKR.rate = rates.LKR;
+  if (rates.USD && CURRENCIES.USD) CURRENCIES.USD.rate = rates.USD;
+  if (rates.EUR && CURRENCIES.EUR) CURRENCIES.EUR.rate = rates.EUR;
+  if (rates.GBP && CURRENCIES.GBP) CURRENCIES.GBP.rate = rates.GBP;
+}
+
+/**
+ * Real-Time Exchange Rate Fetcher & Cache
+ */
+async function fetchExchangeRates() {
+  try {
+    // Check cached rates in localStorage
+    const cachedStr = localStorage.getItem(FX_CONFIG.cacheKey);
+    if (cachedStr) {
+      try {
+        const cached = JSON.parse(cachedStr);
+        const age = Date.now() - (cached.timestamp || 0);
+        if (age < FX_CONFIG.cacheTTL && cached.rates && typeof cached.rates === 'object') {
+          applyExchangeRates(cached.rates);
+          updateAllPriceDisplays();
+          return;
+        }
+      } catch (err) {
+        console.warn('FX cache parse error:', err);
+      }
+    }
+
+    // Fetch from open endpoint: https://open.er-api.com/v6/latest/AED
+    const res = await fetch(FX_CONFIG.endpoint, { cache: 'no-cache' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    if (data && data.result === 'success' && data.rates) {
+      const freshRates = {
+        AED: 1,
+        LKR: data.rates.LKR || FX_CONFIG.baselineRates.LKR,
+        USD: data.rates.USD || FX_CONFIG.baselineRates.USD,
+        EUR: data.rates.EUR || FX_CONFIG.baselineRates.EUR,
+        GBP: data.rates.GBP || FX_CONFIG.baselineRates.GBP
+      };
+
+      try {
+        localStorage.setItem(FX_CONFIG.cacheKey, JSON.stringify({
+          timestamp: Date.now(),
+          rates: freshRates
+        }));
+      } catch (e) {}
+
+      applyExchangeRates(freshRates);
+      updateAllPriceDisplays();
+    } else {
+      throw new Error('Invalid response structure');
+    }
+  } catch (error) {
+    console.warn('Live FX rate fetch failed, using baseline fallback:', error.message);
+    applyExchangeRates(FX_CONFIG.baselineRates);
+    updateAllPriceDisplays();
+  }
+}
+window.fetchExchangeRates = fetchExchangeRates;
+
 
 // ==========================================================================
 // Google Apps Script Web App Endpoint
@@ -1474,8 +1643,9 @@ function renderPackages(filteredList = PACKAGES) {
               <div class="min-w-0 flex-1">
                 <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-medium truncate">${startingFromText}</span>
                 <div class="flex items-baseline space-x-2 flex-wrap">
-                  <span class="text-2xl font-black text-amber-600 dark:text-amber-400 font-heading">${formattedPrice}</span>
-                  <span class="text-xs text-slate-400 dark:text-slate-500 line-through">${formattedOriginal}</span>
+                  <span class="price-aed text-2xl font-black text-amber-600 dark:text-amber-400 font-heading" data-base-aed="${pkg.priceAED}">${formattedPrice}</span>
+                  <span class="text-xs text-slate-400 dark:text-slate-500 line-through" data-base-aed="${pkg.originalPriceAED}">${formattedOriginal}</span>
+                  <span class="price-secondary text-xs text-amber-500/90 font-medium" data-secondary-for="${pkg.priceAED}">(${formatSecondaryPrice(pkg.priceAED)})</span>
                 </div>
                 <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium block break-words">
                   ${installmentText}
@@ -1760,7 +1930,17 @@ function openBookingModal(pkgId) {
   document.getElementById('modalPkgDestination').innerHTML = `${pkg.flag} <span class="font-semibold">${pkg.destination}</span> &bull; <span>${pkg.duration}</span>`;
   document.getElementById('modalPkgImage').src = pkg.image;
   document.getElementById('modalPkgImage').alt = pkg.alt;
-  document.getElementById('modalPkgBasePrice').textContent = formatPrice(pkg.priceAED);
+  const basePriceElem = document.getElementById('modalPkgBasePrice');
+  if (basePriceElem) {
+    basePriceElem.classList.add('price-aed');
+    basePriceElem.setAttribute('data-base-aed', pkg.priceAED);
+    basePriceElem.textContent = formatPrice(pkg.priceAED);
+  }
+  const secPriceElem = document.getElementById('modalPkgSecondaryPrice');
+  if (secPriceElem) {
+    secPriceElem.setAttribute('data-secondary-for', pkg.priceAED);
+    secPriceElem.textContent = `(${formatSecondaryPrice(pkg.priceAED)})`;
+  }
   
   // Set default form values
   document.getElementById('bookingTravelers').value = '2';
@@ -1816,10 +1996,13 @@ function calculateBookingTotal() {
   const totalFormatted = formatPrice(Math.round(totalAED));
   const installmentFormatted = formatPrice(Math.round(totalAED / 4));
 
-  const totalElem = document.getElementById('modalTotalCalculation');
+  const totalElem = document.getElementById('modalTotalCalculation') || document.getElementById('bookingEstimatedTotal');
   const installmentElem = document.getElementById('modalTabbyInstallment');
 
-  if (totalElem) totalElem.textContent = totalFormatted;
+  if (totalElem) {
+    const secTotal = formatSecondaryPrice(Math.round(totalAED));
+    totalElem.innerHTML = `<span class="price-aed" data-base-aed="${Math.round(totalAED)}">${totalFormatted}</span> <span class="price-secondary text-xs text-amber-500/90 font-medium ml-1.5" data-secondary-for="${Math.round(totalAED)}">(${secTotal})</span>`;
+  }
   if (installmentElem) installmentElem.textContent = `or 4x ${installmentFormatted}/month interest-free with Tabby / Tamara`;
 }
 
@@ -1947,7 +2130,16 @@ function openItineraryModal(pkgId) {
 
   // Price & CTA
   const priceElem = document.getElementById('itineraryModalPrice');
-  if (priceElem) priceElem.textContent = formatPrice(pkg.priceAED);
+  if (priceElem) {
+    priceElem.classList.add('price-aed');
+    priceElem.setAttribute('data-base-aed', pkg.priceAED);
+    priceElem.textContent = formatPrice(pkg.priceAED);
+  }
+  const secPriceElem = document.getElementById('itineraryModalSecondaryPrice');
+  if (secPriceElem) {
+    secPriceElem.setAttribute('data-secondary-for', pkg.priceAED);
+    secPriceElem.textContent = `(${formatSecondaryPrice(pkg.priceAED)})`;
+  }
 
   const bookBtn = document.getElementById('itineraryBookButton');
   if (bookBtn) {
@@ -2116,7 +2308,8 @@ function checkVisaRequirements() {
           <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 block mb-0.5">Price &amp; Processing Speed</span>
           <p class="text-xs sm:text-sm md:text-base font-extrabold text-amber-600 dark:text-amber-400 flex items-center gap-2 flex-wrap">
             <i class="fa-solid fa-tag text-amber-500 text-xs shrink-0"></i>
-            <span>${data.rateHeadline}</span>
+            <span class="price-aed" data-base-aed="${data.priceAED}">${data.rateHeadline}</span>
+            <span class="price-secondary text-xs text-amber-500/90 font-semibold" data-secondary-for="${data.priceAED}">(${formatSecondaryPrice(data.priceAED)})</span>
           </p>
         </div>
         ${!isAED ? `
@@ -2365,6 +2558,10 @@ function changeCurrency(newCurr) {
   if (!CURRENCIES[newCurr]) return;
   currentCurrency = newCurr;
 
+  try {
+    localStorage.setItem('starplus_pref_currency', newCurr);
+  } catch (e) {}
+
   // Update currency select dropdowns
   document.querySelectorAll('.currency-selector').forEach(sel => {
     sel.value = newCurr;
@@ -2375,6 +2572,19 @@ function changeCurrency(newCurr) {
 
   // Update Visa section if rendered
   checkVisaRequirements();
+
+  // Update all marked base and secondary price tags across DOM
+  updateAllPriceDisplays();
+
+  // Update Country Showcase if active
+  if (typeof currentShowcaseCountryKey !== 'undefined' && currentShowcaseCountryKey && typeof updateShowcaseTourUI === 'function') {
+    updateShowcaseTourUI(currentShowcaseTourIndex || 0, false);
+  }
+
+  // Update booking modal if active
+  if (selectedPackageForBooking) {
+    calculateBookingTotal();
+  }
 
   showToast(`Currency updated to ${CURRENCIES[newCurr].name}`, 'success');
 }
@@ -3508,8 +3718,19 @@ function changeLanguage(lang, notify = true) {
     setTimeout(() => syncNavPillIndicator(true), 60);
   }
 
+    // Re-run stats counters for any newly inserted translated counters
+  if (typeof initStatsCounters === 'function') {
+    initStatsCounters();
+  }
+
+  // Update dynamic currency displays
+  if (typeof updateAllPriceDisplays === 'function') {
+    updateAllPriceDisplays();
+  }
+
   if (notify) {
-    showToast(lang === 'si' ? 'භාෂාව සිංහල ලෙස වෙනස් කරන ලදී' : 'Language switched to English', 'success');
+    const langName = lang === 'si' ? 'සිංහල (Sinhala)' : 'English';
+    showToast(`Language switched to ${langName}`, 'success');
   }
 }
 
@@ -3517,15 +3738,13 @@ let _toggleLanguageBusy = false;
 function toggleLanguage() {
   if (_toggleLanguageBusy) return;
   _toggleLanguageBusy = true;
-  setTimeout(() => { _toggleLanguageBusy = false; }, 200);
-
-  const activeDomLang = document.documentElement.lang;
-  const currentLang = (activeDomLang === 'si' || getPreferredLanguage() === 'si') ? 'si' : 'en';
-  const nextLang = currentLang === 'en' ? 'si' : 'en';
-  changeLanguage(nextLang, true);
+  const current = getPreferredLanguage();
+  const next = current === 'en' ? 'si' : 'en';
+  changeLanguage(next, true);
+  setTimeout(() => {
+    _toggleLanguageBusy = false;
+  }, 400);
 }
-
-// Attach globally for inline HTML handlers
 window.getPreferredLanguage = getPreferredLanguage;
 window.changeLanguage = changeLanguage;
 window.toggleLanguage = toggleLanguage;
@@ -3571,6 +3790,17 @@ function initApp() {
     }
     window.scrollTo(0, 0);
   } catch (e) {}
+
+  try {
+    // Synchronize currency selector dropdowns to currentCurrency
+    document.querySelectorAll('.currency-selector').forEach(sel => {
+      sel.value = currentCurrency;
+    });
+    // Fetch live rates or apply cached rates and update UI
+    fetchExchangeRates();
+  } catch (e) {
+    console.error('FX init error:', e);
+  }
 
   try { renderPackages(PACKAGES); } catch (e) {}
   try { renderTestimonial(); } catch (e) {}
@@ -4714,7 +4944,10 @@ function openCountryPackages(countryKey) {
               <div class="flex items-baseline justify-between pt-3 pb-3">
                 <div>
                   <span class="text-[10px] text-slate-400 block uppercase tracking-wider">Starting from</span>
-                  <span class="text-lg sm:text-xl font-black text-amber-400 font-heading">${formattedPrice}</span>
+                  <div class="flex items-baseline gap-1.5 flex-wrap">
+                    <span class="price-aed text-lg sm:text-xl font-black text-amber-400 font-heading" data-base-aed="${pkg.priceAED}">${formattedPrice}</span>
+                    <span class="price-secondary text-xs text-amber-500/90 font-medium" data-secondary-for="${pkg.priceAED}">(${formatSecondaryPrice(pkg.priceAED)})</span>
+                  </div>
                   <span class="text-[10px] text-slate-400">/ person</span>
                 </div>
                 <div class="text-right">
@@ -4911,7 +5144,10 @@ function initDestinationSlider() {
           <h4 class="text-base sm:text-lg font-bold text-white font-heading leading-tight drop-shadow-md">${slide.title}</h4>
           <div class="flex items-center justify-between text-[11px] text-slate-300 mt-1 font-medium">
             <span>${slide.duration}</span>
-            <span class="text-amber-400 font-bold">${formattedPrice}</span>
+            <div class="text-right">
+              <span class="price-aed text-amber-400 font-bold" data-base-aed="${slide.priceAED}">${formattedPrice}</span>
+              <span class="price-secondary text-[10px] text-slate-400 block" data-secondary-for="${slide.priceAED}">(${formatSecondaryPrice(slide.priceAED)})</span>
+            </div>
           </div>
         </div>
       </div>
@@ -6253,7 +6489,10 @@ function populateShowcaseData(countryKey) {
 
             <div class="showcase-card-meta flex items-center justify-between text-slate-300 mt-1 font-medium pt-1.5 border-t border-white/15">
               <span class="flex items-center gap-1"><i class="fa-regular fa-clock text-amber-400 text-[9px]"></i>${tour.duration}</span>
-              <span class="showcase-card-price text-amber-400 font-mono">${formattedAED}</span>
+              <div class="text-right">
+                <span class="showcase-card-price price-aed text-amber-400 font-mono" data-base-aed="${tour.priceAED}">${formattedAED}</span>
+                <span class="price-secondary text-[9px] text-slate-400 block" data-secondary-for="${tour.priceAED}">(${formatSecondaryPrice(tour.priceAED)})</span>
+              </div>
             </div>
           </div>
         </div>
@@ -6377,10 +6616,16 @@ function updateShowcaseTourUI(index, animate = true) {
 
   if (priceElem) {
     const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
+    priceElem.classList.add('price-aed');
+    priceElem.setAttribute('data-base-aed', tour.priceAED);
     priceElem.textContent = formattedAED;
   }
   if (altPriceElem) {
-    altPriceElem.textContent = tour.priceLKR ? `/ person (${tour.priceLKR})` : '/ person';
+    altPriceElem.classList.add('price-secondary');
+    altPriceElem.setAttribute('data-secondary-for', tour.priceAED);
+    altPriceElem.setAttribute('data-template', '/ person ({secondary})');
+    const secFormatted = formatSecondaryPrice(tour.priceAED);
+    altPriceElem.textContent = `/ person (${secFormatted})`;
   }
 
   // WhatsApp button dynamic pre-fill
@@ -6755,10 +7000,16 @@ function openShowcaseItinerary(tour) {
   // Price Display
   if (priceElem) {
     const formattedAED = typeof formatPrice === 'function' ? formatPrice(data.priceAED) : `AED ${data.priceAED.toLocaleString()}`;
+    priceElem.classList.add('price-aed');
+    priceElem.setAttribute('data-base-aed', data.priceAED);
     priceElem.textContent = formattedAED;
   }
   if (altPriceElem) {
-    altPriceElem.textContent = data.priceSecondary ? `/ person (${data.priceSecondary})` : '/ person';
+    altPriceElem.classList.add('price-secondary');
+    altPriceElem.setAttribute('data-secondary-for', data.priceAED);
+    altPriceElem.setAttribute('data-template', '/ person ({secondary})');
+    const secFormatted = formatSecondaryPrice(data.priceAED);
+    altPriceElem.textContent = `/ person (${secFormatted})`;
   }
 
   // WhatsApp Inquiry CTA
