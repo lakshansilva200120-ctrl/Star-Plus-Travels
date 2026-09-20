@@ -8099,24 +8099,333 @@ function initIntlTelInputs() {
 }
 window.initIntlTelInputs = initIntlTelInputs;
 
+/* ==========================================================================
+   Destination Spotlight & Interactive Cards Controller (/destinations)
+   ========================================================================== */
+const SPOTLIGHT_DESTINATIONS_DATA = {
+  srilanka: {
+    countryName: 'Sri Lanka',
+    defaultIndex: 0,
+    places: [
+      {
+        id: 'nuwara-eliya',
+        title: 'NUWARA ELIYA',
+        tagline: 'LITTLE ENGLAND & CELESTIAL TEA HIGHLANDS',
+        description: 'Nestled 1,868 meters above sea level amid emerald rolling peaks, Nuwara Eliya boasts crisp mountain breezes, Tudor-style colonial bungalows, verdant Ceylon tea plantations, and tranquil boat cruises on Lake Gregory.',
+        image: 'assets/packages/sl-nuwara-eliya-tea-hills.jpg',
+        badge: 'Highlands',
+        highlights: ['Pedro Tea Estate & Factory', 'Lake Gregory Boating', 'Hakgala Botanical Gardens', 'Horton Plains & World\'s End'],
+        packageId: 'sl-ella-nuwaraeliya',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Nuwara Eliya tea highlands and tour packages.'
+      },
+      {
+        id: 'sigiriya',
+        title: 'SIGIRIYA',
+        tagline: 'ANCIENT LION ROCK FORTRESS & 5TH CENTURY CITADEL',
+        description: 'Rise above the central plains to explore King Kashyapa\'s dramatic 200-meter monolith citadel, renowned for world-famous ancient fresco paintings, symmetrical water gardens, and breathtaking 360-degree panorama over pristine jungles.',
+        image: 'assets/sri-lanka-sigiriya-rock.jpg',
+        badge: 'UNESCO Citadel',
+        highlights: ['Lion\'s Paw Gateway', 'Ancient Frescoes & Mirror Wall', 'Royal Water Gardens', 'Pidurangala Sunset Viewpoint'],
+        packageId: 'sl-sigiriya-cultural',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Sigiriya Rock Fortress tour packages.'
+      },
+      {
+        id: 'kandy',
+        title: 'KANDY',
+        tagline: 'SACRED TEMPLE OF THE TOOTH & ROYAL HIGHLAND CAPITAL',
+        description: 'Surrounded by misty mountain ranges and tranquil Kandy Lake, this last royal capital of Sri Lanka houses the sacred relic of the tooth of the Buddha, ancient traditional Kandyan dance theatres, and lush royal botanical gardens.',
+        image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1200&q=85',
+        badge: 'Sacred City',
+        highlights: ['Temple of the Sacred Tooth Relic', 'Peradeniya Royal Botanic Gardens', 'Kandy Lake Promenade', 'Traditional Cultural Dance'],
+        packageId: 'sl-sigiriya-cultural',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Kandy cultural tour packages.'
+      },
+      {
+        id: 'ella',
+        title: 'ELLA',
+        tagline: 'NINE ARCH BRIDGE & VERDANT MOUNTAIN TRAILS',
+        description: 'Famous worldwide for the breathtaking Nine Arch Demodara Bridge and world-class blue mountain train journey. Hike to Little Adam\'s Peak for sunrise, swim in cascading Ravana Falls, and unwind in vibrant bohemian hillside cafes.',
+        image: 'assets/sri-lanka-destination.jpg',
+        badge: 'Scenic Gap',
+        highlights: ['Demodara Nine Arch Viaduct', 'Little Adam\'s Peak Trek', 'Scenic Blue Train Route', 'Ravana Falls & Cave'],
+        packageId: 'sl-ella-nuwaraeliya',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Ella & Nine Arch Bridge tour packages.'
+      },
+      {
+        id: 'yala',
+        title: 'YALA',
+        tagline: 'UNTAMED WILDLIFE & BIG-GAME LEOPARD SAFARI',
+        description: 'Venture deep into Ruhuna National Park, home to the world\'s highest wild leopard concentration. Board customized 4x4 open safari jeeps to spot majestic leopards on granite boulders, wild elephant herds, sloth bears, and saltwater crocodiles.',
+        image: 'assets/packages/sl-yala-leopard-rock.jpg',
+        badge: 'Wild Safari',
+        highlights: ['Leopard Tracking in Block 1', 'Wild Elephant Gatherings', 'Sloth Bear Habitat', 'Luxury Tented Bush Camps'],
+        packageId: 'sl-wildlife-safari',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Yala wildlife safari tour packages.'
+      },
+      {
+        id: 'galle',
+        title: 'GALLE FORT',
+        tagline: 'UNESCO 17TH-CENTURY DUTCH RAMPARTS & OCEAN LIGHTHOUSE',
+        description: 'A living colonial bastion jutting out into the Indian Ocean. Stroll along ancient cobblestone fortifications, explore boutique artisan galleries and gem jewellers, watch stunning ocean sunsets from the iconic white lighthouse, and unwind on nearby golden beaches.',
+        image: 'assets/packages/sl-galle-fort-lighthouse.jpg',
+        badge: 'Ocean Bastion',
+        highlights: ['Historic Dutch Fort Ramparts', 'White Lighthouse & Flag Rock', 'Boutique Artisan Quarters', 'Bentota & Mirissa Beaches'],
+        packageId: 'sl-galle-south',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Galle Fort & South Coast packages.'
+      }
+    ]
+  },
+  dubai: {
+    countryName: 'Dubai & UAE',
+    defaultIndex: 0,
+    places: [
+      {
+        id: 'burj-khalifa',
+        title: 'BURJ KHALIFA & DOWNTOWN',
+        tagline: 'WORLD\'S TALLEST TOWER & MODERN ARCHITECTURAL MARVEL',
+        description: 'Ascend to Level 124 & 125 for panoramic vistas across Dubai\'s futuristic skyline and the Arabian Gulf. Marvel at the choreographed Dubai Fountain water show, explore Dubai Mall, and stroll through Dubai Opera district.',
+        image: 'assets/packages/dubai-burj-khalifa.jpg',
+        badge: 'Iconic Tower',
+        highlights: ['At The Top Observation Deck', 'Dubai Fountain Boardwalk', 'Dubai Mall & Aquarium', 'Souk Al Bahar Dining'],
+        packageId: 'dubai-family-escape',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Dubai Downtown & Burj Khalifa tour packages.'
+      },
+      {
+        id: 'palm-jumeirah',
+        title: 'PALM JUMEIRAH & ATLANTIS',
+        tagline: 'WORLD-FAMOUS ARCHIPELAGO & ULTRA-LUXURY LIVING',
+        description: 'Marvel at Dubai\'s world-famous tree-shaped artificial island. Experience Aquaventure Waterpark, Atlantis The Royal, luxury yacht cruises along the Palm crescent, and sunset beach clubs overlooking the Arabian Gulf.',
+        image: 'assets/packages/dubai-marina-yachts.jpg',
+        badge: 'Island Luxury',
+        highlights: ['Atlantis Aquaventure & Lost Chambers', 'Private Marina Yacht Charter', 'The View at The Palm 52F', 'Pointe Boardwalk Dining'],
+        packageId: 'dubai-abudhabi-grand',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Palm Jumeirah & Marina packages.'
+      },
+      {
+        id: 'desert-safari',
+        title: 'ARABIAN DESERT DUNES',
+        tagline: 'RED DUNE 4X4 ADVENTURE & STARLIT BEDOUIN BANQUET',
+        description: 'Embark into sweeping Lahbab red dunes in high-powered 4x4 land cruisers for thrilling dune bashing, sandboarding, and sunset camel treks, followed by a VIP Arabian desert camp dinner with fire and Tanoura performances.',
+        image: 'assets/packages/dubai-desert-safari.jpg',
+        badge: 'Red Dunes',
+        highlights: ['Thrilling 4x4 Red Dune Bashing', 'Sandboarding & Camel Rides', 'VIP Bedouin Majlis BBQ Dinner', 'Live Fire & Tanoura Shows'],
+        packageId: 'dubai-family-escape',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about VIP Dubai Desert Safari tours.'
+      },
+      {
+        id: 'abu-dhabi',
+        title: 'ABU DHABI & GRAND MOSQUE',
+        tagline: 'IMPERIAL CULTURAL HERITAGE & ARCHITECTURAL SPLENDOR',
+        description: 'Journey to the UAE capital to behold the awe-inspiring Sheikh Zayed Grand Mosque with pure white marble domes and floral inlays, followed by world-class art at Louvre Abu Dhabi and the regal splendor of Qasr Al Watan Presidential Palace.',
+        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=85',
+        badge: 'Imperial Heritage',
+        highlights: ['Sheikh Zayed Grand Mosque', 'Louvre Abu Dhabi Museum', 'Qasr Al Watan Palace', 'Corniche Waterfront Promenade'],
+        packageId: 'dubai-abudhabi-grand',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Abu Dhabi Grand Mosque tour packages.'
+      }
+    ]
+  },
+  georgia: {
+    countryName: 'Georgia',
+    defaultIndex: 0,
+    places: [
+      {
+        id: 'tbilisi',
+        title: 'OLD TBILISI',
+        tagline: 'ANCIENT COBBLESTONE COURTYARDS & HISTORIC SULFUR BATHS',
+        description: 'Wander through centuries of vibrant Caucasian culture in Old Tbilisi, with carved wooden balconies hanging above cobblestone lanes, iconic domed sulfur bathhouses of Abanotubani, and Narikala Fortress overlooking the Mtkvari river.',
+        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=85',
+        badge: 'Old Town',
+        highlights: ['Narikala Fortress Cable Car', 'Abanotubani Sulfur Baths', 'Bridge of Peace', 'Shardeni Street Cafes'],
+        packageId: 'georgia-kazbegi',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Tbilisi city and Georgia holiday packages.'
+      },
+      {
+        id: 'kazbegi',
+        title: 'KAZBEGI & GERGETI TRINITY',
+        tagline: 'SNOW-CROWNED MOUNT KAZBEK & 14TH-CENTURY SANCTUARY',
+        description: 'Travel the legendary Georgian Military Highway through the Caucasus range to Stepantsminda. Stand at the breathtaking 14th-century Gergeti Trinity Church perched 2,170m high against the backdrop of Mount Kazbek\'s 5,047m snow peaks.',
+        image: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=1200&q=85',
+        badge: 'High Caucasus',
+        highlights: ['Gergeti Trinity Church 2,170m', 'Mount Kazbek 5,047m Glacier', 'Ananuri Fortress Complex', 'Zhinvali Emerald Reservoir'],
+        packageId: 'georgia-kazbegi',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Kazbegi & Gergeti Trinity packages.'
+      },
+      {
+        id: 'kakheti',
+        title: 'KAKHETI WINE VALLEY',
+        tagline: 'CRADLE OF 8,000-YEAR-OLD VITICULTURE & ROYAL VINEYARDS',
+        description: 'Explore the fertile Alazani Valley where clay amphorae (qvevri) wine-making has thrived uninterrupted for 8,000 years. Visit the romantic hilltop town of Signagi, ancient monastery cellars, and traditional supra feasts.',
+        image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1200&q=85',
+        badge: 'Wine Country',
+        highlights: ['UNESCO Qvevri Wine Cellars', 'Signagi City of Love', 'Bodbe St. Nino Monastery', 'Traditional Georgian Supra Feast'],
+        packageId: 'georgia-kazbegi',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Kakheti wine valley tours in Georgia.'
+      },
+      {
+        id: 'gudauri',
+        title: 'GUDAURI ALPS',
+        tagline: 'ALPINE VISTAS, SKI SLOPES & CAUCASUS FRIENDSHIP MONUMENT',
+        description: 'High on the southern slopes of the Greater Caucasus, Gudauri offers exhilarating mountain paragliding, panoramic ski slopes, and the dramatic circular Russia-Georgia Friendship Monument overlooking the Devil\'s Valley abyss.',
+        image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85',
+        badge: 'Alpine Peak',
+        highlights: ['Caucasus Friendship Monument', 'Panoramic Mountain Paragliding', 'Jvari Pass 2,379m Elevation', 'Snowsports & Alpine Trails'],
+        packageId: 'georgia-kazbegi',
+        ctaText: 'Explore Package →',
+        whatsappMsg: 'Hi Star Plus Travels, I would like to inquire about Gudauri alpine ski & mountain tours.'
+      }
+    ]
+  }
+};
+
+function selectSpotlightCard(countryKey, cardIndex) {
+  const countryData = SPOTLIGHT_DESTINATIONS_DATA[countryKey];
+  if (!countryData || !countryData.places || !countryData.places[cardIndex]) return;
+
+  const place = countryData.places[cardIndex];
+  const section = document.getElementById('spotlight-' + countryKey);
+  if (!section) return;
+
+  // 1. Update Backdrop with smooth cross-fade transition
+  const bg = section.querySelector('.dest-spotlight-backdrop');
+  if (bg && bg.getAttribute('src') !== place.image) {
+    bg.classList.add('is-transitioning');
+    setTimeout(() => {
+      bg.src = place.image;
+      bg.alt = place.title;
+      setTimeout(() => {
+        bg.classList.remove('is-transitioning');
+      }, 60);
+    }, 180);
+  }
+
+  // 2. Update Left Column details
+  const titleEl = section.querySelector('[data-spotlight="title"]');
+  const taglineEl = section.querySelector('[data-spotlight="tagline"]');
+  const descEl = section.querySelector('[data-spotlight="desc"]');
+  const pillsEl = section.querySelector('[data-spotlight="pills"]');
+  const ctaBtn = section.querySelector('[data-spotlight="cta"]');
+  const waBtn = section.querySelector('[data-spotlight="wa"]');
+
+  if (titleEl) {
+    titleEl.textContent = place.title;
+  }
+  if (taglineEl) {
+    taglineEl.textContent = place.tagline;
+  }
+  if (descEl) {
+    descEl.textContent = place.description;
+  }
+  if (pillsEl && place.highlights) {
+    pillsEl.innerHTML = place.highlights.map(h => `
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-slate-300 text-xs font-medium backdrop-blur-md">
+        <i class="fa-solid fa-check text-amber-400 text-[10px]"></i>
+        <span>${h}</span>
+      </span>
+    `).join('');
+  }
+  if (ctaBtn) {
+    ctaBtn.setAttribute('data-package-id', place.packageId || '');
+    ctaBtn.setAttribute('data-country', countryKey);
+  }
+  if (waBtn && place.whatsappMsg) {
+    waBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(place.whatsappMsg)}`;
+  }
+
+  // 3. Update active card in the track
+  const track = section.querySelector('.dest-spotlight-track');
+  if (track) {
+    const cards = track.querySelectorAll('.dest-spotlight-card');
+    cards.forEach((card, idx) => {
+      if (idx === cardIndex) {
+        card.classList.add('active');
+        card.setAttribute('aria-selected', 'true');
+      } else {
+        card.classList.remove('active');
+        card.setAttribute('aria-selected', 'false');
+      }
+    });
+  }
+}
+
+function handleSpotlightCtaAction(btn) {
+  if (!btn) return;
+  const countryKey = btn.getAttribute('data-country');
+  const packageId = btn.getAttribute('data-package-id');
+
+  if (typeof openCountryShowcase === 'function' && countryKey) {
+    openCountryShowcase(countryKey);
+    // If packageId specified, try to select that tour in the modal
+    if (packageId && typeof selectShowcaseTourById === 'function') {
+      setTimeout(() => {
+        selectShowcaseTourById(packageId);
+      }, 150);
+    }
+  } else if (typeof openBookingModal === 'function') {
+    openBookingModal(packageId || countryKey);
+  } else {
+    window.location.href = 'packages.html';
+  }
+}
+
+function scrollSpotlightTrack(countryKey, direction) {
+  const section = document.getElementById('spotlight-' + countryKey);
+  if (!section) return;
+  const track = section.querySelector('.dest-spotlight-track');
+  if (!track) return;
+  const scrollAmount = direction === 'left' ? -230 : 230;
+  track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+}
+
+function initSpotlightShowcases() {
+  ['srilanka', 'dubai', 'georgia'].forEach(countryKey => {
+    const section = document.getElementById('spotlight-' + countryKey);
+    if (section) {
+      selectSpotlightCard(countryKey, 0);
+    }
+  });
+}
+
+window.selectSpotlightCard = selectSpotlightCard;
+window.handleSpotlightCtaAction = handleSpotlightCtaAction;
+window.scrollSpotlightTrack = scrollSpotlightTrack;
+window.initSpotlightShowcases = initSpotlightShowcases;
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initShowcaseAndSearch();
     initIntlTelInputs();
     initNewsletterForms();
     initUniversalFormValidation();
+    initSpotlightShowcases();
   });
 } else {
   initShowcaseAndSearch();
   initIntlTelInputs();
   initNewsletterForms();
   initUniversalFormValidation();
+  initSpotlightShowcases();
 }
 
 window.addEventListener('load', () => {
   initIntlTelInputs();
   initNewsletterForms();
   initUniversalFormValidation();
+  initSpotlightShowcases();
 });
+
 
 

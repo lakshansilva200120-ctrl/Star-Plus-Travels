@@ -446,8 +446,481 @@
     </div>
   </section>
 
+  <!-- Quick Country Navigation Sticky Anchor Bar -->
+  <div class="sticky top-20 z-30 py-3 bg-[#070e17]/95 backdrop-blur-md border-b border-slate-800/80 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+          <i class="fa-solid fa-compass text-amber-400"></i>
+          <span>Destination Spotlights:</span>
+        </span>
+      </div>
+      <div class="flex items-center gap-2 overflow-x-auto pb-1 max-w-full">
+        <a href="#spotlight-srilanka" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-slate-200 hover:border-amber-400 hover:text-amber-400 text-xs font-semibold transition-all">
+          <span>🇱🇰 Sri Lanka</span>
+        </a>
+        <a href="#spotlight-dubai" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-slate-200 hover:border-amber-400 hover:text-amber-400 text-xs font-semibold transition-all">
+          <span>🇦🇪 Dubai &amp; UAE</span>
+        </a>
+        <a href="#spotlight-georgia" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-slate-200 hover:border-amber-400 hover:text-amber-400 text-xs font-semibold transition-all">
+          <span>🇬🇪 Georgia</span>
+        </a>
+        <a href="#global-destinations-grid" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900/50 border border-slate-800 text-slate-400 hover:text-slate-200 text-xs font-medium transition-all">
+          <span>More Hubs &darr;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Country Destination Showcase Sections -->
+  <section class="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full space-y-12">
+
+    <!-- 1. SRI LANKA DESTINATION SPOTLIGHT -->
+    <div id="spotlight-srilanka" class="dest-spotlight-section relative overflow-hidden rounded-3xl bg-[#070B14] border border-slate-800/80 shadow-2xl">
+      <!-- Dynamic Backdrop Image -->
+      <img src="assets/packages/sl-nuwara-eliya-tea-hills.jpg" alt="Nuwara Eliya Tea Hills" class="dest-spotlight-backdrop select-none pointer-events-none" loading="lazy">
+      
+      <!-- Directional Gradient Masks for absolute readability -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#070B14] via-[#070B14]/90 to-[#070B14]/50 pointer-events-none z-10"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-[#070B14]/40 pointer-events-none z-10"></div>
+
+      <!-- Top Header / Bar -->
+      <div class="relative z-20 px-6 sm:px-10 pt-8 sm:pt-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-sm">
+            <i class="fa-solid fa-gem"></i>
+          </span>
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-widest text-amber-400">COUNTRY SPOTLIGHT</span>
+            <h3 class="text-xl sm:text-2xl font-bold text-white font-heading">Sri Lanka Island Odyssey</h3>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="scrollSpotlightTrack('srilanka', 'left')" class="w-9 h-9 rounded-full bg-slate-900/80 hover:bg-amber-500 hover:text-slate-950 text-white border border-slate-700/80 flex items-center justify-center text-xs transition-all shadow-md cursor-pointer group" aria-label="Previous Sri Lanka destination">
+            <i class="fa-solid fa-chevron-left text-[10px] transition-transform group-hover:-translate-x-0.5"></i>
+          </button>
+          <button type="button" onclick="scrollSpotlightTrack('srilanka', 'right')" class="w-9 h-9 rounded-full bg-slate-900/80 hover:bg-amber-500 hover:text-slate-950 text-white border border-slate-700/80 flex items-center justify-center text-xs transition-all shadow-md cursor-pointer group" aria-label="Next Sri Lanka destination">
+            <i class="fa-solid fa-chevron-right text-[10px] transition-transform group-hover:translate-x-0.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Two-Column Showcase Grid -->
+      <div class="relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center px-6 sm:px-10 py-8">
+        <!-- Left Column: Active Place Info -->
+        <div class="lg:col-span-5 flex flex-col justify-center space-y-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-400 block mb-1" data-spotlight="tagline">
+              LITTLE ENGLAND &amp; CELESTIAL TEA HIGHLANDS
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-black text-white font-heading tracking-tight leading-tight uppercase" data-spotlight="title">
+              NUWARA ELIYA
+            </h2>
+          </div>
+
+          <p class="text-sm text-slate-200 leading-relaxed max-w-lg" data-spotlight="desc">
+            Nestled 1,868 meters above sea level amid emerald rolling peaks, Nuwara Eliya boasts crisp mountain breezes, Tudor-style colonial bungalows, verdant Ceylon tea plantations, and tranquil boat cruises on Lake Gregory.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-2 pt-1" data-spotlight="pills">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-slate-300 text-xs font-medium backdrop-blur-md">
+              <i class="fa-solid fa-check text-amber-400 text-[10px]"></i>
+              <span>Pedro Tea Estate &amp; Factory</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-slate-300 text-xs font-medium backdrop-blur-md">
+              <i class="fa-solid fa-check text-amber-400 text-[10px]"></i>
+              <span>Lake Gregory Boating</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-slate-300 text-xs font-medium backdrop-blur-md">
+              <i class="fa-solid fa-check text-amber-400 text-[10px]"></i>
+              <span>Hakgala Botanical Gardens</span>
+            </span>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button type="button" onclick="handleSpotlightCtaAction(this)" data-spotlight="cta" data-country="srilanka" data-package-id="sl-ella-nuwaraeliya" class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-lg shadow-amber-500/20 hover:scale-[1.02] flex items-center justify-center space-x-2 cursor-pointer">
+              <span>Explore Package &rarr;</span>
+            </button>
+            <a data-spotlight="wa" href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20would%20like%20to%20inquire%20about%20Nuwara%20Eliya" target="_blank" rel="noopener noreferrer" class="px-4 py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 font-bold text-xs transition-all flex items-center justify-center space-x-2 shadow-md">
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+              <span>Inquire</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Floating Row of Compact Vertical Cards (210px x 320px) -->
+        <div class="lg:col-span-7 overflow-hidden relative">
+          <div class="dest-spotlight-track">
+            
+            <!-- Card 0: Nuwara Eliya -->
+            <div class="dest-spotlight-card active border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('srilanka', 0)">
+              <img src="assets/packages/sl-nuwara-eliya-tea-hills.jpg" alt="Nuwara Eliya" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">Highlands</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Nuwara Eliya</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Central Province</span>
+              </div>
+            </div>
+
+            <!-- Card 1: Sigiriya -->
+            <div class="dest-spotlight-card border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('srilanka', 1)">
+              <img src="assets/sri-lanka-sigiriya-rock.jpg" alt="Sigiriya" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">UNESCO Citadel</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Sigiriya</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Cultural Triangle</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Kandy -->
+            <div class="dest-spotlight-card border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('srilanka', 2)">
+              <img src="https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=600&q=80" alt="Kandy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">Sacred City</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Kandy</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Hill Capital</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Ella -->
+            <div class="dest-spotlight-card border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('srilanka', 3)">
+              <img src="assets/sri-lanka-destination.jpg" alt="Ella" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">Scenic Gap</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Ella</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Nine Arch Bridge</span>
+              </div>
+            </div>
+
+            <!-- Card 4: Yala -->
+            <div class="dest-spotlight-card border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('srilanka', 4)">
+              <img src="assets/packages/sl-yala-leopard-rock.jpg" alt="Yala" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">Wild Safari</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Yala</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Ruhuna Sanctuary</span>
+              </div>
+            </div>
+
+            <!-- Card 5: Galle Fort -->
+            <div class="dest-spotlight-card border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('srilanka', 5)">
+              <img src="assets/packages/sl-galle-fort-lighthouse.jpg" alt="Galle Fort" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">Ocean Bastion</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Galle Fort</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Southern Coast</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. UAE / DUBAI DESTINATION SPOTLIGHT -->
+    <div id="spotlight-dubai" class="dest-spotlight-section relative overflow-hidden rounded-3xl bg-[#070B14] border border-slate-800/80 shadow-2xl">
+      <!-- Dynamic Backdrop Image -->
+      <img src="assets/packages/dubai-burj-khalifa.jpg" alt="Burj Khalifa Dubai" class="dest-spotlight-backdrop select-none pointer-events-none" loading="lazy">
+      
+      <!-- Directional Gradient Masks -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#070B14] via-[#070B14]/90 to-[#070B14]/50 pointer-events-none z-10"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-[#070B14]/40 pointer-events-none z-10"></div>
+
+      <!-- Top Header / Bar -->
+      <div class="relative z-20 px-6 sm:px-10 pt-8 sm:pt-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-sm">
+            <i class="fa-solid fa-city"></i>
+          </span>
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-widest text-amber-400">COUNTRY SPOTLIGHT</span>
+            <h3 class="text-xl sm:text-2xl font-bold text-white font-heading">Dubai &amp; Abu Dhabi, UAE</h3>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="scrollSpotlightTrack('dubai', 'left')" class="w-9 h-9 rounded-full bg-slate-900/80 hover:bg-amber-500 hover:text-slate-950 text-white border border-slate-700/80 flex items-center justify-center text-xs transition-all shadow-md cursor-pointer group" aria-label="Previous Dubai destination">
+            <i class="fa-solid fa-chevron-left text-[10px] transition-transform group-hover:-translate-x-0.5"></i>
+          </button>
+          <button type="button" onclick="scrollSpotlightTrack('dubai', 'right')" class="w-9 h-9 rounded-full bg-slate-900/80 hover:bg-amber-500 hover:text-slate-950 text-white border border-slate-700/80 flex items-center justify-center text-xs transition-all shadow-md cursor-pointer group" aria-label="Next Dubai destination">
+            <i class="fa-solid fa-chevron-right text-[10px] transition-transform group-hover:translate-x-0.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Two-Column Showcase Grid -->
+      <div class="relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center px-6 sm:px-10 py-8">
+        <!-- Left Column -->
+        <div class="lg:col-span-5 flex flex-col justify-center space-y-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-400 block mb-1" data-spotlight="tagline">
+              WORLD'S TALLEST TOWER &amp; MODERN ARCHITECTURAL MARVEL
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-black text-white font-heading tracking-tight leading-tight uppercase" data-spotlight="title">
+              BURJ KHALIFA &amp; DOWNTOWN
+            </h2>
+          </div>
+
+          <p class="text-sm text-slate-200 leading-relaxed max-w-lg" data-spotlight="desc">
+            Ascend to Level 124 &amp; 125 for panoramic vistas across Dubai's futuristic skyline and the Arabian Gulf. Marvel at the choreographed Dubai Fountain water show, explore Dubai Mall, and stroll through Dubai Opera district.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-2 pt-1" data-spotlight="pills">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-slate-300 text-xs font-medium backdrop-blur-md">
+              <i class="fa-solid fa-check text-amber-400 text-[10px]"></i>
+              <span>At The Top Observation Deck</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-slate-300 text-xs font-medium backdrop-blur-md">
+              <i class="fa-solid fa-check text-amber-400 text-[10px]"></i>
+              <span>Dubai Fountain Boardwalk</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-slate-300 text-xs font-medium backdrop-blur-md">
+              <i class="fa-solid fa-check text-amber-400 text-[10px]"></i>
+              <span>Dubai Mall &amp; Aquarium</span>
+            </span>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button type="button" onclick="handleSpotlightCtaAction(this)" data-spotlight="cta" data-country="dubai" data-package-id="dubai-family-escape" class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-lg shadow-amber-500/20 hover:scale-[1.02] flex items-center justify-center space-x-2 cursor-pointer">
+              <span>Explore Package &rarr;</span>
+            </button>
+            <a data-spotlight="wa" href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20would%20like%20to%20inquire%20about%20Dubai%20Downtown%20packages" target="_blank" rel="noopener noreferrer" class="px-4 py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 font-bold text-xs transition-all flex items-center justify-center space-x-2 shadow-md">
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+              <span>Inquire</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Floating Cards -->
+        <div class="lg:col-span-7 overflow-hidden relative">
+          <div class="dest-spotlight-track">
+            
+            <!-- Card 0: Burj Khalifa -->
+            <div class="dest-spotlight-card active border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('dubai', 0)">
+              <img src="assets/packages/dubai-burj-khalifa.jpg" alt="Burj Khalifa" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">Iconic Tower</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Burj Khalifa</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Downtown Dubai</span>
+              </div>
+            </div>
+
+            <!-- Card 1: Palm Jumeirah -->
+            <div class="dest-spotlight-card border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('dubai', 1)">
+              <img src="assets/packages/dubai-marina-yachts.jpg" alt="Palm Jumeirah" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">Island Luxury</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Palm Jumeirah</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Dubai Coast</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Desert Dunes -->
+            <div class="dest-spotlight-card border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('dubai', 2)">
+              <img src="assets/packages/dubai-desert-safari.jpg" alt="Desert Dunes" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">Red Dunes</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Desert Safari</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Lahbab Red Sands</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Abu Dhabi Grand Mosque -->
+            <div class="dest-spotlight-card border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('dubai', 3)">
+              <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" alt="Abu Dhabi Grand Mosque" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">Imperial Heritage</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Grand Mosque</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Abu Dhabi</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. GEORGIA DESTINATION SPOTLIGHT -->
+    <div id="spotlight-georgia" class="dest-spotlight-section relative overflow-hidden rounded-3xl bg-[#070B14] border border-slate-800/80 shadow-2xl">
+      <!-- Dynamic Backdrop Image -->
+      <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=85" alt="Old Tbilisi Georgia" class="dest-spotlight-backdrop select-none pointer-events-none" loading="lazy">
+      
+      <!-- Directional Gradient Masks -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#070B14] via-[#070B14]/90 to-[#070B14]/50 pointer-events-none z-10"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-transparent to-[#070B14]/40 pointer-events-none z-10"></div>
+
+      <!-- Top Header / Bar -->
+      <div class="relative z-20 px-6 sm:px-10 pt-8 sm:pt-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 text-sm">
+            <i class="fa-solid fa-snowflake"></i>
+          </span>
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-widest text-amber-400">COUNTRY SPOTLIGHT</span>
+            <h3 class="text-xl sm:text-2xl font-bold text-white font-heading">Tbilisi &amp; Kazbegi, Georgia</h3>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="scrollSpotlightTrack('georgia', 'left')" class="w-9 h-9 rounded-full bg-slate-900/80 hover:bg-amber-500 hover:text-slate-950 text-white border border-slate-700/80 flex items-center justify-center text-xs transition-all shadow-md cursor-pointer group" aria-label="Previous Georgia destination">
+            <i class="fa-solid fa-chevron-left text-[10px] transition-transform group-hover:-translate-x-0.5"></i>
+          </button>
+          <button type="button" onclick="scrollSpotlightTrack('georgia', 'right')" class="w-9 h-9 rounded-full bg-slate-900/80 hover:bg-amber-500 hover:text-slate-950 text-white border border-slate-700/80 flex items-center justify-center text-xs transition-all shadow-md cursor-pointer group" aria-label="Next Georgia destination">
+            <i class="fa-solid fa-chevron-right text-[10px] transition-transform group-hover:translate-x-0.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Two-Column Showcase Grid -->
+      <div class="relative z-20 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center px-6 sm:px-10 py-8">
+        <!-- Left Column -->
+        <div class="lg:col-span-5 flex flex-col justify-center space-y-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-400 block mb-1" data-spotlight="tagline">
+              ANCIENT COBBLESTONE COURTYARDS &amp; HISTORIC SULFUR BATHS
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-black text-white font-heading tracking-tight leading-tight uppercase" data-spotlight="title">
+              OLD TBILISI
+            </h2>
+          </div>
+
+          <p class="text-sm text-slate-200 leading-relaxed max-w-lg" data-spotlight="desc">
+            Wander through centuries of vibrant Caucasian culture in Old Tbilisi, with carved wooden balconies hanging above cobblestone lanes, iconic domed sulfur bathhouses of Abanotubani, and Narikala Fortress overlooking the Mtkvari river.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-2 pt-1" data-spotlight="pills">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-slate-300 text-xs font-medium backdrop-blur-md">
+              <i class="fa-solid fa-check text-amber-400 text-[10px]"></i>
+              <span>Narikala Fortress Cable Car</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-slate-300 text-xs font-medium backdrop-blur-md">
+              <i class="fa-solid fa-check text-amber-400 text-[10px]"></i>
+              <span>Abanotubani Sulfur Baths</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-slate-300 text-xs font-medium backdrop-blur-md">
+              <i class="fa-solid fa-check text-amber-400 text-[10px]"></i>
+              <span>Bridge of Peace &amp; Shardeni</span>
+            </span>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <button type="button" onclick="handleSpotlightCtaAction(this)" data-spotlight="cta" data-country="georgia" data-package-id="georgia-kazbegi" class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-lg shadow-amber-500/20 hover:scale-[1.02] flex items-center justify-center space-x-2 cursor-pointer">
+              <span>Explore Package &rarr;</span>
+            </button>
+            <a data-spotlight="wa" href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20would%20like%20to%20inquire%20about%20Georgia%20holiday%20packages" target="_blank" rel="noopener noreferrer" class="px-4 py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 font-bold text-xs transition-all flex items-center justify-center space-x-2 shadow-md">
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+              <span>Inquire</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Floating Cards -->
+        <div class="lg:col-span-7 overflow-hidden relative">
+          <div class="dest-spotlight-track">
+            
+            <!-- Card 0: Old Tbilisi -->
+            <div class="dest-spotlight-card active border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('georgia', 0)">
+              <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=600&q=80" alt="Old Tbilisi" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">Old Town</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Old Tbilisi</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Capital City</span>
+              </div>
+            </div>
+
+            <!-- Card 1: Kazbegi & Gergeti -->
+            <div class="dest-spotlight-card border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('georgia', 1)">
+              <img src="https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=600&q=80" alt="Kazbegi Gergeti Trinity" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">High Caucasus</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Kazbegi</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Mount Kazbek</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Kakheti Wine Valley -->
+            <div class="dest-spotlight-card border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('georgia', 2)">
+              <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=600&q=80" alt="Kakheti Wine Valley" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">Wine Country</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Kakheti</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Alazani Valley</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Gudauri Alps -->
+            <div class="dest-spotlight-card border border-slate-800 bg-slate-900/90 group" style="width: 210px !important; min-width: 210px !important; max-width: 210px !important; height: 320px !important; min-height: 320px !important; max-height: 320px !important; flex: 0 0 210px !important;" onclick="selectSpotlightCard('georgia', 3)">
+              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Gudauri Caucasus" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-white/10 uppercase tracking-wider">Alpine Peak</span>
+              <div class="dest-card-indicator absolute top-3 right-3 w-6 h-6 rounded-full bg-amber-500 text-slate-950 flex items-center justify-center text-[10px] shadow-md font-bold">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <h4 class="text-base font-bold text-white font-heading leading-tight drop-shadow-md">Gudauri</h4>
+                <span class="text-[11px] text-slate-300 font-medium flex items-center gap-1 mt-0.5"><i class="fa-solid fa-location-dot text-amber-400 text-[10px]"></i>Jvari Pass</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
   <!-- LEVEL 1: Main Country Destinations & Regional Packages Grid -->
-  <section class="pt-8 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+  <section id="global-destinations-grid" class="pt-8 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
       <div>
         <span class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">POPULAR DESTINATIONS</span>
