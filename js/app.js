@@ -2487,6 +2487,7 @@ function renderTestimonial() {
   const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : 'en';
   const isSi = (currentLang === 'si' || document.documentElement.lang === 'si');
   const verifiedReviewText = isSi ? 'Google තහවුරු කළ ඇගයීම' : 'Google Verified Review';
+  const googleVerifiedText = verifiedReviewText;
 
   const generateCardHTML = (t) => {
     const tName = (isSi && t.nameSi) ? t.nameSi : (t.name || t.authorEn);
@@ -2495,7 +2496,7 @@ function renderTestimonial() {
     const initials = t.initials || (tName.match(/\(([^)]+)\)/)?.[1]?.slice(0, 2).toUpperCase() || 'SP');
 
     return `
-      <div class="w-[340px] min-w-[340px] max-w-[340px] h-auto shrink-0 bg-[#0B1120] border border-slate-800 rounded-xl p-5 overflow-hidden flex flex-col justify-between shadow-lg select-none">
+      <div style="width: 340px !important; min-width: 340px !important; max-width: 340px !important; flex: 0 0 340px !important; white-space: normal !important;" class="w-[340px] min-w-[340px] max-w-[340px] shrink-0 bg-[#0B1120] border border-slate-800 rounded-xl p-5 shadow-lg flex flex-col justify-between">
         <!-- Header -->
         <div class="flex items-center justify-between gap-2">
           <div class="text-amber-400 text-xs flex items-center space-x-1 shrink-0" aria-label="5 stars">
@@ -2511,7 +2512,7 @@ function renderTestimonial() {
         </div>
 
         <!-- Body -->
-        <p class="text-sm text-slate-200 font-normal leading-relaxed my-3 line-clamp-4 italic text-left">
+        <p style="white-space: normal !important; word-break: break-word;" class="text-sm text-slate-200 leading-relaxed my-3 line-clamp-4 italic block text-left">
           "${tComment}"
         </p>
 

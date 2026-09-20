@@ -1732,10 +1732,27 @@ html.light .cat-chip.active i {
 }
 
 .review-track {
-  display: flex;
-  width: max-content;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 24px !important;
+  width: max-content !important;
+  white-space: normal !important;
   animation: scrollTrack 30s linear infinite;
   will-change: transform;
+}
+
+.review-track > div {
+  width: 340px !important;
+  min-width: 340px !important;
+  max-width: 340px !important;
+  flex: 0 0 340px !important;
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+.review-track p {
+  white-space: normal !important;
+  word-break: break-word !important;
 }
 
 .review-track:hover {
