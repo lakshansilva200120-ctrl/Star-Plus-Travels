@@ -5708,6 +5708,32 @@ const COUNTRY_SHOWCASE_DATA = {
         highlightTags: ['🐆 Leopard Safari', '🐘 Udawalawe Sanctuary', '🌿 Sinharaja Rainforest', '🦩 Bundala Bird Sanctuary'],
         keyStops: ['Yala Safari', 'Sinharaja Forest', 'Udawalawe'],
         destinations: ['Yala Safari', 'Sinharaja Forest', 'Udawalawe'],
+        placesCovered: [
+          {
+            name: 'Yala National Park',
+            tagline: 'Leopard Safari & Wilderness',
+            category: '— UNTAMED BIG GAME & LEOPARDS',
+            description: 'Roam through scrub jungle and granite rock outcrops harboring the world\'s highest leopard density. Track sloth bears, spotted deer, and wild elephants on private 4x4 safaris.',
+            checkmarks: ['High-Density Wild Leopard Tracking', 'Custom Open-Top 4x4 Safari Game Drives', 'Sloth Bears, Crocodiles & Birdlife'],
+            image: 'assets/packages/sl-yala-leopard-rock.jpg'
+          },
+          {
+            name: 'Sinharaja Rainforest',
+            tagline: 'UNESCO Rainforest Trek',
+            category: '— PRIMARY TROPICAL RAINFOREST',
+            description: 'Trek beneath the towering verdant canopy of Sri Lanka\'s last viable primary tropical rainforest. Encounter rare endemic songbirds, cascading jungle waterfalls, and giant tree ferns.',
+            checkmarks: ['UNESCO Primary Lowland Rainforest', 'Endemic Bird Mixed Feeding Flocks', 'Hidden Canopy Waterfalls & Streams'],
+            image: 'assets/packages/sl-sinharaja-rainforest.jpg'
+          },
+          {
+            name: 'Udawalawe Sanctuary',
+            tagline: 'Elephant Transit Home',
+            category: '— ELEPHANT REFUGE & RESERVOIRS',
+            description: 'Witness majestic Asian elephant herds roaming savannah grasslands, and observe rehabilitated orphaned baby elephants during their milk-bottle feeding sessions.',
+            checkmarks: ['Baby Elephant Transit Home Feeding', 'Thriving Asian Elephant Herds', 'Udawalawe Reservoir Scenic Vistas'],
+            image: 'assets/packages/sl-asian-elephants-minneriya.jpg'
+          }
+        ],
         stay: '4 Nights in Luxury Safari Tented Camps & Eco-Lodges (Chena Huts / Rainforest Edge)',
         gallery: [
           {
@@ -5800,6 +5826,32 @@ const COUNTRY_SHOWCASE_DATA = {
         highlightTags: ['🏖️ Mirissa & Bentota Beach', '🏰 UNESCO Galle Dutch Fort', '🚤 Madu River Safari', '🐢 Turtle Conservation'],
         keyStops: ['Bentota', 'Galle Fort', 'Mirissa Beach'],
         destinations: ['Bentota', 'Galle Fort', 'Mirissa Beach'],
+        placesCovered: [
+          {
+            name: 'Galle Dutch Fort',
+            tagline: 'Lighthouse & Ramparts',
+            category: '— UNESCO SOUTHERN COASTAL FORTRESS',
+            description: 'Stroll the 17th-century coral ramparts and cobblestone paths of UNESCO Galle Dutch Fort, admire the iconic colonial lighthouse, and watch waves crash against Flag Rock bastion.',
+            checkmarks: ['UNESCO 17th-Century Ramparts Walk', 'Iconic White Colonial Lighthouse', 'Cobblestone Alleys & Artisan Boutiques'],
+            image: 'assets/packages/sl-galle-fort-lighthouse.jpg'
+          },
+          {
+            name: 'Mirissa Coastal Bay',
+            tagline: 'Whale Watching & Coconut Tree Hill',
+            category: '— TROPICAL OCEAN HAVEN & PALM HILL',
+            description: 'Scale the picturesque palm-crowned mound of Coconut Tree Hill for panoramic Indian Ocean vistas, relax on golden crescent sands, and embark on early morning blue whale watching safaris.',
+            checkmarks: ['Coconut Tree Hill Panoramic Viewpoint', 'Blue Whale & Dolphin Yacht Safaris', 'Sunset Golden Sand Beach Dining'],
+            image: 'assets/packages/sl-mirissa-coconut-hill.jpg'
+          },
+          {
+            name: 'Bentota & Madu River',
+            tagline: 'Water Sports & River Safari',
+            category: '— LAGOON WATERWAYS & GOLDEN SHORES',
+            description: 'Cruise through lush mangrove tunnels on the serene Madu River safari, explore traditional cinnamon processing islands, and enjoy jet-skiing or windsurfing on Bentota lagoon.',
+            checkmarks: ['Madu Ganga Mangrove River Safari', 'Cinnamon Island & Natural Fish Spa', 'Lagoon Watersports & Golden Coast'],
+            image: 'assets/packages/sl-bentota-beach.jpg'
+          }
+        ],
         stay: '3 Nights at 4-Star & 5-Star Beachfront Resort (Amari Galle / Heritance Ahungalla)',
         gallery: [
           {
@@ -5888,6 +5940,40 @@ const COUNTRY_SHOWCASE_DATA = {
         highlightTags: ['🛕 Nallur Golden Kovil', '🏰 Jaffna Dutch Fort', '🐎 Delft Island Wild Horses', '⛵ Sacred Nainativu Ferry'],
         keyStops: ['Nallur Temple', 'Jaffna Fort', 'Delft Island'],
         destinations: ['Nallur Temple', 'Jaffna Fort', 'Delft Island'],
+        placesCovered: [
+          {
+            name: 'Nallur Kandaswamy Kovil',
+            tagline: 'Sacred Golden Hindu Temple',
+            category: '— NORTHERN SPIRITUAL JEWEL',
+            description: 'Immerse yourself in the spiritual atmosphere of Jaffna\'s grandest Hindu temple, featuring a soaring golden Gopuram tower, sacred brass shrines, and devotional morning rituals.',
+            checkmarks: ['Soaring Golden Gopuram Entrance', 'Devotional Morning & Evening Pujas', 'Sacred Temple Water Tank & Courtyard'],
+            image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80'
+          },
+          {
+            name: 'Jaffna Dutch Fort',
+            tagline: 'Star-Shaped Coastal Fortress',
+            category: '— HISTORIC NORTHERN CITADEL',
+            description: 'Explore the expansive star-shaped limestone fortress built by the Portuguese and expanded by the Dutch in the 17th century overlooking the serene Jaffna lagoon.',
+            checkmarks: ['17th-Century Star-Shaped Ramparts', 'Panoramic Jaffna Lagoon Views', 'Restored Colonial Armory & Bastions'],
+            image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80'
+          },
+          {
+            name: 'Casuarina Beach',
+            tagline: 'Shallow Sands & Coastal Palms',
+            category: '— KARAINAGAR PENINSULA COAST',
+            description: 'Wade into shallow, calm turquoise waters framed by slender casuarina trees on Karainagar Island, renowned as one of Northern Sri Lanka\'s most tranquil and family-friendly beaches.',
+            checkmarks: ['Calm Shallow Indian Ocean Waters', 'Shaded Casuarina Tree Groves', 'Karainagar Causeway Scenic Drive'],
+            image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80'
+          },
+          {
+            name: 'Nagadeepa Island',
+            tagline: 'Nainativu Temple Ferry Crossing',
+            category: '— SACRED MULTI-FAITH ISLAND',
+            description: 'Board traditional wooden passenger ferries across the Palk Strait to Nainativu Island, home to both the revered Buddhist Nagadeepa Purana Viharaya and the ornate Nagapooshani Amman Kovil.',
+            checkmarks: ['Palk Strait Passenger Boat Crossing', 'Nagadeepa Buddhist Stupa & Shrine', 'Nagapooshani Amman Kovil Sanctum'],
+            image: 'assets/packages/sl-delft-island.jpg'
+          }
+        ],
         stay: '3 Nights at Premier Heritage Boutique Hotel (Jetwing Jaffna / Fox Resort Jaffna)',
         gallery: [
           {
@@ -5961,19 +6047,53 @@ const COUNTRY_SHOWCASE_DATA = {
       },
       {
         id: 'sl-sigiriya-cultural',
-        title: 'Historical & Heritage Tour',
-        subtitle: 'STEP BACK IN TIME & WITNESS ANCIENT WONDERS',
-        category: 'Ancient Citadels',
+        title: 'Cultural & Highlands Tour',
+        subtitle: 'ANCIENT CITADELS, SACRED TEMPLES & TEA HIGHLANDS',
+        category: 'Heritage & Highlands',
         categoryIcon: 'fa-landmark',
         rating: '5.0',
-        reviews: '340+ reviews',
+        reviews: '480+ reviews',
         duration: '5 Days / 4 Nights',
         priceAED: 2250,
         priceLKR: 'LKR 195,000',
-        highlightTags: ['🦁 Sigiriya Lion Rock', '🪨 Dambulla Cave Temples', '👑 Polonnaruwa Ruins', '🐘 Minneriya Elephant Gathering'],
-        keyStops: ['Sigiriya Citadel', 'Dambulla Caves', 'Kandy Temple'],
-        destinations: ['Sigiriya Citadel', 'Dambulla Caves', 'Kandy Temple'],
-        stay: '4 Nights at 4-Star & 5-Star Heritage Boutique Resorts (Aliya Resort / Heritance Kandalama)',
+        highlightTags: ['🦁 Sigiriya Lion Rock', '👑 Kandy Temple of Tooth', '🍃 Nuwara Eliya Tea Hills', '🌉 Ella Nine Arch Bridge'],
+        keyStops: ['Sigiriya Rock', 'Kandy Temple', 'Nuwara Eliya', 'Ella Nine Arch'],
+        destinations: ['Sigiriya Rock', 'Kandy Temple', 'Nuwara Eliya', 'Ella Nine Arch'],
+        placesCovered: [
+          {
+            name: 'Sigiriya Rock Fortress',
+            tagline: '5th-Century Lion Rock Citadel',
+            category: '— CULTURAL TRIANGLE & SACRED CITADELS',
+            description: 'Ascend the dramatic 200-meter sheer rock fortress built by King Kashyapa in the 5th century. Marvel at ancient maiden frescoes, the mirrored wall, and royal water gardens.',
+            checkmarks: ['Lion Rock Summit Royal Palace Ruins', 'Mirror Wall & Ancient Fresco Murals', 'Symmetrical Landscaped Water Gardens'],
+            image: 'assets/sri-lanka-sigiriya-rock.jpg'
+          },
+          {
+            name: 'Kandy Sacred Citadel',
+            tagline: 'Temple of the Sacred Tooth Relic',
+            category: '— LAST ROYAL CAPITAL & SACRED TOOTH',
+            description: 'Visit the revered gold-roofed Temple of the Sacred Tooth Relic situated alongside scenic Kandy Lake, and experience the evening drumming puja ritual ceremony.',
+            checkmarks: ['Golden Roofed Temple of the Tooth', 'Kandy Royal Lake & Palace Grounds', 'Evening Buddhist Puja Ceremonies'],
+            image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=85'
+          },
+          {
+            name: 'Nuwara Eliya Hills',
+            tagline: 'Tea Plantations & Lake Gregory',
+            category: '— LITTLE ENGLAND & TEA TERRACES',
+            description: 'Wander through cool, misty highland tea estates, tour working British-era tea factories with tea tastings, and stroll along the scenic waterfront of Lake Gregory.',
+            checkmarks: ['Rolling Ceylon Tea Estate Terraces', 'Lake Gregory Waterfront & Parks', 'Colonial Heritage & Fresh Highland Air'],
+            image: 'assets/packages/sl-nuwara-eliya-tea-hills.jpg'
+          },
+          {
+            name: 'Ella Mountain Pass',
+            tagline: 'Nine Arch Bridge & Ella Gap',
+            category: '— HIGHLAND VIADUCTS & WATERFALLS',
+            description: 'Watch the iconic blue express train cross the 1921 Demodara Nine Arches Bridge surrounded by dense jungle, and hike to Little Adam\'s Peak for sweeping valley vistas.',
+            checkmarks: ['1921 Stone Nine Arches Railway Viaduct', 'Little Adam\'s Peak 360° Panorama Hike', 'Thundering Ravana Waterfall Cascade'],
+            image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80'
+          }
+        ],
+        stay: '4 Nights at 4-Star & 5-Star Heritage Boutique Resorts (Heritance Kandalama / Grand Hotel Nuwara Eliya)',
         gallery: [
           {
             image: 'assets/sri-lanka-sigiriya-rock.jpg',
@@ -6154,18 +6274,44 @@ const COUNTRY_SHOWCASE_DATA = {
     tours: [
       {
         id: 'dubai-family-escape',
-        title: 'Dubai 4D / 3N Family Escape',
+        title: 'Classic Dubai Package',
         subtitle: 'GLAMOUR, ICONIC LANDMARKS & LUXURY DESERT',
-        category: 'Family Holiday',
+        category: 'Flagship City & Desert',
         categoryIcon: 'fa-star',
         rating: '5.0',
         reviews: '510+ reviews',
         duration: '4 Days / 3 Nights',
         priceAED: 1850,
         priceLKR: 'LKR 380,000 / Adult (Child LKR 320,000)',
-        highlightTags: ['🏙️ Burj Khalifa At The Top', '🏎️ VIP Red Dune Safari', '⛵ Marina Dhow Cruise', '🐠 Dubai Aquarium'],
-        keyStops: ['Burj Khalifa', 'Marina Dhow', 'Desert Safari'],
-        destinations: ['Burj Khalifa', 'Marina Dhow', 'Desert Safari'],
+        highlightTags: ['🏙️ Burj Khalifa At The Top', '🏎️ VIP Red Dune Safari', '⛵ Marina Yacht Cruise', '🐠 Dubai Aquarium'],
+        keyStops: ['Burj Khalifa', 'Dubai Marina', 'Desert Safari'],
+        destinations: ['Burj Khalifa', 'Dubai Marina', 'Desert Safari'],
+        placesCovered: [
+          {
+            name: 'Burj Khalifa & Downtown',
+            tagline: 'At The Top & Dubai Mall',
+            category: '— WORLD\'S TALLEST SKYSCRAPER',
+            description: 'Zoom up high-speed double-decker elevators to the 124th and 125th floor observation decks of Burj Khalifa for 360-degree skyline views, then marvel at the musical Dubai Fountain.',
+            checkmarks: ['124th & 125th Floor Observation Decks', 'Musical Dubai Fountain Spectacular', 'Dubai Mall & Underwater Aquarium'],
+            image: 'assets/packages/dubai-burj-khalifa.jpg'
+          },
+          {
+            name: 'Dubai Marina & Yacht Cruise',
+            tagline: 'Luxury Yacht & Waterfront Towers',
+            category: '— CANAL TOWERS & YACHT HARBOR',
+            description: 'Cruise through glittering skyscrapers and modern waterfront promenades aboard a luxury yacht, gliding past JBR Beach, Bluewaters Island, and Ain Dubai.',
+            checkmarks: ['Luxury Marina Yacht Sunset Cruise', 'Glittering Illuminated Skyline Views', 'Bluewaters Island & Ain Dubai Backdrop'],
+            image: 'assets/packages/dubai-marina-yachts.jpg'
+          },
+          {
+            name: 'Arabian Desert Dunes',
+            tagline: 'VIP Red Dune 4x4 Safari & BBQ',
+            category: '— LAHBAB GOLDEN RED SANDS',
+            description: 'Conquer high crimson sand dunes on an adrenaline-fueled 4x4 Land Cruiser safari, glide down dunes on sandboards, and enjoy a 5-star open-air BBQ dinner with live shows.',
+            checkmarks: ['Thrilling 4x4 Red Dune Bashing', 'Sunset Sandboarding & Camel Riding', 'Bedouin Camp BBQ Feast & Live Shows'],
+            image: 'assets/packages/dubai-desert-safari.jpg'
+          }
+        ],
         stay: '3 Nights Deluxe Accommodation at Avani Deira Dubai Hotel (4-Star Deluxe)',
         gallery: [
           {
@@ -6245,17 +6391,43 @@ const COUNTRY_SHOWCASE_DATA = {
       },
       {
         id: 'dubai-abudhabi-grand',
-        title: 'Dubai & Abu Dhabi Grand Tour',
+        title: 'Abu Dhabi Extension',
         subtitle: 'EMIRATES TWIN CITY & CULTURAL MARVEL',
-        category: 'Luxury City',
+        category: 'Capital & Architecture',
         categoryIcon: 'fa-building-columns',
         rating: '5.0',
         reviews: '390+ reviews',
         duration: '5 Days / 4 Nights',
         priceAED: 2750,
         priceLKR: 'LKR 560,000',
-        keyStops: ['Sheikh Zayed Mosque', 'Palm Jumeirah', 'Museum of the Future'],
-        destinations: ['Sheikh Zayed Mosque', 'Palm Jumeirah', 'Museum of the Future'],
+        keyStops: ['Sheikh Zayed Mosque', 'Louvre Abu Dhabi', 'Yas Marina'],
+        destinations: ['Sheikh Zayed Mosque', 'Louvre Abu Dhabi', 'Yas Marina'],
+        placesCovered: [
+          {
+            name: 'Sheikh Zayed Grand Mosque',
+            tagline: 'White Marble Architectural Marvel',
+            category: '— CAPITAL ARCHITECTURAL MASTERPIECE',
+            description: 'Marvel at one of the world\'s largest mosques featuring 82 pure white marble domes, 24-carat gold-plated chandeliers, and the world\'s largest hand-knotted Persian carpet.',
+            checkmarks: ['82 Pure White Marble Domes', 'World\'s Largest Hand-Knotted Carpet', 'Glistening Reflective Water Basins'],
+            image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=85'
+          },
+          {
+            name: 'Louvre Abu Dhabi',
+            tagline: 'Rain of Light Floating Museum',
+            category: '— SAADIYAT CULTURAL DISTRICT',
+            description: 'Step beneath Jean Nouvel\'s iconic geometric dome creating a magical "rain of light", and discover world-renowned art collections spanning global civilizations.',
+            checkmarks: ['Iconic Floating Geometric Steel Dome', '"Rain of Light" Architectural Effect', 'Global Civilization Art Galleries'],
+            image: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=85'
+          },
+          {
+            name: 'Yas Island Marina',
+            tagline: 'F1 Grand Prix Circuit & Waterfront',
+            category: '— ENTERTAINMENT CAPITAL OF UAE',
+            description: 'Stroll the glamorous Yas Marina against the backdrop of the Formula 1 Yas Marina Circuit, Ferrari World Abu Dhabi, and waterfront luxury lounges.',
+            checkmarks: ['Yas Marina Formula 1 Grand Prix Circuit', 'Ferrari World & Warner Bros World', 'Luxury Waterfront Promenade Dining'],
+            image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80'
+          }
+        ],
         stay: '4 Nights at 5-Star Waterfront Hotel (Radisson Blu / Swissôtel Al Ghurair)',
         gallery: [
           {
@@ -6344,18 +6516,44 @@ const COUNTRY_SHOWCASE_DATA = {
     tours: [
       {
         id: 'maldives-overwater',
-        title: 'Overwater Villa Luxury Escape',
-        subtitle: 'TURQUOISE LAGOONS & PRIVATE POOLS',
-        category: 'Honeymoon',
-        categoryIcon: 'fa-heart',
+        title: 'Island Escape',
+        subtitle: 'TURQUOISE LAGOONS & PRIVATE OVERWATER POOLS',
+        category: 'Overwater Luxury',
+        categoryIcon: 'fa-umbrella-beach',
         rating: '5.0',
         reviews: '230+ reviews',
         duration: '4 Days / 3 Nights',
         priceAED: 4499,
         priceLKR: 'LKR 890,000',
         highlightTags: ['🏝️ Overwater Pool Villa', '🛩️ Scenic Seaplane Flight', '🐢 House Reef Snorkeling', '🐬 Sunset Dolphin Cruise'],
-        keyStops: ['Male Atolls', 'Coral House Reef', 'Overwater Villa'],
-        destinations: ['Male Atolls', 'Coral House Reef', 'Overwater Villa'],
+        keyStops: ['Private Lagoon', 'Coral Reef', 'Sunset Cruise'],
+        destinations: ['Private Lagoon', 'Coral Reef', 'Sunset Cruise'],
+        placesCovered: [
+          {
+            name: 'Private Overwater Lagoon',
+            tagline: 'Luxury Villa & Plunge Pool',
+            category: '— SECLUDED INDIAN OCEAN LUXURY',
+            description: 'Wake up perched directly over crystal turquoise waters in your private overwater villa, featuring direct lagoon ladder access and a private infinity plunge pool.',
+            checkmarks: ['Direct Lagoon Swimming Access Ladder', 'Private Infinity Edge Plunge Pool', 'Sunrise & Sunset Panoramic Horizon'],
+            image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=85'
+          },
+          {
+            name: 'Coral Atoll Reef Snorkeling',
+            tagline: 'House Reef Turtles & Marine Life',
+            category: '— PRISTINE CORAL REEF ECOSYSTEM',
+            description: 'Don your snorkel and mask to explore vibrant coral gardens teeming with green sea turtles, blacktip reef sharks, eagle rays, and tropical butterflyfish.',
+            checkmarks: ['Guided House Reef Snorkel Safaris', 'Green Sea Turtles & Manta Rays', 'Vibrant Live Coral Gardens'],
+            image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=85'
+          },
+          {
+            name: 'Sunset Dolphin Speedboat Cruise',
+            tagline: 'Spinner Dolphins & Golden Hour',
+            category: '— OPEN OCEAN YACHT CRUISE',
+            description: 'Set sail into the calm atoll waters at golden hour on a traditional wooden yacht or swift speedboat, watching wild spinner dolphin pods leap and play in bow waves.',
+            checkmarks: ['Wild Spinner Dolphin Pod Encounters', 'Champagne Toast at Golden Sunset', 'Traditional Wooden Dhoni Yacht Experience'],
+            image: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=85'
+          }
+        ],
         stay: '3 Nights in 5-Star Luxury Overwater Villa with Private Infinity Pool (Adaaran / Sun Siyam)',
         gallery: [
           {
@@ -6541,6 +6739,32 @@ const COUNTRY_SHOWCASE_DATA = {
         highlightTags: ['🔥 Flame Towers & Caspian', '🏰 UNESCO Old Baku City', '🌋 Gobustan Mud Volcanoes', '🏔️ Shahdag Alpine Peaks'],
         keyStops: ['Old City Baku', 'Gobustan Volcanoes', 'Shahdag Peaks'],
         destinations: ['Old City Baku', 'Gobustan Volcanoes', 'Shahdag Peaks'],
+        placesCovered: [
+          {
+            name: 'Old City Baku & Maiden Tower',
+            tagline: 'UNESCO Icherisheher & Caspian',
+            category: '— MEDIEVAL WALLS & CASPIAN SEASIDE',
+            description: 'Explore ancient cobblestone labyrinths inside UNESCO Icherisheher, climb Maiden Tower, and admire the futuristic Flame Towers gleaming above the Caspian Boulevard.',
+            checkmarks: ['UNESCO 12th-Century City Walls', 'Iconic Maiden Tower & Shirvanshahs', 'Highland Park Flame Towers Vista'],
+            image: 'assets/packages/baku-flame-towers.jpg'
+          },
+          {
+            name: 'Gobustan Mud Volcanoes',
+            tagline: 'Prehistoric Petroglyphs & Fire',
+            category: '— ACTIVE MUD VOLCANOES & ANCIENT ART',
+            description: 'Marvel at 40,000-year-old rock engravings and bubbling cold mud volcanoes in the desert, followed by the eternal natural flames of Yanar Dag.',
+            checkmarks: ['Bubbling Desert Mud Volcanoes', '40,000-Year-Old Rock Petroglyphs', 'Yanar Dag Millennia-Old Burning Hill'],
+            image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=85'
+          },
+          {
+            name: 'Shahdag Alpine Peaks',
+            tagline: 'Greater Caucasus Cable Cars',
+            category: '— HIGH CAUCASUS MOUNTAIN RESORT',
+            description: 'Ride panoramic gondola cable cars high into the Greater Caucasus peaks for pristine alpine air, mountain coaster adventures, and sweeping valley vistas.',
+            checkmarks: ['High-Altitude Panoramic Cable Cars', 'Shahdag Alpine Coaster Adventure', 'Crisp Caucasian Mountain Air'],
+            image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85'
+          }
+        ],
         stay: '3 Nights in 4-Star Baku City Center + 1 Night in Shahdag Mountain Resort',
         gallery: [
           {
@@ -6628,9 +6852,9 @@ const COUNTRY_SHOWCASE_DATA = {
     tours: [
       {
         id: 'georgia-kazbegi',
-        title: 'Majestic Georgia & Kazbegi Alpine Tour',
+        title: 'Caucasus Explorer',
         subtitle: 'OLD TBILISI & CAUCASIAN SNOW CAPS',
-        category: 'Mountains',
+        category: 'Alpine & Heritage',
         categoryIcon: 'fa-mountain',
         rating: '5.0',
         reviews: '260+ reviews',
@@ -6638,8 +6862,34 @@ const COUNTRY_SHOWCASE_DATA = {
         priceAED: 1890,
         priceLKR: 'LKR 375,000',
         highlightTags: ['🏔️ Mount Kazbek & Caucasus', '⛪ Gergeti Trinity Church', '🏰 Ananuri Fortress', '🍷 Old Tbilisi & Sulfur Baths'],
-        keyStops: ['Old Tbilisi', 'Ananuri Fortress', 'Gergeti Trinity'],
-        destinations: ['Old Tbilisi', 'Ananuri Fortress', 'Gergeti Trinity'],
+        keyStops: ['Gergeti Trinity', 'Old Tbilisi', 'Gudauri Alps'],
+        destinations: ['Gergeti Trinity', 'Old Tbilisi', 'Gudauri Alps'],
+        placesCovered: [
+          {
+            name: 'Gergeti Trinity Church',
+            tagline: 'Kazbegi & Mount Kazbek Peak',
+            category: '— HIGH CAUCASUS PEAKS & HERITAGE',
+            description: 'Stand at 2,170 meters elevation beneath the dramatic 14th-century stone church with the snow-capped 5,054-meter Mount Kazbek towering in the background.',
+            checkmarks: ['2,170m Elevation Caucasian Vistas', '14th-Century Stone Mountaintop Church', 'Mount Kazbek 5,054m Glacier Backdrop'],
+            image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80'
+          },
+          {
+            name: 'Old Tbilisi Sulphur Baths',
+            tagline: 'Abanotubani & Carved Balconies',
+            category: '— HISTORIC THERMAL SPRINGS & STREETS',
+            description: 'Wander through the domed brick baths of Abanotubani, climb to Narikala Fortress, and admire charming cliff-clinging 19th-century wooden carved balconies.',
+            checkmarks: ['Natural Thermal Sulphur Bath Domes', 'Narikala Fortress Cable Car Climb', 'Historic Wooden Carved Balconies'],
+            image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80'
+          },
+          {
+            name: 'Gudauri Mountain Panoramas',
+            tagline: 'Jvari Pass & Russia-Georgia Monument',
+            category: '— GREATER CAUCASUS HIGHWAY',
+            description: 'Ascend the Georgian Military Highway to the Russia-Georgia Friendship Monument perched over Devils Valley for breathtaking 360-degree alpine panoramas.',
+            checkmarks: ['Scenic Jvari Pass 2,379m Crossing', 'Friendship Monument Colorful Murals', 'Sweeping Valley & Canyon Vistas'],
+            image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85'
+          }
+        ],
         stay: '3 Nights in Old Tbilisi Boutique Hotel + 1 Night in Kazbegi Alpine Lodge (Rooms Hotel Kazbegi)',
         gallery: [
           {
@@ -6857,6 +7107,8 @@ function populateShowcaseData(countryKey) {
         <div class="showcase-preview-card ${idx === 0 ? 'active' : ''}" 
              data-tour-index="${idx}" 
              onclick="selectShowcaseTour(${idx})"
+             ondblclick="openPlacesCoveredShowcase()"
+             title="Click to select, double-click to view places covered"
              role="button"
              tabindex="0"
              aria-label="Select circuit ${tour.title}">
@@ -7130,13 +7382,203 @@ function switchShowcaseGallery(index) {
   });
 }
 
-// "VIEW PACKAGE DETAILS" Handler -> Opens comprehensive itinerary drawer
+// Visual Places Covered State (Modal Step 2 Drill-down)
+let currentShowcasePlacesTour = null;
+let currentShowcasePlaceIndex = 0;
+
+function openPlacesCoveredShowcase(tour) {
+  const data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
+  const targetTour = tour || (data && data.tours ? data.tours[currentShowcaseTourIndex] : null);
+  if (!targetTour) return;
+
+  currentShowcasePlacesTour = targetTour;
+  currentActiveShowcaseTour = targetTour;
+  currentShowcasePlaceIndex = 0;
+
+  const panel = document.getElementById('showcasePlacesCoveredPanel');
+  if (!panel) return;
+
+  // Header package name badge
+  const pkgNameElem = document.getElementById('placesCoveredPackageName');
+  if (pkgNameElem) {
+    pkgNameElem.textContent = targetTour.title;
+  }
+
+  // Parent Tour badge
+  const parentTourElem = document.getElementById('placesCoveredParentTour');
+  if (parentTourElem) {
+    parentTourElem.textContent = `${targetTour.duration} • ${targetTour.category || 'Curated Circuit'}`;
+  }
+
+  // Populate Places Covered Track
+  const placesTrack = document.getElementById('placesCoveredCardsTrack');
+  const places = targetTour.placesCovered || [];
+
+  if (placesTrack) {
+    if (places.length > 0) {
+      placesTrack.innerHTML = places.map((place, idx) => `
+        <div class="places-covered-card ${idx === 0 ? 'active' : ''}" 
+             data-place-index="${idx}" 
+             onclick="selectPlacesCoveredCard(${idx})"
+             role="button"
+             tabindex="0"
+             aria-label="View ${place.name}">
+          <img src="${place.image}" alt="${place.name}" class="w-full h-full object-cover transition-transform duration-500 pointer-events-none" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80';">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent pointer-events-none"></div>
+          
+          <div class="places-card-indicator">
+            <i class="fa-solid fa-check text-[10px]"></i>
+          </div>
+
+          <div class="absolute bottom-3 left-3 right-3 z-10 text-white pointer-events-none">
+            <span class="text-[9px] font-black uppercase tracking-wider text-amber-400 block mb-0.5">${place.tagline || 'HIGHLIGHT'}</span>
+            <h4 class="text-sm font-bold text-white font-heading leading-tight drop-shadow-md line-clamp-1">${place.name}</h4>
+            <span class="text-[10px] text-slate-300 font-medium flex items-center gap-1 mt-0.5">
+              <i class="fa-solid fa-location-dot text-amber-400 text-[9px]"></i>
+              <span class="truncate">${place.tagline || 'Included Stop'}</span>
+            </span>
+          </div>
+        </div>
+      `).join('');
+    } else {
+      placesTrack.innerHTML = `<div class="text-slate-400 text-xs py-4">Highlights included in package itinerary.</div>`;
+    }
+  }
+
+  // Update initial active place
+  selectPlacesCoveredCard(0, false);
+
+  // Cross-fade in the panel
+  panel.classList.remove('hidden');
+  panel.style.display = 'flex';
+  requestAnimationFrame(() => {
+    panel.classList.add('active');
+  });
+  panel.setAttribute('aria-hidden', 'false');
+}
+
+function closePlacesCoveredShowcase() {
+  const panel = document.getElementById('showcasePlacesCoveredPanel');
+  if (!panel) return;
+  panel.classList.remove('active');
+  setTimeout(() => {
+    panel.classList.add('hidden');
+    panel.style.display = 'none';
+    panel.setAttribute('aria-hidden', 'true');
+  }, 300);
+}
+
+function selectPlacesCoveredCard(index, animate = true) {
+  if (!currentShowcasePlacesTour || !currentShowcasePlacesTour.placesCovered) return;
+  const places = currentShowcasePlacesTour.placesCovered;
+  if (index < 0 || index >= places.length) return;
+
+  currentShowcasePlaceIndex = index;
+  const place = places[index];
+
+  const backdropImg = document.getElementById('placesCoveredBackdrop');
+  const subtitleElem = document.getElementById('placesCoveredSubtitle');
+  const titleElem = document.getElementById('placesCoveredTitle');
+  const taglineElem = document.getElementById('placesCoveredTagline');
+  const descElem = document.getElementById('placesCoveredDesc');
+  const checkmarksElem = document.getElementById('placesCoveredCheckmarks');
+  const waBtn = document.getElementById('placesCoveredWhatsAppBtn');
+
+  // Backdrop smooth transition
+  if (backdropImg) {
+    if (animate) {
+      backdropImg.style.opacity = '0.3';
+      backdropImg.style.transform = 'scale(1.04)';
+      setTimeout(() => {
+        backdropImg.src = place.image;
+        backdropImg.style.opacity = '1';
+        backdropImg.style.transform = 'scale(1)';
+      }, 160);
+    } else {
+      backdropImg.src = place.image;
+      backdropImg.style.opacity = '1';
+      backdropImg.style.transform = 'scale(1)';
+    }
+  }
+
+  if (subtitleElem) {
+    subtitleElem.innerHTML = `<span>${place.category || '— INCLUDED LANDMARK EXPERIENCE'}</span>`;
+  }
+  if (titleElem) {
+    titleElem.textContent = place.name.toUpperCase();
+  }
+  if (taglineElem) {
+    taglineElem.textContent = place.tagline || 'Key Itinerary Stop';
+  }
+  if (descElem) {
+    descElem.textContent = place.description || 'Experience the quintessential beauty and cultural wonders of this destination.';
+  }
+
+  // Checkmarks
+  if (checkmarksElem) {
+    const checks = place.checkmarks || ['Included guided exploration', 'Scenic photography stop', 'Comfortable private transfer'];
+    checkmarksElem.innerHTML = checks.map(c => `
+      <div class="flex items-center space-x-2">
+        <i class="fa-solid fa-circle-check text-amber-400 text-xs flex-shrink-0"></i>
+        <span>${c}</span>
+      </div>
+    `).join('');
+  }
+
+  // WhatsApp CTA button pre-filled message
+  if (waBtn) {
+    const tourTitle = currentShowcasePlacesTour.title;
+    const msg = `Hello Star Plus Travels, I'm interested in the ${tourTitle} covering ${place.name}. Please send details!`;
+    waBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(msg)}`;
+  }
+
+  // Highlight active place card
+  const cards = document.querySelectorAll('#placesCoveredCardsTrack .places-covered-card');
+  cards.forEach((c, idx) => {
+    if (idx === index) {
+      c.classList.add('active');
+      c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    } else {
+      c.classList.remove('active');
+    }
+  });
+}
+
+function scrollPlacesCoveredTrack(direction) {
+  const track = document.getElementById('placesCoveredCardsTrack');
+  if (!track) return;
+  const scrollAmount = 210;
+  if (direction === 'left') {
+    track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  } else {
+    track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+}
+
+function viewDetailedItineraryFromPlaces() {
+  if (currentShowcasePlacesTour) {
+    openShowcaseItinerary(currentShowcasePlacesTour);
+  }
+}
+
+function bookCurrentShowcaseTour() {
+  const tour = currentShowcasePlacesTour || (COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey]?.tours[currentShowcaseTourIndex]);
+  const tourTitle = tour ? tour.title : 'Curated Tour Package';
+  if (typeof openBookingModal === 'function') {
+    openBookingModal(tourTitle);
+  } else {
+    const msg = `Hello Star Plus Travels, I would like to book the ${tourTitle}`;
+    window.open(`https://wa.me/971527582293?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+}
+
+// "VIEW PACKAGE DETAILS" Handler -> Opens Modal Step 2 Places Covered Showcase
 function handleShowcaseDetailsAction() {
   const data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
   if (!data || !data.tours) return;
   const currentTour = data.tours[currentShowcaseTourIndex];
   if (!currentTour) return;
-  openShowcaseItinerary(currentTour);
+  openPlacesCoveredShowcase(currentTour);
 }
 
 // Normalize destination data across any tour/package format into dynamic editorial schema
@@ -7665,8 +8107,20 @@ function downloadTourBrochure(tour) {
   printWindow.document.close();
 }
 
-// Keyboard navigation for Country Showcase & Itinerary Modals
+// Keyboard navigation for Country Showcase, Places Covered & Itinerary Modals
 document.addEventListener('keydown', (e) => {
+  const placesPanel = document.getElementById('showcasePlacesCoveredPanel');
+  if (placesPanel && !placesPanel.classList.contains('hidden')) {
+    if (e.key === 'Escape') {
+      closePlacesCoveredShowcase();
+      return;
+    } else if (e.key === 'ArrowRight') {
+      scrollPlacesCoveredTrack('right');
+    } else if (e.key === 'ArrowLeft') {
+      scrollPlacesCoveredTrack('left');
+    }
+  }
+
   const itineraryModal = document.getElementById('showcaseItineraryModal');
   if (itineraryModal && !itineraryModal.classList.contains('hidden')) {
     if (e.key === 'Escape') {
@@ -7705,6 +8159,12 @@ window.selectShowcaseTour = selectShowcaseTour;
 window.nextCountryShowcaseSlide = nextCountryShowcaseSlide;
 window.prevCountryShowcaseSlide = prevCountryShowcaseSlide;
 window.handleShowcaseDetailsAction = handleShowcaseDetailsAction;
+window.openPlacesCoveredShowcase = openPlacesCoveredShowcase;
+window.closePlacesCoveredShowcase = closePlacesCoveredShowcase;
+window.selectPlacesCoveredCard = selectPlacesCoveredCard;
+window.scrollPlacesCoveredTrack = scrollPlacesCoveredTrack;
+window.viewDetailedItineraryFromPlaces = viewDetailedItineraryFromPlaces;
+window.bookCurrentShowcaseTour = bookCurrentShowcaseTour;
 window.openShowcaseItinerary = openShowcaseItinerary;
 window.closeShowcaseItinerary = closeShowcaseItinerary;
 window.switchShowcaseGallery = switchShowcaseGallery;

@@ -3425,5 +3425,110 @@ select.field-error-border {
   transition: all 0.25s ease;
 }
 
+/* ==========================================================================
+   Modal Step 2: Places Covered Showcase Panel & Cards (190px x 280px)
+   ========================================================================== */
+.showcase-places-panel {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 75 !important;
+  background: #070B14 !important;
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
 
+.showcase-places-panel.active {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
 
+/* Horizontal Scrolling Dock for Places Covered */
+.places-covered-track {
+  display: flex !important;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 4px 16px 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(245, 158, 11, 0.4) rgba(15, 23, 42, 0.6);
+}
+
+.places-covered-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.places-covered-track::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 9999px;
+}
+
+.places-covered-track::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.4);
+  border-radius: 9999px;
+}
+
+.places-covered-track::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.8);
+}
+
+/* Compact Vertical Cards strictly 190px x 280px */
+.places-covered-card {
+  width: 190px !important;
+  min-width: 190px !important;
+  max-width: 190px !important;
+  height: 280px !important;
+  min-height: 280px !important;
+  max-height: 280px !important;
+  flex: 0 0 190px !important;
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  background: #0B1120;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  scroll-snap-align: start;
+  user-select: none;
+}
+
+.places-covered-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(245, 158, 11, 0.7) !important;
+  box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245, 158, 11, 0.25);
+}
+
+.places-covered-card.active {
+  border-color: #F59E0B !important;
+  box-shadow: 0 12px 30px -5px rgba(245, 158, 11, 0.35), 0 0 0 2px rgba(245, 158, 11, 0.85) !important;
+  transform: translateY(-4px) scale(1.03);
+}
+
+.places-covered-card.active .places-card-indicator {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.places-card-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  background: rgba(245, 158, 11, 0.95);
+  color: #070B14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.25s ease;
+  z-index: 20;
+}
