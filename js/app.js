@@ -370,8 +370,9 @@ const I18N_TRANSLATIONS = {
     footerTopPackages: "Top Packages",
     footerDestinations: "Key Hubs",
     footerLegal: "Accreditations",
-    footerCopyright: "&copy; 2026 Star Plus Travel &amp; Tourism LLC. All Rights Reserved.",
-    footerAttribution: "Redesigned &amp; Developed by Lupo",
+    footerCopyright: "© 2026 Star Plus Travel & Tourism LLC. All rights reserved.",
+    footerAttribution: "Redesigned & Developed by Lupo",
+    footerCopyrightBar: "© 2026 Star Plus Travel & Tourism LLC. All rights reserved. • Redesigned & Developed by Lupo",
 
     // Careers Page
     topBarHiring: "We're Hiring! Join our growing teams in Dubai &amp; Sri Lanka",
@@ -664,8 +665,9 @@ const I18N_TRANSLATIONS = {
     footerTopPackages: "ප්‍රධාන පැකේජ",
     footerDestinations: "ප්‍රධාන මධ්‍යස්ථාන",
     footerLegal: "නීතිමය සහතික",
-    footerCopyright: "&copy; 2026 Star Plus Travel &amp; Tourism LLC. සියලු හිමිකම් ඇවිරිණි.",
-    footerAttribution: "Redesigned &amp; Developed by Lupo",
+    footerCopyright: "© 2026 Star Plus Travel & Tourism LLC. සියලු හිමිකම් ඇවිරිණි.",
+    footerAttribution: "නිර්මාණය Lupo විසිනි",
+    footerCopyrightBar: "© 2026 Star Plus Travel & Tourism LLC. සියලු හිමිකම් ඇවිරිණි. • නිර්මාණය Lupo විසිනි",
 
     // Careers Page
     topBarHiring: "අප බඳවා ගනු ලැබේ! ඩුබායි සහ ශ්‍රී ලංකාවේ අපගේ කණ්ඩායම් වලට එක්වන්න",
@@ -3664,10 +3666,12 @@ function changeLanguage(lang, notify = true) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (translations[key] !== undefined) {
-      if (translations[key].includes('<') && translations[key].includes('>')) {
-        el.innerHTML = translations[key];
+      const val = translations[key];
+      // Use innerHTML if translation contains HTML tags or HTML entities (e.g. &copy;, &amp;, &bull;)
+      if ((val.includes('<') && val.includes('>')) || /&[a-zA-Z0-9#]+;/.test(val)) {
+        el.innerHTML = val;
       } else {
-        el.textContent = translations[key];
+        el.textContent = val;
       }
     }
   });
