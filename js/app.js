@@ -5194,7 +5194,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Caucasian Peaks',
         duration: '5 Days / 4 Nights',
         stay: '4-Star Boutique Hotel in Old Tbilisi & Gudauri Resort',
-        image: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
         description: 'Ascend dramatic Caucasus mountain passes, explore historic sulfur bath districts, and stand under snow-capped Mount Kazbek.',
         highlights: [
           'Old Tbilisi walking tour: Narikala Fortress cable car and sulfur bath district',
@@ -8740,7 +8740,7 @@ const SPOTLIGHT_DESTINATIONS_DATA = {
         title: 'KAZBEGI & GERGETI TRINITY',
         tagline: 'SNOW-CROWNED MOUNT KAZBEK & 14TH-CENTURY SANCTUARY',
         description: 'Travel the legendary Georgian Military Highway through the Caucasus range to Stepantsminda. Stand at the breathtaking 14th-century Gergeti Trinity Church perched 2,170m high against the backdrop of Mount Kazbek\'s 5,047m snow peaks.',
-        image: 'https://images.unsplash.com/photo-1692262211862-26f4555ef0b7?auto=format&fit=crop&w=1200&q=85',
+        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
         badge: 'High Caucasus',
         highlights: ['Gergeti Trinity Church 2,170m', 'Mount Kazbek 5,047m Glacier', 'Ananuri Fortress Complex', 'Zhinvali Emerald Reservoir'],
         packageId: 'georgia-kazbegi',
