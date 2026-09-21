@@ -4955,7 +4955,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Flagship Family Deal',
         duration: '4 Days / 3 Nights',
         stay: 'Avani Deira Dubai Hotel (4-Star Deluxe)',
-        image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
         description: 'The ultimate Dubai family vacation featuring 4-star luxury at Avani Deira Hotel, iconic landmark access, thrilling red dune desert safaris, and Arabian dhow cruise dining.',
         highlights: [
           '3 Nights stay at Avani Deira Dubai Hotel with daily international buffet breakfast',
@@ -6082,7 +6082,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— LITTLE ENGLAND & TEA TERRACES',
             description: 'Wander through cool, misty highland tea estates, tour working British-era tea factories with tea tastings, and stroll along the scenic waterfront of Lake Gregory.',
             checkmarks: ['Rolling Ceylon Tea Estate Terraces', 'Lake Gregory Waterfront & Parks', 'Colonial Heritage & Fresh Highland Air'],
-            image: 'assets/packages/sl-nuwara-eliya-tea-hills.jpg'
+            image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80'
           },
           {
             name: 'Ella Mountain Pass',
@@ -6194,7 +6194,7 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Demodara Nine Arches Bridge'
           },
           {
-            image: 'assets/packages/sl-nuwara-eliya-tea-hills.jpg',
+            image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 1: Nuwara Eliya Highland Tea Terraces',
             title: 'Ceylon Tea Plantations'
           },
@@ -6330,13 +6330,13 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Lahbab Red Dune Safari'
           },
           {
-            image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=85',
+            image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 4: Sheikh Zayed Grand Mosque Architectural Marvel',
             title: 'Sheikh Zayed Grand Mosque'
           }
         ],
-        image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80',
-        thumbnail: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
         description: 'The signature Dubai luxury family getaway. Stay in 4-star deluxe comfort at Avani Deira Hotel with daily international breakfast, ascend to the 124th/125th floor of the Burj Khalifa, explore the aquatic wonders of Dubai Aquarium & Underwater Zoo, sail Dubai Marina on a 5-star Dhow Cruise Dinner with live Tanoura dance, and conquer the golden dunes on a VIP 4x4 desert safari.',
         checklist: [
           'Avani Deira Dubai Hotel 4-Star Deluxe Stay',
@@ -6441,7 +6441,7 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Private Dubai Marina Yacht'
           },
           {
-            image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=85',
+            image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 3: Sheikh Zayed Grand Mosque Abu Dhabi',
             title: 'Sheikh Zayed Grand Mosque'
           },
@@ -6762,7 +6762,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— HIGH CAUCASUS MOUNTAIN RESORT',
             description: 'Ride panoramic gondola cable cars high into the Greater Caucasus peaks for pristine alpine air, mountain coaster adventures, and sweeping valley vistas.',
             checkmarks: ['High-Altitude Panoramic Cable Cars', 'Shahdag Alpine Coaster Adventure', 'Crisp Caucasian Mountain Air'],
-            image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85'
+            image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80'
           }
         ],
         stay: '3 Nights in 4-Star Baku City Center + 1 Night in Shahdag Mountain Resort',
@@ -6783,7 +6783,7 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Gobustan Prehistoric Rocks'
           },
           {
-            image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85',
+            image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 4: Shahdag Alpine Resort & Cable Cars',
             title: 'Shahdag Mountain Resort'
           }
@@ -8572,7 +8572,7 @@ const SPOTLIGHT_DESTINATIONS_DATA = {
         title: 'NUWARA ELIYA',
         tagline: 'LITTLE ENGLAND & CELESTIAL TEA HIGHLANDS',
         description: 'Nestled 1,868 meters above sea level amid emerald rolling peaks, Nuwara Eliya boasts crisp mountain breezes, Tudor-style colonial bungalows, verdant Ceylon tea plantations, and tranquil boat cruises on Lake Gregory.',
-        image: 'assets/packages/sl-nuwara-eliya-tea-hills.jpg',
+        image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
         badge: 'Highlands',
         highlights: ['Pedro Tea Estate & Factory', 'Lake Gregory Boating', 'Hakgala Botanical Gardens', 'Horton Plains & World\'s End'],
         packageId: 'sl-ella-nuwaraeliya',
