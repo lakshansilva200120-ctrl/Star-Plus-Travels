@@ -881,13 +881,13 @@ const PACKAGES = [
     reviews: 184,
     badge: 'Bestseller',
     badgeColor: 'from-amber-500 to-yellow-500',
-    image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80',
     alt: 'Sunset over Dubai red sand dunes during evening desert safari',
     galleryImages: [
-      { image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80', title: 'VIP Red Dune Desert Safari & BBQ' },
-      { image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80', title: 'Dubai Marina & Skyline Panorama' },
-      { image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80', title: 'Dubai Marina Luxury Yacht Cruise' },
-      { image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80', title: 'Sheikh Zayed Grand Mosque Abu Dhabi' }
+      { image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80', title: 'VIP Red Dune Desert Safari & BBQ' },
+      { image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1000&q=80', title: 'Dubai Marina & Skyline Panorama' },
+      { image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1000&q=80', title: 'Dubai Marina Luxury Yacht Cruise' },
+      { image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1000&q=80', title: 'Sheikh Zayed Grand Mosque Abu Dhabi' }
     ],
     priceAED: 2450,
     originalPriceAED: 3100,
@@ -916,13 +916,13 @@ const PACKAGES = [
     reviews: 142,
     badge: 'Trending',
     badgeColor: 'from-emerald-500 to-teal-500',
-    image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80',
-    alt: 'Yala National Park wild leopard resting on rocky outcrop in Sri Lanka',
+    image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80',
+    alt: 'Sigiriya Rock Fortress and Emerald Landscapes, Sri Lanka',
     galleryImages: [
-      { image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80', title: 'Yala National Park Wild Leopard Safari' },
-      { image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80', title: 'Ella Nine Arch Bridge & Tea Estates' },
-      { image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80', title: 'Sacred Heritage & Kovil Culture' },
-      { image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80', title: 'Bentota Golden Beach Coastline' }
+      { image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80', title: 'Sigiriya Ancient Lion Rock Citadel' },
+      { image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80', title: 'Ella Nine Arch Bridge & Tea Estates' },
+      { image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1000&q=80', title: 'Yala National Park Wild Leopard Safari' },
+      { image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1000&q=80', title: 'Bentota Golden Beach Coastline' }
     ],
     priceAED: 1890,
     originalPriceAED: 2400,
@@ -952,12 +952,12 @@ const PACKAGES = [
     reviews: 96,
     badge: 'Popular',
     badgeColor: 'from-blue-600 to-cyan-500',
-    image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1000&q=80',
     alt: 'Baku Flame Towers and Caspian Sea Waterfront Skyline, Azerbaijan',
     galleryImages: [
-      { image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80', title: 'Baku Flame Towers & Caspian Skyline' },
-      { image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80', title: 'Gabala Alpine Mountains & Lake' },
-      { image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80', title: 'Old Town Heritage & Architecture' }
+      { image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1000&q=80', title: 'Baku Flame Towers & Caspian Skyline' },
+      { image: 'assets/packages/baku-flame-towers.jpg', title: 'Baku Flame Towers Waterfront' },
+      { image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1000&q=80', title: 'Gabala Alpine Mountains & Lake' }
     ],
     priceAED: 2150,
     originalPriceAED: 2750,
@@ -1762,7 +1762,7 @@ function renderPackages(filteredList = PACKAGES) {
       <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10 transition-all duration-300 w-full max-w-full box-border min-w-0">
         <!-- Image & Badges -->
         <div class="img-container relative h-56 overflow-hidden bg-slate-900 w-full max-w-full">
-          <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover object-center" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
+          <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover object-center" loading="lazy" onerror="this.onerror=null;this.src='${pkg.id === 'baku-azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (pkg.id === 'dubai-luxury' ? 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80' : 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80')}';">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none"></div>
           
           <!-- Category & Bestseller Badge -->
@@ -2291,7 +2291,15 @@ function switchPackageGallery(index) {
       modalImg.alt = item.title || 'Tour package photo';
       modalImg.onerror = function() {
         this.onerror = null;
-        this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
+        if (currentActivePackage && currentActivePackage.id === 'baku-azerbaijan') {
+          this.src = 'assets/packages/baku-flame-towers.jpg';
+        } else if (currentActivePackage && currentActivePackage.id === 'dubai-luxury') {
+          this.src = 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80';
+        } else if (currentActivePackage && currentActivePackage.id === 'sri-lanka-paradise') {
+          this.src = 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80';
+        } else {
+          this.src = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80';
+        }
       };
       modalImg.style.opacity = '1';
     }, 150);
@@ -2353,7 +2361,15 @@ function openItineraryModal(pkgId) {
     modalImg.src = currentPackageGalleryItems[0]?.image || pkg.image;
     modalImg.onerror = function() {
       this.onerror = null;
-      this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
+      if (pkg.id === 'baku-azerbaijan') {
+        this.src = 'assets/packages/baku-flame-towers.jpg';
+      } else if (pkg.id === 'dubai-luxury') {
+        this.src = 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80';
+      } else if (pkg.id === 'sri-lanka-paradise') {
+        this.src = 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80';
+      } else {
+        this.src = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80';
+      }
     };
   }
 
@@ -2396,7 +2412,7 @@ function openItineraryModal(pkgId) {
                 onclick="switchPackageGallery(${idx})" 
                 class="package-gallery-thumb flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-lg overflow-hidden border cursor-pointer transition-all ${idx === 0 ? 'ring-2 ring-amber-400 border-transparent active' : 'border-slate-700 hover:border-amber-400 opacity-70 hover:opacity-100'}" 
                 title="${item.title || 'Tour landmark'}">
-          <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
+          <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='${pkg.id === 'baku-azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (pkg.id === 'dubai-luxury' ? 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80' : 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80')}';">
         </button>
       `).join('');
     } else {
@@ -7112,7 +7128,7 @@ function populateShowcaseData(countryKey) {
              role="button"
              tabindex="0"
              aria-label="Select circuit ${tour.title}">
-          <img src="${tour.thumbnail}" alt="${tour.title}" class="w-full h-full object-cover object-center transition-transform duration-700 pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
+          <img src="${tour.thumbnail}" alt="${tour.title}" class="w-full h-full object-cover object-center transition-transform duration-700 pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='${(tour.id && tour.id.includes('baku')) || currentShowcaseCountryKey === 'azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (currentShowcaseCountryKey === 'uae' ? 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80' : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80')}';">
           <div class="showcase-card-overlay"></div>
           
           <!-- Category Pill Badge (0.7rem, compact 3px 8px padding, whitespace-nowrap) -->
@@ -7361,7 +7377,15 @@ function switchShowcaseGallery(index) {
       featImg.alt = item.title || item.tag || 'Destination Landmark';
       featImg.onerror = function() {
         this.onerror = null;
-        this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
+        if (currentShowcaseCountryKey === 'azerbaijan') {
+          this.src = 'assets/packages/baku-flame-towers.jpg';
+        } else if (currentShowcaseCountryKey === 'uae') {
+          this.src = 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80';
+        } else if (currentShowcaseCountryKey === 'srilanka') {
+          this.src = 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80';
+        } else {
+          this.src = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80';
+        }
       };
       featImg.style.opacity = '1';
     }, 150);
@@ -7423,7 +7447,7 @@ function openPlacesCoveredShowcase(tour) {
              role="button"
              tabindex="0"
              aria-label="View ${place.name}">
-          <img src="${place.image}" alt="${place.name}" class="w-full h-full object-cover object-center transition-transform duration-500 pointer-events-none" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80';">
+          <img src="${place.image}" alt="${place.name}" class="w-full h-full object-cover object-center transition-transform duration-500 pointer-events-none" onerror="this.onerror=null;this.src='${(place.image && place.image.includes('baku')) || currentShowcaseCountryKey === 'azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (currentShowcaseCountryKey === 'uae' ? 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80' : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80')}';">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent pointer-events-none"></div>
           
           <div class="places-card-indicator">
@@ -7721,7 +7745,7 @@ function openShowcaseItinerary(tour) {
               onclick="switchShowcaseGallery(${idx})" 
               class="showcase-gallery-thumb flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-lg overflow-hidden border cursor-pointer transition-all ${idx === 0 ? 'ring-2 ring-amber-400 border-transparent active' : 'border-slate-700 hover:border-amber-400 opacity-70 hover:opacity-100'}" 
               title="${item.title || 'Tour landmark'}">
-        <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
+        <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='${currentShowcaseCountryKey === 'azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (currentShowcaseCountryKey === 'uae' ? 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80' : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80')}';">
       </button>
     `).join('');
   }
