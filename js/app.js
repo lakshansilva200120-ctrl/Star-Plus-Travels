@@ -1762,7 +1762,7 @@ function renderPackages(filteredList = PACKAGES) {
       <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10 transition-all duration-300 w-full max-w-full box-border min-w-0">
         <!-- Image & Badges -->
         <div class="img-container relative h-56 overflow-hidden bg-slate-900 w-full max-w-full">
-          <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover object-center" loading="lazy" onerror="this.onerror=null;this.src='${pkg.id === 'baku-azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (pkg.id === 'dubai-luxury' ? 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80' : 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80')}';">
+          <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover object-center" loading="lazy" onerror="this.onerror=null;this.src='${pkg.id === 'baku-azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (pkg.id === 'dubai-luxury' ? 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80' : (pkg.id === 'georgia-kazbegi' ? 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80' : 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80'))}';">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none"></div>
           
           <!-- Category & Bestseller Badge -->
@@ -2295,6 +2295,8 @@ function switchPackageGallery(index) {
           this.src = 'assets/packages/baku-flame-towers.jpg';
         } else if (currentActivePackage && currentActivePackage.id === 'dubai-luxury') {
           this.src = 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80';
+        } else if (currentActivePackage && currentActivePackage.id === 'georgia-kazbegi') {
+          this.src = 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80';
         } else if (currentActivePackage && currentActivePackage.id === 'sri-lanka-paradise') {
           this.src = 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80';
         } else {
@@ -2365,6 +2367,8 @@ function openItineraryModal(pkgId) {
         this.src = 'assets/packages/baku-flame-towers.jpg';
       } else if (pkg.id === 'dubai-luxury') {
         this.src = 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80';
+      } else if (pkg.id === 'georgia-kazbegi') {
+        this.src = 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80';
       } else if (pkg.id === 'sri-lanka-paradise') {
         this.src = 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80';
       } else {
@@ -2412,7 +2416,7 @@ function openItineraryModal(pkgId) {
                 onclick="switchPackageGallery(${idx})" 
                 class="package-gallery-thumb flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-lg overflow-hidden border cursor-pointer transition-all ${idx === 0 ? 'ring-2 ring-amber-400 border-transparent active' : 'border-slate-700 hover:border-amber-400 opacity-70 hover:opacity-100'}" 
                 title="${item.title || 'Tour landmark'}">
-          <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='${pkg.id === 'baku-azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (pkg.id === 'dubai-luxury' ? 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80' : 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80')}';">
+          <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='${pkg.id === 'baku-azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (pkg.id === 'dubai-luxury' ? 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80' : (pkg.id === 'georgia-kazbegi' ? 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80' : 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80'))}';">
         </button>
       `).join('');
     } else {
