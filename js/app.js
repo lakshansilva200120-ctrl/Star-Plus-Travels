@@ -4971,7 +4971,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Flagship Family Deal',
         duration: '4 Days / 3 Nights',
         stay: 'Avani Deira Dubai Hotel (4-Star Deluxe)',
-        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80',
         description: 'The ultimate Dubai family vacation featuring 4-star luxury at Avani Deira Hotel, iconic landmark access, thrilling red dune desert safaris, and Arabian dhow cruise dining.',
         highlights: [
           '3 Nights stay at Avani Deira Dubai Hotel with daily international buffet breakfast',
@@ -6351,8 +6351,8 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Sheikh Zayed Grand Mosque'
           }
         ],
-        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
-        thumbnail: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
+        image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80',
         description: 'The signature Dubai luxury family getaway. Stay in 4-star deluxe comfort at Avani Deira Hotel with daily international breakfast, ascend to the 124th/125th floor of the Burj Khalifa, explore the aquatic wonders of Dubai Aquarium & Underwater Zoo, sail Dubai Marina on a 5-star Dhow Cruise Dinner with live Tanoura dance, and conquer the golden dunes on a VIP 4x4 desert safari.',
         checklist: [
           'Avani Deira Dubai Hotel 4-Star Deluxe Stay',
@@ -8698,7 +8698,7 @@ const SPOTLIGHT_DESTINATIONS_DATA = {
         title: 'ARABIAN DESERT DUNES',
         tagline: 'RED DUNE 4X4 ADVENTURE & STARLIT BEDOUIN BANQUET',
         description: 'Embark into sweeping Lahbab red dunes in high-powered 4x4 land cruisers for thrilling dune bashing, sandboarding, and sunset camel treks, followed by a VIP Arabian desert camp dinner with fire and Tanoura performances.',
-        image: 'assets/packages/dubai-desert-safari.jpg',
+        image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80',
         badge: 'Red Dunes',
         highlights: ['Thrilling 4x4 Red Dune Bashing', 'Sandboarding & Camel Rides', 'VIP Bedouin Majlis BBQ Dinner', 'Live Fire & Tanoura Shows'],
         packageId: 'dubai-family-escape',
