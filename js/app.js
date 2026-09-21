@@ -884,10 +884,10 @@ const PACKAGES = [
     image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
     alt: 'Illuminated Dubai city skyline and Burj Khalifa at twilight',
     galleryImages: [
-      { image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80', title: 'Dubai Marina & Skyline Panorama' },
-      { image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80', title: 'VIP Red Dune Desert Safari & BBQ' },
-      { image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80', title: 'Dubai Marina Luxury Yacht Cruise' },
-      { image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80', title: 'Sheikh Zayed Grand Mosque Abu Dhabi' }
+      { image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80', title: 'Burj Khalifa & Downtown Dubai Skyline' },
+      { image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80', title: 'Arabian Desert Safari Sunset Dunes' },
+      { image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80', title: 'Dubai Marina & Luxury Yacht Harbor' },
+      { image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80', title: 'Sheikh Zayed Grand Mosque, Abu Dhabi' }
     ],
     priceAED: 2450,
     originalPriceAED: 3100,
@@ -916,13 +916,14 @@ const PACKAGES = [
     reviews: 142,
     badge: 'Trending',
     badgeColor: 'from-emerald-500 to-teal-500',
-    image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
     alt: 'Sigiriya Rock Fortress and Emerald Landscapes, Sri Lanka',
     galleryImages: [
-      { image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80', title: 'Sigiriya Ancient Lion Rock Citadel' },
-      { image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80', title: 'Ella Nine Arch Bridge & Tea Estates' },
-      { image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1000&q=80', title: 'Yala National Park Wild Leopard Safari' },
-      { image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1000&q=80', title: 'Bentota Golden Beach Coastline' }
+      { image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80', title: 'Sigiriya Lion Rock Fortress' },
+      { image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80', title: 'Ella Nine Arch Bridge & Tea Hills' },
+      { image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80', title: 'Yala National Park Safari & Wild Elephants' },
+      { image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80', title: 'Galle Dutch Fort & Lighthouse' },
+      { image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80', title: 'Mirissa Coastline / Whale Watching' }
     ],
     priceAED: 1890,
     originalPriceAED: 2400,
@@ -952,12 +953,11 @@ const PACKAGES = [
     reviews: 96,
     badge: 'Popular',
     badgeColor: 'from-blue-600 to-cyan-500',
-    image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
     alt: 'Baku Flame Towers and Caspian Sea Waterfront Skyline, Azerbaijan',
     galleryImages: [
-      { image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1000&q=80', title: 'Baku Flame Towers & Caspian Skyline' },
-      { image: 'assets/packages/baku-flame-towers.jpg', title: 'Baku Flame Towers Waterfront' },
-      { image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1000&q=80', title: 'Gabala Alpine Mountains & Lake' }
+      { image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80', title: 'Baku Flame Towers & Caspian Waterfront' },
+      { image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80', title: 'Gabala Mountains & Lake Nohur' }
     ],
     priceAED: 2150,
     originalPriceAED: 2750,
@@ -990,7 +990,7 @@ const PACKAGES = [
     alt: 'Gergeti Trinity Church and Mount Kazbek Caucasus Mountains, Georgia',
     galleryImages: [
       { image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80', title: 'Gergeti Trinity Church & Mount Kazbek' },
-      { image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80', title: 'Historic Old Tbilisi & Sulfur Baths' },
+      { image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80', title: 'Old Tbilisi Historic City Architecture' },
       { image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=1200&q=80', title: 'Ananuri Fortress & Jinvali Reservoir' }
     ],
     priceAED: 2290,
@@ -1024,9 +1024,9 @@ const PACKAGES = [
     image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80',
     alt: 'Maldives Overwater Villas and Turquoise Lagoon',
     galleryImages: [
-      { image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80', title: 'Maldives Overwater Villa & Lagoon' },
-      { image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80', title: 'White Sand Beach & Coconut Palms' },
-      { image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1200&q=80', title: 'Turquoise Coral Reef Waters' }
+      { image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80', title: 'Luxury Overwater Bungalows & Turquoise Lagoon' },
+      { image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1200&q=80', title: 'Coral Reef Atoll & Aerial Ocean View' },
+      { image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80', title: 'Mirissa Coastline / Whale Watching' }
     ],
     priceAED: 4650,
     originalPriceAED: 5900,
@@ -1193,10 +1193,10 @@ const PACKAGES = [
     reviews: 64,
     badge: 'Executive Retreat',
     badgeColor: 'from-amber-600 to-orange-600',
-    image: 'assets/packages/baku-flame-towers.jpg',
+    image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
     alt: 'Baku Flame Towers and Caspian Sea Waterfront illuminated against the skyline in Azerbaijan',
     galleryImages: [
-      { image: 'assets/packages/baku-flame-towers.jpg', title: 'Baku Flame Towers' },
+      { image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80', title: 'Baku Flame Towers' },
       { image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80', title: 'Gabala Alpine Mountain Range' }
     ],
     priceAED: 2650,
@@ -1762,7 +1762,7 @@ function renderPackages(filteredList = PACKAGES) {
       <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10 transition-all duration-300 w-full max-w-full box-border min-w-0">
         <!-- Image & Badges -->
         <div class="img-container relative h-56 overflow-hidden bg-slate-900 w-full max-w-full">
-          <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover object-center" loading="lazy" onerror="this.onerror=null;this.src='${pkg.id === 'baku-azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (pkg.id === 'dubai-luxury' ? 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80' : (pkg.id === 'georgia-kazbegi' ? 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80' : 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80'))}';">
+          <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover object-center" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none"></div>
           
           <!-- Category & Bestseller Badge -->
@@ -2291,17 +2291,7 @@ function switchPackageGallery(index) {
       modalImg.alt = item.title || 'Tour package photo';
       modalImg.onerror = function() {
         this.onerror = null;
-        if (currentActivePackage && currentActivePackage.id === 'baku-azerbaijan') {
-          this.src = 'assets/packages/baku-flame-towers.jpg';
-        } else if (currentActivePackage && currentActivePackage.id === 'dubai-luxury') {
-          this.src = 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80';
-        } else if (currentActivePackage && currentActivePackage.id === 'georgia-kazbegi') {
-          this.src = 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80';
-        } else if (currentActivePackage && currentActivePackage.id === 'sri-lanka-paradise') {
-          this.src = 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80';
-        } else {
-          this.src = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80';
-        }
+        this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
       };
       modalImg.style.opacity = '1';
     }, 150);
@@ -2363,17 +2353,7 @@ function openItineraryModal(pkgId) {
     modalImg.src = currentPackageGalleryItems[0]?.image || pkg.image;
     modalImg.onerror = function() {
       this.onerror = null;
-      if (pkg.id === 'baku-azerbaijan') {
-        this.src = 'assets/packages/baku-flame-towers.jpg';
-      } else if (pkg.id === 'dubai-luxury') {
-        this.src = 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80';
-      } else if (pkg.id === 'georgia-kazbegi') {
-        this.src = 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80';
-      } else if (pkg.id === 'sri-lanka-paradise') {
-        this.src = 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80';
-      } else {
-        this.src = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80';
-      }
+      this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
     };
   }
 
@@ -2416,7 +2396,7 @@ function openItineraryModal(pkgId) {
                 onclick="switchPackageGallery(${idx})" 
                 class="package-gallery-thumb flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-lg overflow-hidden border cursor-pointer transition-all ${idx === 0 ? 'ring-2 ring-amber-400 border-transparent active' : 'border-slate-700 hover:border-amber-400 opacity-70 hover:opacity-100'}" 
                 title="${item.title || 'Tour landmark'}">
-          <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='${pkg.id === 'baku-azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (pkg.id === 'dubai-luxury' ? 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80' : (pkg.id === 'georgia-kazbegi' ? 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80' : 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80'))}';">
+          <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
         </button>
       `).join('');
     } else {
@@ -4994,7 +4974,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Luxury Twin City',
         duration: '5 Days / 4 Nights',
         stay: '5-Star Waterfront Hotel (Radisson Blu / Swissôtel)',
-        image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80',
         description: 'Comprehensive luxury tour combining the futuristic skyline of Dubai with the imperial cultural heritage and palatial sights of Abu Dhabi.',
         highlights: [
           'Full-day Abu Dhabi Tour: Sheikh Zayed Grand Mosque, Emirates Palace & Louvre Abu Dhabi',
@@ -5020,7 +5000,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Safari & Rainforest',
         duration: '5 Days / 4 Nights',
         stay: 'Luxury Eco-Lodges & Safari Tented Camps',
-        image: 'assets/sri-lanka-wildlife-elephant.jpg',
+        image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80',
         description: 'Immerse in Sri Lanka’s wild sanctuary with big-game leopard safaris, UNESCO virgin rainforest trekking, and ocean whale encounters.',
         highlights: [
           'Exclusive 4x4 Jeep Safari in Yala National Park (World’s highest leopard density)',
@@ -5037,7 +5017,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Beach & Coastal',
         duration: '4 Days / 3 Nights',
         stay: '4-Star Beachfront Luxury Resort (Bentota / Galle)',
-        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80',
         description: 'Unwind along sun-drenched golden sands, UNESCO heritage fortress ramparts, and exhilarating coastal river and water adventures.',
         highlights: [
           'Guided walking tour of UNESCO World Heritage Galle Dutch Fort & Lighthouse',
@@ -5071,7 +5051,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'UNESCO Heritage',
         duration: '5 Days / 4 Nights',
         stay: 'Heritage Garden Retreats & 4-Star Kandy Hotel',
-        image: 'assets/sri-lanka-sigiriya-rock.jpg',
+        image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
         description: 'Step back through millennia of royal dynasties, sacred Buddhist monasteries, and dramatic stone citadels in the heart of Ceylon.',
         highlights: [
           'Ascend the iconic Sigiriya 5th-century Lion Rock Fortress and ancient fresco galleries',
@@ -5088,7 +5068,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Highlands & Scenic',
         duration: '5 Days / 4 Nights',
         stay: 'Colonial Tea Estate Bungalows & Misty Ella Resorts',
-        image: 'assets/sri-lanka-destination.jpg',
+        image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
         description: 'Journey across emerald tea carpet valleys, ride the world-renowned blue train, and stand above the clouds at World’s End.',
         highlights: [
           'World-famous scenic blue train journey across Demodara Nine Arch Bridge in Ella',
@@ -5113,7 +5093,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Honeymoon Luxury',
         duration: '4 Days / 3 Nights',
         stay: '5-Star Private Island Overwater Pool Villa',
-        image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80',
         description: 'Ultimate romantic retreat featuring overwater villa with private plunge pool, scenic seaplane arrival, and all-inclusive gourmet dining.',
         highlights: [
           'Roundtrip scenic seaplane transfers from Velana Male International Airport',
@@ -5130,7 +5110,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Family Beach Retreat',
         duration: '5 Days / 4 Nights',
         stay: '4-Star Superior Island Resort (Beach Villa)',
-        image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1200&q=80',
         description: 'Sun-soaked tropical getaway with direct powder-white beach access, non-motorized water sports, and tranquil turquoise lagoons.',
         highlights: [
           'Speedboat transfers from Male Velana Airport',
@@ -5155,7 +5135,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'City & Alpine Blend',
         duration: '5 Days / 4 Nights',
         stay: '4-Star Central Baku Hotel + Shahdag Mountain Resort',
-        image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
         description: 'Explore the modern marvels and medieval history of Baku followed by breathtaking alpine adventures in the high Caucasus.',
         highlights: [
           'Baku Old City (Icherisheher UNESCO) with Maiden Tower & Shirvanshah Palace',
@@ -5173,7 +5153,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Silk Road Explorer',
         duration: '6 Days / 5 Nights',
         stay: '4-Star Hotels in Baku, Gabala & Sheki',
-        image: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80',
         description: 'Journey through Caucasus mountain passes, picturesque alpine lakes, and ancient Silk Road trading cities.',
         highlights: [
           'Baku panoramic boulevard and Heydar Aliyev Cultural Centre photo stop',
@@ -5215,7 +5195,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'Wine & Romance',
         duration: '6 Days / 5 Nights',
         stay: '4-Star Hotels in Tbilisi & Kakheti Wine Valley',
-        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80',
         description: 'Delve into the cradle of wine in Kakheti, charming walled cities, and scenic Caucasian mountain valleys.',
         highlights: [
           'Sighnaghi "City of Love" cobblestone streets & Alazani Valley views',
@@ -5309,7 +5289,7 @@ function openCountryPackages(countryKey) {
           <div class="regional-tour-card glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/40 bg-slate-900/80 flex flex-col justify-between shadow-xl">
             <div>
               <div class="relative h-48 overflow-hidden group">
-                <img src="${pkg.image}" alt="${pkg.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+                <img src="${pkg.image}" alt="${pkg.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#09111e] via-[#09111e]/40 to-transparent"></div>
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 flex-wrap">
                   <span class="px-2.5 py-0.5 rounded-full bg-slate-950/85 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-slate-700/80">
@@ -5409,8 +5389,8 @@ const POPULAR_DESTINATIONS_SLIDES = [
     duration: '5 Days / 4 Nights',
     priceAED: 2250,
     countryKey: 'srilanka',
-    image: 'assets/sri-lanka-sigiriya-rock.jpg',
-    thumbnail: 'assets/sri-lanka-sigiriya-rock-thumb.jpg',
+    image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
     description: 'Ascend the legendary 5th-century UNESCO Sigiriya Lion Rock Fortress rising 200 meters above emerald jungle canopies. Wander through celestial royal water gardens, marvel at golden Dambulla Rock Cave temples, and witness the sacred evening puja at the Temple of the Sacred Tooth Relic in Kandy.',
     highlights: [
       'Sigiriya 5th-Century Lion Rock Fortress',
@@ -5431,8 +5411,8 @@ const POPULAR_DESTINATIONS_SLIDES = [
     duration: '5 Days / 4 Nights',
     priceAED: 2050,
     countryKey: 'srilanka',
-    image: 'assets/sri-lanka-destination.jpg',
-    thumbnail: 'assets/sri-lanka-destination.jpg',
+    image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
     description: 'Board the world-famous blue train as it weaves across misty valleys and the iconic Demodara Nine Arch Bridge. Savor world-renowned Ceylon tea in the cool alpine estates of "Little England", marvel at roaring waterfalls, and stand above the clouds at World’s End precipice in Horton Plains.',
     highlights: [
       'Scenic Blue Train across Demodara Nine Arch Bridge',
@@ -5453,8 +5433,8 @@ const POPULAR_DESTINATIONS_SLIDES = [
     duration: '4 Days / 3 Nights',
     priceAED: 1850,
     countryKey: 'dubai',
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1920&q=85',
-    thumbnail: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
     description: 'Immerse your family in the glittering capital of modern luxury. Enjoy 4-star deluxe comfort at Avani Deira Hotel with daily buffet breakfast, take in 360° panoramic views from Burj Khalifa At The Top (124th/125th floor), sail Dubai Marina on a 5-star dhow dinner cruise with Tanoura dance, and conquer the Lahbab red dunes on a VIP 4x4 desert safari.',
     highlights: [
       'Avani Deira Dubai 4-Star Hotel Stay + Breakfast',
@@ -5475,8 +5455,8 @@ const POPULAR_DESTINATIONS_SLIDES = [
     duration: '5 Days / 4 Nights',
     priceAED: 2150,
     countryKey: 'srilanka',
-    image: 'assets/sri-lanka-wildlife-elephant.jpg',
-    thumbnail: 'assets/sri-lanka-wildlife-elephant-thumb.jpg',
+    image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80',
     description: 'Venture into the heart of Sri Lanka’s untamed wilderness. Embark on custom 4x4 open-top jeep safaris in Yala National Park, tracking the highest density of wild leopards in the world. Trek beneath the ancient canopy of UNESCO Sinharaja Virgin Rainforest, visit orphaned elephants at Udawalawe, and set sail on ocean blue whale encounters in Mirissa.',
     highlights: [
       'Yala National Park Big-Game Leopard Safari',
@@ -5497,8 +5477,8 @@ const POPULAR_DESTINATIONS_SLIDES = [
     duration: '4 Days / 3 Nights',
     priceAED: 1890,
     countryKey: 'srilanka',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=85',
-    thumbnail: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+    thumbnail: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
     description: 'Unwind along Sri Lanka’s sun-kissed southern coastline. Wander the historic ramparts, lighthouse, and cobblestone boutiques of the 17th-century UNESCO Galle Dutch Fort. Cruise through mangrove tunnels on the Madu River boat safari, participate in sea turtle conservation at Kosgoda, and surf the idyllic golden waves of Weligama and Mirissa.',
     highlights: [
       'UNESCO Galle Dutch Fort & Heritage Lighthouse Walk',
@@ -5527,7 +5507,7 @@ function initDestinationSlider() {
            role="button"
            tabindex="0"
            aria-label="Select destination ${slide.title}">
-        <img src="${slide.thumbnail}" alt="${slide.title}" class="w-full h-full object-cover transition-transform duration-700 pointer-events-none" loading="lazy">
+        <img src="${slide.thumbnail}" alt="${slide.title}" class="w-full h-full object-cover transition-transform duration-700 pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
         <div class="absolute inset-0 bg-gradient-to-t from-[#070e17] via-[#070e17]/40 to-transparent pointer-events-none"></div>
         
         <!-- Category Badge -->
@@ -5735,7 +5715,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— UNTAMED BIG GAME & LEOPARDS',
             description: 'Roam through scrub jungle and granite rock outcrops harboring the world\'s highest leopard density. Track sloth bears, spotted deer, and wild elephants on private 4x4 safaris.',
             checkmarks: ['High-Density Wild Leopard Tracking', 'Custom Open-Top 4x4 Safari Game Drives', 'Sloth Bears, Crocodiles & Birdlife'],
-            image: 'assets/packages/sl-yala-leopard-rock.jpg'
+            image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80'
           },
           {
             name: 'Sinharaja Rainforest',
@@ -5772,7 +5752,7 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Elephant Transit Home'
           },
           {
-            image: 'assets/sri-lanka-wildlife-elephant.jpg',
+            image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 4: Sri Lankan Wild Elephant Gathering',
             title: 'Wild Elephant Herds'
           }
@@ -5853,7 +5833,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— UNESCO SOUTHERN COASTAL FORTRESS',
             description: 'Stroll the 17th-century coral ramparts and cobblestone paths of UNESCO Galle Dutch Fort, admire the iconic colonial lighthouse, and watch waves crash against Flag Rock bastion.',
             checkmarks: ['UNESCO 17th-Century Ramparts Walk', 'Iconic White Colonial Lighthouse', 'Cobblestone Alleys & Artisan Boutiques'],
-            image: 'assets/packages/sl-galle-fort-lighthouse.jpg'
+            image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80'
           },
           {
             name: 'Mirissa Coastal Bay',
@@ -5861,7 +5841,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— TROPICAL OCEAN HAVEN & PALM HILL',
             description: 'Scale the picturesque palm-crowned mound of Coconut Tree Hill for panoramic Indian Ocean vistas, relax on golden crescent sands, and embark on early morning blue whale watching safaris.',
             checkmarks: ['Coconut Tree Hill Panoramic Viewpoint', 'Blue Whale & Dolphin Yacht Safaris', 'Sunset Golden Sand Beach Dining'],
-            image: 'assets/packages/sl-mirissa-coconut-hill.jpg'
+            image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80'
           },
           {
             name: 'Bentota & Madu River',
@@ -5875,12 +5855,12 @@ const COUNTRY_SHOWCASE_DATA = {
         stay: '3 Nights at 4-Star & 5-Star Beachfront Resort (Amari Galle / Heritance Ahungalla)',
         gallery: [
           {
-            image: 'assets/packages/sl-galle-fort-lighthouse.jpg',
+            image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 2: UNESCO Galle Dutch Fort & Lighthouse',
             title: 'Historic Galle Dutch Fort'
           },
           {
-            image: 'assets/packages/sl-mirissa-coconut-hill.jpg',
+            image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 3: Mirissa Coconut Tree Hill & Harbor',
             title: 'Mirissa Coastal Viewpoint'
           },
@@ -5895,8 +5875,8 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Madu River Mangroves'
           }
         ],
-        image: 'assets/packages/sl-galle-fort-lighthouse.jpg',
-        thumbnail: 'assets/packages/sl-galle-fort-lighthouse.jpg',
+        image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80',
         description: 'Unwind along Sri Lanka\'s sun-drenched southern coastline. Stroll the 17th-century ramparts and cobblestone paths of UNESCO World Heritage Galle Dutch Fort, watch stilt fishermen at Koggala, catch premier surf breaks at Weligama and Hiriketiya, and cruise through mangrove tunnels on the Madu River boat safari.',
         checklist: [
           'UNESCO Galle Dutch Fort & Lighthouse Ramparts',
@@ -6086,7 +6066,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— CULTURAL TRIANGLE & SACRED CITADELS',
             description: 'Ascend the dramatic 200-meter sheer rock fortress built by King Kashyapa in the 5th century. Marvel at ancient maiden frescoes, the mirrored wall, and royal water gardens.',
             checkmarks: ['Lion Rock Summit Royal Palace Ruins', 'Mirror Wall & Ancient Fresco Murals', 'Symmetrical Landscaped Water Gardens'],
-            image: 'assets/sri-lanka-sigiriya-rock.jpg'
+            image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80'
           },
           {
             name: 'Kandy Sacred Citadel',
@@ -6116,7 +6096,7 @@ const COUNTRY_SHOWCASE_DATA = {
         stay: '4 Nights at 4-Star & 5-Star Heritage Boutique Resorts (Heritance Kandalama / Grand Hotel Nuwara Eliya)',
         gallery: [
           {
-            image: 'assets/sri-lanka-sigiriya-rock.jpg',
+            image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 2: Sigiriya 5th-Century Rock Citadel',
             title: 'Sigiriya Rock Fortress'
           },
@@ -6136,8 +6116,8 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Ancient City of Polonnaruwa'
           }
         ],
-        image: 'assets/sri-lanka-sigiriya-rock.jpg',
-        thumbnail: 'assets/sri-lanka-sigiriya-rock.jpg',
+        image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
         description: 'Journey through 2,500 years of royal Sri Lankan heritage. Scale the iconic 5th-century Lion Rock of Sigiriya, admire 150+ Buddha statues in Dambulla Cave Temples, explore the sprawling ruins of Anuradhapura and Polonnaruwa, and witness sacred relic ceremonies in Kandy.',
         checklist: [
           'Sigiriya 5th-Century Lion Rock Fortress Ascent',
@@ -6313,7 +6293,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— WORLD\'S TALLEST SKYSCRAPER',
             description: 'Zoom up high-speed double-decker elevators to the 124th and 125th floor observation decks of Burj Khalifa for 360-degree skyline views, then marvel at the musical Dubai Fountain.',
             checkmarks: ['124th & 125th Floor Observation Decks', 'Musical Dubai Fountain Spectacular', 'Dubai Mall & Underwater Aquarium'],
-            image: 'assets/packages/dubai-burj-khalifa.jpg'
+            image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80'
           },
           {
             name: 'Dubai Marina & Yacht Cruise',
@@ -6321,7 +6301,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— CANAL TOWERS & YACHT HARBOR',
             description: 'Cruise through glittering skyscrapers and modern waterfront promenades aboard a luxury yacht, gliding past JBR Beach, Bluewaters Island, and Ain Dubai.',
             checkmarks: ['Luxury Marina Yacht Sunset Cruise', 'Glittering Illuminated Skyline Views', 'Bluewaters Island & Ain Dubai Backdrop'],
-            image: 'assets/packages/dubai-marina-yachts.jpg'
+            image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80'
           },
           {
             name: 'Arabian Desert Dunes',
@@ -6329,7 +6309,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— LAHBAB GOLDEN RED SANDS',
             description: 'Conquer high crimson sand dunes on an adrenaline-fueled 4x4 Land Cruiser safari, glide down dunes on sandboards, and enjoy a 5-star open-air BBQ dinner with live shows.',
             checkmarks: ['Thrilling 4x4 Red Dune Bashing', 'Sunset Sandboarding & Camel Riding', 'Bedouin Camp BBQ Feast & Live Shows'],
-            image: 'assets/packages/dubai-desert-safari.jpg'
+            image: 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1200&q=80'
           }
         ],
         stay: '3 Nights Deluxe Accommodation at Avani Deira Dubai Hotel (4-Star Deluxe)',
@@ -6429,7 +6409,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— CAPITAL ARCHITECTURAL MASTERPIECE',
             description: 'Marvel at one of the world\'s largest mosques featuring 82 pure white marble domes, 24-carat gold-plated chandeliers, and the world\'s largest hand-knotted Persian carpet.',
             checkmarks: ['82 Pure White Marble Domes', 'World\'s Largest Hand-Knotted Carpet', 'Glistening Reflective Water Basins'],
-            image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=85'
+            image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80'
           },
           {
             name: 'Louvre Abu Dhabi',
@@ -6555,7 +6535,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— SECLUDED INDIAN OCEAN LUXURY',
             description: 'Wake up perched directly over crystal turquoise waters in your private overwater villa, featuring direct lagoon ladder access and a private infinity plunge pool.',
             checkmarks: ['Direct Lagoon Swimming Access Ladder', 'Private Infinity Edge Plunge Pool', 'Sunrise & Sunset Panoramic Horizon'],
-            image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=85'
+            image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80'
           },
           {
             name: 'Coral Atoll Reef Snorkeling',
@@ -6563,7 +6543,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— PRISTINE CORAL REEF ECOSYSTEM',
             description: 'Don your snorkel and mask to explore vibrant coral gardens teeming with green sea turtles, blacktip reef sharks, eagle rays, and tropical butterflyfish.',
             checkmarks: ['Guided House Reef Snorkel Safaris', 'Green Sea Turtles & Manta Rays', 'Vibrant Live Coral Gardens'],
-            image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=85'
+            image: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1200&q=80'
           },
           {
             name: 'Sunset Dolphin Speedboat Cruise',
@@ -6577,7 +6557,7 @@ const COUNTRY_SHOWCASE_DATA = {
         stay: '3 Nights in 5-Star Luxury Overwater Villa with Private Infinity Pool (Adaaran / Sun Siyam)',
         gallery: [
           {
-            image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=85',
+            image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 1: Scenic Trans-Maldivian Seaplane Flight',
             title: 'Scenic Seaplane Transfer'
           },
@@ -6597,8 +6577,8 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Traditional Dhoni Dolphin Yacht'
           }
         ],
-        image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1920&q=85',
-        thumbnail: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80',
         description: 'Wake up above crystal lagoons in your private overwater pool villa. Includes scenic return seaplane transfers from Male, all-inclusive dine-around fine dining, guided coral reef snorkeling with sea turtles, and sunset champagne dolphin cruises.',
         checklist: [
           '5-Star Overwater Pool Villa Accommodation',
@@ -6766,7 +6746,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— MEDIEVAL WALLS & CASPIAN SEASIDE',
             description: 'Explore ancient cobblestone labyrinths inside UNESCO Icherisheher, climb Maiden Tower, and admire the futuristic Flame Towers gleaming above the Caspian Boulevard.',
             checkmarks: ['UNESCO 12th-Century City Walls', 'Iconic Maiden Tower & Shirvanshahs', 'Highland Park Flame Towers Vista'],
-            image: 'assets/packages/baku-flame-towers.jpg'
+            image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80'
           },
           {
             name: 'Gobustan Mud Volcanoes',
@@ -6788,7 +6768,7 @@ const COUNTRY_SHOWCASE_DATA = {
         stay: '3 Nights in 4-Star Baku City Center + 1 Night in Shahdag Mountain Resort',
         gallery: [
           {
-            image: 'assets/packages/baku-flame-towers.jpg',
+            image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 1: Baku Flame Towers & Seaside Boulevard',
             title: 'Baku Flame Towers & Caspian'
           },
@@ -6808,8 +6788,8 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Shahdag Mountain Resort'
           }
         ],
-        image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1920&q=80',
-        thumbnail: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
         description: 'Explore the historic alleys of UNESCO Icherisheher, stand beneath the futuristic Flame Towers, marvel at bubbling mud volcanoes in Gobustan, and ride panoramic cable cars into Shahdag Alpine Resort.',
         checklist: [
           'Baku Old City UNESCO Walk & Maiden Tower',
@@ -7132,7 +7112,7 @@ function populateShowcaseData(countryKey) {
              role="button"
              tabindex="0"
              aria-label="Select circuit ${tour.title}">
-          <img src="${tour.thumbnail}" alt="${tour.title}" class="w-full h-full object-cover object-center transition-transform duration-700 pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='${(tour.id && tour.id.includes('baku')) || currentShowcaseCountryKey === 'azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (currentShowcaseCountryKey === 'uae' ? 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80' : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80')}';">
+          <img src="${tour.thumbnail}" alt="${tour.title}" class="w-full h-full object-cover object-center transition-transform duration-700 pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
           <div class="showcase-card-overlay"></div>
           
           <!-- Category Pill Badge (0.7rem, compact 3px 8px padding, whitespace-nowrap) -->
@@ -7381,15 +7361,7 @@ function switchShowcaseGallery(index) {
       featImg.alt = item.title || item.tag || 'Destination Landmark';
       featImg.onerror = function() {
         this.onerror = null;
-        if (currentShowcaseCountryKey === 'azerbaijan') {
-          this.src = 'assets/packages/baku-flame-towers.jpg';
-        } else if (currentShowcaseCountryKey === 'uae') {
-          this.src = 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80';
-        } else if (currentShowcaseCountryKey === 'srilanka') {
-          this.src = 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1000&q=80';
-        } else {
-          this.src = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80';
-        }
+        this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
       };
       featImg.style.opacity = '1';
     }, 150);
@@ -7451,7 +7423,7 @@ function openPlacesCoveredShowcase(tour) {
              role="button"
              tabindex="0"
              aria-label="View ${place.name}">
-          <img src="${place.image}" alt="${place.name}" class="w-full h-full object-cover object-center transition-transform duration-500 pointer-events-none" onerror="this.onerror=null;this.src='${(place.image && place.image.includes('baku')) || currentShowcaseCountryKey === 'azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (currentShowcaseCountryKey === 'uae' ? 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80' : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80')}';">
+          <img src="${place.image}" alt="${place.name}" class="w-full h-full object-cover object-center transition-transform duration-500 pointer-events-none" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent pointer-events-none"></div>
           
           <div class="places-card-indicator">
@@ -7749,7 +7721,7 @@ function openShowcaseItinerary(tour) {
               onclick="switchShowcaseGallery(${idx})" 
               class="showcase-gallery-thumb flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-lg overflow-hidden border cursor-pointer transition-all ${idx === 0 ? 'ring-2 ring-amber-400 border-transparent active' : 'border-slate-700 hover:border-amber-400 opacity-70 hover:opacity-100'}" 
               title="${item.title || 'Tour landmark'}">
-        <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='${currentShowcaseCountryKey === 'azerbaijan' ? 'assets/packages/baku-flame-towers.jpg' : (currentShowcaseCountryKey === 'uae' ? 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?auto=format&fit=crop&w=1000&q=80' : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80')}';">
+        <img src="${item.image}" alt="${item.title || 'Tour landmark'}" class="w-full h-full object-cover object-center pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
       </button>
     `).join('');
   }
@@ -8612,7 +8584,7 @@ const SPOTLIGHT_DESTINATIONS_DATA = {
         title: 'SIGIRIYA',
         tagline: 'ANCIENT LION ROCK FORTRESS & 5TH CENTURY CITADEL',
         description: 'Rise above the central plains to explore King Kashyapa\'s dramatic 200-meter monolith citadel, renowned for world-famous ancient fresco paintings, symmetrical water gardens, and breathtaking 360-degree panorama over pristine jungles.',
-        image: 'assets/sri-lanka-sigiriya-rock.jpg',
+        image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
         badge: 'UNESCO Citadel',
         highlights: ['Lion\'s Paw Gateway', 'Ancient Frescoes & Mirror Wall', 'Royal Water Gardens', 'Pidurangala Sunset Viewpoint'],
         packageId: 'sl-sigiriya-cultural',
@@ -8636,7 +8608,7 @@ const SPOTLIGHT_DESTINATIONS_DATA = {
         title: 'ELLA',
         tagline: 'NINE ARCH BRIDGE & VERDANT MOUNTAIN TRAILS',
         description: 'Famous worldwide for the breathtaking Nine Arch Demodara Bridge and world-class blue mountain train journey. Hike to Little Adam\'s Peak for sunrise, swim in cascading Ravana Falls, and unwind in vibrant bohemian hillside cafes.',
-        image: 'assets/sri-lanka-destination.jpg',
+        image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
         badge: 'Scenic Gap',
         highlights: ['Demodara Nine Arch Viaduct', 'Little Adam\'s Peak Trek', 'Scenic Blue Train Route', 'Ravana Falls & Cave'],
         packageId: 'sl-ella-nuwaraeliya',
@@ -8648,7 +8620,7 @@ const SPOTLIGHT_DESTINATIONS_DATA = {
         title: 'YALA',
         tagline: 'UNTAMED WILDLIFE & BIG-GAME LEOPARD SAFARI',
         description: 'Venture deep into Ruhuna National Park, home to the world\'s highest wild leopard concentration. Board customized 4x4 open safari jeeps to spot majestic leopards on granite boulders, wild elephant herds, sloth bears, and saltwater crocodiles.',
-        image: 'assets/packages/sl-yala-leopard-rock.jpg',
+        image: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?auto=format&fit=crop&w=1200&q=80',
         badge: 'Wild Safari',
         highlights: ['Leopard Tracking in Block 1', 'Wild Elephant Gatherings', 'Sloth Bear Habitat', 'Luxury Tented Bush Camps'],
         packageId: 'sl-wildlife-safari',
@@ -8660,7 +8632,7 @@ const SPOTLIGHT_DESTINATIONS_DATA = {
         title: 'GALLE FORT',
         tagline: 'UNESCO 17TH-CENTURY DUTCH RAMPARTS & OCEAN LIGHTHOUSE',
         description: 'A living colonial bastion jutting out into the Indian Ocean. Stroll along ancient cobblestone fortifications, explore boutique artisan galleries and gem jewellers, watch stunning ocean sunsets from the iconic white lighthouse, and unwind on nearby golden beaches.',
-        image: 'assets/packages/sl-galle-fort-lighthouse.jpg',
+        image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=1200&q=80',
         badge: 'Ocean Bastion',
         highlights: ['Historic Dutch Fort Ramparts', 'White Lighthouse & Flag Rock', 'Boutique Artisan Quarters', 'Bentota & Mirissa Beaches'],
         packageId: 'sl-galle-south',
@@ -8678,7 +8650,7 @@ const SPOTLIGHT_DESTINATIONS_DATA = {
         title: 'BURJ KHALIFA & DOWNTOWN',
         tagline: 'WORLD\'S TALLEST TOWER & MODERN ARCHITECTURAL MARVEL',
         description: 'Ascend to Level 124 & 125 for panoramic vistas across Dubai\'s futuristic skyline and the Arabian Gulf. Marvel at the choreographed Dubai Fountain water show, explore Dubai Mall, and stroll through Dubai Opera district.',
-        image: 'assets/packages/dubai-burj-khalifa.jpg',
+        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=80',
         badge: 'Iconic Tower',
         highlights: ['At The Top Observation Deck', 'Dubai Fountain Boardwalk', 'Dubai Mall & Aquarium', 'Souk Al Bahar Dining'],
         packageId: 'dubai-family-escape',
@@ -8690,7 +8662,7 @@ const SPOTLIGHT_DESTINATIONS_DATA = {
         title: 'PALM JUMEIRAH & ATLANTIS',
         tagline: 'WORLD-FAMOUS ARCHIPELAGO & ULTRA-LUXURY LIVING',
         description: 'Marvel at Dubai\'s world-famous tree-shaped artificial island. Experience Aquaventure Waterpark, Atlantis The Royal, luxury yacht cruises along the Palm crescent, and sunset beach clubs overlooking the Arabian Gulf.',
-        image: 'assets/packages/dubai-marina-yachts.jpg',
+        image: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1200&q=80',
         badge: 'Island Luxury',
         highlights: ['Atlantis Aquaventure & Lost Chambers', 'Private Marina Yacht Charter', 'The View at The Palm 52F', 'Pointe Boardwalk Dining'],
         packageId: 'dubai-abudhabi-grand',
@@ -8714,7 +8686,7 @@ const SPOTLIGHT_DESTINATIONS_DATA = {
         title: 'ABU DHABI & GRAND MOSQUE',
         tagline: 'IMPERIAL CULTURAL HERITAGE & ARCHITECTURAL SPLENDOR',
         description: 'Journey to the UAE capital to behold the awe-inspiring Sheikh Zayed Grand Mosque with pure white marble domes and floral inlays, followed by world-class art at Louvre Abu Dhabi and the regal splendor of Qasr Al Watan Presidential Palace.',
-        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1200&q=85',
+        image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80',
         badge: 'Imperial Heritage',
         highlights: ['Sheikh Zayed Grand Mosque', 'Louvre Abu Dhabi Museum', 'Qasr Al Watan Palace', 'Corniche Waterfront Promenade'],
         packageId: 'dubai-abudhabi-grand',
@@ -8732,7 +8704,7 @@ const SPOTLIGHT_DESTINATIONS_DATA = {
         title: 'OLD TBILISI',
         tagline: 'ANCIENT COBBLESTONE COURTYARDS & HISTORIC SULFUR BATHS',
         description: 'Wander through centuries of vibrant Caucasian culture in Old Tbilisi, with carved wooden balconies hanging above cobblestone lanes, iconic domed sulfur bathhouses of Abanotubani, and Narikala Fortress overlooking the Mtkvari river.',
-        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=85',
+        image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80',
         badge: 'Old Town',
         highlights: ['Narikala Fortress Cable Car', 'Abanotubani Sulfur Baths', 'Bridge of Peace', 'Shardeni Street Cafes'],
         packageId: 'georgia-kazbegi',
