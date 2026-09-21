@@ -952,12 +952,12 @@ const PACKAGES = [
     reviews: 96,
     badge: 'Popular',
     badgeColor: 'from-blue-600 to-cyan-500',
-    image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
     alt: 'Baku Flame Towers and Caspian Sea Waterfront Skyline, Azerbaijan',
     galleryImages: [
-      { image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80', title: 'Caucasus Mountain Vistas' },
-      { image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80', title: 'Old Town Heritage & Architecture' },
-      { image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=1200&q=80', title: 'Historic Citadels & Mountain Passes' }
+      { image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80', title: 'Baku Flame Towers & Caspian Skyline' },
+      { image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80', title: 'Gabala Alpine Mountains & Lake' },
+      { image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80', title: 'Old Town Heritage & Architecture' }
     ],
     priceAED: 2150,
     originalPriceAED: 2750,
@@ -1197,7 +1197,7 @@ const PACKAGES = [
     alt: 'Baku Flame Towers and Caspian Sea Waterfront illuminated against the skyline in Azerbaijan',
     galleryImages: [
       { image: 'assets/packages/baku-flame-towers.jpg', title: 'Baku Flame Towers' },
-      { image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80', title: 'Shahdag Mountain Range' }
+      { image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80', title: 'Gabala Alpine Mountain Range' }
     ],
     priceAED: 2650,
     originalPriceAED: 3300,
@@ -1762,7 +1762,7 @@ function renderPackages(filteredList = PACKAGES) {
       <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10 transition-all duration-300 w-full max-w-full box-border min-w-0">
         <!-- Image & Badges -->
         <div class="img-container relative h-56 overflow-hidden bg-slate-900 w-full max-w-full">
-          <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover" loading="lazy">
+          <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover object-center" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none"></div>
           
           <!-- Category & Bestseller Badge -->
@@ -5135,7 +5135,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         badge: 'City & Alpine Blend',
         duration: '5 Days / 4 Nights',
         stay: '4-Star Central Baku Hotel + Shahdag Mountain Resort',
-        image: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=800&q=80',
         description: 'Explore the modern marvels and medieval history of Baku followed by breathtaking alpine adventures in the high Caucasus.',
         highlights: [
           'Baku Old City (Icherisheher UNESCO) with Maiden Tower & Shirvanshah Palace',
@@ -6773,9 +6773,9 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Baku Flame Towers & Caspian'
           },
           {
-            image: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 2: UNESCO Icherisheher & Maiden Tower',
-            title: 'Baku Old City Fortress'
+            image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80',
+            tag: '📍 Day 2: Gabala Alpine Lake & Mountain Resort',
+            title: 'Gabala Alpine Mountains & Lake'
           },
           {
             image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=85',
@@ -6788,8 +6788,8 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Shahdag Mountain Resort'
           }
         ],
-        image: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=1920&q=85',
-        thumbnail: 'https://images.unsplash.com/photo-1785608149582-51b1a856da10?auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1920&q=80',
+        thumbnail: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=800&q=80',
         description: 'Explore the historic alleys of UNESCO Icherisheher, stand beneath the futuristic Flame Towers, marvel at bubbling mud volcanoes in Gobustan, and ride panoramic cable cars into Shahdag Alpine Resort.',
         checklist: [
           'Baku Old City UNESCO Walk & Maiden Tower',
@@ -7112,7 +7112,7 @@ function populateShowcaseData(countryKey) {
              role="button"
              tabindex="0"
              aria-label="Select circuit ${tour.title}">
-          <img src="${tour.thumbnail}" alt="${tour.title}" class="w-full h-full object-cover transition-transform duration-700 pointer-events-none" loading="lazy">
+          <img src="${tour.thumbnail}" alt="${tour.title}" class="w-full h-full object-cover object-center transition-transform duration-700 pointer-events-none" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
           <div class="showcase-card-overlay"></div>
           
           <!-- Category Pill Badge (0.7rem, compact 3px 8px padding, whitespace-nowrap) -->
@@ -7423,7 +7423,7 @@ function openPlacesCoveredShowcase(tour) {
              role="button"
              tabindex="0"
              aria-label="View ${place.name}">
-          <img src="${place.image}" alt="${place.name}" class="w-full h-full object-cover transition-transform duration-500 pointer-events-none" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80';">
+          <img src="${place.image}" alt="${place.name}" class="w-full h-full object-cover object-center transition-transform duration-500 pointer-events-none" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80';">
           <div class="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/40 to-transparent pointer-events-none"></div>
           
           <div class="places-card-indicator">
