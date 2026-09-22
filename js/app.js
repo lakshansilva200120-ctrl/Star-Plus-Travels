@@ -927,7 +927,6 @@ const PACKAGES = [
     ],
     priceAED: 1890,
     originalPriceAED: 2400,
-    priceLKR: 'LKR 165,000',
     perks: ['Scenic Train to Ella & Tea Estates', 'Sigiriya Rock Fortress Tour', 'Yala Safari Wildlife Encounter', 'Private English-Speaking Chauffeur', 'Daily Gourmet Breakfast'],
     itinerary: [
       { day: 1, title: 'Arrival in Colombo & Transfer to Kandy', desc: 'VIP meet and assist at CMB Airport, scenic highway drive to Kandy, evening lakeside stroll.' },
@@ -1824,7 +1823,7 @@ function renderPackages(filteredList = PACKAGES) {
                 <div class="flex items-baseline space-x-2 flex-wrap">
                   <span class="price-aed text-2xl font-black text-amber-600 dark:text-amber-400 font-heading" data-base-aed="${pkg.priceAED}">${formattedPrice}</span>
                   <span class="text-xs text-slate-400 dark:text-slate-500 line-through" data-base-aed="${pkg.originalPriceAED}">${formattedOriginal}</span>
-                  <span class="price-secondary text-xs text-amber-500/90 font-medium" data-secondary-for="${pkg.priceAED}">(${formatSecondaryPrice(pkg.priceAED)})</span>
+                  ${(pkg.category === 'srilanka' || (pkg.destination && pkg.destination.toLowerCase().includes('sri lanka')) || (pkg.title && pkg.title.toLowerCase().includes('sri lanka')) || (pkg.id && pkg.id.includes('sri-lanka'))) ? '' : `<span class="price-secondary text-xs text-amber-500/90 font-medium" data-secondary-for="${pkg.priceAED}">(${formatSecondaryPrice(pkg.priceAED)})</span>`}
                 </div>
                 <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium block break-words">
                   ${installmentText}
@@ -2117,8 +2116,14 @@ function openBookingModal(pkgId) {
   }
   const secPriceElem = document.getElementById('modalPkgSecondaryPrice');
   if (secPriceElem) {
-    secPriceElem.setAttribute('data-secondary-for', pkg.priceAED);
-    secPriceElem.textContent = `(${formatSecondaryPrice(pkg.priceAED)})`;
+    const isSl = pkg.category === 'srilanka' || pkg.countryKey === 'srilanka' || (pkg.destination && pkg.destination.toLowerCase().includes('sri lanka')) || (pkg.title && pkg.title.toLowerCase().includes('sri lanka')) || (pkg.id && (pkg.id.startsWith('sl-') || pkg.id.includes('sri-lanka')));
+    if (isSl) {
+      secPriceElem.removeAttribute('data-secondary-for');
+      secPriceElem.textContent = '';
+    } else {
+      secPriceElem.setAttribute('data-secondary-for', pkg.priceAED);
+      secPriceElem.textContent = `(${formatSecondaryPrice(pkg.priceAED)})`;
+    }
   }
   
   // Set default form values
@@ -2315,9 +2320,10 @@ function switchPackageGallery(index) {
 
 function downloadCurrentPackageBrochure() {
   if (!currentActivePackage) return;
+  const isSl = currentActivePackage.category === 'srilanka' || currentActivePackage.countryKey === 'srilanka' || (currentActivePackage.destination && currentActivePackage.destination.toLowerCase().includes('sri lanka')) || (currentActivePackage.title && currentActivePackage.title.toLowerCase().includes('sri lanka')) || (currentActivePackage.id && (currentActivePackage.id.startsWith('sl-') || currentActivePackage.id.includes('sri-lanka')));
   downloadTourBrochure({
     ...currentActivePackage,
-    priceLKR: currentActivePackage.priceLKR || `LKR ${(currentActivePackage.priceAED * 85).toLocaleString()}`,
+    priceLKR: isSl ? '' : (currentActivePackage.priceLKR || `LKR ${(currentActivePackage.priceAED * 85).toLocaleString()}`),
     inclusions: currentActivePackage.perks || currentActivePackage.inclusions || [],
     itinerary: currentActivePackage.itinerary || []
   });
@@ -2443,9 +2449,15 @@ function openItineraryModal(pkgId) {
   }
   const secPriceElem = document.getElementById('itineraryModalSecondaryPrice');
   if (secPriceElem) {
-    secPriceElem.setAttribute('data-secondary-for', pkg.priceAED);
-    const secFormatted = pkg.priceLKR ? pkg.priceLKR : (typeof formatSecondaryPrice === 'function' ? formatSecondaryPrice(pkg.priceAED) : '');
-    secPriceElem.textContent = secFormatted ? `(${secFormatted})` : '';
+    const isSl = pkg.category === 'srilanka' || pkg.countryKey === 'srilanka' || (pkg.destination && pkg.destination.toLowerCase().includes('sri lanka')) || (pkg.title && pkg.title.toLowerCase().includes('sri lanka')) || (pkg.id && (pkg.id.startsWith('sl-') || pkg.id.includes('sri-lanka')));
+    if (isSl) {
+      secPriceElem.removeAttribute('data-secondary-for');
+      secPriceElem.textContent = '';
+    } else {
+      secPriceElem.setAttribute('data-secondary-for', pkg.priceAED);
+      const secFormatted = pkg.priceLKR ? pkg.priceLKR : (typeof formatSecondaryPrice === 'function' ? formatSecondaryPrice(pkg.priceAED) : '');
+      secPriceElem.textContent = secFormatted ? `(${secFormatted})` : '';
+    }
   }
 
   const bookBtn = document.getElementById('itineraryBookButton');
@@ -5540,7 +5552,7 @@ function initDestinationSlider() {
             <span>${slide.duration}</span>
             <div class="text-right">
               <span class="price-aed text-amber-400 font-bold" data-base-aed="${slide.priceAED}">${formattedPrice}</span>
-              <span class="price-secondary text-[10px] text-slate-400 block" data-secondary-for="${slide.priceAED}">(${formatSecondaryPrice(slide.priceAED)})</span>
+              ${(slide.countryKey === 'srilanka' || (slide.title && slide.title.toLowerCase().includes('sri lanka')) || (slide.id && slide.id.includes('sl-'))) ? '' : `<span class="price-secondary text-[10px] text-slate-400 block" data-secondary-for="${slide.priceAED}">(${formatSecondaryPrice(slide.priceAED)})</span>`}
             </div>
           </div>
         </div>
@@ -5713,7 +5725,6 @@ const COUNTRY_SHOWCASE_DATA = {
         reviews: '280+ reviews',
         duration: '5 Days / 4 Nights',
         priceAED: 2150,
-        priceLKR: 'LKR 190,000',
         highlightTags: ['🐆 Leopard Safari', '🐘 Udawalawe Sanctuary', '🌿 Sinharaja Rainforest', '🦩 Bundala Bird Sanctuary'],
         keyStops: ['Yala Safari', 'Sinharaja Forest', 'Udawalawe'],
         destinations: ['Yala Safari', 'Sinharaja Forest', 'Udawalawe'],
@@ -5831,7 +5842,6 @@ const COUNTRY_SHOWCASE_DATA = {
         reviews: '315+ reviews',
         duration: '4 Days / 3 Nights',
         priceAED: 1890,
-        priceLKR: 'LKR 165,000',
         highlightTags: ['🏖️ Mirissa & Bentota Beach', '🏰 UNESCO Galle Dutch Fort', '🚤 Madu River Safari', '🐢 Turtle Conservation'],
         keyStops: ['Bentota', 'Galle Fort', 'Mirissa Beach'],
         destinations: ['Bentota', 'Galle Fort', 'Mirissa Beach'],
@@ -5945,7 +5955,6 @@ const COUNTRY_SHOWCASE_DATA = {
         reviews: '190+ reviews',
         duration: '4 Days / 3 Nights',
         priceAED: 1950,
-        priceLKR: 'LKR 170,000',
         highlightTags: ['🛕 Nallur Golden Kovil', '🏰 Jaffna Dutch Fort', '🐎 Delft Island Wild Horses', '⛵ Sacred Nainativu Ferry'],
         keyStops: ['Nallur Temple', 'Jaffna Fort', 'Delft Island'],
         destinations: ['Nallur Temple', 'Jaffna Fort', 'Delft Island'],
@@ -6064,7 +6073,6 @@ const COUNTRY_SHOWCASE_DATA = {
         reviews: '480+ reviews',
         duration: '5 Days / 4 Nights',
         priceAED: 2250,
-        priceLKR: 'LKR 195,000',
         highlightTags: ['🦁 Sigiriya Lion Rock', '👑 Kandy Temple of Tooth', '🍃 Nuwara Eliya Tea Hills', '🌉 Ella Nine Arch Bridge'],
         keyStops: ['Sigiriya Rock', 'Kandy Temple', 'Nuwara Eliya', 'Ella Nine Arch'],
         destinations: ['Sigiriya Rock', 'Kandy Temple', 'Nuwara Eliya', 'Ella Nine Arch'],
@@ -6191,7 +6199,6 @@ const COUNTRY_SHOWCASE_DATA = {
         reviews: '420+ reviews',
         duration: '5 Days / 4 Nights',
         priceAED: 2050,
-        priceLKR: 'LKR 180,000',
         highlightTags: ['🚂 Scenic Hill Train', '🌉 Nine Arches Bridge', '🍃 Ceylon Tea Terraces', '💧 Ravana Falls'],
         keyStops: ['Nuwara Eliya', 'Ella Nine Arch', 'Diyaluma Falls'],
         destinations: ['Nuwara Eliya', 'Ella Nine Arch', 'Diyaluma Falls'],
@@ -7148,7 +7155,7 @@ function populateShowcaseData(countryKey) {
               <span class="flex items-center gap-1"><i class="fa-regular fa-clock text-amber-400 text-[9px]"></i>${tour.duration}</span>
               <div class="text-right">
                 <span class="showcase-card-price price-aed text-amber-400 font-mono" data-base-aed="${tour.priceAED}">${formattedAED}</span>
-                <span class="price-secondary text-[9px] text-slate-400 block" data-secondary-for="${tour.priceAED}">(${formatSecondaryPrice(tour.priceAED)})</span>
+                ${(countryKey === 'srilanka' || currentShowcaseCountryKey === 'srilanka' || (tour.id && tour.id.startsWith('sl-'))) ? '' : `<span class="price-secondary text-[9px] text-slate-400 block" data-secondary-for="${tour.priceAED}">(${formatSecondaryPrice(tour.priceAED)})</span>`}
               </div>
             </div>
           </div>
@@ -7278,11 +7285,19 @@ function updateShowcaseTourUI(index, animate = true) {
     priceElem.textContent = formattedAED;
   }
   if (altPriceElem) {
-    altPriceElem.classList.add('price-secondary');
-    altPriceElem.setAttribute('data-secondary-for', tour.priceAED);
-    altPriceElem.setAttribute('data-template', '/ person ({secondary})');
-    const secFormatted = formatSecondaryPrice(tour.priceAED);
-    altPriceElem.textContent = `/ person (${secFormatted})`;
+    const isSl = currentShowcaseCountryKey === 'srilanka' || (tour.id && tour.id.startsWith('sl-'));
+    if (isSl) {
+      altPriceElem.classList.remove('price-secondary');
+      altPriceElem.removeAttribute('data-secondary-for');
+      altPriceElem.removeAttribute('data-template');
+      altPriceElem.textContent = '/ person';
+    } else {
+      altPriceElem.classList.add('price-secondary');
+      altPriceElem.setAttribute('data-secondary-for', tour.priceAED);
+      altPriceElem.setAttribute('data-template', '/ person ({secondary})');
+      const secFormatted = formatSecondaryPrice(tour.priceAED);
+      altPriceElem.textContent = `/ person (${secFormatted})`;
+    }
   }
 
   // WhatsApp button dynamic pre-fill
@@ -7660,14 +7675,19 @@ function normalizeDestinationModalData(raw) {
 
   // Pricing & Currency
   const priceAED = Number(raw.priceAED || raw.price || 1890);
+  const isSl = raw.category === 'srilanka' || raw.countryKey === 'srilanka' || (raw.destination && raw.destination.toLowerCase().includes('sri lanka')) || (raw.title && raw.title.toLowerCase().includes('sri lanka')) || (raw.id && (raw.id.startsWith('sl-') || raw.id.includes('sri-lanka')));
   let priceSecondary = raw.priceSecondary || '';
   if (!priceSecondary) {
-    if (raw.priceLKR) {
+    if (isSl) {
+      priceSecondary = '';
+    } else if (raw.priceLKR) {
       priceSecondary = raw.priceLKR;
     } else {
       const approxUSD = Math.round(priceAED * 0.272);
       priceSecondary = `approx. $${approxUSD.toLocaleString()} USD`;
     }
+  } else if (isSl && priceSecondary.includes('LKR')) {
+    priceSecondary = '';
   }
 
   // Pre-fill WhatsApp link with specific destination title
@@ -7883,11 +7903,19 @@ function openShowcaseItinerary(tour) {
     priceElem.textContent = formattedAED;
   }
   if (altPriceElem) {
-    altPriceElem.classList.add('price-secondary');
-    altPriceElem.setAttribute('data-secondary-for', data.priceAED);
-    altPriceElem.setAttribute('data-template', '({secondary})');
-    const secFormatted = formatSecondaryPrice(data.priceAED);
-    altPriceElem.textContent = `(${secFormatted})`;
+    const isSl = data.category === 'srilanka' || data.countryKey === 'srilanka' || (data.destination && data.destination.toLowerCase().includes('sri lanka')) || (data.title && data.title.toLowerCase().includes('sri lanka')) || (data.id && (data.id.startsWith('sl-') || data.id.includes('sri-lanka')));
+    if (isSl) {
+      altPriceElem.classList.remove('price-secondary');
+      altPriceElem.removeAttribute('data-secondary-for');
+      altPriceElem.removeAttribute('data-template');
+      altPriceElem.textContent = '';
+    } else {
+      altPriceElem.classList.add('price-secondary');
+      altPriceElem.setAttribute('data-secondary-for', data.priceAED);
+      altPriceElem.setAttribute('data-template', '({secondary})');
+      const secFormatted = formatSecondaryPrice(data.priceAED);
+      altPriceElem.textContent = `(${secFormatted})`;
+    }
   }
 
   // WhatsApp Inquiry CTA
@@ -7942,7 +7970,8 @@ function downloadTourBrochure(tour) {
   }
 
   const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
-  const priceDisplay = tour.priceLKR ? `${formattedAED} (${tour.priceLKR})` : formattedAED;
+  const isSl = tour.category === 'srilanka' || tour.countryKey === 'srilanka' || (tour.destination && tour.destination.toLowerCase().includes('sri lanka')) || (tour.title && tour.title.toLowerCase().includes('sri lanka')) || (tour.id && (tour.id.startsWith('sl-') || tour.id.includes('sri-lanka')));
+  const priceDisplay = (!isSl && tour.priceLKR) ? `${formattedAED} (${tour.priceLKR})` : formattedAED;
 
   const inclusionsHtml = (tour.inclusions || tour.checklist || []).map(inc => `
     <li style="margin-bottom: 7px; display: flex; align-items: flex-start;">

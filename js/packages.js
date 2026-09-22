@@ -134,7 +134,6 @@
       ],
       priceAED: 2350,
       originalPriceAED: 2990,
-      priceLKR: 'LKR 205,000',
       perks: ['Yala 4x4 Private Safari', 'Sigiriya & Dambulla Entries', 'Scenic Blue Train Journey', 'Deluxe Boutique Stays', 'Chauffeur Guide Throughout']
     },
     {
