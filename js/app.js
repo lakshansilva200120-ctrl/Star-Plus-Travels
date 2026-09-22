@@ -4008,6 +4008,7 @@ function changeLanguage(lang, notify = true) {
   if (lang !== 'en' && lang !== 'si') lang = 'en';
 
   try {
+    localStorage.setItem('site_lang', lang);
     localStorage.setItem('pref_lang', lang);
     localStorage.setItem('starplus_lang', lang);
   } catch (e) {}
@@ -4052,6 +4053,22 @@ function changeLanguage(lang, notify = true) {
       el.className = 'lang-active-si font-semibold text-slate-500 dark:text-slate-400';
     }
   });
+
+  const enToggleBtn = document.getElementById('lang-toggle-en');
+  const siToggleBtn = document.getElementById('lang-toggle-si');
+  if (enToggleBtn && siToggleBtn) {
+    if (lang === 'si') {
+      siToggleBtn.classList.add('bg-amber-500', 'text-white');
+      siToggleBtn.classList.remove('text-slate-400');
+      enToggleBtn.classList.remove('bg-amber-500', 'text-white');
+      enToggleBtn.classList.add('text-slate-400');
+    } else {
+      enToggleBtn.classList.add('bg-amber-500', 'text-white');
+      enToggleBtn.classList.remove('text-slate-400');
+      siToggleBtn.classList.remove('bg-amber-500', 'text-white');
+      siToggleBtn.classList.add('text-slate-400');
+    }
+  }
 
   document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
     btn.setAttribute('title', lang === 'si' ? 'භාෂාව මාරු කරන්න (English / සිංහල)' : 'Switch Language (English / Sinhala)');
