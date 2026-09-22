@@ -828,7 +828,7 @@
           }
         ],
         finePrint: [
-          'Rates are based on twin/double sharing per person; special child rates applicable (LKR 320,000).',
+          'Rates are based on twin/double sharing per person; special child rates applicable.',
           'Standard hotel check-in at 14:00 hrs & check-out at 12:00 hrs.',
           'Tourism Dirham fee of AED 15 per room per night payable directly to the hotel upon check-in.',
           'UAE 30-Day or 60-Day tourist visa assistance provided (approval in 24-48 hours).',
