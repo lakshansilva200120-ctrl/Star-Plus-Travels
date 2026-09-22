@@ -8267,7 +8267,7 @@ window.initNewsletterForms = initNewsletterForms;
 // ============================================================================
 // Custom Luxury Form Validation & Inline Error System
 // ============================================================================
-const EXCLAMATION_SVG = `<svg class="w-3.5 h-3.5 shrink-0 text-rose-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>`;
+const EXCLAMATION_SVG = `<svg class="w-5 h-5 shrink-0 text-rose-400" style="width: 20px; height: 20px; flex-shrink: 0;" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>`;
 
 function showFieldError(input, message) {
   if (!input) return;
@@ -8303,11 +8303,11 @@ function showFieldError(input, message) {
 
   if (!errEl) {
     errEl = document.createElement('div');
-    errEl.className = 'custom-inline-error text-xs text-rose-400 mt-1.5 flex items-center gap-1.5 font-medium';
     errEl.setAttribute('data-field-error-for', errorKey);
     anchor.insertAdjacentElement('afterend', errEl);
   }
 
+  errEl.className = 'custom-inline-error flex items-center gap-2 text-sm text-rose-400 mt-1';
   errEl.innerHTML = `${EXCLAMATION_SVG}<span>${message}</span>`;
   errEl.classList.remove('hidden', 'error-fade-out');
   errEl.style.display = 'flex';
