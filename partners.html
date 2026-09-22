@@ -271,10 +271,14 @@
 
         <!-- Right Action Area -->
         <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
-          <button type="button" onclick="toggleLanguage()" id="mainLangToggleBtn" class="lang-toggle-btn inline-flex items-center justify-center space-x-1.5 min-w-[82px] h-9 px-3 rounded-xl border border-slate-700/80 bg-slate-900/90 hover:bg-slate-800 hover:border-amber-500/50 text-slate-200 hover:text-white transition-all text-xs font-bold shadow-md cursor-pointer whitespace-nowrap shrink-0 flex-shrink-0 group" title="Switch Language" aria-label="Switch Language (English / Sinhala)">
-            <i class="fa-solid fa-globe text-amber-400 text-xs transition-transform group-hover:rotate-12 shrink-0"></i>
-            <span class="desktop-lang-text font-bold text-xs text-center tracking-wide">සිංහල</span>
-          </button>
+                    <div class="inline-flex items-center rounded-full bg-slate-800/80 p-1 border border-slate-700 text-xs font-semibold">
+            <button id="lang-toggle-en" class="px-2.5 py-1 rounded-full transition-colors text-white bg-amber-500">
+              EN
+            </button>
+            <button id="lang-toggle-si" class="px-2.5 py-1 rounded-full transition-colors text-slate-400 hover:text-white">
+              à·ƒà·’à¶‚à·„à¶½
+            </button>
+          </div>
 
           <button type="button" id="mobileMenuBtn" onclick="toggleMobileMenu(event)" aria-expanded="false" aria-controls="mobileMenu" class="lg:hidden p-2 h-9 w-9 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-300 hover:text-white hover:border-amber-500/50 shadow-md flex items-center justify-center cursor-pointer shrink-0 flex-shrink-0 transition-colors" aria-label="Toggle menu">
             <i class="fa-solid fa-bars-staggered text-sm"></i>
@@ -1238,6 +1242,8 @@
   <div id="toastContainer" class="fixed bottom-5 right-5 z-[9999] flex flex-col space-y-2 pointer-events-none"></div>
 
   <!-- Core Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/i18n.js"></script>
   <script src="js/app.js?v=5.7.0"></script>
 </body>
 </html>
