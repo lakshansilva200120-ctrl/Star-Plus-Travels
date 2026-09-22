@@ -17,8 +17,8 @@
   'use strict';
 
   const FALLBACK_UNIVERSAL = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
-  const FALLBACK_AZERBAIJAN = 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1200&q=80';
-  const FALLBACK_GEORGIA = 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80';
+  const FALLBACK_AZERBAIJAN = 'assets/packages/baku-flame-towers.jpg';
+  const FALLBACK_GEORGIA = 'assets/packages/georgia-kazbegi.jpg';
 
   const PACKAGES = [
     {
@@ -65,12 +65,12 @@
       reviews: 96,
       badge: 'Popular',
       badgeColor: 'from-blue-600 to-cyan-500',
-      image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
+      image: 'assets/packages/baku-flame-towers.jpg',
       fallback: FALLBACK_AZERBAIJAN,
       alt: 'Baku Flame Towers and Caspian Sea Waterfront Skyline, Azerbaijan',
       galleryImages: [
-        { image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80', title: 'Baku Flame Towers & Caspian Waterfront' },
-        { image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80', title: 'Old City (Icherisheher) & Maiden Tower' },
+        { image: 'assets/packages/baku-flame-towers.jpg', title: 'Baku Flame Towers & Caspian Waterfront' },
+        { image: 'assets/packages/baku-flame-towers.jpg', title: 'Old City (Icherisheher) & Maiden Tower' },
         { image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80', title: 'Gabala Mountains & Lake Nohur' },
         { image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80', title: 'Shahdag Winter Alpine Resort' }
       ],
@@ -94,12 +94,12 @@
       reviews: 118,
       badge: 'Winter Special',
       badgeColor: 'from-indigo-500 to-purple-500',
-      image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
+      image: 'assets/packages/georgia-kazbegi.jpg',
       fallback: FALLBACK_GEORGIA,
       alt: 'Gergeti Trinity Church and Mount Kazbek Caucasus Mountains, Georgia',
       galleryImages: [
-        { image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80', title: 'Gergeti Trinity Church & Mount Kazbek' },
-        { image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80', title: 'Old Tbilisi Colorful Balconies & Narikala' },
+        { image: 'assets/packages/georgia-kazbegi.jpg', title: 'Gergeti Trinity Church & Mount Kazbek' },
+        { image: 'assets/packages/georgia-kazbegi.jpg', title: 'Old Tbilisi Colorful Balconies & Narikala' },
         { image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=80', title: 'Ananuri Fortress & Aragvi River' },
         { image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80', title: 'Gudauri Caucasus Ski Slopes' }
       ],
@@ -179,7 +179,7 @@
           badge: 'City & Alpine Blend',
           duration: '5 Days / 4 Nights',
           stay: '4-Star Central Baku Hotel + Shahdag Mountain Resort',
-          image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
+          image: 'assets/packages/baku-flame-towers.jpg',
           fallback: FALLBACK_AZERBAIJAN,
           priceAED: 1950
         },
@@ -207,7 +207,7 @@
           badge: 'Caucasian Peaks',
           duration: '5 Days / 4 Nights',
           stay: '4-Star Boutique Hotel in Old Tbilisi & Gudauri Resort',
-          image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
+          image: 'assets/packages/georgia-kazbegi.jpg',
           fallback: FALLBACK_GEORGIA,
           priceAED: 1890
         },
@@ -217,7 +217,7 @@
           badge: 'Wine & Romance',
           duration: '6 Days / 5 Nights',
           stay: '4-Star Hotels in Tbilisi & Kakheti Wine Valley',
-          image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80',
+          image: 'assets/packages/georgia-kazbegi.jpg',
           fallback: FALLBACK_GEORGIA,
           priceAED: 2290
         }

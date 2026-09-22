@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Star Plus Travel & Tourism LLC - Destination Showcase & Spotlight Data Service
  * Interactive destination cards, country showcase circuits, and spotlight data.
  */
@@ -18,8 +18,8 @@
   'use strict';
 
   const FALLBACK_UNIVERSAL = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';
-  const FALLBACK_AZERBAIJAN = 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1200&q=80';
-  const FALLBACK_GEORGIA = 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80';
+  const FALLBACK_AZERBAIJAN = 'assets/packages/baku-flame-towers.jpg';
+  const FALLBACK_GEORGIA = 'assets/packages/georgia-kazbegi.jpg';
 
   const POPULAR_DESTINATIONS_SLIDES = [
   {
@@ -1193,7 +1193,7 @@
             category: '— MEDIEVAL WALLS & CASPIAN SEASIDE',
             description: 'Explore ancient cobblestone labyrinths inside UNESCO Icherisheher, climb Maiden Tower, and admire the futuristic Flame Towers gleaming above the Caspian Boulevard.',
             checkmarks: ['UNESCO 12th-Century City Walls', 'Iconic Maiden Tower & Shirvanshahs', 'Highland Park Flame Towers Vista'],
-            image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80'
+            image: 'assets/packages/baku-flame-towers.jpg'
           },
           {
             name: 'Gobustan Mud Volcanoes',
@@ -1215,12 +1215,12 @@
         stay: '3 Nights in 4-Star Baku City Center + 1 Night in Shahdag Mountain Resort',
         gallery: [
           {
-            image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=800&q=80',
+            image: 'assets/packages/baku-flame-towers.jpg',
             tag: '📍 Day 1: Baku Flame Towers & Seaside Boulevard',
             title: 'Baku Flame Towers & Boulevard'
           },
           {
-            image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80',
+            image: 'assets/packages/baku-flame-towers.jpg',
             tag: '📍 Day 2: Old City (Icherisheher) & Maiden Tower',
             title: 'Old City (Icherisheher) & Maiden Tower'
           },
@@ -1235,8 +1235,8 @@
             title: 'Shahdag Winter Alpine Resort'
           }
         ],
-        image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
-        thumbnail: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
+        image: 'assets/packages/baku-flame-towers.jpg',
+        thumbnail: 'assets/packages/baku-flame-towers.jpg',
         description: 'Explore the historic alleys of UNESCO Icherisheher, stand beneath the futuristic Flame Towers, marvel at bubbling mud volcanoes in Gobustan, and ride panoramic cable cars into Shahdag Alpine Resort.',
         checklist: [
           'Baku Old City UNESCO Walk & Maiden Tower',
@@ -1318,7 +1318,7 @@
             category: '— HIGH CAUCASUS PEAKS & HERITAGE',
             description: 'Stand at 2,170 meters elevation beneath the dramatic 14th-century stone church with the snow-capped 5,054-meter Mount Kazbek towering in the background.',
             checkmarks: ['2,170m Elevation Caucasian Vistas', '14th-Century Stone Mountaintop Church', 'Mount Kazbek 5,054m Glacier Backdrop'],
-            image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80'
+            image: 'assets/packages/georgia-kazbegi.jpg'
           },
           {
             name: 'Old Tbilisi Sulphur Baths',
@@ -1326,7 +1326,7 @@
             category: '— HISTORIC THERMAL SPRINGS & STREETS',
             description: 'Wander through the domed brick baths of Abanotubani, climb to Narikala Fortress, and admire charming cliff-clinging 19th-century wooden carved balconies.',
             checkmarks: ['Natural Thermal Sulphur Bath Domes', 'Narikala Fortress Cable Car Climb', 'Historic Wooden Carved Balconies'],
-            image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=800&q=80'
+            image: 'assets/packages/georgia-kazbegi.jpg'
           },
           {
             name: 'Gudauri Mountain Panoramas',
@@ -1340,12 +1340,12 @@
         stay: '3 Nights in Old Tbilisi Boutique Hotel + 1 Night in Kazbegi Alpine Lodge (Rooms Hotel Kazbegi)',
         gallery: [
           {
-            image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=800&q=80',
+            image: 'assets/packages/georgia-kazbegi.jpg',
             tag: '📍 Day 1: Old Tbilisi Colorful Balconies & Narikala',
             title: 'Old Tbilisi Colorful Balconies & Narikala'
           },
           {
-            image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80',
+            image: 'assets/packages/georgia-kazbegi.jpg',
             tag: '📍 Day 2: Gergeti Trinity Church & Kazbek Peak',
             title: 'Gergeti Trinity Church & Kazbek Peak'
           },
@@ -1360,8 +1360,8 @@
             title: 'Gudauri Caucasus Ski Slopes'
           }
         ],
-        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
-        thumbnail: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
+        image: 'assets/packages/georgia-kazbegi.jpg',
+        thumbnail: 'assets/packages/georgia-kazbegi.jpg',
         description: 'Wander the sulfur bath cobblestone streets of Old Tbilisi, drive the scenic Georgian Military Highway past Ananuri Fortress and Jinvali Reservoir, and take a 4x4 up to 14th-century Gergeti Trinity Church under Mount Kazbek.',
         checklist: [
           'Old Tbilisi Walking Tour & Narikala Cable Car',
@@ -1665,7 +1665,7 @@
         title: 'OLD TBILISI',
         tagline: 'ANCIENT COBBLESTONE COURTYARDS & HISTORIC SULFUR BATHS',
         description: 'Wander through centuries of vibrant Caucasian culture in Old Tbilisi, with carved wooden balconies hanging above cobblestone lanes, iconic domed sulfur bathhouses of Abanotubani, and Narikala Fortress overlooking the Mtkvari river.',
-        image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80',
+        image: 'assets/packages/georgia-kazbegi.jpg',
         badge: 'Old Town',
         highlights: ['Narikala Fortress Cable Car', 'Abanotubani Sulfur Baths', 'Bridge of Peace', 'Shardeni Street Cafes'],
         packageId: 'georgia-kazbegi',
@@ -1677,7 +1677,7 @@
         title: 'KAZBEGI & GERGETI TRINITY',
         tagline: 'SNOW-CROWNED MOUNT KAZBEK & 14TH-CENTURY SANCTUARY',
         description: 'Travel the legendary Georgian Military Highway through the Caucasus range to Stepantsminda. Stand at the breathtaking 14th-century Gergeti Trinity Church perched 2,170m high against the backdrop of Mount Kazbek\'s 5,047m snow peaks.',
-        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
+        image: 'assets/packages/georgia-kazbegi.jpg',
         badge: 'High Caucasus',
         highlights: ['Gergeti Trinity Church 2,170m', 'Mount Kazbek 5,047m Glacier', 'Ananuri Fortress Complex', 'Zhinvali Emerald Reservoir'],
         packageId: 'georgia-kazbegi',
