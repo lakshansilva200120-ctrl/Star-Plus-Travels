@@ -223,6 +223,19 @@ const I18N_TRANSLATIONS = {
     navGetQuote: "Get Free Quote",
     navHiringBadge: "We're Hiring",
 
+    // Modular & Global Keys (js/translations.js)
+    nav_home: "Home",
+    nav_destinations: "Destinations",
+    nav_packages: "Packages",
+    nav_contact: "Contact Us",
+    hero_title: "Explore the World with Star Plus Travels",
+    hero_subtitle: "Curated luxury tours, seamless visa solutions, and unforgettable journeys.",
+    card_best_season: "Best Season:",
+    card_recommended: "Recommended:",
+    card_starting_from: "Starting from:",
+    card_view_details: "View Details",
+    footer_rights: "All rights reserved.",
+
     // Hero Section
     heroBadge: "STAR PLUS TRAVEL & TOURISM LLC • DUBAI & COLOMBO ★",
     heroTitleFull: '<span class="block">The Luxury Experience of a Trusted Journey,</span><span class="text-amber-400 block mt-1 sm:mt-1.5">Turn Your Global Travel Dream into Reality.</span>',
@@ -518,6 +531,19 @@ const I18N_TRANSLATIONS = {
     navGetQuote: "මිල ගණන් ලබාගන්න",
     navHiringBadge: "බඳවා ගැනේ",
 
+    // Modular & Global Keys (js/translations.js)
+    nav_home: "මුල් පිටුව",
+    nav_destinations: "ගමනාන්ත",
+    nav_packages: "පැකේජ",
+    nav_contact: "අප අමතන්න",
+    hero_title: "Star Plus Travels සමඟ ලොව වටා සංචාරය කරන්න",
+    hero_subtitle: "විශේෂිත සුඛෝපභෝගී සංචාර, වීසා සේවා සහ අමතක නොවන අත්දැකීම්.",
+    card_best_season: "හොඳම කාලය:",
+    card_recommended: "නිර්දේශිත කාලය:",
+    card_starting_from: "ආරම්භක මිල:",
+    card_view_details: "විස්තර බලන්න",
+    footer_rights: "සියලු හිමිකම් ඇවිරිණි.",
+
     // Hero Section
     heroBadge: "STAR PLUS TRAVEL & TOURISM LLC • ඩුබායි සහ ශ්රී ලංකාව ★",
     heroTitleFull: '<span class="block">විශ්වාසනීය ගමනක සුඛෝපභෝගී අත්දැකීම —</span><span class="text-amber-400 block mt-1 sm:mt-1.5">ඔබේ ලෝක සංචාරක සිහිනය සැබෑ කරගන්න.</span>',
@@ -788,6 +814,12 @@ const I18N_TRANSLATIONS = {
     bookNowBtn: "වෙන්කරන්න"
   }
 };
+
+// Seamless merge with external modular translations dictionary (js/translations.js)
+if (typeof translations !== 'undefined' && translations) {
+  if (translations.en && I18N_TRANSLATIONS.en) Object.assign(I18N_TRANSLATIONS.en, translations.en);
+  if (translations.si && I18N_TRANSLATIONS.si) Object.assign(I18N_TRANSLATIONS.si, translations.si);
+}
 
 const PACKAGES_I18N = {
   'dubai-luxury': {
