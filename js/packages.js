@@ -12,6 +12,10 @@
     const exports = factory();
     root.STARPLUS_PACKAGES = exports.PACKAGES;
     root.STARPLUS_COUNTRY_PACKAGES = exports.DESTINATION_COUNTRY_PACKAGES;
+    root.getLocalizedPackage = exports.getLocalizedPackage;
+    root.getLocalizedPackages = exports.getLocalizedPackages;
+    root.getLocalizedCountryPackages = exports.getLocalizedCountryPackages;
+    root.getActiveLanguage = exports.getActiveLanguage;
   }
 })(typeof self !== 'undefined' ? self : this, function() {
   'use strict';
@@ -224,9 +228,196 @@
     }
   };
 
+  const PACKAGES_LOCALIZED_SI = {
+    'dubai-luxury': {
+      title: 'ඩුබායි සහ කාන්තාර සෆාරි සුඛෝපභෝගී චාරිකාව',
+      destination: 'ඩුබායි, එක්සත් අරාබි එමීර් රාජ්‍යය',
+      duration: 'දින 5 / රාත්‍රී 4',
+      badge: 'වැඩිම ඉල්ලුමක් ඇති',
+      tagline: 'ආකර්ෂණීය නගර සිරි, සුඛෝපභෝගී කාන්තාර සෆාරි සහ මැරීනා යාත්‍රා චාරිකා',
+      editorialSummary: 'ඩුබායි හි අති නවීන තරු 5 හෝටල් නවාතැන්, රතු වැලි කඳු මත VIP 4x4 කාන්තාර සෆාරි සහ බාබකියු රාත්‍රී භෝජනය, මැරීනා යාත්‍රා චාරිකා සහ බර්ජ් කලීෆා නිරීක්ෂණාගාර ප්‍රවේශය සහිත සුඛෝපභෝගී අත්දැකීම.',
+      perks: ['තරු 5 සුඛෝපභෝගී හෝටල් නවාතැන්', 'VIP කාන්තාර සෆාරි සහ BBQ රාත්‍රී භෝජනය', 'බර්ජ් කලීෆා ඉහළ මාල ප්‍රවේශය', 'ඩුබායි මැරීනා යාත්‍රා චාරිකාව', 'පෞද්ගලික ගුවන් තොටුපළ ප්‍රවාහනය']
+    },
+    'baku-azerbaijan': {
+      title: 'බාකු සහ අසර්බයිජානයේ කොකේසස් ආශ්චර්යය',
+      destination: 'බාකු සහ ගබාලා, අසර්බයිජානය',
+      duration: 'දින 5 / රාත්‍රී 4',
+      badge: 'ප්‍රමුඛ',
+      tagline: 'ගිනිදැල් දේශය, කැස්පියන් මුහුදු සුළඟ සහ ඓතිහාසික උරුමය',
+      editorialSummary: 'යුරෝපය සහ ආසියාව එක්වන බාකු අගනුවර සංචාරය කරන්න. යුනෙස්කෝ පැරණි නගරය, නූතන ගිනිදැල් කුළුණු සහ ගබාලා හි මනරම් කඳුකර අත්දැකීම විඳගන්න.',
+      perks: ['තරු 4/5 හෝටල් නවාතැන්', 'බාකු නගර චාරිකාව සහ ගිනිදැල් කුළුණු', 'ගබාලා කේබල් කාර් සහ ඇල්පයින් චාරිකාව', 'ගොබුස්තාන් මඩ ගිනිකඳු නැරඹීම', 'පෞද්ගලික වායුසමනය කළ ප්‍රවාහනය']
+    },
+    'georgia-kazbegi': {
+      title: 'සුන්දර ජෝර්ජියාව: ටිබිලිසි, කස්බෙගි සහ ගුඩවුරි',
+      destination: 'ටිබිලිසි සහ කොකේසස්, ජෝර්ජියාව',
+      duration: 'දින 6 / රාත්‍රී 5',
+      badge: 'ශීත ඍතු විශේෂ',
+      tagline: 'පෞරාණික දේවස්ථාන, හිමෙන් වැසුණු කොකේසස් කඳු සහ ස්වභාවික සුන්දරත්වය',
+      editorialSummary: 'ටිබිලිසි හි ඓතිහාසික මංමාවත්, මීටර් 5,047 ක් උසැති කස්බෙගි කඳු මුදුන, ගර්ගෙටි ත්‍රිත්ව දේවස්ථානය සහ ගුඩවුරි හිම ක්‍රීඩා නිම්නය ගවේෂණය කරන්න.',
+      perks: ['ටිබිලිසි පැරණි නගරයේ තරු 4 බුටික් හෝටල්', 'කස්බෙගි සහ ගර්ගෙටි 4x4 ජීප් චාරිකාව', 'ගුඩවුරි ඇල්පයින් ස්කී නිම්න නැරඹීම', 'කාකෙටි වයින් නිම්න සංචාරය', 'පෞද්ගලික රියදුරු සහ මගපෙන්වීම්']
+    },
+    'sri-lanka-wildlife': {
+      title: 'සුන්දර ශ්‍රී ලංකාව: තේ වතු, වනජීවී සෆාරි සහ වෙරළ',
+      destination: 'කොළඹ, මහනුවර සහ බෙන්තොට',
+      duration: 'දින 6 / රාත්‍රී 5',
+      badge: 'ජනප්‍රියම',
+      tagline: 'තේ වතු, යුනෙස්කෝ උරුම, වනජීවී සෆාරි සහ රන්වන් වෙරළ',
+      editorialSummary: 'මනරම් ශ්‍රී ලංකාව ගවේෂණය කරන්න: සීගිරිය පර්වත බලකොටුව, මහනුවර ශ්‍රී දළදා මාළිගාව, ඇල්ල නිල් දුම්රිය චාරිකාව සහ බෙන්තොට රන්වන් වෙරළ තීරය.',
+      perks: ['තරු 4/5 තෝරාගත් හෝටල් නවාතැන්', 'සීගිරිය සහ දඹුල්ල ගල් ලෙන් විහාර නැරඹීම', 'මහනුවර සංස්කෘතික නර්තන හා දළදා වන්දනාව', 'යාල වනජීවී සෆාරි චාරිකාව', 'පෞද්ගලික වායුසමනය කළ වාහනයක් සමඟ රියදුරු සහාය']
+    },
+    'maldives-all-inclusive': {
+      title: 'මාලදිවයින දියමත විලා සුඛෝපභෝගී නිවාඩුව',
+      destination: 'උතුරු මාලේ අතොළුව, මාලදිවයින',
+      duration: 'දින 4 / රාත්‍රී 3',
+      badge: 'රොමෑන්ටික් නිවාඩුවක්',
+      tagline: 'දියමත විලා, නිල්වන් කලපු සහ පෞද්ගලික දූපත් සුඛෝපභෝගී බව',
+      editorialSummary: 'සුඛෝපභෝගී දියමත විලා නවාතැන්, සියලු ආහාරපාන ඇතුළත් කෑම බීම, ස්නෝකර්ලින් සහ කෲස් චාරිකා සමඟ අමතක නොවන මාලදිවයින් නිවාඩුවක්.',
+      perks: ['දියමත පෞද්ගලික පූල් විලා නවාතැන්', 'සියලු ආහාරපාන සහ බීම වර්ග ඇතුළත් (All-Inclusive)', 'ස්පීඩ්බෝට් හෝ මුහුදු ගුවන් යානා ප්‍රවාහනය', 'කොරල් පර ආශ්‍රිත ස්නෝකර්ලින් සහ ජල ක්‍රීඩා', 'හිරු බැසයන සැන්දෑ කෲස් චාරිකාව']
+    },
+    'bali-luxury-nature': {
+      title: 'ස්වර්ගීය බාලි චාරිකාව: උබුඩ් සහ සෙමින්‍යක්',
+      destination: 'බාලි, ඉන්දුනීසියාව',
+      duration: 'දින 7 / රාත්‍රී 6',
+      badge: 'වැඩිම ඉල්ලුමක් ඇති',
+      tagline: 'නිවර්තන වනපෙත්, පූජනීය කෝවිල් සහ වෙරළාශ්‍රිත විවේකය',
+      editorialSummary: 'උබුඩ් හි නිවර්තන වනගත සුන්දරත්වය, තේගල්ලාං පඩිපෙළ කුඹුරු, තනාහ් ලොට් මුහුදු කෝවිල සහ සෙමින්‍යක් හි වෙරළාශ්‍රිත සුඛෝපභෝගී නිවාඩුව.',
+      perks: ['උබුඩ් පෞද්ගලික පූල් විලා සහ සෙමින්‍යක් රිසෝට් නවාතැන්', 'උබුඩ් ඔන්චිල්ලාව සහ කුඹුරු යාය නැරඹීම', 'තනාහ් ලොට් සහ උළුවතු කෝවිල් සංචාරය', 'බාලි සම්බාහන සහ ස්පා අත්දැකීම්', 'පෞද්ගලික රියදුරු සහිත සම්පූර්ණ ප්‍රවාහනය']
+    }
+  };
+
+  const COUNTRY_PACKAGES_LOCALIZED_SI = {
+    srilanka: {
+      country: 'ශ්‍රී ලංකාව: සීගිරිය, නුවරඑළිය සහ යාල',
+      badge: 'යුනෙස්කෝ ලෝක උරුම සහ ස්වභාව සෞන්දර්යය',
+      season: 'වසර පුරාම (නොවැම්බර් – අප්‍රේල් / මැයි – සැප්තැම්බර්)',
+      packages: [
+        {
+          id: 'sl-heritage-5d4n',
+          title: 'දින 5 / රාත්‍රී 4 ශ්‍රී ලංකා සංස්කෘතික සහ කඳුකර චාරිකාව',
+          badge: 'සංස්කෘතික උරුමය',
+          duration: 'දින 5 / රාත්‍රී 4',
+          stay: 'මහනුවර සහ නුවරඑළිය තරු 4 හෝටල්'
+        },
+        {
+          id: 'sl-wildlife-beach-6d5n',
+          title: 'දින 6 / රාත්‍රී 5 යාල වනජීවී සහ දකුණු වෙරළ චාරිකාව',
+          badge: 'වනජීවී සහ වෙරළ',
+          duration: 'දින 6 / රාත්‍රී 5',
+          stay: 'යාල සෆාරි ලොජ් සහ බෙන්තොට වෙරළ රිසෝට්'
+        }
+      ]
+    },
+    azerbaijan: {
+      country: 'බාකු සහ කොකේසස්, අසර්බයිජානය',
+      badge: 'ගිනිදැල් දේශය සහ සිල්ක් මාවත',
+      season: 'අප්‍රේල් – ජූනි සහ සැප්තැම්බර් – නොවැම්බර්',
+      packages: [
+        {
+          id: 'baku-shahdag-5d4n',
+          title: 'දින 5 / රාත්‍රී 4 බාකු සහ ශහ්ඩැග් හිම කඳුකර චාරිකාව',
+          badge: 'නගර සහ ඇල්පයින් සුසංයෝගය',
+          duration: 'දින 5 / රාත්‍රී 4',
+          stay: 'බාකු තරු 4 හෝටලය + ශහ්ඩැග් මවුන්ටන් රිසෝට්'
+        },
+        {
+          id: 'azerbaijan-silkroad-6d5n',
+          title: 'දින 6 / රාත්‍රී 5 අසර්බයිජාන් සිල්ක් මාවත සහ ෂෙකි චාරිකාව',
+          badge: 'සිල්ක් මාවත ගවේෂණය',
+          duration: 'දින 6 / රාත්‍රී 5',
+          stay: 'බාකු, ගබාලා සහ ෂෙකි හි තරු 4 හෝටල්'
+        }
+      ]
+    },
+    georgia: {
+      country: 'ටිබිලිසි සහ කස්බෙගි, ජෝර්ජියාව',
+      badge: 'කොකේසස් ආශ්චර්යය සහ ඓතිහාසික උරුමය',
+      season: 'මැයි – ඔක්තෝබර් / ශීත ඍතු හිම ක්‍රීඩා',
+      packages: [
+        {
+          id: 'georgia-kazbegi-5d4n',
+          title: 'දින 5 / රාත්‍රී 4 සුන්දර ජෝර්ජියා සහ කස්බෙගි ඇල්පයින් චාරිකාව',
+          badge: 'කොකේසස් කඳු මුදුන්',
+          duration: 'දින 5 / රාත්‍රී 4',
+          stay: 'පැරණි ටිබිලිසි තරු 4 බුටික් හෝටලය සහ ගුඩවුරි රිසෝට්'
+        },
+        {
+          id: 'georgia-wine-mountain-6d5n',
+          title: 'දින 6 / රාත්‍රී 5 ජෝර්ජියා වයින් නිම්න සහ කඳුකර සුන්දරත්වය',
+          badge: 'වයින් සහ රොමෑන්තික බව',
+          duration: 'දින 6 / රාත්‍රී 5',
+          stay: 'ටිබිලිසි සහ කාකෙටි වයින් නිම්නයේ තරු 4 හෝටල්'
+        }
+      ]
+    }
+  };
+
+  function getActiveLanguage() {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        const lang = localStorage.getItem('site_lang') || localStorage.getItem('pref_lang') || localStorage.getItem('starplus_lang');
+        if (lang === 'si' || lang === 'en') return lang;
+      }
+    } catch (e) {}
+    return 'en';
+  }
+
+  function getLocalizedPackage(pkg, lang) {
+    if (!pkg) return pkg;
+    const currentLang = lang || getActiveLanguage();
+    if (currentLang !== 'si') return pkg;
+    const siData = PACKAGES_LOCALIZED_SI[pkg.id];
+    if (!siData) return pkg;
+    return Object.assign({}, pkg, {
+      title: siData.title || pkg.title,
+      destination: siData.destination || pkg.destination,
+      duration: siData.duration || pkg.duration,
+      badge: siData.badge || pkg.badge,
+      tagline: siData.tagline || pkg.tagline,
+      editorialSummary: siData.editorialSummary || pkg.editorialSummary,
+      perks: siData.perks || pkg.perks
+    });
+  }
+
+  function getLocalizedPackages(packagesList, lang) {
+    const list = packagesList || PACKAGES;
+    const currentLang = lang || getActiveLanguage();
+    return list.map(pkg => getLocalizedPackage(pkg, currentLang));
+  }
+
+  function getLocalizedCountryPackages(countryKey, lang) {
+    const currentLang = lang || getActiveLanguage();
+    const data = DESTINATION_COUNTRY_PACKAGES[countryKey];
+    if (!data) return null;
+    if (currentLang !== 'si') return data;
+    const siData = COUNTRY_PACKAGES_LOCALIZED_SI[countryKey];
+    if (!siData) return data;
+
+    const localizedPackages = (data.packages || []).map(p => {
+      const siPkg = (siData.packages || []).find(sp => sp.id === p.id);
+      if (!siPkg) return p;
+      return Object.assign({}, p, {
+        title: siPkg.title || p.title,
+        badge: siPkg.badge || p.badge,
+        duration: siPkg.duration || p.duration,
+        stay: siPkg.stay || p.stay
+      });
+    });
+
+    return Object.assign({}, data, {
+      country: siData.country || data.country,
+      badge: siData.badge || data.badge,
+      season: siData.season || data.season,
+      packages: localizedPackages
+    });
+  }
+
   return {
     PACKAGES,
     DESTINATION_COUNTRY_PACKAGES,
+    getLocalizedPackage,
+    getLocalizedPackages,
+    getLocalizedCountryPackages,
+    getActiveLanguage,
     FALLBACK_UNIVERSAL,
     FALLBACK_AZERBAIJAN,
     FALLBACK_GEORGIA

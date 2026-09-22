@@ -13,6 +13,10 @@
     root.STARPLUS_COUNTRY_SHOWCASE = exports.COUNTRY_SHOWCASE_DATA;
     root.STARPLUS_POPULAR_DESTINATIONS = exports.POPULAR_DESTINATIONS_SLIDES;
     root.STARPLUS_SPOTLIGHT_DESTINATIONS = exports.SPOTLIGHT_DESTINATIONS_DATA;
+    root.getLocalizedPopularDestinations = exports.getLocalizedPopularDestinations;
+    root.getLocalizedCountryShowcase = exports.getLocalizedCountryShowcase;
+    root.getLocalizedDestinationSlide = exports.getLocalizedDestinationSlide;
+    root.getActiveLanguage = exports.getActiveLanguage;
   }
 })(typeof self !== 'undefined' ? self : this, function() {
   'use strict';
@@ -1707,10 +1711,159 @@
   }
 };
 
+  const DESTINATIONS_LOCALIZED_SI = {
+    'sigiriya-kandy': {
+      title: 'සීගිරිය සහ මහනුවර',
+      subtitle: 'සංස්කෘතික ත්‍රිකෝණය සහ ඓතිහාසික බලකොටු',
+      category: 'සංස්කෘතික',
+      duration: 'දින 5 / රාත්‍රී 4',
+      description: 'මීටර් 200ක් උසින් නිවර්තන වනාන්තර මත නැගී සිටින යුනෙස්කෝ ලෝක උරුම සීගිරිය සිංහගිරි පර්වත බලකොටුව තරණය කරන්න. දඹුල්ල රන්වන් ගල් ලෙන් විහාරය සහ මහනුවර ශ්‍රී දළදා මාළිගාවේ තේවාවන් නැරඹීමේ අසිරිමත් අත්දැකීම.',
+      highlights: [
+        'සීගිරිය 5 වන සියවසේ ලෝක උරුම සිංහ පර්වත බලකොටුව',
+        'දඹුල්ල රන්වන් ගල් ලෙන් විහාර සංකීර්ණය',
+        'ශ්‍රී දන්ත ධාතූන් වහන්සේ වැඩසිටින ශ්‍රී දළදා මාළිගාව (මහනුවර)',
+        'පොළොන්නරුව පුරාණ රාජධානියේ ඓතිහාසික නටබුන්'
+      ]
+    },
+    'ella-nuwaraeliya': {
+      title: 'ඇල්ල සහ නුවරඑළිය',
+      subtitle: 'මීදුම්බර කඳුකරය සහ ඇල්පයින් තේ නිම්න',
+      category: 'කඳුකරය',
+      duration: 'දින 5 / රාත්‍රී 4',
+      description: 'මීදුම්බර කඳු නිම්න සහ සුප්‍රසිද්ධ දෙමෝදර ආරුක්කු නවයේ පාලම හරහා ගමන් කරන ලෝක ප්‍රකට නිල් දුම්රිය චාරිකාව විඳගන්න. "පුංචි එංගලන්තය" ලෙස විරුදාවලී ලත් නුවරඑළියේ තේ වතු, මනරම් දියඇලි සහ හෝටන් තැන්න ලෝකාන්තය නරඹන්න.',
+      highlights: [
+        'දෙමෝදර ආරුක්කු නවයේ පාලම සහ නිල් දුම්රිය චාරිකාව',
+        'නුවරඑළිය සිසිල් කඳුකරය සහ සිලෝන් තේ වතු චාරිකාව',
+        'පුංචි සිරිපාදය සහ රාවණා ඇල්ල නැරඹීම',
+        'හෝටන් තැන්න ජාතික වනෝද්‍යානය සහ ලෝකාන්තය'
+      ]
+    },
+    'yala-mirissa': {
+      title: 'යාල සහ මිරිස්ස',
+      subtitle: 'කොටි සෆාරි සහ තල්මසුන් නැරඹීම',
+      category: 'වනජීවී සහ වෙරළ',
+      duration: 'දින 5 / රාත්‍රී 4',
+      description: 'ලොව ඉහළම දිවියන් ඝනත්වයක් සහිත යාල ජාතික වනෝද්‍යානයේ 4x4 ජීප් සෆාරි චාරිකාවක නිරත වන්න. මිරිස්ස සාගරයේ තල්මසුන් නැරඹීම, ගාලු ඓතිහාසික ලන්දේසි කොටුව සහ දකුණු වෙරළ තීරයේ සුන්දරත්වය විඳගන්න.',
+      highlights: [
+        'යාල ජාතික වනෝද්‍යානයේ 4x4 දිවියන් සහ වනජීවී සෆාරි',
+        'මිරිස්ස ගැඹුරු මුහුදේ නිල් තල්මසුන් නැරඹීමේ චාරිකාව',
+        'යුනෙස්කෝ ලෝක උරුම ගාල්ල ලන්දේසි බලකොටුව',
+        'බෙන්තොට රන්වන් වෙරළ තීරය සහ ජල ක්‍රීඩා'
+      ]
+    },
+    'dubai-luxury': {
+      title: 'ඩුබායි සහ කාන්තාර සෆාරි',
+      subtitle: 'අති සුඛෝපභෝගී නගරය සහ මැරීනා යාත්‍රා',
+      category: 'සුඛෝපභෝගී',
+      duration: 'දින 5 / රාත්‍රී 4',
+      description: 'ඩුබායි නගරයේ අති නවීන අහස උසට නැගි ගොඩනැගිලි, බර්ජ් කලීෆා නිරීක්ෂණාගාරය, රතු වැලි කඳු මත ත්‍රාසජනක 4x4 කාන්තාර සෆාරි සහ සුඛෝපභෝගී මැරීනා යාත්‍රා චාරිකා සහිත අසමසම අත්දැකීම.',
+      highlights: [
+        'බර්ජ් කලීෆා 124/125 මහල් නිරීක්ෂණාගාරය',
+        'VIP රතු වැලි කඳු කාන්තාර සෆාරි සහ BBQ රාත්‍රී භෝජනය',
+        'ඩුබායි මැරීනා සුඛෝපභෝගී යාත්‍රා චාරිකාව',
+        'ඩුබායි සාප්පු සංකීර්ණය සහ සංගීතමය දියමල් සංදර්ශනය'
+      ]
+    },
+    'baku-shahdag': {
+      title: 'බාකු සහ ශහ්ඩැග්',
+      subtitle: 'ගිනිදැල් කුළුණු සහ කොකේසස් හිම කඳු',
+      category: 'ඇල්පයින් සහ උරුමය',
+      duration: 'දින 5 / රාත්‍රී 4',
+      description: 'බාකු හි යුනෙස්කෝ පැරණි නගරය, අති නවීන ගිනිදැල් කුළුණු සහ ශහ්ඩැග් මවුන්ටන් රිසෝට් හි ඇල්පයින් හිම ක්‍රීඩා හා කඳුකර සුන්දරත්වය එක්තැන් වූ අපූර්ව චාරිකාවක්.',
+      highlights: [
+        'බාකු පැරණි නගරය (ඉචෙරිෂෙහර්) සහ කන්‍යා කුළුණ',
+        'අති නවීන ගිනිදැල් කුළුණු සහ කැස්පියන් බුලිවාඩ්',
+        'ශහ්ඩැග් කඳුකර රිසෝට් සහ කේබල් කාර් චාරිකාව',
+        'ගොබුස්තාන් ඓතිහාසික පාෂාණ සිතුවම් සහ මඩ ගිනිකඳු'
+      ]
+    },
+    'georgia-kazbegi': {
+      title: 'ටිබිලිසි සහ කස්බෙගි',
+      subtitle: 'පැරණි නගරය සහ මහා කොකේසස් කඳු',
+      category: 'කඳුකර සහ සංස්කෘතික',
+      duration: 'දින 6 / රාත්‍රී 5',
+      description: 'ටිබිලිසි පැරණි නගරයේ ගල් අතුළ මාවත්, සල්ෆර් නාන තටාක, මීටර් 5,047 ක් උසැති කස්බෙගි හිම කඳු මුදුන සහ ගර්ගෙටි ත්‍රිත්ව දේවස්ථානය නැරඹීමේ සිහිනයක් බඳු අත්දැකීම.',
+      highlights: [
+        'ටිබිලිසි පැරණි නගරය සහ නාරිකලා බලකොටු කේබල් කාර්',
+        'කස්බෙගි ගර්ගෙටි ත්‍රිත්ව දේවස්ථානය සහ 4x4 කඳුකර ගමන',
+        'ජෝර්ජියානු යුද මාවත සහ අනනූරි බලකොටුව',
+        'ගුඩවුරි මහා කොකේසස් මිත්‍රත්ව ස්මාරකය'
+      ]
+    }
+  };
+
+  const COUNTRY_SHOWCASE_LOCALIZED_SI = {
+    srilanka: {
+      country: 'ශ්‍රී ලංකාව: ඉන්දියන් සාගරයේ මුතු ඇටය සහ පුරාණ උරුමය',
+      badge: 'යුනෙස්කෝ ලෝක උරුම සහ ස්වභාව සෞන්දර්යය',
+      categoryTag: 'ජනප්‍රියම ගමනාන්ත'
+    },
+    azerbaijan: {
+      country: 'අසර්බයිජානය: ගිනිදැල් දේශය සහ සිල්ක් මාවතේ උරුමය',
+      badge: 'සිල්ක් මාවත සහ ඇල්පයින් සුන්දරත්වය',
+      categoryTag: 'ජනප්‍රියම ගමනාන්ත'
+    },
+    georgia: {
+      country: 'ජෝර්ජියාව: කොකේසස් ආශ්චර්යය සහ ඇල්පයින් සුන්දරත්වය',
+      badge: 'කොකේසස් කඳුකරය සහ පැරණි සංස්කෘතිය',
+      categoryTag: 'ජනප්‍රියම ගමනාන්ත'
+    }
+  };
+
+  function getActiveLanguage() {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        const lang = localStorage.getItem('site_lang') || localStorage.getItem('pref_lang') || localStorage.getItem('starplus_lang');
+        if (lang === 'si' || lang === 'en') return lang;
+      }
+    } catch (e) {}
+    return 'en';
+  }
+
+  function getLocalizedDestinationSlide(slide, lang) {
+    if (!slide) return slide;
+    const currentLang = lang || getActiveLanguage();
+    if (currentLang !== 'si') return slide;
+    const si = DESTINATIONS_LOCALIZED_SI[slide.id];
+    if (!si) return slide;
+    return Object.assign({}, slide, {
+      title: si.title || slide.title,
+      subtitle: si.subtitle || slide.subtitle,
+      category: si.category || slide.category,
+      duration: si.duration || slide.duration,
+      description: si.description || slide.description,
+      highlights: si.highlights || slide.highlights
+    });
+  }
+
+  function getLocalizedPopularDestinations(slidesList, lang) {
+    const list = slidesList || POPULAR_DESTINATIONS_SLIDES;
+    const currentLang = lang || getActiveLanguage();
+    return list.map(slide => getLocalizedDestinationSlide(slide, currentLang));
+  }
+
+  function getLocalizedCountryShowcase(countryKey, lang) {
+    const currentLang = lang || getActiveLanguage();
+    const data = COUNTRY_SHOWCASE_DATA[countryKey];
+    if (!data) return null;
+    if (currentLang !== 'si') return data;
+    const si = COUNTRY_SHOWCASE_LOCALIZED_SI[countryKey];
+    if (!si) return data;
+    return Object.assign({}, data, {
+      country: si.country || data.country,
+      badge: si.badge || data.badge,
+      categoryTag: si.categoryTag || data.categoryTag
+    });
+  }
+
   return {
     POPULAR_DESTINATIONS_SLIDES,
     COUNTRY_SHOWCASE_DATA,
     SPOTLIGHT_DESTINATIONS_DATA,
+    getLocalizedPopularDestinations,
+    getLocalizedCountryShowcase,
+    getLocalizedDestinationSlide,
+    getActiveLanguage,
     FALLBACK_UNIVERSAL,
     FALLBACK_AZERBAIJAN,
     FALLBACK_GEORGIA

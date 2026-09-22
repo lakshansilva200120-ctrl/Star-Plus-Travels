@@ -3800,7 +3800,7 @@ window.updateBrandLogoTheme = updateBrandLogoTheme;
 // ==========================================================================
 function getPreferredLanguage() {
   try {
-    const stored = localStorage.getItem('pref_lang') || localStorage.getItem('starplus_lang');
+    const stored = localStorage.getItem('site_lang') || localStorage.getItem('pref_lang') || localStorage.getItem('starplus_lang');
     if (stored === 'si' || stored === 'en') {
       return stored;
     }
@@ -3998,8 +3998,36 @@ function updateOpenModalsLanguage(lang) {
   // 3. Country Showcase Modal
   const showcaseModal = document.getElementById('destinationsModal') || document.getElementById('countryShowcaseModal');
   if (showcaseModal && !showcaseModal.classList.contains('hidden') && typeof currentShowcaseCountryKey !== 'undefined' && currentShowcaseCountryKey) {
+    if (typeof populateShowcaseData === 'function') {
+      populateShowcaseData(currentShowcaseCountryKey);
+    }
     if (typeof updateShowcaseTourUI === 'function') {
-      updateShowcaseTourUI(typeof currentTourIndex !== 'undefined' ? currentTourIndex : 0, false);
+      updateShowcaseTourUI(typeof currentTourIndex !== 'undefined' ? currentTourIndex : (typeof currentShowcaseTourIndex !== 'undefined' ? currentShowcaseTourIndex : 0), false);
+    }
+  }
+
+  // 4. Regional Country Packages Modal
+  const countryPkgModal = document.getElementById('countryPackagesModal');
+  if (countryPkgModal && !countryPkgModal.classList.contains('hidden') && typeof currentActiveCountryPackagesKey !== 'undefined' && currentActiveCountryPackagesKey) {
+    if (typeof openCountryPackages === 'function') {
+      openCountryPackages(currentActiveCountryPackagesKey);
+    }
+  }
+
+  // 5. Showcase Itinerary Modal (Drawer)
+  const showcaseItinModal = document.getElementById('showcaseItineraryModal');
+  if (showcaseItinModal && !showcaseItinModal.classList.contains('hidden') && typeof currentActiveShowcaseTour !== 'undefined' && currentActiveShowcaseTour) {
+    if (typeof openShowcaseItinerary === 'function') {
+      openShowcaseItinerary(currentActiveShowcaseTour);
+    }
+  }
+
+  // 6. Popular Destinations Slider / Cards
+  const destTrack = document.getElementById('destCardsTrack');
+  if (destTrack && typeof initDestinationSlider === 'function') {
+    initDestinationSlider();
+    if (typeof updateActiveSlideUI === 'function') {
+      updateActiveSlideUI(typeof currentDestSlideIndex !== 'undefined' ? currentDestSlideIndex : 0, false);
     }
   }
 }
@@ -5322,9 +5350,20 @@ const DESTINATION_COUNTRY_PACKAGES = {
   }
 };
 
+let currentActiveCountryPackagesKey = null;
+
 function openCountryPackages(countryKey) {
-  const data = DESTINATION_COUNTRY_PACKAGES[countryKey];
+  currentActiveCountryPackagesKey = countryKey;
+  const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : (localStorage.getItem('site_lang') || 'en');
+  const isSi = (currentLang === 'si');
+
+  let data = DESTINATION_COUNTRY_PACKAGES[countryKey];
   if (!data) return;
+
+  if (isSi && typeof getLocalizedCountryPackages === 'function') {
+    const loc = getLocalizedCountryPackages(countryKey, 'si');
+    if (loc) data = loc;
+  }
 
   const modal = document.getElementById('countryPackagesModal');
   const titleElem = document.getElementById('countryModalTitle');
@@ -5339,13 +5378,14 @@ function openCountryPackages(countryKey) {
   if (titleElem) titleElem.textContent = data.country;
   if (badgeElem) badgeElem.textContent = data.badge;
   if (seasonElem) {
-    seasonElem.innerHTML = `<i class="fa-solid fa-calendar text-amber-400/80 mr-1.5"></i>Best Season: ${data.season}`;
+    seasonElem.innerHTML = `<i class="fa-solid fa-calendar text-amber-400/80 mr-1.5"></i>${isSi ? 'හොඳම කාලය:' : 'Best Season:'} ${data.season}`;
   }
   if (iconElem) {
     iconElem.className = `fa-solid ${data.icon || 'fa-earth-asia'}`;
   }
   if (customBtn) {
-    customBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(`Hi Star Plus, I would like to design a customized holiday itinerary for ${data.country}. Please connect me with a specialist.`)}`;
+    customBtn.textContent = isSi ? 'සුවිශේෂී සංචාරක සැලැස්මක් ඉල්ලන්න' : 'Request Custom Itinerary';
+    customBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(isSi ? `හෙලෝ Star Plus Travels, මම ${data.country} සඳහා සුවිශේෂී සංචාරක සැලැස්මක් ලබාගැනීමට කැමතියි.` : `Hi Star Plus, I would like to design a customized holiday itinerary for ${data.country}. Please connect me with a specialist.`)}`;
   }
 
   bodyElem.innerHTML = `
@@ -5354,6 +5394,7 @@ function openCountryPackages(countryKey) {
         const formattedPrice = typeof formatPrice === 'function' ? formatPrice(pkg.priceAED) : `AED ${pkg.priceAED.toLocaleString()}`;
         const installmentAmount = Math.round(pkg.priceAED / 4);
         const formattedInstallment = typeof formatPrice === 'function' ? formatPrice(installmentAmount) : `AED ${installmentAmount.toLocaleString()}`;
+        const isSl = countryKey === 'srilanka' || (pkg.id && pkg.id.includes('sl-'));
         
         return `
           <div class="regional-tour-card glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/40 bg-slate-900/80 flex flex-col justify-between shadow-xl">
@@ -5379,7 +5420,7 @@ function openCountryPackages(countryKey) {
                 
                 <div class="bg-slate-950/60 rounded-xl p-3 border border-slate-800/80 space-y-1.5">
                   <div class="text-[11px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                    <i class="fa-solid fa-star text-[10px]"></i> Tour Highlights & Inclusions
+                    <i class="fa-solid fa-star text-[10px]"></i> ${isSi ? 'සංචාරක විශේෂතා සහ ඇතුළත් දෑ' : 'Tour Highlights & Inclusions'}
                   </div>
                   <ul class="text-[11px] text-slate-300 space-y-1">
                     ${pkg.highlights.map(h => `<li class="flex items-start space-x-1.5"><i class="fa-solid fa-check text-amber-400 mt-0.5 text-[10px] flex-shrink-0"></i><span>${h}</span></li>`).join('')}
@@ -5389,7 +5430,7 @@ function openCountryPackages(countryKey) {
                 ${pkg.stay ? `
                 <div class="flex items-center space-x-2 text-[11px] text-slate-400 pt-1">
                   <i class="fa-solid fa-hotel text-amber-400/80"></i>
-                  <span><strong class="text-slate-300">Stay:</strong> ${pkg.stay}</span>
+                  <span><strong class="text-slate-300">${isSi ? 'නවාතැන්:' : 'Stay:'}</strong> ${pkg.stay}</span>
                 </div>
                 ` : ''}
               </div>
@@ -5398,26 +5439,26 @@ function openCountryPackages(countryKey) {
             <div class="p-4 sm:p-5 pt-0 border-t border-slate-800/80 mt-2">
               <div class="flex items-baseline justify-between pt-3 pb-3">
                 <div>
-                  <span class="text-[10px] text-slate-400 block uppercase tracking-wider">Starting from</span>
+                  <span class="text-[10px] text-slate-400 block uppercase tracking-wider">${isSi ? 'ආරම්භක මිල' : 'Starting from'}</span>
                   <div class="flex items-baseline gap-1.5 flex-wrap">
                     <span class="price-aed text-lg sm:text-xl font-black text-amber-400 font-heading" data-base-aed="${pkg.priceAED}">${formattedPrice}</span>
-                    <span class="price-secondary text-xs text-amber-500/90 font-medium" data-secondary-for="${pkg.priceAED}">(${formatSecondaryPrice(pkg.priceAED)})</span>
+                    ${!isSl ? `<span class="price-secondary text-xs text-amber-500/90 font-medium" data-secondary-for="${pkg.priceAED}">(${formatSecondaryPrice(pkg.priceAED)})</span>` : ''}
                   </div>
-                  <span class="text-[10px] text-slate-400">/ person</span>
+                  <span class="text-[10px] text-slate-400">${isSi ? '/ පුද්ගලයෙකුට' : '/ person'}</span>
                 </div>
                 <div class="text-right">
-                  <span class="text-[10px] text-emerald-400 font-semibold block">Tabby 4x ${formattedInstallment}/mo</span>
-                  <span class="text-[9px] text-slate-500">Taxes & Transfers Included</span>
+                  <span class="text-[10px] text-emerald-400 font-semibold block">${isSi ? `හෝ Tabby මගින් 4x ${formattedInstallment}` : `Tabby 4x ${formattedInstallment}/mo`}</span>
+                  <span class="text-[9px] text-slate-500">${isSi ? 'බදු සහ ප්‍රවාහන ගාස්තු ඇතුළත්ය' : 'Taxes & Transfers Included'}</span>
                 </div>
               </div>
 
               <div class="flex items-center gap-2">
                 <a href="https://wa.me/971527582293?text=${encodeURIComponent(pkg.whatsappMsg)}" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center space-x-1.5 shadow-lg shadow-amber-500/20">
                   <i class="fa-brands fa-whatsapp text-sm"></i>
-                  <span>Inquire Package</span>
+                  <span>${isSi ? 'විමසන්න' : 'Inquire Package'}</span>
                 </a>
                 <a href="packages.html" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition-all flex items-center justify-center" title="Full Itinerary">
-                  <span>Itinerary</span>
+                  <span>${isSi ? 'විස්තර' : 'Itinerary'}</span>
                   <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
                 </a>
               </div>
@@ -5567,8 +5608,11 @@ function initDestinationSlider() {
   const showcase = document.getElementById('destinationsShowcase');
   if (!track || !showcase) return;
 
+  const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : (localStorage.getItem('site_lang') || 'en');
+  const slides = (currentLang === 'si' && typeof getLocalizedPopularDestinations === 'function') ? getLocalizedPopularDestinations(POPULAR_DESTINATIONS_SLIDES, 'si') : POPULAR_DESTINATIONS_SLIDES;
+
   // Render Horizontal Cards
-  track.innerHTML = POPULAR_DESTINATIONS_SLIDES.map((slide, idx) => {
+  track.innerHTML = slides.map((slide, idx) => {
     const formattedPrice = typeof formatPrice === 'function' ? formatPrice(slide.priceAED) : `AED ${slide.priceAED.toLocaleString()}`;
     return `
       <div class="dest-preview-card ${idx === 0 ? 'active' : ''}" 
@@ -5609,27 +5653,32 @@ function initDestinationSlider() {
     `;
   }).join('');
 
-  // Render Indicator Dots
-  const dotsContainer = document.getElementById('sliderDotsContainer');
+  // Render Dots
+  const dotsContainer = document.getElementById('sliderDots');
+  const totalElem = document.getElementById('sliderTotalCount');
   if (dotsContainer) {
     dotsContainer.innerHTML = POPULAR_DESTINATIONS_SLIDES.map((_, idx) => `
-      <span class="dest-dot ${idx === 0 ? 'active' : ''}" onclick="goToDestinationSlide(${idx})" title="Slide ${idx + 1}"></span>
+      <button class="dest-dot ${idx === 0 ? 'active' : ''}" 
+              onclick="goToDestinationSlide(${idx})"
+              aria-label="Go to destination ${idx + 1}"></button>
     `).join('');
   }
-
-  // Set Total Count
-  const totalElem = document.getElementById('sliderTotalCount');
   if (totalElem) {
     totalElem.textContent = String(POPULAR_DESTINATIONS_SLIDES.length).padStart(2, '0');
   }
 
-  // Display initial active slide content
+  // Bind custom prev/next controls
+  bindDestinationControls();
+
+  // Initialize initial slide
   updateActiveSlideUI(0, false);
 }
 
 function updateActiveSlideUI(index, animate = true) {
-  const slide = POPULAR_DESTINATIONS_SLIDES[index];
-  if (!slide) return;
+  const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : (localStorage.getItem('site_lang') || 'en');
+  const rawSlide = POPULAR_DESTINATIONS_SLIDES[index];
+  if (!rawSlide) return;
+  const slide = (currentLang === 'si' && typeof getLocalizedDestinationSlide === 'function') ? getLocalizedDestinationSlide(rawSlide, 'si') : rawSlide;
 
   const bgImg = document.getElementById('sliderBgImage');
   const titleElem = document.getElementById('sliderActiveTitle');
@@ -7145,11 +7194,19 @@ let currentShowcaseCountryKey = 'srilanka';
 let currentShowcaseTourIndex = 0;
 
 function populateShowcaseData(countryKey) {
-  const data = COUNTRY_SHOWCASE_DATA[countryKey];
+  let data = COUNTRY_SHOWCASE_DATA[countryKey];
   if (!data || !data.tours || data.tours.length === 0) return false;
 
   currentShowcaseCountryKey = countryKey;
   currentShowcaseTourIndex = 0;
+
+  const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : (localStorage.getItem('site_lang') || 'en');
+  const isSi = (currentLang === 'si');
+
+  if (isSi && typeof getLocalizedCountryShowcase === 'function') {
+    const loc = getLocalizedCountryShowcase(countryKey, 'si');
+    if (loc) data = loc;
+  }
 
   const headerTitle = document.getElementById('countryShowcaseHeaderTitle');
   const headerBadge = document.getElementById('countryShowcaseHeaderBadge');
@@ -7162,7 +7219,7 @@ function populateShowcaseData(countryKey) {
   if (headerTitle) headerTitle.textContent = data.country;
   if (headerBadge) headerBadge.textContent = data.badge;
   if (headerIcon) headerIcon.className = `fa-solid ${data.icon || 'fa-gem'}`;
-  if (categoryTag) categoryTag.textContent = data.categoryTag || 'POPULAR DESTINATIONS';
+  if (categoryTag) categoryTag.textContent = data.categoryTag || (isSi ? 'ජනප්‍රියම ගමනාන්ත' : 'POPULAR DESTINATIONS');
 
   // Render Horizontal Floating Cards (Compact ~205px x 275px)
   if (cardsTrack) {
@@ -7245,10 +7302,19 @@ function openCountryShowcase(countryKey) {
 }
 
 function updateShowcaseTourUI(index, animate = true) {
-  const data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
+  const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : (localStorage.getItem('site_lang') || 'en');
+  const isSi = (currentLang === 'si');
+
+  let data = COUNTRY_SHOWCASE_DATA[currentShowcaseCountryKey];
   if (!data || !data.tours || !data.tours[index]) return;
 
-  const tour = data.tours[index];
+  if (isSi && typeof getLocalizedCountryShowcase === 'function') {
+    const loc = getLocalizedCountryShowcase(currentShowcaseCountryKey, 'si');
+    if (loc) data = loc;
+  }
+
+  const rawTour = data.tours[index];
+  const tour = (isSi && typeof getLocalizedDestinationSlide === 'function') ? getLocalizedDestinationSlide(rawTour, 'si') : rawTour;
   const bgImg = document.getElementById('countryShowcaseBg');
   const titleElem = document.getElementById('showcaseActiveTitle');
   const subtitleElem = document.getElementById('showcaseActiveSubtitle');
@@ -7314,7 +7380,7 @@ function updateShowcaseTourUI(index, animate = true) {
     `).join('');
   }
   if (routeElem) {
-    routeElem.textContent = 'Route & Key Highlights';
+    routeElem.textContent = isSi ? 'සංචාරක මාර්ගය සහ ප්‍රධාන නැවතුම්' : 'Route & Key Highlights';
   }
 
   // Checklist with orange checkmarks
@@ -7765,6 +7831,9 @@ function openShowcaseItinerary(tour) {
   const modal = document.getElementById('showcaseItineraryModal');
   if (!modal) return;
 
+  const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : (localStorage.getItem('site_lang') || 'en');
+  const isSi = (currentLang === 'si');
+
   const data = normalizeDestinationModalData(tour);
   if (!data) return;
 
@@ -7832,7 +7901,9 @@ function openShowcaseItinerary(tour) {
   // Render 3 Highlights Grid (Responsive 3-column layout below media section)
   if (highlightsGrid) {
     const icons = ['fa-hotel', 'fa-car-side', 'fa-compass'];
-    const labels = ['HANDPICKED LODGING', 'VIP PRIVATE TRANSFERS', 'SIGNATURE EXPERIENCES'];
+    const labels = isSi 
+      ? ['තෝරාගත් සුඛෝපභෝගී නවාතැන්', 'පෞද්ගලික ප්‍රවාහන පහසුකම්', 'සුවිශේෂී අත්දැකීම්']
+      : ['HANDPICKED LODGING', 'VIP PRIVATE TRANSFERS', 'SIGNATURE EXPERIENCES'];
     highlightsGrid.innerHTML = data.highlights.map((h, i) => `
       <div class="p-3.5 sm:p-4 rounded-xl bg-slate-900/40 border border-slate-800/80 hover:border-amber-500/40 transition-colors flex items-start space-x-3 shadow-md">
         <div class="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -7889,29 +7960,29 @@ function openShowcaseItinerary(tour) {
       // Determine transport milestone
       let transportBadge = '';
       if (text.includes('safari') || text.includes('4x4') || text.includes('jeep') || text.includes('land cruiser')) {
-        transportBadge = `<span class="itinerary-milestone-pill bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"><i class="fa-solid fa-truck-monster text-[10px]"></i> 4x4 Safari Jeep</span>`;
+        transportBadge = `<span class="itinerary-milestone-pill bg-emerald-500/15 text-emerald-300 border border-emerald-500/30"><i class="fa-solid fa-truck-monster text-[10px]"></i> ${isSi ? '4x4 සෆාරි ජීප් රථය' : '4x4 Safari Jeep'}</span>`;
       } else if (text.includes('seaplane') || text.includes('flight') || text.includes('airport')) {
-        transportBadge = `<span class="itinerary-milestone-pill bg-sky-500/15 text-sky-300 border border-sky-500/30"><i class="fa-solid fa-plane-departure text-[10px]"></i> Seaplane / Flight</span>`;
+        transportBadge = `<span class="itinerary-milestone-pill bg-sky-500/15 text-sky-300 border border-sky-500/30"><i class="fa-solid fa-plane-departure text-[10px]"></i> ${isSi ? 'මුහුදු ගුවන් යානය / ගුවන් ගමන' : 'Seaplane / Flight'}</span>`;
       } else if (text.includes('speedboat') || text.includes('cruise') || text.includes('dhow') || text.includes('boat') || text.includes('yacht') || text.includes('ferry')) {
-        transportBadge = `<span class="itinerary-milestone-pill bg-cyan-500/15 text-cyan-300 border border-cyan-500/30"><i class="fa-solid fa-ship text-[10px]"></i> Cruise / Speedboat</span>`;
+        transportBadge = `<span class="itinerary-milestone-pill bg-cyan-500/15 text-cyan-300 border border-cyan-500/30"><i class="fa-solid fa-ship text-[10px]"></i> ${isSi ? 'සුඛෝපභෝගී බෝට්ටු / කෲස්' : 'Cruise / Speedboat'}</span>`;
       } else if (text.includes('train') || text.includes('railway')) {
-        transportBadge = `<span class="itinerary-milestone-pill bg-indigo-500/15 text-indigo-300 border border-indigo-500/30"><i class="fa-solid fa-train text-[10px]"></i> Scenic Train</span>`;
+        transportBadge = `<span class="itinerary-milestone-pill bg-indigo-500/15 text-indigo-300 border border-indigo-500/30"><i class="fa-solid fa-train text-[10px]"></i> ${isSi ? 'මනරම් දුම්රිය චාරිකාව' : 'Scenic Train'}</span>`;
       } else {
-        transportBadge = `<span class="itinerary-milestone-pill bg-amber-500/15 text-amber-300 border border-amber-500/30"><i class="fa-solid fa-car-side text-[10px]"></i> Private AC Chauffeur</span>`;
+        transportBadge = `<span class="itinerary-milestone-pill bg-amber-500/15 text-amber-300 border border-amber-500/30"><i class="fa-solid fa-car-side text-[10px]"></i> ${isSi ? 'පෞද්ගලික රියදුරු සහිත වාහනය' : 'Private AC Chauffeur'}</span>`;
       }
 
       // Determine meal milestone
       let mealBadge = '';
       if (text.includes('bbq') || text.includes('barbecue')) {
-        mealBadge = `<span class="itinerary-milestone-pill bg-rose-500/15 text-rose-300 border border-rose-500/30"><i class="fa-solid fa-fire text-[10px]"></i> VIP BBQ Dinner</span>`;
+        mealBadge = `<span class="itinerary-milestone-pill bg-rose-500/15 text-rose-300 border border-rose-500/30"><i class="fa-solid fa-fire text-[10px]"></i> ${isSi ? 'VIP BBQ රාත්‍රී භෝජනය' : 'VIP BBQ Dinner'}</span>`;
       } else if (text.includes('all-inclusive') || text.includes('dine-around') || text.includes('full board')) {
-        mealBadge = `<span class="itinerary-milestone-pill bg-purple-500/15 text-purple-300 border border-purple-500/30"><i class="fa-solid fa-wine-glass text-[10px]"></i> All-Inclusive Dine</span>`;
+        mealBadge = `<span class="itinerary-milestone-pill bg-purple-500/15 text-purple-300 border border-purple-500/30"><i class="fa-solid fa-wine-glass text-[10px]"></i> ${isSi ? 'සියලු ආහාරපාන ඇතුළත්' : 'All-Inclusive Dine'}</span>`;
       } else if (text.includes('dinner')) {
-        mealBadge = `<span class="itinerary-milestone-pill bg-amber-500/15 text-amber-300 border border-amber-500/30"><i class="fa-solid fa-utensils text-[10px]"></i> Dinner Included</span>`;
+        mealBadge = `<span class="itinerary-milestone-pill bg-amber-500/15 text-amber-300 border border-amber-500/30"><i class="fa-solid fa-utensils text-[10px]"></i> ${isSi ? 'රාත්‍රී භෝජනය ඇතුළත්' : 'Dinner Included'}</span>`;
       } else if (text.includes('lunch')) {
-        mealBadge = `<span class="itinerary-milestone-pill bg-amber-500/15 text-amber-300 border border-amber-500/30"><i class="fa-solid fa-utensils text-[10px]"></i> Lunch Included</span>`;
+        mealBadge = `<span class="itinerary-milestone-pill bg-amber-500/15 text-amber-300 border border-amber-500/30"><i class="fa-solid fa-utensils text-[10px]"></i> ${isSi ? 'දිවා ආහාරය ඇතුළත්' : 'Lunch Included'}</span>`;
       } else if (text.includes('breakfast') || text.includes('buffet')) {
-        mealBadge = `<span class="itinerary-milestone-pill bg-blue-500/15 text-blue-300 border border-blue-500/30"><i class="fa-solid fa-mug-saucer text-[10px]"></i> Buffet Breakfast</span>`;
+        mealBadge = `<span class="itinerary-milestone-pill bg-blue-500/15 text-blue-300 border border-blue-500/30"><i class="fa-solid fa-mug-saucer text-[10px]"></i> ${isSi ? 'උදෑසන ආහාරය ඇතුළත්' : 'Buffet Breakfast'}</span>`;
       }
 
       return `
@@ -7919,7 +7990,7 @@ function openShowcaseItinerary(tour) {
           <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
             <div class="inline-flex items-center space-x-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-[#F59E0B] font-extrabold text-[10px] uppercase tracking-wider">
               <i class="fa-solid fa-calendar-day text-[9px]"></i>
-              <span>DAY ${item.day || (idx + 1)}</span>
+              <span>${isSi ? `දිනය ${item.day || (idx + 1)}` : `DAY ${item.day || (idx + 1)}`}</span>
             </div>
             <div class="flex flex-wrap items-center gap-1.5">
               ${transportBadge}
@@ -7970,6 +8041,24 @@ function openShowcaseItinerary(tour) {
   // WhatsApp Inquiry CTA
   if (waBtn) {
     waBtn.href = data.whatsappUrl;
+    const waSpan = waBtn.querySelector('span');
+    if (waSpan) {
+      waSpan.textContent = isSi ? 'WhatsApp මගින් විමසන්න' : 'Inquire via WhatsApp';
+    }
+  }
+
+  // Localize Drawer section titles and footer
+  const rateLabel = modal.querySelector('.showcase-drawer-footer span.uppercase');
+  if (rateLabel) {
+    rateLabel.textContent = isSi ? 'සියල්ල ඇතුළත් ආරම්භක මිල' : 'All-Inclusive Starting Rate';
+  }
+  const perPersonSpan = modal.querySelector('.showcase-drawer-footer span.text-slate-400.font-medium:last-of-type');
+  if (perPersonSpan) {
+    perPersonSpan.textContent = isSi ? '/ පුද්ගලයෙකුට' : '/ person';
+  }
+  const brochureBtnSpan = modal.querySelector('#showcaseDownloadPdfBtn span');
+  if (brochureBtnSpan) {
+    brochureBtnSpan.textContent = isSi ? 'විස්තර පත්‍රිකාව' : 'Brochure';
   }
 
   // Show drawer with slide-in animation
