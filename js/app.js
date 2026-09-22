@@ -957,7 +957,9 @@ const PACKAGES = [
     alt: 'Baku Flame Towers and Caspian Sea Waterfront Skyline, Azerbaijan',
     galleryImages: [
       { image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80', title: 'Baku Flame Towers & Caspian Waterfront' },
-      { image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80', title: 'Gabala Mountains & Lake Nohur' }
+      { image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80', title: 'Old City (Icherisheher) & Maiden Tower' },
+      { image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80', title: 'Gabala Mountains & Lake Nohur' },
+      { image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80', title: 'Shahdag Winter Alpine Resort' }
     ],
     priceAED: 2150,
     originalPriceAED: 2750,
@@ -990,8 +992,9 @@ const PACKAGES = [
     alt: 'Gergeti Trinity Church and Mount Kazbek Caucasus Mountains, Georgia',
     galleryImages: [
       { image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80', title: 'Gergeti Trinity Church & Mount Kazbek' },
-      { image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80', title: 'Old Tbilisi Historic City Architecture' },
-      { image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=1200&q=80', title: 'Ananuri Fortress & Jinvali Reservoir' }
+      { image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80', title: 'Old Tbilisi Colorful Balconies & Narikala' },
+      { image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=80', title: 'Ananuri Fortress & Aragvi River' },
+      { image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80', title: 'Gudauri Caucasus Ski Slopes' }
     ],
     priceAED: 2290,
     originalPriceAED: 2950,
@@ -6111,7 +6114,7 @@ const COUNTRY_SHOWCASE_DATA = {
             title: 'Temple of the Tooth Relic'
           },
           {
-            image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=1200&q=85',
+            image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
             tag: '📍 Day 3: Polonnaruwa Royal Palaces & Ruins',
             title: 'Ancient City of Polonnaruwa'
           }
@@ -6746,7 +6749,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— MEDIEVAL WALLS & CASPIAN SEASIDE',
             description: 'Explore ancient cobblestone labyrinths inside UNESCO Icherisheher, climb Maiden Tower, and admire the futuristic Flame Towers gleaming above the Caspian Boulevard.',
             checkmarks: ['UNESCO 12th-Century City Walls', 'Iconic Maiden Tower & Shirvanshahs', 'Highland Park Flame Towers Vista'],
-            image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80'
+            image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80'
           },
           {
             name: 'Gobustan Mud Volcanoes',
@@ -6762,30 +6765,30 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— HIGH CAUCASUS MOUNTAIN RESORT',
             description: 'Ride panoramic gondola cable cars high into the Greater Caucasus peaks for pristine alpine air, mountain coaster adventures, and sweeping valley vistas.',
             checkmarks: ['High-Altitude Panoramic Cable Cars', 'Shahdag Alpine Coaster Adventure', 'Crisp Caucasian Mountain Air'],
-            image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80'
+            image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80'
           }
         ],
         stay: '3 Nights in 4-Star Baku City Center + 1 Night in Shahdag Mountain Resort',
         gallery: [
           {
-            image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
+            image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=800&q=80',
             tag: '📍 Day 1: Baku Flame Towers & Seaside Boulevard',
-            title: 'Baku Flame Towers & Caspian'
+            title: 'Baku Flame Towers & Boulevard'
           },
           {
-            image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80',
-            tag: '📍 Day 2: Gabala Alpine Lake & Mountain Resort',
-            title: 'Gabala Alpine Mountains & Lake'
+            image: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=800&q=80',
+            tag: '📍 Day 2: Old City (Icherisheher) & Maiden Tower',
+            title: 'Old City (Icherisheher) & Maiden Tower'
           },
           {
-            image: 'https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 3: Gobustan Mud Volcanoes & Fire Temple',
-            title: 'Gobustan Prehistoric Rocks'
+            image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=800&q=80',
+            tag: '📍 Day 3: Gabala Mountains & Lake Nohur',
+            title: 'Gabala Mountains & Lake Nohur'
           },
           {
-            image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80',
-            tag: '📍 Day 4: Shahdag Alpine Resort & Cable Cars',
-            title: 'Shahdag Mountain Resort'
+            image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
+            tag: '📍 Day 4: Shahdag Winter Alpine Resort & Cable Cars',
+            title: 'Shahdag Winter Alpine Resort'
           }
         ],
         image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
@@ -6871,7 +6874,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— HIGH CAUCASUS PEAKS & HERITAGE',
             description: 'Stand at 2,170 meters elevation beneath the dramatic 14th-century stone church with the snow-capped 5,054-meter Mount Kazbek towering in the background.',
             checkmarks: ['2,170m Elevation Caucasian Vistas', '14th-Century Stone Mountaintop Church', 'Mount Kazbek 5,054m Glacier Backdrop'],
-            image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80'
+            image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80'
           },
           {
             name: 'Old Tbilisi Sulphur Baths',
@@ -6879,7 +6882,7 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— HISTORIC THERMAL SPRINGS & STREETS',
             description: 'Wander through the domed brick baths of Abanotubani, climb to Narikala Fortress, and admire charming cliff-clinging 19th-century wooden carved balconies.',
             checkmarks: ['Natural Thermal Sulphur Bath Domes', 'Narikala Fortress Cable Car Climb', 'Historic Wooden Carved Balconies'],
-            image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80'
+            image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=800&q=80'
           },
           {
             name: 'Gudauri Mountain Panoramas',
@@ -6887,30 +6890,30 @@ const COUNTRY_SHOWCASE_DATA = {
             category: '— GREATER CAUCASUS HIGHWAY',
             description: 'Ascend the Georgian Military Highway to the Russia-Georgia Friendship Monument perched over Devils Valley for breathtaking 360-degree alpine panoramas.',
             checkmarks: ['Scenic Jvari Pass 2,379m Crossing', 'Friendship Monument Colorful Murals', 'Sweeping Valley & Canyon Vistas'],
-            image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=85'
+            image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80'
           }
         ],
         stay: '3 Nights in Old Tbilisi Boutique Hotel + 1 Night in Kazbegi Alpine Lodge (Rooms Hotel Kazbegi)',
         gallery: [
           {
-            image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80',
-            tag: '📍 Day 1: Historic Old Tbilisi Architecture & Sulfur Baths',
-            title: 'Old Tbilisi City Architecture'
+            image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=800&q=80',
+            tag: '📍 Day 1: Old Tbilisi Colorful Balconies & Narikala',
+            title: 'Old Tbilisi Colorful Balconies & Narikala'
           },
           {
-            image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
-            tag: '📍 Day 4: Gergeti Trinity Church & High Caucasus Peaks',
-            title: 'Gergeti Trinity & Mount Kazbek'
+            image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80',
+            tag: '📍 Day 2: Gergeti Trinity Church & Kazbek Peak',
+            title: 'Gergeti Trinity Church & Kazbek Peak'
           },
           {
-            image: 'https://images.unsplash.com/photo-1578637387939-43c525550085?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 3: Ananuri Fortress & Turquoise Jinvali Reservoir',
-            title: 'Georgian Military Highway'
+            image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=800&q=80',
+            tag: '📍 Day 3: Ananuri Fortress & Aragvi River',
+            title: 'Ananuri Fortress & Aragvi River'
           },
           {
-            image: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=85',
-            tag: '📍 Day 5: Mtskheta Ancient UNESCO Heritage Cathedral',
-            title: 'Svetitskhoveli UNESCO Cathedral'
+            image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80',
+            tag: '📍 Day 4: Gudauri Caucasus Ski Slopes',
+            title: 'Gudauri Caucasus Ski Slopes'
           }
         ],
         image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
@@ -8740,7 +8743,7 @@ const SPOTLIGHT_DESTINATIONS_DATA = {
         title: 'GUDAURI ALPS',
         tagline: 'ALPINE VISTAS, SKI SLOPES & CAUCASUS FRIENDSHIP MONUMENT',
         description: 'High on the southern slopes of the Greater Caucasus, Gudauri offers exhilarating mountain paragliding, panoramic ski slopes, and the dramatic circular Russia-Georgia Friendship Monument overlooking the Devil\'s Valley abyss.',
-        image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85',
+        image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80',
         badge: 'Alpine Peak',
         highlights: ['Caucasus Friendship Monument', 'Panoramic Mountain Paragliding', 'Jvari Pass 2,379m Elevation', 'Snowsports & Alpine Trails'],
         packageId: 'georgia-kazbegi',

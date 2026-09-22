@@ -428,7 +428,8 @@
       <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" 
            alt="World Travel Destinations" 
            class="hero-bg-image w-full h-full object-cover object-center scale-105 transition-transform duration-1000 opacity-20 dark:opacity-25"
-           loading="eager" fetchpriority="high">
+           loading="eager" fetchpriority="high"
+           onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
       <div class="hero-bg-overlay absolute inset-0 bg-gradient-to-b from-slate-100/90 via-white/95 to-slate-50 dark:from-[#0B192C]/85 dark:via-[#070E17]/90 dark:to-[#070E17]"></div>
       <div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(245,158,11,0.14),rgba(255,255,255,0))] pointer-events-none"></div>
     </div>
@@ -1297,7 +1298,7 @@
           <div class="max-w-4xl mx-auto w-full">
             <!-- Hero Media Viewport (Generous 16:9 Aspect Ratio) -->
             <div class="w-full h-[320px] md:h-[400px] relative overflow-hidden bg-[#070B14]">
-              <img id="showcaseGalleryFeaturedImg" src="" alt="Destination Landmark" class="w-full h-full object-cover object-center transition-all duration-500 select-none" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
+              <img id="showcaseGalleryFeaturedImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" alt="Destination Landmark" class="w-full h-full object-cover object-center transition-all duration-500 select-none" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
               <img id="showcaseItineraryImg" src="" alt="" class="hidden" aria-hidden="true">
               
               <!-- Elegant Bottom Gradient Overlay -->
