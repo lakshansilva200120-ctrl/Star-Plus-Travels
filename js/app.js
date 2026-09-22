@@ -954,6 +954,7 @@ const PACKAGES = [
     badge: 'Popular',
     badgeColor: 'from-blue-600 to-cyan-500',
     image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
+    fallback: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1200&q=80',
     alt: 'Baku Flame Towers and Caspian Sea Waterfront Skyline, Azerbaijan',
     galleryImages: [
       { image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80', title: 'Baku Flame Towers & Caspian Waterfront' },
@@ -989,6 +990,7 @@ const PACKAGES = [
     badge: 'Winter Special',
     badgeColor: 'from-indigo-500 to-purple-500',
     image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
+    fallback: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80',
     alt: 'Gergeti Trinity Church and Mount Kazbek Caucasus Mountains, Georgia',
     galleryImages: [
       { image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80', title: 'Gergeti Trinity Church & Mount Kazbek' },
@@ -1765,7 +1767,7 @@ function renderPackages(filteredList = PACKAGES) {
       <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10 transition-all duration-300 w-full max-w-full box-border min-w-0">
         <!-- Image & Badges -->
         <div class="img-container relative h-56 overflow-hidden bg-slate-900 w-full max-w-full">
-          <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover object-center" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
+          <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover object-center" loading="lazy" onerror="this.onerror=null;this.src='${pkg.fallback || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80'}';">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent pointer-events-none"></div>
           
           <!-- Category & Bestseller Badge -->
@@ -5139,6 +5141,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         duration: '5 Days / 4 Nights',
         stay: '4-Star Central Baku Hotel + Shahdag Mountain Resort',
         image: 'https://images.unsplash.com/photo-1579618218290-24a26f63a758?auto=format&fit=crop&w=1200&q=80',
+        fallback: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1200&q=80',
         description: 'Explore the modern marvels and medieval history of Baku followed by breathtaking alpine adventures in the high Caucasus.',
         highlights: [
           'Baku Old City (Icherisheher UNESCO) with Maiden Tower & Shirvanshah Palace',
@@ -5157,6 +5160,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         duration: '6 Days / 5 Nights',
         stay: '4-Star Hotels in Baku, Gabala & Sheki',
         image: 'https://images.unsplash.com/photo-1621539205985-64585141ef30?auto=format&fit=crop&w=1200&q=80',
+        fallback: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1200&q=80',
         description: 'Journey through Caucasus mountain passes, picturesque alpine lakes, and ancient Silk Road trading cities.',
         highlights: [
           'Baku panoramic boulevard and Heydar Aliyev Cultural Centre photo stop',
@@ -5182,6 +5186,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         duration: '5 Days / 4 Nights',
         stay: '4-Star Boutique Hotel in Old Tbilisi & Gudauri Resort',
         image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
+        fallback: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80',
         description: 'Ascend dramatic Caucasus mountain passes, explore historic sulfur bath districts, and stand under snow-capped Mount Kazbek.',
         highlights: [
           'Old Tbilisi walking tour: Narikala Fortress cable car and sulfur bath district',
@@ -5199,6 +5204,7 @@ const DESTINATION_COUNTRY_PACKAGES = {
         duration: '6 Days / 5 Nights',
         stay: '4-Star Hotels in Tbilisi & Kakheti Wine Valley',
         image: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80',
+        fallback: 'https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80',
         description: 'Delve into the cradle of wine in Kakheti, charming walled cities, and scenic Caucasian mountain valleys.',
         highlights: [
           'Sighnaghi "City of Love" cobblestone streets & Alazani Valley views',
@@ -5292,7 +5298,7 @@ function openCountryPackages(countryKey) {
           <div class="regional-tour-card glass-card rounded-2xl overflow-hidden border border-slate-800 hover:border-amber-500/40 bg-slate-900/80 flex flex-col justify-between shadow-xl">
             <div>
               <div class="relative h-48 overflow-hidden group">
-                <img src="${pkg.image}" alt="${pkg.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
+                <img src="${pkg.image}" alt="${pkg.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" onerror="this.onerror=null;this.src='${pkg.fallback || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80'}';">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#09111e] via-[#09111e]/40 to-transparent"></div>
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 flex-wrap">
                   <span class="px-2.5 py-0.5 rounded-full bg-slate-950/85 backdrop-blur-md text-amber-400 text-[10px] font-bold border border-slate-700/80">
