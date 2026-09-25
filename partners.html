@@ -969,7 +969,7 @@
         </p>
       </div>
 
-      <form id="dmc-application-form" onsubmit="handlePartnerSubmit(event)" novalidate class="space-y-6">
+      <form id="dmc-application-form" onsubmit="handlePartnerSubmit(event)" novalidate class="space-y-6 w-full max-w-full box-border">
         
         <!-- Section 1: Company & Location -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -977,14 +977,14 @@
             <label for="partnerCompany" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_company_name">
               Legal Company Name <span class="text-amber-400">*</span>
             </label>
-            <input type="text" id="partnerCompany" name="company_name" required placeholder="e.g., Nexus DMC Japan Co. Ltd" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="text" id="partnerCompany" name="company_name" required placeholder="e.g., Nexus DMC Japan Co. Ltd" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
 
           <div>
             <label for="partnerDestination" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_primary_dest">
               Primary Destination / Country <span class="text-amber-400">*</span>
             </label>
-            <select id="partnerDestination" name="country" required class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm bg-[#070e17] text-white">
+            <select id="partnerDestination" name="country" required class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm bg-[#070e17] text-white">
               <option value="" disabled selected>Select Primary Destination</option>
               <option value="Singapore">Singapore</option>
               <option value="Malaysia">Malaysia</option>
@@ -1009,14 +1009,14 @@
             <label for="partnerContact" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_contact_person">
               Key Contact Person &amp; Title <span class="text-amber-400">*</span>
             </label>
-            <input type="text" id="partnerContact" name="contact_person" required placeholder="e.g., Alexander Lee, Managing Director" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="text" id="partnerContact" name="contact_person" required placeholder="e.g., Alexander Lee, Managing Director" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
 
           <div>
             <label for="partnerEmail" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_corp_email">
               Corporate Work Email <span class="text-amber-400">*</span>
             </label>
-            <input type="email" id="partnerEmail" name="email" required placeholder="alex@nexus-dmc.com" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="email" id="partnerEmail" name="email" required placeholder="alex@nexus-dmc.com" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
         </div>
 
@@ -1026,14 +1026,14 @@
             <label for="partnerPhone" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_phone">
               Corporate Phone / WhatsApp <span class="text-amber-400">*</span>
             </label>
-            <input type="tel" id="partnerPhone" name="phone" required placeholder="e.g., +81 3 1234 5678" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="tel" id="partnerPhone" name="phone" required placeholder="e.g., +81 3 1234 5678" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
 
           <div>
             <label for="partnerWebsite" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_website">
               Website / Online Portfolio <span class="text-amber-400">*</span>
             </label>
-            <input type="url" id="partnerWebsite" required placeholder="https://www.yourdmc.com" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="url" id="partnerWebsite" required placeholder="https://www.yourdmc.com" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
         </div>
 
@@ -1045,7 +1045,7 @@
             <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400 text-xs sm:text-sm">
               <i class="fa-solid fa-link text-amber-500/80"></i>
             </span>
-            <input type="url" id="partnerSocial" placeholder="https://www.linkedin.com/company/your-dmc or instagram.com/..." class="w-full glass-input pl-10 pr-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="url" id="partnerSocial" placeholder="https://www.linkedin.com/company/your-dmc or instagram.com/..." class="w-full box-border glass-input pl-10 pr-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
           <span class="text-[11px] text-slate-400 block mt-1">Provide your active corporate profile URL for vetting and credential verification.</span>
         </div>
@@ -1056,14 +1056,14 @@
             <label for="partnerLicense" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_license">
               Tourism License / Reg No. <span class="text-amber-400">*</span>
             </label>
-            <input type="text" id="partnerLicense" required placeholder="e.g., MOT-8849201-B2B" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="text" id="partnerLicense" required placeholder="e.g., MOT-8849201-B2B" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
 
           <div>
             <label for="partnerCity" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_hq_city">
               Headquarters City &amp; Country <span class="text-amber-400">*</span>
             </label>
-            <input type="text" id="partnerCity" required placeholder="e.g., Tokyo, Japan" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="text" id="partnerCity" required placeholder="e.g., Tokyo, Japan" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
         </div>
 
@@ -1128,7 +1128,7 @@
           <label for="partnerProposal" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_fleet_notes">
             Company Overview &amp; Competitive Tariff Highlights <span class="text-amber-400">*</span>
           </label>
-          <textarea id="partnerProposal" name="notes" rows="4" required placeholder="Briefly describe your company's operational presence, fleet size, preferred hotel contracts, and why Star Plus Travels should partner with your DMC..." class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm"></textarea>
+          <textarea id="partnerProposal" name="notes" rows="4" required placeholder="Briefly describe your company's operational presence, fleet size, preferred hotel contracts, and why Star Plus Travels should partner with your DMC..." class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm"></textarea>
         </div>
 
         <!-- Consent -->
@@ -1171,7 +1171,7 @@
           Need urgent B2B contracting or already have active static rates? Contact our Head of Contracting directly at:
         </p>
         <p class="text-amber-400 font-semibold flex items-center justify-center gap-3 pt-1">
-          <a href="mailto:nfo@starplustraveluae.com?subject=Urgent%20DMC%20Contracting" class="hover:underline flex items-center gap-1.5"><i class="fa-solid fa-envelope"></i> nfo@starplustraveluae.com</a>
+          <a href="mailto:info@starplustraveluae.com?subject=Urgent%20DMC%20Contracting" class="hover:underline flex items-center gap-1.5"><i class="fa-solid fa-envelope"></i> info@starplustraveluae.com</a>
           <span class="text-slate-600">|</span>
           <a href="tel:+971527582293" class="hover:underline flex items-center gap-1.5"><i class="fa-solid fa-phone text-xs"></i> +971 52 758 2293</a>
         </p>

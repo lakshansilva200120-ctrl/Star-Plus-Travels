@@ -727,40 +727,40 @@
         </p>
       </div>
 
-      <form onsubmit="handleContactSubmit(event)" novalidate class="space-y-4 text-left">
+      <form onsubmit="handleContactSubmit(event)" novalidate class="space-y-4 text-left w-full max-w-full box-border">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Your Full Name *</label>
-            <input type="text" id="contactName" name="name" required placeholder="e.g. David Miller" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="text" id="contactName" name="name" required placeholder="e.g. David Miller" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Email Address *</label>
-            <input type="email" id="contactEmail" name="email" required placeholder="david@example.com" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="email" id="contactEmail" name="email" required placeholder="david@example.com" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Phone / WhatsApp Number *</label>
-            <input type="tel" id="contactPhone" name="phone" required placeholder="+971 50 123 4567" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="tel" id="contactPhone" name="phone" required placeholder="+971 50 123 4567" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Travel Destination / Package *</label>
-            <input type="text" id="contactDest" name="destination" placeholder="e.g. Sri Lanka, Dubai, Georgia, Baku" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="text" id="contactDest" name="destination" placeholder="e.g. Sri Lanka, Dubai, Georgia, Baku" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Preferred Office Desk</label>
-            <select id="contactBranch" name="branch" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm cursor-pointer">
+            <select id="contactBranch" name="branch" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm cursor-pointer">
               <option value="Dubai Flagship Desk (UAE)">Dubai Flagship Desk (UAE)</option>
               <option value="Colombo Desk (Sri Lanka)">Colombo Desk (Sri Lanka)</option>
             </select>
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Topic of Inquiry</label>
-            <select id="contactTopic" name="topic" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm cursor-pointer">
+            <select id="contactTopic" name="topic" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm cursor-pointer">
               <option value="Curated Tour Package / Customized Itinerary">Curated Tour Package / Customized Itinerary</option>
               <option value="UAE Tourist / Freelance Visa (30/60 Days)">UAE Tourist / Freelance Visa (30/60 Days)</option>
               <option value="Oman Visa Change Bus Departure">Oman Visa Change Bus Departure</option>
@@ -774,7 +774,7 @@
 
         <div>
           <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Your Message or Requirements</label>
-          <textarea id="contactMessage" name="message" rows="4" placeholder="Tell us about your travel dates, number of travelers, budget or specific questions..." class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm"></textarea>
+          <textarea id="contactMessage" name="message" rows="4" placeholder="Tell us about your travel dates, number of travelers, budget or specific questions..." class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm"></textarea>
         </div>
 
         <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 flex items-center justify-center space-x-2">

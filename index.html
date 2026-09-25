@@ -1742,19 +1742,19 @@
               <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-i18n="formSubtitle">We respond with comprehensive options and transparent pricing within 2 hours.</p>
             </div>
 
-            <form onsubmit="handleContactSubmit(event)" novalidate class="space-y-4">
+            <form onsubmit="handleContactSubmit(event)" novalidate class="space-y-4 w-full max-w-full box-border">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formFullName">
                     Your Full Name *
                   </label>
-                  <input type="text" id="contactName" name="name" required placeholder="e.g. John Doe" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
+                  <input type="text" id="contactName" name="name" required placeholder="e.g. John Doe" class="w-full box-border glass-input px-4 py-3 rounded-xl text-sm">
                 </div>
                 <div>
                   <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formEmail">
                     Email Address *
                   </label>
-                  <input type="email" id="contactEmail" name="email" required placeholder="name@domain.com" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
+                  <input type="email" id="contactEmail" name="email" required placeholder="name@domain.com" class="w-full box-border glass-input px-4 py-3 rounded-xl text-sm">
                 </div>
               </div>
 
@@ -1763,13 +1763,13 @@
                   <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formPhone">
                     Phone / WhatsApp Number *
                   </label>
-                  <input type="tel" id="contactPhone" name="phone" required placeholder="+971 50 123 4567" class="w-full glass-input px-4 py-3 rounded-xl text-sm">
+                  <input type="tel" id="contactPhone" name="phone" required placeholder="+971 50 123 4567" class="w-full box-border glass-input px-4 py-3 rounded-xl text-sm">
                 </div>
                 <div>
                   <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formInterest">
                     Primary Interest
                   </label>
-                  <select id="contactInterest" name="interest" onchange="updateQuoteFormFields()" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
+                  <select id="contactInterest" name="interest" onchange="updateQuoteFormFields()" class="w-full box-border glass-input px-4 py-3 rounded-xl text-sm cursor-pointer">
                     <option value="package" data-i18n="formInterestPackage">Holiday Tour Package</option>
                     <option value="visa" data-i18n="formInterestVisa">Fast-Track Visa Processing</option>
                     <option value="flight" data-i18n="formInterestFlight">Cheap Airline Tickets</option>
@@ -1784,7 +1784,7 @@
                   <label id="quoteField1Label" for="contactDest" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
                     PREFERRED DESTINATION
                   </label>
-                  <input type="text" id="contactDest" name="destination" placeholder="e.g., Sri Lanka, Georgia, Bali, Europe" class="w-full glass-input px-4 py-3 rounded-xl text-sm transition-all duration-200">
+                  <input type="text" id="contactDest" name="destination" placeholder="e.g., Sri Lanka, Georgia, Bali, Europe" class="w-full box-border glass-input px-4 py-3 rounded-xl text-sm transition-all duration-200">
                 </div>
                 <div>
                   <label id="quoteField2Label" class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
@@ -1792,7 +1792,7 @@
                   </label>
                   <!-- Select element for Tour / Custom packages -->
                   <div id="quoteTravelersSelectWrapper">
-                    <select id="contactTravelers" name="travelers" class="w-full glass-input px-4 py-3 rounded-xl text-sm cursor-pointer transition-all duration-200">
+                    <select id="contactTravelers" name="travelers" class="w-full box-border glass-input px-4 py-3 rounded-xl text-sm cursor-pointer transition-all duration-200">
                       <option value="Solo Traveler">Solo Traveler</option>
                       <option value="Couple / 2 Adults" selected>Couple / 2 Adults</option>
                       <option value="Family with Kids">Family with Kids</option>
@@ -1801,7 +1801,7 @@
                   </div>
                   <!-- Text input element for Visa (Nationality) or Flight (Dates & Type) -->
                   <div id="quoteCustomField2Wrapper" class="hidden">
-                    <input type="text" id="contactCustomField2" name="customField2" placeholder="" class="w-full glass-input px-4 py-3 rounded-xl text-sm transition-all duration-200">
+                    <input type="text" id="contactCustomField2" name="customField2" placeholder="" class="w-full box-border glass-input px-4 py-3 rounded-xl text-sm transition-all duration-200">
                   </div>
                 </div>
               </div>
@@ -1810,7 +1810,7 @@
                 <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5" data-i18n="formNotes">
                   Trip Notes / Special Requests
                 </label>
-                <textarea id="contactMessage" name="message" rows="3" placeholder="Tell us about your preferred travel dates, hotel rating preference, or special requests..." class="w-full glass-input px-4 py-3 rounded-xl text-sm transition-all duration-200"></textarea>
+                <textarea id="contactMessage" name="message" rows="3" placeholder="Tell us about your preferred travel dates, hotel rating preference, or special requests..." class="w-full box-border glass-input px-4 py-3 rounded-xl text-sm transition-all duration-200"></textarea>
               </div>
 
               <!-- Secure Payment Alert Notice -->
@@ -1973,7 +1973,7 @@
 
   <!-- Quick Booking Modal -->
   <div id="bookingModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 modal-backdrop">
-    <div class="glass-card max-w-xl w-full rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative animate-fadeIn">
+    <div class="glass-card max-w-xl w-full max-w-full box-border rounded-3xl border border-slate-200 dark:border-slate-700 shadow-2xl p-6 sm:p-8 max-h-[90vh] overflow-y-auto overflow-x-hidden relative animate-fadeIn">
       
       <!-- Close Button -->
       <button onclick="closeBookingModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white flex items-center justify-center transition-colors">
@@ -1982,7 +1982,9 @@
 
       <!-- Package Header Summary -->
       <div class="flex items-center space-x-4 pb-4 border-b border-slate-200 dark:border-slate-800 pr-8">
-        <img id="modalPkgImage" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9'%3E%3C/svg%3E" alt="" class="w-16 h-16 rounded-xl object-cover border border-slate-200 dark:border-slate-700 shrink-0" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80';">
+        <div class="w-16 h-16 rounded-xl bg-slate-900/80 border border-slate-700/60 p-1.5 flex items-center justify-center shrink-0 overflow-hidden">
+          <img id="modalPkgImage" src="assets/logo.png" alt="Star Plus Travels" class="w-full h-full object-contain max-h-full max-w-full" onerror="this.onerror=null;this.src='assets/logo.png';">
+        </div>
         <div>
           <span class="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider block" id="modalPkgDestination"></span>
           <h3 id="modalPkgTitle" class="text-base font-bold text-slate-900 dark:text-white font-heading leading-snug"></h3>
@@ -1992,15 +1994,15 @@
       </div>
 
       <!-- Booking Form -->
-      <form onsubmit="submitBookingForm(event)" novalidate class="mt-5 space-y-4 text-left">
+      <form onsubmit="submitBookingForm(event)" novalidate class="mt-5 space-y-4 text-left w-full max-w-full box-border">
         <input type="hidden" id="bookingPackageName" name="packageName" value="">
         <!-- Grid with uniform label heights -->
-        <div class="grid grid-cols-2 gap-3 sm:gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <div class="flex flex-col">
-            <label class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 min-h-[32px] flex items-end" data-i18n="adult_travelers">
+            <label class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 min-h-[2rem] flex items-end" data-i18n="adult_travelers">
               Adult Travelers (12+ Yrs)
             </label>
-            <select id="bookingTravelers" name="travelers" onchange="calculateBookingTotal()" class="w-full h-11 px-3 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white focus:ring-amber-500">
+            <select id="bookingTravelers" name="travelers" onchange="calculateBookingTotal()" class="w-full box-border h-11 px-3 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white focus:ring-amber-500">
               <option value="1">1 Adult</option>
               <option value="2" selected>2 Adults</option>
               <option value="3">3 Adults</option>
@@ -2009,10 +2011,10 @@
           </div>
 
           <div class="flex flex-col">
-            <label class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 min-h-[32px] flex items-end" data-i18n="children_travelers">
+            <label class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 min-h-[2rem] flex items-end" data-i18n="children_travelers">
               Children (2–11 Yrs)
             </label>
-            <select id="bookingChildren" name="children" onchange="calculateBookingTotal()" class="w-full h-11 px-3 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white focus:ring-amber-500">
+            <select id="bookingChildren" name="children" onchange="calculateBookingTotal()" class="w-full box-border h-11 px-3 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white focus:ring-amber-500">
               <option value="0" selected>0 Children</option>
               <option value="1">1 Child</option>
               <option value="2">2 Children</option>
@@ -2023,28 +2025,28 @@
 
         <div class="w-full max-w-full box-border">
           <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1" data-i18n="dep_date">Preferred Departure Date</label>
-          <input type="date" id="bookingDate" required class="w-full max-w-full box-border block appearance-none [-webkit-appearance:none] glass-input px-3 py-2 rounded-xl text-sm">
+          <input type="date" id="bookingDate" required class="w-full max-w-full box-border block appearance-none [-webkit-appearance:none] glass-input px-3.5 py-2.5 rounded-xl text-sm">
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">Your Full Name *</label>
-            <input type="text" id="bookingName" required placeholder="John Doe" class="w-full glass-input px-3 py-2 rounded-xl text-sm">
+            <input type="text" id="bookingName" required placeholder="John Doe" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
           <div>
             <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">Email Address *</label>
-            <input type="email" id="bookingEmail" required placeholder="john@example.com" class="w-full glass-input px-3 py-2 rounded-xl text-sm">
+            <input type="email" id="bookingEmail" required placeholder="john@example.com" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
         </div>
 
         <div>
           <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">Phone / WhatsApp *</label>
-          <input type="tel" id="bookingPhone" required placeholder="+971 50 123 4567" class="w-full glass-input px-3 py-2 rounded-xl text-sm">
+          <input type="tel" id="bookingPhone" required placeholder="+971 50 123 4567" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
         </div>
 
         <div>
           <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1" data-i18n="special_notes">Special Requests (Optional)</label>
-          <textarea id="bookingNotes" rows="2" placeholder="Flight preferences, dietary needs, hotel room preference..." class="w-full glass-input px-3 py-2 rounded-xl text-sm"></textarea>
+          <textarea id="bookingNotes" rows="2" placeholder="Flight preferences, dietary needs, hotel room preference..." class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm"></textarea>
         </div>
 
         <!-- Live Price Calculation Box -->
@@ -2222,7 +2224,7 @@
       </div>
 
       <!-- Modal Body (Dynamic Regional Tour Cards Grid) -->
-      <div id="countryModalBody" class="p-4 sm:p-6 md:p-8 overflow-y-auto space-y-6">
+      <div id="countryModalBody" class="p-4 sm:p-6 md:p-8 overflow-y-auto overflow-x-hidden space-y-6">
         <!-- Injected dynamically by openCountryPackages() -->
       </div>
 
