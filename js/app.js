@@ -3486,9 +3486,12 @@ async function handlePartnerSubmit(e) {
   const checkboxError = document.getElementById('dmc-checkbox-error');
   if (certifyCheckbox && !certifyCheckbox.checked) {
     if (checkboxError) checkboxError.classList.remove('hidden');
+    certifyCheckbox.focus();
+    certifyCheckbox.classList.add('ring-2', 'ring-rose-500');
     invalidFields.push(certifyCheckbox);
-  } else if (checkboxError) {
-    checkboxError.classList.add('hidden');
+  } else {
+    if (checkboxError) checkboxError.classList.add('hidden');
+    if (certifyCheckbox) certifyCheckbox.classList.remove('ring-2', 'ring-rose-500');
   }
 
   if (certifyCheckbox && !certifyCheckbox.dataset.listenerBound) {
@@ -3496,6 +3499,7 @@ async function handlePartnerSubmit(e) {
     certifyCheckbox.addEventListener('change', () => {
       if (certifyCheckbox.checked && checkboxError) {
         checkboxError.classList.add('hidden');
+        certifyCheckbox.classList.remove('ring-2', 'ring-rose-500');
       }
     });
   }
@@ -4653,6 +4657,45 @@ function initApp() {
   try { document.getElementById('heroSearchForm')?.addEventListener('submit', handleHeroSearch); } catch (e) {}
   try { setupPackageSearchKeydown(); } catch (e) {}
   try { setupPackageFilterChips(); } catch (e) {}
+
+  // DMC Application Form certification validation listener
+  try {
+    const dmcForm = document.getElementById('dmc-application-form');
+    const certifyCheckbox = document.getElementById('dmc-certify-checkbox');
+    const checkboxError = document.getElementById('dmc-checkbox-error');
+
+    if (dmcForm && certifyCheckbox) {
+      dmcForm.addEventListener('submit', (e) => {
+        if (!certifyCheckbox.checked) {
+          e.preventDefault();
+          
+          // Reveal the error message
+          if (checkboxError) {
+            checkboxError.classList.remove('hidden');
+          }
+          
+          // Highlight the checkbox with a subtle glow/focus
+          certifyCheckbox.focus();
+          certifyCheckbox.classList.add('ring-2', 'ring-rose-500');
+          return false;
+        }
+
+        // Hide error if checked
+        if (checkboxError) {
+          checkboxError.classList.add('hidden');
+        }
+        certifyCheckbox.classList.remove('ring-2', 'ring-rose-500');
+      });
+
+      // Clear error warning as soon as user checks the box
+      certifyCheckbox.addEventListener('change', () => {
+        if (certifyCheckbox.checked && checkboxError) {
+          checkboxError.classList.add('hidden');
+          certifyCheckbox.classList.remove('ring-2', 'ring-rose-500');
+        }
+      });
+    }
+  } catch (e) {}
 
   // Initialize Dynamic Hero Slideshow if present
   try { initHeroSlideshow(); } catch (e) {}
