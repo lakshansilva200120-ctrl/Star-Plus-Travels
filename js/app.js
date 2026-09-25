@@ -4717,15 +4717,15 @@ function changeLanguage(lang, notify = true) {
       siToggleBtn.textContent = sinhalaText;
     }
     if (lang === 'si') {
-      siToggleBtn.classList.add('bg-amber-500', 'text-slate-950', 'font-bold', 'shadow-sm');
-      siToggleBtn.classList.remove('text-slate-400', 'hover:text-white', 'font-semibold', 'text-white');
-      enToggleBtn.classList.remove('bg-amber-500', 'text-slate-950', 'font-bold', 'shadow-sm', 'text-white');
-      enToggleBtn.classList.add('text-slate-400', 'hover:text-white', 'font-semibold');
+      siToggleBtn.classList.add('bg-amber-500', 'text-slate-950', 'font-bold', 'shadow-sm', 'px-2.5', 'py-1');
+      siToggleBtn.classList.remove('text-slate-400', 'hover:text-white', 'font-semibold', 'text-white', 'px-2', 'py-0.5');
+      enToggleBtn.classList.remove('bg-amber-500', 'text-slate-950', 'font-bold', 'shadow-sm', 'text-white', 'px-2.5', 'py-1');
+      enToggleBtn.classList.add('text-slate-400', 'hover:text-white', 'font-semibold', 'px-2', 'py-0.5');
     } else {
-      enToggleBtn.classList.add('bg-amber-500', 'text-slate-950', 'font-bold', 'shadow-sm');
-      enToggleBtn.classList.remove('text-slate-400', 'hover:text-white', 'font-semibold', 'text-white');
-      siToggleBtn.classList.remove('bg-amber-500', 'text-slate-950', 'font-bold', 'shadow-sm', 'text-white');
-      siToggleBtn.classList.add('text-slate-400', 'hover:text-white', 'font-semibold');
+      enToggleBtn.classList.add('bg-amber-500', 'text-slate-950', 'font-bold', 'shadow-sm', 'px-2.5', 'py-1');
+      enToggleBtn.classList.remove('text-slate-400', 'hover:text-white', 'font-semibold', 'text-white', 'px-2', 'py-0.5');
+      siToggleBtn.classList.remove('bg-amber-500', 'text-slate-950', 'font-bold', 'shadow-sm', 'text-white', 'px-2.5', 'py-1');
+      siToggleBtn.classList.add('text-slate-400', 'hover:text-white', 'font-semibold', 'px-2', 'py-0.5');
     }
   }
 
