@@ -1117,11 +1117,22 @@
         </div>
 
         <!-- Consent -->
-        <div class="flex items-start space-x-3 text-xs text-slate-400">
-          <input type="checkbox" id="partnerConsent" required class="mt-1 rounded text-amber-500 focus:ring-amber-400">
-          <label for="partnerConsent" class="leading-relaxed">
-            I certify that our organization is a legally registered travel company in good standing, holds all necessary operational licenses and insurances, and consents to Star Plus Travels verifying our credentials for B2B contracting.
+        <div>
+          <label class="flex items-start gap-3 cursor-pointer text-xs text-slate-300">
+            <input 
+              type="checkbox" 
+              id="dmc-certify-checkbox" 
+              name="certify" 
+              required
+              class="mt-0.5 rounded border-slate-700 bg-slate-900 text-amber-500 focus:ring-amber-500 focus:ring-offset-slate-950"
+            />
+            <span>
+              I certify that our organization is a legally registered travel company in good standing, holds all necessary operational licenses and insurances, and consents to Star Plus Travels verifying our credentials for B2B contracting.
+            </span>
           </label>
+          <p id="dmc-checkbox-error" class="hidden text-xs text-rose-400 mt-1 font-medium">
+            ⚠️ Please certify and check this box before submitting your application.
+          </p>
         </div>
 
         <!-- Action Buttons -->

@@ -3482,6 +3482,24 @@ async function handlePartnerSubmit(e) {
     clearFieldError(websiteInput);
   }
 
+  const certifyCheckbox = document.getElementById('dmc-certify-checkbox') || document.getElementById('partnerConsent');
+  const checkboxError = document.getElementById('dmc-checkbox-error');
+  if (certifyCheckbox && !certifyCheckbox.checked) {
+    if (checkboxError) checkboxError.classList.remove('hidden');
+    invalidFields.push(certifyCheckbox);
+  } else if (checkboxError) {
+    checkboxError.classList.add('hidden');
+  }
+
+  if (certifyCheckbox && !certifyCheckbox.dataset.listenerBound) {
+    certifyCheckbox.dataset.listenerBound = 'true';
+    certifyCheckbox.addEventListener('change', () => {
+      if (certifyCheckbox.checked && checkboxError) {
+        checkboxError.classList.add('hidden');
+      }
+    });
+  }
+
   if (invalidFields.length > 0) {
     focusFirstInvalidField(invalidFields);
     return;
