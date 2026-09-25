@@ -3486,8 +3486,10 @@ async function handlePartnerSubmit(e) {
   const checkboxError = document.getElementById('dmc-checkbox-error');
   if (certifyCheckbox && !certifyCheckbox.checked) {
     if (checkboxError) checkboxError.classList.remove('hidden');
+    certifyCheckbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
     certifyCheckbox.focus();
     certifyCheckbox.classList.add('ring-2', 'ring-rose-500');
+    showToast('⚠️ Please certify and check this box before submitting your application.', 'error');
     invalidFields.push(certifyCheckbox);
   } else {
     if (checkboxError) checkboxError.classList.add('hidden');
@@ -3587,9 +3589,31 @@ async function handlePartnerSubmit(e) {
 
 // Helper: Open Mail Client with Full DMC Details for Direct Email Attachment
 function sendDirectDmcEmail() {
+  const certifyCheckbox = document.getElementById('dmc-certify-checkbox') || document.getElementById('partnerConsent');
+  const checkboxError = document.getElementById('dmc-checkbox-error');
+
+  if (certifyCheckbox && !certifyCheckbox.checked) {
+    if (checkboxError) {
+      checkboxError.classList.remove('hidden');
+    }
+    certifyCheckbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    certifyCheckbox.focus();
+    certifyCheckbox.classList.add('ring-2', 'ring-rose-500');
+    showToast('⚠️ Please certify and check this box before submitting your application.', 'error');
+    return;
+  } else {
+    if (checkboxError) {
+      checkboxError.classList.add('hidden');
+    }
+    if (certifyCheckbox) {
+      certifyCheckbox.classList.remove('ring-2', 'ring-rose-500');
+    }
+  }
+
   const company = document.getElementById('partnerCompany')?.value?.trim() || 'Partner Company';
   const destination = document.getElementById('partnerDestination')?.value?.trim() || 'Destination';
   const contact = document.getElementById('partnerContact')?.value?.trim() || 'Managing Director';
+  const email = document.getElementById('partnerEmail')?.value?.trim() || '';
   const partnerPhoneInput = document.getElementById('partnerPhone');
   const phone = (partnerPhoneInput && partnerPhoneInput._iti) ? (partnerPhoneInput._iti.getNumber() || partnerPhoneInput.value.trim()) : (partnerPhoneInput?.value?.trim() || '');
   const website = document.getElementById('partnerWebsite')?.value?.trim() || '';
@@ -3636,7 +3660,7 @@ function sendDirectDmcEmail() {
     `Submitted by:\n${contact} | ${company}\n`
   );
 
-  window.location.href = `mailto:nfo@starplustraveluae.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:info@starplustraveluae.com?subject=${subject}&body=${body}`;
 }
 
 // Newsletter Subscription ("VIP Travel Deals" in Footer)
@@ -4675,8 +4699,12 @@ function initApp() {
           }
           
           // Highlight the checkbox with a subtle glow/focus
+          certifyCheckbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
           certifyCheckbox.focus();
           certifyCheckbox.classList.add('ring-2', 'ring-rose-500');
+          if (typeof showToast === 'function') {
+            showToast('⚠️ Please certify and check this box before submitting your application.', 'error');
+          }
           return false;
         }
 
