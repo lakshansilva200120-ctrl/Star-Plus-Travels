@@ -274,12 +274,15 @@
         
         <!-- Official Brand Logo -->
         <a href="/" class="header-brand-wrap flex items-center py-1 group shrink-0 flex-shrink-0" aria-label="Star Plus Travel & Tourism LLC Home">
-          <img id="brandHeaderLogo"
-               src="assets/logo.png?v=2" 
-               data-dark-src="assets/logo-white-text.png?v=2"
-               data-light-src="assets/logo.png?v=2"
-               alt="Star Plus Travel & Tourism LLC" 
-               class="header-brand-logo h-9 sm:h-11 w-auto max-h-11 object-contain transition-transform duration-300 group-hover:scale-[1.02]">
+          <!-- Fixed Logo Container -->
+          <div class="w-14 h-14 rounded-xl bg-slate-900 border border-slate-700/60 p-1.5 flex items-center justify-center shrink-0 overflow-hidden">
+            <img 
+              id="brandHeaderLogo"
+              src="/assets/logo.png" 
+              alt="Star Plus Travels" 
+              class="w-full h-full object-contain"
+            />
+          </div>
         </a>
         <!-- Desktop Navigation Links with Sliding Glass Pill Active State -->
         <nav id="desktopNav" class="nav-pill-track hidden lg:flex items-center justify-center p-1 rounded-full relative isolate whitespace-nowrap min-w-0 flex-1 mx-2">
