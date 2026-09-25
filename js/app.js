@@ -3619,7 +3619,9 @@ function sendDirectDmcEmail(e) {
   }
 
   // 2. Extract values from form inputs
-  const companyName = document.querySelector('[name="company_name"]')?.value || document.getElementById('partnerCompany')?.value?.trim() || 'N/A';
+  const companyInputVal = document.querySelector('[name="company_name"]')?.value || document.getElementById('partnerCompany')?.value?.trim();
+  const companyName = companyInputVal || 'N/A';
+  const compLabel = companyInputVal || '[Company Name]';
   const contactPerson = document.querySelector('[name="contact_person"]')?.value || document.getElementById('partnerContact')?.value?.trim() || 'N/A';
   const email = document.querySelector('[name="email"]')?.value || document.getElementById('partnerEmail')?.value?.trim() || 'N/A';
   const partnerPhoneInput = document.querySelector('[name="phone"]') || document.getElementById('partnerPhone');
@@ -3627,26 +3629,31 @@ function sendDirectDmcEmail(e) {
   const country = document.querySelector('[name="country"]')?.value || document.getElementById('partnerDestination')?.value?.trim() || 'N/A';
   const message = document.querySelector('[name="notes"]')?.value || document.getElementById('partnerProposal')?.value?.trim() || document.querySelector('textarea')?.value || 'None';
 
+  const selectedServices = Array.from(document.querySelectorAll('input[name="services"]:checked'))
+    .map(cb => cb.closest('label')?.textContent?.trim() || cb.value)
+    .filter(Boolean)
+    .join(', ');
+
   // 3. Construct email parameters
   const recipient = 'info@starplustraveluae.com';
-  const subject = encodeURIComponent(`DMC Partnership Application - ${companyName}`);
+  const subject = encodeURIComponent(`DMC Partnership Application - ${compLabel}`);
   
   const bodyContent = 
 `Dear Star Plus Travels Team,
 
 Please review our DMC Partner application details below:
 
-• Organization / Company: ${companyName}
+• Company Name: ${companyName}
 • Contact Person: ${contactPerson}
 • Email: ${email}
-• Phone / WhatsApp: ${phone}
-• Country / Operational Base: ${country}
-
-Additional Details / Fleet & Services:
+• Phone: ${phone}
+• Country/Region: ${country}
+${selectedServices ? `• Selected Services: ${selectedServices}\n` : ''}
+Fleet/Services notes:
 ${message}
 
----
-Certification: I certify that our organization is a legally registered travel company in good standing for B2B contracting.`;
+Certification Confirmation:
+I certify that our organization is a legally registered travel company in good standing, holds all necessary operational licenses and insurances, and consents to Star Plus Travels verifying our credentials for B2B contracting.`;
 
   const body = encodeURIComponent(bodyContent);
 
