@@ -1010,7 +1010,11 @@
       </div>
 
       <!-- Application Form -->
-      <form onsubmit="submitApplicationForm(event)" novalidate class="mt-5 space-y-4">
+      <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" onsubmit="submitApplicationForm(event)" novalidate class="mt-5 space-y-4">
+        <!-- Web3Forms Configuration -->
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+        <input type="hidden" name="subject" value="New Job Application - Star Plus Travels">
+        <input type="hidden" name="from_name" value="Star Plus Careers Portal">
         <!-- Dynamic Captured Job Position -->
         <input type="hidden" id="applicantPosition" name="position" value="">
         
@@ -1019,13 +1023,13 @@
             <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
               Your Full Name *
             </label>
-            <input type="text" id="applicantName" required placeholder="e.g. Sarah Jenkins" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+            <input type="text" id="applicantName" name="applicant_name" required placeholder="e.g. Sarah Jenkins" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
           <div>
             <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
               Email Address *
             </label>
-            <input type="email" id="applicantEmail" required placeholder="sarah@example.com" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+            <input type="email" id="applicantEmail" name="email" required placeholder="sarah@example.com" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
         </div>
 
@@ -1034,13 +1038,13 @@
             <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
               Phone / WhatsApp *
             </label>
-            <input type="tel" id="applicantPhone" required placeholder="+971 50 123 4567" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+            <input type="tel" id="applicantPhone" name="phone" required placeholder="+971 50 123 4567" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
           <div>
             <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
               Target Branch Location *
             </label>
-            <select id="applicantBranch" onchange="updateRoutingBadge()" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm cursor-pointer">
+            <select id="applicantBranch" name="branch" onchange="updateRoutingBadge()" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm cursor-pointer">
               <option value="uae">🇦🇪 UAE Branch (info@starplustraveluae.com)</option>
               <option value="sl">🇱🇰 Sri Lanka Branch (info@starplustravelsl.com)</option>
             </select>
@@ -1052,7 +1056,7 @@
             <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
               Relevant Experience (Years)
             </label>
-            <select id="applicantExp" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm cursor-pointer">
+            <select id="applicantExp" name="experience" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm cursor-pointer">
               <option value="entry">Entry Level (< 1 year)</option>
               <option value="1-3" selected>1 - 3 years</option>
               <option value="3-5">3 - 5 years</option>
@@ -1063,7 +1067,7 @@
             <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
               LinkedIn or Portfolio URL
             </label>
-            <input type="url" id="applicantPortfolio" placeholder="https://linkedin.com/in/..." class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+            <input type="url" id="applicantPortfolio" name="linkedin" placeholder="https://linkedin.com/in/..." class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
         </div>
 
@@ -1075,7 +1079,7 @@
           </label>
 
           <!-- Hidden Native File Input -->
-          <input type="file" id="applicantResumeFile" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="hidden">
+          <input type="file" id="applicantResumeFile" name="attachment" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="hidden">
 
           <!-- Drag & Drop Dropzone Container -->
           <div id="resumeDropzone" class="relative group border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-amber-500 dark:hover:border-amber-500 rounded-xl p-4 sm:p-5 text-center cursor-pointer transition-all duration-200 bg-slate-50/70 dark:bg-slate-900/60 select-none" role="button" tabindex="0" aria-label="Click or drag and drop your Resume or CV">
@@ -1126,7 +1130,7 @@
             </button>
             
             <div id="resumeLinkContainer" class="hidden mt-2">
-              <input type="url" id="applicantResumeLink" placeholder="Paste Google Drive, Dropbox, or LinkedIn URL" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
+              <input type="url" id="applicantResumeLink" name="resume_link" placeholder="Paste Google Drive, Dropbox, or LinkedIn URL" class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm">
               <span class="text-[10px] text-slate-500 dark:text-slate-400 block mt-1">Please ensure public view permissions are enabled on your link.</span>
             </div>
           </div>
@@ -1136,7 +1140,7 @@
           <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">
             Brief Cover Note / Introduction
           </label>
-          <textarea id="applicantMessage" rows="3" placeholder="Tell us why you are a great fit for Star Plus Travel & Tourism..." class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm"></textarea>
+          <textarea id="applicantMessage" name="cover_note" rows="3" placeholder="Tell us why you are a great fit for Star Plus Travel & Tourism..." class="w-full glass-input px-3.5 py-2.5 rounded-xl text-sm"></textarea>
         </div>
 
         <!-- Action Buttons -->
@@ -1511,94 +1515,64 @@
         return;
       }
 
-      const phone = (phoneInput && phoneInput._iti) ? (phoneInput._iti.getNumber() || phoneInput.value.trim()) : (phoneInput?.value?.trim() || '');
-
-      const branch = document.getElementById('applicantBranch')?.value || 'uae';
-      const experience = document.getElementById('applicantExperience')?.value || '';
-      const linkedin = document.getElementById('applicantLinkedin')?.value?.trim() || '';
-      const coverNote = document.getElementById('applicantCoverNote')?.value?.trim() || '';
-
       // Check file size again to ensure strict adherence
       if (selectedResumeFile && selectedResumeFile.size > 5 * 1024 * 1024) {
         showResumeError("File size exceeds 5MB limit. Please upload a smaller file.");
         return;
       }
 
-      const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
+      const originalBtnContent = submitBtn ? submitBtn.innerHTML : 'Submit Application';
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Uploading &amp; Sending...</span>';
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i><span>Submitting Application...</span>';
         submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
       }
 
-      let fileData = null;
-      let fileName = null;
-      let fileType = null;
+      const phone = (phoneInput && phoneInput._iti) ? (phoneInput._iti.getNumber() || phoneInput.value.trim()) : (phoneInput?.value?.trim() || '');
+      const branch = document.getElementById('applicantBranch')?.value || 'uae';
+      const experience = document.getElementById('applicantExp')?.value || '1-3';
+      const linkedin = document.getElementById('applicantPortfolio')?.value?.trim() || '';
 
+      const formData = new FormData(form);
+      formData.set('applicant_name', fullName);
+      formData.set('email', email);
+      formData.set('phone', phone);
+      formData.set('branch', branch);
+      formData.set('experience', experience);
+      formData.set('linkedin', linkedin);
+      formData.set('position', position);
+      formData.set('subject', `New Job Application: ${position} - ${fullName}`);
+
+      // Attach the CV file if uploaded via drag-and-drop or file input
       if (selectedResumeFile) {
-        try {
-          fileData = await new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-            reader.readAsDataURL(selectedResumeFile);
-          });
-          fileName = selectedResumeFile.name;
-          fileType = selectedResumeFile.type || (selectedResumeFile.name.endsWith('.docx') ? 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' : 'application/pdf');
-        } catch (readErr) {
-          console.error('Error reading resume file:', readErr);
-          showToast('Could not process attached file. Please try again or provide a resume link.', 'error');
-          if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnContent;
-            submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-          }
-          return;
-        }
+        formData.set('attachment', selectedResumeFile, selectedResumeFile.name);
       }
 
-      const payload = {
-        formType: "job",
-        position: position,
-        fullName: fullName,
-        email: email,
-        phone: phone,
-        branch: branch,
-        experience: experience,
-        linkedin: linkedin,
-        coverNote: coverNote,
-        fileName: fileName,
-        fileType: fileType,
-        fileData: fileData
-      };
-
-      if (resumeLink) {
-        payload.resumeLink = resumeLink;
-      }
-
-      const endpoint = typeof GOOGLE_APPS_SCRIPT_ENDPOINT !== 'undefined'
-        ? GOOGLE_APPS_SCRIPT_ENDPOINT
-        : 'https://script.google.com/macros/s/AKfycbz7vtBsDq--xmYbATR1Zszv2aO-aZeIIeJRvrj4OJgpYhPu9ZJjRTWDPu88y5_sW0DN/exec';
+      const endpoint = form.getAttribute('action') || 'https://api.web3forms.com/submit';
 
       try {
-        await fetch(endpoint, {
+        const response = await fetch(endpoint, {
           method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
+          body: formData
         });
 
-        form.reset();
-        removeSelectedResume();
-        showToast('Thank you! Your application has been received.', 'success');
-        setTimeout(() => {
-          closeApplyModal();
-        }, 1200);
+        if (response.status === 200) {
+          form.reset();
+          removeSelectedResume();
+          showToast('Thank you! Your application has been successfully submitted.', 'success');
+          setTimeout(() => {
+            closeApplyModal();
+          }, 1500);
+        } else {
+          const result = await response.json().catch(() => null);
+          const msg = (result && result.message) ? result.message : 'Please check your information and retry.';
+          showToast(`Submission failed: ${msg}`, 'error');
+          alert('Submission failed. Please check your information and retry, or click "Open in Email App" to submit directly.');
+        }
       } catch (err) {
         console.error('Job application submission error:', err);
-        showToast('Network error while submitting application. Please try again.', 'error');
+        showToast('Network error while submitting application. Please retry.', 'error');
+        alert('A network error occurred while submitting your application. Please check your connection and retry.');
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
