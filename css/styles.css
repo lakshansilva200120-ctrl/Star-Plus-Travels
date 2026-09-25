@@ -2450,24 +2450,26 @@ html.season-halloween .glass-card:hover {
 /* Spooky Floating Particle Animation */
 @keyframes floatUpSpooky {
   0% {
-    transform: translateY(0) translateX(0) rotate(0deg);
+    transform: translateY(0) rotate(0deg) scale(0.9);
     opacity: 0;
   }
   15% {
     opacity: 0.6;
-    transform: translateY(-15vh) translateX(15px) rotate(15deg);
-  }
-  50% {
-    transform: translateY(-50vh) translateX(-15px) rotate(-10deg);
   }
   85% {
     opacity: 0.6;
-    transform: translateY(-85vh) translateX(10px) rotate(10deg);
   }
   100% {
-    transform: translateY(-115vh) translateX(0) rotate(0deg);
+    transform: translateY(-105vh) rotate(360deg) scale(1.1);
     opacity: 0;
   }
+}
+
+/* Optional subtle spooky glow on seasonal badges */
+.season-halloween .festival-badge {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(147, 51, 234, 0.2));
+  border-color: rgba(249, 115, 22, 0.4);
+  color: #fb923c;
 }
 
 /* Holiday Canvas Particle Layer */
