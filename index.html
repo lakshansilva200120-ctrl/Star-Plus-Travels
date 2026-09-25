@@ -1994,24 +1994,29 @@
       <!-- Booking Form -->
       <form onsubmit="submitBookingForm(event)" novalidate class="mt-5 space-y-4 text-left">
         <input type="hidden" id="bookingPackageName" name="packageName" value="">
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1" data-i18n="adult_travelers">Adult Travelers (12+ yrs)</label>
-            <select id="bookingTravelers" onchange="calculateBookingTotal()" class="w-full glass-input px-3 py-2 rounded-xl text-sm">
+        <!-- Grid with uniform label heights -->
+        <div class="grid grid-cols-2 gap-3 sm:gap-4">
+          <div class="flex flex-col">
+            <label class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 min-h-[32px] flex items-end" data-i18n="adult_travelers">
+              Adult Travelers (12+ Yrs)
+            </label>
+            <select id="bookingTravelers" name="travelers" onchange="calculateBookingTotal()" class="w-full h-11 px-3 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white focus:ring-amber-500">
               <option value="1">1 Adult</option>
               <option value="2" selected>2 Adults</option>
               <option value="3">3 Adults</option>
-              <option value="4">4 Adults</option>
-              <option value="5">5+ Adults</option>
+              <option value="4+">4+ Adults</option>
             </select>
           </div>
-          <div>
-            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1" data-i18n="children_travelers">Children (2-11 yrs)</label>
-            <select id="bookingChildren" onchange="calculateBookingTotal()" class="w-full glass-input px-3 py-2 rounded-xl text-sm">
+
+          <div class="flex flex-col">
+            <label class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 min-h-[32px] flex items-end" data-i18n="children_travelers">
+              Children (2–11 Yrs)
+            </label>
+            <select id="bookingChildren" name="children" onchange="calculateBookingTotal()" class="w-full h-11 px-3 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white focus:ring-amber-500">
               <option value="0" selected>0 Children</option>
-              <option value="1">1 Child (-35%)</option>
+              <option value="1">1 Child</option>
               <option value="2">2 Children</option>
-              <option value="3">3 Children</option>
+              <option value="3+">3+ Children</option>
             </select>
           </div>
         </div>

@@ -4340,12 +4340,14 @@ function translateFormElements(lang) {
       '2': 'වැඩිහිටියන් 2',
       '3': 'වැඩිහිටියන් 3',
       '4': 'වැඩිහිටියන් 4',
+      '4+': 'වැඩිහිටියන් 4+',
       '5': 'වැඩිහිටියන් 5+'
     } : {
       '1': '1 Adult',
       '2': '2 Adults',
       '3': '3 Adults',
       '4': '4 Adults',
+      '4+': '4+ Adults',
       '5': '5+ Adults'
     };
     Array.from(sel.options).forEach(opt => {
@@ -4359,14 +4361,16 @@ function translateFormElements(lang) {
   document.querySelectorAll('#bookingChildren').forEach(sel => {
     const childrenMap = isSi ? {
       '0': 'ළමුන් 0',
-      '1': 'ළමුන් 1 (-35%)',
+      '1': 'ළමුන් 1',
       '2': 'ළමුන් 2',
-      '3': 'ළමුන් 3'
+      '3': 'ළමුන් 3',
+      '3+': 'ළමුන් 3+'
     } : {
       '0': '0 Children',
-      '1': '1 Child (-35%)',
+      '1': '1 Child',
       '2': '2 Children',
-      '3': '3 Children'
+      '3': '3 Children',
+      '3+': '3+ Children'
     };
     Array.from(sel.options).forEach(opt => {
       if (childrenMap[opt.value]) {
