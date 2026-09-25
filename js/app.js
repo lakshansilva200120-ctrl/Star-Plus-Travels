@@ -9760,5 +9760,80 @@ window.addEventListener('load', () => {
   initSpotlightShowcases();
 });
 
+// Seasonal Festival Engine
+(function initSeasonalFestivals() {
+  function start() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const customDateParam = urlParams.get('date');
+    const today = customDateParam ? new Date(customDateParam) : new Date();
+    const month = today.getMonth() + 1; // 1-12
+    const day = today.getDate();
+
+    // Active window: Oct 20 to Nov 2 (or ?season=halloween / ?holiday=halloween override)
+    const isHalloweenOverride = urlParams.get('season') === 'halloween' || urlParams.get('holiday') === 'halloween';
+    const isHalloween = isHalloweenOverride || ((month === 10 && day >= 20) || (month === 11 && day <= 2));
+
+    if (isHalloween) {
+      applyHalloweenTheme();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+
+  function applyHalloweenTheme() {
+    // 1. Add theme class to body for custom CSS hooks
+    if (document.body) {
+      document.body.classList.add('season-halloween');
+    }
+
+    // 2. Inject floating spooky particle canvas / container
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (document.getElementById('halloween-particles')) return; // Avoid duplicate containers
+
+    const container = document.createElement('div');
+    container.id = 'halloween-particles';
+    container.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 40;
+      overflow: hidden;
+    `;
+    (document.body || document.documentElement).appendChild(container);
+
+    const icons = ['🎃', '🦇', '✨', '👻'];
+    const count = window.innerWidth < 768 ? 12 : 22; // lightweight on mobile
+
+    for (let i = 0; i < count; i++) {
+      createFloatingItem(container, icons[Math.floor(Math.random() * icons.length)]);
+    }
+  }
+
+  function createFloatingItem(container, symbol) {
+    const el = document.createElement('span');
+    el.innerText = symbol;
+    el.style.cssText = `
+      position: absolute;
+      bottom: -40px;
+      left: ${Math.random() * 100}vw;
+      font-size: ${Math.random() * 12 + 14}px;
+      opacity: ${Math.random() * 0.45 + 0.2};
+      animation: floatUpSpooky ${Math.random() * 7 + 7}s linear infinite;
+      animation-delay: -${Math.random() * 10}s;
+      filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.4));
+    `;
+    container.appendChild(el);
+  }
+
+  window.initSeasonalFestivals = initSeasonalFestivals;
+})();
+
 
 

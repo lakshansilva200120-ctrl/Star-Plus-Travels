@@ -2433,6 +2433,43 @@ html.dark.season-eid .glass-card:hover {
   box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.3);
 }
 
+/* 6. Halloween Spooky Season Accent */
+body.season-halloween .gold-gradient-text,
+html.season-halloween .gold-gradient-text {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 45%, #fbbf24 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.season-halloween .glass-card:hover,
+html.season-halloween .glass-card:hover {
+  border-color: rgba(249, 115, 22, 0.45);
+  box-shadow: 0 10px 30px -10px rgba(249, 115, 22, 0.25);
+}
+
+/* Spooky Floating Particle Animation */
+@keyframes floatUpSpooky {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.6;
+    transform: translateY(-15vh) translateX(15px) rotate(15deg);
+  }
+  50% {
+    transform: translateY(-50vh) translateX(-15px) rotate(-10deg);
+  }
+  85% {
+    opacity: 0.6;
+    transform: translateY(-85vh) translateX(10px) rotate(10deg);
+  }
+  100% {
+    transform: translateY(-115vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+}
+
 /* Holiday Canvas Particle Layer */
 #holidayThemeCanvas,
 #seasonalThemeCanvas {
