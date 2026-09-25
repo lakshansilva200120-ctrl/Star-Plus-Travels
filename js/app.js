@@ -2832,6 +2832,19 @@ function checkVisaRequirements() {
   const data = VISA_DATA[selectedType] || VISA_DATA.uae;
   if (!data) return;
 
+  const activeLang = document.documentElement.lang || (typeof currentLang !== 'undefined' ? currentLang : 'en');
+  const tDict = (typeof translations !== 'undefined' && translations[activeLang]) ? translations[activeLang] : {};
+  const isUae = selectedType === 'uae';
+  const displayTitle = (isUae && tDict.visa_opt_uae) ? tDict.visa_opt_uae : data.title;
+  const displayHeadline = (isUae && tDict.visa_price_speed) ? tDict.visa_price_speed : data.rateHeadline;
+  const displayDocs = (isUae && tDict.doc_passport && tDict.doc_photo && tDict.doc_prev_visa && tDict.doc_nic) ? [
+    tDict.doc_passport,
+    tDict.doc_photo,
+    tDict.doc_prev_visa,
+    tDict.doc_nic
+  ] : data.docs;
+  const reqDocsTitle = tDict.visa_req_docs || 'REQUIRED DOCUMENTS CHECKLIST:';
+
   const waUrl = `https://wa.me/971527582293?text=${encodeURIComponent(data.whatsappMsg)}`;
   const curr = CURRENCIES[currentCurrency] || CURRENCIES.AED;
   const isAED = currentCurrency === 'AED';
@@ -2846,7 +2859,7 @@ function checkVisaRequirements() {
             <i class="fa-solid fa-bolt text-amber-500 text-[10px]"></i>
             ${data.badge}
           </span>
-          <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading leading-tight">${data.title}</h4>
+          <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading leading-tight">${displayTitle}</h4>
         </div>
       </div>
 
@@ -2856,7 +2869,7 @@ function checkVisaRequirements() {
           <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 block mb-0.5">Price &amp; Processing Speed</span>
           <p class="text-xs sm:text-sm md:text-base font-extrabold text-amber-600 dark:text-amber-400 flex items-center gap-2 flex-wrap">
             <i class="fa-solid fa-tag text-amber-500 text-xs shrink-0"></i>
-            <span class="price-aed" data-base-aed="${data.priceAED}">${data.rateHeadline}</span>
+            <span class="price-aed" data-base-aed="${data.priceAED}">${displayHeadline}</span>
           </p>
         </div>
         ${!isAED ? `
@@ -2871,10 +2884,10 @@ function checkVisaRequirements() {
       <div class="mb-5">
         <h5 class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2.5 flex items-center gap-1.5">
           <i class="fa-solid fa-clipboard-check text-amber-500 text-xs"></i>
-          <span>Required Documents Checklist:</span>
+          <span data-i18n="visa_req_docs">${reqDocsTitle}</span>
         </h5>
         <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
-          ${data.docs.map(doc => `
+          ${displayDocs.map(doc => `
             <li class="flex items-start gap-2.5">
               <span class="w-4 h-4 rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0 mt-0.5 text-[9px]">
                 <i class="fa-solid fa-check"></i>

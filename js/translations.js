@@ -181,7 +181,70 @@ const translations = {
     footer_top_packages: "Top Packages",
     footer_destinations: "Key Hubs",
     footer_legal: "Accreditations & Disclosures",
-    footer_payment_notice: "Official Payment Notice: All payments must be remitted strictly to verified corporate bank accounts of Star Plus Travel & Tourism LLC. We never ask for transfers to personal accounts."
+    footer_payment_notice: "Official Payment Notice: All payments must be remitted strictly to verified corporate bank accounts of Star Plus Travel & Tourism LLC. We never ask for transfers to personal accounts.",
+
+    // ------------------------------------------------------------------------
+    // 7. Visa Section
+    // ------------------------------------------------------------------------
+    visa_title: "Express Visa & Immigration Concierge",
+    visa_desc: "Fast, authorized visa issuance with a 99.4% approval track record across the UAE, GCC, Schengen, Sri Lanka, and worldwide.",
+    visa_calc_title: "Check Visa Requirements & Rates",
+    visa_opt_uae: "UAE Tourist & Freelance Visa (30 / 60 Days)",
+    visa_price_speed: "From 380 AED | 24–48 Hours Express",
+    visa_req_docs: "REQUIRED DOCUMENTS CHECKLIST:",
+    doc_passport: "Passport copy (valid 6+ months from travel date)",
+    doc_photo: "Passport-size photograph with white background",
+    doc_prev_visa: "Previous UAE tourist visa copy or residence cancellation (if in UAE)",
+    doc_nic: "National identity card copy (for selected nationalities)",
+
+    // ------------------------------------------------------------------------
+    // 8. Quote Modal & Form Controls
+    // ------------------------------------------------------------------------
+    adult_travelers: "ADULT TRAVELERS (12+ YRS)",
+    children_travelers: "CHILDREN (2-11 YRS)",
+    dep_date: "PREFERRED DEPARTURE DATE",
+    special_notes: "SPECIAL NOTES / INQUIRIES (OPTIONAL)",
+    opt_adults_count: "{count} Adults",
+    opt_children_count: "{count} Children",
+
+    // ------------------------------------------------------------------------
+    // 9. Custom Itinerary & Trust Badges
+    // ------------------------------------------------------------------------
+    custom_itinerary_title: "Need a Completely Customized Itinerary?",
+    custom_itinerary_desc: "Our private travel specialists design custom routes, private luxury chauffeurs, multi-city airline tickets, and boutique hotel bookings tailored exactly to your family or corporate group budget.",
+    btn_request_custom: "Request Custom Quote",
+    badge_dual_licensed: "Dual Licensed",
+    badge_dual_desc: "Accredited by UAE DET and Sri Lanka SLTDA.",
+    badge_fare: "Best Fare Assurance",
+    badge_fare_desc: "Direct airline consolidator pricing with zero hidden fees.",
+    badge_split: "Split in 4 Payments",
+    badge_split_desc: "Flexible interest-free installments via Tabby & Tamara.",
+    badge_support: "24/7 Dedicated Support",
+    badge_support_desc: "Human travel architects available before and during your journey.",
+
+    // ------------------------------------------------------------------------
+    // 10. Section Titles
+    // ------------------------------------------------------------------------
+    destinations_title: "Inspiring Travel Destinations",
+    destinations_sub: "From glistening Arabian skyscrapers and tranquil Indian Ocean atolls to misty tea mountains and ancient Caucasian fortresses.",
+    why_choose_title: "Why Discerning Travelers Choose Us",
+    why_choose_sub: "Dual headquarters in Dubai and Colombo, accredited legal authority, direct wholesale airline partnerships, and around-the-clock personal concierge service.",
+    faq_title: "Frequently Asked Questions",
+    faq_sub: "Find authoritative answers regarding tour package bookings, UAE and Schengen visa procedures, payment split plans, and refund policies.",
+    contact_title: "Contact Our Global Offices",
+    contact_sub: "Visit our physical branches in Dubai or Colombo, or speak directly with our senior travel specialists on phone or WhatsApp.",
+
+    // Compatible Page Aliases
+    visaPageTitle: "Express Visa & Immigration Concierge",
+    visaPageSubtitle: "Fast, authorized visa issuance with a 99.4% approval track record across the UAE, GCC, Schengen, Sri Lanka, and worldwide.",
+    destinationsPageTitle: "Inspiring Travel Destinations",
+    destinationsPageSubtitle: "From glistening Arabian skyscrapers and tranquil Indian Ocean atolls to misty tea mountains and ancient Caucasian fortresses.",
+    whyUsPageTitle: "Why Discerning Travelers Choose Us",
+    whyUsPageSubtitle: "Dual headquarters in Dubai and Colombo, accredited legal authority, direct wholesale airline partnerships, and around-the-clock personal concierge service.",
+    faqPageTitle: "Frequently Asked Questions",
+    faqPageSubtitle: "Find authoritative answers regarding tour package bookings, UAE and Schengen visa procedures, payment split plans, and refund policies.",
+    contactPageTitle: "Contact Our Global Offices",
+    contactPageSubtitle: "Visit our physical branches in Dubai or Colombo, or speak directly with our senior travel specialists on phone or WhatsApp."
   },
 
   si: {
@@ -360,7 +423,70 @@ const translations = {
     footer_top_packages: "ප්‍රධාන පැකේජ",
     footer_destinations: "ප්‍රධාන මධ්‍යස්ථාන",
     footer_legal: "නීතිමය සහතික සහ ප්‍රතිපත්ති",
-    footer_payment_notice: "නිල ගෙවීම් ආරක්ෂණ දැනුම්දීම: සියලුම ගෙවීම් අපගේ නිල සමාගම් බැංකු ගිණුමට පමණක් සිදු කළ යුතුය. කිසිදු පුද්ගලික ගිණුමකට මුදල් බැර කරන ලෙස අප කිසිවිටෙකත් ඉල්ලා නොසිටිමු."
+    footer_payment_notice: "නිල ගෙවීම් ආරක්ෂණ දැනුම්දීම: සියලුම ගෙවීම් අපගේ නිල සමාගම් බැංකු ගිණුමට පමණක් සිදු කළ යුතුය. කිසිදු පුද්ගලික ගිණුමකට මුදල් බැර කරන ලෙස අප කිසිවිටෙකත් ඉල්ලා නොසිටිමු.",
+
+    // ------------------------------------------------------------------------
+    // 7. Visa Section
+    // ------------------------------------------------------------------------
+    visa_title: "එක්ස්ප්රස් වීසා සහ ආගමන විගමන සේවාව",
+    visa_desc: "එක්සත් අරාබි එමීර් රාජ්යය, GCC, ෂෙන්ගන්, ශ්රී ලංකාව සහ ලොව පුරා 99.4% ක අනුමැතියක් සහිත නිල වීසා සේවාව.",
+    visa_calc_title: "වීසා අවශ්යතා සහ ගාස්තු පරීක්ෂා කරන්න",
+    visa_opt_uae: "එක්සත් අරාබි එමීර් සංචාරක සහ නිදහස් වීසා (දින 30 / 60)",
+    visa_price_speed: "AED 380 සිට | පැය 24–48 කඩිනම් සේවාව",
+    visa_req_docs: "අවශ්ය ලිපිලේඛන ලැයිස්තුව:",
+    doc_passport: "විදේශ ගමන් බලපත්ර පිටපත (මාස 6 කට වඩා වලංගු)",
+    doc_photo: "සුදු පසුබිම සහිත ඡායාරූපය",
+    doc_prev_visa: "පෙර එක්සත් අරාබි එමීර් වීසා පිටපත හෝ අවලංගු කිරීමේ ලියකියවිලි",
+    doc_nic: "ජාතික හැඳුනුම්පත් පිටපත",
+
+    // ------------------------------------------------------------------------
+    // 8. Quote Modal & Form Controls
+    // ------------------------------------------------------------------------
+    adult_travelers: "වැඩිහිටි සංචාරකයින් (වයස 12+)",
+    children_travelers: "ළමුන් (වයස 2-11)",
+    dep_date: "බලාපොරොත්තු වන පිටත්වීමේ දිනය",
+    special_notes: "විශේෂ සටහන් / විමසීම් (විකල්ප)",
+    opt_adults_count: "වැඩිහිටියන් {count}",
+    opt_children_count: "ළමුන් {count}",
+
+    // ------------------------------------------------------------------------
+    // 9. Custom Itinerary & Trust Badges
+    // ------------------------------------------------------------------------
+    custom_itinerary_title: "ඔබටම වෙන්වූ සංචාරක සැලසුමක් අවශ්යද?",
+    custom_itinerary_desc: "ඔබේ පවුලේ හෝ ආයතනික අයවැයට ගැළපෙන පරිදි විශේෂ ගමන් මාර්ග, සුඛෝපභෝගී වාහන සහ හෝටල් වෙන්කිරීම් අපගේ විශේෂඥයින් විසින් සකස් කරනු ලැබේ.",
+    btn_request_custom: "මිල කැඳවීමක් ලබාගන්න",
+    badge_dual_licensed: "ද්විත්ව බලපත්රලාභී",
+    badge_dual_desc: "UAE DET සහ ශ්රී ලංකා SLTDA මඟින් නිල වශයෙන් අනුමතයි.",
+    badge_fare: "හොඳම මිල සහතිකය",
+    badge_fare_desc: "සැඟවුණු ගාස්තු රහිත සෘජු ගුවන් සේවා ගාස්තු.",
+    badge_split: "කොටස් 4කින් ගෙවන්න",
+    badge_split_desc: "Tabby සහ Tamara හරහා පොලී රහිත පහසු ගෙවීමේ ක්රම.",
+    badge_support: "24/7 පාරිභෝගික සහය",
+    badge_support_desc: "ඔබගේ සංචාරය පුරාවටම ඕනෑම වේලාවක අපගේ සහයෝගය.",
+
+    // ------------------------------------------------------------------------
+    // 10. Section Titles
+    // ------------------------------------------------------------------------
+    destinations_title: "සිත් ඇදගන්නා සංචාරක ගමනාන්ත",
+    destinations_sub: "අරාබි අහස උසට නැඟුණු ගොඩනැගිලි සහ සන්සුන් ඉන්දියන් සාගර දූපත් වල සිට මිහිදුම් සහිත තේ වතු සහ ඓතිහාසික බලකොටු දක්වා.",
+    why_choose_title: "සංචාරකයින් අපව තෝරාගන්නේ ඇයි",
+    why_choose_sub: "ඩුබායි සහ කොළඹ පිහිටි ප්රධාන කාර්යාල, නිල නීතිමය අනුමැතිය සහ පැය 24 පුරා ක්රියාත්මක පෞද්ගලික සේවාව.",
+    faq_title: "නිතර අසන ප්රශ්න",
+    faq_sub: "සංචාරක පැකේජ, වීසා ක්රියාවලි, පහසු ගෙවීමේ ක්රම සහ මුදල් ආපසු ලබාගැනීමේ ප්රතිපත්ති පිළිබඳ තොරතුරු.",
+    contact_title: "අපගේ ගෝලීය කාර්යාල හා සම්බන්ධ වන්න",
+    contact_sub: "ඩුබායි හෝ කොළඹ පිහිටි අපගේ ශාඛා වෙත පැමිණෙන්න, නැතහොත් දුරකථන හෝ WhatsApp හරහා අප හා සම්බන්ධ වන්න.",
+
+    // Compatible Page Aliases
+    visaPageTitle: "එක්ස්ප්රස් වීසා සහ ආගමන විගමන සේවාව",
+    visaPageSubtitle: "එක්සත් අරාබි එමීර් රාජ්යය, GCC, ෂෙන්ගන්, ශ්රී ලංකාව සහ ලොව පුරා 99.4% ක අනුමැතියක් සහිත නිල වීසා සේවාව.",
+    destinationsPageTitle: "සිත් ඇදගන්නා සංචාරක ගමනාන්ත",
+    destinationsPageSubtitle: "අරාබි අහස උසට නැඟුණු ගොඩනැගිලි සහ සන්සුන් ඉන්දියන් සාගර දූපත් වල සිට මිහිදුම් සහිත තේ වතු සහ ඓතිහාසික බලකොටු දක්වා.",
+    whyUsPageTitle: "සංචාරකයින් අපව තෝරාගන්නේ ඇයි",
+    whyUsPageSubtitle: "ඩුබායි සහ කොළඹ පිහිටි ප්රධාන කාර්යාල, නිල නීතිමය අනුමැතිය සහ පැය 24 පුරා ක්රියාත්මක පෞද්ගලික සේවාව.",
+    faqPageTitle: "නිතර අසන ප්රශ්න",
+    faqPageSubtitle: "සංචාරක පැකේජ, වීසා ක්රියාවලි, පහසු ගෙවීමේ ක්රම සහ මුදල් ආපසු ලබාගැනීමේ ප්රතිපත්ති පිළිබඳ තොරතුරු.",
+    contactPageTitle: "අපගේ ගෝලීය කාර්යාල හා සම්බන්ධ වන්න",
+    contactPageSubtitle: "ඩුබායි හෝ කොළඹ පිහිටි අපගේ ශාඛා වෙත පැමිණෙන්න, නැතහොත් දුරකථන හෝ WhatsApp හරහා අප හා සම්බන්ධ වන්න."
   }
 };
 
