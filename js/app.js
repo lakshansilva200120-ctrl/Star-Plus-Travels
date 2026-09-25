@@ -3130,7 +3130,7 @@ window.updateModernCurrencyDropdownUI = updateModernCurrencyDropdownUI;
 function initModernCurrencyDropdown() {
   const toggleBtn = document.getElementById('currency-toggle-btn');
   const menu = document.getElementById('currency-menu');
-  const chevron = document.getElementById('currency-chevron');
+  const chevron = document.getElementById('currency-chevron') || toggleBtn?.querySelector('svg');
   const wrapper = document.getElementById('currency-dropdown-wrapper');
 
   if (!toggleBtn || !menu) return;
@@ -3143,15 +3143,16 @@ function initModernCurrencyDropdown() {
     toggleBtn._hasCurrencyListener = true;
     toggleBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      const currentChevron = document.getElementById('currency-chevron') || toggleBtn.querySelector('svg');
       const isHidden = menu.classList.contains('hidden');
       if (isHidden) {
         menu.classList.remove('hidden');
         toggleBtn.setAttribute('aria-expanded', 'true');
-        if (chevron) chevron.classList.add('rotate-180');
+        if (currentChevron) currentChevron.classList.add('rotate-180');
       } else {
         menu.classList.add('hidden');
         toggleBtn.setAttribute('aria-expanded', 'false');
-        if (chevron) chevron.classList.remove('rotate-180');
+        if (currentChevron) currentChevron.classList.remove('rotate-180');
       }
     });
   }
@@ -3162,13 +3163,14 @@ function initModernCurrencyDropdown() {
       btn._hasCurrencyListener = true;
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
+        const currentChevron = document.getElementById('currency-chevron') || toggleBtn?.querySelector('svg');
         const curr = btn.getAttribute('data-currency');
         if (curr) {
           changeCurrency(curr);
         }
         menu.classList.add('hidden');
         toggleBtn.setAttribute('aria-expanded', 'false');
-        if (chevron) chevron.classList.remove('rotate-180');
+        if (currentChevron) currentChevron.classList.remove('rotate-180');
       });
     }
   });
@@ -3180,7 +3182,7 @@ function initModernCurrencyDropdown() {
       const activeWrapper = document.getElementById('currency-dropdown-wrapper');
       const activeMenu = document.getElementById('currency-menu');
       const activeBtn = document.getElementById('currency-toggle-btn');
-      const activeChevron = document.getElementById('currency-chevron');
+      const activeChevron = document.getElementById('currency-chevron') || activeBtn?.querySelector('svg');
       if (activeWrapper && !activeWrapper.contains(e.target) && activeMenu && !activeMenu.classList.contains('hidden')) {
         activeMenu.classList.add('hidden');
         if (activeBtn) activeBtn.setAttribute('aria-expanded', 'false');
@@ -3193,7 +3195,7 @@ function initModernCurrencyDropdown() {
       if (e.key === 'Escape') {
         const activeMenu = document.getElementById('currency-menu');
         const activeBtn = document.getElementById('currency-toggle-btn');
-        const activeChevron = document.getElementById('currency-chevron');
+        const activeChevron = document.getElementById('currency-chevron') || activeBtn?.querySelector('svg');
         if (activeMenu && !activeMenu.classList.contains('hidden')) {
           activeMenu.classList.add('hidden');
           if (activeBtn) activeBtn.setAttribute('aria-expanded', 'false');
