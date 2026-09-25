@@ -1666,6 +1666,85 @@ const VISA_DATA = {
   }
 };
 
+const VISA_DATA_SI = {
+  uae: {
+    key: 'uae',
+    title: 'එක්සත් අරාබි එමීර් සංචාරක සහ නිදහස් වීසා (දින 30 / 60)',
+    rateHeadline: 'AED 380 සිට | පැය 24–48 කඩිනම් සේවාව',
+    badge: 'ජනප්‍රියයි • කඩිනම් අනුමැතිය',
+    priceAED: 380,
+    speed: 'පැය 24–48 කඩිනම් සේවාව',
+    docs: [
+      'විදේශ ගමන් බලපත්‍ර පිටපත (මාස 6 කට වඩා වලංගු)',
+      'සුදු පසුබිම සහිත ඡායාරූපය',
+      'පෙර එක්සත් අරාබි එමීර් වීසා පිටපත හෝ අවලංගු කිරීමේ ලියකියවිලි',
+      'ජාතික හැඳුනුම්පත් පිටපත (තෝරාගත් ජාතීන් සඳහා)'
+    ],
+    whatsappMsg: "ආයුබෝවන් Star Plus Travel, මට එක්සත් අරාබි එමීර් සංචාරක සහ නිදහස් වීසා (දින 30 / 60) පිළිබඳ විස්තර දැනගැනීමට සහ අයදුම් කිරීමට අවශ්‍යයි."
+  },
+  oman_change: {
+    key: 'oman_change',
+    title: 'ඕමාන් වීසා මාරුව සුඛෝපභෝගී බස් රථයෙන් (දෙයිරා සිට)',
+    rateHeadline: 'AED 290 සිට (එදිනම බස් රථ ගමන සහ වීසා අලුත් කිරීම)',
+    badge: 'දිනපතා පිටත්වීම් • දෙයිරා මධ්‍යස්ථානය',
+    priceAED: 290,
+    speed: 'එදිනම බස් රථ ගමන සහ වීසා අලුත් කිරීම',
+    docs: [
+      'මාස 6 කට වැඩි වලංගුතාවයක් සහිත මුල් ගමන් බලපත්‍රය',
+      'වත්මන් එමීර් වීසා අවලංගු කිරීමේ පත්‍රිකාව හෝ වලංගු වීසා පිටපත',
+      'දඩ මුදල් නොමැති බව තහවුරු කළ දේශසීමා සංචාරක තත්ත්වය',
+      'සුඛෝපභෝගී බස් රථ ආසන වෙන්කිරීම සහ දේශසීමා නිෂ්කාශනය'
+    ],
+    whatsappMsg: "ආයුබෝවන් Star Plus Travel, මට ඕමාන් වීසා මාරුව සුඛෝපභෝගී බස් රථයෙන් ලබාගැනීමට අවශ්‍යයි."
+  },
+  schengen: {
+    key: 'schengen',
+    title: 'යුරෝපා ෂෙන්ගන් වීසා සම්පූර්ණ ලිපිගොනු සකස් කිරීමේ සේවාව',
+    rateHeadline: 'AED 650 සිට (දිනයක් වෙන්කිරීම, හෝටල්/ගුවන් ටිකට් සහ රක්ෂණාවරණය)',
+    badge: 'පුද්ගලික සේවාව • VFS / BLS වේලාවන්',
+    priceAED: 650,
+    speed: 'වැඩකරන දින 10–15 (කඩිනම් දිනයක් වෙන්කිරීම)',
+    docs: [
+      'සංචාරක දිනයෙන් පසු මාස 3 කට වැඩි වලංගුතාවයක් සහිත මුල් ගමන් බලපත්‍රය',
+      'එක්සත් අරාබි එමීර් පදිංචි වීසා බලපත්‍රය (අවම වශයෙන් මාස 3 ක් වලංගු)',
+      'බැංකුව මඟින් සහතික කරන ලද මාස 3 සිට 6 දක්වා බැංකු ප්‍රකාශන',
+      'සේවායෝජකයාගෙන් විරෝධතාවක් නොමැති බවට ලිපිය (NOC)',
+      'දිනයක් වෙන්කිරීම, තහවුරු කළ හෝටල්/ගුවන් වවුචර් සහ ෂෙන්ගන් රක්ෂණය'
+    ],
+    whatsappMsg: "ආයුබෝවන් Star Plus Travel, මට යුරෝපා ෂෙන්ගන් වීසා සේවාව පිළිබඳ විමසීමට අවශ්‍යයි."
+  },
+  srilanka: {
+    key: 'srilanka',
+    title: 'ශ්‍රී ලංකා විද්‍යුත් සංචාරක අනුමැතිය (ETA)',
+    rateHeadline: 'AED 210 සිට | පැය 12–24 කඩිනම් අනුමැතිය',
+    badge: 'සෘජු නිල අනුමැතිය',
+    priceAED: 210,
+    speed: 'පැය 12–24 කඩිනම් අනුමැතිය',
+    docs: [
+      'ගමන් බලපත්‍රයේ තොරතුරු පිටපතේ ස්කෑන් පිටපත (මාස 6 කට වඩා වලංගු)',
+      'තහවුරු කළ ආපසු ගුවන් ටිකට්පත',
+      'ඊ-වීසා PDF ලේඛනය ලබාගැනීමට සක්‍රීය විද්‍යුත් තැපෑල සහ WhatsApp',
+      'ශ්‍රී ලංකාවේ රැඳී සිටින ලිපිනය හෝ හෝටල් වවුචරය'
+    ],
+    whatsappMsg: "ආයුබෝවන් Star Plus Travel, මට ශ්‍රී ලංකා විද්‍යුත් සංචාරක අනුමැතිය (ETA) ලබාගැනීමට අවශ්‍යයි."
+  },
+  azerbaijan: {
+    key: 'azerbaijan',
+    title: 'අසර්බයිජාන් නිල ASAN ඊ-වීසා (පැය 3 ක කඩිනම් සේවාව)',
+    rateHeadline: 'AED 195 සිට | පැය 3 ක සුපිරි කඩිනම් සේවාව',
+    badge: 'පැය 3 ක සුපිරි කඩිනම් නිකුතුව',
+    priceAED: 195,
+    speed: 'පැය 3 ක සුපිරි කඩිනම් සේවාව',
+    docs: [
+      'පැහැදිලි ගමන් බලපත්‍ර ස්කෑන් පිටපත (වීසා කාලයෙන් පසු මාස 3 ක් වලංගු)',
+      'හයිඩර් අලියෙව් ගුවන්තොටුපළට (GYD) පැමිණීමේ ගුවන් විස්තර',
+      'බාකු හි තහවුරු කළ හෝටල් වෙන්කිරීම හෝ නවාතැන් ලිපිනය',
+      'රජයේ ඊ-වීසා PDF සෘජුවම ලබාගැනීමට වලංගු විද්‍යුත් තැපැල් ලිපිනය'
+    ],
+    whatsappMsg: "ආයුබෝවන් Star Plus Travel, මට අසර්බයිජාන් නිල ASAN ඊ-වීසා පිළිබඳ විමසීමට අවශ්‍යයි."
+  }
+};
+
 // Global Helpers
 function formatPrice(amountInAED) {
   const info = CURRENCIES[currentCurrency];
@@ -2168,6 +2247,14 @@ function handleRequestQuote(pkgId, pkgTitle, pkgDest, event) {
     }
   }
 
+  const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : 'en';
+  const isSi = (currentLang === 'si');
+  const pI18n = (isSi && typeof PACKAGES_I18N !== 'undefined' && pkg?.id && PACKAGES_I18N[pkg.id]) ? PACKAGES_I18N[pkg.id] : null;
+
+  const displayTitle = pI18n ? pI18n.title : (pkg?.title || pkgTitle || (typeof pkgId === 'string' && pkgId ? pkgId : 'Holiday Tour Package'));
+  const displayDest = pI18n ? pI18n.destination : (pkg?.destination || pkgDest || 'Holiday Tour');
+  const displayDuration = pI18n ? pI18n.duration : (pkg?.duration || 'Flexible');
+
   const finalTitle = pkg?.title || pkgTitle || (typeof pkgId === 'string' && pkgId ? pkgId : 'Holiday Tour Package');
   const finalDest = pkg?.destination || pkgDest || 'Holiday Tour';
 
@@ -2196,21 +2283,21 @@ function handleRequestQuote(pkgId, pkgTitle, pkgDest, event) {
     const titleElem = document.getElementById('modalPkgTitle') || 
                       quoteModal.querySelector('.modal-pkg-title, #quoteModalTitle, #inquiryModalTitle, h3');
     if (titleElem) {
-      titleElem.textContent = finalTitle;
+      titleElem.textContent = displayTitle;
     }
 
     // Populate Destination / Subtitle
     const destElem = document.getElementById('modalPkgDestination') || 
                      quoteModal.querySelector('.modal-pkg-destination, #quoteModalDest');
     if (destElem) {
-      destElem.innerHTML = `${pkg.flag || '✈️'} <span class="font-semibold">${pkg.destination || finalDest}</span> &bull; <span>${pkg.duration || 'Flexible'}</span>`;
+      destElem.innerHTML = `${pkg.flag || '✈️'} <span class="font-semibold">${displayDest}</span> &bull; <span>${displayDuration}</span>`;
     }
 
     // Populate Image
     const imgElem = document.getElementById('modalPkgImage') || quoteModal.querySelector('img');
     if (imgElem) {
       imgElem.src = pkg.image || 'assets/logo.png';
-      imgElem.alt = pkg.alt || finalTitle;
+      imgElem.alt = pkg.alt || displayTitle;
     }
 
     // Populate Pricing (AED only, no LKR)
@@ -2228,7 +2315,7 @@ function handleRequestQuote(pkgId, pkgTitle, pkgDest, event) {
 
     // Prefill any package name inputs inside the modal
     quoteModal.querySelectorAll('input[name="packageName"], input[name="package"], input[name="destination"], #bookingPackageName, #quotePackageName, #inquiryPackage').forEach(input => {
-      input.value = finalTitle;
+      input.value = displayTitle;
     });
 
     // Reset default form inputs
@@ -2254,7 +2341,9 @@ function handleRequestQuote(pkgId, pkgTitle, pkgDest, event) {
 
     const notesInput = document.getElementById('bookingNotes') || quoteModal.querySelector('textarea[name="notes"], textarea[name="message"]');
     if (notesInput) {
-      notesInput.value = `Requesting official quote & itinerary details for: ${finalTitle}`;
+      notesInput.value = isSi 
+        ? `නිල මිල ගණන් සහ සංචාරක විස්තර ඉල්ලුම් කිරීම: ${displayTitle}`
+        : `Requesting official quote & itinerary details for: ${finalTitle}`;
     }
 
     // Default date to next week
@@ -2272,6 +2361,11 @@ function handleRequestQuote(pkgId, pkgTitle, pkgDest, event) {
     quoteModal.classList.remove('hidden');
     quoteModal.classList.add('flex');
     document.body.style.overflow = 'hidden';
+
+    // Retranslate active dynamic modal elements
+    if (typeof retranslateActiveModals === 'function') {
+      retranslateActiveModals();
+    }
 
     // Ensure intl-tel-input is initialized on modal display
     if (typeof initIntlTelInputs === 'function') {
@@ -2832,20 +2926,19 @@ function checkVisaRequirements() {
   const data = VISA_DATA[selectedType] || VISA_DATA.uae;
   if (!data) return;
 
-  const activeLang = document.documentElement.lang || (typeof currentLang !== 'undefined' ? currentLang : 'en');
+  const activeLang = document.documentElement.lang || (typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : (localStorage.getItem('site_lang') || 'en'));
+  const isSi = (activeLang === 'si');
   const tDict = (typeof translations !== 'undefined' && translations[activeLang]) ? translations[activeLang] : {};
-  const isUae = selectedType === 'uae';
-  const displayTitle = (isUae && tDict.visa_opt_uae) ? tDict.visa_opt_uae : data.title;
-  const displayHeadline = (isUae && tDict.visa_price_speed) ? tDict.visa_price_speed : data.rateHeadline;
-  const displayDocs = (isUae && tDict.doc_passport && tDict.doc_photo && tDict.doc_prev_visa && tDict.doc_nic) ? [
-    tDict.doc_passport,
-    tDict.doc_photo,
-    tDict.doc_prev_visa,
-    tDict.doc_nic
-  ] : data.docs;
-  const reqDocsTitle = tDict.visa_req_docs || 'REQUIRED DOCUMENTS CHECKLIST:';
+  const siData = (isSi && typeof VISA_DATA_SI !== 'undefined' && VISA_DATA_SI[selectedType]) ? VISA_DATA_SI[selectedType] : null;
 
-  const waUrl = `https://wa.me/971527582293?text=${encodeURIComponent(data.whatsappMsg)}`;
+  const displayTitle = siData ? siData.title : data.title;
+  const displayHeadline = siData ? siData.rateHeadline : data.rateHeadline;
+  const displayBadge = siData ? siData.badge : data.badge;
+  const displayDocs = siData ? siData.docs : data.docs;
+  const reqDocsTitle = tDict.visa_req_docs || (isSi ? 'අවශ්‍ය ලිපිලේඛන ලැයිස්තුව:' : 'REQUIRED DOCUMENTS CHECKLIST:');
+  const whatsappMsg = siData ? siData.whatsappMsg : data.whatsappMsg;
+
+  const waUrl = `https://wa.me/971527582293?text=${encodeURIComponent(whatsappMsg)}`;
   const curr = CURRENCIES[currentCurrency] || CURRENCIES.AED;
   const isAED = currentCurrency === 'AED';
   const convertedPrice = formatPrice(data.priceAED);
@@ -2857,7 +2950,7 @@ function checkVisaRequirements() {
         <div>
           <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/15 dark:bg-amber-500/20 text-amber-600 dark:text-amber-400 uppercase tracking-wider mb-1.5">
             <i class="fa-solid fa-bolt text-amber-500 text-[10px]"></i>
-            ${data.badge}
+            ${displayBadge}
           </span>
           <h4 class="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading leading-tight">${displayTitle}</h4>
         </div>
@@ -2866,7 +2959,7 @@ function checkVisaRequirements() {
       <!-- Price & Processing Speed Banner -->
       <div class="my-4 p-4 rounded-xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent border border-amber-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
         <div class="min-w-0">
-          <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 block mb-0.5">Price &amp; Processing Speed</span>
+          <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 block mb-0.5">${isSi ? 'මිල සහ සේවා කාලය' : 'Price &amp; Processing Speed'}</span>
           <p class="text-xs sm:text-sm md:text-base font-extrabold text-amber-600 dark:text-amber-400 flex items-center gap-2 flex-wrap">
             <i class="fa-solid fa-tag text-amber-500 text-xs shrink-0"></i>
             <span class="price-aed" data-base-aed="${data.priceAED}">${displayHeadline}</span>
@@ -2874,7 +2967,7 @@ function checkVisaRequirements() {
         </div>
         ${!isAED ? `
           <div class="text-left sm:text-right shrink-0 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-700">
-            <span class="text-[10px] text-slate-400 block">Converted Price</span>
+            <span class="text-[10px] text-slate-400 block">${isSi ? 'පරිවර්තනය කළ මිල' : 'Converted Price'}</span>
             <span class="text-xs font-bold text-amber-400">${convertedPrice} (${curr.name.split(' ')[0]})</span>
           </div>
         ` : ''}
@@ -2901,15 +2994,15 @@ function checkVisaRequirements() {
       <!-- Quick Action Buttons -->
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4 border-t border-slate-200/80 dark:border-slate-800">
         <!-- Primary WhatsApp Action Button -->
-        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-slate-950 font-black text-xs sm:text-sm shadow-lg shadow-emerald-500/20 flex items-center justify-center space-x-2 transition-all group cursor-pointer" title="Inquire on WhatsApp">
+        <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-slate-950 font-black text-xs sm:text-sm shadow-lg shadow-emerald-500/20 flex items-center justify-center space-x-2 transition-all group cursor-pointer" title="${isSi ? 'WhatsApp මගින් විමසන්න' : 'Inquire on WhatsApp'}">
           <i class="fa-brands fa-whatsapp text-base transition-transform group-hover:scale-110"></i>
-          <span>Inquire on WhatsApp</span>
+          <span>${isSi ? 'WhatsApp මගින් විමසන්න' : 'Inquire on WhatsApp'}</span>
         </a>
 
         <!-- Fast Online Form Booking Button -->
-        <button type="button" onclick="openVisaInquiryModal('${data.title.replace(/'/g, "\\'")}', event)" class="flex-1 py-3 px-5 rounded-xl bg-[#F59E0B] hover:bg-[#D97706] text-[#070B14] font-bold text-xs sm:text-sm shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 transition-all duration-200 active:scale-95 cursor-pointer" title="Apply Online Form">
+        <button type="button" onclick="openVisaInquiryModal('${displayTitle.replace(/'/g, "\\'")}', event)" class="flex-1 py-3 px-5 rounded-xl bg-[#F59E0B] hover:bg-[#D97706] text-[#070B14] font-bold text-xs sm:text-sm shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 transition-all duration-200 active:scale-95 cursor-pointer" title="${isSi ? 'අන්තර්ජාලය හරහා අයදුම් කරන්න' : 'Apply Online Form'}">
           <i class="fa-solid fa-file-signature text-[#070B14] text-xs sm:text-sm"></i>
-          <span>Apply Online Form</span>
+          <span>${isSi ? 'අන්තර්ජාලය හරහා අයදුම් කරන්න' : 'Apply Online Form'}</span>
         </button>
       </div>
     </div>
@@ -2929,22 +3022,25 @@ function openVisaInquiryModal(visaTitle, e) {
   if (bookingModal) {
     selectedPackageForBooking = null;
 
+    const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : 'en';
+    const isSi = (currentLang === 'si');
+
     const titleElem = document.getElementById('modalPkgTitle');
-    if (titleElem) titleElem.textContent = visaTitle || 'Visa Application';
+    if (titleElem) titleElem.textContent = visaTitle || (isSi ? 'වීසා අයදුම්පත' : 'Visa Application');
 
     const destElem = document.getElementById('modalPkgDestination');
     if (destElem) {
-      destElem.innerHTML = `<i class="fa-solid fa-passport text-amber-500 mr-1.5"></i> <span class="font-semibold">Visa &amp; Immigration Services</span> &bull; <span>Express Processing</span>`;
+      destElem.innerHTML = `<i class="fa-solid fa-passport text-amber-500 mr-1.5"></i> <span class="font-semibold">${isSi ? 'වීසා සහ ආගමන සේවා' : 'Visa &amp; Immigration Services'}</span> &bull; <span>${isSi ? 'කඩිනම් සැකසුම්' : 'Express Processing'}</span>`;
     }
 
     const imgElem = document.getElementById('modalPkgImage');
     if (imgElem) {
       imgElem.src = 'assets/logo.png';
-      imgElem.alt = visaTitle || 'Visa Application';
+      imgElem.alt = visaTitle || (isSi ? 'වීසා අයදුම්පත' : 'Visa Application');
     }
 
     const priceElem = document.getElementById('modalPkgBasePrice');
-    if (priceElem) priceElem.textContent = 'Official Rate';
+    if (priceElem) priceElem.textContent = isSi ? 'නිල ගාස්තු' : 'Official Rate';
 
     const travelers = document.getElementById('bookingTravelers');
     if (travelers) travelers.value = '1';
@@ -2973,22 +3069,28 @@ function openVisaInquiryModal(visaTitle, e) {
 
     const notesInput = document.getElementById('bookingNotes');
     if (notesInput) {
-      notesInput.value = `I would like to apply for: ${visaTitle}. Please advise on the required documents, processing timeline, and visa appointment availability.`;
+      notesInput.value = isSi
+        ? `මම මෙම වීසා කාණ්ඩය සඳහා අයදුම් කිරීමට කැමැත්තෙමි: ${visaTitle}. අවශ්‍ය ලියකියවිලි, කාලසීමාව සහ හමුවීම් ලබාගැනීම පිළිබඳ කරුණාකර මාව දැනුවත් කරන්න.`
+        : `I would like to apply for: ${visaTitle}. Please advise on the required documents, processing timeline, and visa appointment availability.`;
     }
 
     const calcTotal = document.getElementById('modalTotalCalculation');
-    if (calcTotal) calcTotal.textContent = 'Direct Submission';
+    if (calcTotal) calcTotal.textContent = isSi ? 'කෙලින්ම යොමු කිරීම' : 'Direct Submission';
 
     const installmentElem = document.getElementById('modalTabbyInstallment');
-    if (installmentElem) installmentElem.textContent = 'Tabby & Tamara 4x interest-free available on eligible services';
+    if (installmentElem) installmentElem.textContent = isSi ? 'සුදුසුකම් ලත් සේවාවන් සඳහා Tabby සහ Tamara පොලී රහිත වාරික 4ක්' : 'Tabby & Tamara 4x interest-free available on eligible services';
 
     const submitBtn = bookingModal.querySelector('button[type="submit"]');
     if (submitBtn) {
-      submitBtn.textContent = 'Confirm Application Request';
+      submitBtn.textContent = isSi ? 'අයදුම්පත තහවුරු කරන්න' : 'Confirm Application Request';
     }
 
     bookingModal.classList.remove('hidden');
     bookingModal.classList.add('flex');
+
+    if (typeof retranslateActiveModals === 'function') {
+      retranslateActiveModals();
+    }
 
     if (typeof initIntlTelInputs === 'function') {
       initIntlTelInputs();
@@ -4208,7 +4310,7 @@ function translateFormElements(lang) {
   // 2. Standard input placeholders by type/id if no specific key
   document.querySelectorAll('input[type="email"], #newsletterEmail, #contactEmail, #bookingEmail, #applicantEmail, #partnerEmail').forEach(el => {
     if (!el.getAttribute('data-i18n-placeholder')) {
-      el.placeholder = isSi ? 'ඔබගේ විද්යුත් තැපෑල ඇතුළත් කරන්න' : 'Enter your email';
+      el.placeholder = isSi ? 'ඔබගේ විද්‍යුත් තැපෑල ඇතුළත් කරන්න' : 'Enter your email';
     }
   });
 
@@ -4230,7 +4332,162 @@ function translateFormElements(lang) {
     }
   });
 
-  // 3. Form action & submit buttons
+  // 3. Form select dropdowns and options
+  // #bookingTravelers
+  document.querySelectorAll('#bookingTravelers').forEach(sel => {
+    const travelerMap = isSi ? {
+      '1': 'වැඩිහිටි 1',
+      '2': 'වැඩිහිටියන් 2',
+      '3': 'වැඩිහිටියන් 3',
+      '4': 'වැඩිහිටියන් 4',
+      '5': 'වැඩිහිටියන් 5+'
+    } : {
+      '1': '1 Adult',
+      '2': '2 Adults',
+      '3': '3 Adults',
+      '4': '4 Adults',
+      '5': '5+ Adults'
+    };
+    Array.from(sel.options).forEach(opt => {
+      if (travelerMap[opt.value]) {
+        opt.textContent = travelerMap[opt.value];
+      }
+    });
+  });
+
+  // #bookingChildren
+  document.querySelectorAll('#bookingChildren').forEach(sel => {
+    const childrenMap = isSi ? {
+      '0': 'ළමුන් 0',
+      '1': 'ළමුන් 1 (-35%)',
+      '2': 'ළමුන් 2',
+      '3': 'ළමුන් 3'
+    } : {
+      '0': '0 Children',
+      '1': '1 Child (-35%)',
+      '2': '2 Children',
+      '3': '3 Children'
+    };
+    Array.from(sel.options).forEach(opt => {
+      if (childrenMap[opt.value]) {
+        opt.textContent = childrenMap[opt.value];
+      }
+    });
+  });
+
+  // #visaSelect
+  document.querySelectorAll('#visaSelect').forEach(sel => {
+    const visaMap = isSi ? {
+      'uae': 'එක්සත් අරාබි එමීර් සංචාරක සහ නිදහස් වීසා (දින 30 / 60)',
+      'oman': 'ඕමාන් සංචාරක වීසා සහ දේශසීමා පිටවීමේ රැඳී සිටීම්',
+      'schengen': 'ෂෙන්ගන් වීසා උපදේශනය සහ කඩිනම් හමුවීම්',
+      'srilanka': 'ශ්‍රී ලංකා ETA / සංචාරක සහ ව්‍යාපාරික වීසා',
+      'azerbaijan': 'අසර්බයිජාන් ASAN වීසා (කඩිනම් අනුමැතිය)'
+    } : {
+      'uae': 'UAE Tourist & Freelance Visa (30 / 60 Days)',
+      'oman': 'Oman Tourist Visa & Border Exit Stays',
+      'schengen': 'Schengen Visa Consultation & Express Appointment',
+      'srilanka': 'Sri Lanka ETA / Tourist & Business Visa',
+      'azerbaijan': 'Azerbaijan ASAN Visa (Fast Approval)'
+    };
+    Array.from(sel.options).forEach(opt => {
+      if (visaMap[opt.value]) {
+        opt.textContent = visaMap[opt.value];
+      }
+    });
+  });
+
+  // #applicantExp
+  document.querySelectorAll('#applicantExp').forEach(sel => {
+    const expMap = isSi ? {
+      'entry': 'ආරම්භක මට්ටම (වසර 1ට අඩු)',
+      '1-3': 'වසර 1 - 3',
+      '3-5': 'වසර 3 - 5',
+      '5+': 'වසර 5+ (ජ්‍යෙෂ්ඨ / ප්‍රධාන)'
+    } : {
+      'entry': 'Entry Level (< 1 year)',
+      '1-3': '1 - 3 years',
+      '3-5': '3 - 5 years',
+      '5+': '5+ years (Senior / Lead)'
+    };
+    Array.from(sel.options).forEach(opt => {
+      if (expMap[opt.value]) {
+        opt.textContent = expMap[opt.value];
+      }
+    });
+  });
+
+  // #applicantBranch
+  document.querySelectorAll('#applicantBranch').forEach(sel => {
+    const branchMap = isSi ? {
+      'uae': '🇦🇪 එක්සත් අරාබි එමීර් රාජ්‍ය ශාඛාව (info@starplustraveluae.com)',
+      'sl': '🇱🇰 ශ්‍රී ලංකා ශාඛාව (info@starplustravelsl.com)'
+    } : {
+      'uae': '🇦🇪 UAE Branch (info@starplustraveluae.com)',
+      'sl': '🇱🇰 Sri Lanka Branch (info@starplustravelsl.com)'
+    };
+    Array.from(sel.options).forEach(opt => {
+      if (branchMap[opt.value]) {
+        opt.textContent = branchMap[opt.value];
+      }
+    });
+  });
+
+  // #partnerDestination
+  document.querySelectorAll('#partnerDestination').forEach(sel => {
+    const destMap = isSi ? {
+      '': 'ප්‍රධාන ගමනාන්තය තෝරන්න',
+      'Singapore': 'සිංගප්පූරුව (Singapore)',
+      'Malaysia': 'මැලේසියාව (Malaysia)',
+      'Turkey': 'තුර්කිය (Turkey)',
+      'Vietnam': 'වියට්නාමය (Vietnam)',
+      'Bali (Indonesia)': 'බාලි (ඉන්දුනීසියාව)',
+      'Maldives': 'මාලදිවයින (Maldives)',
+      'Armenia': 'ආර්මේනියාව (Armenia)',
+      'Kazakhstan': 'කසකස්තානය (Kazakhstan)',
+      'Kyrgyzstan': 'කිර්ගිස්තානය (Kyrgyzstan)',
+      'Japan': 'ජපානය (Japan)',
+      'Mauritius': 'මොරිෂස් (Mauritius)',
+      'Kenya': 'කෙන්යාව (Kenya)',
+      'Other Global Market': 'වෙනත් ගෝලීය වෙළඳපලක්'
+    } : {
+      '': 'Select Primary Destination',
+      'Singapore': 'Singapore',
+      'Malaysia': 'Malaysia',
+      'Turkey': 'Turkey',
+      'Vietnam': 'Vietnam',
+      'Bali (Indonesia)': 'Bali (Indonesia)',
+      'Maldives': 'Maldives',
+      'Armenia': 'Armenia',
+      'Kazakhstan': 'Kazakhstan',
+      'Kyrgyzstan': 'Kyrgyzstan',
+      'Japan': 'Japan',
+      'Mauritius': 'Mauritius',
+      'Kenya': 'Kenya',
+      'Other Global Market': 'Other Global Market'
+    };
+    Array.from(sel.options).forEach(opt => {
+      if (destMap[opt.value] !== undefined) {
+        opt.textContent = destMap[opt.value];
+      }
+    });
+  });
+
+  // 4. Modal uppercase form field labels
+  document.querySelectorAll('[data-i18n="adult_travelers"]').forEach(l => {
+    l.textContent = isSi ? 'වැඩිහිටි සංචාරකයින් (වයස 12+)' : 'ADULT TRAVELERS (12+ YRS)';
+  });
+  document.querySelectorAll('[data-i18n="children_travelers"]').forEach(l => {
+    l.textContent = isSi ? 'ළමුන් (වයස 2-11)' : 'CHILDREN (2-11 YRS)';
+  });
+  document.querySelectorAll('[data-i18n="dep_date"]').forEach(l => {
+    l.textContent = isSi ? 'කැමති පිටත්වීමේ දිනය' : 'PREFERRED DEPARTURE DATE';
+  });
+  document.querySelectorAll('[data-i18n="special_notes"]').forEach(l => {
+    l.textContent = isSi ? 'විශේෂ සටහන් / විමසීම්' : 'SPECIAL NOTES / INQUIRIES';
+  });
+
+  // 5. Form action & submit buttons
   // Newsletter submit
   document.querySelectorAll('footer form button[type="submit"], form[onsubmit*="handleNewsletter"] button[type="submit"]').forEach(btn => {
     btn.textContent = isSi ? 'ලියාපදිංචි වන්න' : 'SUBSCRIBE';
@@ -4254,6 +4511,32 @@ function translateFormElements(lang) {
     btn.innerHTML = `${iconHtml}${isSi ? 'WhatsApp මගින් විමසන්න' : 'Inquire via WhatsApp'}`;
   });
 
+  // DMC buttons
+  const dmcSubmit = document.querySelector('#dmc-application-form button[type="submit"], [data-i18n="dmc_submit_btn"]');
+  if (dmcSubmit) {
+    const textSpan = dmcSubmit.querySelector('span[data-i18n="dmc_submit_btn"]') || dmcSubmit.querySelector('span');
+    if (textSpan) {
+      textSpan.textContent = isSi ? 'DMC අයදුම්පත යොමු කරන්න' : 'SUBMIT DMC APPLICATION';
+    } else {
+      dmcSubmit.textContent = isSi ? 'DMC අයදුම්පත යොමු කරන්න' : 'SUBMIT DMC APPLICATION';
+    }
+  }
+  const dmcEmailBtn = document.getElementById('btn-dmc-email-client');
+  if (dmcEmailBtn) {
+    const textSpan = dmcEmailBtn.querySelector('span[data-i18n="dmc_email_client_btn"]') || dmcEmailBtn.querySelector('span');
+    if (textSpan) {
+      textSpan.textContent = isSi ? 'ඊමේල් මෘදුකාංගය හරහා යවන්න' : 'SEND VIA EMAIL CLIENT';
+    } else {
+      dmcEmailBtn.textContent = isSi ? 'ඊමේල් මෘදුකාංගය හරහා යවන්න' : 'SEND VIA EMAIL CLIENT';
+    }
+  }
+
+  // Career application submit button
+  const careerSubmitBtn = document.getElementById('submitApplicationBtn');
+  if (careerSubmitBtn) {
+    careerSubmitBtn.textContent = isSi ? 'අයදුම්පත යොමු කරන්න' : 'Submit Application';
+  }
+
   // Labels for forms
   document.querySelectorAll('label[for="contactName"], label[for="bookingName"]').forEach(l => {
     l.textContent = isSi ? 'ඔබගේ සම්පූර්ණ නම *' : 'Your Full Name *';
@@ -4264,30 +4547,62 @@ function translateFormElements(lang) {
   document.querySelectorAll('label[for="contactPhone"], label[for="bookingPhone"]').forEach(l => {
     l.textContent = isSi ? 'දුරකථන / WhatsApp අංකය *' : 'Phone / WhatsApp Number *';
   });
+
+  // Re-run checkVisaRequirements if visa result card exists on the page
+  const visaResultCard = document.getElementById('visaResultCard');
+  if (visaResultCard && visaResultCard.children.length > 0 && typeof checkVisaRequirements === 'function') {
+    checkVisaRequirements();
+  }
 }
 
 function updateOpenModalsLanguage(lang) {
   const isSi = (lang === 'si');
 
-  // 1. Booking Modal
-  const bookingModal = document.getElementById('bookingModal');
-  if (bookingModal && !bookingModal.classList.contains('hidden') && typeof selectedPackageForBooking !== 'undefined' && selectedPackageForBooking) {
-    const pkg = selectedPackageForBooking;
-    const pI18n = (isSi && typeof PACKAGES_I18N !== 'undefined' && PACKAGES_I18N[pkg.id]) ? PACKAGES_I18N[pkg.id] : null;
-    const title = pI18n ? pI18n.title : pkg.title;
-    const destination = pI18n ? pI18n.destination : pkg.destination;
-    const duration = pI18n ? pI18n.duration : pkg.duration;
-    
-    const titleEl = document.getElementById('modalPkgTitle');
-    if (titleEl) titleEl.textContent = title;
-    const destEl = document.getElementById('modalPkgDestination');
-    if (destEl) destEl.innerHTML = `${pkg.flag} <span class="font-semibold">${destination}</span> &bull; <span>${duration}</span>`;
-    if (typeof calculateBookingTotal === 'function') {
-      calculateBookingTotal();
+  // 1. Booking / Quote Modal
+  const bookingModal = document.getElementById('bookingModal') || document.getElementById('quoteModal');
+  if (bookingModal && !bookingModal.classList.contains('hidden')) {
+    if (typeof selectedPackageForBooking !== 'undefined' && selectedPackageForBooking) {
+      const pkg = selectedPackageForBooking;
+      const pI18n = (isSi && typeof PACKAGES_I18N !== 'undefined' && PACKAGES_I18N[pkg.id]) ? PACKAGES_I18N[pkg.id] : null;
+      const title = pI18n ? pI18n.title : pkg.title;
+      const destination = pI18n ? pI18n.destination : pkg.destination;
+      const duration = pI18n ? pI18n.duration : pkg.duration;
+      
+      const titleEl = document.getElementById('modalPkgTitle');
+      if (titleEl) titleEl.textContent = title;
+      const destEl = document.getElementById('modalPkgDestination');
+      if (destEl) destEl.innerHTML = `${pkg.flag || '✈️'} <span class="font-semibold">${destination}</span> &bull; <span>${duration}</span>`;
+      if (typeof calculateBookingTotal === 'function') {
+        calculateBookingTotal();
+      }
+    } else {
+      // Visa application mode in booking modal
+      const destElem = document.getElementById('modalPkgDestination');
+      if (destElem) {
+        destElem.innerHTML = `<i class="fa-solid fa-passport text-amber-500 mr-1.5"></i> <span class="font-semibold">${isSi ? 'වීසා සහ ආගමන සේවා' : 'Visa &amp; Immigration Services'}</span> &bull; <span>${isSi ? 'කඩිනම් සැකසුම්' : 'Express Processing'}</span>`;
+      }
+      const priceElem = document.getElementById('modalPkgBasePrice');
+      if (priceElem) priceElem.textContent = isSi ? 'නිල ගාස්තු' : 'Official Rate';
+      const calcTotal = document.getElementById('modalTotalCalculation');
+      if (calcTotal) calcTotal.textContent = isSi ? 'කෙලින්ම යොමු කිරීම' : 'Direct Submission';
+      const installmentElem = document.getElementById('modalTabbyInstallment');
+      if (installmentElem) installmentElem.textContent = isSi ? 'සුදුසුකම් ලත් සේවාවන් සඳහා Tabby සහ Tamara පොලී රහිත වාරික 4ක්' : 'Tabby & Tamara 4x interest-free available on eligible services';
+      const submitBtn = bookingModal.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.textContent = isSi ? 'අයදුම්පත තහවුරු කරන්න' : 'Confirm Application Request';
+      }
     }
   }
 
-  // 2. Itinerary Modal
+  // 2. Career Apply Modal (careers.html)
+  const applyModal = document.getElementById('applyModal');
+  if (applyModal && !applyModal.classList.contains('hidden')) {
+    if (typeof updateRoutingBadge === 'function') {
+      updateRoutingBadge();
+    }
+  }
+
+  // 3. Itinerary Modal
   const itineraryModal = document.getElementById('itineraryModal');
   if (itineraryModal && !itineraryModal.classList.contains('hidden')) {
     const itineraryBtn = document.getElementById('itineraryBookButton');
@@ -4296,7 +4611,7 @@ function updateOpenModalsLanguage(lang) {
     }
   }
 
-  // 3. Country Showcase Modal
+  // 4. Country Showcase Modal
   const showcaseModal = document.getElementById('destinationsModal') || document.getElementById('countryShowcaseModal');
   if (showcaseModal && !showcaseModal.classList.contains('hidden') && typeof currentShowcaseCountryKey !== 'undefined' && currentShowcaseCountryKey) {
     if (typeof populateShowcaseData === 'function') {
@@ -4307,7 +4622,7 @@ function updateOpenModalsLanguage(lang) {
     }
   }
 
-  // 4. Regional Country Packages Modal
+  // 5. Regional Country Packages Modal
   const countryPkgModal = document.getElementById('countryPackagesModal');
   if (countryPkgModal && !countryPkgModal.classList.contains('hidden') && typeof currentActiveCountryPackagesKey !== 'undefined' && currentActiveCountryPackagesKey) {
     if (typeof openCountryPackages === 'function') {
@@ -4315,7 +4630,7 @@ function updateOpenModalsLanguage(lang) {
     }
   }
 
-  // 5. Showcase Itinerary Modal (Drawer)
+  // 6. Showcase Itinerary Modal (Drawer)
   const showcaseItinModal = document.getElementById('showcaseItineraryModal');
   if (showcaseItinModal && !showcaseItinModal.classList.contains('hidden') && typeof currentActiveShowcaseTour !== 'undefined' && currentActiveShowcaseTour) {
     if (typeof openShowcaseItinerary === 'function') {
@@ -4323,7 +4638,7 @@ function updateOpenModalsLanguage(lang) {
     }
   }
 
-  // 6. Popular Destinations Slider / Cards
+  // 7. Popular Destinations Slider / Cards
   const destTrack = document.getElementById('destCardsTrack');
   if (destTrack && typeof initDestinationSlider === 'function') {
     initDestinationSlider();
@@ -4332,6 +4647,17 @@ function updateOpenModalsLanguage(lang) {
     }
   }
 }
+
+function retranslateActiveModals() {
+  const currentLang = typeof getPreferredLanguage === 'function' ? getPreferredLanguage() : (document.documentElement.lang || 'en');
+  if (typeof translateFormElements === 'function') {
+    translateFormElements(currentLang);
+  }
+  if (typeof updateOpenModalsLanguage === 'function') {
+    updateOpenModalsLanguage(currentLang);
+  }
+}
+window.retranslateActiveModals = retranslateActiveModals;
 
 function changeLanguage(lang, notify = true) {
   if (lang !== 'en' && lang !== 'si') lang = 'en';
