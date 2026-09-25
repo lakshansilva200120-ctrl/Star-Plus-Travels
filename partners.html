@@ -962,14 +962,14 @@
             <label for="partnerCompany" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
               Legal Company Name <span class="text-amber-400">*</span>
             </label>
-            <input type="text" id="partnerCompany" required placeholder="e.g., Nexus DMC Japan Co. Ltd" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="text" id="partnerCompany" name="company_name" required placeholder="e.g., Nexus DMC Japan Co. Ltd" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
 
           <div>
             <label for="partnerDestination" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
               Primary Destination / Country <span class="text-amber-400">*</span>
             </label>
-            <select id="partnerDestination" required class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm bg-[#070e17] text-white">
+            <select id="partnerDestination" name="country" required class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm bg-[#070e17] text-white">
               <option value="" disabled selected>Select Primary Destination</option>
               <option value="Singapore">Singapore</option>
               <option value="Malaysia">Malaysia</option>
@@ -994,14 +994,14 @@
             <label for="partnerContact" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
               Key Contact Person &amp; Title <span class="text-amber-400">*</span>
             </label>
-            <input type="text" id="partnerContact" required placeholder="e.g., Alexander Lee, Managing Director" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="text" id="partnerContact" name="contact_person" required placeholder="e.g., Alexander Lee, Managing Director" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
 
           <div>
             <label for="partnerEmail" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
               Corporate Work Email <span class="text-amber-400">*</span>
             </label>
-            <input type="email" id="partnerEmail" required placeholder="alex@nexus-dmc.com" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="email" id="partnerEmail" name="email" required placeholder="alex@nexus-dmc.com" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
         </div>
 
@@ -1011,7 +1011,7 @@
             <label for="partnerPhone" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
               Corporate Phone / WhatsApp <span class="text-amber-400">*</span>
             </label>
-            <input type="tel" id="partnerPhone" required placeholder="e.g., +81 3 1234 5678" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="tel" id="partnerPhone" name="phone" required placeholder="e.g., +81 3 1234 5678" class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
 
           <div>
@@ -1113,7 +1113,7 @@
           <label for="partnerProposal" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
             Company Overview &amp; Competitive Tariff Highlights <span class="text-amber-400">*</span>
           </label>
-          <textarea id="partnerProposal" rows="4" required placeholder="Briefly describe your company's operational presence, fleet size, preferred hotel contracts, and why Star Plus Travels should partner with your DMC..." class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm"></textarea>
+          <textarea id="partnerProposal" name="notes" rows="4" required placeholder="Briefly describe your company's operational presence, fleet size, preferred hotel contracts, and why Star Plus Travels should partner with your DMC..." class="w-full glass-input px-4 py-3 rounded-xl text-xs sm:text-sm"></textarea>
         </div>
 
         <!-- Consent -->
@@ -1142,7 +1142,7 @@
             <span>Submit DMC Application</span>
           </button>
 
-          <button type="button" onclick="sendDirectDmcEmail()" class="w-full py-4 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-bold text-sm uppercase tracking-wider border border-slate-700 hover:border-amber-500/50 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg">
+          <button type="button" id="btn-dmc-email-client" onclick="sendDirectDmcEmail()" class="w-full py-4 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 hover:text-white font-bold text-sm uppercase tracking-wider border border-slate-700 hover:border-amber-500/50 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg">
             <i class="fa-solid fa-envelope-open-text text-amber-400"></i>
             <span>Send via Email Client</span>
           </button>

@@ -3588,18 +3588,26 @@ async function handlePartnerSubmit(e) {
 }
 
 // Helper: Open Mail Client with Full DMC Details for Direct Email Attachment
-function sendDirectDmcEmail() {
+function sendDirectDmcEmail(e) {
+  if (e && typeof e.preventDefault === 'function') {
+    e.preventDefault();
+  }
+
   const certifyCheckbox = document.getElementById('dmc-certify-checkbox') || document.getElementById('partnerConsent');
   const checkboxError = document.getElementById('dmc-checkbox-error');
 
+  // 1. Verify checkbox is certified
   if (certifyCheckbox && !certifyCheckbox.checked) {
+    alert('Please check the certification box before sending your application.');
     if (checkboxError) {
       checkboxError.classList.remove('hidden');
     }
     certifyCheckbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
     certifyCheckbox.focus();
     certifyCheckbox.classList.add('ring-2', 'ring-rose-500');
-    showToast('⚠️ Please certify and check this box before submitting your application.', 'error');
+    if (typeof showToast === 'function') {
+      showToast('⚠️ Please certify and check this box before submitting your application.', 'error');
+    }
     return;
   } else {
     if (checkboxError) {
@@ -3610,57 +3618,40 @@ function sendDirectDmcEmail() {
     }
   }
 
-  const company = document.getElementById('partnerCompany')?.value?.trim() || 'Partner Company';
-  const destination = document.getElementById('partnerDestination')?.value?.trim() || 'Destination';
-  const contact = document.getElementById('partnerContact')?.value?.trim() || 'Managing Director';
-  const email = document.getElementById('partnerEmail')?.value?.trim() || '';
-  const partnerPhoneInput = document.getElementById('partnerPhone');
-  const phone = (partnerPhoneInput && partnerPhoneInput._iti) ? (partnerPhoneInput._iti.getNumber() || partnerPhoneInput.value.trim()) : (partnerPhoneInput?.value?.trim() || '');
-  const website = document.getElementById('partnerWebsite')?.value?.trim() || '';
-  const social = document.getElementById('partnerSocial')?.value?.trim() || 'Not Provided';
-  const license = document.getElementById('partnerLicense')?.value?.trim() || 'Pending';
-  const city = document.getElementById('partnerCity')?.value?.trim() || '';
-  const proposal = document.getElementById('partnerProposal')?.value?.trim() || '';
+  // 2. Extract values from form inputs
+  const companyName = document.querySelector('[name="company_name"]')?.value || document.getElementById('partnerCompany')?.value?.trim() || 'N/A';
+  const contactPerson = document.querySelector('[name="contact_person"]')?.value || document.getElementById('partnerContact')?.value?.trim() || 'N/A';
+  const email = document.querySelector('[name="email"]')?.value || document.getElementById('partnerEmail')?.value?.trim() || 'N/A';
+  const partnerPhoneInput = document.querySelector('[name="phone"]') || document.getElementById('partnerPhone');
+  const phone = (partnerPhoneInput && partnerPhoneInput._iti) ? (partnerPhoneInput._iti.getNumber() || partnerPhoneInput.value.trim()) : (partnerPhoneInput?.value?.trim() || 'N/A');
+  const country = document.querySelector('[name="country"]')?.value || document.getElementById('partnerDestination')?.value?.trim() || 'N/A';
+  const message = document.querySelector('[name="notes"]')?.value || document.getElementById('partnerProposal')?.value?.trim() || document.querySelector('textarea')?.value || 'None';
+
+  // 3. Construct email parameters
+  const recipient = 'info@starplustraveluae.com';
+  const subject = encodeURIComponent(`DMC Partnership Application - ${companyName}`);
   
-  const licenseFileInput = document.getElementById('partnerLicenseFile');
-  const licenseFile = licenseFileInput?.files?.[0];
+  const bodyContent = 
+`Dear Star Plus Travels Team,
 
-  if (licenseFile && licenseFile.size > 5 * 1024 * 1024) {
-    showToast('⚠️ Document exceeds 5MB! Please upload a file under 5MB to attach via email.', 'error');
-    return;
-  }
+Please review our DMC Partner application details below:
 
-  const formattedDocSize = licenseFile 
-    ? (licenseFile.size > 1024 * 1024 ? (licenseFile.size / (1024 * 1024)).toFixed(1) + ' MB' : Math.round(licenseFile.size / 1024) + ' KB')
-    : 'None Attached';
+• Organization / Company: ${companyName}
+• Contact Person: ${contactPerson}
+• Email: ${email}
+• Phone / WhatsApp: ${phone}
+• Country / Operational Base: ${country}
 
-  const subject = encodeURIComponent(`B2B DMC Intake: ${company} (${destination})`);
-  const body = encodeURIComponent(
-    `===================================================\n` +
-    `  NEW B2B DMC / GROUND SERVICES INTAKE APPLICATION  \n` +
-    `===================================================\n\n` +
-    `[1] COMPANY DETAILS\n` +
-    `• Company Name: ${company}\n` +
-    `• Destination / Country: ${destination}\n` +
-    `• Headquarters Location: ${city}\n` +
-    `• Tourism License / Reg No: ${license}\n\n` +
-    `[2] CONTACT PERSON & ONLINE PRESENCE\n` +
-    `• Key Contact Person: ${contact}\n` +
-    `• Corporate Email: ${email}\n` +
-    `• Phone / WhatsApp: ${phone}\n` +
-    `• Official Website: ${website}\n` +
-    `• Social Media Link / Profile: ${social}\n\n` +
-    `[3] TRADE LICENSE ATTACHMENT (Max 5MB)\n` +
-    (licenseFile 
-      ? `• Attached File: ${licenseFile.name} (${formattedDocSize})\n  (Please ensure document is attached to this email message)\n` 
-      : `• Attached File: [Please attach official Trade License/Certificate file here]\n`) +
-    `\n[4] PROPOSAL & TARIFF OVERVIEW\n` +
-    `${proposal}\n\n` +
-    `===================================================\n` +
-    `Submitted by:\n${contact} | ${company}\n`
-  );
+Additional Details / Fleet & Services:
+${message}
 
-  window.location.href = `mailto:info@starplustraveluae.com?subject=${subject}&body=${body}`;
+---
+Certification: I certify that our organization is a legally registered travel company in good standing for B2B contracting.`;
+
+  const body = encodeURIComponent(bodyContent);
+
+  // 4. Trigger mailto URL
+  window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
 }
 
 // Newsletter Subscription ("VIP Travel Deals" in Footer)
@@ -4721,6 +4712,14 @@ function initApp() {
           checkboxError.classList.add('hidden');
           certifyCheckbox.classList.remove('ring-2', 'ring-rose-500');
         }
+      });
+    }
+
+    const emailClientBtn = document.getElementById('btn-dmc-email-client');
+    if (emailClientBtn && !emailClientBtn.dataset.listenerBound) {
+      emailClientBtn.dataset.listenerBound = 'true';
+      emailClientBtn.addEventListener('click', (e) => {
+        sendDirectDmcEmail(e);
       });
     }
   } catch (e) {}
