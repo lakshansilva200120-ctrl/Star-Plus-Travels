@@ -4298,9 +4298,10 @@ function changeLanguage(lang, notify = true) {
   });
 
   // Dynamic Toggle Button Label:
-  // When in English ('en'), show 'සිංහල' to invite user to switch to Sinhala.
+  // When in English ('en'), show 'සිංහල' (\u0DC3\u0DD2\u0D82\u0DC4\u0DBD) to invite user to switch to Sinhala.
   // When in Sinhala ('si'), show 'English' to invite user to switch to English.
-  const targetLabel = lang === 'en' ? 'සිංහල' : 'English';
+  const sinhalaText = "\u0DC3\u0DD2\u0D82\u0DC4\u0DBD"; // Sinhala
+  const targetLabel = lang === 'en' ? sinhalaText : 'English';
   
   document.querySelectorAll('.desktop-lang-text').forEach(el => {
     el.textContent = targetLabel;
@@ -4327,6 +4328,9 @@ function changeLanguage(lang, notify = true) {
   const enToggleBtn = document.getElementById('lang-toggle-en');
   const siToggleBtn = document.getElementById('lang-toggle-si');
   if (enToggleBtn && siToggleBtn) {
+    if (!siToggleBtn.textContent.trim() || siToggleBtn.textContent.includes('à')) {
+      siToggleBtn.textContent = sinhalaText;
+    }
     if (lang === 'si') {
       siToggleBtn.classList.add('bg-amber-500', 'text-white');
       siToggleBtn.classList.remove('text-slate-400');
@@ -4341,7 +4345,7 @@ function changeLanguage(lang, notify = true) {
   }
 
   document.querySelectorAll('.lang-toggle-btn').forEach(btn => {
-    btn.setAttribute('title', lang === 'si' ? 'භාෂාව මාරු කරන්න (English / සිංහල)' : 'Switch Language (English / Sinhala)');
+    btn.setAttribute('title', lang === 'si' ? `\u0DB7\u0DCF\u0DC2\u0DCF\u0DC0 \u0DB8\u0DCF\u0DBB\u0DD4 \u0D9A\u0DBB\u0DB1\u0DCA\u0DB1 (English / ${sinhalaText})` : 'Switch Language (English / Sinhala)');
     btn.setAttribute('aria-label', `Current language: ${lang === 'si' ? 'Sinhala' : 'English'}. Click to switch to ${lang === 'en' ? 'Sinhala' : 'English'}.`);
   });
 
@@ -4434,7 +4438,7 @@ function changeLanguage(lang, notify = true) {
   }
 
   if (notify) {
-    const langName = lang === 'si' ? 'සිංහල (Sinhala)' : 'English';
+    const langName = lang === 'si' ? `${sinhalaText} (Sinhala)` : 'English';
     showToast(`Language switched to ${langName}`, 'success');
   }
 }

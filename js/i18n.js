@@ -50,6 +50,10 @@ function applyLanguage(lang) {
   // 3. Update active toggle button style
   const enBtn = document.getElementById('lang-toggle-en');
   const siBtn = document.getElementById('lang-toggle-si');
+  const sinhalaText = "\u0DC3\u0DD2\u0D82\u0DC4\u0DBD"; // සිංහල
+  if (siBtn && (!siBtn.textContent.trim() || siBtn.textContent.includes('à'))) {
+    siBtn.textContent = sinhalaText;
+  }
   if (enBtn && siBtn) {
     if (lang === 'si') {
       siBtn.classList.add('bg-amber-500', 'text-white');
