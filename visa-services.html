@@ -1004,12 +1004,14 @@
         <div>
           <span class="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider block" id="modalPkgDestination">Visa &amp; Immigration Services</span>
           <h3 id="modalPkgTitle" class="text-base font-bold text-slate-900 dark:text-white font-heading leading-snug">Visa Application</h3>
-          <span class="text-xs text-slate-500 dark:text-slate-400">Rate: <strong id="modalPkgBasePrice" class="text-amber-600 dark:text-amber-400">Official Rate</strong> <span id="modalPkgSecondaryPrice" class="price-secondary text-amber-500/90 font-semibold" data-secondary-for="0"></span></span>
+          <span class="text-xs text-slate-500 dark:text-slate-400">Rate: <strong id="modalPkgBasePrice" class="text-amber-600 dark:text-amber-400">Official Rate</strong></span>
+          <span id="modalPkgSecondaryPrice" class="hidden"></span>
         </div>
       </div>
 
       <!-- Booking Form -->
       <form onsubmit="submitBookingForm(event)" novalidate class="mt-5 space-y-4 text-left">
+        <input type="hidden" id="bookingPackageName" name="packageName" value="">
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1">Adult Applicants</label>

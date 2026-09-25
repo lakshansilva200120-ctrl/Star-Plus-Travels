@@ -43,21 +43,21 @@ const FX_CONFIG = {
 };
 
 /**
- * Format secondary price with luxury rounding to the nearest 500 for LKR:
- * Math.round((baseAed * rateLKR) / 500) * 500
+ * Format secondary price with luxury formatting.
+ * LKR has been completely removed per client requirement.
  */
 function formatSecondaryPrice(baseAED, targetCurrency) {
   const numAED = parseFloat(baseAED);
   if (isNaN(numAED) || numAED <= 0) return '';
 
   const target = targetCurrency || (currentCurrency === 'LKR' ? 'USD' : 'LKR');
+  // LKR completely removed per client requirement - suppress residual secondary LKR subtext
+  if (target === 'LKR' || currentCurrency === 'LKR') {
+    return '';
+  }
   const rate = (CURRENCIES[target] && CURRENCIES[target].rate) ? CURRENCIES[target].rate : (FX_CONFIG.baselineRates[target] || 1);
 
-  if (target === 'LKR') {
-    const lkrRaw = numAED * rate;
-    const lkrPrice = Math.round(lkrRaw / 500) * 500;
-    return `LKR ${new Intl.NumberFormat('en-LK').format(lkrPrice)}`;
-  } else if (target === 'USD') {
+  if (target === 'USD') {
     const usdPrice = Math.round(numAED * rate);
     return `$${new Intl.NumberFormat('en-US').format(usdPrice)}`;
   } else if (target === 'EUR') {
@@ -107,7 +107,10 @@ function updateAllPriceDisplays() {
     if (isNaN(baseAED) || baseAED <= 0) return;
 
     const secFormatted = formatSecondaryPrice(baseAED);
-    if (!secFormatted) return;
+    if (!secFormatted) {
+      el.textContent = '';
+      return;
+    }
 
     if (el.hasAttribute('data-template')) {
       const tpl = el.getAttribute('data-template');
@@ -1798,7 +1801,7 @@ function renderPackages(filteredList = PACKAGES) {
     const whatsappUrl = `https://wa.me/971527582293?text=${encodeURIComponent(rawWaMsg)}`;
 
     return `
-      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10 transition-all duration-300 w-full max-w-full box-border min-w-0">
+      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10 transition-all duration-300 w-full max-w-full box-border min-w-0" data-package-id="${pkg.id}" data-package-title="${encodeURIComponent(pkg.title)}" data-package-dest="${encodeURIComponent(pkg.destination || '')}">
         <!-- Image & Badges -->
         <div class="img-container relative h-56 overflow-hidden bg-slate-900 w-full max-w-full">
           <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover object-center" loading="lazy" onerror="this.onerror=null;this.src='${pkg.fallback || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80'}';">
@@ -1858,7 +1861,6 @@ function renderPackages(filteredList = PACKAGES) {
                 <div class="flex items-baseline space-x-2 flex-wrap">
                   <span class="price-aed text-2xl font-black text-amber-600 dark:text-amber-400 font-heading" data-base-aed="${pkg.priceAED}">${formattedPrice}</span>
                   <span class="text-xs text-slate-400 dark:text-slate-500 line-through" data-base-aed="${pkg.originalPriceAED}">${formattedOriginal}</span>
-                  ${(pkg.category === 'srilanka' || (pkg.destination && pkg.destination.toLowerCase().includes('sri lanka')) || (pkg.title && pkg.title.toLowerCase().includes('sri lanka')) || (pkg.id && pkg.id.includes('sri-lanka'))) ? '' : `<span class="price-secondary text-xs text-amber-500/90 font-medium" data-secondary-for="${pkg.priceAED}">(${formatSecondaryPrice(pkg.priceAED)})</span>`}
                 </div>
                 <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium block break-words">
                   ${installmentText}
@@ -1879,7 +1881,7 @@ function renderPackages(filteredList = PACKAGES) {
                   <i class="fa-solid fa-list-ul text-amber-500 text-[10px]"></i>
                   <span>${itineraryBtnText}</span>
                 </button>
-                <button type="button" onclick="openBookingModal('${pkg.id}')" class="w-full py-2 px-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-[0.98] text-slate-950 text-xs font-black transition-all text-center shadow-md shadow-amber-500/20 flex items-center justify-center space-x-1 cursor-pointer">
+                <button type="button" onclick="handleRequestQuote('${pkg.id}', '${encodeURIComponent(pkg.title)}', '${encodeURIComponent(pkg.destination || '')}', event)" class="request-quote-btn w-full py-2 px-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 active:scale-[0.98] text-slate-950 text-xs font-black transition-all text-center shadow-md shadow-amber-500/20 flex items-center justify-center space-x-1 cursor-pointer" data-package-id="${pkg.id}" data-package-title="${encodeURIComponent(pkg.title)}" data-package-dest="${encodeURIComponent(pkg.destination || '')}">
                   <span>${quoteBtnText}</span>
                   <i class="fa-solid fa-arrow-right text-[10px]"></i>
                 </button>
@@ -2130,73 +2132,212 @@ function setupPackageFilterChips() {
 }
 window.setupPackageFilterChips = setupPackageFilterChips;
 
-// Booking Modal Functionality
+// Booking / Inquiry / Quote Modal Functionality
 let selectedPackageForBooking = null;
 
-function openBookingModal(pkgId) {
-  const pkg = PACKAGES.find(p => p.id === pkgId);
-  if (!pkg) return;
+function handleRequestQuote(pkgId, pkgTitle, pkgDest, event) {
+  if (event && event.preventDefault) {
+    event.preventDefault();
+  }
+
+  // 1. Resolve package data
+  let pkg = null;
+  if (typeof pkgId === 'object' && pkgId !== null) {
+    pkg = pkgId;
+  } else if (typeof PACKAGES !== 'undefined') {
+    const sKey = String(pkgId || pkgTitle || '').toLowerCase().trim();
+    pkg = PACKAGES.find(p => p.id === pkgId || p.title === pkgId || (sKey && p.title.toLowerCase().includes(sKey)) || (sKey && p.id.toLowerCase().includes(sKey)));
+  }
+  if (!pkg && typeof COUNTRY_SHOWCASE_DATA !== 'undefined') {
+    for (const cKey in COUNTRY_SHOWCASE_DATA) {
+      const sKey = String(pkgId || pkgTitle || '').toLowerCase().trim();
+      const tour = COUNTRY_SHOWCASE_DATA[cKey]?.tours?.find(t => t.id === pkgId || t.title === pkgId || (sKey && t.title.toLowerCase().includes(sKey)));
+      if (tour) {
+        pkg = {
+          id: tour.id || pkgId,
+          title: tour.title,
+          destination: COUNTRY_SHOWCASE_DATA[cKey].title || tour.title,
+          flag: COUNTRY_SHOWCASE_DATA[cKey].flag || '✈️',
+          duration: tour.duration || 'Flexible',
+          image: tour.image || 'assets/logo.png',
+          alt: tour.title,
+          priceAED: tour.priceAED || 1850
+        };
+        break;
+      }
+    }
+  }
+
+  const finalTitle = pkg?.title || pkgTitle || (typeof pkgId === 'string' && pkgId ? pkgId : 'Holiday Tour Package');
+  const finalDest = pkg?.destination || pkgDest || 'Holiday Tour';
+
+  if (!pkg) {
+    pkg = {
+      id: (typeof pkgId === 'string' && pkgId) ? pkgId : 'custom-pkg',
+      title: finalTitle,
+      destination: finalDest,
+      flag: '✈️',
+      duration: 'Flexible',
+      image: 'assets/logo.png',
+      alt: finalTitle,
+      priceAED: 1850
+    };
+  }
 
   selectedPackageForBooking = pkg;
 
-  document.getElementById('modalPkgTitle').textContent = pkg.title;
-  document.getElementById('modalPkgDestination').innerHTML = `${pkg.flag} <span class="font-semibold">${pkg.destination}</span> &bull; <span>${pkg.duration}</span>`;
-  document.getElementById('modalPkgImage').src = pkg.image;
-  document.getElementById('modalPkgImage').alt = pkg.alt;
-  const basePriceElem = document.getElementById('modalPkgBasePrice');
-  if (basePriceElem) {
-    basePriceElem.classList.add('price-aed');
-    basePriceElem.setAttribute('data-base-aed', pkg.priceAED);
-    basePriceElem.textContent = formatPrice(pkg.priceAED);
-  }
-  const secPriceElem = document.getElementById('modalPkgSecondaryPrice');
-  if (secPriceElem) {
-    const isSl = pkg.category === 'srilanka' || pkg.countryKey === 'srilanka' || (pkg.destination && pkg.destination.toLowerCase().includes('sri lanka')) || (pkg.title && pkg.title.toLowerCase().includes('sri lanka')) || (pkg.id && (pkg.id.startsWith('sl-') || pkg.id.includes('sri-lanka')));
-    if (isSl) {
+  // 2. Check for Inquiry / Quote modal on the current page
+  const quoteModal = document.getElementById('quoteModal') || 
+                     document.getElementById('inquiryModal') || 
+                     document.getElementById('bookingModal');
+
+  if (quoteModal) {
+    // Populate Package Title
+    const titleElem = document.getElementById('modalPkgTitle') || 
+                      quoteModal.querySelector('.modal-pkg-title, #quoteModalTitle, #inquiryModalTitle, h3');
+    if (titleElem) {
+      titleElem.textContent = finalTitle;
+    }
+
+    // Populate Destination / Subtitle
+    const destElem = document.getElementById('modalPkgDestination') || 
+                     quoteModal.querySelector('.modal-pkg-destination, #quoteModalDest');
+    if (destElem) {
+      destElem.innerHTML = `${pkg.flag || '✈️'} <span class="font-semibold">${pkg.destination || finalDest}</span> &bull; <span>${pkg.duration || 'Flexible'}</span>`;
+    }
+
+    // Populate Image
+    const imgElem = document.getElementById('modalPkgImage') || quoteModal.querySelector('img');
+    if (imgElem) {
+      imgElem.src = pkg.image || 'assets/logo.png';
+      imgElem.alt = pkg.alt || finalTitle;
+    }
+
+    // Populate Pricing (AED only, no LKR)
+    const basePriceElem = document.getElementById('modalPkgBasePrice');
+    if (basePriceElem) {
+      basePriceElem.classList.add('price-aed');
+      basePriceElem.setAttribute('data-base-aed', pkg.priceAED || 1850);
+      basePriceElem.textContent = typeof formatPrice === 'function' ? formatPrice(pkg.priceAED || 1850) : `AED ${pkg.priceAED || 1850}`;
+    }
+    const secPriceElem = document.getElementById('modalPkgSecondaryPrice');
+    if (secPriceElem) {
       secPriceElem.removeAttribute('data-secondary-for');
       secPriceElem.textContent = '';
-    } else {
-      secPriceElem.setAttribute('data-secondary-for', pkg.priceAED);
-      secPriceElem.textContent = `(${formatSecondaryPrice(pkg.priceAED)})`;
     }
-  }
-  
-  // Set default form values
-  document.getElementById('bookingTravelers').value = '2';
-  document.getElementById('bookingChildren').value = '0';
-  document.getElementById('bookingName').value = '';
-  document.getElementById('bookingEmail').value = '';
-  const bookingPhone = document.getElementById('bookingPhone');
-  if (bookingPhone) {
-    bookingPhone.value = '';
-    if (bookingPhone._iti) {
-      bookingPhone._iti.setCountry('ae');
+
+    // Prefill any package name inputs inside the modal
+    quoteModal.querySelectorAll('input[name="packageName"], input[name="package"], input[name="destination"], #bookingPackageName, #quotePackageName, #inquiryPackage').forEach(input => {
+      input.value = finalTitle;
+    });
+
+    // Reset default form inputs
+    const travelersInput = document.getElementById('bookingTravelers') || quoteModal.querySelector('select[name="travelers"]');
+    if (travelersInput) travelersInput.value = '2';
+
+    const childrenInput = document.getElementById('bookingChildren') || quoteModal.querySelector('select[name="children"]');
+    if (childrenInput) childrenInput.value = '0';
+
+    const nameInput = document.getElementById('bookingName') || quoteModal.querySelector('input[name="name"], input[name="fullName"]');
+    if (nameInput) nameInput.value = '';
+
+    const emailInput = document.getElementById('bookingEmail') || quoteModal.querySelector('input[name="email"]');
+    if (emailInput) emailInput.value = '';
+
+    const phoneInput = document.getElementById('bookingPhone') || quoteModal.querySelector('input[name="phone"], input[type="tel"]');
+    if (phoneInput) {
+      phoneInput.value = '';
+      if (phoneInput._iti) {
+        phoneInput._iti.setCountry('ae');
+      }
     }
+
+    const notesInput = document.getElementById('bookingNotes') || quoteModal.querySelector('textarea[name="notes"], textarea[name="message"]');
+    if (notesInput) {
+      notesInput.value = `Requesting official quote & itinerary details for: ${finalTitle}`;
+    }
+
+    // Default date to next week
+    const nextWeek = new Date();
+    nextWeek.setDate(nextWeek.getDate() + 7);
+    const dateInput = document.getElementById('bookingDate') || quoteModal.querySelector('input[name="date"], input[type="date"]');
+    if (dateInput) {
+      dateInput.value = nextWeek.toISOString().split('T')[0];
+    }
+
+    if (typeof calculateBookingTotal === 'function') {
+      calculateBookingTotal();
+    }
+
+    quoteModal.classList.remove('hidden');
+    quoteModal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+
+    // Ensure intl-tel-input is initialized on modal display
+    if (typeof initIntlTelInputs === 'function') {
+      initIntlTelInputs();
+    }
+    return;
   }
-  document.getElementById('bookingNotes').value = '';
 
-  // Default date to next week
-  const nextWeek = new Date();
-  nextWeek.setDate(nextWeek.getDate() + 7);
-  document.getElementById('bookingDate').value = nextWeek.toISOString().split('T')[0];
+  // 3. Fallback: If page has a contact/quote section, smooth-scroll and preselect
+  const contactSection = document.getElementById('quote') || document.getElementById('contact');
+  if (contactSection) {
+    contactSection.scrollIntoView({ behavior: 'smooth' });
 
-  calculateBookingTotal();
+    const interestSel = document.getElementById('contactInterest');
+    if (interestSel) {
+      interestSel.value = 'package';
+      if (typeof updateQuoteFormFields === 'function') {
+        updateQuoteFormFields();
+      }
+    }
 
-  const modal = document.getElementById('bookingModal');
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
+    const destInput = document.getElementById('contactDest');
+    if (destInput) {
+      destInput.value = finalTitle;
+    }
 
-  // Ensure intl-tel-input is initialized on modal display
-  if (typeof initIntlTelInputs === 'function') {
-    initIntlTelInputs();
+    const notesInput = document.getElementById('contactMessage');
+    if (notesInput) {
+      notesInput.value = `Hello Star Plus Travels, I would like to request an official quote and custom itinerary for "${finalTitle}" (${pkg?.duration || ''}). Please advise on the best rates and availability.`;
+    }
+
+    if (typeof showToast === 'function') {
+      showToast(`Selected "${finalTitle}". Please complete your inquiry below!`, 'success');
+    }
+    return;
   }
+
+  // 4. Fallback if neither modal nor section is present on current page
+  window.location.href = `packages.html?package=${encodeURIComponent(pkg.id || finalTitle)}`;
 }
 
+function openBookingModal(pkgId) {
+  handleRequestQuote(pkgId);
+}
+window.openBookingModal = openBookingModal;
+window.handleRequestQuote = handleRequestQuote;
+
+// Global event delegation for "Request Quote" buttons
+document.addEventListener('click', (e) => {
+  const quoteBtn = e.target.closest('.request-quote-btn');
+  if (!quoteBtn) return;
+  e.preventDefault();
+
+  const pkgId = quoteBtn.getAttribute('data-package-id');
+  const pkgTitle = quoteBtn.getAttribute('data-package-title') ? decodeURIComponent(quoteBtn.getAttribute('data-package-title')) : '';
+  const pkgDest = quoteBtn.getAttribute('data-package-dest') ? decodeURIComponent(quoteBtn.getAttribute('data-package-dest')) : '';
+
+  handleRequestQuote(pkgId, pkgTitle, pkgDest, e);
+});
+
 function closeBookingModal() {
-  const modal = document.getElementById('bookingModal');
+  const modal = document.getElementById('bookingModal') || document.getElementById('quoteModal') || document.getElementById('inquiryModal');
   if (modal) {
     modal.classList.add('hidden');
     modal.classList.remove('flex');
+    document.body.style.overflow = '';
     const form = modal.querySelector('form');
     if (form) form.reset();
   }
@@ -2219,8 +2360,7 @@ function calculateBookingTotal() {
   const installmentElem = document.getElementById('modalTabbyInstallment');
 
   if (totalElem) {
-    const secTotal = formatSecondaryPrice(Math.round(totalAED));
-    totalElem.innerHTML = `<span class="price-aed" data-base-aed="${Math.round(totalAED)}">${totalFormatted}</span> <span class="price-secondary text-xs text-amber-500/90 font-medium ml-1.5" data-secondary-for="${Math.round(totalAED)}">(${secTotal})</span>`;
+    totalElem.innerHTML = `<span class="price-aed" data-base-aed="${Math.round(totalAED)}">${totalFormatted}</span>`;
   }
   if (installmentElem) installmentElem.textContent = `or 4x ${installmentFormatted}/month interest-free with Tabby / Tamara`;
 }
@@ -2484,15 +2624,8 @@ function openItineraryModal(pkgId) {
   }
   const secPriceElem = document.getElementById('itineraryModalSecondaryPrice');
   if (secPriceElem) {
-    const isSl = pkg.category === 'srilanka' || pkg.countryKey === 'srilanka' || (pkg.destination && pkg.destination.toLowerCase().includes('sri lanka')) || (pkg.title && pkg.title.toLowerCase().includes('sri lanka')) || (pkg.id && (pkg.id.startsWith('sl-') || pkg.id.includes('sri-lanka')));
-    if (isSl) {
-      secPriceElem.removeAttribute('data-secondary-for');
-      secPriceElem.textContent = '';
-    } else {
-      secPriceElem.setAttribute('data-secondary-for', pkg.priceAED);
-      const secFormatted = pkg.priceLKR ? pkg.priceLKR : (typeof formatSecondaryPrice === 'function' ? formatSecondaryPrice(pkg.priceAED) : '');
-      secPriceElem.textContent = secFormatted ? `(${secFormatted})` : '';
-    }
+    secPriceElem.removeAttribute('data-secondary-for');
+    secPriceElem.textContent = '';
   }
 
   const bookBtn = document.getElementById('itineraryBookButton');
@@ -2724,7 +2857,6 @@ function checkVisaRequirements() {
           <p class="text-xs sm:text-sm md:text-base font-extrabold text-amber-600 dark:text-amber-400 flex items-center gap-2 flex-wrap">
             <i class="fa-solid fa-tag text-amber-500 text-xs shrink-0"></i>
             <span class="price-aed" data-base-aed="${data.priceAED}">${data.rateHeadline}</span>
-            <span class="price-secondary text-xs text-amber-500/90 font-semibold" data-secondary-for="${data.priceAED}">(${formatSecondaryPrice(data.priceAED)})</span>
           </p>
         </div>
         ${!isAED ? `
@@ -5554,7 +5686,6 @@ function openCountryPackages(countryKey) {
                   <span class="text-[10px] text-slate-400 block uppercase tracking-wider">${isSi ? 'ආරම්භක මිල' : 'Starting from'}</span>
                   <div class="flex items-baseline gap-1.5 flex-wrap">
                     <span class="price-aed text-lg sm:text-xl font-black text-amber-400 font-heading" data-base-aed="${pkg.priceAED}">${formattedPrice}</span>
-                    ${!isSl ? `<span class="price-secondary text-xs text-amber-500/90 font-medium" data-secondary-for="${pkg.priceAED}">(${formatSecondaryPrice(pkg.priceAED)})</span>` : ''}
                   </div>
                   <span class="text-[10px] text-slate-400">${isSi ? '/ පුද්ගලයෙකුට' : '/ person'}</span>
                 </div>
@@ -5757,7 +5888,6 @@ function initDestinationSlider() {
             <span>${slide.duration}</span>
             <div class="text-right">
               <span class="price-aed text-amber-400 font-bold" data-base-aed="${slide.priceAED}">${formattedPrice}</span>
-              ${(slide.countryKey === 'srilanka' || (slide.title && slide.title.toLowerCase().includes('sri lanka')) || (slide.id && slide.id.includes('sl-'))) ? '' : `<span class="price-secondary text-[10px] text-slate-400 block" data-secondary-for="${slide.priceAED}">(${formatSecondaryPrice(slide.priceAED)})</span>`}
             </div>
           </div>
         </div>
@@ -7373,7 +7503,6 @@ function populateShowcaseData(countryKey) {
               <span class="flex items-center gap-1"><i class="fa-regular fa-clock text-amber-400 text-[9px]"></i>${tour.duration}</span>
               <div class="text-right">
                 <span class="showcase-card-price price-aed text-amber-400 font-mono" data-base-aed="${tour.priceAED}">${formattedAED}</span>
-                ${(countryKey === 'srilanka' || currentShowcaseCountryKey === 'srilanka' || (tour.id && tour.id.startsWith('sl-'))) ? '' : `<span class="price-secondary text-[9px] text-slate-400 block" data-secondary-for="${tour.priceAED}">(${formatSecondaryPrice(tour.priceAED)})</span>`}
               </div>
             </div>
           </div>
@@ -7512,19 +7641,10 @@ function updateShowcaseTourUI(index, animate = true) {
     priceElem.textContent = formattedAED;
   }
   if (altPriceElem) {
-    const isSl = currentShowcaseCountryKey === 'srilanka' || (tour.id && tour.id.startsWith('sl-'));
-    if (isSl) {
-      altPriceElem.classList.remove('price-secondary');
-      altPriceElem.removeAttribute('data-secondary-for');
-      altPriceElem.removeAttribute('data-template');
-      altPriceElem.textContent = '/ person';
-    } else {
-      altPriceElem.classList.add('price-secondary');
-      altPriceElem.setAttribute('data-secondary-for', tour.priceAED);
-      altPriceElem.setAttribute('data-template', '/ person ({secondary})');
-      const secFormatted = formatSecondaryPrice(tour.priceAED);
-      altPriceElem.textContent = `/ person (${secFormatted})`;
-    }
+    altPriceElem.classList.remove('price-secondary');
+    altPriceElem.removeAttribute('data-secondary-for');
+    altPriceElem.removeAttribute('data-template');
+    altPriceElem.textContent = '/ person';
   }
 
   // WhatsApp button dynamic pre-fill
@@ -8135,19 +8255,10 @@ function openShowcaseItinerary(tour) {
     priceElem.textContent = formattedAED;
   }
   if (altPriceElem) {
-    const isSl = data.category === 'srilanka' || data.countryKey === 'srilanka' || (data.destination && data.destination.toLowerCase().includes('sri lanka')) || (data.title && data.title.toLowerCase().includes('sri lanka')) || (data.id && (data.id.startsWith('sl-') || data.id.includes('sri-lanka')));
-    if (isSl) {
-      altPriceElem.classList.remove('price-secondary');
-      altPriceElem.removeAttribute('data-secondary-for');
-      altPriceElem.removeAttribute('data-template');
-      altPriceElem.textContent = '';
-    } else {
-      altPriceElem.classList.add('price-secondary');
-      altPriceElem.setAttribute('data-secondary-for', data.priceAED);
-      altPriceElem.setAttribute('data-template', '({secondary})');
-      const secFormatted = formatSecondaryPrice(data.priceAED);
-      altPriceElem.textContent = `(${secFormatted})`;
-    }
+    altPriceElem.classList.remove('price-secondary');
+    altPriceElem.removeAttribute('data-secondary-for');
+    altPriceElem.removeAttribute('data-template');
+    altPriceElem.textContent = '';
   }
 
   // WhatsApp Inquiry CTA
@@ -8220,8 +8331,7 @@ function downloadTourBrochure(tour) {
   }
 
   const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
-  const isSl = tour.category === 'srilanka' || tour.countryKey === 'srilanka' || (tour.destination && tour.destination.toLowerCase().includes('sri lanka')) || (tour.title && tour.title.toLowerCase().includes('sri lanka')) || (tour.id && (tour.id.startsWith('sl-') || tour.id.includes('sri-lanka')));
-  const priceDisplay = (!isSl && tour.priceLKR) ? `${formattedAED} (${tour.priceLKR})` : formattedAED;
+  const priceDisplay = formattedAED;
 
   const inclusionsHtml = (tour.inclusions || tour.checklist || []).map(inc => `
     <li style="margin-bottom: 7px; display: flex; align-items: flex-start;">
