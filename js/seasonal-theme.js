@@ -195,6 +195,20 @@
       accentClass: 'season-christmas',
       particleType: 'snow',
       ctaUrl: '#packages'
+    },
+
+    // 6. Halloween (Active Dates: October 20 through November 2)
+    HALLOWEEN: {
+      id: 'halloween',
+      name: 'Halloween Spooky Season',
+      type: 'fixed',
+      scheduleType: 'date_range',
+      dateRange: { startMonth: 10, startDay: 20, endMonth: 11, endDay: 2 },
+      badge: '🎃 Happy Halloween Deals',
+      bannerText: 'Special Halloween travel discounts: explore mystery castle tours & Autumn holiday packages!',
+      accentClass: 'season-halloween',
+      particleType: 'halloween',
+      ctaUrl: '#packages'
     }
   };
 
@@ -292,6 +306,10 @@
     const override = urlParams.get('season') || urlParams.get('holiday');
 
     // Explicit override for testing
+    if (window.testHalloween === true) {
+      return HOLIDAYS.HALLOWEEN;
+    }
+
     if (override) {
       const norm = override.toLowerCase().trim();
       if (norm === 'off' || norm === 'none' || norm === 'default' || norm === 'false') {
@@ -307,8 +325,8 @@
     const today = getEffectiveDate();
     const hijri = getHijriDate(today);
 
-    // Evaluate in priority order: Eid > Ramadan > New Year > Christmas > Valentine
-    const order = ['EID', 'RAMADAN', 'NEW_YEAR', 'CHRISTMAS', 'VALENTINE'];
+    // Evaluate in priority order: Eid > Ramadan > Halloween > New Year > Christmas > Valentine
+    const order = ['EID', 'RAMADAN', 'HALLOWEEN', 'NEW_YEAR', 'CHRISTMAS', 'VALENTINE'];
     for (const key of order) {
       const holiday = HOLIDAYS[key];
       if (isHolidayScheduleActive(holiday, today, hijri)) {
@@ -341,6 +359,46 @@
     if (userPref === 'disabled') return;
 
     cleanupParticleEngine();
+
+    if (holiday && holiday.id === 'halloween') {
+      let container = document.getElementById('halloween-particles');
+      if (container) container.remove();
+      container = document.createElement('div');
+      container.id = 'halloween-particles';
+      container.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 40;
+        overflow: hidden;
+      `;
+      document.body.appendChild(container);
+
+      const icons = ['🎃', '🦇', '✨', '👻'];
+      const count = window.innerWidth < 768 ? 12 : 22; // capped at 12 on mobile and 22 on desktop
+
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('span');
+        el.innerText = icons[Math.floor(Math.random() * icons.length)];
+        el.style.cssText = `
+          position: absolute;
+          bottom: -40px;
+          left: ${Math.random() * 100}vw;
+          font-size: ${Math.random() * 12 + 14}px;
+          opacity: ${Math.random() * 0.25 + 0.3};
+          animation: floatUpSpooky ${Math.random() * 7 + 7}s linear infinite;
+          animation-delay: -${Math.random() * 10}s;
+          filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.4));
+          pointer-events: none;
+          user-select: none;
+        `;
+        container.appendChild(el);
+      }
+      return;
+    }
 
     canvas = document.createElement('canvas');
     canvas.id = 'holidayThemeCanvas';
@@ -641,6 +699,13 @@
       } catch (e) {}
     }
 
+    const hp = document.getElementById('halloween-particles');
+    if (hp && hp.parentNode) {
+      try {
+        hp.parentNode.removeChild(hp);
+      } catch (e) {}
+    }
+
     canvas = null;
     ctx = null;
     particles = [];
@@ -665,7 +730,8 @@
       'season-valentine',
       'season-ramadan',
       'season-eid',
-      'season-christmas'
+      'season-christmas',
+      'season-halloween'
     ];
     document.documentElement.classList.remove(...classesToRemove);
     if (document.body) {

@@ -9769,8 +9769,8 @@ window.addEventListener('load', () => {
     const month = today.getMonth() + 1; // 1-12
     const day = today.getDate();
 
-    // Active window: Oct 20 to Nov 2 (or ?season=halloween / ?holiday=halloween override)
-    const isHalloweenOverride = urlParams.get('season') === 'halloween' || urlParams.get('holiday') === 'halloween';
+    // Active window: Oct 20 to Nov 2 (or window.testHalloween / ?season=halloween override)
+    const isHalloweenOverride = Boolean(window.testHalloween) || urlParams.get('season') === 'halloween' || urlParams.get('holiday') === 'halloween';
     const isHalloween = isHalloweenOverride || ((month === 10 && day >= 20) || (month === 11 && day <= 2));
 
     if (isHalloween) {
@@ -9809,7 +9809,7 @@ window.addEventListener('load', () => {
     (document.body || document.documentElement).appendChild(container);
 
     const icons = ['🎃', '🦇', '✨', '👻'];
-    const count = window.innerWidth < 768 ? 12 : 22; // lightweight on mobile
+    const count = window.innerWidth < 768 ? 12 : 22; // capped at 12 on mobile and 22 on desktop
 
     for (let i = 0; i < count; i++) {
       createFloatingItem(container, icons[Math.floor(Math.random() * icons.length)]);
@@ -9824,12 +9824,41 @@ window.addEventListener('load', () => {
       bottom: -40px;
       left: ${Math.random() * 100}vw;
       font-size: ${Math.random() * 12 + 14}px;
-      opacity: ${Math.random() * 0.45 + 0.2};
+      opacity: ${Math.random() * 0.2 + 0.3};
       animation: floatUpSpooky ${Math.random() * 7 + 7}s linear infinite;
       animation-delay: -${Math.random() * 10}s;
       filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.4));
+      pointer-events: none;
+      user-select: none;
     `;
     container.appendChild(el);
+  }
+
+  // Temporary test flag in development: window.testHalloween = true
+  let _testHalloween = false;
+  try {
+    Object.defineProperty(window, 'testHalloween', {
+      get() { return _testHalloween; },
+      set(val) {
+        _testHalloween = Boolean(val);
+        if (_testHalloween) {
+          applyHalloweenTheme();
+          if (window.StarPlusSeason && typeof window.StarPlusSeason.refresh === 'function') {
+            window.StarPlusSeason.refresh();
+          }
+        } else {
+          const hp = document.getElementById('halloween-particles');
+          if (hp) hp.remove();
+          if (document.body) document.body.classList.remove('season-halloween');
+          if (window.StarPlusSeason && typeof window.StarPlusSeason.refresh === 'function') {
+            window.StarPlusSeason.refresh();
+          }
+        }
+      },
+      configurable: true
+    });
+  } catch (e) {
+    window.testHalloween = false;
   }
 
   window.initSeasonalFestivals = initSeasonalFestivals;
