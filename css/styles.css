@@ -3553,3 +3553,37 @@ select.field-error-border {
   transition: all 0.25s ease;
   z-index: 20;
 }
+
+/* ==========================================================================
+   Global Floating WhatsApp Concierge Widget
+   ========================================================================== */
+#global-whatsapp-btn,
+.whatsapp-floating {
+  position: fixed !important;
+  bottom: 1.5rem !important;
+  right: 1.5rem !important;
+  z-index: 50 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 3.5rem !important;
+  height: 3.5rem !important;
+  background-color: #25D366 !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+#global-whatsapp-btn:hover,
+.whatsapp-floating:hover {
+  background-color: #20ba59 !important;
+  transform: scale(1.1) !important;
+}
+
+#global-whatsapp-btn:active,
+.whatsapp-floating:active {
+  transform: scale(0.95) !important;
+}
