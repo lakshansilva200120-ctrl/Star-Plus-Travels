@@ -41,6 +41,8 @@ const translations = {
     topBarHiring: "We're Hiring! Join our growing teams in Dubai & Sri Lanka",
     whatsappConcierge: "WhatsApp Concierge",
     customTripBtn: "Request Custom Itinerary",
+    lang_toggle_si: "\u0DC3\u0DD2\u0D82\u0DC4\u0DBD",
+    lang_toggle_en: "English",
 
     // ------------------------------------------------------------------------
     // 2. Hero Section
@@ -218,6 +220,8 @@ const translations = {
     topBarHiring: "අප බඳවා ගනු ලැබේ! ඩුබායි සහ ශ්‍රී ලංකාවේ අපගේ කණ්ඩායම් වලට එක්වන්න",
     whatsappConcierge: "වට්ස්ඇප් සේවාව",
     customTripBtn: "සුවිශේෂී සංචාරක සැලැස්මක් ඉල්ලන්න",
+    lang_toggle_si: "\u0DC3\u0DD2\u0D82\u0DC4\u0DBD",
+    lang_toggle_en: "English",
 
     // ------------------------------------------------------------------------
     // 2. Hero Section
