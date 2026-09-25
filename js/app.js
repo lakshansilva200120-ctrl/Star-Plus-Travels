@@ -14,8 +14,11 @@ const CURRENCIES = {
 let currentCurrency = 'AED';
 try {
   const savedCurrency = localStorage.getItem('starplus_pref_currency');
-  if (savedCurrency && CURRENCIES[savedCurrency]) {
+  if (savedCurrency && CURRENCIES[savedCurrency] && savedCurrency !== 'LKR') {
     currentCurrency = savedCurrency;
+  } else if (savedCurrency === 'LKR') {
+    currentCurrency = 'AED';
+    localStorage.setItem('starplus_pref_currency', 'AED');
   }
 } catch (e) {}
 
@@ -2965,7 +2968,111 @@ function updateQuoteFormFields() {
 }
 window.updateQuoteFormFields = updateQuoteFormFields;
 
-// Currency Switcher Logic
+// Currency Switcher Logic & Modern Currency Dropdown
+const CURRENCY_DISPLAY_LABELS = {
+  AED: 'AED (د.إ)',
+  USD: 'USD ($)',
+  EUR: 'EUR (€)',
+  GBP: 'GBP (£)'
+};
+
+function updateModernCurrencyDropdownUI(curr) {
+  const labelEl = document.getElementById('current-currency-label');
+  if (labelEl && CURRENCY_DISPLAY_LABELS[curr]) {
+    labelEl.textContent = CURRENCY_DISPLAY_LABELS[curr];
+  }
+
+  document.querySelectorAll('.currency-option').forEach(btn => {
+    const btnCurr = btn.getAttribute('data-currency');
+    if (btnCurr === curr) {
+      btn.classList.add('text-amber-400', 'font-semibold', 'bg-white/10');
+      btn.classList.remove('text-slate-200');
+    } else {
+      btn.classList.remove('text-amber-400', 'font-semibold', 'bg-white/10');
+      btn.classList.add('text-slate-200');
+    }
+  });
+}
+window.updateModernCurrencyDropdownUI = updateModernCurrencyDropdownUI;
+
+function initModernCurrencyDropdown() {
+  const toggleBtn = document.getElementById('currency-toggle-btn');
+  const menu = document.getElementById('currency-menu');
+  const chevron = document.getElementById('currency-chevron');
+  const wrapper = document.getElementById('currency-dropdown-wrapper');
+
+  if (!toggleBtn || !menu) return;
+
+  // Sync initial label and active option
+  updateModernCurrencyDropdownUI(currentCurrency);
+
+  // Toggle handler
+  if (!toggleBtn._hasCurrencyListener) {
+    toggleBtn._hasCurrencyListener = true;
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        if (chevron) chevron.classList.add('rotate-180');
+      } else {
+        menu.classList.add('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        if (chevron) chevron.classList.remove('rotate-180');
+      }
+    });
+  }
+
+  // Option select handler
+  document.querySelectorAll('.currency-option').forEach(btn => {
+    if (!btn._hasCurrencyListener) {
+      btn._hasCurrencyListener = true;
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const curr = btn.getAttribute('data-currency');
+        if (curr) {
+          changeCurrency(curr);
+        }
+        menu.classList.add('hidden');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        if (chevron) chevron.classList.remove('rotate-180');
+      });
+    }
+  });
+
+  // Close on outside click
+  if (!document._hasCurrencyOutsideListener) {
+    document._hasCurrencyOutsideListener = true;
+    document.addEventListener('click', (e) => {
+      const activeWrapper = document.getElementById('currency-dropdown-wrapper');
+      const activeMenu = document.getElementById('currency-menu');
+      const activeBtn = document.getElementById('currency-toggle-btn');
+      const activeChevron = document.getElementById('currency-chevron');
+      if (activeWrapper && !activeWrapper.contains(e.target) && activeMenu && !activeMenu.classList.contains('hidden')) {
+        activeMenu.classList.add('hidden');
+        if (activeBtn) activeBtn.setAttribute('aria-expanded', 'false');
+        if (activeChevron) activeChevron.classList.remove('rotate-180');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const activeMenu = document.getElementById('currency-menu');
+        const activeBtn = document.getElementById('currency-toggle-btn');
+        const activeChevron = document.getElementById('currency-chevron');
+        if (activeMenu && !activeMenu.classList.contains('hidden')) {
+          activeMenu.classList.add('hidden');
+          if (activeBtn) activeBtn.setAttribute('aria-expanded', 'false');
+          if (activeChevron) activeChevron.classList.remove('rotate-180');
+        }
+      }
+    });
+  }
+}
+window.initModernCurrencyDropdown = initModernCurrencyDropdown;
+
 function changeCurrency(newCurr) {
   if (!CURRENCIES[newCurr]) return;
   currentCurrency = newCurr;
@@ -2973,6 +3080,9 @@ function changeCurrency(newCurr) {
   try {
     localStorage.setItem('starplus_pref_currency', newCurr);
   } catch (e) {}
+
+  // Update modern currency dropdown UI
+  updateModernCurrencyDropdownUI(newCurr);
 
   // Update currency select dropdowns
   document.querySelectorAll('.currency-selector').forEach(sel => {
@@ -4255,7 +4365,9 @@ function initApp() {
   } catch (e) {}
 
   try {
-    // Synchronize currency selector dropdowns to currentCurrency
+    // Initialize Modern Currency Dropdown
+    initModernCurrencyDropdown();
+    // Synchronize legacy currency selector dropdowns if any
     document.querySelectorAll('.currency-selector').forEach(sel => {
       sel.value = currentCurrency;
     });

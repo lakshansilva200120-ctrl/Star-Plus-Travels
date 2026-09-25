@@ -148,8 +148,8 @@
   </script>
 
   <!-- Top Announcement Bar -->
-  <div class="top-announcement-bar bg-transparent border-none border-b-0 text-[11px] sm:text-xs py-1.5 px-3 sm:px-6 relative z-40 transition-colors overflow-hidden">
-    <div class="top-bar-container max-w-7xl mx-auto flex flex-nowrap items-center justify-between gap-3 text-slate-400 whitespace-nowrap overflow-hidden">
+  <div class="top-announcement-bar bg-transparent border-none border-b-0 text-[11px] sm:text-xs py-1.5 px-3 sm:px-6 relative z-[60] transition-colors">
+    <div class="top-bar-container max-w-7xl mx-auto flex flex-nowrap items-center justify-between gap-3 text-slate-400 whitespace-nowrap">
       <div class="flex items-center space-x-2 sm:space-x-3 min-w-0 shrink overflow-hidden whitespace-nowrap">
         <span class="flex items-center space-x-1.5 text-amber-400 font-semibold truncate">
           <i class="fa-solid fa-sparkles text-[10px] shrink-0"></i>
@@ -184,17 +184,73 @@
           <i class="fa-brands fa-whatsapp text-emerald-400 text-xs"></i>
           <span data-i18n="whatsappConcierge">WhatsApp Concierge</span>
         </a>
+        <span class="hidden sm:inline text-slate-700 shrink-0">|</span>
 
-        <!-- Currency Selector -->
-        <div class="flex items-center space-x-1 bg-slate-900/90 border border-slate-700/80 rounded-lg px-2 py-0.5 shadow-sm shrink-0">
-          <i class="fa-solid fa-coins text-amber-400 text-[10px]"></i>
-          <select onchange="changeCurrency(this.value)" class="currency-selector bg-transparent text-slate-200 text-[11px] font-semibold outline-none cursor-pointer">
-            <option value="AED" class="bg-slate-900 text-slate-200">AED (&#1583;.&#1573;)</option>
-            <option value="USD" class="bg-slate-900 text-slate-200">USD ($)</option>
-            <option value="EUR" class="bg-slate-900 text-slate-200">EUR (&euro;)</option>
-            <option value="GBP" class="bg-slate-900 text-slate-200">GBP (&pound;)</option>
-            <option value="LKR" class="bg-slate-900 text-slate-200">LKR (Rs)</option>
-          </select>
+        <!-- Modern Currency Dropdown -->
+        <div class="relative inline-block text-left" id="currency-dropdown-wrapper">
+          <!-- Trigger Button -->
+          <button 
+            type="button" 
+            id="currency-toggle-btn"
+            class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-slate-700/70 hover:border-amber-500/50 shadow-sm backdrop-blur-md text-xs font-semibold text-slate-100 transition-all focus:outline-none focus:ring-1 focus:ring-amber-400"
+            aria-expanded="false"
+          >
+            <span class="text-amber-400 text-sm">🪙</span>
+            <span id="current-currency-label">AED (د.إ)</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200" id="currency-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Floating Menu Panel -->
+          <div 
+            id="currency-menu" 
+            class="hidden absolute right-0 mt-2 w-36 rounded-2xl bg-slate-900/95 border border-slate-700/80 shadow-2xl backdrop-blur-xl py-1.5 z-50 transition-all duration-200"
+          >
+            <button 
+              type="button" 
+              data-currency="AED" 
+              class="currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
+            >
+              <span class="flex items-center gap-2">
+                <span class="text-xs">🇦🇪</span> AED
+              </span>
+              <span class="text-slate-400 text-[11px]">د.إ</span>
+            </button>
+
+            <button 
+              type="button" 
+              data-currency="USD" 
+              class="currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
+            >
+              <span class="flex items-center gap-2">
+                <span class="text-xs">🇺🇸</span> USD
+              </span>
+              <span class="text-slate-400 text-[11px]">$</span>
+            </button>
+
+            <button 
+              type="button" 
+              data-currency="EUR" 
+              class="currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
+            >
+              <span class="flex items-center gap-2">
+                <span class="text-xs">🇪🇺</span> EUR
+              </span>
+              <span class="text-slate-400 text-[11px]">€</span>
+            </button>
+
+            <button 
+              type="button" 
+              data-currency="GBP" 
+              class="currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
+            >
+              <span class="flex items-center gap-2">
+                <span class="text-xs">🇬🇧</span> GBP
+              </span>
+              <span class="text-slate-400 text-[11px]">£</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
