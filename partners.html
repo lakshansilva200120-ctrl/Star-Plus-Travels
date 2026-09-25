@@ -327,11 +327,23 @@
 
         <!-- Right Action Area -->
         <div class="flex items-center space-x-2 shrink-0 flex-shrink-0">
-                    <div class="inline-flex items-center rounded-full bg-slate-800/80 p-1 border border-slate-700 text-xs font-semibold">
-            <button id="lang-toggle-en" class="px-2.5 py-1 rounded-full transition-colors text-white bg-amber-500">
+          <!-- Compact Language Toggle Container -->
+          <div class="relative inline-flex items-center p-0.5 rounded-full bg-slate-900/80 border border-slate-700/60 shadow-inner backdrop-blur-md">
+            <!-- EN Option -->
+            <button 
+              type="button" 
+              id="lang-toggle-en" 
+              class="px-2 py-1 rounded-full text-[11px] font-bold bg-amber-500 text-slate-950 shadow-sm transition-all duration-200"
+            >
               EN
             </button>
-            <button id="lang-toggle-si" class="px-2.5 py-1 rounded-full transition-colors text-slate-400 hover:text-white">
+
+            <!-- Sinhala Option -->
+            <button 
+              type="button" 
+              id="lang-toggle-si" 
+              class="px-2.5 py-1 rounded-full text-[11px] font-semibold text-slate-400 hover:text-white transition-all duration-200"
+            >
               &#3523;&#3538;&#3458;&#3524;&#3517;
             </button>
           </div>

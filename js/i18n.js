@@ -56,15 +56,15 @@ function applyLanguage(lang) {
   }
   if (enBtn && siBtn) {
     if (lang === 'si') {
-      siBtn.classList.add('bg-amber-500', 'text-white');
-      siBtn.classList.remove('text-slate-400');
-      enBtn.classList.remove('bg-amber-500', 'text-white');
-      enBtn.classList.add('text-slate-400');
+      siBtn.classList.add('bg-amber-500', 'text-slate-950', 'font-bold', 'shadow-sm');
+      siBtn.classList.remove('text-slate-400', 'hover:text-white', 'font-semibold', 'text-white');
+      enBtn.classList.remove('bg-amber-500', 'text-slate-950', 'font-bold', 'shadow-sm', 'text-white');
+      enBtn.classList.add('text-slate-400', 'hover:text-white', 'font-semibold');
     } else {
-      enBtn.classList.add('bg-amber-500', 'text-white');
-      enBtn.classList.remove('text-slate-400');
-      siBtn.classList.remove('bg-amber-500', 'text-white');
-      siBtn.classList.add('text-slate-400');
+      enBtn.classList.add('bg-amber-500', 'text-slate-950', 'font-bold', 'shadow-sm');
+      enBtn.classList.remove('text-slate-400', 'hover:text-white', 'font-semibold', 'text-white');
+      siBtn.classList.remove('bg-amber-500', 'text-slate-950', 'font-bold', 'shadow-sm', 'text-white');
+      siBtn.classList.add('text-slate-400', 'hover:text-white', 'font-semibold');
     }
   }
 
