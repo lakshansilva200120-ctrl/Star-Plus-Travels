@@ -3818,43 +3818,41 @@ select.field-error-border {
 }
 
 @keyframes radarSweep {
-  0% {
-    transform: translateX(-100%);
-  }
-  50%, 100% {
-    transform: translateX(100%);
-  }
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
 }
 
 .animate-\[drawPath_3s_ease-in-out_infinite\] {
-  stroke-dasharray: 600;
-  stroke-dashoffset: 600;
-  animation: drawFlightPath 3s ease-in-out infinite;
+  animation: drawPath 3s ease-in-out infinite;
 }
 
-@keyframes drawFlightPath {
-  0% {
-    stroke-dashoffset: 600;
-  }
-  50% {
-    stroke-dashoffset: 0;
-  }
-  100% {
-    stroke-dashoffset: -600;
-  }
+@keyframes drawPath {
+  0%, 100% { opacity: 0.4; stroke-dashoffset: 0; }
+  50% { opacity: 1; stroke-dashoffset: -20; }
 }
 
 .animate-\[glidePlane_6s_linear_infinite\] {
-  offset-path: path("M 50 120 Q 250 -20 450 120");
-  animation: glideFlightPlane 6s linear infinite;
+  animation: glidePlane 6s linear infinite;
 }
 
-@keyframes glideFlightPlane {
+@keyframes glidePlane {
   0% {
-    offset-distance: 0%;
+    transform: translate(50px, 120px) rotate(-35deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(250px, 15px) rotate(0deg);
+  }
+  90% {
+    opacity: 1;
   }
   100% {
-    offset-distance: 100%;
+    transform: translate(450px, 120px) rotate(35deg);
+    opacity: 0;
   }
 }
 
