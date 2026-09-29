@@ -977,28 +977,25 @@
     <!-- Section Header -->
     <div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
       <div>
-        <span class="text-amber-500 dark:text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="solutionsBadge">Everything Travel Under One Roof</span>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1" data-i18n="solutionsTitle">
+        <span class="text-amber-400 text-xs font-bold uppercase tracking-widest" data-i18n="solutionsBadge">Everything Travel Under One Roof</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mt-1" data-i18n="solutionsTitle">
           Explore Star Plus Travel Solutions
         </h2>
       </div>
-      <p class="text-sm text-slate-600 dark:text-slate-400 max-w-md" data-i18n="solutionsDesc">
+      <p class="text-sm text-slate-400 max-w-md" data-i18n="solutionsDesc">
         From fully packaged luxury holiday circuits and express visa clearances to bespoke private concierge charters.
       </p>
     </div>
 
-    <!-- Bento Carousel Deck: swipeable snap-scroll cards on mobile, 2-col on tablet, 4-col on desktop -->
-    <div class="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5 overflow-x-auto sm:overflow-x-visible pb-4 sm:pb-0 snap-x snap-mandatory scroll-smooth no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+    <!-- Bento Carousel Deck -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
       <!-- Card 1: Curated Dubai Escapes -->
-      <a href="#packages" class="group relative rounded-3xl bg-[#111622] border border-slate-800/80 hover:border-amber-500/50 transition-all duration-500 flex flex-col overflow-hidden hover:-translate-y-1.5 shadow-xl w-[85vw] max-w-[320px] sm:w-auto shrink-0 sm:shrink snap-center cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-amber-500/50">
+      <a href="#packages" class="group relative rounded-3xl bg-[#111622] border border-slate-800/80 hover:border-amber-500/50 transition-all duration-500 flex flex-col overflow-hidden hover:-translate-y-1.5 shadow-xl cursor-pointer">
         <!-- Top Animated Stage (Indigo/Navy Accent) -->
         <div class="h-56 bg-gradient-to-br from-indigo-950/80 to-slate-900 relative p-5 flex items-center justify-center overflow-hidden">
-          <!-- Ambient Glow -->
-          <div class="absolute -top-10 -left-10 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none"></div>
-
           <!-- Floating Boarding Pass Graphic -->
-          <div class="w-48 bg-slate-900/90 border border-indigo-500/30 rounded-2xl p-3.5 shadow-2xl backdrop-blur-md transform group-hover:scale-105 group-hover:-rotate-1 transition-transform duration-500 bento-float-pass relative z-10">
+          <div class="w-48 bg-slate-900/90 border border-indigo-500/30 rounded-2xl p-3.5 shadow-2xl backdrop-blur-md transform group-hover:scale-105 group-hover:-rotate-1 transition-transform duration-500">
             <div class="flex items-center justify-between text-[11px] text-slate-400 border-b border-slate-800 pb-2">
               <span class="font-bold text-amber-400">DXB EXPRESS</span>
               <span>5D / 4N</span>
@@ -1020,25 +1017,22 @@
           </h3>
           <div class="mt-4 flex items-center justify-between pt-3 border-t border-slate-800/60">
             <span class="text-xs text-slate-400">Starting from <strong class="text-white price-aed" data-base-aed="1890">AED 1,890</strong></span>
-            <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all duration-300 group-hover:translate-x-1 shadow-md">→</span>
+            <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 group-hover:bg-amber-500 group-hover:text-slate-950 transition-all group-hover:translate-x-1 shadow-md">→</span>
           </div>
         </div>
       </a>
 
       <!-- Card 2: Visa Concierge -->
-      <a href="visa-services.html" class="group relative rounded-3xl bg-[#111622] border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-500 flex flex-col overflow-hidden hover:-translate-y-1.5 shadow-xl w-[85vw] max-w-[320px] sm:w-auto shrink-0 sm:shrink snap-center cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-emerald-500/50">
+      <a href="visa-services.html" class="group relative rounded-3xl bg-[#111622] border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-500 flex flex-col overflow-hidden hover:-translate-y-1.5 shadow-xl cursor-pointer">
         <!-- Top Animated Stage (Clean Light / Modern Stage) -->
         <div class="h-56 bg-gradient-to-br from-emerald-950/40 to-slate-900 relative p-5 flex items-center justify-center overflow-hidden">
-          <!-- Ambient Glow -->
-          <div class="absolute -top-10 -right-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
-
           <!-- Live Status Verification Steps -->
-          <div class="w-52 space-y-2.5 relative z-10">
+          <div class="w-52 space-y-2.5">
             <div class="flex items-center gap-2.5 bg-slate-900/80 border border-emerald-500/30 px-3 py-2 rounded-xl text-xs text-white">
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
               <span>Documents Verified</span>
             </div>
-            <div class="flex items-center gap-2.5 bg-slate-900/80 border border-slate-700/60 px-3 py-2 rounded-xl text-xs text-slate-300 transform translate-x-2 group-hover:translate-x-0 transition-transform duration-300">
+            <div class="flex items-center gap-2.5 bg-slate-900/80 border border-slate-700/60 px-3 py-2 rounded-xl text-xs text-slate-300 transform translate-x-2 group-hover:translate-x-0 transition-transform">
               <span class="text-emerald-400 font-bold">✓</span>
               <span>GDRFA Fast-Track Filing</span>
             </div>
@@ -1055,31 +1049,24 @@
           </h3>
           <div class="mt-4 flex items-center justify-between pt-3 border-t border-slate-800/60">
             <span class="text-xs text-slate-400">Starting from <strong class="text-white price-aed" data-base-aed="380">AED 380</strong></span>
-            <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all duration-300 group-hover:translate-x-1 shadow-md">→</span>
+            <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all group-hover:translate-x-1 shadow-md">→</span>
           </div>
         </div>
       </a>
 
       <!-- Card 3: Animated Flight & Connection Route -->
-      <a href="partners.html" class="group relative rounded-3xl bg-[#111622] border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-500 flex flex-col overflow-hidden hover:-translate-y-1.5 shadow-xl w-[85vw] max-w-[320px] sm:w-auto shrink-0 sm:shrink snap-center cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-cyan-500/50">
+      <a href="partners.html" class="group relative rounded-3xl bg-[#111622] border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-500 flex flex-col overflow-hidden hover:-translate-y-1.5 shadow-xl cursor-pointer">
         <!-- Top Stage with Animated Route Track -->
         <div class="h-56 bg-gradient-to-br from-blue-950/50 to-slate-900 relative p-5 flex items-center justify-center overflow-hidden">
-          <!-- Ambient Glow -->
-          <div class="absolute -top-10 -right-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none"></div>
-
           <div class="relative w-full flex items-center justify-center">
             <!-- Connecting Line -->
             <div class="absolute w-44 h-0.5 bg-gradient-to-r from-blue-500 via-cyan-400 to-amber-400 opacity-60"></div>
-            <!-- Animated Pulse Trail -->
-            <div class="absolute w-44 h-0.5 overflow-hidden">
-              <div class="w-12 h-full bg-white opacity-80 animate-bentoFlightTrack"></div>
-            </div>
             <!-- Node 1 -->
-            <div class="relative z-10 w-11 h-11 rounded-full bg-blue-600/30 border-2 border-cyan-400 flex items-center justify-center text-sm font-bold text-white shadow-lg mr-12 group-hover:scale-110 transition-transform duration-300">
+            <div class="relative z-10 w-11 h-11 rounded-full bg-blue-600/30 border-2 border-cyan-400 flex items-center justify-center text-sm font-bold text-white shadow-lg mr-12 group-hover:scale-110 transition-transform">
               DXB
             </div>
             <!-- Node 2 -->
-            <div class="relative z-10 w-11 h-11 rounded-full bg-amber-600/30 border-2 border-amber-400 flex items-center justify-center text-sm font-bold text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <div class="relative z-10 w-11 h-11 rounded-full bg-amber-600/30 border-2 border-amber-400 flex items-center justify-center text-sm font-bold text-white shadow-lg group-hover:scale-110 transition-transform">
               CMB
             </div>
           </div>
@@ -1091,20 +1078,17 @@
           </h3>
           <div class="mt-4 flex items-center justify-between pt-3 border-t border-slate-800/60">
             <span class="text-xs text-slate-400"><strong class="text-cyan-300">Direct B2B Rates</strong></span>
-            <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all duration-300 group-hover:translate-x-1 shadow-md">→</span>
+            <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all group-hover:translate-x-1 shadow-md">→</span>
           </div>
         </div>
       </a>
 
       <!-- Card 4: VIP Bespoke Concierge -->
-      <a href="#contact" class="group relative rounded-3xl bg-[#111622] border border-slate-800/80 hover:border-amber-400/50 transition-all duration-500 flex flex-col overflow-hidden hover:-translate-y-1.5 shadow-xl w-[85vw] max-w-[320px] sm:w-auto shrink-0 sm:shrink snap-center cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-amber-400/50">
+      <a href="#contact" class="group relative rounded-3xl bg-[#111622] border border-slate-800/80 hover:border-amber-400/50 transition-all duration-500 flex flex-col overflow-hidden hover:-translate-y-1.5 shadow-xl cursor-pointer">
         <!-- Top Stage with Ambient Gradient -->
         <div class="h-56 bg-gradient-to-br from-amber-950/40 via-purple-950/30 to-slate-900 relative p-5 flex items-center justify-center overflow-hidden">
-          <!-- Ambient Glow -->
-          <div class="absolute -top-10 -right-10 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
-
-          <div class="text-center space-y-2 relative z-10">
-            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-2xl mx-auto group-hover:rotate-12 group-hover:scale-110 transition-transform duration-300 shadow-xl">
+          <div class="text-center space-y-2">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-2xl mx-auto group-hover:rotate-12 transition-transform duration-300">
               👑
             </div>
             <span class="inline-block px-3 py-1 rounded-full bg-slate-900/80 border border-slate-700/80 text-[11px] text-amber-300 font-semibold tracking-wide">
@@ -1119,20 +1103,11 @@
           </h3>
           <div class="mt-4 flex items-center justify-between pt-3 border-t border-slate-800/60">
             <span class="text-xs text-slate-400"><strong class="text-amber-300">Custom Group Quotes</strong></span>
-            <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 group-hover:bg-amber-400 group-hover:text-slate-950 transition-all duration-300 group-hover:translate-x-1 shadow-md">→</span>
+            <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 group-hover:bg-amber-400 group-hover:text-slate-950 transition-all group-hover:translate-x-1 shadow-md">→</span>
           </div>
         </div>
       </a>
 
-    </div>
-
-    <!-- Mobile Scroll Swipe Indicator -->
-    <div class="flex sm:hidden items-center justify-center gap-1.5 mt-4 text-xs text-slate-400">
-      <span class="w-6 h-1 rounded-full bg-amber-400"></span>
-      <span class="w-1.5 h-1 rounded-full bg-slate-700"></span>
-      <span class="w-1.5 h-1 rounded-full bg-slate-700"></span>
-      <span class="w-1.5 h-1 rounded-full bg-slate-700"></span>
-      <span class="ml-2 text-[11px] text-slate-400 flex items-center gap-1">Swipe cards <i class="fa-solid fa-arrow-right text-[9px] animate-pulse"></i></span>
     </div>
   </section>
 
