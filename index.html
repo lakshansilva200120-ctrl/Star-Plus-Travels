@@ -1227,17 +1227,17 @@
           </div>
 
           <!-- Center: Floating Custom Route Chips (Shows Bespoke Scope) -->
-          <div class="hidden xl:flex flex-wrap items-center justify-center gap-2 max-w-xs opacity-90 group-hover:opacity-100 transition-opacity">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5">
+          <div class="hidden md:flex flex-wrap items-center justify-start lg:justify-center gap-2 max-w-xs opacity-90 group-hover:opacity-100 transition-opacity">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5 cursor-pointer" onclick="if(typeof handleRequestQuote === 'function') handleRequestQuote({ id: 'switzerland', title: 'Switzerland Bespoke Tour', destination: 'Switzerland', flag: '🏔️', duration: 'Custom Itinerary' });">
               🏔️ Switzerland
             </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5 cursor-pointer" onclick="if(typeof handleRequestQuote === 'function') handleRequestQuote({ id: 'japan', title: 'Japan Bespoke Tour', destination: 'Japan', flag: '🌸', duration: 'Custom Itinerary' });">
               🌸 Japan
             </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5 cursor-pointer" onclick="if(typeof handleRequestQuote === 'function') handleRequestQuote({ id: 'kenya', title: 'Kenya Safari Bespoke Tour', destination: 'Kenya', flag: '🦁', duration: 'Custom Itinerary' });">
               🦁 Kenya Safari
             </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5 cursor-pointer" onclick="if(typeof handleRequestQuote === 'function') handleRequestQuote({ id: 'worldwide', title: 'Tailor-Made Custom Tour', destination: 'Anywhere Worldwide', flag: '✨', duration: 'Custom Itinerary' });">
               ✨ Anywhere Worldwide
             </span>
           </div>
@@ -1246,11 +1246,11 @@
           <div class="shrink-0 w-full sm:w-auto">
             <a 
               href="#quoteModal"
-              onclick="if(typeof openQuoteModal === 'function') openQuoteModal();"
-              class="relative inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all duration-300 group/btn"
+              onclick="if(typeof handleRequestQuote === 'function') { handleRequestQuote({ id: 'custom-itinerary', title: 'Tailor-Made Custom Itinerary', destination: 'Worldwide / Bespoke', flag: '🧭', duration: 'Flexible Itinerary' }); } else if(typeof openQuoteModal === 'function') { openQuoteModal(); }"
+              class="relative group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all duration-300"
             >
               <span data-i18n="customTripBtn">Request Custom Itinerary</span>
-              <svg class="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
               </svg>
             </a>
