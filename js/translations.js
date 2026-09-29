@@ -233,6 +233,8 @@ const translations = {
     faq_sub: "Find authoritative answers regarding tour package bookings, UAE and Schengen visa procedures, payment split plans, and refund policies.",
     contact_title: "Contact Our Global Offices",
     contact_sub: "Visit our physical branches in Dubai or Colombo, or speak directly with our senior travel specialists on phone or WhatsApp.",
+    testimonialsTitle: 'Travelers who <span class="text-[#FF385C] inline-block mx-1">❤️</span> us',
+    testimonials_title: 'Travelers who <span class="text-[#FF385C] inline-block mx-1">❤️</span> us',
 
     // Compatible Page Aliases
     visaPageTitle: "Express Visa & Immigration Concierge",
@@ -535,6 +537,8 @@ const translations = {
     faq_sub: "සංචාරක පැකේජ, වීසා ක්රියාවලි, පහසු ගෙවීමේ ක්රම සහ මුදල් ආපසු ලබාගැනීමේ ප්රතිපත්ති පිළිබඳ තොරතුරු.",
     contact_title: "අපගේ ගෝලීය කාර්යාල හා සම්බන්ධ වන්න",
     contact_sub: "ඩුබායි හෝ කොළඹ පිහිටි අපගේ ශාඛා වෙත පැමිණෙන්න, නැතහොත් දුරකථන හෝ WhatsApp හරහා අප හා සම්බන්ධ වන්න.",
+    testimonialsTitle: 'අපට <span class="text-[#FF385C] inline-block mx-1">❤️</span> ආදරය කරන සංචාරකයින්',
+    testimonials_title: 'අපට <span class="text-[#FF385C] inline-block mx-1">❤️</span> ආදරය කරන සංචාරකයින්',
 
     // Compatible Page Aliases
     visaPageTitle: "එක්ස්ප්රස් වීසා සහ ආගමන විගමන සේවාව",

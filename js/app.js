@@ -343,7 +343,8 @@ const I18N_TRANSLATIONS = {
 
     // Testimonials
     testimonialsBadge: "Google Verified Reviews",
-    testimonialsTitle: 'Rated <span class="text-amber-500 font-black">4.9 / 5.0</span> on Google Reviews',
+    testimonialsTitle: 'Travelers who <span class="text-[#FF385C] inline-block mx-1">❤️</span> us',
+    testimonials_title: 'Travelers who <span class="text-[#FF385C] inline-block mx-1">❤️</span> us',
     testimonialsSubtitle: "Authentic reviews from travelers who visited our Twin Towers, Deira office and booked custom holidays, visa services, and flights.",
 
     // FAQ
@@ -660,7 +661,8 @@ const I18N_TRANSLATIONS = {
 
     // Testimonials
     testimonialsBadge: "Google සත්‍යාපිත සමාලෝචන",
-    testimonialsTitle: 'ගනුදෙනුකරුවන්ගෙන් <span class="text-amber-500 font-black">4.9 / 5.0</span> විශිෂ්ට ඇගයීමක්',
+    testimonialsTitle: 'අපට <span class="text-[#FF385C] inline-block mx-1">❤️</span> ආදරය කරන සංචාරකයින්',
+    testimonials_title: 'අපට <span class="text-[#FF385C] inline-block mx-1">❤️</span> ආදරය කරන සංචාරකයින්',
     testimonialsSubtitle: "Star Plus Travels සමඟ සංචාරය කළ අපගේ ගනුදෙනුකරුවන් Google හරහා ලබාදුන් සැබෑ අදහස් කියවන්න.",
 
     // FAQ
