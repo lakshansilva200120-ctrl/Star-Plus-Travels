@@ -279,6 +279,15 @@ const I18N_TRANSLATIONS = {
     clientsTitle: "Join Our Family of Happy Travelers & Partners",
     clientsSubtitle: "Trusted by leading corporate enterprises, luxury hospitality groups, and commercial organizations across the UAE, Sri Lanka, and worldwide.",
 
+    // Bento Travel Solutions
+    solutionsBadge: "Everything Travel Under One Roof",
+    solutionsTitle: "Explore Star Plus Travel Solutions",
+    solutionsDesc: "From fully packaged luxury holiday circuits and express visa clearances to bespoke private concierge charters.",
+    bento1Title: "Curated Dubai & Desert Escapes",
+    bento2Title: "Express Visa & Immigration",
+    bento3Title: "Dual Hub Flights & DMC Ground",
+    bento4Title: "Tailor-Made VIP Expeditions",
+
     // Why Choose Us
     whyUsBadge: "The Star Plus Difference",
     whyUsTitle: "Why Discerning Travelers Choose Us",
@@ -586,6 +595,15 @@ const I18N_TRANSLATIONS = {
     clientsBadge: "අපගේ පාරිභෝගිකයින්",
     clientsTitle: "අපගේ සතුටුදායක පාරිභෝගික පවුලට ඔබත් එක්වන්න",
     clientsSubtitle: "එක්සත් අරාබි එමීර් රාජ්‍යය, ශ්‍රී ලංකාව සහ ලොව පුරා ප්‍රමුඛ සංගත ආයතන හා හවුල්කරුවන්ගේ අඛණ්ඩ විශ්වාසය.",
+
+    // Bento Travel Solutions
+    solutionsBadge: "සියලු සංචාරක සේවා එකම වහලක් යටින්",
+    solutionsTitle: "Star Plus සංචාරක විසඳුම් ගවේෂණය කරන්න",
+    solutionsDesc: "පූර්ණ සුඛෝපභෝගී නිවාඩු පැකේජ සහ කඩිනම් වීසා සේවාවල සිට පෞද්ගලික කොන්සියර්ජ් චාරිකා දක්වා.",
+    bento1Title: "ඩුබායි සහ කාන්තාර චාරිකා",
+    bento2Title: "කඩිනම් වීසා සහ ආගමන සේවා",
+    bento3Title: "ද්විත්ව මධ්‍යස්ථාන ගුවන් ගමන් සහ DMC",
+    bento4Title: "සුවිශේෂී ප්‍රභූ සංචාරක අත්දැකීම්",
 
     // Why Choose Us
     whyUsBadge: "Star Plus සුවිශේෂත්වය",
