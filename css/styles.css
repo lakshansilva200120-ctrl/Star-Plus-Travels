@@ -3626,22 +3626,3 @@ select.field-error-border {
 .whatsapp-floating:active {
   transform: scale(0.95) !important;
 }
-
-/* PRYPCO-inspired Bento Deck Animations */
-@keyframes bentoFlightTrack {
-  0% { transform: translateX(-120%); }
-  100% { transform: translateX(250%); }
-}
-
-.animate-bentoFlightTrack {
-  animation: bentoFlightTrack 2.4s ease-in-out infinite;
-}
-
-@keyframes bentoFloatPass {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-5px) rotate(-0.5deg); }
-}
-
-.bento-float-pass {
-  animation: bentoFloatPass 4s ease-in-out infinite;
-}
