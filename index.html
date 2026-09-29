@@ -998,7 +998,7 @@
             <div class="relative w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
               <span class="relative z-10">💎</span>
               <!-- Light ray sweep -->
-              <div class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent"></div>
+              <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent"></div>
             </div>
 
             <h3 class="text-lg font-bold text-white tracking-tight group-hover:text-amber-400 transition-colors" data-i18n="whyUs1Title">
@@ -1010,9 +1010,9 @@
           </div>
 
           <div class="pt-6 mt-6 border-t border-slate-800/60">
-            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400">
+            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400 group-hover:translate-x-0.5 transition-transform duration-300">
               <span data-i18n="whyUs1Tag">Price Match Promise</span>
-              <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
               </svg>
             </span>
@@ -1028,7 +1028,7 @@
             <!-- Animated Passport Icon -->
             <div class="relative w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xl mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
               <span class="relative z-10">🛂</span>
-              <div class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"></div>
+              <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"></div>
             </div>
 
             <h3 class="text-lg font-bold text-white tracking-tight group-hover:text-blue-400 transition-colors" data-i18n="whyUs2Title">
@@ -1040,9 +1040,9 @@
           </div>
 
           <div class="pt-6 mt-6 border-t border-slate-800/60">
-            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400">
+            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 group-hover:translate-x-0.5 transition-transform duration-300">
               <span data-i18n="whyUs2Tag">99.2% Success Rate</span>
-              <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
               </svg>
             </span>
@@ -1058,7 +1058,7 @@
             <!-- Animated Card Icon -->
             <div class="relative w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
               <span class="relative z-10">💳</span>
-              <div class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-emerald-400/20 to-transparent"></div>
+              <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-emerald-400/20 to-transparent"></div>
             </div>
 
             <h3 class="text-lg font-bold text-white tracking-tight group-hover:text-emerald-400 transition-colors" data-i18n="whyUs3Title">
@@ -1070,9 +1070,9 @@
           </div>
 
           <div class="pt-6 mt-6 border-t border-slate-800/60">
-            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400">
+            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-400 group-hover:translate-x-0.5 transition-transform duration-300">
               <span data-i18n="whyUs3Tag">0% Interest with Tabby</span>
-              <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
               </svg>
             </span>
@@ -1089,9 +1089,11 @@
             <div class="relative w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-xl mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
               <span class="relative z-10">🎧</span>
               <!-- Live pulse dot -->
-              <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-              <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-emerald-400"></span>
-              <div class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent"></div>
+              <span class="absolute top-1.5 right-1.5 flex h-2 w-2 z-20" title="Active Live Assistance">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+              </span>
+              <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-purple-400/20 to-transparent"></div>
             </div>
 
             <h3 class="text-lg font-bold text-white tracking-tight group-hover:text-purple-400 transition-colors" data-i18n="whyUs4Title">
@@ -1103,9 +1105,9 @@
           </div>
 
           <div class="pt-6 mt-6 border-t border-slate-800/60">
-            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400">
+            <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400 group-hover:translate-x-0.5 transition-transform duration-300">
               <span data-i18n="whyUs4Tag">Instant WhatsApp Help</span>
-              <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
               </svg>
             </span>
