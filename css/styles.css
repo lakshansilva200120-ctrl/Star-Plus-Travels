@@ -3834,6 +3834,8 @@ select.field-error-border {
 
 .animate-\[glidePlane_6s_linear_infinite\] {
   animation: glidePlane 6s linear infinite;
+  transform-box: view-box;
+  transform-origin: 0 0;
 }
 
 @keyframes glidePlane {

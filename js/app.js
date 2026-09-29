@@ -311,7 +311,7 @@ const I18N_TRANSLATIONS = {
     catSpiritual: '<i class="fa-solid fa-mosque mr-1.5 text-amber-400"></i>Umrah &amp; Spiritual',
     customTripBadge: "Tailor-Made Holidays",
     customTripTitle: "Don't see your dream destination?",
-    customTripDesc: "Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.",
+    customTripDesc: "Our luxury travel architects curate bespoke private itineraries, chartered flights, and VIP stays for any route on the globe.",
     customTripBtn: "Request Custom Itinerary",
 
     // Visa Hub
