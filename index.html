@@ -1201,59 +1201,106 @@
       </div>
 
       <!-- Bottom Banner for Custom Trip Request -->
-      <div class="mt-14 relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-[#0f172a] to-slate-900 border border-slate-800/90 p-8 md:p-10 shadow-2xl backdrop-blur-xl group hover:border-amber-500/40 transition-all duration-500">
+      <div class="mt-14 relative overflow-hidden rounded-3xl bg-[#090d16] border border-slate-800/80 p-8 lg:p-10 shadow-2xl group hover:border-amber-500/50 transition-all duration-700">
         
-        <!-- Subtle Background Ambient Light & Grid -->
-        <div class="pointer-events-none absolute -top-24 left-1/4 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl"></div>
-        <div class="pointer-events-none absolute -bottom-24 right-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div class="pointer-events-none absolute inset-0 opacity-10 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <!-- Ambient Radial Glows -->
+        <div class="pointer-events-none absolute -top-32 -left-20 w-80 h-80 bg-amber-500/15 rounded-full blur-3xl animate-pulse" style="animation-duration: 4s;"></div>
+        <div class="pointer-events-none absolute -bottom-32 -right-20 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl animate-pulse" style="animation-duration: 6s;"></div>
 
-        <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
-          <!-- Left Column: Copy -->
-          <div class="max-w-xl">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-400 text-[11px] font-bold uppercase tracking-wider mb-3">
-              <span class="animate-spin" style="animation-duration: 8s;">🧭</span>
+          <!-- Left: Copy & Value Proposition (5 Cols) -->
+          <div class="lg:col-span-5 space-y-3.5">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-bold uppercase tracking-widest">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
               <span data-i18n="customTripBadge">Tailor-Made Holidays</span>
             </div>
             
-            <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight" data-i18n="customTripTitle">
-              Don't see your dream destination?
-            </h3>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+              Don't see your <br class="hidden sm:inline" />dream destination?
+            </h2>
             
-            <p class="text-sm text-slate-400 mt-2 leading-relaxed" data-i18n="customTripDesc">
-              Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.
+            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-md">
+              Our luxury travel architects curate bespoke private itineraries, chartered flights, and VIP stays for any route on the globe.
             </p>
+
+            <div class="pt-2">
+              <a 
+                href="#quoteModal"
+                onclick="if(typeof openQuoteModal === 'function') openQuoteModal();"
+                class="group/btn inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-500/20 hover:shadow-amber-500/40 hover:scale-105 active:scale-95 transition-all duration-300"
+              >
+                <span data-i18n="customTripBtn">Request Custom Itinerary</span>
+                <svg class="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </a>
+            </div>
           </div>
 
-          <!-- Center: Floating Custom Route Chips (Shows Bespoke Scope) -->
-          <div class="hidden md:flex flex-wrap items-center justify-start lg:justify-center gap-2 max-w-xs opacity-90 group-hover:opacity-100 transition-opacity">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5 cursor-pointer" onclick="if(typeof handleRequestQuote === 'function') handleRequestQuote({ id: 'switzerland', title: 'Switzerland Bespoke Tour', destination: 'Switzerland', flag: '🏔️', duration: 'Custom Itinerary' });">
-              🏔️ Switzerland
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5 cursor-pointer" onclick="if(typeof handleRequestQuote === 'function') handleRequestQuote({ id: 'japan', title: 'Japan Bespoke Tour', destination: 'Japan', flag: '🌸', duration: 'Custom Itinerary' });">
-              🌸 Japan
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5 cursor-pointer" onclick="if(typeof handleRequestQuote === 'function') handleRequestQuote({ id: 'kenya', title: 'Kenya Safari Bespoke Tour', destination: 'Kenya', flag: '🦁', duration: 'Custom Itinerary' });">
-              🦁 Kenya Safari
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5 cursor-pointer" onclick="if(typeof handleRequestQuote === 'function') handleRequestQuote({ id: 'worldwide', title: 'Tailor-Made Custom Tour', destination: 'Anywhere Worldwide', flag: '✨', duration: 'Custom Itinerary' });">
-              ✨ Anywhere Worldwide
-            </span>
-          </div>
+          <!-- Center & Right: High-End Animated Flight Trajectory Radar (7 Cols) -->
+          <div class="lg:col-span-7 relative h-48 sm:h-52 w-full rounded-2xl bg-slate-950/60 border border-slate-800/80 overflow-hidden flex items-center justify-center p-4">
+            
+            <!-- Radar Grid Backdrop -->
+            <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:20px_20px]"></div>
+            
+            <!-- Animated Radar Scan Line -->
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/10 to-transparent -translate-x-full animate-[radarSweep_4s_ease-in-out_infinite]"></div>
 
-          <!-- Right Column: Interactive CTA Button -->
-          <div class="shrink-0 w-full sm:w-auto">
-            <a 
-              href="#quoteModal"
-              onclick="if(typeof handleRequestQuote === 'function') { handleRequestQuote({ id: 'custom-itinerary', title: 'Tailor-Made Custom Itinerary', destination: 'Worldwide / Bespoke', flag: '🧭', duration: 'Flexible Itinerary' }); } else if(typeof openQuoteModal === 'function') { openQuoteModal(); }"
-              class="relative group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all duration-300"
-            >
-              <span data-i18n="customTripBtn">Request Custom Itinerary</span>
-              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-              </svg>
-            </a>
+            <!-- SVG Trajectory Stage -->
+            <svg class="w-full h-full max-w-lg" viewBox="0 0 500 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Background Curved Route Paths -->
+              <path d="M 50 120 Q 250 -20 450 120" stroke="#334155" stroke-width="2" stroke-dasharray="4 4" />
+              <path id="flightPath" d="M 50 120 Q 250 -20 450 120" stroke="url(#arcGlow)" stroke-width="2.5" stroke-linecap="round" class="animate-[drawPath_3s_ease-in-out_infinite]" />
+
+              <!-- Gradients -->
+              <defs>
+                <linearGradient id="arcGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#f59e0b" />
+                  <stop offset="50%" stop-color="#38bdf8" />
+                  <stop offset="100%" stop-color="#10b981" />
+                </linearGradient>
+              </defs>
+
+              <!-- Origin Node (Dubai / DXB) -->
+              <g transform="translate(50, 120)">
+                <circle r="12" fill="#f59e0b" fill-opacity="0.15" class="animate-ping" />
+                <circle r="6" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5" />
+                <text x="0" y="24" fill="#fbbf24" font-size="10" font-weight="800" text-anchor="middle" font-family="sans-serif">DXB HUB</text>
+              </g>
+
+              <!-- Mid Node 1 (Swiss Alps / ZRH) -->
+              <g transform="translate(180, 52)">
+                <circle r="4" fill="#38bdf8" stroke="#ffffff" stroke-width="1" />
+                <text x="0" y="-10" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle" font-family="sans-serif">ZRH • 47°N</text>
+              </g>
+
+              <!-- Mid Node 2 (Tokyo / HND) -->
+              <g transform="translate(320, 52)">
+                <circle r="4" fill="#a855f7" stroke="#ffffff" stroke-width="1" />
+                <text x="0" y="-10" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle" font-family="sans-serif">HND • 35°N</text>
+              </g>
+
+              <!-- Destination Node (Custom World / ANY) -->
+              <g transform="translate(450, 120)">
+                <circle r="14" fill="#10b981" fill-opacity="0.2" class="animate-ping" style="animation-duration: 2s;" />
+                <circle r="6" fill="#10b981" stroke="#ffffff" stroke-width="1.5" />
+                <text x="0" y="24" fill="#34d399" font-size="10" font-weight="800" text-anchor="middle" font-family="sans-serif">ANY ROUTE</text>
+              </g>
+
+              <!-- Animated Plane Gliding along the Bezier Path -->
+              <g class="animate-[glidePlane_6s_linear_infinite]">
+                <path d="M-6 -6 L8 0 L-6 6 L-2 0 Z" fill="#fbbf24" stroke="#ffffff" stroke-width="1" />
+                <animateMotion dur="6s" repeatCount="indefinite" rotate="auto" path="M 50 120 Q 250 -20 450 120" />
+              </g>
+            </svg>
+
+            <!-- Floating Live Flight Data Badge -->
+            <div class="absolute top-3 right-3 flex items-center gap-2 px-2.5 py-1 rounded-lg bg-slate-900/90 border border-slate-700/80 backdrop-blur-md">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="font-mono text-[10px] text-slate-300 font-semibold tracking-wider">GLOBAL DISPATCH: 100% BESPOKE</span>
+            </div>
+
           </div>
 
         </div>
