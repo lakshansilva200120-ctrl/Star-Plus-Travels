@@ -2412,8 +2412,15 @@ function handleRequestQuote(pkgId, pkgTitle, pkgDest, event) {
 function openBookingModal(pkgId) {
   handleRequestQuote(pkgId);
 }
-function openQuoteModal(pkgId) {
-  handleRequestQuote(pkgId);
+function openQuoteModal(promoCode) {
+  const code = (typeof promoCode === 'string' && promoCode) ? promoCode : 'STARPLUS';
+  handleRequestQuote(null, 'Winter & Eid Holiday Tour Special', 'Worldwide & Dubai Hub');
+  setTimeout(() => {
+    const notesInput = document.getElementById('bookingNotes') || document.querySelector('textarea[name="notes"], #contactMessage, textarea');
+    if (notesInput) {
+      notesInput.value = `Applied Promo Code: ${code} (-35% Discount Requested)`;
+    }
+  }, 20);
 }
 window.openBookingModal = openBookingModal;
 window.openQuoteModal = openQuoteModal;

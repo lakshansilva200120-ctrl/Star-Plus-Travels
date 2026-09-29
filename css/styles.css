@@ -3700,6 +3700,13 @@ select.field-error-border {
   .group:hover .lg\:group-hover\:scale-105 { transform: scale(1.05); }
 }
 
+.rotate-1 { transform: rotate(1deg); }
+.rotate-0 { transform: rotate(0deg); }
+.group:hover .group-hover\:rotate-0,
+.hover\:rotate-0:hover { transform: rotate(0deg); }
+.group:hover .group-hover\:scale-105,
+.hover\:scale-105:hover { transform: scale(1.05); }
+
 .w-96 { width: 24rem; }
 .h-96 { height: 24rem; }
 .border-amber-300\/40 { border-color: rgba(252, 211, 77, 0.4); }
