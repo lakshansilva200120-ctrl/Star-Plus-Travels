@@ -2412,7 +2412,11 @@ function handleRequestQuote(pkgId, pkgTitle, pkgDest, event) {
 function openBookingModal(pkgId) {
   handleRequestQuote(pkgId);
 }
+function openQuoteModal(pkgId) {
+  handleRequestQuote(pkgId);
+}
 window.openBookingModal = openBookingModal;
+window.openQuoteModal = openQuoteModal;
 window.handleRequestQuote = handleRequestQuote;
 
 // Global event delegation for "Request Quote" buttons
