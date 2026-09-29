@@ -3858,6 +3858,69 @@ select.field-error-border {
   }
 }
 
+/* Gliding Jet & Skyline Custom Itinerary Banner Utilities */
+.bg-\[\#070b12\] { background-color: #070b12; }
+.h-\[260px\] { height: 260px; }
+@media (min-width: 640px) {
+  .sm\:h-\[220px\] { height: 220px; }
+}
+.w-\[1600px\] { width: 1600px; }
+.-left-\[600px\] { left: -600px; }
+.right-\[calc\(100\%-80px\)\] { right: calc(100% - 80px); }
+.-rotate-6 { transform: rotate(-6deg); }
+.drop-shadow-\[0_0_12px_rgba\(251\,191\,36\,0\.6\)\] {
+  filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.6));
+}
+.shadow-\[0_0_20px_rgba\(245\,158\,11\,0\.35\)\] {
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
+}
+.hover\:shadow-\[0_0_30px_rgba\(245\,158\,11\,0\.6\)\]:hover {
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
+}
+.text-slate-300\/80 { color: rgba(203, 213, 225, 0.8); }
+.mb-2\.5 { margin-bottom: 0.625rem; }
+
+.skyline-track {
+  width: 3200px;
+  animation: skylinePan 45s linear infinite;
+  will-change: transform;
+}
+
+@keyframes skylinePan {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-1600px); }
+}
+
+.contrail-stream {
+  animation: contrailGlow 3s ease-in-out infinite;
+}
+
+@keyframes contrailGlow {
+  0%, 100% {
+    opacity: 0.75;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.8);
+  }
+}
+
+.jet-carrier {
+  left: 56px;
+  animation: jetCarrierGlide 4s ease-in-out infinite;
+}
+
+@keyframes jetCarrierGlide {
+  0%, 100% {
+    transform: translateY(-50%) translateY(0px) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(-50%) translateY(-6px) rotate(-4deg);
+  }
+}
+
+
 
 
 
