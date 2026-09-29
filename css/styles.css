@@ -3864,6 +3864,12 @@ select.field-error-border {
 @media (min-width: 640px) {
   .sm\:h-\[220px\] { height: 220px; }
 }
+@media (min-width: 768px) {
+  .md\:h-\[220px\] { height: 220px; }
+}
+@media (min-width: 1024px) {
+  .lg\:h-\[220px\] { height: 220px; }
+}
 .w-\[1600px\] { width: 1600px; }
 .-left-\[600px\] { left: -600px; }
 .right-\[calc\(100\%-80px\)\] { right: calc(100% - 80px); }
