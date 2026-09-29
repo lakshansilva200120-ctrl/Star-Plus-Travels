@@ -3742,4 +3742,44 @@ select.field-error-border {
   }
 }
 
+/* Custom Itinerary Tailor-Made Banner Utilities */
+.w-72 { width: 18rem; }
+.-bottom-24 { bottom: -6rem; }
+.left-1\/4 { left: 25%; }
+.right-1\/4 { right: 25%; }
+.bg-blue-500\/10 { background-color: rgba(59, 130, 246, 0.1); }
+.border-amber-500\/25 { border-color: rgba(245, 158, 11, 0.25); }
+.border-slate-800\/90 { border-color: rgba(30, 41, 59, 0.9); }
+.bg-slate-800\/80 { background-color: rgba(30, 41, 59, 0.8); }
+.border-slate-700\/60 { border-color: rgba(51, 65, 85, 0.6); }
+.text-\[11px\] { font-size: 11px; }
+
+.hover\:border-amber-500\/40:hover { border-color: rgba(245, 158, 11, 0.4); }
+.hover\:border-amber-400\/40:hover { border-color: rgba(251, 191, 36, 0.4); }
+.hover\:-translate-y-0\.5:hover { transform: translateY(-0.125rem); }
+
+.via-\[\#0f172a\] {
+  --tw-gradient-stops: var(--tw-gradient-from), #0f172a, var(--tw-gradient-to, rgba(15, 23, 42, 0));
+}
+
+.hover\:from-amber-400:hover {
+  --tw-gradient-from: #fbbf24;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(251, 191, 36, 0));
+}
+.hover\:to-amber-300:hover {
+  --tw-gradient-to: #fcd34d;
+}
+.hover\:shadow-amber-500\/30:hover {
+  box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.3), 0 4px 6px -2px rgba(245, 158, 11, 0.15);
+}
+
+.group\/btn:hover .group-hover\/btn\:translate-x-1 {
+  transform: translateX(0.25rem);
+}
+
+.bg-\[radial-gradient\(\#94a3b8_1px\,transparent_1px\)\] {
+  background-image: radial-gradient(#94a3b8 1px, transparent 1px);
+}
+
+
 

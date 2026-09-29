@@ -1201,17 +1201,62 @@
       </div>
 
       <!-- Bottom Banner for Custom Trip Request -->
-      <div class="mt-14 glass-card p-8 rounded-3xl border border-amber-500/30 flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-r from-slate-900 via-brand-ocean/40 to-slate-900">
-        <div class="text-left">
-          <span class="text-xs font-bold text-amber-400 uppercase tracking-wider" data-i18n="customTripBadge">Tailor-Made Holidays</span>
-          <h3 class="text-2xl font-bold text-white mt-1 font-heading" data-i18n="customTripTitle">Don't see your dream destination?</h3>
-          <p class="text-sm text-slate-300 mt-1 max-w-xl" data-i18n="customTripDesc">
-            Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.
-          </p>
+      <div class="mt-14 relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-[#0f172a] to-slate-900 border border-slate-800/90 p-8 md:p-10 shadow-2xl backdrop-blur-xl group hover:border-amber-500/40 transition-all duration-500">
+        
+        <!-- Subtle Background Ambient Light & Grid -->
+        <div class="pointer-events-none absolute -top-24 left-1/4 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl"></div>
+        <div class="pointer-events-none absolute -bottom-24 right-1/4 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div class="pointer-events-none absolute inset-0 opacity-10 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+
+        <div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+          
+          <!-- Left Column: Copy -->
+          <div class="max-w-xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-400 text-[11px] font-bold uppercase tracking-wider mb-3">
+              <span class="animate-spin" style="animation-duration: 8s;">🧭</span>
+              <span data-i18n="customTripBadge">Tailor-Made Holidays</span>
+            </div>
+            
+            <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight" data-i18n="customTripTitle">
+              Don't see your dream destination?
+            </h3>
+            
+            <p class="text-sm text-slate-400 mt-2 leading-relaxed" data-i18n="customTripDesc">
+              Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.
+            </p>
+          </div>
+
+          <!-- Center: Floating Custom Route Chips (Shows Bespoke Scope) -->
+          <div class="hidden xl:flex flex-wrap items-center justify-center gap-2 max-w-xs opacity-90 group-hover:opacity-100 transition-opacity">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5">
+              🏔️ Switzerland
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5">
+              🌸 Japan
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5">
+              🦁 Kenya Safari
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 shadow-sm hover:border-amber-400/40 hover:text-white transition-all transform hover:-translate-y-0.5">
+              ✨ Anywhere Worldwide
+            </span>
+          </div>
+
+          <!-- Right Column: Interactive CTA Button -->
+          <div class="shrink-0 w-full sm:w-auto">
+            <a 
+              href="#quoteModal"
+              onclick="if(typeof openQuoteModal === 'function') openQuoteModal();"
+              class="relative inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 hover:scale-105 active:scale-95 transition-all duration-300 group/btn"
+            >
+              <span data-i18n="customTripBtn">Request Custom Itinerary</span>
+              <svg class="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </a>
+          </div>
+
         </div>
-        <a href="#contact" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 shrink-0" data-i18n="customTripBtn">
-          Request Custom Itinerary
-        </a>
       </div>
 
     </div>
