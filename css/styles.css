@@ -3837,6 +3837,11 @@ select.field-error-border {
   --tw-gradient-via-position: 45%;
 }
 
+/* Full-Bleed Promotional Resort Video Banner Scrim */
+.promo-resort-scrim {
+  background: linear-gradient(to right, #020617 0%, rgba(2, 6, 23, 0.85) 45%, rgba(69, 26, 3, 0.2) 100%);
+}
+
 
 
 
