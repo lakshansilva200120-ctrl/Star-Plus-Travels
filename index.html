@@ -1334,18 +1334,29 @@
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full overflow-hidden">
     <div class="relative overflow-hidden rounded-3xl bg-slate-950 p-8 md:p-12 lg:p-14 shadow-2xl border border-amber-400/40 group">
       
-      <!-- Video Background -->
-      <video
-        id="promo-banner-video"
-        autoplay
-        loop
-        muted
-        playsinline
-        preload="metadata"
-        class="absolute inset-0 w-full h-full object-cover object-right pointer-events-none brightness-90"
-      >
-        <source src="/assets/videos/holiday-promo-loop.mp4" type="video/mp4" />
-      </video>
+      <!-- Dual-Layer Seamless Crossfade Video Background -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <!-- Video Layer A -->
+        <video
+          id="video-layer-a"
+          autoplay
+          muted
+          playsinline
+          preload="auto"
+          class="absolute inset-0 w-full h-full object-cover object-right brightness-90 transition-opacity duration-1000"
+          src="/assets/videos/holiday-promo-loop.mp4"
+        ></video>
+        
+        <!-- Video Layer B -->
+        <video
+          id="video-layer-b"
+          muted
+          playsinline
+          preload="auto"
+          class="absolute inset-0 w-full h-full object-cover object-right brightness-90 opacity-0 transition-opacity duration-1000"
+          src="/assets/videos/holiday-promo-loop.mp4"
+        ></video>
+      </div>
 
       <!-- Scrim -->
       <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent pointer-events-none"></div>

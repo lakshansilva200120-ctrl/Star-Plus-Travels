@@ -5279,33 +5279,36 @@ function initHeroSlideshow() {
 }
 
 /* ==========================================================================
-   Promotional Banner Video Seamless Bounce Loop Controller
+   Promotional Banner Video Seamless Dual-Layer Crossfade Controller
    ========================================================================== */
 function initPromoBannerVideo() {
-  const promoVideo = document.querySelector("#promo-banner-video");
+  const vidA = document.getElementById("video-layer-a");
+  const vidB = document.getElementById("video-layer-b");
 
-  if (promoVideo) {
-    let direction = 1; // 1 = forward, -1 = reverse
-    const fps = 30;
-    const interval = 1000 / fps;
+  if (vidA && vidB) {
+    vidA.play().catch(() => {});
 
-    promoVideo.removeAttribute("loop"); // Let JS control the seamless bounce
-
-    let reverseInterval = null;
-
-    promoVideo.addEventListener("ended", () => {
-      if (reverseInterval) clearInterval(reverseInterval);
-      // Reverse playback when reaching the end
-      reverseInterval = setInterval(() => {
-        if (promoVideo.currentTime <= 0.1) {
-          clearInterval(reverseInterval);
-          reverseInterval = null;
-          promoVideo.play().catch(() => {}); // Play forward again
-        } else {
-          promoVideo.currentTime = Math.max(0, promoVideo.currentTime - (interval / 1000));
-        }
-      }, interval);
+    vidA.addEventListener("timeupdate", () => {
+      // 1.2 seconds before finishing, start B and fade it in
+      if (vidA.duration && (vidA.duration - vidA.currentTime <= 1.2) && vidB.paused) {
+        vidB.currentTime = 0;
+        vidB.play().catch(() => {});
+        vidB.classList.remove("opacity-0");
+        vidA.classList.add("opacity-0");
+      }
     });
+
+    vidB.addEventListener("timeupdate", () => {
+      if (vidB.duration && (vidB.duration - vidB.currentTime <= 1.2) && vidA.paused) {
+        vidA.currentTime = 0;
+        vidA.play().catch(() => {});
+        vidA.classList.remove("opacity-0");
+        vidB.classList.add("opacity-0");
+      }
+    });
+
+    vidA.addEventListener("ended", () => { vidA.pause(); });
+    vidB.addEventListener("ended", () => { vidB.pause(); });
   }
 }
 window.initPromoBannerVideo = initPromoBannerVideo;
