@@ -5009,10 +5009,27 @@ function initApp() {
     const updateHeaderScroll = () => {
       const header = document.getElementById('mainHeader') || document.querySelector('header');
       if (header) {
-        if (window.scrollY > 15) {
+        const frostedClasses = [
+          'bg-white/85',
+          'dark:bg-[#070b14]/85',
+          'backdrop-blur-md',
+          'border-b',
+          'border-slate-200/80',
+          'dark:border-slate-800/80',
+          'transition-all',
+          'duration-300',
+          'shadow-sm'
+        ];
+        const hasHero = !!document.getElementById('hero');
+        const isScrolled = window.scrollY > 15;
+
+        if (isScrolled || !hasHero) {
           header.classList.add('header-scrolled');
+          header.classList.add(...frostedClasses);
+          header.classList.remove('border-none', 'border-b-0');
         } else {
           header.classList.remove('header-scrolled');
+          header.classList.remove(...frostedClasses);
         }
         updateBrandLogoTheme();
       }

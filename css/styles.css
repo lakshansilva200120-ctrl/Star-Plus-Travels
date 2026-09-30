@@ -28,12 +28,15 @@ html.lang-si header nav.hidden.lg\:flex {
   gap: 0.4rem !important;
 }
 
-html.lang-si header nav.hidden.lg\:flex a {
+html.lang-si header nav.hidden.lg\:flex a,
+html.lang-si .nav-link {
   letter-spacing: -0.02em !important;
   font-size: 0.775rem !important;
   padding-left: 0.3rem !important;
   padding-right: 0.3rem !important;
   white-space: nowrap !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 @media (min-width: 1280px) {
@@ -356,23 +359,17 @@ header.glass-nav,
   position: sticky !important;
   top: 0 !important;
   z-index: 50 !important;
-  background: transparent !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border: none !important;
-  border-bottom: none !important;
-  border-top: none !important;
-  box-shadow: none !important;
-  transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              backdrop-filter 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              -webkit-backdrop-filter 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              -webkit-backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Pure transparency when not scrolled: Zero dividers, zero boxes, sits directly over continuous hero background */
-header.glass-nav:not(.header-scrolled):not(.menu-open),
-#mainHeader:not(.header-scrolled):not(.menu-open) {
+/* Pure transparency ONLY when not scrolled over hero background */
+body:has(#hero) header.glass-nav:not(.header-scrolled):not(.menu-open),
+body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open),
+.hero-floating-nav:not(.header-scrolled):not(.menu-open) {
   background: transparent !important;
   border: none !important;
   border-bottom: none !important;
@@ -382,23 +379,31 @@ header.glass-nav:not(.header-scrolled):not(.menu-open),
   -webkit-backdrop-filter: none !important;
 }
 
-/* Scrolled elevation state: Modern Luxury Frosted Glass */
+/* Scrolled elevation state & Sticky Navbar: Modern Dynamic Frosted Glass */
 header.glass-nav.header-scrolled,
-#mainHeader.header-scrolled {
-  background: var(--theme-bg-nav) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid var(--theme-border-subtle) !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3) !important;
+#mainHeader.header-scrolled,
+header.glass-nav:not(.hero-floating-nav),
+#mainHeader:not(.hero-floating-nav) {
+  background: rgba(7, 11, 20, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.8) !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
 }
 
 html.light header.glass-nav.header-scrolled,
 :root:not(.dark) header.glass-nav.header-scrolled,
 html.light #mainHeader.header-scrolled,
-:root:not(.dark) #mainHeader.header-scrolled {
-  background: rgba(255, 255, 255, 0.96) !important;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
+:root:not(.dark) #mainHeader.header-scrolled,
+html.light header.glass-nav:not(.hero-floating-nav),
+:root:not(.dark) header.glass-nav:not(.hero-floating-nav),
+html.light #mainHeader:not(.hero-floating-nav),
+:root:not(.dark) #mainHeader:not(.hero-floating-nav) {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
 }
 
 /* When Mobile Menu is Active: Seamless Translucent Frosted Glass Header */
@@ -410,10 +415,10 @@ html.light header:has(#mobileMenu:not(.hidden)),
 :root:not(.dark) header:has(#mobileMenu:not(.hidden)),
 html.light #mainHeader:has(#mobileMenu:not(.hidden)),
 :root:not(.dark) #mainHeader:has(#mobileMenu:not(.hidden)) {
-  background: rgba(255, 255, 255, 0.80) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.6) !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
 }
 
 html.dark header.glass-nav.menu-open,
@@ -424,10 +429,10 @@ html.dark header:has(#mobileMenu:not(.hidden)),
 :root.dark header:has(#mobileMenu:not(.hidden)),
 html.dark #mainHeader:has(#mobileMenu:not(.hidden)),
 :root.dark #mainHeader:has(#mobileMenu:not(.hidden)) {
-  background: rgba(7, 14, 23, 0.80) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(7, 11, 20, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.8) !important;
 }
 
 /* Floating Hero Navigation Typography & Controls */
@@ -435,24 +440,27 @@ body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) .nav-link:not(
 body:has(#hero) header.glass-nav:not(.header-scrolled):not(.menu-open) .nav-link:not(.active),
 .hero-floating-nav:not(.header-scrolled):not(.menu-open) .nav-link:not(.active) {
   color: rgba(255, 255, 255, 0.92) !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  text-shadow: none !important;
 }
 
 body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) .nav-link:hover,
 body:has(#hero) header.glass-nav:not(.header-scrolled):not(.menu-open) .nav-link:hover,
 .hero-floating-nav:not(.header-scrolled):not(.menu-open) .nav-link:hover {
   color: #fbbf24 !important;
+  text-shadow: none !important;
 }
 
 body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) .nav-link.active,
 body:has(#hero) header.glass-nav:not(.header-scrolled):not(.menu-open) .nav-link.active,
 .hero-floating-nav:not(.header-scrolled):not(.menu-open) .nav-link.active {
   color: #f59e0b !important;
+  text-shadow: none !important;
 }
 
 body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) .nav-dropdown-trigger,
 .hero-floating-nav:not(.header-scrolled):not(.menu-open) .nav-dropdown-trigger {
   color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow: none !important;
 }
 
 body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open) #mainLangToggleBtn,
@@ -653,7 +661,7 @@ html.dark .travel-tourism-subtitle,
 :root.dark [data-brand-subtitle],
 :root.dark .travel-tourism-subtitle {
   color: #f8fafc !important; /* Crisp white/light gray in dark mode */
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  text-shadow: none !important;
 }
 
 /* Over Hero section before scrolling, subtitle must always be crisp white */
@@ -668,7 +676,7 @@ body:has(#hero) .hero-floating-nav:not(.header-scrolled) .header-brand-subtitle,
 body:has(#hero) .hero-floating-nav:not(.header-scrolled) [data-brand-subtitle],
 body:has(#hero) .hero-floating-nav:not(.header-scrolled) .travel-tourism-subtitle {
   color: #ffffff !important;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
+  text-shadow: none !important;
 }
 
 
@@ -753,11 +761,18 @@ body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-pill-indicator {
   border-radius: 9999px;
   font-size: 13px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  color: #334155;
+  text-shadow: none !important;
+  filter: none !important;
   transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s ease;
   user-select: none;
   cursor: pointer;
+}
+
+html.dark .nav-link,
+:root.dark .nav-link {
+  color: #e2e8f0;
+  text-shadow: none !important;
 }
 
 @media (min-width: 1280px) {
@@ -775,48 +790,63 @@ body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-pill-indicator {
 /* Light Theme Navigation Link Typography */
 html.light .nav-link,
 :root:not(.dark) .nav-link {
-  color: #1e293b;
-  text-shadow: none;
+  color: #334155;
+  text-shadow: none !important;
 }
 
 /* Light mode floating over hero */
 html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link,
 :root:not(.dark) body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link {
   color: rgba(255, 255, 255, 0.95) !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
+  text-shadow: none !important;
 }
 
 /* Active & Hover States */
 .nav-link.active {
-  color: #f59e0b !important;
-  font-weight: 700;
-  text-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+  color: #d97706 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+html.dark .nav-link.active,
+:root.dark .nav-link.active {
+  color: #fbbf24 !important;
+  text-shadow: none !important;
 }
 
 html.light .nav-link.active,
 :root:not(.dark) .nav-link.active {
-  color: #b45309 !important;
-  text-shadow: none;
+  color: #d97706 !important;
+  text-shadow: none !important;
 }
 
 html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link.active,
 :root:not(.dark) body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link.active {
   color: #fbbf24 !important;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7) !important;
+  text-shadow: none !important;
 }
 
 .nav-link:hover {
-  color: #ffffff;
+  color: #f59e0b;
+  text-shadow: none !important;
+}
+
+html.dark .nav-link:hover,
+:root.dark .nav-link:hover {
+  color: #fbbf24;
+  text-shadow: none !important;
 }
 
 html.light .nav-link:hover,
 :root:not(.dark) .nav-link:hover {
-  color: #0f172a;
+  color: #f59e0b;
+  text-shadow: none !important;
 }
 
 html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:hover,
 :root:not(.dark) body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:hover {
   color: #ffffff !important;
+  text-shadow: none !important;
 }
 
 /* Navigation Dropdown Menu (Explore / More) */
