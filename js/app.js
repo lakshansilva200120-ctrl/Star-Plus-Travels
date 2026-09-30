@@ -2328,10 +2328,16 @@ function handleRequestQuote(pkgId, pkgTitle, pkgDest, event) {
 
     // Reset default form inputs
     const travelersInput = document.getElementById('bookingTravelers') || quoteModal.querySelector('select[name="travelers"]');
-    if (travelersInput) travelersInput.value = '2';
+    if (travelersInput) {
+      travelersInput.value = '2';
+      travelersInput.dispatchEvent(new Event('change', { bubbles: true }));
+    }
 
     const childrenInput = document.getElementById('bookingChildren') || quoteModal.querySelector('select[name="children"]');
-    if (childrenInput) childrenInput.value = '0';
+    if (childrenInput) {
+      childrenInput.value = '0';
+      childrenInput.dispatchEvent(new Event('change', { bubbles: true }));
+    }
 
     const nameInput = document.getElementById('bookingName') || quoteModal.querySelector('input[name="name"], input[name="fullName"]');
     if (nameInput) nameInput.value = '';
@@ -2373,6 +2379,13 @@ function handleRequestQuote(pkgId, pkgTitle, pkgDest, event) {
     quoteModal.classList.remove('hidden');
     quoteModal.classList.add('flex');
     document.body.style.overflow = 'hidden';
+
+    if (typeof initCustomDropdowns === 'function') {
+      initCustomDropdowns();
+    }
+    if (typeof refreshCustomDropdowns === 'function') {
+      refreshCustomDropdowns();
+    }
 
     // Retranslate active dynamic modal elements
     if (typeof retranslateActiveModals === 'function') {
@@ -3073,10 +3086,16 @@ function openVisaInquiryModal(visaTitle, e) {
     if (priceElem) priceElem.textContent = isSi ? 'නිල ගාස්තු' : 'Official Rate';
 
     const travelers = document.getElementById('bookingTravelers');
-    if (travelers) travelers.value = '1';
+    if (travelers) {
+      travelers.value = '1';
+      travelers.dispatchEvent(new Event('change', { bubbles: true }));
+    }
 
     const children = document.getElementById('bookingChildren');
-    if (children) children.value = '0';
+    if (children) {
+      children.value = '0';
+      children.dispatchEvent(new Event('change', { bubbles: true }));
+    }
 
     const nameInput = document.getElementById('bookingName');
     if (nameInput) nameInput.value = '';
@@ -3136,6 +3155,13 @@ function openVisaInquiryModal(visaTitle, e) {
       initFlatpickr();
       const bDate = document.getElementById('bookingDate');
       if (bDate && bDate._flatpickr) bDate._flatpickr.setDate(nextWeek, true);
+    }
+
+    if (typeof initCustomDropdowns === 'function') {
+      initCustomDropdowns();
+    }
+    if (typeof refreshCustomDropdowns === 'function') {
+      refreshCustomDropdowns();
     }
 
     return;
@@ -4692,6 +4718,11 @@ function updateOpenModalsLanguage(lang) {
       updateActiveSlideUI(typeof currentDestSlideIndex !== 'undefined' ? currentDestSlideIndex : 0, false);
     }
   }
+
+  // 8. Refresh custom select dropdown UI
+  if (typeof refreshCustomDropdowns === 'function') {
+    refreshCustomDropdowns();
+  }
 }
 
 function retranslateActiveModals() {
@@ -4866,6 +4897,11 @@ function changeLanguage(lang, notify = true) {
   // Update dynamic currency displays
   if (typeof updateAllPriceDisplays === 'function') {
     updateAllPriceDisplays();
+  }
+
+  // Refresh custom dropdowns to reflect active language
+  if (typeof refreshCustomDropdowns === 'function') {
+    refreshCustomDropdowns();
   }
 
   if (notify) {
@@ -9613,7 +9649,13 @@ function initCustomDropdowns() {
 
   nativeSelects.forEach((select) => {
     select.setAttribute("data-custom-enhanced", "true");
-    select.classList.add("hidden"); // Hide native browser select
+    select.classList.add("hidden"); // Visually hide native browser select
+
+    // Hide any legacy native chevron sibling that was placed next to the native select
+    const siblingChevron = select.parentElement?.querySelector(':scope > i.fa-chevron-down, :scope > svg.fa-chevron-down');
+    if (siblingChevron) {
+      siblingChevron.classList.add('hidden');
+    }
 
     // 1. Create Dropdown Wrapper
     const wrapper = document.createElement("div");
@@ -9623,71 +9665,79 @@ function initCustomDropdowns() {
     const activeOption = select.options[select.selectedIndex] || select.options[0];
     const initialText = activeOption ? activeOption.text : "Select option";
 
-    // 2. Trigger Button
+    // 2. Trigger Button (Dark slate #090d16, subtle border, gold hover ring, animated chevron)
     const trigger = document.createElement("button");
     trigger.type = "button";
     trigger.className =
-      "w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-slate-900/90 dark:bg-slate-900/90 border border-slate-700/80 hover:border-amber-400/60 focus:border-amber-400 text-left transition-all duration-200 group shadow-lg";
+      "w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-[#090d16] border border-slate-700/80 hover:border-amber-400/60 focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 text-left rtl:text-right transition-all duration-200 group shadow-lg cursor-pointer";
     trigger.innerHTML = `
       <span class="custom-select-label text-sm font-semibold text-white tracking-wide truncate">${initialText}</span>
-      <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-400 transition-transform duration-200 shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-400 transition-transform duration-200 shrink-0 ml-2 rtl:ml-0 rtl:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg>
     `;
 
-    // 3. Dropdown Menu
+    // 3. Dropdown Menu Panel (High z-index z-50, dark #090d16 panel, border-amber-500/25, backdrop-blur)
     const menu = document.createElement("div");
     menu.className =
       "hidden absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl bg-[#090d16] border border-amber-500/25 p-1.5 shadow-2xl backdrop-blur-xl max-h-60 overflow-y-auto";
 
-    // 4. Populate Custom Options
-    Array.from(select.options).forEach((opt, index) => {
-      if (opt.disabled && opt.value === "") return; // Skip empty placeholders
+    // 4. Populate Custom Options Function
+    function renderCustomOptions() {
+      menu.innerHTML = "";
+      Array.from(select.options).forEach((opt, index) => {
+        if (opt.disabled && opt.value === "") return; // Skip empty placeholders
 
-      const optionBtn = document.createElement("button");
-      optionBtn.type = "button";
-      const isSelected = select.selectedIndex === index;
+        const optionBtn = document.createElement("button");
+        optionBtn.type = "button";
+        const isSelected = select.selectedIndex === index;
 
-      optionBtn.className = `w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-medium transition-colors ${
-        isSelected
-          ? "bg-amber-500/15 text-amber-400"
-          : "text-slate-200 hover:text-white hover:bg-white/5"
-      }`;
+        optionBtn.className = `w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
+          isSelected
+            ? "bg-amber-500/15 text-amber-400"
+            : "text-slate-200 hover:text-white hover:bg-white/5"
+        }`;
 
-      optionBtn.innerHTML = `
-        <span class="truncate">${opt.text}</span>
-        <span class="check-mark text-amber-400 font-bold ml-2 ${isSelected ? "" : "hidden"}">✓</span>
-      `;
+        optionBtn.innerHTML = `
+          <span class="truncate opt-text">${opt.text}</span>
+          <span class="check-mark text-amber-400 font-bold ml-2 rtl:ml-0 rtl:mr-2 ${isSelected ? "" : "hidden"}">✓</span>
+        `;
 
-      optionBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        select.selectedIndex = index;
-        select.dispatchEvent(new Event("change", { bubbles: true }));
+        optionBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          select.selectedIndex = index;
+          select.value = opt.value;
+          select.dispatchEvent(new Event("change", { bubbles: true }));
+          select.dispatchEvent(new Event("input", { bubbles: true }));
 
-        // Update trigger display
-        trigger.querySelector(".custom-select-label").textContent = opt.text;
+          // Update trigger display
+          const label = trigger.querySelector(".custom-select-label");
+          if (label) label.textContent = opt.text;
 
-        // Update active classes
-        menu.querySelectorAll("button").forEach((btn) => {
-          btn.className =
-            "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-medium transition-colors text-slate-200 hover:text-white hover:bg-white/5";
-          const check = btn.querySelector(".check-mark");
-          if (check) check.classList.add("hidden");
+          // Update active classes
+          menu.querySelectorAll("button").forEach((btn) => {
+            btn.className =
+              "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer text-slate-200 hover:text-white hover:bg-white/5";
+            const check = btn.querySelector(".check-mark");
+            if (check) check.classList.add("hidden");
+          });
+
+          optionBtn.className =
+            "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer bg-amber-500/15 text-amber-400";
+          const myCheck = optionBtn.querySelector(".check-mark");
+          if (myCheck) myCheck.classList.remove("hidden");
+
+          // Close menu
+          menu.classList.add("hidden");
+          wrapper.classList.remove("z-30");
+          trigger.querySelector("svg")?.classList.remove("rotate-180");
         });
 
-        optionBtn.className =
-          "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-medium transition-colors bg-amber-500/15 text-amber-400";
-        const myCheck = optionBtn.querySelector(".check-mark");
-        if (myCheck) myCheck.classList.remove("hidden");
-
-        // Close menu
-        menu.classList.add("hidden");
-        wrapper.classList.remove("z-30");
-        trigger.querySelector("svg").classList.remove("rotate-180");
+        menu.appendChild(optionBtn);
       });
+    }
 
-      menu.appendChild(optionBtn);
-    });
+    renderCustomOptions();
 
     // Toggle menu
     trigger.addEventListener("click", (e) => {
@@ -9697,17 +9747,17 @@ function initCustomDropdowns() {
       // Close any other open custom dropdowns first
       document.querySelectorAll(".custom-select-wrapper > div:not(.hidden)").forEach((openMenu) => {
         openMenu.classList.add("hidden");
-        openMenu.parentElement.classList.remove("z-30");
+        openMenu.parentElement?.classList.remove("z-30");
         const openSvg = openMenu.previousElementSibling?.querySelector("svg");
         if (openSvg) openSvg.classList.remove("rotate-180");
       });
 
       menu.classList.toggle("hidden", isOpen);
       wrapper.classList.toggle("z-30", !isOpen);
-      trigger.querySelector("svg").classList.toggle("rotate-180", !isOpen);
+      trigger.querySelector("svg")?.classList.toggle("rotate-180", !isOpen);
     });
 
-    // Sync when select changes externally
+    // Sync when native select changes externally
     select.addEventListener("change", () => {
       const active = select.options[select.selectedIndex] || select.options[0];
       if (active) {
@@ -9716,7 +9766,7 @@ function initCustomDropdowns() {
       }
       menu.querySelectorAll("button").forEach((btn, idx) => {
         const isSel = select.selectedIndex === idx;
-        btn.className = `w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-medium transition-colors ${
+        btn.className = `w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
           isSel
             ? "bg-amber-500/15 text-amber-400"
             : "text-slate-200 hover:text-white hover:bg-white/5"
@@ -9735,12 +9785,16 @@ function initCustomDropdowns() {
           if (label) label.textContent = active.text;
         }
         const buttons = menu.querySelectorAll("button");
-        Array.from(select.options).forEach((opt, idx) => {
-          if (buttons[idx]) {
-            const textSpan = buttons[idx].querySelector("span:not(.check-mark)");
-            if (textSpan) textSpan.textContent = opt.text;
-          }
-        });
+        if (buttons.length === select.options.length) {
+          Array.from(select.options).forEach((opt, idx) => {
+            if (buttons[idx]) {
+              const textSpan = buttons[idx].querySelector(".opt-text") || buttons[idx].querySelector("span:not(.check-mark)");
+              if (textSpan) textSpan.textContent = opt.text;
+            }
+          });
+        } else {
+          renderCustomOptions();
+        }
       });
       observer.observe(select, { childList: true, characterData: true, subtree: true });
     } catch (err) {}
@@ -9763,21 +9817,74 @@ function initCustomDropdowns() {
     wrapper.appendChild(menu);
   });
 
-  // Global close on click outside
+  // Global close on click outside, escape key, or form reset
   if (!window._customDropdownsGlobalListenerBound) {
     document.addEventListener("click", () => {
       document.querySelectorAll(".custom-select-wrapper > div:not(.hidden)").forEach((menu) => {
         menu.classList.add("hidden");
-        menu.parentElement.classList.remove("z-30");
+        menu.parentElement?.classList.remove("z-30");
         const svg = menu.previousElementSibling?.querySelector("svg");
         if (svg) svg.classList.remove("rotate-180");
       });
     });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        document.querySelectorAll(".custom-select-wrapper > div:not(.hidden)").forEach((menu) => {
+          menu.classList.add("hidden");
+          menu.parentElement?.classList.remove("z-30");
+          const svg = menu.previousElementSibling?.querySelector("svg");
+          if (svg) svg.classList.remove("rotate-180");
+        });
+      }
+    });
+
+    document.addEventListener("reset", () => {
+      setTimeout(() => {
+        refreshCustomDropdowns();
+      }, 10);
+    });
+
     window._customDropdownsGlobalListenerBound = true;
   }
 }
 
+/**
+ * Refreshes all active custom dropdown labels and menu items across pages
+ */
+function refreshCustomDropdowns() {
+  document.querySelectorAll(".custom-select-wrapper").forEach((wrapper) => {
+    const select = wrapper.querySelector("select");
+    const trigger = wrapper.querySelector("button[type='button']");
+    const menu = wrapper.querySelector("div");
+    if (!select || !trigger || !menu) return;
+
+    const activeOption = select.options[select.selectedIndex] || select.options[0];
+    if (activeOption) {
+      const label = trigger.querySelector(".custom-select-label");
+      if (label) label.textContent = activeOption.text;
+    }
+
+    const buttons = menu.querySelectorAll("button");
+    Array.from(select.options).forEach((opt, idx) => {
+      if (buttons[idx]) {
+        const textSpan = buttons[idx].querySelector(".opt-text") || buttons[idx].querySelector("span:not(.check-mark)");
+        if (textSpan) textSpan.textContent = opt.text;
+        const isSelected = select.selectedIndex === idx;
+        buttons[idx].className = `w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
+          isSelected
+            ? "bg-amber-500/15 text-amber-400"
+            : "text-slate-200 hover:text-white hover:bg-white/5"
+        }`;
+        const check = buttons[idx].querySelector(".check-mark");
+        if (check) check.classList.toggle("hidden", !isSelected);
+      }
+    });
+  });
+}
+
 window.initCustomDropdowns = initCustomDropdowns;
+window.refreshCustomDropdowns = refreshCustomDropdowns;
 
 // Auto-run on page load
 if (document.readyState === "loading") {
