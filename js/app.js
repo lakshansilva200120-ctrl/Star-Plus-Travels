@@ -2091,7 +2091,13 @@ function resetFilters() {
   }
 
   const dateInput = document.getElementById('heroDateInput');
-  if (dateInput) dateInput.value = '';
+  if (dateInput) {
+    if (dateInput._flatpickr) {
+      dateInput._flatpickr.clear();
+    } else {
+      dateInput.value = '';
+    }
+  }
 
   const travelersSelect = document.getElementById('heroTravelersSelect');
   if (travelersSelect) travelersSelect.value = '2';
@@ -2353,7 +2359,11 @@ function handleRequestQuote(pkgId, pkgTitle, pkgDest, event) {
     nextWeek.setDate(nextWeek.getDate() + 7);
     const dateInput = document.getElementById('bookingDate') || quoteModal.querySelector('input[name="date"], input[type="date"]');
     if (dateInput) {
-      dateInput.value = nextWeek.toISOString().split('T')[0];
+      if (dateInput._flatpickr) {
+        dateInput._flatpickr.setDate(nextWeek, true);
+      } else {
+        dateInput.value = nextWeek.toISOString().split('T')[0];
+      }
     }
 
     if (typeof calculateBookingTotal === 'function') {
@@ -2372,6 +2382,13 @@ function handleRequestQuote(pkgId, pkgTitle, pkgDest, event) {
     // Ensure intl-tel-input is initialized on modal display
     if (typeof initIntlTelInputs === 'function') {
       initIntlTelInputs();
+    }
+
+    // Ensure flatpickr is initialized on modal display
+    if (typeof initFlatpickr === 'function') {
+      initFlatpickr();
+      const bDate = document.getElementById('bookingDate');
+      if (bDate && bDate._flatpickr) bDate._flatpickr.setDate(nextWeek, true);
     }
     return;
   }
@@ -3078,7 +3095,13 @@ function openVisaInquiryModal(visaTitle, e) {
     const nextWeek = new Date();
     nextWeek.setDate(nextWeek.getDate() + 3);
     const dateInput = document.getElementById('bookingDate');
-    if (dateInput) dateInput.value = nextWeek.toISOString().split('T')[0];
+    if (dateInput) {
+      if (dateInput._flatpickr) {
+        dateInput._flatpickr.setDate(nextWeek, true);
+      } else {
+        dateInput.value = nextWeek.toISOString().split('T')[0];
+      }
+    }
 
     const notesInput = document.getElementById('bookingNotes');
     if (notesInput) {
@@ -3107,6 +3130,12 @@ function openVisaInquiryModal(visaTitle, e) {
 
     if (typeof initIntlTelInputs === 'function') {
       initIntlTelInputs();
+    }
+
+    if (typeof initFlatpickr === 'function') {
+      initFlatpickr();
+      const bDate = document.getElementById('bookingDate');
+      if (bDate && bDate._flatpickr) bDate._flatpickr.setDate(nextWeek, true);
     }
 
     return;
@@ -9122,6 +9151,9 @@ function initShowcaseAndSearch() {
   // Initialize international telephone inputs
   initIntlTelInputs();
 
+  // Initialize flatpickr date pickers
+  initFlatpickr();
+
   // Initialize newsletter form event listeners
   initNewsletterForms();
 }
@@ -9149,10 +9181,12 @@ const EXCLAMATION_SVG = `<svg class="w-5 h-5 shrink-0 text-rose-400" style="widt
 function showFieldError(input, message) {
   if (!input) return;
 
+  const targetInput = (input._flatpickr && input._flatpickr.altInput) ? input._flatpickr.altInput : input;
+
   // 1. Refined crimson/coral border with gentle 300ms CSS shake animation
-  input.classList.remove('input-shake');
-  void input.offsetWidth; // Force DOM reflow to re-trigger animation
-  input.classList.add(
+  targetInput.classList.remove('input-shake');
+  void targetInput.offsetWidth; // Force DOM reflow to re-trigger animation
+  targetInput.classList.add(
     'border-rose-500/80',
     'focus:border-rose-500',
     'focus:ring-1',
@@ -9161,12 +9195,12 @@ function showFieldError(input, message) {
     'input-shake'
   );
   setTimeout(() => {
-    input.classList.remove('input-shake');
+    targetInput.classList.remove('input-shake');
   }, 350);
 
   // 2. Determine container anchor for phone inputs or relative wrappers
   const itiContainer = input.closest('.iti');
-  let anchor = itiContainer || input;
+  let anchor = itiContainer || targetInput;
   if (anchor.parentElement && anchor.parentElement.classList.contains('relative') && !itiContainer) {
     anchor = anchor.parentElement;
   }
@@ -9195,6 +9229,10 @@ function showFieldError(input, message) {
     const dismissHandler = () => clearFieldError(input);
     input.addEventListener('input', dismissHandler);
     input.addEventListener('change', dismissHandler);
+    if (targetInput !== input) {
+      targetInput.addEventListener('input', dismissHandler);
+      targetInput.addEventListener('change', dismissHandler);
+    }
   }
 }
 window.showFieldError = showFieldError;
@@ -9202,20 +9240,24 @@ window.showFieldError = showFieldError;
 function clearFieldError(input) {
   if (!input) return;
 
-  input.classList.remove(
-    'border-rose-500/80',
-    'focus:border-rose-500',
-    'focus:ring-1',
-    'focus:ring-rose-500/40',
-    'field-error-border',
-    'phone-input-error',
-    'input-shake'
-  );
-  input.style.borderColor = '';
-  input.style.boxShadow = '';
+  const targetInput = (input._flatpickr && input._flatpickr.altInput) ? input._flatpickr.altInput : input;
+
+  [input, targetInput].forEach(el => {
+    el.classList.remove(
+      'border-rose-500/80',
+      'focus:border-rose-500',
+      'focus:ring-1',
+      'focus:ring-rose-500/40',
+      'field-error-border',
+      'phone-input-error',
+      'input-shake'
+    );
+    el.style.borderColor = '';
+    el.style.boxShadow = '';
+  });
 
   const itiContainer = input.closest('.iti');
-  let anchor = itiContainer || input;
+  let anchor = itiContainer || targetInput;
   if (anchor.parentElement && anchor.parentElement.classList.contains('relative') && !itiContainer) {
     anchor = anchor.parentElement;
   }
@@ -9345,13 +9387,13 @@ window.checkFieldValidity = checkFieldValidity;
 function focusFirstInvalidField(invalidList) {
   if (!invalidList || !invalidList.length) return;
   const first = invalidList[0];
-  const target = first.closest('.iti') || first;
+  const target = first.closest('.iti') || (first._flatpickr && first._flatpickr.altInput ? first._flatpickr.altInput : first);
   target.scrollIntoView({ behavior: 'smooth', block: 'center' });
   setTimeout(() => {
     try {
-      first.focus({ preventScroll: true });
+      target.focus({ preventScroll: true });
     } catch (err) {
-      first.focus();
+      target.focus();
     }
   }, 250);
 }
@@ -9442,8 +9484,55 @@ function initIntlTelInputs() {
       }
     });
   });
-}
 window.initIntlTelInputs = initIntlTelInputs;
+
+// ============================================================================
+// Flatpickr Dark Theme Date Picker Setup & Initialization
+// ============================================================================
+function initFlatpickr() {
+  if (typeof flatpickr === 'undefined') return;
+
+  const defaultOptions = {
+    theme: 'dark',
+    minDate: 'today',
+    dateFormat: 'Y-m-d',
+    altInput: true,
+    altFormat: 'M j, Y',
+    disableMobile: true,
+    animate: true
+  };
+
+  // 1. Hero Search Travel Date Input
+  const heroDateInput = document.getElementById('heroDateInput');
+  if (heroDateInput && !heroDateInput._flatpickr) {
+    flatpickr(heroDateInput, {
+      ...defaultOptions,
+      altInputClass: 'w-full max-w-full box-border block glass-input px-3 py-2.5 sm:px-3.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium text-slate-200 cursor-pointer placeholder-slate-400',
+      onChange: function(selectedDates, dateStr) {
+        if (typeof updateResetButtonVisibility === 'function') {
+          updateResetButtonVisibility();
+        }
+      }
+    });
+  }
+
+  // 2. Booking Modal Date Inputs (across index, packages, visa-services)
+  const bookingDateInputs = document.querySelectorAll('#bookingDate, input[name="date"].booking-date-picker');
+  bookingDateInputs.forEach(input => {
+    if (!input._flatpickr) {
+      flatpickr(input, {
+        ...defaultOptions,
+        altInputClass: 'w-full max-w-full box-border block appearance-none glass-input px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 cursor-pointer',
+        onChange: function(selectedDates, dateStr) {
+          if (typeof clearFieldError === 'function') {
+            clearFieldError(input);
+          }
+        }
+      });
+    }
+  });
+}
+window.initFlatpickr = initFlatpickr;
 
 /* ==========================================================================
    Destination Spotlight & Interactive Cards Controller (/destinations)
@@ -9754,6 +9843,7 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     initShowcaseAndSearch();
     initIntlTelInputs();
+    initFlatpickr();
     initNewsletterForms();
     initUniversalFormValidation();
     initSpotlightShowcases();
@@ -9761,6 +9851,7 @@ if (document.readyState === 'loading') {
 } else {
   initShowcaseAndSearch();
   initIntlTelInputs();
+  initFlatpickr();
   initNewsletterForms();
   initUniversalFormValidation();
   initSpotlightShowcases();
@@ -9768,6 +9859,7 @@ if (document.readyState === 'loading') {
 
 window.addEventListener('load', () => {
   initIntlTelInputs();
+  initFlatpickr();
   initNewsletterForms();
   initUniversalFormValidation();
   initSpotlightShowcases();
