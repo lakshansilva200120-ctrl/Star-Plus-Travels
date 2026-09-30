@@ -3842,6 +3842,21 @@ select.field-error-border {
   background: linear-gradient(to right, #020617 0%, rgba(2, 6, 23, 0.85) 45%, rgba(69, 26, 3, 0.2) 100%);
 }
 
+/* Compact Single-Row Promo Banner Utilities */
+.min-h-\[170px\] { min-height: 170px; }
+.brightness-90 { filter: brightness(0.9); }
+.via-slate-950\/80 {
+  --tw-gradient-to: rgb(2 6 23 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(2, 6, 23, 0.8), var(--tw-gradient-to);
+}
+.bg-amber-500\/15 { background-color: rgba(245, 158, 11, 0.15); }
+.border-amber-400\/30 { border-color: rgba(251, 191, 36, 0.3); }
+.text-\[10px\] { font-size: 10px; }
+
+@media (min-width: 640px) {
+  .sm\:h-\[180px\] { height: 180px; }
+}
+
 
 
 
