@@ -695,10 +695,10 @@
 
             <!-- Date Picker -->
             <div class="min-w-0 w-full max-w-full box-border">
-              <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1 sm:mb-1.5">
+              <label for="travel-date-picker" class="block text-[10px] sm:text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1 sm:mb-1.5 cursor-pointer">
                 <i class="fa-regular fa-calendar-days text-amber-400 mr-1"></i> <span data-i18n="travelDateLabel">Travel Date</span>
               </label>
-              <input type="text" id="heroDateInput" placeholder="Select Travel Date" class="date-picker-input w-full max-w-full box-border block appearance-none glass-input px-3 py-2.5 sm:px-3.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium text-slate-300 placeholder-slate-500 cursor-pointer">
+              <input type="text" id="travel-date-picker" placeholder="Select Travel Date" class="date-picker-input w-full max-w-full box-border block appearance-none glass-input px-3 py-2.5 sm:px-3.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium text-slate-300 placeholder-slate-500 cursor-pointer">
             </div>
 
             <!-- Travelers Selector -->
@@ -2483,5 +2483,24 @@
   <script src="js/i18n.js"></script>
   <script src="js/app.js?v=6.3.0"></script>
   <script src="js/seasonal-theme.js?v=5.3.0"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (typeof flatpickr !== 'undefined') {
+        flatpickr("#travel-date-picker", {
+          dateFormat: "Y-m-d",
+          altInput: true,
+          altFormat: "F j, Y",
+          minDate: "today",
+          disableMobile: true,
+          theme: "dark"
+        });
+      } else {
+        // Fallback if Flatpickr fails to load
+        const dateInput = document.getElementById("travel-date-picker");
+        if (dateInput) dateInput.type = "date";
+      }
+    });
+  </script>
 </body>
 </html>

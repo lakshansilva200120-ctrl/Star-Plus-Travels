@@ -2090,7 +2090,7 @@ function resetFilters() {
     searchInput.dispatchEvent(new Event('input', { bubbles: true }));
   }
 
-  const dateInput = document.getElementById('heroDateInput');
+  const dateInput = document.getElementById('travel-date-picker') || document.getElementById('heroDateInput');
   if (dateInput) {
     if (dateInput._flatpickr) {
       dateInput._flatpickr.clear();
@@ -9565,7 +9565,7 @@ window.initIntlTelInputs = initIntlTelInputs;
 function initFlatpickr() {
   if (typeof flatpickr === 'undefined') return;
 
-  const datePickerElements = document.querySelectorAll('.date-picker-input, #heroDateInput, #bookingDate');
+  const datePickerElements = document.querySelectorAll('.date-picker-input:not(#travel-date-picker):not(.flatpickr-input), #bookingDate:not(.flatpickr-input)');
   datePickerElements.forEach(input => {
     if (!input._flatpickr) {
       flatpickr(input, {
@@ -9591,11 +9591,15 @@ window.initFlatpickr = initFlatpickr;
 
 document.addEventListener("DOMContentLoaded", () => {
   if (typeof flatpickr !== 'undefined') {
-    flatpickr(".date-picker-input", {
-      dateFormat: "d M, Y",      // Displays as: 14 Oct, 2026
-      minDate: "today",          // Disables past dates
-      disableMobile: true,       // Prevents iOS/Android from forcing the plain native picker
-      animate: true
+    document.querySelectorAll('.date-picker-input:not(#travel-date-picker):not(.flatpickr-input)').forEach(input => {
+      if (!input._flatpickr) {
+        flatpickr(input, {
+          dateFormat: "d M, Y",      // Displays as: 14 Oct, 2026
+          minDate: "today",          // Disables past dates
+          disableMobile: true,       // Prevents iOS/Android from forcing the plain native picker
+          animate: true
+        });
+      }
     });
   }
 });

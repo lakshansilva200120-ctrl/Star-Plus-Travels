@@ -1236,7 +1236,8 @@ input[type="date"] {
 }
 
 input[type="date"].glass-input,
-#heroDateInput {
+#travel-date-picker:not([type="hidden"]),
+#heroDateInput:not([type="hidden"]) {
   width: 100% !important;
   max-width: 100% !important;
   min-width: 0 !important;
@@ -1246,6 +1247,11 @@ input[type="date"].glass-input,
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
+}
+
+input[type="hidden"]#travel-date-picker,
+input[type="hidden"]#heroDateInput {
+  display: none !important;
 }
 
 /* Fix iOS Safari date input intrinsic blowout and align text */
@@ -3311,7 +3317,9 @@ input.phone-input-error {
 /* ==========================================================================
    Luxury Brand Customization for Flatpickr
    ========================================================================== */
-.flatpickr-calendar {
+.flatpickr-calendar,
+.flatpickr-calendar.open,
+.flatpickr-calendar.animate {
   background: #090d16 !important;
   border: 1px solid rgba(245, 158, 11, 0.25) !important;
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.15) !important;
@@ -3319,6 +3327,11 @@ input.phone-input-error {
   padding: 12px !important;
   font-family: inherit !important;
   z-index: 999999 !important;
+}
+
+.flatpickr-input[readonly],
+input.flatpickr-input {
+  cursor: pointer !important;
 }
 
 .flatpickr-calendar.arrowTop:before,
