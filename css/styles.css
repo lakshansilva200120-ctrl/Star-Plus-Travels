@@ -3792,6 +3792,24 @@ select.field-error-border {
 .h-80 { height: 20rem; }
 .-bottom-24 { bottom: -6rem; }
 
+/* Aerial Flight Video Background Scrim Utilities */
+.from-slate-950 {
+  --tw-gradient-from: #020617;
+  --tw-gradient-to: rgb(2 6 23 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.via-slate-950\/85 {
+  --tw-gradient-to: rgb(2 6 23 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(2, 6, 23, 0.85), var(--tw-gradient-to);
+}
+.to-slate-950\/40 {
+  --tw-gradient-to: rgba(2, 6, 23, 0.4);
+}
+.backdrop-blur-\[0\.5px\] {
+  backdrop-filter: blur(0.5px);
+  -webkit-backdrop-filter: blur(0.5px);
+}
+
 
 
 

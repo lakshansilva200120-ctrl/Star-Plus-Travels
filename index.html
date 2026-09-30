@@ -1201,8 +1201,16 @@
       </div>
 
       <!-- Bottom Banner for Custom Trip Request -->
-      <div class="mt-14 relative overflow-hidden rounded-3xl bg-slate-900/60 border border-slate-800 p-8 md:p-10 shadow-2xl backdrop-blur-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-all duration-300 hover:border-slate-700">
+      <div class="mt-14 relative overflow-hidden rounded-3xl min-h-[220px] bg-slate-950 border border-slate-800 p-8 md:p-10 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-all duration-300 hover:border-slate-700">
         
+        <!-- Looping Background Flight Video -->
+        <video autoplay loop muted playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover pointer-events-none">
+          <source src="assets/videos/custom-flight-loop.mp4" type="video/mp4">
+        </video>
+
+        <!-- Gradient Scrim Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/40 backdrop-blur-[0.5px] pointer-events-none"></div>
+
         <!-- Gentle Ambient Radial Lighting -->
         <div class="pointer-events-none absolute -top-24 left-1/4 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl"></div>
         <div class="pointer-events-none absolute -bottom-24 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
