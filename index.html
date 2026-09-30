@@ -1201,47 +1201,55 @@
       </div>
 
       <!-- Bottom Banner for Custom Trip Request -->
-      <div class="mt-14 relative overflow-hidden rounded-3xl min-h-[220px] bg-slate-950 border border-slate-800 p-8 md:p-10 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-all duration-300 hover:border-slate-700">
+      <div class="mt-14 relative overflow-hidden rounded-3xl bg-slate-950 border border-slate-800/80 shadow-2xl min-h-[200px] flex items-center group">
         
-        <!-- Looping Background Flight Video -->
-        <video autoplay loop muted playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover pointer-events-none">
-          <source src="assets/videos/custom-flight-loop.mp4" type="video/mp4">
+        <!-- 1. Background Video (No blur, positioned to highlight the wing and bright coast) -->
+        <video
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto"
+          class="absolute inset-0 w-full h-full object-cover object-right pointer-events-none brightness-95 contrast-105"
+        >
+          <source src="/assets/videos/custom-flight-loop.mp4" type="video/mp4" />
         </video>
 
-        <!-- Gradient Scrim Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 to-slate-950/40 backdrop-blur-[0.5px] pointer-events-none"></div>
+        <!-- 2. Directional Gradient (Dark on text side, crystal clear on video side) -->
+        <div class="absolute inset-0 bg-gradient-to-r from-[#070b14] via-[#070b14]/75 to-transparent pointer-events-none"></div>
 
-        <!-- Gentle Ambient Radial Lighting -->
-        <div class="pointer-events-none absolute -top-24 left-1/4 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl"></div>
-        <div class="pointer-events-none absolute -bottom-24 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <!-- 3. Foreground Text & Button -->
+        <div class="relative z-10 w-full p-8 md:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          
+          <div class="max-w-xl space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-[11px] font-bold uppercase tracking-wider backdrop-blur-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+              <span data-i18n="customTripBadge">Tailor-Made Holidays</span>
+            </div>
 
-        <!-- Left Side: Copy -->
-        <div class="relative z-10 text-left max-w-xl">
-          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider mb-2" data-i18n="customTripBadge">
-            Tailor-Made Holidays
-          </span>
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1 tracking-tight leading-tight" data-i18n="customTripTitle">
-            Don't see your dream destination?
-          </h3>
-          <p class="text-sm text-slate-300 mt-2 leading-relaxed" data-i18n="customTripDesc">
-            Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.
-          </p>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md" data-i18n="customTripTitle">
+              Don't see your dream destination?
+            </h3>
+
+            <p class="text-xs sm:text-sm text-slate-200/90 leading-relaxed drop-shadow-sm" data-i18n="customTripDesc">
+              Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.
+            </p>
+          </div>
+
+          <div class="shrink-0 w-full sm:w-auto">
+            <a 
+              href="#quoteModal"
+              onclick="if(typeof openQuoteModal === 'function') openQuoteModal();"
+              class="relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all duration-300"
+            >
+              <span data-i18n="customTripBtn">Request Custom Itinerary</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </a>
+          </div>
+
         </div>
-
-        <!-- Right Side: Clean High-Contrast Golden Button -->
-        <div class="relative z-10 shrink-0 w-full sm:w-auto">
-          <a 
-            href="#quoteModal" 
-            onclick="if(typeof openQuoteModal === 'function') openQuoteModal();" 
-            class="group inline-flex items-center justify-center gap-2.5 w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider transition-all duration-200 shadow-lg shadow-amber-500/20 hover:shadow-xl hover:shadow-amber-500/30 hover:scale-105 active:scale-95"
-          >
-            <span data-i18n="customTripBtn">Request Custom Itinerary</span>
-            <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-            </svg>
-          </a>
-        </div>
-
       </div>
 
     </div>

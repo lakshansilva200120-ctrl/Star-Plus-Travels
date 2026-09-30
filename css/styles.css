@@ -3809,6 +3809,33 @@ select.field-error-border {
   backdrop-filter: blur(0.5px);
   -webkit-backdrop-filter: blur(0.5px);
 }
+.from-\[\#070b14\] {
+  --tw-gradient-from: #070b14;
+  --tw-gradient-to: rgb(7 11 20 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.via-\[\#070b14\]\/75 {
+  --tw-gradient-to: rgb(7 11 20 / 0);
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(7, 11, 20, 0.75), var(--tw-gradient-to);
+}
+.brightness-95 {
+  filter: brightness(0.95);
+}
+.contrast-105 {
+  filter: contrast(1.05);
+}
+.border-slate-800\/80 {
+  border-color: rgba(30, 41, 59, 0.8);
+}
+.bg-amber-500\/20 {
+  background-color: rgba(245, 158, 11, 0.2);
+}
+.border-amber-500\/40 {
+  border-color: rgba(245, 158, 11, 0.4);
+}
+.text-slate-200\/90 {
+  color: rgba(226, 232, 240, 0.9);
+}
 
 
 
