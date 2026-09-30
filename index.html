@@ -1325,68 +1325,145 @@
     </div>
   </section>
 
-  <!-- Interactive Season Promo Voucher & Resort Video Banner -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-    <!-- Locked container matching the exact compact banner height -->
-    <div class="relative overflow-hidden rounded-3xl bg-slate-950 border border-amber-500/30 px-6 sm:px-10 py-6 min-h-[140px] sm:h-[155px] flex items-center shadow-2xl">
+  <!-- Interactive Season Promo Voucher & 3D Boarding Pass Banner -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full overflow-hidden">
+    <div class="relative overflow-hidden rounded-3xl bg-slate-950 p-8 md:p-12 lg:p-14 shadow-2xl border border-amber-400/40 group">
       
-      <!-- 1. FULL BANNER VIDEO BACKGROUND -->
+      <!-- Video Background -->
       <video
         autoplay
         loop
         muted
         playsinline
         preload="metadata"
-        class="absolute inset-0 w-full h-full object-cover object-right pointer-events-none brightness-90 contrast-105"
+        class="absolute inset-0 w-full h-full object-cover object-right pointer-events-none brightness-90"
       >
         <source src="/assets/videos/holiday-promo-loop.mp4" type="video/mp4" />
       </video>
 
-      <!-- 2. DARK-TO-TRANSPARENT GRADIENT (Keeps text legible, lets resort show on the right) -->
-      <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 via-50% to-transparent pointer-events-none"></div>
+      <!-- Scrim -->
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent pointer-events-none"></div>
 
-      <!-- 3. FOREGROUND ROW (Single compact row so banner never expands) -->
-      <div class="relative z-10 w-full flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         
-        <!-- Left side text & copy -->
-        <div class="max-w-2xl space-y-1">
-          <div class="flex items-center gap-2">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-[10px] font-black uppercase tracking-wider">
-              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+        <!-- Left Content Column (7 cols) -->
+        <div class="lg:col-span-7 space-y-5 text-left">
+          
+          <!-- Live Offer Pill & Countdown -->
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 border border-amber-400/30 text-amber-300 text-xs font-black tracking-wider uppercase shadow-md backdrop-blur-md">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
               Exclusive Limited Offer
             </span>
-            <span class="text-[11px] text-slate-300 font-medium">⏳ Seasonal Booking Window</span>
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-black/30 backdrop-blur-md text-slate-200 font-bold text-xs border border-white/10">
+              ⏳ Seasonal Booking Window
+            </span>
           </div>
 
-          <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight leading-tight">
-            Save up to <span class="text-amber-400">35%</span> on Winter &amp; Eid Holiday Bookings!
-          </h3>
+          <!-- Heading -->
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.1]">
+            Save up to <span class="text-amber-400 underline decoration-amber-400 decoration-wavy decoration-2">35%</span> on Winter &amp; Eid Holiday Bookings!
+          </h2>
 
-          <p class="text-xs text-slate-300 line-clamp-1 sm:line-clamp-none">
+          <!-- Description & Interactive Voucher Copy -->
+          <p class="text-sm md:text-base text-slate-300 font-medium leading-relaxed max-w-xl">
             Apply official voucher code 
             <button 
               type="button" 
-              onclick="if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText('STARPLUS'); } const el = document.getElementById('promo-code-btn'); if(el){ el.innerText = 'COPIED! ✓'; setTimeout(() => el.innerText = 'STARPLUS', 2000); }"
-              class="inline-block px-2 py-0.5 mx-0.5 rounded bg-amber-400 text-slate-950 font-mono font-bold text-[11px] hover:bg-amber-300 transition-colors"
-              title="Click to copy voucher code"
+              id="copy-promo-code"
+              onclick="if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText('STARPLUS'); } const el = document.getElementById('copy-label'); if(el){ el.innerText = 'COPIED! ✓'; setTimeout(() => el.innerText = 'STARPLUS', 2000); }"
+              class="inline-flex items-center gap-1.5 px-2.5 py-0.5 mx-1 rounded-lg bg-amber-400 text-slate-950 font-mono font-extrabold text-xs shadow hover:bg-amber-300 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+              title="Click to copy code"
             >
-              <span id="promo-code-btn">STARPLUS</span>
-            </button> 
+              <span id="copy-label">STARPLUS</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            </button>
             when requesting your custom travel itinerary before the end of the month.
           </p>
+
+          <!-- Action Row -->
+          <div class="pt-2 flex flex-wrap items-center gap-4">
+            <a 
+              href="#quoteModal" 
+              onclick="const notes = document.querySelector('[name=notes], textarea'); if(notes) notes.value = 'Applied Promo Code: STARPLUS (-35%)'; if(typeof openQuoteModal === 'function') openQuoteModal();"
+              class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-sm tracking-wide shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300"
+            >
+              <span>CLAIM PROMO DISCOUNT</span>
+              <span class="w-6 h-6 rounded-full bg-slate-950/20 text-slate-950 flex items-center justify-center text-xs group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+            
+            <div class="text-xs font-semibold text-slate-300 flex items-center gap-2">
+              <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-lock text-[11px]"></i> Terms &amp; Conditions Apply</span>
+              <span>•</span>
+              <span>0% Tabby Installments Available</span>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Right side button & terms -->
-        <div class="shrink-0 flex flex-col items-start md:items-end gap-1.5">
-          <a 
-            href="#quoteModal"
-            onclick="const notes = document.querySelector('[name=notes], textarea'); if(notes) notes.value = 'Applied Promo Code: STARPLUS (-35%)'; if(typeof openQuoteModal === 'function') openQuoteModal();"
-            class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(245,158,11,0.35)] hover:scale-105 active:scale-95 transition-all duration-300"
-          >
-            <span>Claim Promo Discount</span>
-            <span class="text-sm">→</span>
-          </a>
-          <span class="text-[10px] text-slate-400 font-medium">Terms Apply • 0% Tabby Available</span>
+        <!-- Right Bento Canvas: 3D Interactive Boarding Pass Card (5 cols) -->
+        <div class="lg:col-span-5 flex justify-center lg:justify-end">
+          <div class="relative w-full max-w-sm [perspective:1000px]">
+            
+            <!-- Outer 3D Card Shell with smooth tilt on hover -->
+            <div class="relative rounded-2xl bg-slate-950/80 text-white p-6 shadow-2xl border border-amber-400/40 transform lg:rotate-2 lg:group-hover:rotate-0 lg:group-hover:scale-105 transition-all duration-500 backdrop-blur-xl">
+              
+              <!-- Flight Header -->
+              <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2">
+                  <span class="text-amber-400 text-lg">✈️</span>
+                  <div>
+                    <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Star Plus Travel Pass</div>
+                    <div class="text-xs font-black text-amber-300">VIP HOLIDAY REBATE</div>
+                  </div>
+                </div>
+                <span class="px-2.5 py-0.5 rounded bg-amber-500/20 border border-amber-400/40 text-amber-400 text-[10px] font-black">
+                  -35% OFF
+                </span>
+              </div>
+
+              <!-- Route Nodes Animation -->
+              <div class="my-5 flex items-center justify-between relative px-2">
+                <div class="text-left">
+                  <div class="text-2xl font-black tracking-tight text-white">DXB</div>
+                  <div class="text-[10px] text-slate-400">Dubai Hub</div>
+                </div>
+
+                <!-- Animated Route Line with moving plane -->
+                <div class="relative flex-1 mx-4 flex items-center justify-center">
+                  <div class="w-full h-0.5 bg-dashed border-b-2 border-dashed border-slate-700"></div>
+                  <div class="absolute -top-3 w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center text-xs animate-[bounce_2s_infinite]">
+                    🛫
+                  </div>
+                </div>
+
+                <div class="text-right">
+                  <div class="text-2xl font-black tracking-tight text-white">GLOBAL</div>
+                  <div class="text-[10px] text-slate-400">Any Circuit</div>
+                </div>
+              </div>
+
+              <!-- Ticket Footer / Barcode -->
+              <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                <div>
+                  <div class="text-[9px] uppercase tracking-wider text-slate-500 font-bold">Pass ID / Promo</div>
+                  <div class="font-mono text-xs font-bold text-amber-400 tracking-wider">STARPLUS-2026</div>
+                </div>
+                <!-- Mini barcode graphic -->
+                <div class="flex gap-0.5 items-center opacity-70">
+                  <span class="w-0.5 h-6 bg-white"></span>
+                  <span class="w-1 h-6 bg-white"></span>
+                  <span class="w-0.5 h-6 bg-white"></span>
+                  <span class="w-1.5 h-6 bg-white"></span>
+                  <span class="w-0.5 h-6 bg-white"></span>
+                  <span class="w-1.5 h-6 bg-white"></span>
+                  <span class="w-0.5 h-6 bg-white"></span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
         </div>
 
       </div>
