@@ -5318,8 +5318,8 @@ function initHeroSlideshow() {
    Promotional Banner Video Seamless Dual-Layer Crossfade Controller
    ========================================================================== */
 function initPromoBannerVideo() {
-  const vidA = document.getElementById("video-layer-a");
-  const vidB = document.getElementById("video-layer-b");
+  const vidA = document.getElementById("promo-video-a") || document.getElementById("video-layer-a");
+  const vidB = document.getElementById("promo-video-b") || document.getElementById("video-layer-b");
   if (!vidA || !vidB) return;
 
   if (vidA.dataset.crossfadeBound) return;
@@ -5328,41 +5328,48 @@ function initPromoBannerVideo() {
   vidA.muted = true;
   vidB.muted = true;
 
-  const crossfadeDuration = 1.2; // seconds before end to crossfade
+  const crossfadeTime = 1.0; // 1 second crossfade duration
 
-  function triggerCrossfadeTo(nextVid, currentVid) {
-    if (!nextVid || !currentVid) return;
-    try {
-      nextVid.currentTime = 0;
-      const playPromise = nextVid.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {});
-      }
-    } catch (e) {}
-    nextVid.classList.remove("opacity-0");
-    currentVid.classList.add("opacity-0");
-  }
-
-  vidA.addEventListener("timeupdate", () => {
-    if (vidA.duration && (vidA.duration - vidA.currentTime <= crossfadeDuration) && vidB.paused) {
-      triggerCrossfadeTo(vidB, vidA);
+  vidA.addEventListener('timeupdate', () => {
+    if (vidA.duration && (vidA.duration - vidA.currentTime <= crossfadeTime) && vidB.paused) {
+      vidB.currentTime = 0;
+      vidB.play().then(() => {
+        vidB.classList.remove('opacity-0');
+        vidA.classList.add('opacity-0');
+      }).catch(() => {});
     }
   });
 
-  vidB.addEventListener("timeupdate", () => {
-    if (vidB.duration && (vidB.duration - vidB.currentTime <= crossfadeDuration) && vidA.paused) {
-      triggerCrossfadeTo(vidA, vidB);
+  vidB.addEventListener('timeupdate', () => {
+    if (vidB.duration && (vidB.duration - vidB.currentTime <= crossfadeTime) && vidA.paused) {
+      vidA.currentTime = 0;
+      vidA.play().then(() => {
+        vidA.classList.remove('opacity-0');
+        vidB.classList.add('opacity-0');
+      }).catch(() => {});
     }
   });
 
-  // Safety fallback in case timeupdate skips past duration on slow ticks
-  vidA.addEventListener("ended", () => {
+  // Ensure pause state resets cleanly for next cycle
+  vidA.addEventListener('ended', () => {
     vidA.pause();
-    if (vidB.paused) triggerCrossfadeTo(vidB, vidA);
+    if (vidB.paused) {
+      vidB.currentTime = 0;
+      vidB.play().then(() => {
+        vidB.classList.remove('opacity-0');
+        vidA.classList.add('opacity-0');
+      }).catch(() => {});
+    }
   });
-  vidB.addEventListener("ended", () => {
+  vidB.addEventListener('ended', () => {
     vidB.pause();
-    if (vidA.paused) triggerCrossfadeTo(vidA, vidB);
+    if (vidA.paused) {
+      vidA.currentTime = 0;
+      vidA.play().then(() => {
+        vidA.classList.remove('opacity-0');
+        vidB.classList.add('opacity-0');
+      }).catch(() => {});
+    }
   });
 
   // Auto-play safely on viewport intersection

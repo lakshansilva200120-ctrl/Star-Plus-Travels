@@ -1338,24 +1338,21 @@
       <div class="absolute inset-0 pointer-events-none overflow-hidden">
         <!-- Video Layer A -->
         <video
-          id="video-layer-a"
+          id="promo-video-a"
           autoplay
           muted
           playsinline
-          webkit-playsinline
-          preload="auto"
-          class="absolute inset-0 w-full h-full object-cover object-right brightness-90 transition-opacity duration-1000"
+          class="absolute inset-0 w-full h-full object-cover object-right pointer-events-none transition-opacity duration-1000"
           src="/assets/videos/holiday-promo-loop.mp4"
         ></video>
         
         <!-- Video Layer B -->
         <video
-          id="video-layer-b"
+          id="promo-video-b"
+          autoplay
           muted
           playsinline
-          webkit-playsinline
-          preload="auto"
-          class="absolute inset-0 w-full h-full object-cover object-right brightness-90 opacity-0 transition-opacity duration-1000"
+          class="absolute inset-0 w-full h-full object-cover object-right pointer-events-none transition-opacity duration-1000 opacity-0"
           src="/assets/videos/holiday-promo-loop.mp4"
         ></video>
       </div>
@@ -2499,6 +2496,41 @@
         // Fallback if Flatpickr fails to load
         const dateInput = document.getElementById("travel-date-picker");
         if (dateInput) dateInput.type = "date";
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const vidA = document.getElementById('promo-video-a');
+      const vidB = document.getElementById('promo-video-b');
+
+      if (vidA && vidB) {
+        const crossfadeTime = 1.0; // 1 second crossfade duration
+
+        vidA.addEventListener('timeupdate', () => {
+          if (vidA.duration && (vidA.duration - vidA.currentTime <= crossfadeTime) && vidB.paused) {
+            vidB.currentTime = 0;
+            vidB.play().then(() => {
+              vidB.classList.remove('opacity-0');
+              vidA.classList.add('opacity-0');
+            }).catch(() => {});
+          }
+        });
+
+        vidB.addEventListener('timeupdate', () => {
+          if (vidB.duration && (vidB.duration - vidB.currentTime <= crossfadeTime) && vidA.paused) {
+            vidA.currentTime = 0;
+            vidA.play().then(() => {
+              vidA.classList.remove('opacity-0');
+              vidB.classList.add('opacity-0');
+            }).catch(() => {});
+          }
+        });
+
+        // Ensure pause state resets cleanly for next cycle
+        vidA.addEventListener('ended', () => vidA.pause());
+        vidB.addEventListener('ended', () => vidB.pause());
       }
     });
   </script>
