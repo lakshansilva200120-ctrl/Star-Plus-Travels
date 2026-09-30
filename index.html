@@ -1206,7 +1206,7 @@
       </div>
 
       <!-- Bottom Banner for Custom Trip Request -->
-      <div class="mt-14 relative overflow-hidden rounded-3xl bg-slate-50 dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800/80 shadow-xl min-h-[200px] flex items-center group">
+      <div class="mt-14 relative overflow-hidden rounded-3xl bg-slate-950 border border-slate-800/80 shadow-2xl min-h-[200px] flex items-center group">
         
         <!-- 1. Background Video (No blur, positioned to highlight the wing and bright coast) -->
         <video
@@ -1220,23 +1220,23 @@
           <source src="/assets/videos/custom-flight-loop.mp4" type="video/mp4" />
         </video>
 
-        <!-- 2. Directional Gradient (Light in light mode, dark in dark mode on text side, clear on video side) -->
-        <div class="absolute inset-0 bg-gradient-to-r from-white via-white/85 via-45% to-transparent dark:from-[#070b14] dark:via-[#070b14]/85 dark:via-45% dark:to-transparent pointer-events-none"></div>
+        <!-- 2. Directional Gradient (Deeper dark scrim to hide artifacts and deliver clean contrast) -->
+        <div class="absolute inset-0 bg-gradient-to-r from-[#070b14] via-[#070b14]/90 to-transparent pointer-events-none"></div>
 
         <!-- 3. Foreground Text & Button -->
         <div class="relative z-10 w-full p-8 md:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
           
           <div class="max-w-xl space-y-2">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-[11px] font-bold uppercase tracking-wider backdrop-blur-sm">
-              <span class="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 animate-pulse"></span>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-[11px] font-bold uppercase tracking-wider backdrop-blur-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
               <span data-i18n="customTripBadge">Tailor-Made Holidays</span>
             </div>
 
-            <h3 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight leading-tight" data-i18n="customTripTitle">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md" data-i18n="customTripTitle">
               Don't see your dream destination?
             </h3>
 
-            <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed" data-i18n="customTripDesc">
+            <p class="text-xs sm:text-sm text-slate-200/90 leading-relaxed drop-shadow-sm" data-i18n="customTripDesc">
               Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.
             </p>
           </div>
