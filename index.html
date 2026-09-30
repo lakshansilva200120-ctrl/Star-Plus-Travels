@@ -1390,63 +1390,51 @@
 
         </div>
 
-        <!-- Right Bento Canvas: 3D Interactive Boarding Pass Card (5 cols) -->
+        <!-- Right Bento Canvas: Luxury Video Preview Card (5 cols) -->
         <div class="lg:col-span-5 flex justify-center lg:justify-end">
-          <div class="relative w-full max-w-sm [perspective:1000px]">
+          <div class="relative w-full max-w-sm">
             
-            <!-- Outer 3D Card Shell with smooth tilt on hover -->
-            <div class="relative rounded-2xl bg-slate-950 text-white p-6 shadow-2xl border border-amber-400/30 transform rotate-1 lg:rotate-2 group-hover:rotate-0 hover:rotate-0 group-hover:scale-105 hover:scale-105 transition-all duration-500 backdrop-blur-xl">
+            <!-- Outer Card Shell with smooth tilt & hover lift -->
+            <div class="relative w-full min-h-[260px] sm:min-h-[280px] rounded-2xl overflow-hidden shadow-2xl border border-amber-400/40 transform rotate-1 lg:rotate-2 group-hover:rotate-0 hover:rotate-0 group-hover:scale-105 hover:scale-105 transition-all duration-500 bg-slate-950 flex flex-col justify-between p-4 sm:p-5">
               
-              <!-- Flight Header -->
-              <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-                <div class="flex items-center gap-2">
-                  <span class="text-amber-400 text-lg">✈️</span>
-                  <div>
-                    <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Star Plus Travel Pass</div>
-                    <div class="text-xs font-black text-amber-300">VIP HOLIDAY REBATE</div>
-                  </div>
+              <!-- Looping Background Video -->
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                class="absolute inset-0 w-full h-full object-cover rounded-2xl pointer-events-none"
+              >
+                <source src="assets/videos/holiday-promo-loop.mp4" type="video/mp4" />
+              </video>
+
+              <!-- Dark Glassmorphic Scrim Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-slate-950/60 pointer-events-none rounded-2xl"></div>
+
+              <!-- Top Badge & -35% OFF Pill -->
+              <div class="relative z-10 flex items-center justify-between gap-2">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/70 border border-white/15 backdrop-blur-md text-[11px] font-extrabold text-amber-300 uppercase tracking-wider shadow-lg">
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                  <span>WINTER &amp; EID ESCAPES</span>
                 </div>
-                <span class="px-2 py-0.5 rounded bg-amber-500/20 border border-amber-400/40 text-amber-400 text-[10px] font-black">
+                <span class="px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-slate-950 text-xs font-black uppercase tracking-wider shadow-lg shadow-amber-500/30">
                   -35% OFF
                 </span>
               </div>
 
-              <!-- Route Nodes Animation -->
-              <div class="my-5 flex items-center justify-between relative px-2">
-                <div class="text-left">
-                  <div class="text-2xl font-black tracking-tight text-white">DXB</div>
-                  <div class="text-[10px] text-slate-400">Dubai Hub</div>
-                </div>
-
-                <!-- Animated Route Line with moving plane -->
-                <div class="relative flex-1 mx-4 flex items-center justify-center">
-                  <div class="w-full h-0.5 bg-dashed border-b-2 border-dashed border-slate-700"></div>
-                  <div class="absolute -top-3 w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center text-xs animate-[bounce_2s_infinite]">
-                    🛫
+              <!-- Bottom Status Bar: Code: STARPLUS with subtle backdrop blur -->
+              <div class="relative z-10 flex items-center justify-between p-3 rounded-xl bg-slate-950/80 border border-white/15 backdrop-blur-md shadow-xl">
+                <div class="flex items-center gap-2">
+                  <span class="text-amber-400 text-sm">🎟️</span>
+                  <div>
+                    <div class="text-[9px] uppercase tracking-widest text-slate-400 font-bold">VIP Promo Voucher</div>
+                    <div class="text-xs font-mono font-black text-amber-300 tracking-wider">Code: STARPLUS</div>
                   </div>
                 </div>
-
-                <div class="text-right">
-                  <div class="text-2xl font-black tracking-tight text-white">GLOBAL</div>
-                  <div class="text-[10px] text-slate-400">Any Circuit</div>
-                </div>
-              </div>
-
-              <!-- Ticket Footer / Barcode -->
-              <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
-                <div>
-                  <div class="text-[9px] uppercase tracking-wider text-slate-500 font-bold">Pass ID / Promo</div>
-                  <div class="font-mono text-xs font-bold text-amber-400 tracking-wider">STARPLUS-2026</div>
-                </div>
-                <!-- Mini barcode graphic -->
-                <div class="flex gap-0.5 items-center opacity-70">
-                  <span class="w-0.5 h-6 bg-white"></span>
-                  <span class="w-1 h-6 bg-white"></span>
-                  <span class="w-0.5 h-6 bg-white"></span>
-                  <span class="w-1.5 h-6 bg-white"></span>
-                  <span class="w-0.5 h-6 bg-white"></span>
-                  <span class="w-1 h-6 bg-white"></span>
-                  <span class="w-0.5 h-6 bg-white"></span>
+                <div class="flex items-center gap-1.5 text-[10px] font-bold text-slate-200">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>Instant Apply</span>
                 </div>
               </div>
 
