@@ -9498,7 +9498,7 @@ function initFlatpickr() {
       flatpickr(input, {
         dateFormat: "d M, Y",      // Displays as: 14 Oct, 2026
         minDate: "today",          // Disables past dates
-        disableMobile: "true",     // Prevents iOS/Android from forcing the plain native picker
+        disableMobile: true,       // Prevents iOS/Android from forcing the plain native picker
         animate: true,
         onChange: function(selectedDates, dateStr, instance) {
           if (instance && instance.element) {
@@ -9521,7 +9521,7 @@ document.addEventListener("DOMContentLoaded", () => {
     flatpickr(".date-picker-input", {
       dateFormat: "d M, Y",      // Displays as: 14 Oct, 2026
       minDate: "today",          // Disables past dates
-      disableMobile: "true",     // Prevents iOS/Android from forcing the plain native picker
+      disableMobile: true,       // Prevents iOS/Android from forcing the plain native picker
       animate: true
     });
   }
