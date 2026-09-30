@@ -3309,92 +3309,36 @@ input.phone-input-error {
 }
 
 /* ==========================================================================
-   Flatpickr Custom Dark & Gold Luxury Styling
+   Luxury Brand Customization for Flatpickr
    ========================================================================== */
 .flatpickr-calendar {
-  background: #0b1120 !important;
-  border: 1px solid rgba(245, 158, 11, 0.35) !important;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 25px rgba(245, 158, 11, 0.2) !important;
-  border-radius: 1rem !important;
-  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  background: #090d16 !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.15) !important;
+  border-radius: 1.25rem !important;
+  padding: 12px !important;
+  font-family: inherit !important;
   z-index: 999999 !important;
-  overflow: hidden;
-  backdrop-filter: blur(16px);
-  padding: 8px 4px !important;
-}
-
-html.light .flatpickr-calendar {
-  background: #ffffff !important;
-  border: 1px solid rgba(245, 158, 11, 0.4) !important;
-  box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.15), 0 0 15px rgba(245, 158, 11, 0.15) !important;
 }
 
 .flatpickr-calendar.arrowTop:before,
 .flatpickr-calendar.arrowTop:after {
-  border-bottom-color: #0b1120 !important;
-}
-
-html.light .flatpickr-calendar.arrowTop:before,
-html.light .flatpickr-calendar.arrowTop:after {
-  border-bottom-color: #ffffff !important;
+  border-bottom-color: #090d16 !important;
 }
 
 .flatpickr-calendar.arrowBottom:before,
 .flatpickr-calendar.arrowBottom:after {
-  border-top-color: #0b1120 !important;
-}
-
-html.light .flatpickr-calendar.arrowBottom:before,
-html.light .flatpickr-calendar.arrowBottom:after {
-  border-top-color: #ffffff !important;
+  border-top-color: #090d16 !important;
 }
 
 .flatpickr-months {
-  background: #070b14 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 0.75rem 0.75rem 0 0;
-  padding: 8px 6px !important;
-}
-
-html.light .flatpickr-months {
-  background: #f8fafc !important;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  margin-bottom: 8px !important;
 }
 
 .flatpickr-months .flatpickr-month {
-  color: #ffffff !important;
-  fill: #ffffff !important;
-  height: 38px !important;
-}
-
-html.light .flatpickr-months .flatpickr-month {
-  color: #0f172a !important;
-  fill: #0f172a !important;
-}
-
-.flatpickr-current-month {
-  font-size: 1rem !important;
+  color: #fff !important;
   font-weight: 700 !important;
-  color: #ffffff !important;
-  padding: 4px 0 0 0 !important;
-}
-
-html.light .flatpickr-current-month {
-  color: #0f172a !important;
-}
-
-.flatpickr-current-month .cur-month {
-  font-weight: 800 !important;
-  color: #f8fafc !important;
-}
-
-html.light .flatpickr-current-month .cur-month {
-  color: #0f172a !important;
-}
-
-.flatpickr-current-month input.cur-year {
-  font-weight: 700 !important;
-  color: #f59e0b !important;
+  fill: #fff !important;
 }
 
 .flatpickr-months .flatpickr-prev-month,
@@ -3404,88 +3348,67 @@ html.light .flatpickr-current-month .cur-month {
   padding: 6px 10px !important;
   border-radius: 0.5rem;
   transition: all 0.2s ease;
-  top: 6px !important;
 }
 
 .flatpickr-months .flatpickr-prev-month:hover,
 .flatpickr-months .flatpickr-next-month:hover {
-  background: rgba(245, 158, 11, 0.2) !important;
+  background: rgba(245, 158, 11, 0.15) !important;
   color: #fbbf24 !important;
   fill: #fbbf24 !important;
 }
 
-.flatpickr-weekdays {
-  margin-top: 6px;
+.flatpickr-current-month .cur-month {
+  font-weight: 800 !important;
+}
+
+.flatpickr-current-month input.cur-year {
+  font-weight: 700 !important;
+  color: #f59e0b !important;
 }
 
 span.flatpickr-weekday {
-  color: #94a3b8 !important;
-  font-weight: 700 !important;
-  font-size: 0.75rem !important;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-html.light span.flatpickr-weekday {
-  color: #64748b !important;
+  color: #94a3b8 !important; /* slate-400 */
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
 }
 
 .flatpickr-day {
-  color: #e2e8f0 !important;
-  border-radius: 0.625rem !important;
-  font-weight: 600 !important;
-  border: 1px solid transparent !important;
-  transition: all 0.15s ease !important;
-  height: 38px !important;
-  line-height: 38px !important;
-}
-
-html.light .flatpickr-day {
-  color: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-radius: 0.75rem !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
 }
 
 .flatpickr-day:hover {
-  background: rgba(245, 158, 11, 0.2) !important;
-  border-color: rgba(245, 158, 11, 0.4) !important;
-  color: #ffffff !important;
-}
-
-html.light .flatpickr-day:hover {
   background: rgba(245, 158, 11, 0.15) !important;
-  color: #0f172a !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+  color: #fbbf24 !important;
 }
 
 .flatpickr-day.today {
   border-color: #f59e0b !important;
   color: #fbbf24 !important;
-  font-weight: 700 !important;
 }
 
-.flatpickr-day.selected,
-.flatpickr-day.startRange,
+.flatpickr-day.selected, 
+.flatpickr-day.startRange, 
 .flatpickr-day.endRange {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
-  border-color: #f59e0b !important;
-  color: #070b14 !important;
+  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+  border-color: transparent !important;
+  color: #020617 !important;
   font-weight: 800 !important;
-  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.45) !important;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.5) !important;
 }
 
-.flatpickr-day.flatpickr-disabled,
-.flatpickr-day.flatpickr-disabled:hover,
-.flatpickr-day.prevMonthDay,
-.flatpickr-day.nextMonthDay {
-  color: #475569 !important;
-  opacity: 0.35 !important;
-  cursor: not-allowed !important;
+.flatpickr-day.inRange {
+  background: rgba(245, 158, 11, 0.15) !important;
+  box-shadow: -5px 0 0 rgba(245, 158, 11, 0.15), 5px 0 0 rgba(245, 158, 11, 0.15) !important;
+  color: #fde68a !important;
 }
 
-html.light .flatpickr-day.flatpickr-disabled,
-html.light .flatpickr-day.flatpickr-disabled:hover,
-html.light .flatpickr-day.prevMonthDay,
-html.light .flatpickr-day.nextMonthDay {
-  color: #94a3b8 !important;
-  opacity: 0.45 !important;
+.flatpickr-day.disabled {
+  color: #334155 !important;
 }
 
 /* Star Plus Golden Amber Brand Button */
