@@ -5284,31 +5284,66 @@ function initHeroSlideshow() {
 function initPromoBannerVideo() {
   const vidA = document.getElementById("video-layer-a");
   const vidB = document.getElementById("video-layer-b");
+  if (!vidA || !vidB) return;
 
-  if (vidA && vidB) {
+  if (vidA.dataset.crossfadeBound) return;
+  vidA.dataset.crossfadeBound = 'true';
+
+  vidA.muted = true;
+  vidB.muted = true;
+
+  const crossfadeDuration = 1.2; // seconds before end to crossfade
+
+  function triggerCrossfadeTo(nextVid, currentVid) {
+    if (!nextVid || !currentVid) return;
+    try {
+      nextVid.currentTime = 0;
+      const playPromise = nextVid.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    } catch (e) {}
+    nextVid.classList.remove("opacity-0");
+    currentVid.classList.add("opacity-0");
+  }
+
+  vidA.addEventListener("timeupdate", () => {
+    if (vidA.duration && (vidA.duration - vidA.currentTime <= crossfadeDuration) && vidB.paused) {
+      triggerCrossfadeTo(vidB, vidA);
+    }
+  });
+
+  vidB.addEventListener("timeupdate", () => {
+    if (vidB.duration && (vidB.duration - vidB.currentTime <= crossfadeDuration) && vidA.paused) {
+      triggerCrossfadeTo(vidA, vidB);
+    }
+  });
+
+  // Safety fallback in case timeupdate skips past duration on slow ticks
+  vidA.addEventListener("ended", () => {
+    vidA.pause();
+    if (vidB.paused) triggerCrossfadeTo(vidB, vidA);
+  });
+  vidB.addEventListener("ended", () => {
+    vidB.pause();
+    if (vidA.paused) triggerCrossfadeTo(vidA, vidB);
+  });
+
+  // Auto-play safely on viewport intersection
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (vidA.paused && vidB.paused) {
+            vidA.play().catch(() => {});
+          }
+        }
+      });
+    }, { threshold: 0.1 });
+    const banner = vidA.closest('section') || vidA.parentElement;
+    if (banner) observer.observe(banner);
+  } else {
     vidA.play().catch(() => {});
-
-    vidA.addEventListener("timeupdate", () => {
-      // 1.2 seconds before finishing, start B and fade it in
-      if (vidA.duration && (vidA.duration - vidA.currentTime <= 1.2) && vidB.paused) {
-        vidB.currentTime = 0;
-        vidB.play().catch(() => {});
-        vidB.classList.remove("opacity-0");
-        vidA.classList.add("opacity-0");
-      }
-    });
-
-    vidB.addEventListener("timeupdate", () => {
-      if (vidB.duration && (vidB.duration - vidB.currentTime <= 1.2) && vidA.paused) {
-        vidA.currentTime = 0;
-        vidA.play().catch(() => {});
-        vidA.classList.remove("opacity-0");
-        vidB.classList.add("opacity-0");
-      }
-    });
-
-    vidA.addEventListener("ended", () => { vidA.pause(); });
-    vidB.addEventListener("ended", () => { vidB.pause(); });
   }
 }
 window.initPromoBannerVideo = initPromoBannerVideo;
