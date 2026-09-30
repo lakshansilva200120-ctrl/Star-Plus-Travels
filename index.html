@@ -1326,11 +1326,11 @@
   </section>
 
   <!-- Interactive Season Promo Voucher & Resort Video Banner -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-    <!-- Locked container height matching the original banner -->
-    <div class="relative overflow-hidden rounded-3xl bg-slate-950 border border-amber-500/30 px-6 sm:px-8 py-5 min-h-[170px] sm:h-[180px] flex items-center shadow-2xl">
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <!-- Locked container matching the exact compact banner height -->
+    <div class="relative overflow-hidden rounded-3xl bg-slate-950 border border-amber-500/30 px-6 sm:px-10 py-6 min-h-[140px] sm:h-[155px] flex items-center shadow-2xl group">
       
-      <!-- 1. Video Background (Pinned & Scaled without adding height) -->
+      <!-- 1. FULL BANNER VIDEO BACKGROUND -->
       <video
         autoplay
         loop
@@ -1342,20 +1342,20 @@
         <source src="/assets/videos/holiday-promo-loop.mp4" type="video/mp4" />
       </video>
 
-      <!-- 2. Scrim (Dark on left, transparent on right) -->
-      <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent pointer-events-none"></div>
+      <!-- 2. DARK-TO-TRANSPARENT GRADIENT (Keeps text legible, lets resort show on the right) -->
+      <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/85 via-50% to-transparent pointer-events-none"></div>
 
-      <!-- 3. Foreground Content Row (Single row layout) -->
+      <!-- 3. FOREGROUND ROW (Single compact row so banner never expands) -->
       <div class="relative z-10 w-full flex flex-col md:flex-row md:items-center justify-between gap-4">
         
-        <!-- Left Content -->
-        <div class="max-w-2xl space-y-1.5">
+        <!-- Left side text & copy -->
+        <div class="max-w-2xl space-y-1">
           <div class="flex items-center gap-2">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-[10px] font-bold uppercase tracking-wider">
-              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-[10px] font-black uppercase tracking-wider">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
               Exclusive Limited Offer
             </span>
-            <span class="text-[11px] text-slate-300 font-medium">Seasonal Booking Window</span>
+            <span class="text-[11px] text-slate-300 font-medium">⏳ Seasonal Booking Window</span>
           </div>
 
           <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight leading-tight">
@@ -1364,17 +1364,24 @@
 
           <p class="text-xs text-slate-300 line-clamp-1 sm:line-clamp-none">
             Apply official voucher code 
-            <span class="inline-block px-2 py-0.5 rounded bg-amber-400 text-slate-950 font-mono font-bold text-[11px]">STARPLUS</span> 
+            <button 
+              type="button" 
+              onclick="if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText('STARPLUS'); } const el = document.getElementById('promo-code-btn'); if(el){ el.innerText = 'COPIED! ✓'; setTimeout(() => el.innerText = 'STARPLUS', 2000); }"
+              class="inline-block px-2 py-0.5 mx-0.5 rounded bg-amber-400 text-slate-950 font-mono font-bold text-[11px] hover:bg-amber-300 transition-colors"
+              title="Click to copy voucher code"
+            >
+              <span id="promo-code-btn">STARPLUS</span>
+            </button> 
             when requesting your custom travel itinerary before the end of the month.
           </p>
         </div>
 
-        <!-- Right Action Button -->
+        <!-- Right side button & terms -->
         <div class="shrink-0 flex flex-col items-start md:items-end gap-1.5">
           <a 
             href="#quoteModal"
             onclick="const notes = document.querySelector('[name=notes], textarea'); if(notes) notes.value = 'Applied Promo Code: STARPLUS (-35%)'; if(typeof openQuoteModal === 'function') openQuoteModal();"
-            class="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(245,158,11,0.35)] hover:scale-105 active:scale-95 transition-all duration-300"
+            class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(245,158,11,0.35)] hover:scale-105 active:scale-95 transition-all duration-300"
           >
             <span>Claim Promo Discount</span>
             <span class="text-sm">→</span>
