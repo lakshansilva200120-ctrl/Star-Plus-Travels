@@ -9604,6 +9604,188 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+/**
+ * Global Luxury Dropdown Transformer
+ * Automatically upgrades all native <select> elements into luxury UI pickers.
+ */
+function initCustomDropdowns() {
+  const nativeSelects = document.querySelectorAll("select:not([data-custom-enhanced])");
+
+  nativeSelects.forEach((select) => {
+    select.setAttribute("data-custom-enhanced", "true");
+    select.classList.add("hidden"); // Hide native browser select
+
+    // 1. Create Dropdown Wrapper
+    const wrapper = document.createElement("div");
+    wrapper.className = "relative w-full custom-select-wrapper";
+
+    // Get initial selected option
+    const activeOption = select.options[select.selectedIndex] || select.options[0];
+    const initialText = activeOption ? activeOption.text : "Select option";
+
+    // 2. Trigger Button
+    const trigger = document.createElement("button");
+    trigger.type = "button";
+    trigger.className =
+      "w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-slate-900/90 dark:bg-slate-900/90 border border-slate-700/80 hover:border-amber-400/60 focus:border-amber-400 text-left transition-all duration-200 group shadow-lg";
+    trigger.innerHTML = `
+      <span class="custom-select-label text-sm font-semibold text-white tracking-wide truncate">${initialText}</span>
+      <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-400 transition-transform duration-200 shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    `;
+
+    // 3. Dropdown Menu
+    const menu = document.createElement("div");
+    menu.className =
+      "hidden absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl bg-[#090d16] border border-amber-500/25 p-1.5 shadow-2xl backdrop-blur-xl max-h-60 overflow-y-auto";
+
+    // 4. Populate Custom Options
+    Array.from(select.options).forEach((opt, index) => {
+      if (opt.disabled && opt.value === "") return; // Skip empty placeholders
+
+      const optionBtn = document.createElement("button");
+      optionBtn.type = "button";
+      const isSelected = select.selectedIndex === index;
+
+      optionBtn.className = `w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-medium transition-colors ${
+        isSelected
+          ? "bg-amber-500/15 text-amber-400"
+          : "text-slate-200 hover:text-white hover:bg-white/5"
+      }`;
+
+      optionBtn.innerHTML = `
+        <span class="truncate">${opt.text}</span>
+        <span class="check-mark text-amber-400 font-bold ml-2 ${isSelected ? "" : "hidden"}">✓</span>
+      `;
+
+      optionBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        select.selectedIndex = index;
+        select.dispatchEvent(new Event("change", { bubbles: true }));
+
+        // Update trigger display
+        trigger.querySelector(".custom-select-label").textContent = opt.text;
+
+        // Update active classes
+        menu.querySelectorAll("button").forEach((btn) => {
+          btn.className =
+            "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-medium transition-colors text-slate-200 hover:text-white hover:bg-white/5";
+          const check = btn.querySelector(".check-mark");
+          if (check) check.classList.add("hidden");
+        });
+
+        optionBtn.className =
+          "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-medium transition-colors bg-amber-500/15 text-amber-400";
+        const myCheck = optionBtn.querySelector(".check-mark");
+        if (myCheck) myCheck.classList.remove("hidden");
+
+        // Close menu
+        menu.classList.add("hidden");
+        wrapper.classList.remove("z-30");
+        trigger.querySelector("svg").classList.remove("rotate-180");
+      });
+
+      menu.appendChild(optionBtn);
+    });
+
+    // Toggle menu
+    trigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+
+      // Close any other open custom dropdowns first
+      document.querySelectorAll(".custom-select-wrapper > div:not(.hidden)").forEach((openMenu) => {
+        openMenu.classList.add("hidden");
+        openMenu.parentElement.classList.remove("z-30");
+        const openSvg = openMenu.previousElementSibling?.querySelector("svg");
+        if (openSvg) openSvg.classList.remove("rotate-180");
+      });
+
+      menu.classList.toggle("hidden", isOpen);
+      wrapper.classList.toggle("z-30", !isOpen);
+      trigger.querySelector("svg").classList.toggle("rotate-180", !isOpen);
+    });
+
+    // Sync when select changes externally
+    select.addEventListener("change", () => {
+      const active = select.options[select.selectedIndex] || select.options[0];
+      if (active) {
+        const label = trigger.querySelector(".custom-select-label");
+        if (label) label.textContent = active.text;
+      }
+      menu.querySelectorAll("button").forEach((btn, idx) => {
+        const isSel = select.selectedIndex === idx;
+        btn.className = `w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-xs sm:text-sm font-medium transition-colors ${
+          isSel
+            ? "bg-amber-500/15 text-amber-400"
+            : "text-slate-200 hover:text-white hover:bg-white/5"
+        }`;
+        const check = btn.querySelector(".check-mark");
+        if (check) check.classList.toggle("hidden", !isSel);
+      });
+    });
+
+    // Live i18n support: observe option text modifications
+    try {
+      const observer = new MutationObserver(() => {
+        const active = select.options[select.selectedIndex] || select.options[0];
+        if (active) {
+          const label = trigger.querySelector(".custom-select-label");
+          if (label) label.textContent = active.text;
+        }
+        const buttons = menu.querySelectorAll("button");
+        Array.from(select.options).forEach((opt, idx) => {
+          if (buttons[idx]) {
+            const textSpan = buttons[idx].querySelector("span:not(.check-mark)");
+            if (textSpan) textSpan.textContent = opt.text;
+          }
+        });
+      });
+      observer.observe(select, { childList: true, characterData: true, subtree: true });
+    } catch (err) {}
+
+    // Connect label click if select has id
+    if (select.id) {
+      const parentLabel = document.querySelector(`label[for="${select.id}"]`);
+      if (parentLabel) {
+        parentLabel.addEventListener("click", (e) => {
+          e.preventDefault();
+          trigger.click();
+        });
+      }
+    }
+
+    // Assemble and insert
+    select.parentNode.insertBefore(wrapper, select);
+    wrapper.appendChild(select);
+    wrapper.appendChild(trigger);
+    wrapper.appendChild(menu);
+  });
+
+  // Global close on click outside
+  if (!window._customDropdownsGlobalListenerBound) {
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".custom-select-wrapper > div:not(.hidden)").forEach((menu) => {
+        menu.classList.add("hidden");
+        menu.parentElement.classList.remove("z-30");
+        const svg = menu.previousElementSibling?.querySelector("svg");
+        if (svg) svg.classList.remove("rotate-180");
+      });
+    });
+    window._customDropdownsGlobalListenerBound = true;
+  }
+}
+
+window.initCustomDropdowns = initCustomDropdowns;
+
+// Auto-run on page load
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initCustomDropdowns);
+} else {
+  initCustomDropdowns();
+}
+
 /* ==========================================================================
    Destination Spotlight & Interactive Cards Controller (/destinations)
    ========================================================================== */

@@ -1265,7 +1265,8 @@ input[type="date"]::-webkit-date-and-time-value {
 }
 
 /* Ensure Destination, Travel Date, and Travelers share matching heights, padding & alignment */
-#heroSearchForm .glass-input {
+#heroSearchForm .glass-input,
+#heroSearchForm .custom-select-wrapper > button {
   box-sizing: border-box !important;
   width: 100% !important;
   max-width: 100% !important;
@@ -1275,12 +1276,37 @@ input[type="date"]::-webkit-date-and-time-value {
   margin: 0 !important;
 }
 
+#heroSearchForm .custom-select-wrapper > button {
+  border-radius: 0.75rem !important;
+}
+
 #heroSearchForm button[type="submit"] {
   box-sizing: border-box !important;
   width: 100% !important;
   max-width: 100% !important;
   min-height: 46px !important;
   height: 46px !important;
+}
+
+/* Global Luxury Custom Select Pickers */
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.custom-select-wrapper .custom-select-label {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.custom-select-wrapper > div {
+  z-index: 50;
+}
+
+.custom-select-wrapper.z-30 {
+  z-index: 60 !important;
 }
 
 /* Strict grid column minmax(0, 1fr) constraint to prevent blowout on mobile */
