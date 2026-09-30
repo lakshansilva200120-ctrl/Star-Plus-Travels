@@ -5121,6 +5121,9 @@ function initApp() {
   // Initialize Dynamic Hero Slideshow if present
   try { initHeroSlideshow(); } catch (e) {}
 
+  // Initialize Promotional Banner Video Seamless Bounce Loop
+  try { initPromoBannerVideo(); } catch (e) {}
+
   // Initialize Navigation Dropdown interactions
   try { initNavDropdowns(); } catch (e) {}
 
@@ -5274,6 +5277,38 @@ function initHeroSlideshow() {
   switchHeroSlide(0);
   resetHeroTimer();
 }
+
+/* ==========================================================================
+   Promotional Banner Video Seamless Bounce Loop Controller
+   ========================================================================== */
+function initPromoBannerVideo() {
+  const promoVideo = document.querySelector("#promo-banner-video");
+
+  if (promoVideo) {
+    let direction = 1; // 1 = forward, -1 = reverse
+    const fps = 30;
+    const interval = 1000 / fps;
+
+    promoVideo.removeAttribute("loop"); // Let JS control the seamless bounce
+
+    let reverseInterval = null;
+
+    promoVideo.addEventListener("ended", () => {
+      if (reverseInterval) clearInterval(reverseInterval);
+      // Reverse playback when reaching the end
+      reverseInterval = setInterval(() => {
+        if (promoVideo.currentTime <= 0.1) {
+          clearInterval(reverseInterval);
+          reverseInterval = null;
+          promoVideo.play().catch(() => {}); // Play forward again
+        } else {
+          promoVideo.currentTime = Math.max(0, promoVideo.currentTime - (interval / 1000));
+        }
+      }, interval);
+    });
+  }
+}
+window.initPromoBannerVideo = initPromoBannerVideo;
 
 /* ==========================================================================
    Tour Packages Interactive Carousel Controller
@@ -9837,6 +9872,7 @@ if (document.readyState === 'loading') {
     initShowcaseAndSearch();
     initIntlTelInputs();
     initFlatpickr();
+    initPromoBannerVideo();
     initNewsletterForms();
     initUniversalFormValidation();
     initSpotlightShowcases();
@@ -9845,6 +9881,7 @@ if (document.readyState === 'loading') {
   initShowcaseAndSearch();
   initIntlTelInputs();
   initFlatpickr();
+  initPromoBannerVideo();
   initNewsletterForms();
   initUniversalFormValidation();
   initSpotlightShowcases();
@@ -9853,6 +9890,7 @@ if (document.readyState === 'loading') {
 window.addEventListener('load', () => {
   initIntlTelInputs();
   initFlatpickr();
+  initPromoBannerVideo();
   initNewsletterForms();
   initUniversalFormValidation();
   initSpotlightShowcases();
