@@ -9492,40 +9492,22 @@ window.initIntlTelInputs = initIntlTelInputs;
 function initFlatpickr() {
   if (typeof flatpickr === 'undefined') return;
 
-  const defaultOptions = {
-    theme: 'dark',
-    minDate: 'today',
-    dateFormat: 'Y-m-d',
-    altInput: true,
-    altFormat: 'M j, Y',
-    disableMobile: true,
-    animate: true
-  };
-
-  // 1. Hero Search Travel Date Input
-  const heroDateInput = document.getElementById('heroDateInput');
-  if (heroDateInput && !heroDateInput._flatpickr) {
-    flatpickr(heroDateInput, {
-      ...defaultOptions,
-      altInputClass: 'w-full max-w-full box-border block glass-input px-3 py-2.5 sm:px-3.5 sm:py-3 rounded-xl text-xs sm:text-sm font-medium text-slate-200 cursor-pointer placeholder-slate-400',
-      onChange: function(selectedDates, dateStr) {
-        if (typeof updateResetButtonVisibility === 'function') {
-          updateResetButtonVisibility();
-        }
-      }
-    });
-  }
-
-  // 2. Booking Modal Date Inputs (across index, packages, visa-services)
-  const bookingDateInputs = document.querySelectorAll('#bookingDate, input[name="date"].booking-date-picker');
-  bookingDateInputs.forEach(input => {
+  const datePickerElements = document.querySelectorAll('.date-picker-input, #heroDateInput, #bookingDate');
+  datePickerElements.forEach(input => {
     if (!input._flatpickr) {
       flatpickr(input, {
-        ...defaultOptions,
-        altInputClass: 'w-full max-w-full box-border block appearance-none glass-input px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-200 cursor-pointer',
-        onChange: function(selectedDates, dateStr) {
-          if (typeof clearFieldError === 'function') {
-            clearFieldError(input);
+        dateFormat: "d M, Y",      // Displays as: 14 Oct, 2026
+        minDate: "today",          // Disables past dates
+        disableMobile: "true",     // Prevents iOS/Android from forcing the plain native picker
+        animate: true,
+        onChange: function(selectedDates, dateStr, instance) {
+          if (instance && instance.element) {
+            if (typeof clearFieldError === 'function') {
+              clearFieldError(instance.element);
+            }
+          }
+          if (typeof updateResetButtonVisibility === 'function') {
+            updateResetButtonVisibility();
           }
         }
       });
@@ -9533,6 +9515,17 @@ function initFlatpickr() {
   });
 }
 window.initFlatpickr = initFlatpickr;
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof flatpickr !== 'undefined') {
+    flatpickr(".date-picker-input", {
+      dateFormat: "d M, Y",      // Displays as: 14 Oct, 2026
+      minDate: "today",          // Disables past dates
+      disableMobile: "true",     // Prevents iOS/Android from forcing the plain native picker
+      animate: true
+    });
+  }
+});
 
 /* ==========================================================================
    Destination Spotlight & Interactive Cards Controller (/destinations)
