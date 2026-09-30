@@ -3822,6 +3822,20 @@ select.field-error-border {
 .text-slate-200\/90 {
   color: rgba(226, 232, 240, 0.9);
 }
+.to-amber-950\/20 {
+  --tw-gradient-to: rgba(69, 26, 3, 0.2);
+}
+.border-amber-500\/30 {
+  border-color: rgba(245, 158, 11, 0.3);
+}
+.from-amber-500\/20 {
+  --tw-gradient-from: rgba(245, 158, 11, 0.2);
+  --tw-gradient-to: rgba(245, 158, 11, 0);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.via-45\% {
+  --tw-gradient-via-position: 45%;
+}
 
 
 
