@@ -619,7 +619,7 @@ const I18N_TRANSLATIONS = {
     catTropical: '<i class="fa-solid fa-umbrella-beach mr-1.5 text-amber-400"></i>නිවර්තන දූපත්',
     catSpiritual: '<i class="fa-solid fa-mosque mr-1.5 text-amber-400"></i>උම්රා සහ වන්දනා',
     customTripBadge: "ඔබට අවශ්‍ය පරිදි සැලසුම් කරන්න",
-    customTripTitle: "ඔබගේ සිහින ගමනාන්තය මෙහි නැද්ද?",
+    customTripTitle: "ඔබගේ සිහින සංචාරය මෙහි සොයා ගැනීමට නොහැකි වුණාද?",
     customTripDesc: "පවුලේ චාරිකා, මධුසමය, තනි සංචාර හෝ ආයතනික චාරිකා සඳහා ඔබ කැමති පරිදි විශේෂ පැකේජ සකස් කරගත හැක.",
     customTripBtn: "අභිරුචි පැකේජයක් ඉල්ලන්න",
 
