@@ -4253,31 +4253,27 @@ window.updateBrandLogoTheme = updateBrandLogoTheme;
 (function setupSystemThemeWatcher() {
   if (!window.matchMedia) return;
 
-  const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  const handleSystemThemeChange = (e) => {
-    const savedTheme = localStorage.getItem('starplus_theme_mode') || localStorage.getItem('theme');
-    if (!savedTheme || savedTheme === 'system') {
-      const isDark = e ? e.matches : darkModeQuery.matches;
-      if (isDark) {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-      } else {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.add('light');
-      }
+  const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  function syncTheme(e) {
+    const userPref = localStorage.getItem('theme') || localStorage.getItem('starplus_theme_mode');
+    if (!userPref || userPref === 'system') {
+      const isDark = e && e.matches !== undefined ? e.matches : colorSchemeQuery.matches;
+      document.documentElement.classList.toggle('dark', isDark);
+      document.documentElement.classList.toggle('light', !isDark);
       if (typeof applyTheme === 'function') {
         applyTheme('system', false);
       } else if (typeof updateBrandLogoTheme === 'function') {
         updateBrandLogoTheme();
       }
     }
-  };
-
-  if (darkModeQuery.addEventListener) {
-    darkModeQuery.addEventListener('change', handleSystemThemeChange);
-  } else if (darkModeQuery.addListener) {
-    darkModeQuery.addListener(handleSystemThemeChange);
   }
+
+  if (colorSchemeQuery.addEventListener) {
+    colorSchemeQuery.addEventListener('change', syncTheme);
+  } else if (colorSchemeQuery.addListener) {
+    colorSchemeQuery.addListener(syncTheme);
+  }
+  syncTheme(colorSchemeQuery);
 })();
 
 // ==========================================================================
@@ -9687,9 +9683,22 @@ document.addEventListener("DOMContentLoaded", () => {
 function initCustomDropdowns() {
   const nativeSelects = document.querySelectorAll("select:not([data-custom-enhanced])");
 
+  const SELECTED_OPT_CLASS =
+    "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-semibold transition-colors cursor-pointer bg-amber-500/15 text-amber-600 dark:text-amber-400";
+  const UNSELECTED_OPT_CLASS =
+    "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-200 dark:hover:text-white dark:hover:bg-white/5";
+
   nativeSelects.forEach((select) => {
     select.setAttribute("data-custom-enhanced", "true");
-    select.classList.add("hidden"); // Visually hide native browser select
+    // Visually hide native browser select while keeping DOM accessibility and form validity
+    select.classList.add("sr-only");
+    select.style.position = "absolute";
+    select.style.opacity = "0";
+    select.style.pointerEvents = "none";
+    select.style.width = "1px";
+    select.style.height = "1px";
+    select.style.overflow = "hidden";
+    select.style.clip = "rect(0, 0, 0, 0)";
 
     // Hide any legacy native chevron sibling that was placed next to the native select
     const siblingChevron = select.parentElement?.querySelector(':scope > i.fa-chevron-down, :scope > svg.fa-chevron-down');
@@ -9705,22 +9714,22 @@ function initCustomDropdowns() {
     const activeOption = select.options[select.selectedIndex] || select.options[0];
     const initialText = activeOption ? activeOption.text : "Select option";
 
-    // 2. Trigger Button (Dark slate #090d16, subtle border, gold hover ring, animated chevron)
+    // 2. Trigger Button (Rounded-2xl border, dynamic background light/dark, subtle hover ring, animated chevron)
     const trigger = document.createElement("button");
     trigger.type = "button";
     trigger.className =
-      "w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-[#090d16] border border-slate-700/80 hover:border-amber-400/60 focus:border-amber-400 focus:ring-2 focus:ring-amber-400/20 text-left rtl:text-right transition-all duration-200 group shadow-lg cursor-pointer";
+      "w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-white text-slate-800 border border-slate-300 dark:bg-slate-900 dark:text-white dark:border-slate-700 hover:border-amber-500 hover:ring-2 hover:ring-amber-500/20 dark:hover:border-amber-400 dark:hover:ring-amber-400/20 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 dark:focus:border-amber-400 dark:focus:ring-amber-400/20 text-left rtl:text-right transition-all duration-200 group shadow-sm cursor-pointer";
     trigger.innerHTML = `
-      <span class="custom-select-label text-sm font-semibold text-white tracking-wide truncate">${initialText}</span>
-      <svg class="w-4 h-4 text-slate-400 group-hover:text-amber-400 transition-transform duration-200 shrink-0 ml-2 rtl:ml-0 rtl:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <span class="custom-select-label text-xs sm:text-sm font-semibold text-slate-800 dark:text-white tracking-wide truncate">${initialText}</span>
+      <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-transform duration-200 shrink-0 ml-2 rtl:ml-0 rtl:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg>
     `;
 
-    // 3. Dropdown Menu Panel (High z-index z-50, dark #090d16 panel, border-amber-500/25, backdrop-blur)
+    // 3. Dropdown Menu Panel (High z-index z-[9999], rounded-2xl, shadow-2xl, backdrop-blur-md, light/dark borders)
     const menu = document.createElement("div");
     menu.className =
-      "hidden absolute left-0 right-0 top-full mt-2 z-50 rounded-2xl bg-[#090d16] border border-amber-500/25 p-1.5 shadow-2xl backdrop-blur-xl max-h-60 overflow-y-auto";
+      "hidden absolute left-0 right-0 top-full mt-2 z-[9999] rounded-2xl bg-white border border-slate-200 dark:bg-[#090d16] dark:border-amber-500/25 p-1.5 shadow-2xl backdrop-blur-md max-h-60 overflow-y-auto";
 
     // 4. Populate Custom Options Function
     function renderCustomOptions() {
@@ -9732,15 +9741,11 @@ function initCustomDropdowns() {
         optionBtn.type = "button";
         const isSelected = select.selectedIndex === index;
 
-        optionBtn.className = `w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
-          isSelected
-            ? "bg-amber-500/15 text-amber-400"
-            : "text-slate-200 hover:text-white hover:bg-white/5"
-        }`;
+        optionBtn.className = isSelected ? SELECTED_OPT_CLASS : UNSELECTED_OPT_CLASS;
 
         optionBtn.innerHTML = `
           <span class="truncate opt-text">${opt.text}</span>
-          <span class="check-mark text-amber-400 font-bold ml-2 rtl:ml-0 rtl:mr-2 ${isSelected ? "" : "hidden"}">✓</span>
+          <span class="check-mark text-amber-500 dark:text-amber-400 font-bold ml-2 rtl:ml-0 rtl:mr-2 ${isSelected ? "" : "hidden"}">✓</span>
         `;
 
         optionBtn.addEventListener("click", (e) => {
@@ -9756,20 +9761,18 @@ function initCustomDropdowns() {
 
           // Update active classes
           menu.querySelectorAll("button").forEach((btn) => {
-            btn.className =
-              "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer text-slate-200 hover:text-white hover:bg-white/5";
+            btn.className = UNSELECTED_OPT_CLASS;
             const check = btn.querySelector(".check-mark");
             if (check) check.classList.add("hidden");
           });
 
-          optionBtn.className =
-            "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer bg-amber-500/15 text-amber-400";
+          optionBtn.className = SELECTED_OPT_CLASS;
           const myCheck = optionBtn.querySelector(".check-mark");
           if (myCheck) myCheck.classList.remove("hidden");
 
           // Close menu
           menu.classList.add("hidden");
-          wrapper.classList.remove("z-30");
+          wrapper.classList.remove("z-[9999]", "is-open", "z-30");
           trigger.querySelector("svg")?.classList.remove("rotate-180");
         });
 
@@ -9787,13 +9790,14 @@ function initCustomDropdowns() {
       // Close any other open custom dropdowns first
       document.querySelectorAll(".custom-select-wrapper > div:not(.hidden)").forEach((openMenu) => {
         openMenu.classList.add("hidden");
-        openMenu.parentElement?.classList.remove("z-30");
+        openMenu.parentElement?.classList.remove("z-[9999]", "is-open", "z-30");
         const openSvg = openMenu.previousElementSibling?.querySelector("svg");
         if (openSvg) openSvg.classList.remove("rotate-180");
       });
 
       menu.classList.toggle("hidden", isOpen);
-      wrapper.classList.toggle("z-30", !isOpen);
+      wrapper.classList.toggle("z-[9999]", !isOpen);
+      wrapper.classList.toggle("is-open", !isOpen);
       trigger.querySelector("svg")?.classList.toggle("rotate-180", !isOpen);
     });
 
@@ -9806,11 +9810,7 @@ function initCustomDropdowns() {
       }
       menu.querySelectorAll("button").forEach((btn, idx) => {
         const isSel = select.selectedIndex === idx;
-        btn.className = `w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
-          isSel
-            ? "bg-amber-500/15 text-amber-400"
-            : "text-slate-200 hover:text-white hover:bg-white/5"
-        }`;
+        btn.className = isSel ? SELECTED_OPT_CLASS : UNSELECTED_OPT_CLASS;
         const check = btn.querySelector(".check-mark");
         if (check) check.classList.toggle("hidden", !isSel);
       });
@@ -9862,7 +9862,7 @@ function initCustomDropdowns() {
     document.addEventListener("click", () => {
       document.querySelectorAll(".custom-select-wrapper > div:not(.hidden)").forEach((menu) => {
         menu.classList.add("hidden");
-        menu.parentElement?.classList.remove("z-30");
+        menu.parentElement?.classList.remove("z-[9999]", "is-open", "z-30");
         const svg = menu.previousElementSibling?.querySelector("svg");
         if (svg) svg.classList.remove("rotate-180");
       });
@@ -9872,7 +9872,7 @@ function initCustomDropdowns() {
       if (e.key === "Escape") {
         document.querySelectorAll(".custom-select-wrapper > div:not(.hidden)").forEach((menu) => {
           menu.classList.add("hidden");
-          menu.parentElement?.classList.remove("z-30");
+          menu.parentElement?.classList.remove("z-[9999]", "is-open", "z-30");
           const svg = menu.previousElementSibling?.querySelector("svg");
           if (svg) svg.classList.remove("rotate-180");
         });
@@ -9893,6 +9893,11 @@ function initCustomDropdowns() {
  * Refreshes all active custom dropdown labels and menu items across pages
  */
 function refreshCustomDropdowns() {
+  const SELECTED_OPT_CLASS =
+    "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-semibold transition-colors cursor-pointer bg-amber-500/15 text-amber-600 dark:text-amber-400";
+  const UNSELECTED_OPT_CLASS =
+    "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-200 dark:hover:text-white dark:hover:bg-white/5";
+
   document.querySelectorAll(".custom-select-wrapper").forEach((wrapper) => {
     const select = wrapper.querySelector("select");
     const trigger = wrapper.querySelector("button[type='button']");
@@ -9911,11 +9916,7 @@ function refreshCustomDropdowns() {
         const textSpan = buttons[idx].querySelector(".opt-text") || buttons[idx].querySelector("span:not(.check-mark)");
         if (textSpan) textSpan.textContent = opt.text;
         const isSelected = select.selectedIndex === idx;
-        buttons[idx].className = `w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer ${
-          isSelected
-            ? "bg-amber-500/15 text-amber-400"
-            : "text-slate-200 hover:text-white hover:bg-white/5"
-        }`;
+        buttons[idx].className = isSelected ? SELECTED_OPT_CLASS : UNSELECTED_OPT_CLASS;
         const check = buttons[idx].querySelector(".check-mark");
         if (check) check.classList.toggle("hidden", !isSelected);
       }

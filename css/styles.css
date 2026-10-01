@@ -1408,11 +1408,13 @@ input[type="date"]::-webkit-date-and-time-value {
 }
 
 .custom-select-wrapper > div {
-  z-index: 50;
+  z-index: 9999 !important;
 }
 
-.custom-select-wrapper.z-30 {
-  z-index: 60 !important;
+.custom-select-wrapper.is-open,
+.custom-select-wrapper.z-30,
+.custom-select-wrapper.z-\[9999\] {
+  z-index: 9999 !important;
 }
 
 /* Strict grid column minmax(0, 1fr) constraint to prevent blowout on mobile */
@@ -3447,18 +3449,37 @@ input.phone-input-error {
 }
 
 /* ==========================================================================
-   Luxury Brand Customization for Flatpickr
+   Luxury Brand Customization for Flatpickr (7-column Grid Fix & Light/Dark Theme)
    ========================================================================== */
-.flatpickr-calendar,
-.flatpickr-calendar.open,
-.flatpickr-calendar.animate {
-  background: #090d16 !important;
-  border: 1px solid rgba(245, 158, 11, 0.25) !important;
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.15) !important;
+.flatpickr-calendar {
+  width: 325px !important;
+  min-width: 325px !important;
+  overflow: visible !important;
   border-radius: 1.25rem !important;
   padding: 12px !important;
   font-family: inherit !important;
   z-index: 999999 !important;
+  box-sizing: border-box !important;
+}
+
+.flatpickr-innerContainer,
+.flatpickr-rContainer,
+.flatpickr-days,
+.dayContainer {
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.flatpickr-day {
+  max-width: 40px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+  margin: 1px auto !important;
+  border-radius: 0.75rem !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
 }
 
 .flatpickr-input[readonly],
@@ -3466,24 +3487,8 @@ input.flatpickr-input {
   cursor: pointer !important;
 }
 
-.flatpickr-calendar.arrowTop:before,
-.flatpickr-calendar.arrowTop:after {
-  border-bottom-color: #090d16 !important;
-}
-
-.flatpickr-calendar.arrowBottom:before,
-.flatpickr-calendar.arrowBottom:after {
-  border-top-color: #090d16 !important;
-}
-
 .flatpickr-months {
   margin-bottom: 8px !important;
-}
-
-.flatpickr-months .flatpickr-month {
-  color: #fff !important;
-  font-weight: 700 !important;
-  fill: #fff !important;
 }
 
 .flatpickr-months .flatpickr-prev-month,
@@ -3511,26 +3516,125 @@ input.flatpickr-input {
   color: #f59e0b !important;
 }
 
-span.flatpickr-weekday {
+/* Light Mode Flatpickr: bg-white, text-slate-800, border-slate-200, shadow-2xl */
+html:not(.dark) .flatpickr-calendar,
+:root:not(.dark) .flatpickr-calendar {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+html:not(.dark) .flatpickr-calendar.arrowTop:before,
+html:not(.dark) .flatpickr-calendar.arrowTop:after,
+:root:not(.dark) .flatpickr-calendar.arrowTop:before,
+:root:not(.dark) .flatpickr-calendar.arrowTop:after {
+  border-bottom-color: #ffffff !important;
+}
+
+html:not(.dark) .flatpickr-calendar.arrowBottom:before,
+html:not(.dark) .flatpickr-calendar.arrowBottom:after,
+:root:not(.dark) .flatpickr-calendar.arrowBottom:before,
+:root:not(.dark) .flatpickr-calendar.arrowBottom:after {
+  border-top-color: #ffffff !important;
+}
+
+html:not(.dark) .flatpickr-months .flatpickr-month,
+:root:not(.dark) .flatpickr-months .flatpickr-month {
+  color: #1e293b !important;
+  fill: #1e293b !important;
+}
+
+html:not(.dark) .flatpickr-current-month .cur-month,
+:root:not(.dark) .flatpickr-current-month .cur-month {
+  color: #1e293b !important;
+}
+
+html:not(.dark) span.flatpickr-weekday,
+:root:not(.dark) span.flatpickr-weekday {
+  color: #64748b !important; /* slate-500 */
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+}
+
+html:not(.dark) .flatpickr-day,
+:root:not(.dark) .flatpickr-day {
+  color: #1e293b !important;
+}
+
+html:not(.dark) .flatpickr-day:hover,
+:root:not(.dark) .flatpickr-day:hover {
+  background: rgba(245, 158, 11, 0.15) !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+  color: #d97706 !important;
+}
+
+html:not(.dark) .flatpickr-day.disabled,
+:root:not(.dark) .flatpickr-day.disabled {
+  color: #cbd5e1 !important; /* slate-300 */
+}
+
+/* Dark Mode Flatpickr: bg-[#090d16], text-white, border-amber-500/30 */
+html.dark .flatpickr-calendar,
+:root.dark .flatpickr-calendar {
+  background: #090d16 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.15) !important;
+}
+
+html.dark .flatpickr-calendar.arrowTop:before,
+html.dark .flatpickr-calendar.arrowTop:after,
+:root.dark .flatpickr-calendar.arrowTop:before,
+:root.dark .flatpickr-calendar.arrowTop:after {
+  border-bottom-color: #090d16 !important;
+}
+
+html.dark .flatpickr-calendar.arrowBottom:before,
+html.dark .flatpickr-calendar.arrowBottom:after,
+:root.dark .flatpickr-calendar.arrowBottom:before,
+:root.dark .flatpickr-calendar.arrowBottom:after {
+  border-top-color: #090d16 !important;
+}
+
+html.dark .flatpickr-months .flatpickr-month,
+:root.dark .flatpickr-months .flatpickr-month {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+html.dark .flatpickr-current-month .cur-month,
+:root.dark .flatpickr-current-month .cur-month {
+  color: #ffffff !important;
+}
+
+html.dark span.flatpickr-weekday,
+:root.dark span.flatpickr-weekday {
   color: #94a3b8 !important; /* slate-400 */
   font-weight: 600 !important;
   font-size: 11px !important;
   text-transform: uppercase !important;
 }
 
-.flatpickr-day {
+html.dark .flatpickr-day,
+:root.dark .flatpickr-day {
   color: #f1f5f9 !important;
-  border-radius: 0.75rem !important;
-  font-weight: 500 !important;
-  transition: all 0.2s ease !important;
 }
 
-.flatpickr-day:hover {
+html.dark .flatpickr-day:hover,
+:root.dark .flatpickr-day:hover {
   background: rgba(245, 158, 11, 0.15) !important;
   border-color: rgba(245, 158, 11, 0.4) !important;
   color: #fbbf24 !important;
 }
 
+html.dark .flatpickr-day.disabled,
+:root.dark .flatpickr-day.disabled {
+  color: #334155 !important;
+}
+
+/* Today & Selection Highlights */
 .flatpickr-day.today {
   border-color: #f59e0b !important;
   color: #fbbf24 !important;
@@ -3549,11 +3653,7 @@ span.flatpickr-weekday {
 .flatpickr-day.inRange {
   background: rgba(245, 158, 11, 0.15) !important;
   box-shadow: -5px 0 0 rgba(245, 158, 11, 0.15), 5px 0 0 rgba(245, 158, 11, 0.15) !important;
-  color: #fde68a !important;
-}
-
-.flatpickr-day.disabled {
-  color: #334155 !important;
+  color: #f59e0b !important;
 }
 
 /* Star Plus Golden Amber Brand Button */

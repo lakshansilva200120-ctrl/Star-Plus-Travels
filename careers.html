@@ -60,27 +60,24 @@
 
       // Dynamic System Theme Listener (Live OS sync without page refresh)
       try {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        function handleSystemThemeChange(e) {
-          const savedTheme = localStorage.getItem('starplus_theme_mode') || localStorage.getItem('theme');
-          if (!savedTheme || savedTheme === 'system') {
-            if (e.matches) {
-              document.documentElement.classList.add('dark');
-              document.documentElement.classList.remove('light');
-            } else {
-              document.documentElement.classList.remove('dark');
-              document.documentElement.classList.add('light');
-            }
+        const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        function syncTheme(e) {
+          const userPref = localStorage.getItem('theme') || localStorage.getItem('starplus_theme_mode');
+          if (!userPref || userPref === 'system') {
+            const isDark = e && e.matches !== undefined ? e.matches : colorSchemeQuery.matches;
+            document.documentElement.classList.toggle('dark', isDark);
+            document.documentElement.classList.toggle('light', !isDark);
             if (typeof updateBrandLogoTheme === 'function') {
               updateBrandLogoTheme();
             }
           }
         }
-        if (mediaQuery.addEventListener) {
-          mediaQuery.addEventListener('change', handleSystemThemeChange);
-        } else if (mediaQuery.addListener) {
-          mediaQuery.addListener(handleSystemThemeChange);
+        if (colorSchemeQuery.addEventListener) {
+          colorSchemeQuery.addEventListener('change', syncTheme);
+        } else if (colorSchemeQuery.addListener) {
+          colorSchemeQuery.addListener(syncTheme);
         }
+        syncTheme(colorSchemeQuery);
       } catch (e) {}
 
       // Prevent refresh jump to anchor hashes
