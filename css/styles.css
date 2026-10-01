@@ -1382,10 +1382,6 @@ input[type="date"]::-webkit-date-and-time-value {
   margin: 0 !important;
 }
 
-#heroSearchForm .custom-select-wrapper > button {
-  border-radius: 0.75rem !important;
-}
-
 #heroSearchForm button[type="submit"] {
   box-sizing: border-box !important;
   width: 100% !important;
@@ -1394,7 +1390,9 @@ input[type="date"]::-webkit-date-and-time-value {
   height: 46px !important;
 }
 
-/* Global Luxury Custom Select Pickers */
+/* ==========================================================================
+   Global Luxury Custom Select Pickers & System Color Mode Adaptation
+   ========================================================================== */
 .custom-select-wrapper {
   position: relative;
   width: 100%;
@@ -1415,6 +1413,317 @@ input[type="date"]::-webkit-date-and-time-value {
 .custom-select-wrapper.z-30,
 .custom-select-wrapper.z-\[9999\] {
   z-index: 9999 !important;
+}
+
+/* 1. Default & Light Mode Custom Select Trigger Button */
+.custom-select-wrapper > button,
+.custom-select-trigger {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+  transition: all 0.2s ease !important;
+}
+
+.custom-select-wrapper > button .custom-select-label,
+.custom-select-trigger .custom-select-label {
+  color: #0f172a !important;
+}
+
+.custom-select-wrapper > button svg,
+.custom-select-trigger svg {
+  color: #64748b !important;
+  transition: transform 0.2s ease, color 0.2s ease !important;
+}
+
+.custom-select-wrapper > button:hover,
+.custom-select-trigger:hover,
+.custom-select-wrapper > button:focus,
+.custom-select-trigger:focus,
+.custom-select-wrapper.is-open > button {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2) !important;
+}
+
+.custom-select-wrapper > button:hover svg,
+.custom-select-trigger:hover svg {
+  color: #f59e0b !important;
+}
+
+/* 2. Default & Light Mode Custom Select Menu Panel */
+.custom-select-wrapper > div,
+.custom-select-menu {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 3. Default & Light Mode Custom Select Option Items */
+.custom-select-wrapper > div button,
+.custom-select-menu button {
+  color: #334155 !important;
+  background-color: transparent !important;
+  transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+.custom-select-wrapper > div button:hover,
+.custom-select-menu button:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.custom-select-wrapper > div button.bg-amber-500\/15,
+.custom-select-wrapper > div button.is-selected,
+.custom-select-menu button.is-selected {
+  background-color: rgba(245, 158, 11, 0.14) !important;
+  color: #b45309 !important;
+  font-weight: 700 !important;
+}
+
+.custom-select-wrapper .check-mark {
+  color: #d97706 !important;
+}
+
+/* 4. Dark Mode & System Preference Dark Mode: Custom Select Pickers */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .custom-select-wrapper > button,
+  :root:not(.light) .custom-select-trigger {
+    background-color: #090d16 !important;
+    color: #f8fafc !important;
+    border: 1px solid rgba(245, 158, 11, 0.25) !important;
+  }
+
+  :root:not(.light) .custom-select-wrapper > button .custom-select-label,
+  :root:not(.light) .custom-select-trigger .custom-select-label {
+    color: #f8fafc !important;
+  }
+
+  :root:not(.light) .custom-select-wrapper > button svg,
+  :root:not(.light) .custom-select-trigger svg {
+    color: #94a3b8 !important;
+  }
+
+  :root:not(.light) .custom-select-wrapper > button:hover svg,
+  :root:not(.light) .custom-select-trigger:hover svg {
+    color: #fbbf24 !important;
+  }
+
+  :root:not(.light) .custom-select-wrapper > div,
+  :root:not(.light) .custom-select-menu {
+    background-color: #090d16 !important;
+    border: 1px solid rgba(245, 158, 11, 0.25) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 25px rgba(245, 158, 11, 0.15) !important;
+  }
+
+  :root:not(.light) .custom-select-wrapper > div button,
+  :root:not(.light) .custom-select-menu button {
+    color: #cbd5e1 !important;
+    background-color: transparent !important;
+  }
+
+  :root:not(.light) .custom-select-wrapper > div button:hover,
+  :root:not(.light) .custom-select-menu button:hover {
+    background-color: rgba(255, 255, 255, 0.07) !important;
+    color: #ffffff !important;
+  }
+
+  :root:not(.light) .custom-select-wrapper > div button.bg-amber-500\/15,
+  :root:not(.light) .custom-select-wrapper > div button.is-selected,
+  :root:not(.light) .custom-select-menu button.is-selected {
+    background-color: rgba(245, 158, 11, 0.22) !important;
+    color: #fbbf24 !important;
+    font-weight: 700 !important;
+  }
+
+  :root:not(.light) .custom-select-wrapper .check-mark {
+    color: #fbbf24 !important;
+  }
+}
+
+/* 5. Explicit HTML Dark Mode Class Override */
+html.dark .custom-select-wrapper > button,
+html.dark .custom-select-trigger,
+:root.dark .custom-select-wrapper > button,
+:root.dark .custom-select-trigger {
+  background-color: #090d16 !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+}
+
+html.dark .custom-select-wrapper > button .custom-select-label,
+html.dark .custom-select-trigger .custom-select-label,
+:root.dark .custom-select-wrapper > button .custom-select-label,
+:root.dark .custom-select-trigger .custom-select-label {
+  color: #f8fafc !important;
+}
+
+html.dark .custom-select-wrapper > button svg,
+html.dark .custom-select-trigger svg,
+:root.dark .custom-select-wrapper > button svg,
+:root.dark .custom-select-trigger svg {
+  color: #94a3b8 !important;
+}
+
+html.dark .custom-select-wrapper > button:hover svg,
+html.dark .custom-select-trigger:hover svg,
+:root.dark .custom-select-wrapper > button:hover svg,
+:root.dark .custom-select-trigger:hover svg {
+  color: #fbbf24 !important;
+}
+
+html.dark .custom-select-wrapper > div,
+html.dark .custom-select-menu,
+:root.dark .custom-select-wrapper > div,
+:root.dark .custom-select-menu {
+  background-color: #090d16 !important;
+  border: 1px solid rgba(245, 158, 11, 0.25) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75), 0 0 25px rgba(245, 158, 11, 0.15) !important;
+}
+
+html.dark .custom-select-wrapper > div button,
+html.dark .custom-select-menu button,
+:root.dark .custom-select-wrapper > div button,
+:root.dark .custom-select-menu button {
+  color: #cbd5e1 !important;
+  background-color: transparent !important;
+}
+
+html.dark .custom-select-wrapper > div button:hover,
+html.dark .custom-select-menu button:hover,
+:root.dark .custom-select-wrapper > div button:hover,
+:root.dark .custom-select-menu button:hover {
+  background-color: rgba(255, 255, 255, 0.07) !important;
+  color: #ffffff !important;
+}
+
+html.dark .custom-select-wrapper > div button.bg-amber-500\/15,
+html.dark .custom-select-wrapper > div button.is-selected,
+html.dark .custom-select-menu button.is-selected,
+:root.dark .custom-select-wrapper > div button.bg-amber-500\/15,
+:root.dark .custom-select-wrapper > div button.is-selected,
+:root.dark .custom-select-menu button.is-selected {
+  background-color: rgba(245, 158, 11, 0.22) !important;
+  color: #fbbf24 !important;
+  font-weight: 700 !important;
+}
+
+html.dark .custom-select-wrapper .check-mark,
+:root.dark .custom-select-wrapper .check-mark {
+  color: #fbbf24 !important;
+}
+
+/* 6. Explicit HTML Light Mode Class Override */
+html.light .custom-select-wrapper > button,
+html.light .custom-select-trigger,
+:root.light .custom-select-wrapper > button,
+:root.light .custom-select-trigger {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+html.light .custom-select-wrapper > button .custom-select-label,
+html.light .custom-select-trigger .custom-select-label,
+:root.light .custom-select-wrapper > button .custom-select-label,
+:root.light .custom-select-trigger .custom-select-label {
+  color: #0f172a !important;
+}
+
+html.light .custom-select-wrapper > button svg,
+html.light .custom-select-trigger svg,
+:root.light .custom-select-wrapper > button svg,
+:root.light .custom-select-trigger svg {
+  color: #64748b !important;
+}
+
+html.light .custom-select-wrapper > div,
+html.light .custom-select-menu,
+:root.light .custom-select-wrapper > div,
+:root.light .custom-select-menu {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light .custom-select-wrapper > div button,
+html.light .custom-select-menu button,
+:root.light .custom-select-wrapper > div button,
+:root.light .custom-select-menu button {
+  color: #334155 !important;
+  background-color: transparent !important;
+}
+
+html.light .custom-select-wrapper > div button:hover,
+html.light .custom-select-menu button:hover,
+:root.light .custom-select-wrapper > div button:hover,
+:root.light .custom-select-menu button:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+html.light .custom-select-wrapper > div button.bg-amber-500\/15,
+html.light .custom-select-wrapper > div button.is-selected,
+html.light .custom-select-menu button.is-selected,
+:root.light .custom-select-wrapper > div button.bg-amber-500\/15,
+:root.light .custom-select-wrapper > div button.is-selected,
+:root.light .custom-select-menu button.is-selected {
+  background-color: rgba(245, 158, 11, 0.14) !important;
+  color: #b45309 !important;
+  font-weight: 700 !important;
+}
+
+html.light .custom-select-wrapper .check-mark,
+:root.light .custom-select-wrapper .check-mark {
+  color: #d97706 !important;
+}
+
+/* 7. Hero Search Form Harmonization with .glass-input in Both Light and Dark */
+#heroSearchForm .custom-select-wrapper > button {
+  background: var(--theme-bg-input) !important;
+  border: 1px solid var(--theme-border-input) !important;
+  color: var(--theme-text-primary) !important;
+  border-radius: 0.75rem !important;
+  padding: 0.625rem 0.875rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  box-sizing: border-box !important;
+  height: 46px !important;
+  min-height: 46px !important;
+}
+
+#heroSearchForm .custom-select-wrapper > button .custom-select-label {
+  color: var(--theme-text-primary) !important;
+}
+
+#heroSearchForm .custom-select-wrapper > button svg {
+  color: var(--theme-text-muted) !important;
+}
+
+#heroSearchForm .custom-select-wrapper > button:hover,
+#heroSearchForm .custom-select-wrapper > button:focus,
+#heroSearchForm .custom-select-wrapper.is-open > button {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2) !important;
+}
+
+#heroSearchForm .custom-select-wrapper > div {
+  background: var(--theme-bg-surface) !important;
+  border: 1px solid var(--theme-border-card) !important;
+}
+
+/* 8. Booking Modal Context Rules */
+#bookingModal .custom-select-wrapper > button {
+  background-color: var(--theme-bg-input) !important;
+  color: var(--theme-text-primary) !important;
+  border-color: var(--theme-border-input) !important;
+}
+
+#bookingModal .custom-select-wrapper > button .custom-select-label {
+  color: var(--theme-text-primary) !important;
+}
+
+#bookingModal .custom-select-wrapper > div {
+  background-color: var(--theme-bg-surface) !important;
+  border-color: var(--theme-border-card) !important;
 }
 
 /* Strict grid column minmax(0, 1fr) constraint to prevent blowout on mobile */
@@ -2387,19 +2696,43 @@ html.light .cat-chip.active i {
   box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
 }
 
+select {
+  background-color: var(--theme-bg-input) !important;
+  color: var(--theme-text-primary) !important;
+  border: 1px solid var(--theme-border-input) !important;
+  color-scheme: light dark;
+}
+
+html.dark select,
+:root:not(.light) select {
+  background-color: #090d16 !important;
+  color: #f8fafc !important;
+  border-color: rgba(245, 158, 11, 0.25) !important;
+  color-scheme: dark !important;
+}
+
+html.light select,
+:root:not(.dark) select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+  color-scheme: light !important;
+}
+
 select option {
   padding: 10px;
 }
 
 html.dark select option,
 :root:not(.light) select option {
-  background-color: #0b192c;
-  color: #f8fafc;
+  background-color: #090d16 !important;
+  color: #f8fafc !important;
 }
 
-html.light select option {
-  background-color: #ffffff;
-  color: #0f172a;
+html.light select option,
+:root:not(.dark) select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
 }
 
 /* Toast container */
@@ -3616,23 +3949,123 @@ input.flatpickr-input {
   padding: 0 !important;
 }
 
-/* 3. Dark Mode Theme (Default / Root / .dark) */
+/* 3. Light Mode Theme (Default / Root / .light) */
 .flatpickr-calendar,
 .flatpickr-months,
-.flatpickr-month {
-  background: #090d16 !important;
-  border-color: rgba(245, 158, 11, 0.25) !important;
-  color: #f8fafc !important;
+.flatpickr-month,
+html:not(.dark) .flatpickr-calendar,
+html:not(.dark) .flatpickr-months,
+html:not(.dark) .flatpickr-month,
+:root:not(.dark) .flatpickr-calendar,
+:root:not(.dark) .flatpickr-months,
+:root:not(.dark) .flatpickr-month,
+html.light .flatpickr-calendar,
+html.light .flatpickr-months,
+html.light .flatpickr-month {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
 }
 
 .flatpickr-weekdays,
-span.flatpickr-weekday {
-  background: #131b2e !important;
-  color: #94a3b8 !important;
+span.flatpickr-weekday,
+html:not(.dark) .flatpickr-weekdays,
+html:not(.dark) span.flatpickr-weekday,
+:root:not(.dark) .flatpickr-weekdays,
+:root:not(.dark) span.flatpickr-weekday,
+html.light .flatpickr-weekdays,
+html.light span.flatpickr-weekday {
+  background: #f1f5f9 !important;
+  color: #64748b !important;
 }
 
-.flatpickr-day {
-  color: #f8fafc !important;
+.flatpickr-day,
+html:not(.dark) .flatpickr-day,
+:root:not(.dark) .flatpickr-day,
+html.light .flatpickr-day {
+  color: #0f172a !important;
+}
+
+.flatpickr-day:hover,
+html:not(.dark) .flatpickr-day:hover,
+:root:not(.dark) .flatpickr-day:hover,
+html.light .flatpickr-day:hover {
+  background: rgba(245, 158, 11, 0.15) !important;
+  border-color: rgba(245, 158, 11, 0.4) !important;
+  color: #d97706 !important;
+}
+
+.flatpickr-day.disabled,
+html:not(.dark) .flatpickr-day.disabled,
+:root:not(.dark) .flatpickr-day.disabled,
+html.light .flatpickr-day.disabled {
+  color: #cbd5e1 !important; /* slate-300 */
+}
+
+.flatpickr-calendar.arrowTop:before,
+.flatpickr-calendar.arrowTop:after,
+html:not(.dark) .flatpickr-calendar.arrowTop:before,
+html:not(.dark) .flatpickr-calendar.arrowTop:after,
+:root:not(.dark) .flatpickr-calendar.arrowTop:before,
+:root:not(.dark) .flatpickr-calendar.arrowTop:after,
+html.light .flatpickr-calendar.arrowTop:before,
+html.light .flatpickr-calendar.arrowTop:after {
+  border-bottom-color: #ffffff !important;
+}
+
+.flatpickr-calendar.arrowBottom:before,
+.flatpickr-calendar.arrowBottom:after,
+html:not(.dark) .flatpickr-calendar.arrowBottom:before,
+html:not(.dark) .flatpickr-calendar.arrowBottom:after,
+:root:not(.dark) .flatpickr-calendar.arrowBottom:before,
+:root:not(.dark) .flatpickr-calendar.arrowBottom:after,
+html.light .flatpickr-calendar.arrowBottom:before,
+html.light .flatpickr-calendar.arrowBottom:after {
+  border-top-color: #ffffff !important;
+}
+
+/* 4. Dark Mode Theme (Automatic OS System Preference & Explicit .dark Class) */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .flatpickr-calendar,
+  :root:not(.light) .flatpickr-months,
+  :root:not(.light) .flatpickr-month {
+    background: #090d16 !important;
+    border: 1px solid rgba(245, 158, 11, 0.25) !important;
+    color: #f8fafc !important;
+    fill: #f8fafc !important;
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 25px rgba(245, 158, 11, 0.15) !important;
+  }
+
+  :root:not(.light) .flatpickr-weekdays,
+  :root:not(.light) span.flatpickr-weekday {
+    background: #131b2e !important;
+    color: #94a3b8 !important;
+  }
+
+  :root:not(.light) .flatpickr-day {
+    color: #f8fafc !important;
+  }
+
+  :root:not(.light) .flatpickr-day:hover {
+    background: rgba(245, 158, 11, 0.15) !important;
+    border-color: rgba(245, 158, 11, 0.4) !important;
+    color: #fbbf24 !important;
+  }
+
+  :root:not(.light) .flatpickr-day.disabled {
+    color: #334155 !important;
+  }
+
+  :root:not(.light) .flatpickr-calendar.arrowTop:before,
+  :root:not(.light) .flatpickr-calendar.arrowTop:after {
+    border-bottom-color: #090d16 !important;
+  }
+
+  :root:not(.light) .flatpickr-calendar.arrowBottom:before,
+  :root:not(.light) .flatpickr-calendar.arrowBottom:after {
+    border-top-color: #090d16 !important;
+  }
 }
 
 html.dark .flatpickr-calendar,
@@ -3676,67 +4109,18 @@ html.dark .flatpickr-day.disabled,
   color: #334155 !important;
 }
 
-/* Arrows for Dark Mode Calendar Popover */
-.flatpickr-calendar.arrowTop:before,
-.flatpickr-calendar.arrowTop:after {
+html.dark .flatpickr-calendar.arrowTop:before,
+html.dark .flatpickr-calendar.arrowTop:after,
+:root.dark .flatpickr-calendar.arrowTop:before,
+:root.dark .flatpickr-calendar.arrowTop:after {
   border-bottom-color: #090d16 !important;
 }
 
-.flatpickr-calendar.arrowBottom:before,
-.flatpickr-calendar.arrowBottom:after {
+html.dark .flatpickr-calendar.arrowBottom:before,
+html.dark .flatpickr-calendar.arrowBottom:after,
+:root.dark .flatpickr-calendar.arrowBottom:before,
+:root.dark .flatpickr-calendar.arrowBottom:after {
   border-top-color: #090d16 !important;
-}
-
-/* 3. Light Mode Theme */
-html:not(.dark) .flatpickr-calendar,
-html:not(.dark) .flatpickr-months,
-html:not(.dark) .flatpickr-month,
-:root:not(.dark) .flatpickr-calendar,
-:root:not(.dark) .flatpickr-months,
-:root:not(.dark) .flatpickr-month {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #0f172a !important;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
-}
-
-html:not(.dark) .flatpickr-weekdays,
-html:not(.dark) span.flatpickr-weekday,
-:root:not(.dark) .flatpickr-weekdays,
-:root:not(.dark) span.flatpickr-weekday {
-  background: #f1f5f9 !important;
-  color: #64748b !important;
-}
-
-html:not(.dark) .flatpickr-day,
-:root:not(.dark) .flatpickr-day {
-  color: #0f172a !important;
-}
-
-html:not(.dark) .flatpickr-day:hover,
-:root:not(.dark) .flatpickr-day:hover {
-  background: rgba(245, 158, 11, 0.15) !important;
-  border-color: rgba(245, 158, 11, 0.4) !important;
-  color: #d97706 !important;
-}
-
-html:not(.dark) .flatpickr-day.disabled,
-:root:not(.dark) .flatpickr-day.disabled {
-  color: #cbd5e1 !important; /* slate-300 */
-}
-
-html:not(.dark) .flatpickr-calendar.arrowTop:before,
-html:not(.dark) .flatpickr-calendar.arrowTop:after,
-:root:not(.dark) .flatpickr-calendar.arrowTop:before,
-:root:not(.dark) .flatpickr-calendar.arrowTop:after {
-  border-bottom-color: #ffffff !important;
-}
-
-html:not(.dark) .flatpickr-calendar.arrowBottom:before,
-html:not(.dark) .flatpickr-calendar.arrowBottom:after,
-:root:not(.dark) .flatpickr-calendar.arrowBottom:before,
-:root:not(.dark) .flatpickr-calendar.arrowBottom:after {
-  border-top-color: #ffffff !important;
 }
 
 /* Today & Selection Highlights (Shared) */

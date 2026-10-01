@@ -4196,6 +4196,11 @@ function applyTheme(mode = getThemeMode(), save = false) {
   if (window.StarPlusSeason && typeof window.StarPlusSeason.refresh === 'function') {
     window.StarPlusSeason.refresh();
   }
+
+  // Refresh custom dropdowns to sync theme states
+  if (typeof refreshCustomDropdowns === 'function') {
+    refreshCustomDropdowns();
+  }
 }
 
 function toggleTheme() {
@@ -4278,6 +4283,9 @@ window.updateBrandLogoTheme = updateBrandLogoTheme;
         applyTheme('system', false);
       } else if (typeof updateBrandLogoTheme === 'function') {
         updateBrandLogoTheme();
+      }
+      if (typeof refreshCustomDropdowns === 'function') {
+        refreshCustomDropdowns();
       }
     }
   }
@@ -9783,7 +9791,7 @@ function initDatePicker() {
         dateFormat: "d M, Y",
         minDate: "today",
         disableMobile: true,
-        theme: "dark"
+        animate: true
       });
     }
   } catch (e) {}
@@ -9819,9 +9827,9 @@ function initCustomDropdowns() {
     if (!nativeSelects || nativeSelects.length === 0) return;
 
     const SELECTED_OPT_CLASS =
-      "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-semibold transition-colors cursor-pointer bg-amber-500/15 text-amber-600 dark:text-amber-400";
+      "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-semibold transition-colors cursor-pointer custom-select-option is-selected bg-amber-500/15";
     const UNSELECTED_OPT_CLASS =
-      "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-200 dark:hover:text-white dark:hover:bg-white/5";
+      "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer custom-select-option";
 
     nativeSelects.forEach((select) => {
       try {
@@ -9855,10 +9863,10 @@ function initCustomDropdowns() {
         const trigger = document.createElement("button");
         trigger.type = "button";
         trigger.className =
-          "w-full flex items-center justify-between px-4 py-3 rounded-2xl bg-white text-slate-800 border border-slate-300 dark:bg-slate-900 dark:text-white dark:border-slate-700 hover:border-amber-500 hover:ring-2 hover:ring-amber-500/20 dark:hover:border-amber-400 dark:hover:ring-amber-400/20 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 dark:focus:border-amber-400 dark:focus:ring-amber-400/20 text-left rtl:text-right transition-all duration-200 group shadow-sm cursor-pointer";
+          "w-full flex items-center justify-between px-4 py-3 rounded-2xl custom-select-trigger hover:border-amber-500 hover:ring-2 hover:ring-amber-500/20 dark:hover:border-amber-400 dark:hover:ring-amber-400/20 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 dark:focus:border-amber-400 dark:focus:ring-amber-400/20 text-left rtl:text-right transition-all duration-200 group shadow-sm cursor-pointer";
         trigger.innerHTML = `
-          <span class="custom-select-label text-xs sm:text-sm font-semibold text-slate-800 dark:text-white tracking-wide truncate">${initialText}</span>
-          <svg class="w-4 h-4 text-slate-500 dark:text-slate-400 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-transform duration-200 shrink-0 ml-2 rtl:ml-0 rtl:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="custom-select-label text-xs sm:text-sm font-semibold tracking-wide truncate">${initialText}</span>
+          <svg class="w-4 h-4 group-hover:text-amber-500 dark:group-hover:text-amber-400 transition-transform duration-200 shrink-0 ml-2 rtl:ml-0 rtl:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
         `;
@@ -9866,7 +9874,7 @@ function initCustomDropdowns() {
         // 3. Dropdown Menu Panel (High z-index z-[9999], rounded-2xl, shadow-2xl, backdrop-blur-md, light/dark borders)
         const menu = document.createElement("div");
         menu.className =
-          "hidden absolute left-0 right-0 top-full mt-2 z-[9999] rounded-2xl bg-white border border-slate-200 dark:bg-[#090d16] dark:border-amber-500/25 p-1.5 shadow-2xl backdrop-blur-md max-h-60 overflow-y-auto";
+          "hidden absolute left-0 right-0 top-full mt-2 z-[9999] rounded-2xl custom-select-menu p-1.5 shadow-2xl backdrop-blur-md max-h-60 overflow-y-auto";
 
         // 4. Populate Custom Options Function
         function renderCustomOptions() {
@@ -10035,9 +10043,9 @@ function initCustomDropdowns() {
 function refreshCustomDropdowns() {
   try {
     const SELECTED_OPT_CLASS =
-      "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-semibold transition-colors cursor-pointer bg-amber-500/15 text-amber-600 dark:text-amber-400";
+      "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-semibold transition-colors cursor-pointer custom-select-option is-selected bg-amber-500/15";
     const UNSELECTED_OPT_CLASS =
-      "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer text-slate-700 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-200 dark:hover:text-white dark:hover:bg-white/5";
+      "w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left rtl:text-right text-xs sm:text-sm font-medium transition-colors cursor-pointer custom-select-option";
 
     document.querySelectorAll(".custom-select-wrapper").forEach((wrapper) => {
       try {
