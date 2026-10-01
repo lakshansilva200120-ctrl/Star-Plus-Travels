@@ -4093,7 +4093,7 @@ function isSystemDarkMode() {
 
 function getThemeMode() {
   try {
-    const mode = localStorage.getItem('starplus_theme_mode');
+    const mode = localStorage.getItem('starplus_theme_mode') || localStorage.getItem('theme');
     if (mode === 'light' || mode === 'dark' || mode === 'system') {
       return mode;
     }
@@ -4124,8 +4124,10 @@ function applyTheme(mode = getThemeMode(), save = false) {
     try {
       if (mode === 'system') {
         localStorage.setItem('starplus_theme_mode', 'system');
+        localStorage.setItem('theme', 'system');
       } else {
         localStorage.setItem('starplus_theme_mode', mode);
+        localStorage.setItem('theme', mode);
       }
       // Purge legacy flat keys
       localStorage.removeItem('starplus_theme');
@@ -4252,10 +4254,22 @@ window.updateBrandLogoTheme = updateBrandLogoTheme;
   if (!window.matchMedia) return;
 
   const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-  const handleSystemThemeChange = () => {
-    const currentMode = getThemeMode();
-    if (currentMode === 'system') {
-      applyTheme('system', false);
+  const handleSystemThemeChange = (e) => {
+    const savedTheme = localStorage.getItem('starplus_theme_mode') || localStorage.getItem('theme');
+    if (!savedTheme || savedTheme === 'system') {
+      const isDark = e ? e.matches : darkModeQuery.matches;
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      }
+      if (typeof applyTheme === 'function') {
+        applyTheme('system', false);
+      } else if (typeof updateBrandLogoTheme === 'function') {
+        updateBrandLogoTheme();
+      }
     }
   };
 

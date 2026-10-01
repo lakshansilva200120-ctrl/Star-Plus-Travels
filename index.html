@@ -93,7 +93,7 @@
         }
       } catch (e) {}
       try {
-        const mode = localStorage.getItem('starplus_theme_mode') || 'system';
+        const mode = localStorage.getItem('starplus_theme_mode') || localStorage.getItem('theme') || 'system';
         const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         let isDark;
         if (mode === 'dark') {
@@ -110,6 +110,31 @@
         } else {
           document.documentElement.classList.remove('dark');
           document.documentElement.classList.add('light');
+        }
+      } catch (e) {}
+
+      // Dynamic System Theme Listener (Live OS sync without page refresh)
+      try {
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        function handleSystemThemeChange(e) {
+          const savedTheme = localStorage.getItem('starplus_theme_mode') || localStorage.getItem('theme');
+          if (!savedTheme || savedTheme === 'system') {
+            if (e.matches) {
+              document.documentElement.classList.add('dark');
+              document.documentElement.classList.remove('light');
+            } else {
+              document.documentElement.classList.remove('dark');
+              document.documentElement.classList.add('light');
+            }
+            if (typeof updateBrandLogoTheme === 'function') {
+              updateBrandLogoTheme();
+            }
+          }
+        }
+        if (mediaQuery.addEventListener) {
+          mediaQuery.addEventListener('change', handleSystemThemeChange);
+        } else if (mediaQuery.addListener) {
+          mediaQuery.addListener(handleSystemThemeChange);
         }
       } catch (e) {}
 
