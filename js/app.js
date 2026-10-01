@@ -10528,5 +10528,108 @@ window.addEventListener('load', () => {
   window.initSeasonalFestivals = initSeasonalFestivals;
 })();
 
+// ============================================================================
+// Dwell / High-Intent WhatsApp Modal Controller
+// ============================================================================
+function initDwellModal() {
+  const modal = document.getElementById("dwellModalOverlay");
+  if (!modal) return;
+
+  const closeBtn = document.getElementById("dwellModalClose");
+  const waBtn = document.getElementById("dwellWhatsAppBtn");
+  const STORAGE_KEY = "starplus_dwell_modal_seen";
+
+  function isDismissed() {
+    try {
+      return sessionStorage.getItem(STORAGE_KEY) === "true";
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function setDismissed() {
+    try {
+      sessionStorage.setItem(STORAGE_KEY, "true");
+    } catch (e) {}
+  }
+
+  function isOtherModalOpen() {
+    const activeModals = document.querySelectorAll(
+      "#bookingModal:not(.hidden), #itineraryModal:not(.hidden), #countryPackagesModal:not(.hidden), #quoteModal:not(.hidden)"
+    );
+    return activeModals.length > 0;
+  }
+
+  function openDwellModal() {
+    if (isDismissed() || isOtherModalOpen()) return;
+    modal.classList.remove("hidden");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    setDismissed();
+  }
+
+  function closeDwellModal() {
+    modal.classList.add("hidden");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    setDismissed();
+  }
+
+  window.openDwellModal = openDwellModal;
+  window.closeDwellModal = closeDwellModal;
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeDwellModal();
+    });
+  }
+
+  if (waBtn) {
+    waBtn.addEventListener("click", () => {
+      setDismissed();
+      modal.classList.add("hidden");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    });
+  }
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeDwellModal();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+      closeDwellModal();
+    }
+  });
+
+  // Dwell trigger (45 seconds)
+  setTimeout(() => {
+    openDwellModal();
+  }, 45000);
+
+  // Desktop exit-intent trigger
+  function onMouseLeave(e) {
+    if (e.clientY <= 0 && !isDismissed()) {
+      openDwellModal();
+      document.removeEventListener("mouseleave", onMouseLeave);
+    }
+  }
+
+  if (window.innerWidth >= 768) {
+    document.addEventListener("mouseleave", onMouseLeave);
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initDwellModal);
+} else {
+  initDwellModal();
+}
+window.initDwellModal = initDwellModal;
+
 
 

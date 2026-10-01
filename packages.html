@@ -1058,5 +1058,37 @@
   <script src="js/i18n.js"></script>
   <script src="js/app.js?v=6.3.0"></script>
   <script src="js/seasonal-theme.js?v=5.3.0"></script>
+
+  <!-- Dwell / High-Intent WhatsApp Modal -->
+  <div id="dwellModalOverlay" class="dwell-modal-overlay hidden" aria-hidden="true" role="dialog">
+    <div class="dwell-modal-card">
+      <button id="dwellModalClose" class="dwell-modal-close" aria-label="Close dialog">&times;</button>
+      
+      <div class="dwell-badge">
+        <span>👋</span> NEED A HAND?
+      </div>
+      
+      <h3 class="dwell-title">
+        You’ve spent longer looking than it takes to get your trip planned.
+      </h3>
+      
+      <p class="dwell-subtext">
+        Skip the forms. Tell our travel specialists where you want to go and we’ll build your custom itinerary on WhatsApp in 5 minutes.
+      </p>
+      
+      <a 
+        id="dwellWhatsAppBtn"
+        href="https://wa.me/971527582293?text=Hi%20Starplus%20Travels,%20I'm%20on%20your%20website%20and%20need%20help%20planning%20a%20trip%20/%20visa." 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="dwell-btn-whatsapp"
+      >
+        <svg class="dwell-wa-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.075-1.922-.455-1.503-.618-2.477-2.148-2.552-2.248-.075-.101-.613-.815-.613-1.554 0-.74.388-1.103.526-1.253.138-.15.301-.188.402-.188.101 0 .202.001.29.006.094.004.22-.036.344.263.125.3.427 1.042.464 1.118.038.075.063.163.013.263-.05.1-.075.163-.15.25-.075.088-.158.196-.226.263-.075.075-.153.157-.066.307.088.15.389.641.834 1.037.572.509 1.054.667 1.205.742.15.075.238.063.326-.038.088-.1.376-.438.476-.588.1-.15.2-.125.338-.075.138.05.877.413 1.028.488.15.075.25.113.288.175.038.063.038.363-.106.768z"/>
+        </svg>
+        Chat on WhatsApp Now
+      </a>
+    </div>
+  </div>
 </body>
 </html>
