@@ -3894,47 +3894,95 @@ html:not(.dark) .flatpickr-calendar {
   justify-content: center !important;
 }
 
-/* Seamless "Month Year" Text (No boxes, no borders) */
+/* Header text container */
 .flatpickr-current-month {
   position: static !important;
   width: auto !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 6px !important;
+  gap: 4px !important;
+  font-size: 1.1rem !important;
   padding: 0 !important;
-  font-size: 1.05rem !important;
-  font-weight: 700 !important;
-  color: #f8fafc !important;
+  pointer-events: auto !important;
   border: none !important;
   background: transparent !important;
 }
-html:not(.dark) .flatpickr-current-month {
-  color: #0f172a !important;
-}
 
-.flatpickr-current-month .cur-month {
+/* Month dropdown - invisible native select styling */
+.flatpickr-current-month select.flatpickr-monthDropdown-months {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
   font-weight: 700 !important;
+  font-size: 1.1rem !important;
+  color: #ffffff !important;
+  cursor: pointer !important;
+  padding: 2px 6px !important;
+  border-radius: 6px !important;
   margin: 0 !important;
 }
+.flatpickr-current-month select.flatpickr-monthDropdown-months:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+.flatpickr-current-month select.flatpickr-monthDropdown-months option {
+  background-color: #0b1120 !important;
+  color: #f8fafc !important;
+  font-size: 0.95rem !important;
+}
 
+/* Year input - fully editable & scrollable */
 .flatpickr-current-month .numInputWrapper {
-  width: auto !important;
-  display: inline-block !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  width: 58px !important;
 }
 .flatpickr-current-month .numInputWrapper span {
-  display: none !important; /* Strips browser spinner arrows */
+  display: none !important; /* Hide browser glitch arrows */
 }
 .flatpickr-current-month input.cur-year {
-  font-size: 1.05rem !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  font-size: 1.1rem !important;
   font-weight: 700 !important;
   color: #f59e0b !important; /* Gold accent */
-  border: none !important;
-  background: transparent !important;
-  padding: 0 !important;
+  cursor: pointer !important;
+  padding: 2px 4px !important;
+  border-radius: 6px !important;
   margin: 0 !important;
-  cursor: default !important;
-  pointer-events: none !important; /* Display only */
+  pointer-events: auto !important;
+}
+.flatpickr-current-month input.cur-year:hover {
+  background: rgba(245, 158, 11, 0.1) !important;
+}
+
+/* Light mode support */
+html:not(.dark) .flatpickr-current-month select.flatpickr-monthDropdown-months,
+html.light .flatpickr-current-month select.flatpickr-monthDropdown-months {
+  color: #0f172a !important;
+}
+html:not(.dark) .flatpickr-current-month select.flatpickr-monthDropdown-months:hover,
+html.light .flatpickr-current-month select.flatpickr-monthDropdown-months:hover {
+  background: rgba(15, 23, 42, 0.06) !important;
+}
+html:not(.dark) .flatpickr-current-month select.flatpickr-monthDropdown-months option,
+html.light .flatpickr-current-month select.flatpickr-monthDropdown-months option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+html:not(.dark) .flatpickr-current-month input.cur-year,
+html.light .flatpickr-current-month input.cur-year {
+  color: #d97706 !important;
+}
+html:not(.dark) .flatpickr-current-month input.cur-year:hover,
+html.light .flatpickr-current-month input.cur-year:hover {
+  background: rgba(217, 119, 6, 0.1) !important;
 }
 
 /* Elegant Chevron Navigation */

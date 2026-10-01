@@ -9768,7 +9768,7 @@ function initFlatpickr() {
           minDate: "today",          // Prevents selecting dates in the past
           maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
           disableMobile: true,
-          monthSelectorType: "static", // Unifies header into plain text (e.g. "October 2026") without native select boxes
+          monthSelectorType: "dropdown",
           animate: true,
           prevArrow: FLATPICKR_PREV_ARROW,
           nextArrow: FLATPICKR_NEXT_ARROW,
@@ -9800,7 +9800,7 @@ function initDatePicker() {
         minDate: "today",
         maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
         disableMobile: true,
-        monthSelectorType: "static", // Unifies header into plain text (e.g. "October 2026") without native select boxes
+        monthSelectorType: "dropdown",
         animate: true,
         prevArrow: FLATPICKR_PREV_ARROW,
         nextArrow: FLATPICKR_NEXT_ARROW
@@ -9823,7 +9823,7 @@ document.addEventListener("DOMContentLoaded", () => {
           minDate: "today",          // Disables past dates
           maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
           disableMobile: true,
-          monthSelectorType: "static", // Unifies header into plain text (e.g. "October 2026") without native select boxes
+          monthSelectorType: "dropdown",
           animate: true,
           prevArrow: FLATPICKR_PREV_ARROW,
           nextArrow: FLATPICKR_NEXT_ARROW
