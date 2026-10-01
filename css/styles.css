@@ -3897,86 +3897,75 @@ html:not(.dark) .flatpickr-calendar {
   overflow: visible !important;
 }
 
-/* Header container */
+/* Position month/year bar cleanly with no overlapping hitboxes */
 .flatpickr-current-month {
-  position: static !important;
-  width: auto !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 0 !important;
-  pointer-events: auto !important;
-  border: none !important;
+  gap: 8px !important;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 4px 0 !important;
+}
+
+/* Solid opaque dropdown panel fix */
+.flatpickr-current-month select.flatpickr-monthDropdown-months,
+.flatpickr-current-month select.custom-year-select {
+  background-color: #0b1120 !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+  border-radius: 8px !important;
+  padding: 4px 8px !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  outline: none !important;
+  cursor: pointer !important;
+}
+
+/* Force dropdown popup options to have solid dark background, zero transparency */
+.flatpickr-current-month select.flatpickr-monthDropdown-months option,
+.flatpickr-current-month select.custom-year-select option {
+  background-color: #0b1120 !important;
+  color: #f8fafc !important;
+  padding: 8px 12px !important;
+  font-size: 0.9rem !important;
+}
+
+/* Kill rogue transparent overlays floating above dates */
+.flatpickr-current-month .numInputWrapper {
+  width: 65px !important;
+}
+.flatpickr-current-month .numInputWrapper span {
+  display: none !important;
+}
+.flatpickr-current-month input.cur-year {
+  color: #f59e0b !important;
+  font-weight: 700 !important;
   background: transparent !important;
-  overflow: visible !important;
+  border: 1px solid rgba(245, 158, 11, 0.3) !important;
+  border-radius: 8px !important;
+  padding: 4px 6px !important;
+  font-size: 0.95rem !important;
 }
 
-/* Custom Month & Year Dropdowns */
-.custom-cal-header-flex {
-  position: relative;
-  z-index: 20;
-}
-
-.cal-drop-menu {
-  top: 100%;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(245, 158, 11, 0.4) transparent;
-}
-.cal-drop-item {
-  padding: 8px 12px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #cbd5e1;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-.cal-drop-item:hover {
-  background-color: rgba(245, 158, 11, 0.15);
-  color: #f59e0b;
-}
-.cal-drop-item.active {
-  background-color: #f59e0b;
-  color: #0b1120;
-  font-weight: 700;
-}
-
-/* Light mode support for custom calendar dropdowns */
-html:not(.dark) .cal-drop-menu,
-html.light .cal-drop-menu {
+/* Light mode support */
+html:not(.dark) .flatpickr-current-month select.flatpickr-monthDropdown-months,
+html:not(.dark) .flatpickr-current-month select.custom-year-select,
+html:not(.dark) .flatpickr-current-month input.cur-year,
+html.light .flatpickr-current-month select.flatpickr-monthDropdown-months,
+html.light .flatpickr-current-month select.custom-year-select,
+html.light .flatpickr-current-month input.cur-year {
   background-color: #ffffff !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
-}
-html:not(.dark) .cal-drop-item,
-html.light .cal-drop-item {
-  color: #334155 !important;
-}
-html:not(.dark) .cal-drop-item:hover,
-html.light .cal-drop-item:hover {
-  background-color: rgba(245, 158, 11, 0.12) !important;
-  color: #d97706 !important;
-}
-html:not(.dark) .cal-drop-item.active,
-html.light .cal-drop-item.active {
-  background-color: #f59e0b !important;
-  color: #0b1120 !important;
-}
-html:not(.dark) .custom-cal-dropdown[data-type="month"] .cal-drop-trigger,
-html.light .custom-cal-dropdown[data-type="month"] .cal-drop-trigger {
   color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
 }
-html:not(.dark) .custom-cal-dropdown[data-type="month"] .cal-drop-trigger:hover,
-html.light .custom-cal-dropdown[data-type="month"] .cal-drop-trigger:hover {
-  background-color: rgba(15, 23, 42, 0.06) !important;
-}
-html:not(.dark) .custom-cal-dropdown[data-type="year"] .cal-drop-trigger,
-html.light .custom-cal-dropdown[data-type="year"] .cal-drop-trigger {
-  color: #d97706 !important;
-}
-html:not(.dark) .custom-cal-dropdown[data-type="year"] .cal-drop-trigger:hover,
-html.light .custom-cal-dropdown[data-type="year"] .cal-drop-trigger:hover {
-  background-color: rgba(217, 119, 6, 0.1) !important;
+html:not(.dark) .flatpickr-current-month select.flatpickr-monthDropdown-months option,
+html:not(.dark) .flatpickr-current-month select.custom-year-select option,
+html.light .flatpickr-current-month select.flatpickr-monthDropdown-months option,
+html.light .flatpickr-current-month select.custom-year-select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
 }
 
 /* Elegant Chevron Navigation */
