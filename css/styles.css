@@ -384,11 +384,12 @@ header.glass-nav.header-scrolled,
 #mainHeader.header-scrolled,
 header.glass-nav:not(.hero-floating-nav),
 #mainHeader:not(.hero-floating-nav) {
-  background: rgba(7, 11, 20, 0.85) !important;
+  background: rgba(7, 11, 20, 0.95) !important;
+  color: #ffffff !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
   border-bottom: 1px solid rgba(30, 41, 59, 0.8) !important;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
 }
 
 html.light header.glass-nav.header-scrolled,
@@ -399,11 +400,12 @@ html.light header.glass-nav:not(.hero-floating-nav),
 :root:not(.dark) header.glass-nav:not(.hero-floating-nav),
 html.light #mainHeader:not(.hero-floating-nav),
 :root:not(.dark) #mainHeader:not(.hero-floating-nav) {
-  background: rgba(255, 255, 255, 0.85) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #1e293b !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
   border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* When Mobile Menu is Active: Seamless Translucent Frosted Glass Header */
@@ -751,7 +753,10 @@ body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-pill-indicator {
 }
 
 /* Glass Pill Navigation Link Buttons */
-.nav-link {
+.nav-link,
+#desktopNav a,
+#desktopNav button,
+.nav-dropdown-trigger {
   position: relative;
   z-index: 2;
   display: inline-flex;
@@ -761,22 +766,32 @@ body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-pill-indicator {
   border-radius: 9999px;
   font-size: 13px;
   font-weight: 600;
-  color: #334155;
+  color: #1e293b;
   text-shadow: none !important;
   filter: none !important;
+  -webkit-filter: none !important;
   transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s ease;
   user-select: none;
   cursor: pointer;
 }
 
 html.dark .nav-link,
-:root.dark .nav-link {
-  color: #e2e8f0;
+:root.dark .nav-link,
+html.dark #desktopNav a,
+:root.dark #desktopNav a,
+html.dark .nav-dropdown-trigger,
+:root.dark .nav-dropdown-trigger {
+  color: #f1f5f9;
   text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 @media (min-width: 1280px) {
-  .nav-link {
+  .nav-link,
+  #desktopNav a,
+  #desktopNav button,
+  .nav-dropdown-trigger {
     padding: 0.42rem 1.05rem;
     font-size: 14px;
   }
@@ -789,64 +804,125 @@ html.dark .nav-link,
 
 /* Light Theme Navigation Link Typography */
 html.light .nav-link,
-:root:not(.dark) .nav-link {
-  color: #334155;
+:root:not(.dark) .nav-link,
+html.light #desktopNav a,
+:root:not(.dark) #desktopNav a,
+html.light .nav-dropdown-trigger,
+:root:not(.dark) .nav-dropdown-trigger {
+  color: #1e293b;
   text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
-/* Light mode floating over hero */
-html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link,
-:root:not(.dark) body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link {
+/* Light mode floating over hero (unscrolled only) */
+html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:not(.active),
+:root:not(.dark) body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:not(.active) {
   color: rgba(255, 255, 255, 0.95) !important;
   text-shadow: none !important;
+  filter: none !important;
+}
+
+/* Scrolled elevation state: strictly enforce slate-800 in light mode and slate-100 in dark mode */
+html.light #mainHeader.header-scrolled .nav-link:not(.active),
+:root:not(.dark) #mainHeader.header-scrolled .nav-link:not(.active),
+html.light header.glass-nav.header-scrolled .nav-link:not(.active),
+:root:not(.dark) header.glass-nav.header-scrolled .nav-link:not(.active),
+html.light header.glass-nav:not(.hero-floating-nav) .nav-link:not(.active),
+:root:not(.dark) header.glass-nav:not(.hero-floating-nav) .nav-link:not(.active) {
+  color: #1e293b !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+html.dark #mainHeader.header-scrolled .nav-link:not(.active),
+:root.dark #mainHeader.header-scrolled .nav-link:not(.active),
+html.dark header.glass-nav.header-scrolled .nav-link:not(.active),
+:root.dark header.glass-nav.header-scrolled .nav-link:not(.active),
+html.dark header.glass-nav:not(.hero-floating-nav) .nav-link:not(.active),
+:root.dark header.glass-nav:not(.hero-floating-nav) .nav-link:not(.active) {
+  color: #f1f5f9 !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 /* Active & Hover States */
-.nav-link.active {
+.nav-link.active,
+#desktopNav a.active {
   color: #d97706 !important;
   font-weight: 700 !important;
   text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 html.dark .nav-link.active,
-:root.dark .nav-link.active {
+:root.dark .nav-link.active,
+html.dark #desktopNav a.active,
+:root.dark #desktopNav a.active {
   color: #fbbf24 !important;
   text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 html.light .nav-link.active,
-:root:not(.dark) .nav-link.active {
+:root:not(.dark) .nav-link.active,
+html.light #desktopNav a.active,
+:root:not(.dark) #desktopNav a.active {
   color: #d97706 !important;
   text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link.active,
 :root:not(.dark) body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link.active {
   color: #fbbf24 !important;
   text-shadow: none !important;
+  filter: none !important;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+#desktopNav a:hover,
+#desktopNav button:hover {
   color: #f59e0b;
   text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 html.dark .nav-link:hover,
-:root.dark .nav-link:hover {
+:root.dark .nav-link:hover,
+html.dark #desktopNav a:hover,
+:root.dark #desktopNav a:hover,
+html.dark .nav-dropdown-trigger:hover,
+:root.dark .nav-dropdown-trigger:hover {
   color: #fbbf24;
   text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 html.light .nav-link:hover,
-:root:not(.dark) .nav-link:hover {
+:root:not(.dark) .nav-link:hover,
+html.light #desktopNav a:hover,
+:root:not(.dark) #desktopNav a:hover,
+html.light .nav-dropdown-trigger:hover,
+:root:not(.dark) .nav-dropdown-trigger:hover {
   color: #f59e0b;
   text-shadow: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:hover,
 :root:not(.dark) body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:hover {
   color: #ffffff !important;
   text-shadow: none !important;
+  filter: none !important;
 }
 
 /* Navigation Dropdown Menu (Explore / More) */

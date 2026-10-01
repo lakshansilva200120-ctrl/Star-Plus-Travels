@@ -5024,15 +5024,17 @@ function initApp() {
       const header = document.getElementById('mainHeader') || document.querySelector('header');
       if (header) {
         const frostedClasses = [
-          'bg-white/85',
-          'dark:bg-[#070b14]/85',
-          'backdrop-blur-md',
+          'bg-white/95',
+          'text-slate-800',
           'border-b',
           'border-slate-200/80',
+          'shadow-md',
+          'backdrop-blur-md',
+          'dark:bg-[#070b14]/95',
+          'dark:text-white',
           'dark:border-slate-800/80',
           'transition-all',
-          'duration-300',
-          'shadow-sm'
+          'duration-300'
         ];
         const hasHero = !!document.getElementById('hero');
         const isScrolled = window.scrollY > 15;
