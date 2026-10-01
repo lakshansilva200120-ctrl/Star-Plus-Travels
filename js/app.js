@@ -3220,6 +3220,7 @@ function updateQuoteFormFields() {
   if (interest === 'visa') {
     // Fast-Track Visa Processing
     if (field1Label) {
+      field1Label.setAttribute('for', 'contactDest');
       field1Label.textContent = lang === 'si' ? 'අපේක්ෂිත රට / වීසා වර්ගය *' : 'TARGET COUNTRY / VISA TYPE *';
     }
     if (field1Input) {
@@ -3228,6 +3229,7 @@ function updateQuoteFormFields() {
       field1Input.required = true;
     }
     if (field2Label) {
+      field2Label.setAttribute('for', 'contactCustomField2');
       field2Label.textContent = lang === 'si' ? 'වත්මන් පුරවැසිභාවය *' : 'CURRENT NATIONALITY *';
     }
     if (travelersWrapper) travelersWrapper.classList.add('hidden');
@@ -3244,6 +3246,7 @@ function updateQuoteFormFields() {
   } else if (interest === 'flight') {
     // Cheap Airline Tickets
     if (field1Label) {
+      field1Label.setAttribute('for', 'contactDest');
       field1Label.textContent = lang === 'si' ? 'ගුවන් ගමන් මාර්ගය (සිට - දක්වා) *' : 'FLIGHT ROUTE (FROM – TO) *';
     }
     if (field1Input) {
@@ -3252,6 +3255,7 @@ function updateQuoteFormFields() {
       field1Input.required = true;
     }
     if (field2Label) {
+      field2Label.setAttribute('for', 'contactCustomField2');
       field2Label.textContent = lang === 'si' ? 'ගමන් වර්ගය සහ අපේක්ෂිත දිනයන් *' : 'TRIP TYPE & TENTATIVE DATES *';
     }
     if (travelersWrapper) travelersWrapper.classList.add('hidden');
@@ -3268,6 +3272,7 @@ function updateQuoteFormFields() {
   } else {
     // Holiday Tour Package ("package") OR Custom Tailor-Made Itinerary ("custom")
     if (field1Label) {
+      field1Label.setAttribute('for', 'contactDest');
       field1Label.textContent = lang === 'si' ? 'කැමති ගමනාන්තය' : 'PREFERRED DESTINATION';
     }
     if (field1Input) {
@@ -3276,6 +3281,7 @@ function updateQuoteFormFields() {
       field1Input.required = false;
     }
     if (field2Label) {
+      field2Label.setAttribute('for', 'contactTravelers');
       field2Label.textContent = lang === 'si' ? 'සංචාරකයින් ගණන' : 'ESTIMATED TRAVELERS';
     }
     if (travelersWrapper) travelersWrapper.classList.remove('hidden');
@@ -9761,9 +9767,7 @@ function initDatePicker() {
     const travelInput = document.getElementById("travel-date-picker");
     if (travelInput && !travelInput._flatpickr) {
       flatpickr(travelInput, {
-        dateFormat: "Y-m-d",
-        altInput: true,
-        altFormat: "F j, Y",
+        dateFormat: "d M, Y",
         minDate: "today",
         disableMobile: true,
         theme: "dark"

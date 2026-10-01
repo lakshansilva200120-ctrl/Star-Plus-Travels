@@ -559,8 +559,9 @@
       <div class="mt-8 max-w-3xl mx-auto w-full box-border">
         <div class="glass-card p-3 sm:p-4 rounded-2xl border border-slate-700/80 shadow-2xl flex flex-col sm:flex-row gap-3 items-center w-full box-border">
           <div class="relative flex-1 w-full min-w-0">
+            <label for="heroDestinationInput" class="sr-only">Search Packages</label>
             <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-            <input type="text" id="heroDestinationInput" oninput="handleHeroSearch(event)" placeholder="Search by country, city, or experience (e.g. Dubai, Safari, Maldives)..." class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700 rounded-xl text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-amber-500 transition-colors box-border">
+            <input type="text" id="heroDestinationInput" name="search" oninput="handleHeroSearch(event)" placeholder="Search by country, city, or experience (e.g. Dubai, Safari, Maldives)..." autocomplete="off" class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700 rounded-xl text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-amber-500 transition-colors box-border">
           </div>
           <button type="button" id="searchResetBtn" onclick="resetFilters()" class="reset-search-btn w-full sm:w-auto px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm tracking-wide transition-all shadow-md shrink-0 flex items-center justify-center space-x-2 cursor-pointer">
             <i class="fa-solid fa-rotate-left text-xs"></i>
@@ -731,7 +732,7 @@
         <!-- Grid with uniform label heights -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <div class="flex flex-col">
-            <label class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 min-h-[2rem] flex items-end" data-i18n="adult_travelers">
+            <label for="bookingTravelers" class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 min-h-[2rem] flex items-end cursor-pointer" data-i18n="adult_travelers">
               Adult Travelers (12+ Yrs)
             </label>
             <select id="bookingTravelers" name="travelers" onchange="calculateBookingTotal()" class="w-full box-border h-11 px-3 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white focus:ring-amber-500">
@@ -743,7 +744,7 @@
           </div>
 
           <div class="flex flex-col">
-            <label class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 min-h-[2rem] flex items-end" data-i18n="children_travelers">
+            <label for="bookingChildren" class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 min-h-[2rem] flex items-end cursor-pointer" data-i18n="children_travelers">
               Children (2–11 Yrs)
             </label>
             <select id="bookingChildren" name="children" onchange="calculateBookingTotal()" class="w-full box-border h-11 px-3 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white focus:ring-amber-500">
@@ -756,29 +757,29 @@
         </div>
 
         <div class="w-full max-w-full box-border">
-          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1" data-i18n="dep_date">Preferred Departure Date</label>
-          <input type="text" id="bookingDate" required placeholder="Select Departure Date" class="date-picker-input w-full max-w-full box-border block appearance-none glass-input px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-300 placeholder-slate-500 cursor-pointer">
+          <label for="bookingDate" class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1 cursor-pointer" data-i18n="dep_date">Preferred Departure Date</label>
+          <input type="text" id="bookingDate" name="departureDate" required placeholder="Select Departure Date" class="date-picker-input w-full max-w-full box-border block appearance-none glass-input px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-300 placeholder-slate-500 cursor-pointer">
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Full Name</label>
-            <input type="text" id="bookingName" required placeholder="e.g. John Doe" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
+            <label for="bookingName" class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1 cursor-pointer">Full Name</label>
+            <input type="text" id="bookingName" name="name" required placeholder="e.g. John Doe" autocomplete="name" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
           <div>
-            <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Email Address</label>
-            <input type="email" id="bookingEmail" required placeholder="name@example.com" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
+            <label for="bookingEmail" class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1 cursor-pointer">Email Address</label>
+            <input type="email" id="bookingEmail" name="email" required placeholder="name@example.com" autocomplete="email" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
         </div>
 
         <div>
-          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">Phone / WhatsApp</label>
-          <input type="tel" id="bookingPhone" required placeholder="+971 50 123 4567" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
+          <label for="bookingPhone" class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1 cursor-pointer">Phone / WhatsApp</label>
+          <input type="tel" id="bookingPhone" name="phone" required placeholder="+971 50 123 4567" autocomplete="tel" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
         </div>
 
         <div>
-          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1" data-i18n="special_notes">Special Notes / Inquiries (Optional)</label>
-          <textarea id="bookingNotes" rows="2" placeholder="Flight preferences, dietary needs, hotel room preference..." class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm"></textarea>
+          <label for="bookingNotes" class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1 cursor-pointer" data-i18n="special_notes">Special Notes / Inquiries (Optional)</label>
+          <textarea id="bookingNotes" name="notes" rows="2" placeholder="Flight preferences, dietary needs, hotel room preference..." class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm"></textarea>
         </div>
 
         <div class="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between">
@@ -1007,7 +1008,8 @@
         <h4 class="text-xs font-bold text-white uppercase tracking-wider">VIP Travel Deals</h4>
         <p class="text-xs text-slate-400">Subscribe for unpublished secret airline rates and discount flash sales.</p>
         <form onsubmit="handleNewsletter(event)" novalidate class="space-y-2">
-          <input type="email" id="newsletterEmail" placeholder="Enter your email" required class="w-full glass-input px-3 py-2 rounded-xl text-xs">
+          <label for="newsletterEmail" class="sr-only">Email Address</label>
+          <input type="email" id="newsletterEmail" name="email" autocomplete="email" placeholder="Enter your email" required class="w-full glass-input px-3 py-2 rounded-xl text-xs">
           <button type="submit" class="w-full py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
             Subscribe
           </button>

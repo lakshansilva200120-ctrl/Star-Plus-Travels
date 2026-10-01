@@ -1048,36 +1048,36 @@
       <!-- Application Form -->
       <form id="careerApplicationForm" action="/api/apply" method="POST" enctype="multipart/form-data" onsubmit="submitApplicationForm(event)" novalidate class="mt-5 space-y-4 w-full max-w-full box-border">
         <!-- Application Configuration -->
-        <input type="hidden" name="access_key" value="00000000-0000-0000-0000-000000000000">
-        <input type="hidden" name="subject" value="New Job Application - Star Plus Travels">
-        <input type="hidden" name="from_name" value="Star Plus Careers Portal">
+        <input type="hidden" id="careerAccessKey" name="access_key" value="00000000-0000-0000-0000-000000000000">
+        <input type="hidden" id="careerSubject" name="subject" value="New Job Application - Star Plus Travels">
+        <input type="hidden" id="careerFromName" name="from_name" value="Star Plus Careers Portal">
         <!-- Dynamic Captured Job Position -->
         <input type="hidden" id="applicantPosition" name="position" value="">
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1" data-i18n="career_modal_full_name">
+            <label for="applicantName" class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1 cursor-pointer" data-i18n="career_modal_full_name">
               Your Full Name *
             </label>
-            <input type="text" id="applicantName" name="applicant_name" required placeholder="e.g. Sarah Jenkins" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
+            <input type="text" id="applicantName" name="applicant_name" required placeholder="e.g. Sarah Jenkins" autocomplete="name" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
           <div>
-            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1" data-i18n="career_modal_email">
+            <label for="applicantEmail" class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1 cursor-pointer" data-i18n="career_modal_email">
               Email Address *
             </label>
-            <input type="email" id="applicantEmail" name="email" required placeholder="sarah@example.com" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
+            <input type="email" id="applicantEmail" name="email" required placeholder="sarah@example.com" autocomplete="email" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1" data-i18n="career_modal_phone">
+            <label for="applicantPhone" class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1 cursor-pointer" data-i18n="career_modal_phone">
               Phone / WhatsApp *
             </label>
-            <input type="tel" id="applicantPhone" name="phone" required placeholder="+971 50 123 4567" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
+            <input type="tel" id="applicantPhone" name="phone" required placeholder="+971 50 123 4567" autocomplete="tel" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
           </div>
           <div>
-            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1" data-i18n="career_modal_target_branch">
+            <label for="applicantBranch" class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1 cursor-pointer" data-i18n="career_modal_target_branch">
               Target Branch Location *
             </label>
             <select id="applicantBranch" name="branch" onchange="updateRoutingBadge()" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm cursor-pointer">
@@ -1089,7 +1089,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1" data-i18n="career_modal_exp">
+            <label for="applicantExp" class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1 cursor-pointer" data-i18n="career_modal_exp">
               Relevant Experience (Years)
             </label>
             <select id="applicantExp" name="experience" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm cursor-pointer">
@@ -1100,7 +1100,7 @@
             </select>
           </div>
           <div>
-            <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1" data-i18n="career_modal_portfolio">
+            <label for="applicantPortfolio" class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1 cursor-pointer" data-i18n="career_modal_portfolio">
               LinkedIn or Portfolio URL
             </label>
             <input type="url" id="applicantPortfolio" name="linkedin" placeholder="https://linkedin.com/in/..." class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
@@ -1109,7 +1109,7 @@
 
         <!-- Resume / CV Drag-and-Drop Upload Component -->
         <div>
-          <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1 flex items-center justify-between">
+          <label for="applicantResumeFile" class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1 flex items-center justify-between cursor-pointer">
             <span data-i18n="career_modal_resume_title">Resume / CV Document <span class="text-amber-500 font-bold">*</span></span>
             <span class="text-[10px] text-slate-400 font-normal" data-i18n="career_modal_resume_sub">PDF, DOC, DOCX up to 5MB</span>
           </label>
@@ -1166,6 +1166,7 @@
             </button>
             
             <div id="resumeLinkContainer" class="hidden mt-2">
+              <label for="applicantResumeLink" class="sr-only">Resume Cloud or Portfolio URL</label>
               <input type="url" id="applicantResumeLink" name="resume_link" placeholder="Paste Google Drive, Dropbox, or LinkedIn URL" class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm">
               <span class="text-[10px] text-slate-500 dark:text-slate-400 block mt-1">Please ensure public view permissions are enabled on your link.</span>
             </div>
@@ -1173,7 +1174,7 @@
         </div>
 
         <div>
-          <label class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1" data-i18n="career_modal_cover_note">
+          <label for="applicantMessage" class="block text-[11px] font-bold text-slate-700 dark:text-slate-400 uppercase tracking-wider mb-1 cursor-pointer" data-i18n="career_modal_cover_note">
             Brief Cover Note / Introduction
           </label>
           <textarea id="applicantMessage" name="cover_note" rows="3" placeholder="Tell us why you are a great fit for Star Plus Travel & Tourism..." class="w-full box-border glass-input px-3.5 py-2.5 rounded-xl text-sm"></textarea>

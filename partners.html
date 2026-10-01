@@ -1028,46 +1028,46 @@
         <!-- Section 2: Contact Person Details -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label for="partnerContact" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_contact_person">
+            <label for="partnerContact" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5 cursor-pointer" data-i18n="dmc_contact_person">
               Key Contact Person &amp; Title <span class="text-amber-400">*</span>
             </label>
-            <input type="text" id="partnerContact" name="contact_person" required placeholder="e.g., Alexander Lee, Managing Director" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="text" id="partnerContact" name="contact_person" required placeholder="e.g., Alexander Lee, Managing Director" autocomplete="name" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
 
           <div>
-            <label for="partnerEmail" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_corp_email">
+            <label for="partnerEmail" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5 cursor-pointer" data-i18n="dmc_corp_email">
               Corporate Work Email <span class="text-amber-400">*</span>
             </label>
-            <input type="email" id="partnerEmail" name="email" required placeholder="alex@nexus-dmc.com" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="email" id="partnerEmail" name="email" required placeholder="alex@nexus-dmc.com" autocomplete="email" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
         </div>
 
         <!-- Section 3: Phone, Website & Social Media -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label for="partnerPhone" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_phone">
+            <label for="partnerPhone" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5 cursor-pointer" data-i18n="dmc_phone">
               Corporate Phone / WhatsApp <span class="text-amber-400">*</span>
             </label>
-            <input type="tel" id="partnerPhone" name="phone" required placeholder="e.g., +81 3 1234 5678" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="tel" id="partnerPhone" name="phone" required placeholder="e.g., +81 3 1234 5678" autocomplete="tel" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
 
           <div>
-            <label for="partnerWebsite" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_website">
+            <label for="partnerWebsite" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5 cursor-pointer" data-i18n="dmc_website">
               Website / Online Portfolio <span class="text-amber-400">*</span>
             </label>
-            <input type="url" id="partnerWebsite" required placeholder="https://www.yourdmc.com" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="url" id="partnerWebsite" name="website" required placeholder="https://www.yourdmc.com" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
         </div>
 
         <div>
-          <label for="partnerSocial" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_social">
+          <label for="partnerSocial" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5 cursor-pointer" data-i18n="dmc_social">
             Social Media Link / Professional Profile (e.g., LinkedIn, Instagram, Facebook)
           </label>
           <div class="relative">
             <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400 text-xs sm:text-sm">
               <i class="fa-solid fa-link text-amber-500/80"></i>
             </span>
-            <input type="url" id="partnerSocial" placeholder="https://www.linkedin.com/company/your-dmc or instagram.com/..." class="w-full box-border glass-input pl-10 pr-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="url" id="partnerSocial" name="social" placeholder="https://www.linkedin.com/company/your-dmc or instagram.com/..." class="w-full box-border glass-input pl-10 pr-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
           <span class="text-[11px] text-slate-400 block mt-1">Provide your active corporate profile URL for vetting and credential verification.</span>
         </div>
@@ -1075,22 +1075,22 @@
         <!-- Section 4: License, Document Attachment & Headquarters -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label for="partnerLicense" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_license">
+            <label for="partnerLicense" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5 cursor-pointer" data-i18n="dmc_license">
               Tourism License / Reg No. <span class="text-amber-400">*</span>
             </label>
-            <input type="text" id="partnerLicense" required placeholder="e.g., MOT-8849201-B2B" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="text" id="partnerLicense" name="license" required placeholder="e.g., MOT-8849201-B2B" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
 
           <div>
-            <label for="partnerCity" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_hq_city">
+            <label for="partnerCity" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5 cursor-pointer" data-i18n="dmc_hq_city">
               Headquarters City &amp; Country <span class="text-amber-400">*</span>
             </label>
-            <input type="text" id="partnerCity" required placeholder="e.g., Tokyo, Japan" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
+            <input type="text" id="partnerCity" name="city" required placeholder="e.g., Tokyo, Japan" class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm">
           </div>
         </div>
 
         <div>
-          <label for="partnerLicenseFile" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5">
+          <label for="partnerLicenseFile" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5 cursor-pointer">
             Upload Trade License / Certificate <span class="text-slate-400 font-normal">(Max 5MB)</span>
           </label>
           <div class="relative flex flex-col sm:flex-row items-stretch sm:items-center gap-3 p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 transition-colors">
@@ -1098,7 +1098,7 @@
               <i class="fa-solid fa-file-shield"></i>
             </div>
             <div class="flex-1 min-w-0">
-              <input type="file" id="partnerLicenseFile" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" onchange="handleLicenseFileSelect(this)" class="block w-full text-xs text-slate-300 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-400 file:cursor-pointer cursor-pointer">
+              <input type="file" id="partnerLicenseFile" name="license_file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" onchange="handleLicenseFileSelect(this)" class="block w-full text-xs text-slate-300 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-400 file:cursor-pointer cursor-pointer">
               <div class="flex flex-col sm:flex-row sm:items-center justify-between text-[11px] text-slate-400 mt-1.5 gap-1">
                 <span>Standard formats: <strong class="text-slate-300">PDF, JPG, PNG</strong> (Strict 5MB cap for direct email attachment)</span>
                 <span id="partnerLicenseFileInfo" class="text-emerald-400 font-semibold hidden truncate max-w-[220px]"></span>
@@ -1109,37 +1109,37 @@
 
         <!-- Section 5: Services Offered Checkboxes -->
         <div>
-          <label class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-2.5">
+          <span class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-2.5">
             Services &amp; Assets Offered (Select all that apply) <span class="text-amber-400">*</span>
-          </label>
+          </span>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-300">
-            <label class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
-              <input type="checkbox" name="services" value="hotels" class="rounded text-amber-500 focus:ring-amber-400">
+            <label for="service_hotels" class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
+              <input type="checkbox" id="service_hotels" name="services" value="hotels" class="rounded text-amber-500 focus:ring-amber-400">
               <span>Direct 4-Star &amp; 5-Star Hotel Wholesaling</span>
             </label>
 
-            <label class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
-              <input type="checkbox" name="services" value="transport" class="rounded text-amber-500 focus:ring-amber-400">
+            <label for="service_transport" class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
+              <input type="checkbox" id="service_transport" name="services" value="transport" class="rounded text-amber-500 focus:ring-amber-400">
               <span>Private Ground Fleet &amp; Luxury Coaches</span>
             </label>
 
-            <label class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
-              <input type="checkbox" name="services" value="tours" class="rounded text-amber-500 focus:ring-amber-400">
+            <label for="service_tours" class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
+              <input type="checkbox" id="service_tours" name="services" value="tours" class="rounded text-amber-500 focus:ring-amber-400">
               <span>Licensed Guided Excursions &amp; Day Tours</span>
             </label>
 
-            <label class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
-              <input type="checkbox" name="services" value="mice" class="rounded text-amber-500 focus:ring-amber-400">
+            <label for="service_mice" class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
+              <input type="checkbox" id="service_mice" name="services" value="mice" class="rounded text-amber-500 focus:ring-amber-400">
               <span>Corporate MICE &amp; Delegation Logistics</span>
             </label>
 
-            <label class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
-              <input type="checkbox" name="services" value="vip" class="rounded text-amber-500 focus:ring-amber-400">
+            <label for="service_vip" class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
+              <input type="checkbox" id="service_vip" name="services" value="vip" class="rounded text-amber-500 focus:ring-amber-400">
               <span>VIP Airport Meet &amp; Assist / Fast-Track</span>
             </label>
 
-            <label class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
-              <input type="checkbox" name="services" value="tickets" class="rounded text-amber-500 focus:ring-amber-400">
+            <label for="service_tickets" class="flex items-center space-x-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/50 cursor-pointer transition-colors">
+              <input type="checkbox" id="service_tickets" name="services" value="tickets" class="rounded text-amber-500 focus:ring-amber-400">
               <span>Attraction, Theme Park &amp; Rail Tickets</span>
             </label>
           </div>
@@ -1147,7 +1147,7 @@
 
         <!-- Section 6: Proposal / Brief -->
         <div>
-          <label for="partnerProposal" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5" data-i18n="dmc_fleet_notes">
+          <label for="partnerProposal" class="block text-xs font-bold text-slate-200 uppercase tracking-wider mb-1.5 cursor-pointer" data-i18n="dmc_fleet_notes">
             Company Overview &amp; Competitive Tariff Highlights <span class="text-amber-400">*</span>
           </label>
           <textarea id="partnerProposal" name="notes" rows="4" required placeholder="Briefly describe your company's operational presence, fleet size, preferred hotel contracts, and why Star Plus Travels should partner with your DMC..." class="w-full box-border glass-input px-4 py-3 rounded-xl text-xs sm:text-sm"></textarea>
@@ -1155,7 +1155,7 @@
 
         <!-- Consent -->
         <div>
-          <label class="flex items-start gap-3 cursor-pointer text-xs text-slate-300">
+          <label for="dmc-certify-checkbox" class="flex items-start gap-3 cursor-pointer text-xs text-slate-300">
             <input 
               type="checkbox" 
               id="dmc-certify-checkbox" 
@@ -1309,7 +1309,8 @@
         <h4 class="text-xs font-bold text-white uppercase tracking-wider">VIP Travel Deals</h4>
         <p class="text-xs text-slate-400">Subscribe for unpublished secret airline rates and discount flash sales.</p>
         <form onsubmit="handleNewsletter(event)" novalidate class="space-y-2">
-          <input type="email" id="newsletterEmail" placeholder="Enter your email" required class="w-full glass-input px-3 py-2 rounded-xl text-xs">
+          <label for="newsletterEmail" class="sr-only">Email Address</label>
+          <input type="email" id="newsletterEmail" name="email" autocomplete="email" placeholder="Enter your email" required class="w-full glass-input px-3 py-2 rounded-xl text-xs">
           <button type="submit" class="w-full py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
             Subscribe
           </button>

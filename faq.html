@@ -543,8 +543,9 @@
       <!-- Interactive FAQ Search -->
       <div class="mt-8 max-w-xl mx-auto">
         <div class="relative">
+          <label for="faqSearchInput" class="sr-only">Search FAQs</label>
           <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-          <input type="text" id="faqSearchInput" onkeyup="filterFaqs(this.value)" placeholder="Search questions (e.g., visa documents, refund, Tabby)..." data-i18n-placeholder="faq_search_placeholder" class="w-full pl-11 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-amber-500 transition-colors shadow-xl">
+          <input type="text" id="faqSearchInput" name="search" autocomplete="off" onkeyup="filterFaqs(this.value)" placeholder="Search questions (e.g., visa documents, refund, Tabby)..." data-i18n-placeholder="faq_search_placeholder" class="w-full pl-11 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-2xl text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-amber-500 transition-colors shadow-xl">
         </div>
       </div>
     </div>
@@ -780,7 +781,8 @@
         <h4 class="text-xs font-bold text-white uppercase tracking-wider">VIP Travel Deals</h4>
         <p class="text-xs text-slate-400">Subscribe for unpublished secret airline rates and discount flash sales.</p>
         <form onsubmit="handleNewsletter(event)" novalidate class="space-y-2">
-          <input type="email" id="newsletterEmail" placeholder="Enter your email" required class="w-full glass-input px-3 py-2 rounded-xl text-xs">
+          <label for="newsletterEmail" class="sr-only">Email Address</label>
+          <input type="email" id="newsletterEmail" name="email" autocomplete="email" placeholder="Enter your email" required class="w-full glass-input px-3 py-2 rounded-xl text-xs">
           <button type="submit" class="w-full py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all">
             Subscribe
           </button>
