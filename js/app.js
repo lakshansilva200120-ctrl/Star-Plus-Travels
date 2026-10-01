@@ -9747,52 +9747,11 @@ function initIntlTelInputs() {
 window.initIntlTelInputs = initIntlTelInputs;
 
 // ============================================================================
+// ============================================================================
 // Flatpickr Dark Theme Date Picker Setup & Initialization
 // ============================================================================
-const currentYear = new Date().getFullYear();
-const maxYear = currentYear + 3; // Allows booking up to 3 years ahead
-
-function convertYearToDropdown(selectedDates, dateStr, instance) {
-  if (!instance || !instance.calendarContainer) return;
-  const calendar = instance.calendarContainer;
-  const yearInput = calendar.querySelector('.flatpickr-current-month input.cur-year');
-  if (!yearInput || calendar.querySelector('.custom-year-select')) return;
-
-  // Create the year select element
-  const yearSelect = document.createElement('select');
-  yearSelect.className = 'custom-year-select';
-  yearSelect.setAttribute('data-custom-enhanced', 'true');
-  yearSelect.style.cssText = `
-    background: transparent;
-    border: none;
-    color: #f59e0b;
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-    outline: none;
-    padding: 0 4px;
-    margin-left: 2px;
-  `;
-
-  for (let y = currentYear; y <= maxYear; y++) {
-    const opt = document.createElement('option');
-    opt.value = y;
-    opt.textContent = y;
-    opt.style.backgroundColor = '#0b1120';
-    opt.style.color = '#f8fafc';
-    if (y === instance.currentYear) opt.selected = true;
-    yearSelect.appendChild(opt);
-  }
-
-  yearSelect.addEventListener('change', (e) => {
-    instance.changeYear(parseInt(e.target.value, 10));
-  });
-
-  // Hide the original manual text input and insert the dropdown
-  yearInput.style.display = 'none';
-  yearInput.parentNode.insertBefore(yearSelect, yearInput);
-}
-window.convertYearToDropdown = convertYearToDropdown;
+const FLATPICKR_PREV_ARROW = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>';
+const FLATPICKR_NEXT_ARROW = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
 
 function initFlatpickr() {
   if (typeof flatpickr === 'undefined') return;
@@ -9809,23 +9768,10 @@ function initFlatpickr() {
           minDate: "today",          // Prevents selecting dates in the past
           maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
           disableMobile: true,
-          monthSelectorType: "dropdown",
+          monthSelectorType: "static", // Unifies header into plain text (e.g. "October 2026") without native select boxes
           animate: true,
-          onReady: [convertYearToDropdown],
-          onMonthChange: [
-            convertYearToDropdown,
-            function(selectedDates, dateStr, instance) {
-              const sel = instance.calendarContainer.querySelector('.custom-year-select');
-              if (sel) sel.value = instance.currentYear;
-            }
-          ],
-          onYearChange: [
-            convertYearToDropdown,
-            function(selectedDates, dateStr, instance) {
-              const sel = instance.calendarContainer.querySelector('.custom-year-select');
-              if (sel) sel.value = instance.currentYear;
-            }
-          ],
+          prevArrow: FLATPICKR_PREV_ARROW,
+          nextArrow: FLATPICKR_NEXT_ARROW,
           onChange: function(selectedDates, dateStr, instance) {
             if (instance && instance.element) {
               if (typeof clearFieldError === 'function') {
@@ -9854,23 +9800,10 @@ function initDatePicker() {
         minDate: "today",
         maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
         disableMobile: true,
-        monthSelectorType: "dropdown",
+        monthSelectorType: "static", // Unifies header into plain text (e.g. "October 2026") without native select boxes
         animate: true,
-        onReady: [convertYearToDropdown],
-        onMonthChange: [
-          convertYearToDropdown,
-          function(selectedDates, dateStr, instance) {
-            const sel = instance.calendarContainer.querySelector('.custom-year-select');
-            if (sel) sel.value = instance.currentYear;
-          }
-        ],
-        onYearChange: [
-          convertYearToDropdown,
-          function(selectedDates, dateStr, instance) {
-            const sel = instance.calendarContainer.querySelector('.custom-year-select');
-            if (sel) sel.value = instance.currentYear;
-          }
-        ]
+        prevArrow: FLATPICKR_PREV_ARROW,
+        nextArrow: FLATPICKR_NEXT_ARROW
       });
     }
   } catch (e) {}
@@ -9890,23 +9823,10 @@ document.addEventListener("DOMContentLoaded", () => {
           minDate: "today",          // Disables past dates
           maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
           disableMobile: true,
-          monthSelectorType: "dropdown",
+          monthSelectorType: "static", // Unifies header into plain text (e.g. "October 2026") without native select boxes
           animate: true,
-          onReady: [convertYearToDropdown],
-          onMonthChange: [
-            convertYearToDropdown,
-            function(selectedDates, dateStr, instance) {
-              const sel = instance.calendarContainer.querySelector('.custom-year-select');
-              if (sel) sel.value = instance.currentYear;
-            }
-          ],
-          onYearChange: [
-            convertYearToDropdown,
-            function(selectedDates, dateStr, instance) {
-              const sel = instance.calendarContainer.querySelector('.custom-year-select');
-              if (sel) sel.value = instance.currentYear;
-            }
-          ]
+          prevArrow: FLATPICKR_PREV_ARROW,
+          nextArrow: FLATPICKR_NEXT_ARROW
         });
       }
     });
@@ -9919,7 +9839,7 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 function initCustomDropdowns() {
   try {
-    const nativeSelects = document.querySelectorAll("select:not([data-custom-enhanced]):not(.flatpickr-monthDropdown-months):not(.custom-year-select)");
+    const nativeSelects = document.querySelectorAll("select:not([data-custom-enhanced]):not(.flatpickr-monthDropdown-months)");
     if (!nativeSelects || nativeSelects.length === 0) return;
 
     const SELECTED_OPT_CLASS =
@@ -9930,7 +9850,7 @@ function initCustomDropdowns() {
     nativeSelects.forEach((select) => {
       try {
         if (!select || !select.parentNode) return;
-        if (select.closest('.flatpickr-calendar') || select.classList.contains('flatpickr-monthDropdown-months') || select.classList.contains('custom-year-select')) return;
+        if (select.closest('.flatpickr-calendar') || select.classList.contains('flatpickr-monthDropdown-months')) return;
         select.setAttribute("data-custom-enhanced", "true");
         // Visually hide native browser select while keeping DOM accessibility and form validity
         select.classList.add("sr-only");
