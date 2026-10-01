@@ -379,33 +379,41 @@ body:has(#hero) #mainHeader:not(.header-scrolled):not(.menu-open),
   -webkit-backdrop-filter: none !important;
 }
 
-/* Scrolled elevation state & Sticky Navbar: Modern Dynamic Frosted Glass */
+/* Frosted glass translucent navbar */
+header,
+nav,
+.navbar,
+header.scrolled,
+nav.scrolled,
 header.glass-nav.header-scrolled,
 #mainHeader.header-scrolled,
 header.glass-nav:not(.hero-floating-nav),
 #mainHeader:not(.hero-floating-nav) {
-  background: rgba(7, 11, 20, 0.95) !important;
-  color: #ffffff !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border-bottom: 1px solid rgba(30, 41, 59, 0.8) !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
+  background: rgba(11, 17, 32, 0.65) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
+/* Light mode fallback */
+html:not(.dark) header,
+html:not(.dark) nav,
+html:not(.dark) .navbar,
+html:not(.dark) header.glass-nav.header-scrolled,
+html:not(.dark) #mainHeader.header-scrolled,
+html:not(.dark) header.glass-nav:not(.hero-floating-nav),
+html:not(.dark) #mainHeader:not(.hero-floating-nav),
+html.light header,
+html.light nav,
+html.light .navbar,
 html.light header.glass-nav.header-scrolled,
-:root:not(.dark) header.glass-nav.header-scrolled,
 html.light #mainHeader.header-scrolled,
-:root:not(.dark) #mainHeader.header-scrolled,
 html.light header.glass-nav:not(.hero-floating-nav),
-:root:not(.dark) header.glass-nav:not(.hero-floating-nav),
-html.light #mainHeader:not(.hero-floating-nav),
-:root:not(.dark) #mainHeader:not(.hero-floating-nav) {
-  background: rgba(255, 255, 255, 0.95) !important;
-  color: #1e293b !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+html.light #mainHeader:not(.hero-floating-nav) {
+  background: rgba(255, 255, 255, 0.75) !important;
   border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* When Mobile Menu is Active: Seamless Translucent Frosted Glass Header */
@@ -417,9 +425,9 @@ html.light header:has(#mobileMenu:not(.hidden)),
 :root:not(.dark) header:has(#mobileMenu:not(.hidden)),
 html.light #mainHeader:has(#mobileMenu:not(.hidden)),
 :root:not(.dark) #mainHeader:has(#mobileMenu:not(.hidden)) {
-  background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
   border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
 }
 
@@ -431,10 +439,10 @@ html.dark header:has(#mobileMenu:not(.hidden)),
 :root.dark header:has(#mobileMenu:not(.hidden)),
 html.dark #mainHeader:has(#mobileMenu:not(.hidden)),
 :root.dark #mainHeader:has(#mobileMenu:not(.hidden)) {
-  background: rgba(7, 11, 20, 0.85) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  border-bottom: 1px solid rgba(30, 41, 59, 0.8) !important;
+  background: rgba(11, 17, 32, 0.75) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Floating Hero Navigation Typography & Controls */
@@ -588,18 +596,30 @@ html.light #mainHeader.header-scrolled #brandHeaderLogo,
   filter: drop-shadow(2px 2px 4px rgba(15, 23, 42, 0.18));
 }
 
-/* Dark Mode: Soft-focus depth shadow */
+/* Dark Mode: Starplus logo subtext contrast boost & depth */
+/* If the logo is an <img> asset with dark baked-in subtext */
+html.dark header img[alt*="Star"],
+html.dark nav img[alt*="Star"],
+html.dark .logo img,
 html.dark #brandHeaderLogo,
 :root.dark #brandHeaderLogo,
 html.dark .header-brand-logo,
-:root.dark .header-brand-logo {
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.35));
-}
-
-/* Floating Over Dark Hero Section */
+:root.dark .header-brand-logo,
 body:has(#hero) #mainHeader:not(.header-scrolled) #brandHeaderLogo,
 body:has(#hero) .hero-floating-nav:not(.header-scrolled) #brandHeaderLogo {
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 1px 1px rgba(255, 255, 255, 0.4)) contrast(1.05);
+}
+
+/* If the subtext is an SVG path or HTML text element */
+html.dark .logo text,
+html.dark .logo-tagline,
+html.dark .brand-subtitle,
+html.dark .logo-subtitle,
+html.dark .header-brand-subtitle,
+html.dark [data-brand-subtitle],
+html.dark .travel-tourism-subtitle {
+  color: #f1f5f9 !important;
+  fill: #f1f5f9 !important;
 }
 
 /* Mobile Drawer Brand Logo */
