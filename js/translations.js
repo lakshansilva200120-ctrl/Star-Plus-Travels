@@ -247,6 +247,10 @@ const translations = {
     faqPageSubtitle: "Find authoritative answers regarding tour package bookings, UAE and Schengen visa procedures, payment split plans, and refund policies.",
     contactPageTitle: "Contact Our Global Offices",
     contactPageSubtitle: "Visit our physical branches in Dubai or Colombo, or speak directly with our senior travel specialists on phone or WhatsApp.",
+    destinationsBadge: "World-Class Destinations",
+    packagesPageTitle: "Curated Global Tour Packages",
+    packagesPageSubtitle: "From the soaring skylines of Dubai and mist-covered tea peaks of Sri Lanka to Caucasian alpine valleys and turquoise Maldivian atolls.",
+    packagesGridHeading: "Available Tour Packages",
 
     visa_opt_oman: "Oman Visa Change by Luxury Coach (Deira Departure)",
     visa_opt_schengen: "Schengen European Visa Full Concierge & File Preparation",
@@ -551,6 +555,10 @@ const translations = {
     faqPageSubtitle: "සංචාරක පැකේජ, වීසා ක්රියාවලි, පහසු ගෙවීමේ ක්රම සහ මුදල් ආපසු ලබාගැනීමේ ප්රතිපත්ති පිළිබඳ තොරතුරු.",
     contactPageTitle: "අපගේ ගෝලීය කාර්යාල හා සම්බන්ධ වන්න",
     contactPageSubtitle: "ඩුබායි හෝ කොළඹ පිහිටි අපගේ ශාඛා වෙත පැමිණෙන්න, නැතහොත් දුරකථන හෝ WhatsApp හරහා අප හා සම්බන්ධ වන්න.",
+    destinationsBadge: "ලෝක මට්ටමේ ගමනාන්ත",
+    packagesPageTitle: "විශේෂිත ගෝලීය සංචාරක පැකේජ",
+    packagesPageSubtitle: "ඩුබායි අහස උසට නැඟුණු ගොඩනැගිලි සහ ශ්‍රී ලංකාවේ මිහිදුම් සහිත තේ කඳුකරයේ සිට කොකේසස් ඇල්පයින් මිටියාවත් සහ මාලදිවයින් සාගර දූපත් දක්වා.",
+    packagesGridHeading: "පවතින සංචාරක පැකේජ",
 
     visa_opt_oman: "ඕමාන් වීසා මාරුව සුඛෝපභෝගී බස් රථයෙන් (දෙයිරා සිට)",
     visa_opt_schengen: "යුරෝපා ෂෙන්ගන් වීසා සම්පූර්ණ ලිපිගොනු සකස් කිරීමේ සේවාව",

@@ -5,6 +5,78 @@
  * and coordinates with app.js localization controllers.
  */
 
+function updateElementTranslation(el, val) {
+  if (!el || val === undefined || val === null) return;
+
+  // 1. Input or Textarea placeholders
+  if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+    el.placeholder = val;
+    return;
+  }
+
+  // 2. Select option element
+  if (el.tagName === 'OPTION') {
+    el.textContent = val;
+    return;
+  }
+
+  // 3. Custom dropdown target: if element is or contains .custom-select-label
+  const customLabel = el.classList.contains('custom-select-label')
+    ? el
+    : el.querySelector('.custom-select-label');
+  if (customLabel) {
+    customLabel.textContent = val;
+    return;
+  }
+
+  // 4. If element contains child elements (icons, badges, svgs)
+  if (el.children && el.children.length > 0) {
+    // If there is an explicit text span, update it directly
+    const textSpan = el.querySelector('.i18n-text, .btn-text, span:not([class*="fa-"]):not([class*="icon"]):not(.check-mark):not(.custom-select-label)');
+    if (textSpan && !textSpan.hasAttribute('data-i18n') && !textSpan.hasAttribute('data-key')) {
+      if (typeof val === 'string' && ((val.includes('<') && val.includes('>')) || /&[a-zA-Z0-9#]+;/.test(val))) {
+        textSpan.innerHTML = val;
+      } else {
+        textSpan.textContent = val;
+      }
+      return;
+    }
+
+    // Locate primary text node
+    let textNode = null;
+    for (let i = 0; i < el.childNodes.length; i++) {
+      const node = el.childNodes[i];
+      if (node.nodeType === 3 && node.textContent.trim().length > 0) {
+        textNode = node;
+        break;
+      }
+    }
+    if (textNode) {
+      if (typeof val === 'string' && ((val.includes('<') && val.includes('>')) || /&[a-zA-Z0-9#]+;/.test(val))) {
+        const span = document.createElement('span');
+        span.innerHTML = val;
+        el.replaceChild(span, textNode);
+      } else {
+        const leading = textNode.textContent.startsWith(' ') ? ' ' : '';
+        const trailing = textNode.textContent.endsWith(' ') ? ' ' : '';
+        textNode.textContent = leading + val.trim() + trailing;
+      }
+      return;
+    }
+  }
+
+  // 5. Leaf element without complex children
+  if (typeof val === 'string' && ((val.includes('<') && val.includes('>')) || /&[a-zA-Z0-9#]+;/.test(val))) {
+    el.innerHTML = val;
+  } else {
+    el.textContent = val;
+  }
+}
+
+if (typeof window !== 'undefined') {
+  window.updateElementTranslation = updateElementTranslation;
+}
+
 function applyLanguage(lang) {
   if (lang !== 'en' && lang !== 'si') lang = 'en';
 
@@ -14,38 +86,38 @@ function applyLanguage(lang) {
     localStorage.setItem('starplus_lang', lang);
   } catch (e) {}
 
-  document.documentElement.lang = lang;
-
-  if (lang === 'si') {
-    document.documentElement.classList.add('lang-si');
-  } else {
-    document.documentElement.classList.remove('lang-si');
+  if (document.documentElement) {
+    document.documentElement.lang = lang;
+    if (lang === 'si') {
+      document.documentElement.classList.add('lang-si');
+    } else {
+      document.documentElement.classList.remove('lang-si');
+    }
   }
 
-  const dict = typeof translations !== 'undefined' ? translations : (typeof window !== 'undefined' ? window.translations : null);
+  const dictSource = (typeof I18N_TRANSLATIONS !== 'undefined' && I18N_TRANSLATIONS)
+    ? I18N_TRANSLATIONS
+    : (typeof translations !== 'undefined' ? translations : (typeof window !== 'undefined' ? (window.I18N_TRANSLATIONS || window.translations) : null));
 
-  // 1. Translate all static elements with data-i18n attributes
-  document.querySelectorAll('[data-i18n]').forEach((el) => {
-    const key = el.getAttribute('data-i18n');
-    if (dict && dict[lang] && dict[lang][key] !== undefined) {
-      const val = dict[lang][key];
-      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-        el.placeholder = val;
-      } else if (typeof val === 'string' && ((val.includes('<') && val.includes('>')) || /&[a-zA-Z0-9#]+;/.test(val))) {
-        el.innerHTML = val;
-      } else {
-        el.textContent = val;
+  const dict = dictSource ? (dictSource[lang] || dictSource.en) : null;
+
+  if (dict) {
+    // 1. Translate all static elements with data-i18n or data-key attributes
+    document.querySelectorAll('[data-i18n], [data-key]').forEach((el) => {
+      const key = el.getAttribute('data-i18n') || el.getAttribute('data-key');
+      if (key && dict[key] !== undefined) {
+        updateElementTranslation(el, dict[key]);
       }
-    }
-  });
+    });
 
-  // 2. Translate elements with data-i18n-placeholder
-  document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
-    const key = el.getAttribute('data-i18n-placeholder');
-    if (dict && dict[lang] && dict[lang][key] !== undefined) {
-      el.placeholder = dict[lang][key];
-    }
-  });
+    // 2. Translate elements with data-i18n-placeholder or data-placeholder-key
+    document.querySelectorAll('[data-i18n-placeholder], [data-placeholder-key]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-placeholder') || el.getAttribute('data-placeholder-key');
+      if (key && dict[key] !== undefined) {
+        el.placeholder = dict[key];
+      }
+    });
+  }
 
   // 3. Update active toggle button style
   const enBtn = document.getElementById('lang-toggle-en');
@@ -70,7 +142,22 @@ function applyLanguage(lang) {
 
   // 4. Synchronize with main application language handler if available
   if (typeof changeLanguage === 'function') {
-    changeLanguage(lang, false);
+    try {
+      changeLanguage(lang, false);
+    } catch (e) {}
+  }
+
+  // 5. Re-call custom dropdown and datepicker initializers after translation finishes
+  if (typeof initCustomDropdowns === 'function') {
+    try { initCustomDropdowns(); } catch (e) {}
+  }
+  if (typeof refreshCustomDropdowns === 'function') {
+    try { refreshCustomDropdowns(); } catch (e) {}
+  }
+  if (typeof initDatePicker === 'function') {
+    try { initDatePicker(); } catch (e) {}
+  } else if (typeof initFlatpickr === 'function') {
+    try { initFlatpickr(); } catch (e) {}
   }
 }
 
