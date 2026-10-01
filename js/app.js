@@ -9763,7 +9763,8 @@ function initFlatpickr() {
           dateFormat: "d M, Y",      // Displays as: 14 Oct, 2026
           minDate: "today",          // Prevents selecting dates in the past
           maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
-          disableMobile: "true",     // Prevents iOS/Android from forcing the plain native picker
+          disableMobile: true,
+          monthSelectorType: "dropdown",
           animate: true,
           onChange: function(selectedDates, dateStr, instance) {
             if (instance && instance.element) {
@@ -9792,7 +9793,8 @@ function initDatePicker() {
         dateFormat: "d M, Y",
         minDate: "today",
         maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
-        disableMobile: "true",
+        disableMobile: true,
+        monthSelectorType: "dropdown",
         animate: true
       });
     }
@@ -9812,7 +9814,8 @@ document.addEventListener("DOMContentLoaded", () => {
           dateFormat: "d M, Y",      // Displays as: 14 Oct, 2026
           minDate: "today",          // Disables past dates
           maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
-          disableMobile: "true",     // Prevents iOS/Android from forcing the plain native picker
+          disableMobile: true,
+          monthSelectorType: "dropdown",
           animate: true
         });
       }
@@ -9826,7 +9829,7 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 function initCustomDropdowns() {
   try {
-    const nativeSelects = document.querySelectorAll("select:not([data-custom-enhanced])");
+    const nativeSelects = document.querySelectorAll("select:not([data-custom-enhanced]):not(.flatpickr-monthDropdown-months)");
     if (!nativeSelects || nativeSelects.length === 0) return;
 
     const SELECTED_OPT_CLASS =
@@ -9837,6 +9840,7 @@ function initCustomDropdowns() {
     nativeSelects.forEach((select) => {
       try {
         if (!select || !select.parentNode) return;
+        if (select.closest('.flatpickr-calendar') || select.classList.contains('flatpickr-monthDropdown-months')) return;
         select.setAttribute("data-custom-enhanced", "true");
         // Visually hide native browser select while keeping DOM accessibility and form validity
         select.classList.add("sr-only");

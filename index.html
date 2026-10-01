@@ -2513,7 +2513,8 @@
               dateFormat: "d M, Y",
               minDate: "today",
               maxDate: new Date().fp_incr(730),
-              disableMobile: "true",
+              disableMobile: true,
+              monthSelectorType: "dropdown",
               animate: true
             });
           } catch (e) {}
