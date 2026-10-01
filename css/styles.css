@@ -3867,6 +3867,7 @@ input.flatpickr-input {
   border-radius: 1rem !important;
   padding: 12px !important;
   width: 320px !important;
+  overflow: visible !important;
 }
 html:not(.dark) .flatpickr-calendar {
   background: #ffffff !important;
@@ -3884,6 +3885,7 @@ html:not(.dark) .flatpickr-calendar {
   margin-bottom: 6px !important;
   background: transparent !important;
   border: none !important;
+  overflow: visible !important;
 }
 
 .flatpickr-months .flatpickr-month {
@@ -3892,97 +3894,89 @@ html:not(.dark) .flatpickr-calendar {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  overflow: visible !important;
 }
 
-/* Header text container */
+/* Header container */
 .flatpickr-current-month {
   position: static !important;
   width: auto !important;
-  display: inline-flex !important;
+  display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 4px !important;
-  font-size: 1.1rem !important;
   padding: 0 !important;
   pointer-events: auto !important;
   border: none !important;
   background: transparent !important;
+  overflow: visible !important;
 }
 
-/* Month dropdown - invisible native select styling */
-.flatpickr-current-month select.flatpickr-monthDropdown-months {
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  -moz-appearance: none !important;
-  background: transparent !important;
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  font-weight: 700 !important;
-  font-size: 1.1rem !important;
-  color: #ffffff !important;
-  cursor: pointer !important;
-  padding: 2px 6px !important;
-  border-radius: 6px !important;
-  margin: 0 !important;
-}
-.flatpickr-current-month select.flatpickr-monthDropdown-months:hover {
-  background: rgba(255, 255, 255, 0.08) !important;
-}
-.flatpickr-current-month select.flatpickr-monthDropdown-months option {
-  background-color: #0b1120 !important;
-  color: #f8fafc !important;
-  font-size: 0.95rem !important;
+/* Custom Month & Year Dropdowns */
+.custom-cal-header-flex {
+  position: relative;
+  z-index: 20;
 }
 
-/* Year input - fully editable & scrollable */
-.flatpickr-current-month .numInputWrapper {
-  display: inline-flex !important;
-  align-items: center !important;
-  width: 58px !important;
+.cal-drop-menu {
+  top: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(245, 158, 11, 0.4) transparent;
 }
-.flatpickr-current-month .numInputWrapper span {
-  display: none !important; /* Hide browser glitch arrows */
+.cal-drop-item {
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
-.flatpickr-current-month input.cur-year {
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
-  font-size: 1.1rem !important;
-  font-weight: 700 !important;
-  color: #f59e0b !important; /* Gold accent */
-  cursor: pointer !important;
-  padding: 2px 4px !important;
-  border-radius: 6px !important;
-  margin: 0 !important;
-  pointer-events: auto !important;
+.cal-drop-item:hover {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
 }
-.flatpickr-current-month input.cur-year:hover {
-  background: rgba(245, 158, 11, 0.1) !important;
+.cal-drop-item.active {
+  background-color: #f59e0b;
+  color: #0b1120;
+  font-weight: 700;
 }
 
-/* Light mode support */
-html:not(.dark) .flatpickr-current-month select.flatpickr-monthDropdown-months,
-html.light .flatpickr-current-month select.flatpickr-monthDropdown-months {
-  color: #0f172a !important;
-}
-html:not(.dark) .flatpickr-current-month select.flatpickr-monthDropdown-months:hover,
-html.light .flatpickr-current-month select.flatpickr-monthDropdown-months:hover {
-  background: rgba(15, 23, 42, 0.06) !important;
-}
-html:not(.dark) .flatpickr-current-month select.flatpickr-monthDropdown-months option,
-html.light .flatpickr-current-month select.flatpickr-monthDropdown-months option {
+/* Light mode support for custom calendar dropdowns */
+html:not(.dark) .cal-drop-menu,
+html.light .cal-drop-menu {
   background-color: #ffffff !important;
-  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
 }
-html:not(.dark) .flatpickr-current-month input.cur-year,
-html.light .flatpickr-current-month input.cur-year {
+html:not(.dark) .cal-drop-item,
+html.light .cal-drop-item {
+  color: #334155 !important;
+}
+html:not(.dark) .cal-drop-item:hover,
+html.light .cal-drop-item:hover {
+  background-color: rgba(245, 158, 11, 0.12) !important;
   color: #d97706 !important;
 }
-html:not(.dark) .flatpickr-current-month input.cur-year:hover,
-html.light .flatpickr-current-month input.cur-year:hover {
-  background: rgba(217, 119, 6, 0.1) !important;
+html:not(.dark) .cal-drop-item.active,
+html.light .cal-drop-item.active {
+  background-color: #f59e0b !important;
+  color: #0b1120 !important;
+}
+html:not(.dark) .custom-cal-dropdown[data-type="month"] .cal-drop-trigger,
+html.light .custom-cal-dropdown[data-type="month"] .cal-drop-trigger {
+  color: #0f172a !important;
+}
+html:not(.dark) .custom-cal-dropdown[data-type="month"] .cal-drop-trigger:hover,
+html.light .custom-cal-dropdown[data-type="month"] .cal-drop-trigger:hover {
+  background-color: rgba(15, 23, 42, 0.06) !important;
+}
+html:not(.dark) .custom-cal-dropdown[data-type="year"] .cal-drop-trigger,
+html.light .custom-cal-dropdown[data-type="year"] .cal-drop-trigger {
+  color: #d97706 !important;
+}
+html:not(.dark) .custom-cal-dropdown[data-type="year"] .cal-drop-trigger:hover,
+html.light .custom-cal-dropdown[data-type="year"] .cal-drop-trigger:hover {
+  background-color: rgba(217, 119, 6, 0.1) !important;
 }
 
 /* Elegant Chevron Navigation */

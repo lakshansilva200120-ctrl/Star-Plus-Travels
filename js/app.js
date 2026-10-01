@@ -9747,11 +9747,178 @@ function initIntlTelInputs() {
 window.initIntlTelInputs = initIntlTelInputs;
 
 // ============================================================================
-// ============================================================================
 // Flatpickr Dark Theme Date Picker Setup & Initialization
 // ============================================================================
 const FLATPICKR_PREV_ARROW = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>';
 const FLATPICKR_NEXT_ARROW = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
+
+const MONTH_NAMES = [
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
+function updateCustomCalendarHeaderState(selectedDates, dateStr, instance) {
+  if (!instance || !instance.calendarContainer) return;
+  const currentMonthEl = instance.calendarContainer.querySelector('.flatpickr-current-month');
+  if (!currentMonthEl) return;
+
+  let headerFlex = currentMonthEl.querySelector('.custom-cal-header-flex');
+  if (!headerFlex) {
+    setupCustomCalendarHeaders(selectedDates, dateStr, instance);
+    headerFlex = currentMonthEl.querySelector('.custom-cal-header-flex');
+    if (!headerFlex) return;
+  }
+
+  const curMonthIdx = instance.currentMonth;
+  const curYearVal = instance.currentYear;
+
+  // Update Month trigger text
+  const monthTriggerVal = headerFlex.querySelector('.custom-cal-dropdown[data-type="month"] .cal-selected-val');
+  if (monthTriggerVal) {
+    monthTriggerVal.textContent = MONTH_NAMES[curMonthIdx] || "";
+  }
+
+  // Update Year trigger text
+  const yearTriggerVal = headerFlex.querySelector('.custom-cal-dropdown[data-type="year"] .cal-selected-val');
+  if (yearTriggerVal) {
+    yearTriggerVal.textContent = curYearVal || "";
+  }
+
+  // Update active state in Month dropdown
+  const monthItems = headerFlex.querySelectorAll('.custom-cal-dropdown[data-type="month"] .cal-drop-item');
+  monthItems.forEach(item => {
+    if (parseInt(item.dataset.value, 10) === curMonthIdx) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+
+  // Update active state in Year dropdown
+  const yearItems = headerFlex.querySelectorAll('.custom-cal-dropdown[data-type="year"] .cal-drop-item');
+  yearItems.forEach(item => {
+    if (parseInt(item.dataset.value, 10) === curYearVal) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
+}
+window.updateCustomCalendarHeaderState = updateCustomCalendarHeaderState;
+
+function setupCustomCalendarHeaders(selectedDates, dateStr, instance) {
+  if (!instance || !instance.calendarContainer) return;
+  const currentMonthEl = instance.calendarContainer.querySelector('.flatpickr-current-month');
+  if (!currentMonthEl) return;
+
+  // Clear existing HTML and inject custom dropdown structure
+  currentMonthEl.innerHTML = `
+    <div class="custom-cal-header-flex flex items-center justify-center gap-3 select-none">
+      <!-- Month Custom Dropdown -->
+      <div class="relative custom-cal-dropdown" data-type="month">
+        <button type="button" class="cal-drop-trigger flex items-center gap-1.5 text-white font-bold text-sm px-2.5 py-1.5 rounded-lg hover:bg-white/10 transition-colors">
+          <span class="cal-selected-val"></span>
+          <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="cal-drop-menu hidden absolute left-0 mt-1 w-36 max-h-56 overflow-y-auto bg-[#0b1120] border border-amber-500/20 rounded-xl shadow-2xl z-50 p-1.5"></div>
+      </div>
+
+      <!-- Year Custom Dropdown -->
+      <div class="relative custom-cal-dropdown" data-type="year">
+        <button type="button" class="cal-drop-trigger flex items-center gap-1.5 text-amber-400 font-bold text-sm px-2.5 py-1.5 rounded-lg hover:bg-amber-400/10 transition-colors">
+          <span class="cal-selected-val"></span>
+          <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="cal-drop-menu hidden absolute left-0 mt-1 w-24 max-h-56 overflow-y-auto bg-[#0b1120] border border-amber-500/20 rounded-xl shadow-2xl z-50 p-1.5"></div>
+      </div>
+    </div>
+  `;
+
+  const monthDropdown = currentMonthEl.querySelector('.custom-cal-dropdown[data-type="month"]');
+  const yearDropdown = currentMonthEl.querySelector('.custom-cal-dropdown[data-type="year"]');
+  const monthTrigger = monthDropdown ? monthDropdown.querySelector('.cal-drop-trigger') : null;
+  const yearTrigger = yearDropdown ? yearDropdown.querySelector('.cal-drop-trigger') : null;
+  const monthMenu = monthDropdown ? monthDropdown.querySelector('.cal-drop-menu') : null;
+  const yearMenu = yearDropdown ? yearDropdown.querySelector('.cal-drop-menu') : null;
+
+  // Populate Months (January - December)
+  if (monthMenu) {
+    monthMenu.innerHTML = '';
+    MONTH_NAMES.forEach((mName, idx) => {
+      const item = document.createElement('div');
+      item.className = 'cal-drop-item';
+      item.dataset.value = idx;
+      item.textContent = mName;
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        instance.changeMonth(idx, false);
+        monthMenu.classList.add('hidden');
+        updateCustomCalendarHeaderState(selectedDates, dateStr, instance);
+      });
+      monthMenu.appendChild(item);
+    });
+  }
+
+  // Populate Years (current year through current year + 2)
+  if (yearMenu) {
+    yearMenu.innerHTML = '';
+    const baseYear = new Date().getFullYear();
+    for (let y = baseYear; y <= baseYear + 2; y++) {
+      const item = document.createElement('div');
+      item.className = 'cal-drop-item';
+      item.dataset.value = y;
+      item.textContent = y;
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        instance.changeYear(y);
+        yearMenu.classList.add('hidden');
+        updateCustomCalendarHeaderState(selectedDates, dateStr, instance);
+      });
+      yearMenu.appendChild(item);
+    }
+  }
+
+  // Toggle Dropdowns
+  if (monthTrigger && monthMenu) {
+    monthTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isClosed = monthMenu.classList.contains('hidden');
+      if (yearMenu) yearMenu.classList.add('hidden');
+      if (isClosed) {
+        monthMenu.classList.remove('hidden');
+      } else {
+        monthMenu.classList.add('hidden');
+      }
+    });
+  }
+
+  if (yearTrigger && yearMenu) {
+    yearTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isClosed = yearMenu.classList.contains('hidden');
+      if (monthMenu) monthMenu.classList.add('hidden');
+      if (isClosed) {
+        yearMenu.classList.remove('hidden');
+      } else {
+        yearMenu.classList.add('hidden');
+      }
+    });
+  }
+
+  // Close dropdowns when clicking outside
+  if (!instance._customCalClickBound) {
+    document.addEventListener('click', (e) => {
+      if (!currentMonthEl.contains(e.target)) {
+        if (monthMenu) monthMenu.classList.add('hidden');
+        if (yearMenu) yearMenu.classList.add('hidden');
+      }
+    });
+    instance._customCalClickBound = true;
+  }
+
+  updateCustomCalendarHeaderState(selectedDates, dateStr, instance);
+}
+window.setupCustomCalendarHeaders = setupCustomCalendarHeaders;
 
 function initFlatpickr() {
   if (typeof flatpickr === 'undefined') return;
@@ -9768,10 +9935,13 @@ function initFlatpickr() {
           minDate: "today",          // Prevents selecting dates in the past
           maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
           disableMobile: true,
-          monthSelectorType: "dropdown",
+          monthSelectorType: "static",
           animate: true,
           prevArrow: FLATPICKR_PREV_ARROW,
           nextArrow: FLATPICKR_NEXT_ARROW,
+          onReady: setupCustomCalendarHeaders,
+          onMonthChange: updateCustomCalendarHeaderState,
+          onYearChange: updateCustomCalendarHeaderState,
           onChange: function(selectedDates, dateStr, instance) {
             if (instance && instance.element) {
               if (typeof clearFieldError === 'function') {
@@ -9800,10 +9970,13 @@ function initDatePicker() {
         minDate: "today",
         maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
         disableMobile: true,
-        monthSelectorType: "dropdown",
+        monthSelectorType: "static",
         animate: true,
         prevArrow: FLATPICKR_PREV_ARROW,
-        nextArrow: FLATPICKR_NEXT_ARROW
+        nextArrow: FLATPICKR_NEXT_ARROW,
+        onReady: setupCustomCalendarHeaders,
+        onMonthChange: updateCustomCalendarHeaderState,
+        onYearChange: updateCustomCalendarHeaderState
       });
     }
   } catch (e) {}
@@ -9823,10 +9996,13 @@ document.addEventListener("DOMContentLoaded", () => {
           minDate: "today",          // Disables past dates
           maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
           disableMobile: true,
-          monthSelectorType: "dropdown",
+          monthSelectorType: "static",
           animate: true,
           prevArrow: FLATPICKR_PREV_ARROW,
-          nextArrow: FLATPICKR_NEXT_ARROW
+          nextArrow: FLATPICKR_NEXT_ARROW,
+          onReady: setupCustomCalendarHeaders,
+          onMonthChange: updateCustomCalendarHeaderState,
+          onYearChange: updateCustomCalendarHeaderState
         });
       }
     });
