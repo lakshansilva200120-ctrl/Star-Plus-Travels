@@ -10368,34 +10368,29 @@ window.handleSpotlightCtaAction = handleSpotlightCtaAction;
 window.scrollSpotlightTrack = scrollSpotlightTrack;
 window.initSpotlightShowcases = initSpotlightShowcases;
 
+// Safe Global Initializer Runner
+function runPageInitializers() {
+  try { if (typeof initShowcaseAndSearch === 'function') initShowcaseAndSearch(); } catch (e) {}
+  try { if (typeof initIntlTelInputs === 'function') initIntlTelInputs(); } catch (e) {}
+  try { if (typeof initFlatpickr === 'function') initFlatpickr(); } catch (e) {}
+  try { if (typeof initPromoBannerVideo === 'function') initPromoBannerVideo(); } catch (e) {}
+  try { if (typeof initNewsletterForms === 'function') initNewsletterForms(); } catch (e) {}
+  try { if (typeof initUniversalFormValidation === 'function') initUniversalFormValidation(); } catch (e) {}
+  try { if (typeof initSpotlightShowcases === 'function') initSpotlightShowcases(); } catch (e) {}
+}
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    initShowcaseAndSearch();
-    initIntlTelInputs();
-    initFlatpickr();
-    initPromoBannerVideo();
-    initNewsletterForms();
-    initUniversalFormValidation();
-    initSpotlightShowcases();
+    runPageInitializers();
   });
 } else {
-  initShowcaseAndSearch();
-  initIntlTelInputs();
-  initFlatpickr();
-  initPromoBannerVideo();
-  initNewsletterForms();
-  initUniversalFormValidation();
-  initSpotlightShowcases();
+  runPageInitializers();
 }
 
 window.addEventListener('load', () => {
-  initIntlTelInputs();
-  initFlatpickr();
-  initPromoBannerVideo();
-  initNewsletterForms();
-  initUniversalFormValidation();
-  initSpotlightShowcases();
+  runPageInitializers();
 });
+
 
 // Seasonal Festival Engine
 (function initSeasonalFestivals() {
