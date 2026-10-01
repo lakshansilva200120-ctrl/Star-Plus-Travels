@@ -2512,7 +2512,8 @@
             flatpickr(travelInput, {
               dateFormat: "d M, Y",
               minDate: "today",
-              disableMobile: true,
+              maxDate: new Date().fp_incr(730),
+              disableMobile: "true",
               animate: true
             });
           } catch (e) {}

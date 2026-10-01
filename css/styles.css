@@ -3785,14 +3785,13 @@ input.phone-input-error {
    Luxury Brand Customization for Flatpickr (7-column Grid Fix & Light/Dark Theme)
    ========================================================================== */
 .flatpickr-calendar {
-  width: 325px !important;
-  min-width: 325px !important;
+  width: 310px !important;
+  padding: 10px !important;
+  box-sizing: border-box !important;
   overflow: visible !important;
   border-radius: 1.25rem !important;
-  padding: 12px !important;
   font-family: inherit !important;
   z-index: 999999 !important;
-  box-sizing: border-box !important;
 }
 
 .flatpickr-innerContainer,
@@ -3859,75 +3858,71 @@ input.flatpickr-input {
   cursor: pointer !important;
 }
 
-/* 2. Month/Year Header Container Alignment & Elimination of White Cutout Pill */
+/* --- Flatpickr Header Alignment & Arrow Fix --- */
 .flatpickr-months {
-  position: relative !important;
   display: flex !important;
   align-items: center !important;
+  justify-content: space-between !important;
+  position: relative !important;
+  padding: 4px 6px !important;
   margin-bottom: 8px !important;
-  background: transparent !important;
+}
+
+/* Free the navigation arrows from absolute overlapping positions */
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+  position: static !important;
+  height: 32px !important;
+  width: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  color: #f59e0b !important; /* amber accent */
+  fill: #f59e0b !important;
+  border-radius: 8px !important;
+  transition: background 0.15s ease !important;
+}
+
+.flatpickr-months .flatpickr-prev-month svg,
+.flatpickr-months .flatpickr-next-month svg {
+  fill: currentColor !important;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover,
+.flatpickr-months .flatpickr-next-month:hover {
+  background: rgba(245, 158, 11, 0.15) !important;
 }
 
 .flatpickr-months .flatpickr-month {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  position: relative !important;
-  height: auto !important;
-  min-height: 36px !important;
-  background: transparent !important;
   flex: 1 !important;
-  overflow: visible !important;
+  height: auto !important;
 }
 
-.flatpickr-months .flatpickr-prev-month,
-.flatpickr-months .flatpickr-next-month {
-  color: #f59e0b !important;
-  fill: #f59e0b !important;
-  padding: 6px 10px !important;
-  border-radius: 0.5rem !important;
-  transition: all 0.2s ease !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-}
-
-.flatpickr-months .flatpickr-prev-month:hover,
-.flatpickr-months .flatpickr-next-month:hover {
-  background: rgba(245, 158, 11, 0.15) !important;
-  color: #fbbf24 !important;
-  fill: #fbbf24 !important;
-}
-
+/* Center Month and Year side by side */
 .flatpickr-current-month {
-  display: flex !important;
+  position: static !important;
+  width: auto !important;
+  display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 8px !important;
-  padding: 4px 0 !important;
+  gap: 6px !important;
+  padding: 0 !important;
+  border: none !important;
   background: transparent !important;
-  width: 100% !important;
-  position: static !important;
-  left: auto !important;
-  transform: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
 }
 
 .flatpickr-current-month .cur-month {
+  font-size: 1rem !important;
   font-weight: 700 !important;
-  color: inherit !important;
-  margin-left: 0 !important;
-  padding: 0 !important;
 }
 
 .flatpickr-current-month .numInputWrapper {
+  width: 58px !important;
   display: inline-flex !important;
-  width: 65px !important;
-  background: transparent !important;
-}
-
-.flatpickr-current-month .numInputWrapper:hover {
-  background: transparent !important;
 }
 
 .flatpickr-current-month .numInputWrapper span {
@@ -3943,9 +3938,9 @@ input.flatpickr-input {
 }
 
 .flatpickr-current-month input.cur-year {
+  font-size: 1rem !important;
   font-weight: 700 !important;
-  color: #f59e0b !important; /* amber accent for year */
-  background: transparent !important;
+  color: #f59e0b !important;
   padding: 0 !important;
 }
 

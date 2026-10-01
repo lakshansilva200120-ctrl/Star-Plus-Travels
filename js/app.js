@@ -9761,8 +9761,9 @@ function initFlatpickr() {
       try {
         flatpickr(input, {
           dateFormat: "d M, Y",      // Displays as: 14 Oct, 2026
-          minDate: "today",          // Disables past dates
-          disableMobile: true,       // Prevents iOS/Android from forcing the plain native picker
+          minDate: "today",          // Prevents selecting dates in the past
+          maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
+          disableMobile: "true",     // Prevents iOS/Android from forcing the plain native picker
           animate: true,
           onChange: function(selectedDates, dateStr, instance) {
             if (instance && instance.element) {
@@ -9790,7 +9791,8 @@ function initDatePicker() {
       flatpickr(travelInput, {
         dateFormat: "d M, Y",
         minDate: "today",
-        disableMobile: true,
+        maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
+        disableMobile: "true",
         animate: true
       });
     }
@@ -9809,7 +9811,8 @@ document.addEventListener("DOMContentLoaded", () => {
         flatpickr(input, {
           dateFormat: "d M, Y",      // Displays as: 14 Oct, 2026
           minDate: "today",          // Disables past dates
-          disableMobile: true,       // Prevents iOS/Android from forcing the plain native picker
+          maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
+          disableMobile: "true",     // Prevents iOS/Android from forcing the plain native picker
           animate: true
         });
       }
