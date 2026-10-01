@@ -2515,7 +2515,24 @@
               maxDate: new Date().fp_incr(730),
               disableMobile: true,
               monthSelectorType: "dropdown",
-              animate: true
+              animate: true,
+              onReady: [typeof convertYearToDropdown !== 'undefined' ? convertYearToDropdown : (window.convertYearToDropdown || function(){})],
+              onMonthChange: [
+                function(selectedDates, dateStr, instance) {
+                  if (typeof convertYearToDropdown === 'function') convertYearToDropdown(selectedDates, dateStr, instance);
+                  else if (window.convertYearToDropdown) window.convertYearToDropdown(selectedDates, dateStr, instance);
+                  const sel = instance.calendarContainer.querySelector('.custom-year-select');
+                  if (sel) sel.value = instance.currentYear;
+                }
+              ],
+              onYearChange: [
+                function(selectedDates, dateStr, instance) {
+                  if (typeof convertYearToDropdown === 'function') convertYearToDropdown(selectedDates, dateStr, instance);
+                  else if (window.convertYearToDropdown) window.convertYearToDropdown(selectedDates, dateStr, instance);
+                  const sel = instance.calendarContainer.querySelector('.custom-year-select');
+                  if (sel) sel.value = instance.currentYear;
+                }
+              ]
             });
           } catch (e) {}
         }

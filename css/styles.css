@@ -3933,10 +3933,11 @@ input.flatpickr-input {
   color: #f8fafc !important;
 }
 
-/* Year input: remove broken spinner arrow overlapping numbers */
+/* Year input & select: remove broken spinner arrow overlapping numbers */
 .flatpickr-current-month .numInputWrapper {
   display: inline-block !important;
-  width: 60px !important;
+  width: auto !important;
+  min-width: 60px !important;
 }
 .flatpickr-current-month .numInputWrapper span {
   display: none !important; /* Hides the broken stepper arrow glitch */
@@ -3949,6 +3950,26 @@ input.flatpickr-input {
   padding: 0 !important;
   cursor: pointer !important;
   outline: none !important;
+}
+
+/* Custom Year Select Dropdown */
+.custom-year-select {
+  color: #d97706 !important;
+}
+html.dark .custom-year-select,
+:root.dark .custom-year-select,
+:root:not(.light) .custom-year-select {
+  color: #f59e0b !important;
+}
+.custom-year-select option {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+html.dark .custom-year-select option,
+:root.dark .custom-year-select option,
+:root:not(.light) .custom-year-select option {
+  background-color: #0b1120;
+  color: #f8fafc;
 }
 
 /* Weekdays */
