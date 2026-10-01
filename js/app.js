@@ -561,8 +561,8 @@ const I18N_TRANSLATIONS = {
 
     // Hero Section
     heroBadge: "STAR PLUS TRAVEL & TOURISM LLC • ඩුබායි සහ ශ්රී ලංකාව ★",
-    heroTitleFull: '<span class="block">විශ්වාසනීය ගමනක සුඛෝපභෝගී අත්දැකීම —</span><span class="text-amber-400 block mt-1 sm:mt-1.5">ඔබේ ලෝක සංචාරක සිහිනය සැබෑ කරගන්න.</span>',
-    heroTitleLead: "විශ්වාසනීය ගමනක සුඛෝපභෝගී අත්දැකීම —",
+    heroTitleFull: '<span class="block">විශ්වාසනීය ගමනක සුඛෝපභෝගී අත්දැකීම,</span><span class="text-amber-400 block mt-1 sm:mt-1.5">ඔබේ ලෝක සංචාරක සිහිනය සැබෑ කරගන්න.</span>',
+    heroTitleLead: "විශ්වාසනීය ගමනක සුඛෝපභෝගී අත්දැකීම,",
     heroTitleWorld: "ඔබේ ලෝක සංචාරක සිහිනය සැබෑ කරගන්න.",
     heroTitleMiddle: "",
     heroTitleLuxury: "ඔබේ ලෝක සංචාරක සිහිනය සැබෑ කරගන්න.",
@@ -4317,8 +4317,21 @@ function updateElementTranslation(el, val) {
     return;
   }
 
-  // 4. If element contains child elements (icons, badges, svgs)
+  // 4. Hero headline or elements receiving complete HTML templates with block spans
+  if (el.id === 'heroHeadline' || el.getAttribute('data-i18n') === 'heroTitleFull') {
+    el.innerHTML = val;
+    return;
+  }
+
+  // 5. If element contains child elements (icons, badges, svgs)
   if (el.children && el.children.length > 0) {
+    // If element has NO icons or media and val contains HTML markup (e.g. multiple spans), replace innerHTML directly
+    const hasIconsOrMedia = el.querySelector('i, svg, [class*="fa-"], [class*="icon"], img');
+    if (!hasIconsOrMedia && typeof val === 'string' && (val.includes('<') && val.includes('>'))) {
+      el.innerHTML = val;
+      return;
+    }
+
     // If there is an explicit text span, update it directly
     const textSpan = el.querySelector('.i18n-text, .btn-text, span:not([class*="fa-"]):not([class*="icon"]):not(.check-mark):not(.custom-select-label)');
     if (textSpan && !textSpan.hasAttribute('data-i18n') && !textSpan.hasAttribute('data-key')) {
