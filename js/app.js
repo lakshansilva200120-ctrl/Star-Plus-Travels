@@ -9752,6 +9752,118 @@ window.initIntlTelInputs = initIntlTelInputs;
 const FLATPICKR_PREV_ARROW = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>';
 const FLATPICKR_NEXT_ARROW = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>';
 
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function renderCustomPickers(selectedDates, dateStr, instance) {
+  if (!instance || !instance.calendarContainer) return;
+  const header = instance.calendarContainer.querySelector('.flatpickr-current-month');
+  if (!header || header.dataset.customized) return;
+  header.dataset.customized = "true";
+  header.innerHTML = '';
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'custom-cal-nav-wrap flex items-center justify-center gap-2 select-none relative';
+
+  // Month Dropdown Button
+  const monthDiv = document.createElement('div');
+  monthDiv.className = 'relative inline-block';
+  monthDiv.innerHTML = `
+    <button type="button" class="month-toggle-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold text-white bg-slate-900/60 border border-slate-700 hover:border-amber-500 transition-colors">
+      <span class="month-label">${MONTHS[instance.currentMonth]}</span>
+      <svg class="w-3.5 h-3.5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </button>
+    <div class="month-popup-menu hidden absolute left-0 top-full mt-1.5 w-36 max-h-56 overflow-y-auto rounded-xl bg-[#0b1120] border border-amber-500/30 p-1.5 shadow-2xl z-[9999]"></div>
+  `;
+
+  // Year Dropdown Button
+  const currentYear = new Date().getFullYear();
+  const yearDiv = document.createElement('div');
+  yearDiv.className = 'relative inline-block';
+  yearDiv.innerHTML = `
+    <button type="button" class="year-toggle-btn flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold text-amber-400 bg-slate-900/60 border border-slate-700 hover:border-amber-500 transition-colors">
+      <span class="year-label">${instance.currentYear}</span>
+      <svg class="w-3.5 h-3.5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </button>
+    <div class="year-popup-menu hidden absolute right-0 top-full mt-1.5 w-24 max-h-48 overflow-y-auto rounded-xl bg-[#0b1120] border border-amber-500/30 p-1.5 shadow-2xl z-[9999]"></div>
+  `;
+
+  wrapper.appendChild(monthDiv);
+  wrapper.appendChild(yearDiv);
+  header.appendChild(wrapper);
+
+  // Populate Month Options
+  const monthMenu = monthDiv.querySelector('.month-popup-menu');
+  MONTHS.forEach((name, idx) => {
+    const item = document.createElement('div');
+    item.className = `month-opt px-3 py-2 text-xs font-semibold rounded-lg cursor-pointer transition-colors ${idx === instance.currentMonth ? 'bg-amber-500 text-slate-950 font-bold' : 'text-slate-200 hover:bg-amber-500/20 hover:text-amber-400'}`;
+    item.textContent = name;
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+      instance.changeMonth(idx, false);
+      monthMenu.classList.add('hidden');
+    });
+    monthMenu.appendChild(item);
+  });
+
+  // Populate Year Options (Current year to +2)
+  const yearMenu = yearDiv.querySelector('.year-popup-menu');
+  for (let y = currentYear; y <= currentYear + 2; y++) {
+    const item = document.createElement('div');
+    item.className = `year-opt px-3 py-2 text-xs font-semibold rounded-lg cursor-pointer transition-colors ${y === instance.currentYear ? 'bg-amber-500 text-slate-950 font-bold' : 'text-slate-200 hover:bg-amber-500/20 hover:text-amber-400'}`;
+    item.textContent = y;
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+      instance.changeYear(y);
+      yearMenu.classList.add('hidden');
+    });
+    yearMenu.appendChild(item);
+  }
+
+  // Toggle actions
+  monthDiv.querySelector('.month-toggle-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    yearMenu.classList.add('hidden');
+    monthMenu.classList.toggle('hidden');
+  });
+
+  yearDiv.querySelector('.year-toggle-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    monthMenu.classList.add('hidden');
+    yearMenu.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', () => {
+    monthMenu.classList.add('hidden');
+    yearMenu.classList.add('hidden');
+  });
+}
+
+function syncCustomPickers(selectedDates, dateStr, instance) {
+  if (!instance || !instance.calendarContainer) return;
+  const cal = instance.calendarContainer;
+  const header = cal.querySelector('.flatpickr-current-month');
+  if (header && !header.dataset.customized) {
+    renderCustomPickers(selectedDates, dateStr, instance);
+  }
+  const monthLabel = cal.querySelector('.month-label');
+  const yearLabel = cal.querySelector('.year-label');
+  if (monthLabel) monthLabel.textContent = MONTHS[instance.currentMonth];
+  if (yearLabel) yearLabel.textContent = instance.currentYear;
+
+  cal.querySelectorAll('.month-opt').forEach((el, idx) => {
+    el.className = `month-opt px-3 py-2 text-xs font-semibold rounded-lg cursor-pointer transition-colors ${idx === instance.currentMonth ? 'bg-amber-500 text-slate-950 font-bold' : 'text-slate-200 hover:bg-amber-500/20 hover:text-amber-400'}`;
+  });
+
+  cal.querySelectorAll('.year-opt').forEach(el => {
+    const val = parseInt(el.textContent, 10);
+    el.className = `year-opt px-3 py-2 text-xs font-semibold rounded-lg cursor-pointer transition-colors ${val === instance.currentYear ? 'bg-amber-500 text-slate-950 font-bold' : 'text-slate-200 hover:bg-amber-500/20 hover:text-amber-400'}`;
+  });
+}
+
+window.MONTHS = MONTHS;
+window.renderCustomPickers = renderCustomPickers;
+window.syncCustomPickers = syncCustomPickers;
+
 function initFlatpickr() {
   if (typeof flatpickr === 'undefined') return;
 
@@ -9767,10 +9879,13 @@ function initFlatpickr() {
           minDate: "today",          // Prevents selecting dates in the past
           maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
           disableMobile: true,
-          monthSelectorType: "dropdown",
+          monthSelectorType: 'static',
           animate: true,
           prevArrow: FLATPICKR_PREV_ARROW,
           nextArrow: FLATPICKR_NEXT_ARROW,
+          onReady: renderCustomPickers,
+          onMonthChange: syncCustomPickers,
+          onYearChange: syncCustomPickers,
           onChange: function(selectedDates, dateStr, instance) {
             if (instance && instance.element) {
               if (typeof clearFieldError === 'function') {
@@ -9799,10 +9914,13 @@ function initDatePicker() {
         minDate: "today",
         maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
         disableMobile: true,
-        monthSelectorType: "dropdown",
+        monthSelectorType: 'static',
         animate: true,
         prevArrow: FLATPICKR_PREV_ARROW,
-        nextArrow: FLATPICKR_NEXT_ARROW
+        nextArrow: FLATPICKR_NEXT_ARROW,
+        onReady: renderCustomPickers,
+        onMonthChange: syncCustomPickers,
+        onYearChange: syncCustomPickers
       });
     }
   } catch (e) {}
@@ -9822,10 +9940,13 @@ document.addEventListener("DOMContentLoaded", () => {
           minDate: "today",          // Disables past dates
           maxDate: new Date().fp_incr(730), // Limits to 2 years from today (no year 3026)
           disableMobile: true,
-          monthSelectorType: "dropdown",
+          monthSelectorType: 'static',
           animate: true,
           prevArrow: FLATPICKR_PREV_ARROW,
-          nextArrow: FLATPICKR_NEXT_ARROW
+          nextArrow: FLATPICKR_NEXT_ARROW,
+          onReady: renderCustomPickers,
+          onMonthChange: syncCustomPickers,
+          onYearChange: syncCustomPickers
         });
       }
     });

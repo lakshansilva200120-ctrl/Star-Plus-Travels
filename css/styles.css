@@ -3929,64 +3929,62 @@ html:not(.dark) .flatpickr-calendar {
   padding: 4px 0 !important;
 }
 
-/* Solid opaque dropdown panel fix */
-.flatpickr-current-month select.flatpickr-monthDropdown-months,
-.flatpickr-current-month select.custom-year-select {
-  background-color: #0b1120 !important;
-  color: #f8fafc !important;
-  border: 1px solid rgba(245, 158, 11, 0.4) !important;
-  border-radius: 8px !important;
-  padding: 4px 8px !important;
-  font-size: 0.95rem !important;
-  font-weight: 700 !important;
-  outline: none !important;
-  cursor: pointer !important;
+/* Custom Month & Year Dropdown Popups */
+.month-popup-menu, .year-popup-menu {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(245, 158, 11, 0.4) transparent;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7) !important;
+}
+.month-popup-menu::-webkit-scrollbar,
+.year-popup-menu::-webkit-scrollbar {
+  width: 5px;
+}
+.month-popup-menu::-webkit-scrollbar-track,
+.year-popup-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+.month-popup-menu::-webkit-scrollbar-thumb,
+.year-popup-menu::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.4);
+  border-radius: 4px;
+}
+.flatpickr-calendar {
+  overflow: visible !important;
+}
+.flatpickr-months {
+  overflow: visible !important;
+  position: relative !important;
+  z-index: 50 !important;
 }
 
-/* Force dropdown popup options to have solid dark background, zero transparency */
-.flatpickr-current-month select.flatpickr-monthDropdown-months option,
-.flatpickr-current-month select.custom-year-select option {
-  background-color: #0b1120 !important;
-  color: #f8fafc !important;
-  padding: 8px 12px !important;
-  font-size: 0.9rem !important;
-}
-
-/* Kill rogue transparent overlays floating above dates */
-.flatpickr-current-month .numInputWrapper {
-  width: 65px !important;
-}
-.flatpickr-current-month .numInputWrapper span {
-  display: none !important;
-}
-.flatpickr-current-month input.cur-year {
-  color: #f59e0b !important;
-  font-weight: 700 !important;
-  background: transparent !important;
-  border: 1px solid rgba(245, 158, 11, 0.3) !important;
-  border-radius: 8px !important;
-  padding: 4px 6px !important;
-  font-size: 0.95rem !important;
-}
-
-/* Light mode support */
-html:not(.dark) .flatpickr-current-month select.flatpickr-monthDropdown-months,
-html:not(.dark) .flatpickr-current-month select.custom-year-select,
-html:not(.dark) .flatpickr-current-month input.cur-year,
-html.light .flatpickr-current-month select.flatpickr-monthDropdown-months,
-html.light .flatpickr-current-month select.custom-year-select,
-html.light .flatpickr-current-month input.cur-year {
-  background-color: #ffffff !important;
+/* Light mode support for custom pickers */
+html:not(.dark) .month-toggle-btn,
+html.light .month-toggle-btn {
+  background-color: #f8fafc !important;
   color: #0f172a !important;
-  border: 1px solid #cbd5e1 !important;
+  border-color: #cbd5e1 !important;
 }
-html:not(.dark) .flatpickr-current-month select.flatpickr-monthDropdown-months option,
-html:not(.dark) .flatpickr-current-month select.custom-year-select option,
-html.light .flatpickr-current-month select.flatpickr-monthDropdown-months option,
-html.light .flatpickr-current-month select.custom-year-select option {
+html:not(.dark) .year-toggle-btn,
+html.light .year-toggle-btn {
+  background-color: #f8fafc !important;
+  color: #d97706 !important;
+  border-color: #cbd5e1 !important;
+}
+html:not(.dark) .month-popup-menu,
+html:not(.dark) .year-popup-menu,
+html.light .month-popup-menu,
+html.light .year-popup-menu {
   background-color: #ffffff !important;
-  color: #0f172a !important;
+  border-color: rgba(217, 119, 6, 0.3) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15) !important;
 }
+html:not(.dark) .month-opt:not(.bg-amber-500),
+html:not(.dark) .year-opt:not(.bg-amber-500),
+html.light .month-opt:not(.bg-amber-500),
+html.light .year-opt:not(.bg-amber-500) {
+  color: #334155 !important;
+}
+
 
 /* Elegant Chevron Navigation */
 .flatpickr-months .flatpickr-prev-month,
