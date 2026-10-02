@@ -9099,17 +9099,83 @@ function downloadShowcaseBrochure() {
   downloadTourBrochure(tour);
 }
 
-function downloadTourBrochure(tour) {
-  const printWindow = window.open('', '_blank', 'width=900,height=800');
-  if (!printWindow) {
-    alert('Please allow popups to download or print the PDF brochure.');
-    return;
-  }
+// Brochure Preview Modal & Generation
+// ============================================================================
+function getOrCreateBrochureModal() {
+  let modal = document.getElementById('brochurePreviewModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'brochurePreviewModal';
+    modal.className = 'brochure-preview-modal fixed inset-0 z-[100000] flex flex-col bg-slate-950/85 backdrop-blur-md overflow-hidden transition-opacity duration-200 hidden';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Brochure Preview');
+    modal.innerHTML = `
+      <div class="brochure-modal-header bg-slate-900 border-b border-amber-500/20 px-6 py-4 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+          <span class="text-white font-bold text-base">Brochure Preview</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <!-- 1. Download Button -->
+          <button id="btnDownloadBrochure" type="button" class="flex items-center gap-2 px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm rounded-lg shadow transition-colors cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            Download PDF
+          </button>
 
-  const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
+          <!-- 2. Print Button -->
+          <button id="btnPrintBrochure" type="button" class="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold text-sm rounded-lg border border-slate-600 transition-colors cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            Print
+          </button>
+
+          <!-- 3. Cancel Button -->
+          <button id="btnCancelBrochure" type="button" class="px-4 py-2 text-slate-400 hover:text-white hover:bg-slate-800 font-semibold text-sm rounded-lg transition-colors cursor-pointer">
+            Cancel
+          </button>
+        </div>
+      </div>
+      <div class="brochure-modal-body p-4 sm:p-6 overflow-y-auto flex justify-center bg-slate-950/80 flex-1">
+        <div id="brochurePrintSheet" class="bg-white text-slate-900 shadow-2xl max-w-[800px] w-full p-6 sm:p-10 rounded-sm my-auto">
+          <!-- Existing brochure content layout here -->
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    modal.querySelector('#btnCancelBrochure').addEventListener('click', closeBrochurePreview);
+    modal.querySelector('.brochure-modal-body').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        closeBrochurePreview();
+      }
+    });
+  }
+  return modal;
+}
+
+function closeBrochurePreview() {
+  const modal = document.getElementById('brochurePreviewModal');
+  if (modal) {
+    modal.classList.add('hidden');
+    const countryModal = document.getElementById('countryShowcaseModal');
+    const itineraryModal = document.getElementById('itineraryModal');
+    if ((!countryModal || countryModal.classList.contains('hidden')) &&
+        (!itineraryModal || itineraryModal.classList.contains('hidden'))) {
+      document.body.style.overflow = '';
+    }
+  }
+}
+window.closeBrochurePreview = closeBrochurePreview;
+
+function downloadTourBrochure(tour) {
+  if (!tour) return;
+  const modal = getOrCreateBrochureModal();
+  const printSheet = modal.querySelector('#brochurePrintSheet');
+  if (!printSheet) return;
+
+  const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${Number(tour.priceAED || 0).toLocaleString()}`;
   const priceDisplay = formattedAED;
 
-  const inclusionsHtml = (tour.inclusions || tour.checklist || []).map(inc => `
+  const inclusionsHtml = (tour.inclusions || tour.checklist || tour.perks || []).map(inc => `
     <li style="margin-bottom: 7px; display: flex; align-items: flex-start;">
       <span style="color: #d97706; margin-right: 8px; font-weight: bold;">&#10004;</span>
       <span>${inc}</span>
@@ -9127,162 +9193,152 @@ function downloadTourBrochure(tour) {
     <li style="margin-bottom: 4px; color: #475569; font-size: 11px;">${fp}</li>
   `).join('');
 
-  const htmlContent = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <title>${tour.title} - Star Plus Travels Official Brochure</title>
-      <style>
-        @page { size: A4; margin: 15mm; }
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-          color: #0f172a;
-          background: #ffffff;
-          margin: 0;
-          padding: 24px;
-          line-height: 1.4;
-        }
-        .header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          border-bottom: 2px solid #f59e0b;
-          padding-bottom: 16px;
-          margin-bottom: 20px;
-        }
-        .brand-title {
-          font-size: 22px;
-          font-weight: 900;
-          color: #0f172a;
-          letter-spacing: -0.5px;
-          text-transform: uppercase;
-        }
-        .brand-sub {
-          font-size: 11px;
-          color: #b45309;
-          font-weight: 700;
-          letter-spacing: 1.5px;
-          text-transform: uppercase;
-        }
-        .hero {
-          background: #f8fafc;
-          border: 1px solid #e2e8f0;
-          border-radius: 12px;
-          padding: 16px;
-          margin-bottom: 20px;
-        }
-        .tour-title {
-          font-size: 20px;
-          font-weight: 800;
-          color: #0f172a;
-          margin: 0 0 4px 0;
-        }
-        .tour-meta {
-          font-size: 12px;
-          font-weight: 700;
-          color: #d97706;
-          margin-bottom: 8px;
-        }
-        .tour-desc {
-          font-size: 13px;
-          color: #334155;
-          line-height: 1.5;
-        }
-        .price-tag {
-          font-size: 16px;
-          font-weight: 800;
-          color: #b45309;
-          margin-top: 8px;
-        }
-        .section-title {
-          font-size: 13px;
-          font-weight: 800;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          color: #0f172a;
-          border-bottom: 1px solid #e2e8f0;
-          padding-bottom: 6px;
-          margin-top: 18px;
-          margin-bottom: 12px;
-        }
-        .footer {
-          margin-top: 24px;
-          border-top: 2px solid #f59e0b;
-          padding-top: 12px;
-          display: flex;
-          justify-content: space-between;
-          font-size: 11px;
-          color: #64748b;
-        }
-        @media print {
-          body { padding: 0; }
-          .no-print { display: none; }
-        }
-      </style>
-    </head>
-    <body>
-      <div class="no-print" style="margin-bottom: 16px; text-align: right;">
-        <button onclick="window.print()" style="background: #f59e0b; color: #000; font-weight: bold; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Print / Save as PDF</button>
-      </div>
-      <div class="header">
-        <div>
-          <div class="brand-title">Star Plus Travels &amp; Tourism LLC</div>
-          <div class="brand-sub">Official Luxury Travel Itinerary &amp; Package Brochure</div>
-        </div>
-        <div style="text-align: right; font-size: 11px; color: #475569;">
-          <div><strong>UAE Concierge:</strong> +971 52 758 2293</div>
-          <div><strong>Landline:</strong> +971 4 227 0005</div>
-          <div><strong>Web:</strong> starplustravels.com</div>
-        </div>
-      </div>
+  // Clean meta row without 'undefined'
+  const metaParts = [];
+  const cat = tour.categoryTag || (tour.category ? tour.category.toUpperCase() : '') || tour.destination || '';
+  if (cat) metaParts.push(cat);
+  if (tour.duration) metaParts.push(tour.duration);
+  if (tour.rating) metaParts.push(`Rating: ${tour.rating} ★`);
+  const metaHtml = metaParts.length ? `<div class="tour-meta" style="font-size: 12px; font-weight: 700; color: #d97706; margin-bottom: 8px;">${metaParts.join(' &bull; ')}</div>` : '';
 
-      <div class="hero">
-        <h1 class="tour-title">${tour.title}</h1>
-        <div class="tour-meta">${tour.category} &bull; ${tour.duration} &bull; Rating: ${tour.rating} â˜…</div>
-        <div class="tour-desc">${tour.description}</div>
-        <div class="price-tag">Starting Rate: ${priceDisplay}</div>
-      </div>
+  // Safe description without 'undefined'
+  const descriptionText = tour.editorialSummary || tour.description || tour.tagline || '';
+  const descHtml = descriptionText ? `<div class="tour-desc" style="font-size: 13px; color: #334155; line-height: 1.5; margin-bottom: 12px;">${descriptionText}</div>` : '';
 
-      <div class="section-title">Included Services &amp; Highlights</div>
+  printSheet.innerHTML = `
+    <div class="header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f59e0b; padding-bottom: 16px; margin-bottom: 20px;">
+      <div>
+        <div class="brand-title" style="font-size: 22px; font-weight: 900; color: #0f172a; letter-spacing: -0.5px; text-transform: uppercase;">Star Plus Travels &amp; Tourism LLC</div>
+        <div class="brand-sub" style="font-size: 11px; color: #b45309; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px;">Official Luxury Travel Itinerary &amp; Package Brochure</div>
+      </div>
+      <div style="text-align: right; font-size: 11px; color: #475569; line-height: 1.5;">
+        <div><strong>UAE Concierge:</strong> +971 52 758 2293</div>
+        <div><strong>Landline:</strong> +971 4 227 0005</div>
+        <div><strong>Web:</strong> starplustravels.com</div>
+      </div>
+    </div>
+
+    <div class="hero" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-bottom: 20px;">
+      <h1 class="tour-title" style="font-size: 20px; font-weight: 800; color: #0f172a; margin: 0 0 6px 0;">${tour.title || 'Official Package Brochure'}</h1>
+      ${metaHtml}
+      ${descHtml}
+      <div class="price-tag" style="display: inline-block; background: #f59e0b; color: #0f172a; font-weight: 800; font-size: 15px; padding: 6px 14px; border-radius: 6px; margin-top: 6px;">Starting Rate: ${priceDisplay}</div>
+    </div>
+
+    ${inclusionsHtml ? `
+      <div class="section-title" style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; margin-top: 18px; margin-bottom: 12px;">Included Services &amp; Highlights</div>
       <ul style="list-style: none; padding: 0; margin: 0; font-size: 12px; color: #1e293b;">
         ${inclusionsHtml}
       </ul>
+    ` : ''}
 
-      <div class="section-title">Day-by-Day Journey Breakdown</div>
+    ${itineraryHtml ? `
+      <div class="section-title" style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; margin-top: 18px; margin-bottom: 12px;">Day-by-Day Journey Breakdown</div>
       <div>
         ${itineraryHtml}
       </div>
+    ` : ''}
 
-      ${tour.finePrint && tour.finePrint.length ? `
-        <div class="section-title">Terms, Visa &amp; Fine Print</div>
-        <ul style="padding-left: 20px; margin: 0;">
-          ${finePrintHtml}
-        </ul>
-      ` : ''}
+    ${finePrintHtml ? `
+      <div class="section-title" style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 6px; margin-top: 18px; margin-bottom: 12px;">Terms, Visa &amp; Fine Print</div>
+      <ul style="padding-left: 20px; margin: 0; font-size: 11px; color: #475569;">
+        ${finePrintHtml}
+      </ul>
+    ` : ''}
 
-      <div class="footer">
-        <div>Star Plus Travels &amp; Tourism LLC &bull; Dubai, United Arab Emirates</div>
-        <div>Inquire on WhatsApp: +971 52 758 2293 &bull; info@starplustravels.com</div>
-      </div>
-      <script>
-        window.onload = function() {
-          setTimeout(function() {
-            window.print();
-          }, 350);
-        };
-      </script>
-    </body>
-    </html>
+    <div class="footer" style="margin-top: 28px; border-top: 2px solid #f59e0b; padding-top: 14px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #64748b; flex-wrap: wrap; gap: 8px;">
+      <div>Star Plus Travels &amp; Tourism LLC &bull; Dubai, United Arab Emirates</div>
+      <div>Inquire on WhatsApp: +971 52 758 2293 &bull; info@starplustravels.com</div>
+    </div>
   `;
 
-  printWindow.document.open();
-  printWindow.document.write(htmlContent);
-  printWindow.document.close();
-}
+  // Custom PDF filename
+  const cleanTitle = (tour && tour.title ? tour.title : 'Starplus-Travels').replace(/[^a-zA-Z0-9_-]/g, '-').replace(/-+/g, '-');
+  const customPdfName = `Starplus-${cleanTitle}-Brochure.pdf`;
 
-// Keyboard navigation for Country Showcase, Places Covered & Itinerary Modals
+  // Wire Print Button
+  const btnPrint = modal.querySelector('#btnPrintBrochure');
+  btnPrint.onclick = () => {
+    const prevTitle = document.title;
+    document.title = customPdfName;
+    window.print();
+    setTimeout(() => { document.title = prevTitle; }, 2000);
+  };
+
+  // Wire Download PDF Button
+  const btnDownload = modal.querySelector('#btnDownloadBrochure');
+  btnDownload.onclick = () => {
+    if (typeof window.html2pdf !== 'undefined') {
+      const opt = {
+        margin: 10,
+        filename: customPdfName,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+      window.html2pdf().set(opt).from(printSheet).save();
+    } else {
+      // Dynamic load html2pdf or fallback to PDF print driver
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+      script.onload = () => {
+        const opt = {
+          margin: 10,
+          filename: customPdfName,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        window.html2pdf().set(opt).from(printSheet).save();
+      };
+      script.onerror = () => {
+        const prevTitle = document.title;
+        document.title = customPdfName;
+        window.print();
+        setTimeout(() => { document.title = prevTitle; }, 2000);
+      };
+      document.head.appendChild(script);
+    }
+  };
+
+  // Show modal
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+window.downloadTourBrochure = downloadTourBrochure;
+window.openBrochurePreview = downloadTourBrochure;
+
+// Universal Brochure Button Trigger site-wide
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-brochure], .btn-brochure, button.brochure-trigger, a.brochure-trigger');
+  if (btn && !btn.getAttribute('onclick')) {
+    e.preventDefault();
+    const pkgId = btn.getAttribute('data-package-id') || btn.dataset.pkgId;
+    if (pkgId && typeof PACKAGES !== 'undefined') {
+      const pkg = PACKAGES.find(p => p.id === pkgId);
+      if (pkg) {
+        downloadTourBrochure(pkg);
+        return;
+      }
+    }
+    if (typeof currentActivePackage !== 'undefined' && currentActivePackage) {
+      downloadCurrentPackageBrochure();
+    } else if (typeof currentActiveShowcaseTour !== 'undefined' && currentActiveShowcaseTour) {
+      downloadShowcaseBrochure();
+    }
+  }
+});
+
+// Keyboard navigation for Country Showcase, Places Covered, Itinerary & Brochure Modals
 document.addEventListener('keydown', (e) => {
+  const brochureModal = document.getElementById('brochurePreviewModal');
+  if (brochureModal && !brochureModal.classList.contains('hidden')) {
+    if (e.key === 'Escape') {
+      closeBrochurePreview();
+      return;
+    }
+  }
+
   const placesPanel = document.getElementById('showcasePlacesCoveredPanel');
   if (placesPanel && !placesPanel.classList.contains('hidden')) {
     if (e.key === 'Escape') {
