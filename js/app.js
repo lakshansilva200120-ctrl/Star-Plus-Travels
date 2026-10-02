@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Star Plus Travels - Interactive Application Logic & Video Hero Engine
  */
 
@@ -9100,91 +9100,186 @@ function downloadShowcaseBrochure() {
 }
 
 function downloadTourBrochure(tour) {
-  const fileUrl = (tour && tour.brochureUrl) || 'assets/Starplus-Travels-Brochure.pdf';
-  const customName = (tour && tour.title ? `${tour.title.replace(/[^a-zA-Z0-9_-]/g, '_')}-Brochure.pdf` : 'Starplus-Travels-Brochure.pdf');
+  const printWindow = window.open('', '_blank', 'width=900,height=800');
+  if (!printWindow) {
+    alert('Please allow popups to download or print the PDF brochure.');
+    return;
+  }
 
-  fetch(fileUrl)
-    .then(res => {
-      if (!res.ok) throw new Error('Fetch failed');
-      return res.blob();
-    })
-    .then(blob => {
-      const blobUrl = window.URL.createObjectURL(blob);
-      const downloadLink = document.createElement('a');
-      downloadLink.href = blobUrl;
-      downloadLink.download = customName.endsWith('.pdf') ? customName : `${customName}.pdf`;
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      downloadLink.remove();
-      setTimeout(() => window.URL.revokeObjectURL(blobUrl), 1000);
-    })
-    .catch(() => {
-      const fallbackLink = document.createElement('a');
-      fallbackLink.href = fileUrl;
-      fallbackLink.setAttribute('download', customName.endsWith('.pdf') ? customName : `${customName}.pdf`);
-      fallbackLink.target = '_blank';
-      document.body.appendChild(fallbackLink);
-      fallbackLink.click();
-      fallbackLink.remove();
-    });
+  const formattedAED = typeof formatPrice === 'function' ? formatPrice(tour.priceAED) : `AED ${tour.priceAED.toLocaleString()}`;
+  const priceDisplay = formattedAED;
+
+  const inclusionsHtml = (tour.inclusions || tour.checklist || []).map(inc => `
+    <li style="margin-bottom: 7px; display: flex; align-items: flex-start;">
+      <span style="color: #d97706; margin-right: 8px; font-weight: bold;">&#10004;</span>
+      <span>${inc}</span>
+    </li>
+  `).join('');
+
+  const itineraryHtml = (tour.itinerary || []).map(day => `
+    <div style="margin-bottom: 16px; padding-left: 14px; border-left: 2px solid #f59e0b;">
+      <div style="font-size: 11px; font-weight: 800; color: #b45309; text-transform: uppercase; letter-spacing: 1px;">Day ${day.day}: ${day.title}</div>
+      <div style="font-size: 13px; color: #334155; margin-top: 4px; line-height: 1.5;">${day.desc}</div>
+    </div>
+  `).join('');
+
+  const finePrintHtml = (tour.finePrint || []).map(fp => `
+    <li style="margin-bottom: 4px; color: #475569; font-size: 11px;">${fp}</li>
+  `).join('');
+
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>${tour.title} - Star Plus Travels Official Brochure</title>
+      <style>
+        @page { size: A4; margin: 15mm; }
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+          color: #0f172a;
+          background: #ffffff;
+          margin: 0;
+          padding: 24px;
+          line-height: 1.4;
+        }
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 2px solid #f59e0b;
+          padding-bottom: 16px;
+          margin-bottom: 20px;
+        }
+        .brand-title {
+          font-size: 22px;
+          font-weight: 900;
+          color: #0f172a;
+          letter-spacing: -0.5px;
+          text-transform: uppercase;
+        }
+        .brand-sub {
+          font-size: 11px;
+          color: #b45309;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+        }
+        .hero {
+          background: #f8fafc;
+          border: 1px solid #e2e8f0;
+          border-radius: 12px;
+          padding: 16px;
+          margin-bottom: 20px;
+        }
+        .tour-title {
+          font-size: 20px;
+          font-weight: 800;
+          color: #0f172a;
+          margin: 0 0 4px 0;
+        }
+        .tour-meta {
+          font-size: 12px;
+          font-weight: 700;
+          color: #d97706;
+          margin-bottom: 8px;
+        }
+        .tour-desc {
+          font-size: 13px;
+          color: #334155;
+          line-height: 1.5;
+        }
+        .price-tag {
+          font-size: 16px;
+          font-weight: 800;
+          color: #b45309;
+          margin-top: 8px;
+        }
+        .section-title {
+          font-size: 13px;
+          font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: #0f172a;
+          border-bottom: 1px solid #e2e8f0;
+          padding-bottom: 6px;
+          margin-top: 18px;
+          margin-bottom: 12px;
+        }
+        .footer {
+          margin-top: 24px;
+          border-top: 2px solid #f59e0b;
+          padding-top: 12px;
+          display: flex;
+          justify-content: space-between;
+          font-size: 11px;
+          color: #64748b;
+        }
+        @media print {
+          body { padding: 0; }
+          .no-print { display: none; }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="no-print" style="margin-bottom: 16px; text-align: right;">
+        <button onclick="window.print()" style="background: #f59e0b; color: #000; font-weight: bold; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer;">Print / Save as PDF</button>
+      </div>
+      <div class="header">
+        <div>
+          <div class="brand-title">Star Plus Travels &amp; Tourism LLC</div>
+          <div class="brand-sub">Official Luxury Travel Itinerary &amp; Package Brochure</div>
+        </div>
+        <div style="text-align: right; font-size: 11px; color: #475569;">
+          <div><strong>UAE Concierge:</strong> +971 52 758 2293</div>
+          <div><strong>Landline:</strong> +971 4 227 0005</div>
+          <div><strong>Web:</strong> starplustravels.com</div>
+        </div>
+      </div>
+
+      <div class="hero">
+        <h1 class="tour-title">${tour.title}</h1>
+        <div class="tour-meta">${tour.category} &bull; ${tour.duration} &bull; Rating: ${tour.rating} â˜…</div>
+        <div class="tour-desc">${tour.description}</div>
+        <div class="price-tag">Starting Rate: ${priceDisplay}</div>
+      </div>
+
+      <div class="section-title">Included Services &amp; Highlights</div>
+      <ul style="list-style: none; padding: 0; margin: 0; font-size: 12px; color: #1e293b;">
+        ${inclusionsHtml}
+      </ul>
+
+      <div class="section-title">Day-by-Day Journey Breakdown</div>
+      <div>
+        ${itineraryHtml}
+      </div>
+
+      ${tour.finePrint && tour.finePrint.length ? `
+        <div class="section-title">Terms, Visa &amp; Fine Print</div>
+        <ul style="padding-left: 20px; margin: 0;">
+          ${finePrintHtml}
+        </ul>
+      ` : ''}
+
+      <div class="footer">
+        <div>Star Plus Travels &amp; Tourism LLC &bull; Dubai, United Arab Emirates</div>
+        <div>Inquire on WhatsApp: +971 52 758 2293 &bull; info@starplustravels.com</div>
+      </div>
+      <script>
+        window.onload = function() {
+          setTimeout(function() {
+            window.print();
+          }, 350);
+        };
+      </script>
+    </body>
+    </html>
+  `;
+
+  printWindow.document.open();
+  printWindow.document.write(htmlContent);
+  printWindow.document.close();
 }
-
-// Universal click interceptor for all brochure download actions
-document.addEventListener('click', async (e) => {
-  let brochureBtn = null;
-  try {
-    brochureBtn = e.target.closest('a[href$=".pdf"], button[data-brochure], .btn-brochure');
-  } catch (err) {}
-
-  if (!brochureBtn) {
-    const candidate = e.target.closest('a, button');
-    if (candidate) {
-      const text = (candidate.textContent || '').toLowerCase();
-      const href = (candidate.getAttribute('href') || '').toLowerCase();
-      if (text.includes('brochure') || href.endsWith('.pdf')) {
-        brochureBtn = candidate;
-      }
-    }
-  }
-
-  if (!brochureBtn) return;
-
-  const fileUrl = brochureBtn.getAttribute('href') || brochureBtn.getAttribute('data-file') || brochureBtn.getAttribute('data-url') || 'assets/Starplus-Travels-Brochure.pdf';
-  if (!fileUrl || fileUrl.startsWith('#') || fileUrl.startsWith('javascript:')) return;
-
-  e.preventDefault();
-
-  try {
-    // Fetch the PDF as a Blob to force an actual download stream
-    const response = await fetch(fileUrl);
-    if (!response.ok) throw new Error('Fetch failed');
-    const blob = await response.blob();
-    const blobUrl = window.URL.createObjectURL(blob);
-    
-    const downloadLink = document.createElement('a');
-    downloadLink.href = blobUrl;
-    
-    // Derive a clean file name or default
-    const customName = brochureBtn.getAttribute('download') || fileUrl.split('/').pop() || 'Starplus-Brochure.pdf';
-    downloadLink.download = customName.endsWith('.pdf') ? customName : `${customName}.pdf`;
-    
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    downloadLink.remove();
-    
-    setTimeout(() => window.URL.revokeObjectURL(blobUrl), 1000);
-  } catch (err) {
-    // Direct fallback if fetch is restricted
-    const fallbackLink = document.createElement('a');
-    fallbackLink.href = fileUrl;
-    const customName = brochureBtn.getAttribute('download') || fileUrl.split('/').pop() || 'Starplus-Brochure.pdf';
-    fallbackLink.setAttribute('download', customName.endsWith('.pdf') ? customName : `${customName}.pdf`);
-    fallbackLink.target = '_blank';
-    document.body.appendChild(fallbackLink);
-    fallbackLink.click();
-    fallbackLink.remove();
-  }
-});
 
 // Keyboard navigation for Country Showcase, Places Covered & Itinerary Modals
 document.addEventListener('keydown', (e) => {
