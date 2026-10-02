@@ -3929,25 +3929,73 @@ html:not(.dark) .flatpickr-calendar {
   padding: 4px 0 !important;
 }
 
-/* Custom Month & Year Dropdown Popups */
-.month-popup-menu, .year-popup-menu {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(245, 158, 11, 0.4) transparent;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7) !important;
+/* 1. Fully solid, opaque dark background - zero transparency bleed */
+.month-popup-menu,
+.year-popup-menu,
+.cal-drop-menu,
+.flatpickr-current-month select.flatpickr-monthDropdown-months,
+.flatpickr-current-month select.custom-year-select {
+  background-color: #0b1120 !important; /* Solid dark, 100% opaque */
+  background: #0b1120 !important;
+  opacity: 1 !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9) !important;
+  z-index: 99999 !important;
+}
+
+/* 2. Strict height limit with smooth scrollbar */
+.month-popup-menu,
+.year-popup-menu,
+.cal-drop-menu {
+  max-height: 180px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #f59e0b #0b1120 !important;
 }
 .month-popup-menu::-webkit-scrollbar,
-.year-popup-menu::-webkit-scrollbar {
+.year-popup-menu::-webkit-scrollbar,
+.cal-drop-menu::-webkit-scrollbar {
   width: 5px;
 }
 .month-popup-menu::-webkit-scrollbar-track,
-.year-popup-menu::-webkit-scrollbar-track {
-  background: transparent;
+.year-popup-menu::-webkit-scrollbar-track,
+.cal-drop-menu::-webkit-scrollbar-track {
+  background: #0b1120;
 }
 .month-popup-menu::-webkit-scrollbar-thumb,
-.year-popup-menu::-webkit-scrollbar-thumb {
-  background: rgba(245, 158, 11, 0.4);
+.year-popup-menu::-webkit-scrollbar-thumb,
+.cal-drop-menu::-webkit-scrollbar-thumb {
+  background: #f59e0b;
   border-radius: 4px;
 }
+
+/* Ensure individual options have solid backgrounds and clean padding */
+.month-opt,
+.year-opt,
+.cal-drop-item,
+.flatpickr-current-month select option {
+  background-color: #0b1120 !important;
+  color: #f8fafc !important;
+  padding: 8px 12px !important;
+}
+
+.month-opt:hover,
+.year-opt:hover,
+.cal-drop-item:hover {
+  background-color: rgba(245, 158, 11, 0.2) !important;
+  color: #f59e0b !important;
+}
+
+.month-opt.bg-amber-500,
+.year-opt.bg-amber-500,
+.cal-drop-item.is-selected,
+.cal-drop-item.bg-amber-500 {
+  background-color: #f59e0b !important;
+  color: #020617 !important;
+  font-weight: 700 !important;
+}
+
 .flatpickr-calendar {
   overflow: visible !important;
 }
@@ -3972,17 +4020,33 @@ html.light .year-toggle-btn {
 }
 html:not(.dark) .month-popup-menu,
 html:not(.dark) .year-popup-menu,
+html:not(.dark) .cal-drop-menu,
 html.light .month-popup-menu,
-html.light .year-popup-menu {
+html.light .year-popup-menu,
+html.light .cal-drop-menu {
   background-color: #ffffff !important;
+  background: #ffffff !important;
   border-color: rgba(217, 119, 6, 0.3) !important;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+  scrollbar-color: #d97706 #ffffff !important;
 }
 html:not(.dark) .month-opt:not(.bg-amber-500),
 html:not(.dark) .year-opt:not(.bg-amber-500),
+html:not(.dark) .cal-drop-item:not(.bg-amber-500):not(.is-selected),
 html.light .month-opt:not(.bg-amber-500),
-html.light .year-opt:not(.bg-amber-500) {
+html.light .year-opt:not(.bg-amber-500),
+html.light .cal-drop-item:not(.bg-amber-500):not(.is-selected) {
+  background-color: #ffffff !important;
   color: #334155 !important;
+}
+html:not(.dark) .month-opt:hover,
+html:not(.dark) .year-opt:hover,
+html:not(.dark) .cal-drop-item:hover,
+html.light .month-opt:hover,
+html.light .year-opt:hover,
+html.light .cal-drop-item:hover {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  color: #d97706 !important;
 }
 
 
