@@ -159,6 +159,9 @@ function applyLanguage(lang) {
   } else if (typeof initFlatpickr === 'function') {
     try { initFlatpickr(); } catch (e) {}
   }
+  if (typeof updateDwellModalLanguage === 'function') {
+    try { updateDwellModalLanguage(); } catch (e) {}
+  }
 }
 
 // Initialize on page load

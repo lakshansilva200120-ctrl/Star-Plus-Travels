@@ -4847,6 +4847,9 @@ function retranslateActiveModals() {
   if (typeof updateOpenModalsLanguage === 'function') {
     updateOpenModalsLanguage(currentLang);
   }
+  if (typeof updateDwellModalLanguage === 'function') {
+    updateDwellModalLanguage();
+  }
 }
 window.retranslateActiveModals = retranslateActiveModals;
 
@@ -10769,8 +10772,58 @@ window.addEventListener('load', () => {
 })();
 
 // ============================================================================
-// Dwell / High-Intent WhatsApp Modal Controller
+// Dwell / High-Intent WhatsApp Modal Controller (Bilingual: English & Sinhala)
 // ============================================================================
+const DWELL_I18N = {
+  en: {
+    badge: "👋 NEED A HAND?",
+    title: "You’ve spent longer looking than it takes to get your trip planned.",
+    subtext: "Skip the forms. Tell our travel specialists where you want to go and we’ll build your custom itinerary on WhatsApp in 5 minutes.",
+    button: "Chat on WhatsApp Now",
+    waMsg: "Hi Starplus Travels, I'm on your website and need help planning a trip / visa."
+  },
+  si: {
+    badge: "👋 උදව්වක් අවශ්යද?",
+    title: "සංචාරය සැලසුම් කිරීමට ගතවන කාලයට වඩා වැඩි වේලාවක් ඔබ මෙහි ගත කර ඇත.",
+    subtext: "පෝරම පිරවීම පසෙක තබන්න. ඔබ යන්න කැමති තැන අපගේ සංචාරක විශේෂඥයින්ට පවසන්න, විනාඩි 5ක් ඇතුළත WhatsApp මගින් ඔබේ ගමන් සැලසුම සකස් කර දෙන්නෙමු.",
+    button: "දැන්ම WhatsApp මගින් කතා කරන්න",
+    waMsg: "හායි Starplus Travels, මට සංචාරයක් / වීසා බලපත්රයක් සැලසුම් කිරීමට උදවු අවශ්යයි."
+  }
+};
+
+function updateDwellModalLanguage() {
+  // Detect current site language from documentElement or localStorage/sessionStorage
+  const currentLang = document.documentElement.lang === 'si' || 
+                      localStorage.getItem('starplus_lang') === 'si' ||
+                      localStorage.getItem('site_lang') === 'si' ||
+                      localStorage.getItem('pref_lang') === 'si' ||
+                      document.documentElement.classList.contains('lang-si') ||
+                      document.body.classList.contains('lang-si') ? 'si' : 'en';
+
+  const data = DWELL_I18N[currentLang];
+  const modal = document.getElementById('dwellModalOverlay');
+  if (!modal) return;
+
+  const badgeEl = modal.querySelector('.dwell-badge');
+  const titleEl = modal.querySelector('.dwell-title');
+  const subtextEl = modal.querySelector('.dwell-subtext');
+  const btnEl = modal.querySelector('#dwellWhatsAppBtn');
+
+  if (badgeEl) badgeEl.innerHTML = `<span>👋</span> ${data.badge.replace('👋 ', '')}`;
+  if (titleEl) titleEl.textContent = data.title;
+  if (subtextEl) subtextEl.textContent = data.subtext;
+  if (btnEl) {
+    // Preserve the SVG icon and only change the text node
+    const svg = btnEl.querySelector('svg');
+    btnEl.innerHTML = '';
+    if (svg) btnEl.appendChild(svg);
+    btnEl.appendChild(document.createTextNode(' ' + data.button));
+    btnEl.href = `https://wa.me/971527582293?text=${encodeURIComponent(data.waMsg)}`;
+  }
+}
+window.DWELL_I18N = DWELL_I18N;
+window.updateDwellModalLanguage = updateDwellModalLanguage;
+
 function initDwellModal() {
   const modal = document.getElementById("dwellModalOverlay");
   if (!modal) return;
@@ -10802,6 +10855,7 @@ function initDwellModal() {
 
   function openDwellModal() {
     if (isDismissed() || isOtherModalOpen()) return;
+    updateDwellModalLanguage();
     modal.classList.remove("hidden");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -10815,6 +10869,8 @@ function initDwellModal() {
     setDismissed();
   }
 
+  const showModal = openDwellModal;
+  window.showDwellModal = openDwellModal;
   window.openDwellModal = openDwellModal;
   window.closeDwellModal = closeDwellModal;
 
@@ -10845,6 +10901,39 @@ function initDwellModal() {
       closeDwellModal();
     }
   });
+
+  // Listen for language toggle button clicks across the site
+  document.addEventListener("click", (e) => {
+    const langTrigger = e.target.closest("#lang-toggle-en, #lang-toggle-si, .lang-btn, [data-lang], .lang-toggle, #lang-toggle-btn");
+    if (langTrigger) {
+      setTimeout(updateDwellModalLanguage, 50);
+    }
+  });
+
+  document.addEventListener("change", (e) => {
+    if (e.target && e.target.matches(".lang-selector, #lang-select, select[name='language']")) {
+      setTimeout(updateDwellModalLanguage, 50);
+    }
+  });
+
+  // Observe language attribute or class changes on documentElement
+  try {
+    const langObserver = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        if (m.attributeName === "lang" || m.attributeName === "class") {
+          updateDwellModalLanguage();
+          break;
+        }
+      }
+    });
+    langObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["lang", "class"] });
+    if (document.body) {
+      langObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    }
+  } catch (e) {}
+
+  // Initial language sync
+  updateDwellModalLanguage();
 
   // Dwell trigger (45 seconds)
   setTimeout(() => {
