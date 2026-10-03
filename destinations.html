@@ -1333,10 +1333,10 @@
 
               <!-- Optional Full Itinerary Link -->
               <div class="pt-3">
-                <button type="button" onclick="viewDetailedItineraryFromPlaces()" class="text-xs text-amber-400/90 hover:text-amber-300 font-semibold underline underline-offset-4 flex items-center gap-1.5 cursor-pointer">
+                <a href="#journey-breakdown" class="journey-breakdown-trigger text-xs text-amber-400/90 hover:text-amber-300 font-semibold underline underline-offset-4 flex items-center gap-1.5 cursor-pointer">
                   <i class="fa-solid fa-list-check text-[11px]"></i>
                   <span>View Full Day-by-Day Journey Breakdown &rarr;</span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -1480,7 +1480,7 @@
               </div>
 
               <!-- Day-by-Day Journey Breakdown with Milestones -->
-              <div>
+              <div id="journey-breakdown">
                 <div class="flex items-center space-x-2 mb-4">
                   <div class="w-2 h-2 rounded-full bg-[#F59E0B]"></div>
                   <h4 class="text-xs font-black uppercase tracking-wider text-[#F59E0B] font-heading">Day-by-Day Journey Breakdown &amp; Milestones</h4>

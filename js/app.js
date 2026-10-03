@@ -10960,5 +10960,61 @@ if (document.readyState === "loading") {
 }
 window.initDwellModal = initDwellModal;
 
+// ============================================================================
+// Day-by-Day Journey Breakdown Smooth Scroll & Accordion Auto-Expand Handler
+// ============================================================================
+document.addEventListener('click', (e) => {
+  const trigger = e.target.closest('a, button');
+  if (!trigger) return;
+
+  const text = trigger.textContent.trim().toLowerCase();
+  const isTrigger = text.includes('day-by-day journey breakdown') ||
+                    text.includes('journey breakdown') ||
+                    trigger.classList.contains('journey-breakdown-trigger') ||
+                    (trigger.getAttribute('href') === '#journey-breakdown');
+
+  if (isTrigger) {
+    e.preventDefault();
+
+    // If on destination showcase places covered panel, reveal the detailed showcase drawer
+    if (typeof viewDetailedItineraryFromPlaces === 'function' && typeof currentShowcasePlacesTour !== 'undefined' && currentShowcasePlacesTour) {
+      viewDetailedItineraryFromPlaces();
+    }
+
+    // Locate the target section by ID or heading text
+    const target = document.querySelector('#journey-breakdown, #itinerary, [data-section="itinerary"]') ||
+                   Array.from(document.querySelectorAll('h2, h3, h4, div')).find(el => 
+                     el.textContent.trim().toLowerCase().includes('day-by-day journey breakdown') ||
+                     el.textContent.trim().toLowerCase().includes('day-by-day')
+                   );
+
+    if (target) {
+      // If inside an accordion or collapsed container, expand it first
+      const collapsedParent = target.closest('.accordion-content, .hidden, [aria-expanded="false"]');
+      if (collapsedParent) {
+        collapsedParent.classList.remove('hidden');
+        collapsedParent.setAttribute('aria-expanded', 'true');
+      }
+
+      // Scroll smoothly with offset for the fixed/sticky navbar
+      const navHeight = document.querySelector('header, nav')?.offsetHeight || 80;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+
+      // In case target is inside a scrollable drawer or modal container
+      const scrollContainer = target.closest('.overflow-y-auto');
+      if (scrollContainer && scrollContainer !== document.documentElement && scrollContainer !== document.body) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    }
+  }
+});
+
 
 

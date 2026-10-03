@@ -411,6 +411,43 @@
     });
   }
 
+  if (typeof document !== 'undefined') {
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('a, button');
+      if (!trigger) return;
+
+      const text = trigger.textContent.trim().toLowerCase();
+      if (text.includes('day-by-day journey breakdown') || text.includes('journey breakdown')) {
+        e.preventDefault();
+        
+        // Locate the target section by ID or heading text
+        const target = document.querySelector('#journey-breakdown, #itinerary, [data-section="itinerary"]') ||
+                       Array.from(document.querySelectorAll('h2, h3, h4, div')).find(el => 
+                         el.textContent.trim().toLowerCase().includes('day-by-day journey breakdown') ||
+                         el.textContent.trim().toLowerCase().includes('day-by-day')
+                       );
+
+        if (target) {
+          // If inside an accordion or collapsed container, expand it first
+          const collapsedParent = target.closest('.accordion-content, .hidden, [aria-expanded="false"]');
+          if (collapsedParent) {
+            collapsedParent.classList.remove('hidden');
+            collapsedParent.setAttribute('aria-expanded', 'true');
+          }
+
+          // Scroll smoothly with offset for the fixed/sticky navbar
+          const navHeight = document.querySelector('header, nav')?.offsetHeight || 80;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  }
+
   return {
     PACKAGES,
     DESTINATION_COUNTRY_PACKAGES,
