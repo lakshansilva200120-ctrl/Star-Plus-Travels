@@ -162,6 +162,9 @@ function applyLanguage(lang) {
   if (typeof updateDwellModalLanguage === 'function') {
     try { updateDwellModalLanguage(); } catch (e) {}
   }
+  if (typeof applyDwellModalTranslation === 'function') {
+    try { applyDwellModalTranslation(); } catch (e) {}
+  }
 }
 
 // Initialize on page load

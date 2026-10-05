@@ -10774,62 +10774,87 @@ window.addEventListener('load', () => {
 // ============================================================================
 // Dwell / High-Intent WhatsApp Modal Controller (Bilingual: English & Sinhala)
 // ============================================================================
-const DWELL_I18N = {
+function getActiveSiteLanguage() {
+  const path = window.location.pathname.toLowerCase();
+  const htmlLang = (document.documentElement.lang || '').toLowerCase();
+  const storedLang = (localStorage.getItem('lang') || localStorage.getItem('language') || localStorage.getItem('starplus_lang') || localStorage.getItem('site_lang') || localStorage.getItem('pref_lang') || '').toLowerCase();
+  const hasSiClass = document.body.classList.contains('lang-si') || document.documentElement.classList.contains('si') || document.documentElement.classList.contains('lang-si');
+
+  if (path.includes('/si') || path.includes('/sinhala') || htmlLang.startsWith('si') || storedLang.startsWith('si') || hasSiClass) {
+    return 'si';
+  }
+  return 'en';
+}
+
+const DWELL_CONTENT = {
   en: {
     badge: "👋 NEED A HAND?",
     title: "You’ve spent longer looking than it takes to get your trip planned.",
     subtext: "Skip the forms. Tell our travel specialists where you want to go and we’ll build your custom itinerary on WhatsApp in 5 minutes.",
     button: "Chat on WhatsApp Now",
-    waMsg: "Hi Starplus Travels, I'm on your website and need help planning a trip / visa."
+    msg: "Hi Starplus Travels, I need help planning a trip / visa."
   },
   si: {
     badge: "👋 උදව්වක් අවශ්යද?",
     title: "සංචාරය සැලසුම් කිරීමට ගතවන කාලයට වඩා වැඩි වේලාවක් ඔබ මෙහි ගත කර ඇත.",
     subtext: "පෝරම පිරවීම පසෙක තබන්න. ඔබ යන්න කැමති තැන අපගේ සංචාරක විශේෂඥයින්ට පවසන්න, විනාඩි 5ක් ඇතුළත WhatsApp මගින් ඔබේ ගමන් සැලසුම සකස් කර දෙන්නෙමු.",
     button: "දැන්ම WhatsApp මගින් කතා කරන්න",
-    waMsg: "හායි Starplus Travels, මට සංචාරයක් / වීසා බලපත්රයක් සැලසුම් කිරීමට උදවු අවශ්යයි."
+    msg: "හායි Starplus Travels, මට සංචාරයක් / වීසා බලපත්රයක් සැලසුම් කිරීමට උදවු අවශ්යයි."
   }
 };
 
-function updateDwellModalLanguage() {
-  // Detect current site language from documentElement or localStorage/sessionStorage
-  const currentLang = document.documentElement.lang === 'si' || 
-                      localStorage.getItem('starplus_lang') === 'si' ||
-                      localStorage.getItem('site_lang') === 'si' ||
-                      localStorage.getItem('pref_lang') === 'si' ||
-                      document.documentElement.classList.contains('lang-si') ||
-                      document.body.classList.contains('lang-si') ? 'si' : 'en';
+function applyDwellModalTranslation() {
+  const modal = document.querySelector('#dwellModal, #dwellModalOverlay, .dwell-modal, [data-dwell-modal]') ||
+                Array.from(document.querySelectorAll('div')).find(d => d.textContent && (d.textContent.includes("You’ve spent longer looking") || d.textContent.includes("සංචාරය සැලසුම් කිරීමට")));
 
-  const data = DWELL_I18N[currentLang];
-  const modal = document.getElementById('dwellModalOverlay');
   if (!modal) return;
 
-  const badgeEl = modal.querySelector('.dwell-badge');
-  const titleEl = modal.querySelector('.dwell-title');
-  const subtextEl = modal.querySelector('.dwell-subtext');
-  const btnEl = modal.querySelector('#dwellWhatsAppBtn');
+  const lang = getActiveSiteLanguage();
+  const t = DWELL_CONTENT[lang];
 
-  if (badgeEl) badgeEl.innerHTML = `<span>👋</span> ${data.badge.replace('👋 ', '')}`;
-  if (titleEl) titleEl.textContent = data.title;
-  if (subtextEl) subtextEl.textContent = data.subtext;
-  if (btnEl) {
-    // Preserve the SVG icon and only change the text node
-    const svg = btnEl.querySelector('svg');
-    btnEl.innerHTML = '';
-    if (svg) btnEl.appendChild(svg);
-    btnEl.appendChild(document.createTextNode(' ' + data.button));
-    btnEl.href = `https://wa.me/971527582293?text=${encodeURIComponent(data.waMsg)}`;
+  // Update badge
+  const badge = modal.querySelector('.dwell-badge, [class*="badge"]') ||
+                Array.from(modal.querySelectorAll('div, span, p')).find(el => el.textContent && (el.textContent.includes('NEED A HAND') || el.textContent.includes('උදව්වක්')));
+  if (badge) badge.textContent = t.badge;
+
+  // Update title
+  const title = modal.querySelector('h2, h3, .dwell-title') ||
+                Array.from(modal.querySelectorAll('h2, h3, div, p')).find(el => el.textContent && (el.textContent.includes('You’ve spent longer') || el.textContent.includes('සංචාරය සැලසුම්')));
+  if (title) title.textContent = t.title;
+
+  // Update subtext
+  const subtext = modal.querySelector('.dwell-subtext, p') ||
+                  Array.from(modal.querySelectorAll('p, div')).find(el => el.textContent && (el.textContent.includes('Skip the forms') || el.textContent.includes('පෝරම පිරවීම')));
+  if (subtext) subtext.textContent = t.subtext;
+
+  // Update WhatsApp button
+  const btn = modal.querySelector('a[href*="wa.me"], button, .dwell-btn, #dwellWhatsAppBtn') ||
+              Array.from(modal.querySelectorAll('a, button')).find(el => el.textContent && el.textContent.includes('WhatsApp'));
+  if (btn) {
+    // Update text node while keeping the SVG icon
+    const svg = btn.querySelector('svg');
+    btn.innerHTML = '';
+    if (svg) btn.appendChild(svg);
+    btn.appendChild(document.createTextNode(' ' + t.button));
+    if (btn.tagName.toLowerCase() === 'a') {
+      btn.href = `https://wa.me/971527582293?text=${encodeURIComponent(t.msg)}`;
+    }
   }
 }
-window.DWELL_I18N = DWELL_I18N;
-window.updateDwellModalLanguage = updateDwellModalLanguage;
+
+const updateDwellModalLanguage = applyDwellModalTranslation;
+window.getActiveSiteLanguage = getActiveSiteLanguage;
+window.DWELL_CONTENT = DWELL_CONTENT;
+window.DWELL_I18N = DWELL_CONTENT;
+window.applyDwellModalTranslation = applyDwellModalTranslation;
+window.updateDwellModalLanguage = applyDwellModalTranslation;
 
 function initDwellModal() {
-  const modal = document.getElementById("dwellModalOverlay");
+  const modal = document.getElementById("dwellModalOverlay") || document.querySelector("#dwellModal, .dwell-modal, [data-dwell-modal]");
   if (!modal) return;
 
-  const closeBtn = document.getElementById("dwellModalClose");
-  const waBtn = document.getElementById("dwellWhatsAppBtn");
+  const closeBtn = document.getElementById("dwellModalClose") || modal.querySelector('.dwell-modal-close');
+  const waBtn = document.getElementById("dwellWhatsAppBtn") || modal.querySelector('.dwell-btn-whatsapp, a[href*="wa.me"]');
   const STORAGE_KEY = "starplus_dwell_modal_seen";
 
   function isDismissed() {
@@ -10855,7 +10880,7 @@ function initDwellModal() {
 
   function openDwellModal() {
     if (isDismissed() || isOtherModalOpen()) return;
-    updateDwellModalLanguage();
+    applyDwellModalTranslation();
     modal.classList.remove("hidden");
     modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -10906,13 +10931,13 @@ function initDwellModal() {
   document.addEventListener("click", (e) => {
     const langTrigger = e.target.closest("#lang-toggle-en, #lang-toggle-si, .lang-btn, [data-lang], .lang-toggle, #lang-toggle-btn");
     if (langTrigger) {
-      setTimeout(updateDwellModalLanguage, 50);
+      setTimeout(applyDwellModalTranslation, 50);
     }
   });
 
   document.addEventListener("change", (e) => {
     if (e.target && e.target.matches(".lang-selector, #lang-select, select[name='language']")) {
-      setTimeout(updateDwellModalLanguage, 50);
+      setTimeout(applyDwellModalTranslation, 50);
     }
   });
 
@@ -10921,7 +10946,7 @@ function initDwellModal() {
     const langObserver = new MutationObserver((mutations) => {
       for (const m of mutations) {
         if (m.attributeName === "lang" || m.attributeName === "class") {
-          updateDwellModalLanguage();
+          applyDwellModalTranslation();
           break;
         }
       }
@@ -10933,7 +10958,7 @@ function initDwellModal() {
   } catch (e) {}
 
   // Initial language sync
-  updateDwellModalLanguage();
+  applyDwellModalTranslation();
 
   // Dwell trigger (45 seconds)
   setTimeout(() => {
