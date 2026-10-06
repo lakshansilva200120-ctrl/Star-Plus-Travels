@@ -1,8 +1,9 @@
 /**
- * Star Plus Travels - AI Assistant ("Starplus Concierge")
- * Live Conversational Chat Engine with Knowledge Grounding & WhatsApp Handoff
- * TAMM-style floating orb launcher, bilingual support (English & Sinhala),
- * session memory, typing indicator, and deep-link package inquiry generator.
+ * Star Plus Travels - AI Concierge ("Starplus Assistant")
+ * TAMM Luxury Architecture & Conversational Chat Engine
+ * Grounded Knowledge Base, Bilingual Support (English & Sinhala),
+ * Floating Orb Launcher Positioned Above Floating WhatsApp Widget,
+ * Structured Capability Cards, Dynamic WhatsApp Handoff.
  */
 
 (function () {
@@ -27,42 +28,68 @@
 
   const I18N = {
     en: {
-      launcherText: "Starplus Assistant",
-      title: "Starplus Concierge",
-      subtitle: "Luxury Travel & Visa Advisor",
-      status: "Online • Live Assistance",
-      welcomeGreeting: "Hello! Welcome to Star Plus Travels. I am your personal concierge assistant. How may I assist your travel plans or UAE visa requirements today?",
-      chips: [
+      launcherText: "AI Concierge",
+      launcherTooltip: "Starplus AI Luxury Concierge",
+      brandPill: "STARPLUS AI CONCIERGE",
+      status: "Live Assistance",
+      greetingTitle: "Hi Traveler",
+      greetingSubtitle: "How can I help you today?",
+      card1Title: "What can you do for me?",
+      card1Sub: "Explore tour curation, visas & bespoke travel",
+      card1Query: "What can you do for me?",
+      card2Title: "Frequently Asked Questions",
+      card2Sub: "UAE visas, Sri Lanka itineraries & payment policies",
+      card2Query: "Frequently Asked Questions",
+      card3Title: "Plan a Custom Itinerary",
+      card3Sub: "Build a day-by-day luxury route in 5 minutes",
+      card3Query: "Plan a Custom Itinerary",
+      explorePrompts: "✦ Explore Prompts",
+      explorePromptsClose: "✕ Hide Prompts",
+      prompts: [
         { label: "Sri Lanka 6-Day Tour", query: "Tell me about the Sri Lanka 6-Day Tour" },
-        { label: "UAE Visa Requirements", query: "What are the UAE Visa requirements and pricing?" },
-        { label: "Custom Itinerary", query: "Can you design a custom luxury itinerary?" },
-        { label: "Flight & Airport Transfers", query: "Do you arrange flights and private luxury transfers?" }
+        { label: "UAE Visa (30/60 Days)", query: "What are the UAE Visa requirements and pricing?" },
+        { label: "Tabby 0% Installments", query: "How do Tabby 0% interest installments work?" },
+        { label: "Airport VIP Transfers", query: "Do you arrange flights and private luxury transfers?" }
       ],
-      placeholder: "Ask about packages, visas, custom trips...",
+      placeholder: "Ask me about tours, visas, pricing...",
       send: "Send",
-      waHandoffBtn: "Continue on WhatsApp",
-      waPreMessage: "Hi Starplus Travels, I was chatting with Starplus Concierge about: ",
-      typicalResponsePrefix: "",
-      typingLabel: "Starplus Assistant is typing..."
+      waHandoffBarText: "Forward chat to WhatsApp Concierge",
+      waHandoffBtn: "WhatsApp Concierge",
+      waPreMessage: "Hi Starplus Travels, I was chatting with Starplus AI Concierge about: ",
+      disclaimer: "Starplus AI Concierge is trained to assist with luxury travel and visa inquiries. Verify critical travel dates with our team.",
+      typingLabel: "Starplus AI is formulating a response..."
     },
     si: {
-      launcherText: "Starplus සහයක",
-      title: "Starplus සහයක",
-      subtitle: "සුඛෝපභෝගී සංචාරක සහ වීසා උපදේශක",
-      status: "සක්‍රියයි • ක්ෂණික සේවාව",
-      welcomeGreeting: "ආයුබෝවන්! Star Plus Travels වෙත සාදරයෙන් පිළිගනිමු. මම ඔබගේ පුද්ගලික සංචාරක සහයකයා වෙමි. අද ඔබගේ නිවාඩු සැලසුම් හෝ එක්සත් අරාබි එමීර් (UAE) වීසා සේවාවන් සඳහා මට ඔබට කෙසේ සහය විය හැකිද?",
-      chips: [
+      launcherText: "AI සහයක",
+      launcherTooltip: "Starplus සුඛෝපභෝගී AI සංචාරක සහයක",
+      brandPill: "STARPLUS AI සහයක",
+      status: "ක්ෂණික සේවාව",
+      greetingTitle: "ආයුබෝවන් සංචාරකය",
+      greetingSubtitle: "අද මම ඔබට කෙසේ සහය විය හැකිද?",
+      card1Title: "මට ලැබෙන සේවාවන් මොනවාද?",
+      card1Sub: "සංචාරක සැලසුම්, වීසා සහ සුඛෝපභෝගී සේවාවන්",
+      card1Query: "මට ලබාගත හැකි සේවාවන් මොනවාද?",
+      card2Title: "නිතර අසන ප්‍රශ්න",
+      card2Sub: "UAE වීසා, ශ්‍රී ලංකා සංචාර සහ ගෙවීම් ක්‍රම",
+      card2Query: "නිතර අසන ප්‍රශ්න සහ පිළිතුරු",
+      card3Title: "සුවිශේෂී සංචාරක සැලසුමක්",
+      card3Sub: "විනාඩි 5කින් දිනෙන් දින සුඛෝපභෝගී සැලැස්මක්",
+      card3Query: "සුවිශේෂී සංචාරක සැලසුමක් සකස් කරන්න",
+      explorePrompts: "✦ විමසිය හැකි තොරතුරු",
+      explorePromptsClose: "✕ සඟවන්න",
+      prompts: [
         { label: "ශ්‍රී ලංකා දින 6 සංචාරය", query: "ශ්‍රී ලංකා දින 6 සංචාරක පැකේජය ගැන විස්තර කියන්න" },
-        { label: "UAE වීසා අවශ්‍යතා", query: "එක්සත් අරාබි එමීර් (UAE) වීසා ලබාගැනීමට අවශ්‍ය දෑ සහ ගාස්තු මොනවාද?" },
-        { label: "සුවිශේෂී ගමන් සැලැස්මක්", query: "මට අවශ්‍ය පරිදි සුවිශේෂී සංචාරක සැලසුමක් සකස් කරගත හැකිද?" },
+        { label: "UAE වීසා (දින 30/60)", query: "එක්සත් අරාබි එමීර් (UAE) වීසා අවශ්‍යතා සහ ගාස්තු මොනවාද?" },
+        { label: "Tabby 0% පොලී රහිත ගෙවීම්", query: "Tabby 0% පොලී රහිත ගෙවීම් පහසුකම ක්‍රියාත්මක වන්නේ කෙසේද?" },
         { label: "ගුවන් ප්‍රවේශපත්‍ර සහ ප්‍රවාහන", query: "ගුවන් ප්‍රවේශපත්‍ර සහ සුඛෝපභෝගී ප්‍රවාහන පහසුකම් සපයනවාද?" }
       ],
       placeholder: "පැකේජ, වීසා හෝ සංචාරක තොරතුරු අසන්න...",
       send: "යවන්න",
-      waHandoffBtn: "WhatsApp ඔස්සේ ඉදිරියට යන්න",
-      waPreMessage: "හෙලෝ Starplus Travels, මම Starplus සහයකයා සමග සාකච්ඡා කළෙමි: ",
-      typicalResponsePrefix: "",
-      typingLabel: "Starplus සහයක පිළිතුර සකසමින් සිටී..."
+      waHandoffBarText: "WhatsApp ඔස්සේ සාකච්ඡාව ඉදිරියට ගෙනයන්න",
+      waHandoffBtn: "WhatsApp සහයක",
+      waPreMessage: "හෙලෝ Starplus Travels, මම Starplus AI සහයකයා සමග සාකච්ඡා කළෙමි: ",
+      disclaimer: "Starplus AI සහයකයා සුඛෝපභෝගී සංචාර සහ වීසා තොරතුරු සඳහා සකසා ඇත. නිශ්චිත සංචාරක දින අප කණ්ඩායම සමඟ තහවුරු කරගන්න.",
+      typingLabel: "Starplus AI පිළිතුර සකසමින් සිටී..."
     }
   };
 
@@ -91,13 +118,68 @@
   let sessionHistory = [];
   let isPanelOpen = false;
   let isGenerating = false;
+  let isPromptsTrayOpen = false;
 
   // Grounded Knowledge Base Queries & Intelligent Intent Matcher
   function generateGroundedResponse(rawQuery, targetLang) {
     const q = rawQuery.toLowerCase();
     const lang = targetLang || (isSinhalaQuery(rawQuery) ? 'si' : getActiveLanguage());
 
-    // 1. Sri Lanka 6-Day Tour / General Sri Lanka Tours
+    // 1. "What can you do for me?" / Capability Overview
+    if (q.includes('what can you do') || q.includes('do for me') || q.includes('capabilities') || q.includes('සේවාවන් මොනවාද') || q.includes('කරන්න පුළුවන් මොනවද')) {
+      if (lang === 'si') {
+        return {
+          text: `මම ඔබගේ පුද්ගලික **Starplus සුඛෝපභෝගී AI සංචාරක උපදේශකයා** වෙමි. මට ඔබට පහත සේවාවන් ක්ෂණිකව ලබාදිය හැක:\n\n• **ශ්‍රී ලංකා පෞද්ගලික චාරිකා:** තරු 4/5 හෝටල්, කැපවූ රියදුරු-මඟපෙන්වන්නන් සහ සුවිශේෂී මාර්ග (සීගිරිය, නුවරඑළිය, ඇල්ල, යාල).\n• **UAE සංචාරක වීසා (දින 30/60):** පැය 24–48 කින් කඩිනම් නිකුත් කිරීම සහ සහතික කළ අනුමැතිය.\n• **සුවිශේෂී සංචාරක සැලසුම් (Custom Itineraries):** ඔබගේ කැමැත්ත සහ අයවැය අනුව විනාඩි 5කින් සැලසුම් කිරීම.\n• **ගුවන් ප්‍රවේශපත්‍ර & VIP ප්‍රවාහන:** ඩුබායි සහ කොළඹ ගුවන් තොටුපළ VIP පිළිගැනීම් සහ සුඛෝපභෝගී මෝටර් රථ.\n• **0% Tabby පහසුකම:** ඕනෑම මුදලක් පොලී රහිතව මාස 4ක කොටස් වශයෙන් ගෙවීමේ හැකියාව.\n\nඅද ඔබගේ සැලසුම් ආරම්භ කිරීමට කැමතිද?`,
+          actionLabel: "සියලුම පැකේජ බලන්න",
+          actionUrl: "/packages.html",
+          handoffTopic: "Starplus Services Overview"
+        };
+      }
+      return {
+        text: `I am your dedicated **Starplus Luxury AI Concierge**, tailored to curate seamless, end-to-end travel experiences:\n\n• **Curated Sri Lanka Circuits:** Private multi-day journeys featuring boutique 4/5★ resorts, personal chauffeur-guides, scenic highland trains, and Yala wildlife safaris.\n• **Official UAE Tourist Visas:** Rapid 30-Day & 60-Day visit permits with 24–48hr turnaround and zero paperwork friction.\n• **Bespoke Itinerary Planning:** 100% tailor-made day-by-day luxury routes built around your pace, dates, and party size.\n• **VIP Airport & Flight Logistics:** Worldwide airline ticketing and premium executive transfers in Dubai (DXB) and Colombo (BIA).\n• **Flexible 0% Tabby Financing:** Split holiday packages or visa fees into 4 interest-free monthly installments.\n\nHow would you like to begin your journey today?`,
+        actionLabel: "Explore Premier Packages",
+        actionUrl: "/packages.html",
+        handoffTopic: "Starplus Services Overview"
+      };
+    }
+
+    // 2. "Frequently Asked Questions" / FAQ Summary
+    if (q.includes('frequently asked') || q.includes('faq') || q.includes('නිතර අසන') || q.includes('ප්‍රශ්න සහ පිළිතුරු')) {
+      if (lang === 'si') {
+        return {
+          text: `සංචාරකයින් බහුලව අසන ප්‍රධාන තොරතුරු මෙන්න:\n\n• **UAE වීසා ලබාගැනීමට කොපමණ කාලයක් ගතවේද?** සාමාන්‍යයෙන් පැය 24 සිට 48 දක්වා. එදිනම ලබාගැනීමේ අධිවේගී (Express) සේවාවද ඇත. අවශ්‍ය වන්නේ පාස්පෝට් පිටපතක් සහ ඡායාරූපයක් පමණි.\n• **ශ්‍රී ලංකා සංචාරක පැකේජවලට ඇතුළත් මොනවාද?** තරු 4/5 සුඛෝපභෝගී හෝටල්, දිනපතා උදෑසන ආහාර, පෞද්ගලික AC වාහනය සහ කැපවූ පළපුරුදු රියදුරු.\n• **පැකේජයන් අපට අවශ්‍ය පරිදි වෙනස් කළ හැකිද?** ඔව්, ඕනෑම සැලැස්මක් ඔබගේ සංචාරක දිනයන්ට සහ කැමැත්තට 100% වෙනස් කළ හැක.\n• **ගෙවීම් ක්‍රම මොනවාද?** ක්‍රෙඩිට්/ඩෙබිට් කාඩ්පත්, බැංකු තැන්පතු, සහ Tabby 0% පොලී රහිත මාස 4ක කොටස් ගෙවීම්.\n\nවැඩිදුර විස්තර සඳහා අපගේ උපදේශක කණ්ඩායම අමතන්න!`,
+          actionLabel: "Help & FAQ පිටුව බලන්න",
+          actionUrl: "/faq",
+          handoffTopic: "Frequently Asked Questions"
+        };
+      }
+      return {
+        text: `Here are concise answers to our travelers' most frequent inquiries:\n\n• **How quickly are UAE Visas processed?** Approvals typically take 24–48 hours, with express same-day turnaround available. Only a passport copy (6+ months validity) and photo are needed.\n• **What is included in Sri Lanka holiday packages?** Hand-picked 4/5★ luxury boutique resorts, daily buffet breakfast, private chauffeur-guide with AC vehicle, all government permits, and airport transfers.\n• **Can existing packages be tailored?** Yes, every package is 100% customizable to your exact dates, guest count, and pace.\n• **What payment methods are supported?** Credit/Debit cards, wire transfers, and Tabby 0% interest installments (split over 4 months).\n\nWould you like more details on a specific policy or direct assistance from our team?`,
+        actionLabel: "View Help & FAQ Page",
+        actionUrl: "/faq",
+        handoffTopic: "Frequently Asked Questions"
+      };
+    }
+
+    // 3. Plan a Custom Itinerary / Bespoke Journeys
+    if (q.includes('custom') || q.includes('itinerary') || q.includes('plan') || q.includes('tailor') || q.includes('bespoke') || q.includes('සැලසුම්') || q.includes('සුවිශේෂී')) {
+      if (lang === 'si') {
+        return {
+          text: `අපගේ විශේෂත්වය වන්නේ ඔබගේ අයවැය, දින ගණන සහ කැමැත්ත අනුව සකස් කරන ලද **100% පුද්ගලික සංචාරක සැලසුම් (Custom Itineraries)** නිර්මාණය කිරීමයි.\n\n• **වනජීවී සෆාරි:** යාල දිවියන් නැරඹීම, උඩවලව අලි රංචු, මින්නේරිය මහා අලි එක්රැස්වීම.\n• **මධ්‍යම කඳුකර සුන්දරත්වය:** නුවරඑළිය තේ වතු, දියඇලි, ඇල්ල නිල් දුම්රිය චාරිකාව.\n• **වෙරළබඩ නිවාඩු:** බෙන්තොට පෞද්ගලික විලා, මිරිස්ස තල්මසුන් නැරඹීම, වැලිගම.\n• **ඓතිහාසික උරුමයන්:** සීගිරිය පර්වත බලකොටුව, දඹුල්ල සහ පොළොන්නරුව.\n\nඔබ සංචාරය කිරීමට බලාපොරොත්තු වන දින සහ සාමාජිකයින් ගණන සඳහන් කරන්න, අපගේ විශේෂඥ කණ්ඩායම විනාඩි 5කින් සැලැස්ම සකස් කර දෙන්නෙමු!`,
+          actionLabel: "සංචාරක සැලසුම්කරු වෙත",
+          actionUrl: "/#itinerary-planner",
+          handoffTopic: "Custom Itinerary Inquiry"
+        };
+      }
+      return {
+        text: `We specialize in **100% bespoke luxury journeys** designed from scratch around your travel rhythm, accommodation preferences, and exact dates:\n\n• **Wildlife & Safaris:** Yala leopard treks, Udawalawe elephant sanctuary, and Minneriya gathering.\n• **Highland Serenity:** Colonial heritage bungalows in Nuwara Eliya, tea factory masterclasses, and Ella blue train rides.\n• **Coastal Luxury:** Private boutique villas in Bentota, whale watching in Mirissa, and reef diving.\n• **Heritage Citadels:** UNESCO wonders of Sigiriya Rock Fortress, Polonnaruwa, and Kandy.\n\nTell me your prospective travel dates, number of guests, and vibe, and our specialists will craft your custom day-by-day plan on WhatsApp!`,
+        actionLabel: "Open Itinerary Planner",
+        actionUrl: "/#itinerary-planner",
+        handoffTopic: "Custom Itinerary Inquiry"
+      };
+    }
+
+    // 4. Sri Lanka 6-Day Tour / General Sri Lanka Tours
     if (q.includes('sri lanka') || q.includes('6-day') || q.includes('6 day') || q.includes('lanka') || q.includes('ශ්‍රී ලංකා') || q.includes('සංචාර')) {
       if (lang === 'si') {
         return {
@@ -115,7 +197,7 @@
       };
     }
 
-    // 2. UAE Visa Services & Requirements
+    // 5. UAE Visa Services & Requirements
     if (q.includes('visa') || q.includes('uae') || q.includes('dubai') || q.includes('entry') || q.includes('30-day') || q.includes('60-day') || q.includes('වීසා')) {
       if (lang === 'si') {
         return {
@@ -133,25 +215,25 @@
       };
     }
 
-    // 3. Custom Itinerary Planner & Bespoke Journeys
-    if (q.includes('custom') || q.includes('itinerary') || q.includes('plan') || q.includes('tailor') || q.includes('bespoke') || q.includes('සැලසුම්') || q.includes('සුවිශේෂී')) {
+    // 6. Currency, Tabby, Payment terms
+    if (q.includes('tabby') || q.includes('currency') || q.includes('price') || q.includes('cost') || q.includes('installment') || q.includes('pay') || q.includes('මිල') || q.includes('ගෙවීම්')) {
       if (lang === 'si') {
         return {
-          text: `අපගේ විශේෂත්වය වන්නේ ඔබගේ අයවැය, දින ගණන සහ කැමැත්ත අනුව සකස් කරන ලද **100% පුද්ගලික සංචාරක සැලසුම් (Custom Itineraries)** සැකසීමයි.\n\n• වනජීවී සෆාරි (යාල, උඩවලව, මින්නේරිය)\n• මධ්‍යම කඳුකර තේ වතු, දියඇලි සහ ඇල්ල කඳු නැගීම\n• වෙරළ විවේක සහ දියයට කිමිදුම් (මිරිස්ස, බෙන්තොට, ත්‍රිකුණාමලය)\n• ඓතිහාසික සංස්කෘතික නගර (අනුරාධපුර, පොළොන්නරුව, සීගිරිය)\n\nඔබ සංචාරය කිරීමට බලාපොරොත්තු වන දින සහ සාමාජිකයින් ගණන සඳහන් කරන්න, විනාඩි 5කින් සැලැස්ම සකස් කර දෙන්නෙමු!`,
-          actionLabel: "සංචාරක සැලසුම්කරු වෙත",
-          actionUrl: "/#itinerary-planner",
-          handoffTopic: "Custom Itinerary Inquiry"
+          text: `අපගේ මිල ගණන් **AED (එක්සත් අරාබි එමීර් ඩිරාම්)** හෝ **USD (ඇමරිකානු ඩොලර්)** මගින් ලබාගත හැක.\n\n• **0% Tabby පහසුකම:** ඕනෑම පැකේජයක් හෝ වීසා ගාස්තුවක් කිසිදු පොලියක් රහිතව මාස 4ක කොටස් වශයෙන් ගෙවීමේ හැකියාව.\n• සියලුම ප්‍රධාන ක්‍රෙඩිට්/ඩෙබිට් කාඩ්පත් සහ බැංකු හුවමාරු පිළිගනු ලැබේ.`,
+          actionLabel: "පැකේජ ගාස්තු බලන්න",
+          actionUrl: "/packages.html",
+          handoffTopic: "Payment Options & Tabby Installments"
         };
       }
       return {
-        text: `We specialize in **100% bespoke luxury journeys** designed from scratch to match your travel rhythm, hotel preferences, and exact dates.\n\n• **Wildlife & Safaris:** Yala Leopard Safaris, Udawalawe Elephant Sanctuary, Minneriya Elephant Gathering.\n• **Highland Serenity:** Colonial bungalows in Nuwara Eliya, tea factory tastings, Ella hiking.\n• **Coastal Luxury:** Private villas in Bentota, whale watching in Mirissa, surfing in Weligama.\n• **Heritage Citadels:** UNESCO wonders of Sigiriya, Polonnaruwa, and Dambulla.\n\nTell me your prospective travel dates, number of guests, and vibe, and our specialists will generate your custom day-by-day plan on WhatsApp!`,
-        actionLabel: "Open Itinerary Planner",
-        actionUrl: "/#itinerary-planner",
-        handoffTopic: "Custom Itinerary Inquiry"
+        text: `All quotations are provided transparently in **AED (UAE Dirhams)** or **USD**.\n\n• **0% Tabby Installments:** Eligible UAE residents can split their holiday packages and visa payments into 4 interest-free monthly installments.\n• Secure credit/debit card processing, wire transfers, and digital payment links supported.`,
+        actionLabel: "Browse Packages & Pricing",
+        actionUrl: "/packages.html",
+        handoffTopic: "Payment Options & Tabby Installments"
       };
     }
 
-    // 4. Flights, Luxury Transfers & VIP Services
+    // 7. Flights, Luxury Transfers & VIP Services
     if (q.includes('flight') || q.includes('transfer') || q.includes('airport') || q.includes('car') || q.includes('chauffeur') || q.includes('hotel') || q.includes('ප්‍රවාහන') || q.includes('ගුවන්')) {
       if (lang === 'si') {
         return {
@@ -169,7 +251,7 @@
       };
     }
 
-    // 5. Contact, Office Locations, Landline
+    // 8. Contact, Office Locations, Landline
     if (q.includes('contact') || q.includes('call') || q.includes('phone') || q.includes('office') || q.includes('location') || q.includes('address') || q.includes('email') || q.includes('කාර්යාලය') || q.includes('දුරකථන')) {
       if (lang === 'si') {
         return {
@@ -187,25 +269,7 @@
       };
     }
 
-    // 6. Currency, Tabby, Payment terms
-    if (q.includes('currency') || q.includes('price') || q.includes('cost') || q.includes('tabby') || q.includes('installment') || q.includes('pay') || q.includes('මිල') || q.includes('ගෙවීම්')) {
-      if (lang === 'si') {
-        return {
-          text: `අපගේ මිල ගණන් **AED (එක්සත් අරාබි එමීර් ඩිරාම්)** හෝ **USD (ඇමරිකානු ඩොලර්)** මගින් ලබාගත හැක.\n\n• **0% Tabby පහසුකම:** ඕනෑම පැකේජයක් හෝ වීසා ගාස්තුවක් කිසිදු පොලියක් රහිතව මාස 4ක කොටස් වශයෙන් ගෙවීමේ හැකියාව.\n• සියලුම ප්‍රධාන ක්‍රෙඩිට්/ඩෙබිට් කාඩ්පත් සහ බැංකු හුවමාරු පිළිගනු ලැබේ.`,
-          actionLabel: "පැකේජ ගාස්තු බලන්න",
-          actionUrl: "/packages.html",
-          handoffTopic: "Payment Options & Tabby Installments"
-        };
-      }
-      return {
-        text: `All quotations are provided transparently in **AED (UAE Dirhams)** or **USD**.\n\n• **0% Tabby Installments:** Eligible UAE residents can split their holiday packages and visa payments into 4 interest-free monthly installments.\n• Secure credit/debit card processing, wire transfers, and digital payment links supported.`,
-        actionLabel: "Browse Packages & Pricing",
-        actionUrl: "/packages.html",
-        handoffTopic: "Payment Options & Tabby Installments"
-      };
-    }
-
-    // 7. Fallback / Default Grounded Response
+    // 9. Fallback / Default Grounded Response
     if (lang === 'si') {
       return {
         text: `ස්තූතියි! Star Plus Travels ආයතනය ලෙස අපි ශ්‍රී ලංකා සුඛෝපභෝගී පෞද්ගලික සංචාර, එක්සත් අරාබි එමීර් (UAE) සංචාරක වීසා, ගුවන් ප්‍රවේශපත්‍ර සහ හෝටල් වෙන්කිරීම් සඳහා විශේෂඥ සහය ලබාදෙන්නෙමු.\n\nඔබට වඩාත් නිශ්චිත විස්තර දැනගැනීමට හෝ අපගේ ජ්‍යෙෂ්ඨ සංචාරක උපදේශකයෙකු සමඟ සෘජුවම WhatsApp මඟින් සම්බන්ධ වීමට අවශ්‍යද?`,
@@ -215,7 +279,7 @@
       };
     }
     return {
-      text: `Thank you for your message! Star Plus Travels specializes in curated Sri Lanka holiday circuits, rapid UAE tourist visas, tailored global getaways, and VIP transfers.\n\nWould you like more specific details on our packages, or would you prefer to connect directly with our senior travel designers on WhatsApp?`,
+      text: `Thank you for reaching out! Star Plus Travels specializes in curated Sri Lanka holiday circuits, rapid UAE tourist visas, bespoke itineraries, and VIP transfers.\n\nWould you like more specific details on our packages, or would you prefer to connect directly with our senior concierge desk on WhatsApp?`,
       actionLabel: null,
       actionUrl: null,
       handoffTopic: rawQuery
@@ -229,133 +293,205 @@
     const currentLang = getActiveLanguage();
     const t = I18N[currentLang] || I18N.en;
 
-    // 1. Sleek TAMM-style Floating Launcher Pill
+    // 1. Sleek TAMM-style Floating Launcher Button positioned above WhatsApp widget
     const launcher = document.createElement('div');
     launcher.id = 'starplusAssistantLauncher';
     launcher.className = 'starplus-assistant-launcher';
     launcher.setAttribute('role', 'button');
     launcher.setAttribute('tabindex', '0');
     launcher.setAttribute('aria-label', 'Open Starplus AI Concierge');
+    launcher.setAttribute('title', t.launcherTooltip);
     launcher.innerHTML = `
-      <div class="starplus-assistant-orb">
-        <svg class="w-4 h-4 fill-current text-slate-950" viewBox="0 0 24 24">
-          <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5z"/>
-        </svg>
-      </div>
-      <span id="starplusAssistantLabel" class="text-xs sm:text-sm font-bold tracking-wide text-amber-300">
+      <div class="tamm-launcher-orb"></div>
+      <span id="starplusAssistantLabel" class="text-xs font-bold tracking-wider text-amber-300">
         ${t.launcherText}
       </span>
-      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
     `;
 
-    // 2. Slide-up Interactive Modal / Drawer Panel
+    // 2. TAMM Luxury Architecture Drawer / Modal Panel
     const panel = document.createElement('div');
     panel.id = 'starplusAssistantPanel';
     panel.className = 'starplus-assistant-panel hidden';
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('aria-label', 'Starplus AI Concierge Dialog');
     panel.innerHTML = `
-      <!-- Luxury Gold & Slate Header -->
-      <div class="flex items-center justify-between px-4 py-3.5 bg-slate-950/95 border-b border-amber-500/25 select-none">
-        <div class="flex items-center gap-3">
-          <div class="relative w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 via-amber-400 to-amber-300 flex items-center justify-center text-slate-950 shadow-md flex-shrink-0">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-              <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0-2.5-2.5z"/>
-            </svg>
-            <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-slate-950"></span>
-          </div>
-          <div>
-            <div class="flex items-center gap-1.5">
-              <h4 id="assistantHeaderTitle" class="text-sm font-bold text-white tracking-wide leading-tight">
-                ${t.title}
-              </h4>
-              <span class="px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-300 text-[10px] font-semibold border border-amber-500/30">AI</span>
-            </div>
-            <p id="assistantHeaderSubtitle" class="text-[11px] text-slate-400 font-medium leading-none mt-0.5">
-              ${t.subtitle}
-            </p>
-          </div>
+      <!-- Top Bar with Minimize Button (-) -->
+      <div class="flex items-center justify-between px-4 py-3 bg-slate-950/90 border-b border-amber-500/20 select-none flex-shrink-0">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="assistantBrandPill" class="text-[11px] font-bold tracking-widest text-amber-300 uppercase">
+            ${t.brandPill}
+          </span>
         </div>
-        <button type="button" id="assistantCloseBtn" class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-sm" aria-label="Close Assistant">
-          ✕
+        <button 
+          type="button" 
+          id="assistantMinimizeBtn" 
+          class="w-7 h-7 rounded-full bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-base font-bold shadow cursor-pointer" 
+          aria-label="Minimize Assistant"
+          title="Minimize"
+        >
+          <svg class="w-3.5 h-3.5 fill-none stroke-current" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24">
+            <path d="M5 12h14"/>
+          </svg>
         </button>
       </div>
 
-      <!-- Chat Messages Scroll Container -->
-      <div id="assistantMessages" class="starplus-assistant-messages space-y-3.5">
-        <!-- Initial Welcome Message from Assistant -->
-        <div class="flex items-start gap-2.5 max-w-[92%]">
-          <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center flex-shrink-0 text-xs">
-            ★
+      <!-- Main Scroll Body: Hero, Cards & Chat Stream -->
+      <div id="assistantBody" class="starplus-assistant-body">
+        
+        <!-- Hero Section: Centered Glowing Orb Avatar & Large Typography -->
+        <div id="assistantHero" class="text-center pt-1 select-none">
+          <div class="tamm-hero-orb-wrap">
+            <div class="tamm-hero-orb"></div>
           </div>
-          <div class="bg-slate-800/90 border border-slate-700/70 rounded-2xl rounded-tl-sm p-3.5 text-xs sm:text-sm text-slate-100 shadow-md leading-relaxed">
-            <p id="assistantWelcomeText">${t.welcomeGreeting}</p>
-          </div>
+          <h3 id="assistantGreetingTitle" class="text-xl sm:text-2xl font-bold text-white tracking-tight mt-3">
+            ${t.greetingTitle}
+          </h3>
+          <p id="assistantGreetingSub" class="text-xs sm:text-sm text-slate-300 font-medium mt-1">
+            ${t.greetingSubtitle}
+          </p>
         </div>
 
-        <!-- Quick Starter Chips Wrapper -->
-        <div id="assistantChipsWrapper" class="flex flex-wrap gap-1.5 pt-1"></div>
-      </div>
+        <!-- Structured Capability Cards (replacing cramped chips) -->
+        <div id="assistantCapabilityCards" class="space-y-2 mt-1">
+          <!-- Card 1 -->
+          <button type="button" class="tamm-card" data-query="${t.card1Query}">
+            <div class="tamm-card-icon bg-teal-500/20 text-teal-300 border border-teal-500/30">
+              🗺️
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="tamm-card-title">${t.card1Title}</div>
+              <div class="tamm-card-sub">${t.card1Sub}</div>
+            </div>
+            <span class="tamm-card-arrow">→</span>
+          </button>
 
-      <!-- Typing Indicator (Hidden by default) -->
-      <div id="assistantTyping" class="px-4 py-1.5 hidden">
-        <div class="starplus-typing-indicator">
-          <span></span>
-          <span></span>
-          <span></span>
+          <!-- Card 2 -->
+          <button type="button" class="tamm-card" data-query="${t.card2Query}">
+            <div class="tamm-card-icon bg-sky-500/20 text-sky-300 border border-sky-500/30">
+              💬
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="tamm-card-title">${t.card2Title}</div>
+              <div class="tamm-card-sub">${t.card2Sub}</div>
+            </div>
+            <span class="tamm-card-arrow">→</span>
+          </button>
+
+          <!-- Card 3 -->
+          <button type="button" class="tamm-card" data-query="${t.card3Query}">
+            <div class="tamm-card-icon bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              ✨
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="tamm-card-title">${t.card3Title}</div>
+              <div class="tamm-card-sub">${t.card3Sub}</div>
+            </div>
+            <span class="tamm-card-arrow">→</span>
+          </button>
+        </div>
+
+        <!-- Quick Action Link: Explore Prompts -->
+        <div class="text-center">
+          <button 
+            type="button" 
+            id="assistantExplorePromptsBtn" 
+            class="text-xs font-semibold text-amber-400/90 hover:text-amber-300 transition-colors py-1 inline-flex items-center gap-1.5 cursor-pointer"
+          >
+            <span id="assistantExplorePromptsText">${t.explorePrompts}</span>
+          </button>
+        </div>
+
+        <!-- Expandable Prompt Pills Tray -->
+        <div id="assistantPromptsTray" class="flex flex-wrap justify-center gap-1.5 pt-0.5 hidden"></div>
+
+        <!-- Chat Messages Container -->
+        <div id="assistantMessages" class="space-y-3 pt-2"></div>
+
+        <!-- Typing Indicator -->
+        <div id="assistantTyping" class="py-1 hidden">
+          <div class="starplus-typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       </div>
 
-      <!-- Persistent WhatsApp Handover CTA -->
-      <div class="p-2.5 bg-slate-950/90 border-t border-slate-800/80">
+      <!-- WhatsApp Handoff Bar -->
+      <div class="px-3.5 py-2 bg-slate-950/80 border-t border-slate-800/80 flex items-center justify-between gap-2 flex-shrink-0 select-none">
+        <div class="flex items-center gap-1.5 text-[11px] text-slate-300 truncate">
+          <span class="w-2 h-2 rounded-full bg-[#25D366] flex-shrink-0"></span>
+          <span id="assistantWaHandoffLabel" class="truncate">${t.waHandoffBarText}</span>
+        </div>
         <a 
           id="assistantWaHandoffLink"
-          href="https://wa.me/${CONFIG.phone}?text=${encodeURIComponent('Hi Starplus Travels, I am chatting with Starplus Concierge and would like assistance with my booking.')}"
+          href="https://wa.me/${CONFIG.phone}?text=${encodeURIComponent('Hi Starplus Travels, I was chatting with Starplus AI Concierge and would like to speak to a specialist.')}"
           target="_blank"
           rel="noopener noreferrer"
-          class="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold transition-all shadow-md active:scale-[0.98]"
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#25D366] text-xs font-bold border border-[#25D366]/35 transition-all flex-shrink-0"
         >
-          <svg class="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 24 24">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
           </svg>
-          <span id="assistantWaHandoffText" class="truncate">${t.waHandoffBtn}</span>
+          <span id="assistantWaHandoffBtnText">${t.waHandoffBtn}</span>
         </a>
       </div>
 
-      <!-- Conversational Input Bar -->
-      <form id="assistantChatForm" class="p-2.5 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
-        <input 
-          type="text" 
-          id="assistantChatInput" 
-          class="flex-1 bg-slate-950 text-slate-100 placeholder-slate-500 text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-slate-700/80 focus:outline-none focus:border-amber-400 transition-colors" 
-          placeholder="${t.placeholder}"
-          autocomplete="off"
-        />
-        <button 
-          type="submit" 
-          id="assistantChatSend" 
-          class="px-4 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold rounded-xl text-xs transition-all flex items-center justify-center shadow-md active:scale-95"
-          aria-label="Send message"
-        >
-          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-          </svg>
-        </button>
+      <!-- Modern Search / Input Bar -->
+      <form id="assistantChatForm" class="p-2.5 bg-slate-900 border-t border-slate-800 flex-shrink-0">
+        <div class="tamm-input-container">
+          <button 
+            type="button" 
+            id="assistantPlusActionBtn" 
+            class="w-7 h-7 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-300 flex items-center justify-center transition-colors text-base font-bold flex-shrink-0 cursor-pointer" 
+            title="Toggle Quick Prompts" 
+            aria-label="Toggle Quick Prompts"
+          >
+            +
+          </button>
+          <input 
+            type="text" 
+            id="assistantChatInput" 
+            class="flex-1 bg-transparent text-slate-100 placeholder-slate-400 text-xs sm:text-sm focus:outline-none" 
+            placeholder="${t.placeholder}"
+            autocomplete="off"
+          />
+          <button 
+            type="submit" 
+            id="assistantChatSend" 
+            class="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-500 to-amber-400 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-bold flex items-center justify-center transition-all shadow-md active:scale-95 flex-shrink-0 cursor-pointer"
+            aria-label="Send message"
+          >
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+          </button>
+        </div>
       </form>
+
+      <!-- Disclaimer Footer -->
+      <div class="px-4 py-1.5 bg-slate-950 text-[10px] text-slate-400 text-center border-t border-slate-900 select-none flex-shrink-0">
+        <p id="assistantDisclaimerText">${t.disclaimer}</p>
+      </div>
     `;
 
     document.body.appendChild(launcher);
     document.body.appendChild(panel);
 
     setupAssistantEvents(launcher, panel);
-    renderQuickChips();
+    renderPromptsTray();
   }
 
   // Setup Event Listeners & Interaction Handlers
   function setupAssistantEvents(launcher, panel) {
-    const closeBtn = panel.querySelector('#assistantCloseBtn');
+    const minimizeBtn = panel.querySelector('#assistantMinimizeBtn');
     const form = panel.querySelector('#assistantChatForm');
     const input = panel.querySelector('#assistantChatInput');
+    const explorePromptsBtn = panel.querySelector('#assistantExplorePromptsBtn');
+    const plusBtn = panel.querySelector('#assistantPlusActionBtn');
+    const cardsWrapper = panel.querySelector('#assistantCapabilityCards');
 
     function toggleAssistant(open) {
       isPanelOpen = typeof open === 'boolean' ? open : panel.classList.contains('hidden');
@@ -369,14 +505,44 @@
       }
     }
 
+    function togglePromptsTray() {
+      const tray = panel.querySelector('#assistantPromptsTray');
+      const textSpan = panel.querySelector('#assistantExplorePromptsText');
+      const lang = getActiveLanguage();
+      const t = I18N[lang] || I18N.en;
+
+      isPromptsTrayOpen = !isPromptsTrayOpen;
+      if (isPromptsTrayOpen) {
+        tray.classList.remove('hidden');
+        if (textSpan) textSpan.textContent = t.explorePromptsClose;
+      } else {
+        tray.classList.add('hidden');
+        if (textSpan) textSpan.textContent = t.explorePrompts;
+      }
+    }
+
     launcher.addEventListener('click', (e) => {
       e.stopPropagation();
-      toggleAssistant(!panel.classList.contains('hidden') ? false : true);
+      toggleAssistant(panel.classList.contains('hidden'));
     });
 
-    closeBtn.addEventListener('click', (e) => {
+    launcher.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleAssistant(panel.classList.contains('hidden'));
+      }
+    });
+
+    minimizeBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       toggleAssistant(false);
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !panel.classList.contains('hidden')) {
+        toggleAssistant(false);
+      }
     });
 
     // Close when clicking outside on desktop
@@ -384,6 +550,28 @@
       if (!panel.classList.contains('hidden') && !panel.contains(e.target) && !launcher.contains(e.target)) {
         toggleAssistant(false);
       }
+    });
+
+    // Capability cards click delegation
+    cardsWrapper.addEventListener('click', (e) => {
+      const card = e.target.closest('.tamm-card');
+      if (!card || isGenerating) return;
+      const query = card.getAttribute('data-query');
+      if (query) {
+        executeUserTurn(query);
+      }
+    });
+
+    // Explore Prompts link toggle
+    explorePromptsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePromptsTray();
+    });
+
+    // '+' button inside search bar toggle
+    plusBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      togglePromptsTray();
     });
 
     // Form submission
@@ -405,85 +593,133 @@
   function syncLanguage(lang) {
     const t = I18N[lang] || I18N.en;
 
+    const launcher = document.getElementById('starplusAssistantLauncher');
+    if (launcher) launcher.setAttribute('title', t.launcherTooltip);
+
     const label = document.getElementById('starplusAssistantLabel');
     if (label) label.textContent = t.launcherText;
 
-    const title = document.getElementById('assistantHeaderTitle');
-    if (title) title.textContent = t.title;
+    const brandPill = document.getElementById('assistantBrandPill');
+    if (brandPill) brandPill.textContent = t.brandPill;
 
-    const sub = document.getElementById('assistantHeaderSubtitle');
-    if (sub) sub.textContent = t.subtitle;
+    const greetingTitle = document.getElementById('assistantGreetingTitle');
+    if (greetingTitle) greetingTitle.textContent = t.greetingTitle;
 
-    const welcome = document.getElementById('assistantWelcomeText');
-    if (welcome && sessionHistory.length === 0) welcome.textContent = t.welcomeGreeting;
+    const greetingSub = document.getElementById('assistantGreetingSub');
+    if (greetingSub) greetingSub.textContent = t.greetingSubtitle;
 
-    const waTxt = document.getElementById('assistantWaHandoffText');
-    if (waTxt) waTxt.textContent = t.waHandoffBtn;
+    // Update Capability Cards
+    const cardsWrapper = document.getElementById('assistantCapabilityCards');
+    if (cardsWrapper) {
+      const cards = cardsWrapper.querySelectorAll('.tamm-card');
+      if (cards.length >= 3) {
+        // Card 1
+        cards[0].setAttribute('data-query', t.card1Query);
+        cards[0].querySelector('.tamm-card-title').textContent = t.card1Title;
+        cards[0].querySelector('.tamm-card-sub').textContent = t.card1Sub;
+
+        // Card 2
+        cards[1].setAttribute('data-query', t.card2Query);
+        cards[1].querySelector('.tamm-card-title').textContent = t.card2Title;
+        cards[1].querySelector('.tamm-card-sub').textContent = t.card2Sub;
+
+        // Card 3
+        cards[2].setAttribute('data-query', t.card3Query);
+        cards[2].querySelector('.tamm-card-title').textContent = t.card3Title;
+        cards[2].querySelector('.tamm-card-sub').textContent = t.card3Sub;
+      }
+    }
+
+    const exploreText = document.getElementById('assistantExplorePromptsText');
+    if (exploreText) {
+      exploreText.textContent = isPromptsTrayOpen ? t.explorePromptsClose : t.explorePrompts;
+    }
+
+    const waLabel = document.getElementById('assistantWaHandoffLabel');
+    if (waLabel) waLabel.textContent = t.waHandoffBarText;
+
+    const waBtnText = document.getElementById('assistantWaHandoffBtnText');
+    if (waBtnText) waBtnText.textContent = t.waHandoffBtn;
 
     const input = document.getElementById('assistantChatInput');
     if (input) input.placeholder = t.placeholder;
 
-    renderQuickChips(lang);
+    const disclaimer = document.getElementById('assistantDisclaimerText');
+    if (disclaimer) disclaimer.textContent = t.disclaimer;
+
+    renderPromptsTray(lang);
   }
 
-  // Render Interactive Quick-Prompt Chips
-  function renderQuickChips(lang) {
+  // Render Expandable Prompt Pills in Tray
+  function renderPromptsTray(lang) {
     const activeLang = lang || getActiveLanguage();
-    const chipsWrapper = document.getElementById('assistantChipsWrapper');
-    if (!chipsWrapper) return;
+    const tray = document.getElementById('assistantPromptsTray');
+    if (!tray) return;
 
-    chipsWrapper.innerHTML = '';
-    const chipData = (I18N[activeLang] || I18N.en).chips;
+    tray.innerHTML = '';
+    const prompts = (I18N[activeLang] || I18N.en).prompts;
 
-    chipData.forEach((item) => {
-      const chip = document.createElement('button');
-      chip.type = 'button';
-      chip.className = 'starplus-assistant-chip';
-      chip.innerHTML = `<span>✨</span><span>${item.label}</span>`;
-      chip.addEventListener('click', () => {
+    prompts.forEach((item) => {
+      const pill = document.createElement('button');
+      pill.type = 'button';
+      pill.className = 'tamm-prompt-pill';
+      pill.innerHTML = `<span>✨</span><span>${item.label}</span>`;
+      pill.addEventListener('click', () => {
         if (isGenerating) return;
         executeUserTurn(item.query, item.label);
       });
-      chipsWrapper.appendChild(chip);
+      tray.appendChild(pill);
     });
   }
 
   // Append Chat Message Bubbles
-  function appendMessage(sender, text, action) {
+  function appendMessage(sender, text, action, queryTopic) {
     const container = document.getElementById('assistantMessages');
+    const scrollBody = document.getElementById('assistantBody');
     if (!container) return;
 
     if (sender === 'user') {
       const bubble = document.createElement('div');
       bubble.className = 'flex justify-end';
       bubble.innerHTML = `
-        <div class="bg-amber-500 text-slate-950 font-semibold rounded-2xl rounded-tr-sm px-3.5 py-2.5 text-xs sm:text-sm max-w-[85%] shadow-md leading-relaxed">
+        <div class="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-semibold rounded-2xl rounded-tr-sm px-4 py-2.5 text-xs sm:text-sm max-w-[85%] shadow-md leading-relaxed">
           ${escapeHtml(text)}
         </div>
       `;
       container.appendChild(bubble);
     } else {
       const bubble = document.createElement('div');
-      bubble.className = 'flex items-start gap-2.5 max-w-[92%]';
+      bubble.className = 'flex items-start gap-2.5 max-w-[95%]';
       bubble.innerHTML = `
-        <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center flex-shrink-0 text-xs">
-          ★
-        </div>
-        <div class="bg-slate-800/90 border border-slate-700/70 rounded-2xl rounded-tl-sm p-3.5 text-xs sm:text-sm text-slate-100 shadow-md leading-relaxed">
-          <div class="space-y-2 prose-invert">${formatMarkdown(text)}</div>
-          ${action ? `
-            <div class="mt-3 pt-2.5 border-t border-slate-700/60 flex flex-wrap items-center gap-2">
-              <a href="${action.url}" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/30 transition-colors">
+        <div class="tamm-launcher-orb w-7 h-7 flex-shrink-0 text-xs shadow-md"></div>
+        <div class="bg-slate-900/90 border border-slate-700/70 rounded-2xl rounded-tl-sm p-3.5 text-xs sm:text-sm text-slate-100 shadow-lg leading-relaxed flex-1">
+          <div class="space-y-2 text-slate-200">${formatMarkdown(text)}</div>
+          
+          <div class="mt-3 pt-2.5 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2">
+            ${action ? `
+              <a href="${action.url}" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/35 transition-colors">
                 ${action.label} →
               </a>
-            </div>
-          ` : ''}
+            ` : '<span></span>'}
+
+            <a 
+              href="https://wa.me/${CONFIG.phone}?text=${encodeURIComponent('Hi Starplus Travels, I would like to inquire about: ' + (queryTopic || 'concierge recommendations'))}" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="inline-flex items-center gap-1.5 text-xs font-bold text-[#25D366] hover:text-[#20ba59] transition-colors"
+            >
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+              <span>Inquire on WhatsApp</span>
+            </a>
+          </div>
         </div>
       `;
       container.appendChild(bubble);
     }
 
-    container.scrollTop = container.scrollHeight;
+    if (scrollBody) scrollBody.scrollTop = scrollBody.scrollHeight;
   }
 
   // Update Dynamic WhatsApp Handoff Link with Session Context
@@ -494,14 +730,14 @@
     const currentLang = isSinhalaQuery(lastTopic) ? 'si' : getActiveLanguage();
     const t = I18N[currentLang] || I18N.en;
 
-    const message = `${t.waPreMessage}"${lastTopic}". Please connect me with a specialist for custom pricing and itinerary confirmation.`;
+    const message = `${t.waPreMessage}"${lastTopic}". Please connect me with a concierge specialist for custom pricing and itinerary confirmation.`;
     waLink.href = `https://wa.me/${CONFIG.phone}?text=${encodeURIComponent(message)}`;
   }
 
   // Handle Turn-by-Turn Conversational Execution
   function executeUserTurn(query, displayLabel) {
     const typingIndicator = document.getElementById('assistantTyping');
-    const container = document.getElementById('assistantMessages');
+    const scrollBody = document.getElementById('assistantBody');
 
     isGenerating = true;
     appendMessage('user', displayLabel || query);
@@ -510,20 +746,25 @@
     // Show typing animation
     if (typingIndicator) {
       typingIndicator.classList.remove('hidden');
-      if (container) container.scrollTop = container.scrollHeight;
+      if (scrollBody) scrollBody.scrollTop = scrollBody.scrollHeight;
     }
 
     // Determine target response language
     const queryLang = isSinhalaQuery(query) ? 'si' : getActiveLanguage();
 
     // Natural processing simulated delay
-    const delay = Math.min(800, 300 + query.length * 10);
+    const delay = Math.min(800, 300 + query.length * 8);
     setTimeout(() => {
       const result = generateGroundedResponse(query, queryLang);
 
       if (typingIndicator) typingIndicator.classList.add('hidden');
 
-      appendMessage('assistant', result.text, result.actionLabel ? { label: result.actionLabel, url: result.actionUrl } : null);
+      appendMessage(
+        'assistant', 
+        result.text, 
+        result.actionLabel ? { label: result.actionLabel, url: result.actionUrl } : null,
+        result.handoffTopic || query
+      );
       sessionHistory.push({ role: 'assistant', content: result.text });
 
       updateWhatsAppHandoff(result.handoffTopic || query);

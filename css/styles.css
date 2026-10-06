@@ -5090,21 +5090,37 @@ html.light .dwell-subtext {
 }
 
 /* ==========================================================================
-   Starplus Assistant AI Concierge Floating Widget (TAMM Style)
+   Starplus AI Concierge (TAMM Luxury Architecture & Floating Widget)
    ========================================================================== */
-@keyframes starplus-orb-glow {
+
+/* TAMM Orb Pulse & Halo Animations */
+@keyframes tamm-orb-pulse {
   0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7), 0 0 15px rgba(245, 158, 11, 0.4);
+    transform: scale(0.96);
+    box-shadow: 
+      0 0 0 0 rgba(6, 182, 212, 0.6),
+      0 0 20px rgba(245, 158, 11, 0.45),
+      inset 0 0 12px rgba(255, 255, 255, 0.55);
   }
   50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 8px rgba(245, 158, 11, 0), 0 0 25px rgba(245, 158, 11, 0.6);
+    transform: scale(1.04);
+    box-shadow: 
+      0 0 0 10px rgba(6, 182, 212, 0),
+      0 0 35px rgba(245, 158, 11, 0.7),
+      inset 0 0 18px rgba(255, 255, 255, 0.85);
   }
   100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7), 0 0 15px rgba(245, 158, 11, 0.4);
+    transform: scale(0.96);
+    box-shadow: 
+      0 0 0 0 rgba(6, 182, 212, 0.6),
+      0 0 20px rgba(245, 158, 11, 0.45),
+      inset 0 0 12px rgba(255, 255, 255, 0.55);
   }
+}
+
+@keyframes tamm-halo-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @keyframes starplus-typing-dot {
@@ -5118,102 +5134,276 @@ html.light .dwell-subtext {
   }
 }
 
+/* 1. Launcher Button Positioning (Above Floating WhatsApp Widget) */
 .starplus-assistant-launcher {
-  position: fixed;
-  bottom: 5.5rem;
-  right: 1.5rem;
-  z-index: 50;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.625rem 1.15rem;
-  border-radius: 9999px;
-  background: rgba(11, 19, 41, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(245, 158, 11, 0.45);
-  color: #ffffff;
-  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.6), 0 0 24px -2px rgba(245, 158, 11, 0.3);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  user-select: none;
+  position: fixed !important;
+  right: 24px !important;
+  bottom: 96px !important; /* Sits directly above the WhatsApp icon at bottom: 24px */
+  z-index: 999 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.625rem !important;
+  padding: 0.5rem 0.95rem !important;
+  border-radius: 9999px !important;
+  background: rgba(8, 14, 26, 0.92) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(245, 158, 11, 0.45) !important;
+  color: #ffffff !important;
+  box-shadow: 
+    0 12px 32px -5px rgba(0, 0, 0, 0.7),
+    0 0 24px -2px rgba(6, 182, 212, 0.3),
+    0 0 16px -2px rgba(245, 158, 11, 0.25) !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  user-select: none !important;
+  text-decoration: none !important;
 }
 
 .starplus-assistant-launcher:hover {
-  transform: translateY(-3px) scale(1.03);
-  border-color: rgba(245, 158, 11, 0.9);
-  box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.7), 0 0 30px rgba(245, 158, 11, 0.5);
+  transform: translateY(-2px) scale(1.03) !important;
+  border-color: rgba(245, 158, 11, 0.85) !important;
+  box-shadow: 
+    0 16px 36px -5px rgba(0, 0, 0, 0.8),
+    0 0 32px rgba(6, 182, 212, 0.45),
+    0 0 24px rgba(245, 158, 11, 0.4) !important;
 }
 
 .starplus-assistant-launcher:active {
-  transform: translateY(0) scale(0.97);
+  transform: translateY(0) scale(0.97) !important;
 }
 
-.starplus-assistant-orb {
+/* Launcher Radial Orb */
+.tamm-launcher-orb {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 1.85rem;
+  height: 1.85rem;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
-  color: #09111e;
-  animation: starplus-orb-glow 2.5s infinite ease-in-out;
+  background: radial-gradient(circle at 35% 35%, #67e8f9 0%, #06b6d4 30%, #f59e0b 70%, #d97706 100%);
+  animation: tamm-orb-pulse 2.8s infinite ease-in-out;
   flex-shrink: 0;
 }
 
+.tamm-launcher-orb::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  background: conic-gradient(from 0deg, rgba(6, 182, 212, 0.8), rgba(245, 158, 11, 0.8), rgba(6, 182, 212, 0.8));
+  filter: blur(3px);
+  opacity: 0.6;
+  z-index: -1;
+  animation: tamm-halo-spin 6s linear infinite;
+}
+
+/* 2. Assistant Drawer / Modal (TAMM Luxury Architecture) */
 .starplus-assistant-panel {
-  position: fixed;
-  bottom: 5.5rem;
-  right: 1.5rem;
-  z-index: 50;
-  width: calc(100vw - 3rem);
-  max-width: 410px;
-  height: 600px;
-  max-height: calc(100vh - 7rem);
-  border-radius: 1.5rem;
-  background: rgba(9, 17, 30, 0.96);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(245, 158, 11, 0.4);
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(245, 158, 11, 0.18);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s;
-  transform-origin: bottom right;
+  position: fixed !important;
+  right: 24px !important;
+  bottom: 24px !important;
+  z-index: 1000 !important;
+  width: 430px !important;
+  max-width: calc(100vw - 32px) !important;
+  height: 680px !important;
+  max-height: calc(100vh - 48px) !important;
+  border-radius: 1.75rem !important;
+  background: #080e1a !important;
+  background-image: radial-gradient(circle at 50% 10%, rgba(6, 182, 212, 0.15) 0%, rgba(245, 158, 11, 0.08) 35%, rgba(8, 14, 26, 0.98) 70%) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  box-shadow: 
+    0 32px 85px -15px rgba(0, 0, 0, 0.9),
+    0 0 50px rgba(6, 182, 212, 0.15),
+    0 0 35px rgba(245, 158, 11, 0.12) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1), transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s !important;
+  transform-origin: bottom right !important;
 }
 
 .starplus-assistant-panel.hidden {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transform: translateY(24px) scale(0.95);
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transform: translateY(28px) scale(0.95) !important;
 }
 
 .starplus-assistant-panel:not(.hidden) {
-  opacity: 1;
-  pointer-events: auto;
-  visibility: visible;
-  transform: translateY(0) scale(1);
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  transform: translateY(0) scale(1) !important;
 }
 
-.starplus-assistant-messages {
+/* Header & Centered Glowing Orb Avatar */
+.tamm-hero-orb-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem auto 0 auto;
+}
+
+.tamm-hero-orb {
+  position: relative;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, #a5f3fc 0%, #06b6d4 28%, #f59e0b 68%, #d97706 100%);
+  animation: tamm-orb-pulse 2.8s infinite ease-in-out;
+  box-shadow: 
+    0 0 0 8px rgba(6, 182, 212, 0.12),
+    0 0 35px rgba(245, 158, 11, 0.45);
+}
+
+.tamm-hero-orb::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  background: conic-gradient(from 0deg, rgba(6, 182, 212, 0.7), rgba(245, 158, 11, 0.7), rgba(6, 182, 212, 0.7));
+  filter: blur(8px);
+  opacity: 0.5;
+  animation: tamm-halo-spin 8s linear infinite;
+  z-index: -1;
+}
+
+/* Scroll Container */
+.starplus-assistant-body {
   flex: 1;
   overflow-y: auto;
-  padding: 1rem;
+  padding: 1.15rem 1rem 0.75rem 1rem;
   scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.starplus-assistant-messages::-webkit-scrollbar {
+.starplus-assistant-body::-webkit-scrollbar {
   width: 5px;
 }
-.starplus-assistant-messages::-webkit-scrollbar-thumb {
+
+.starplus-assistant-body::-webkit-scrollbar-thumb {
   background: rgba(245, 158, 11, 0.3);
   border-radius: 4px;
 }
 
+/* TAMM Structured Capability Cards */
+.tamm-card {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.875rem 1rem;
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tamm-card:hover {
+  background: rgba(30, 41, 59, 0.75);
+  border-color: rgba(245, 158, 11, 0.45);
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.4), 0 0 16px rgba(245, 158, 11, 0.15);
+}
+
+.tamm-card:active {
+  transform: translateY(0);
+}
+
+.tamm-card-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.tamm-card-title {
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  line-height: 1.2;
+  transition: color 0.2s;
+}
+
+.tamm-card:hover .tamm-card-title {
+  color: #fbbf24;
+}
+
+.tamm-card-sub {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  line-height: 1.25;
+  margin-top: 0.2rem;
+}
+
+.tamm-card-arrow {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: #64748b;
+  transition: all 0.2s;
+}
+
+.tamm-card:hover .tamm-card-arrow {
+  color: #fbbf24;
+  transform: translateX(2px);
+}
+
+/* Prompt Pills in Explorer Tray */
+.tamm-prompt-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.725rem;
+  font-weight: 600;
+  color: #fef3c7;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.tamm-prompt-pill:hover {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: rgba(245, 158, 11, 0.7);
+  transform: translateY(-1px);
+  color: #ffffff;
+}
+
+/* Modern Pill-Shaped Input Container */
+.tamm-input-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tamm-input-container:focus-within {
+  border-color: rgba(245, 158, 11, 0.65);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+}
+
+/* Typing Indicator */
 .starplus-typing-indicator {
   display: inline-flex;
   align-items: center;
@@ -5238,45 +5428,23 @@ html.light .dwell-subtext {
 .starplus-typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
 .starplus-typing-indicator span:nth-child(3) { animation-delay: 0s; }
 
-.starplus-assistant-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.4rem 0.85rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #fef3c7;
-  background: rgba(245, 158, 11, 0.12);
-  border: 1px solid rgba(245, 158, 11, 0.35);
-  border-radius: 9999px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  user-select: none;
-  white-space: nowrap;
-}
-
-.starplus-assistant-chip:hover {
-  background: rgba(245, 158, 11, 0.25);
-  border-color: rgba(245, 158, 11, 0.7);
-  transform: translateY(-1px);
-  color: #ffffff;
-}
-
+/* Responsive Adjustments */
 @media (max-width: 640px) {
   .starplus-assistant-launcher {
-    bottom: 5.25rem;
-    right: 1rem;
-    padding: 0.5rem 0.875rem;
+    right: 20px !important;
+    bottom: 92px !important;
+    padding: 0.45rem 0.85rem !important;
   }
   .starplus-assistant-panel {
-    bottom: 5rem;
-    left: 0.75rem;
-    right: 0.75rem;
-    width: auto;
-    max-width: none;
-    height: 520px;
-    max-height: calc(100vh - 6rem);
-    transform-origin: bottom center;
+    bottom: 12px !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: auto !important;
+    max-width: none !important;
+    height: calc(100dvh - 24px) !important;
+    max-height: 640px !important;
+    border-radius: 1.25rem !important;
+    transform-origin: bottom center !important;
   }
 }
 
