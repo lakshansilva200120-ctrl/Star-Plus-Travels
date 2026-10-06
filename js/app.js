@@ -11073,5 +11073,362 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// ============================================================================
+// Starplus Assistant - Branded Floating AI Concierge Widget
+// ============================================================================
+function initStarplusAssistant() {
+  if (document.getElementById('starplusAssistantLauncher')) return;
+
+  const PHONE_NUMBER = '971527582293';
+
+  const ASSISTANT_I18N = {
+    en: {
+      launcherText: "Starplus Assistant",
+      title: "Starplus Concierge",
+      subtitle: "Instant Luxury Travel & Visa AI",
+      welcomeMsg: "Hello! I am your Starplus AI concierge. How can I assist with your journey or visa today?",
+      chips: [
+        { label: "Sri Lanka Tour Packages", query: "Sri Lanka Tour Packages" },
+        { label: "UAE Visit Visa", query: "UAE Visit Visa" },
+        { label: "Custom Itinerary Planner", query: "Custom Itinerary Planner" },
+        { label: "Speak to an Agent on WhatsApp", query: "Speak to an Agent on WhatsApp" }
+      ],
+      placeholder: "Ask about tours, visas, pricing...",
+      sendBtn: "Send",
+      waCta: "Continue this conversation on WhatsApp",
+      responses: {
+        srilanka: "We offer curated luxury Sri Lanka itineraries starting from 4 to 10 days! Highlights include the Sigiriya Rock Citadel, Kandy Sacred Temple, scenic Ella Blue Train rides, and Bentota beaches. All include private chauffeur, hand-picked hotels, and 0% Tabby installments.",
+        visa: "We provide hassle-free UAE tourist and visit visas (30-day and 60-day single/multiple entry) with rapid 24-48 hour turnaround, express approval guarantees, and dedicated documentation support.",
+        itinerary: "Looking for a tailored journey? Our travel specialists design bespoke itineraries according to your dates, party size, and preferences. You can skip the paperwork and get a customized proposal in minutes!",
+        whatsapp: "Connecting you with our senior travel consultants on WhatsApp right now. We reply in under 5 minutes!",
+        default: "Thank you for asking! We specialize in tailored Sri Lanka tours, worldwide holiday packages, and fast UAE visit visas. Would you like to review package options or connect directly with our travel designers on WhatsApp?"
+      }
+    },
+    si: {
+      launcherText: "Starplus සහයක",
+      title: "Starplus සහයක",
+      subtitle: "ක්ෂණික සංචාරක සහ වීසා මඟපෙන්වීම",
+      welcomeMsg: "ආයුබෝවන්! මම ඔබගේ Starplus AI සහයකයා වෙමි. අද ඔබගේ නිවාඩු සැලසුම හෝ වීසා සේවාව සඳහා මම ඔබට කෙසේ උපකාර කළ හැකිද?",
+      chips: [
+        { label: "ශ්‍රී ලංකා සංචාරක පැකේජ", query: "Sri Lanka Tour Packages" },
+        { label: "එක්සත් අරාබි එමීර් වීසා", query: "UAE Visit Visa" },
+        { label: "විශේෂිත ගමන් සැලසුම්කරු", query: "Custom Itinerary Planner" },
+        { label: "WhatsApp මඟින් සම්බන්ධ වන්න", query: "Speak to an Agent on WhatsApp" }
+      ],
+      placeholder: "පැකේජ, වීසා හෝ මිල ගණන් අසන්න...",
+      sendBtn: "යවන්න",
+      waCta: "මෙම සංවාදය WhatsApp මඟින් ඉදිරියට ගෙන යන්න",
+      responses: {
+        srilanka: "අප සතුව දින 4 සිට 10 දක්වා වූ විශිෂ්ට ශ්‍රී ලංකා සංචාරක පැකේජ පවතී! සීගිරිය, මහනුවර දළදා මාළිගාව, ඇල්ල දුම්රිය චාරිකාව සහ බෙන්තොට වෙරළ තීරයන් ඇතුළත් වේ. සියලුම ගමන්වාර සඳහා පුද්ගලික රියදුරු සහ තෝරාගත් හෝටල් ඇතුළත් වේ.",
+        visa: "අපි දින 30 සහ දින 60 එක්සත් අරාබි එමීර් රාජ්‍ය (UAE) සංචාරක වීසා පැය 24-48 ක් ඇතුළත කඩිනමින් සහ විශ්වාසනීයව සකස් කර දෙන්නෙමු.",
+        itinerary: "ඔබට අවශ්‍ය පරිදි සකස් කළ ගමන් සැලසුමක් අවශ්‍යද? අපගේ සංචාරක විශේෂඥයින් විනාඩි කිහිපයකින් ඔබ වෙනුවෙන්ම වෙන්වූ ගමන් සැලැස්මක් සකස් කර දෙනු ඇත!",
+        whatsapp: "දැන්ම WhatsApp ඔස්සේ අපගේ ජ්‍යෙෂ්ඨ සංචාරක උපදේශකවරයෙකු හා සම්බන්ධ වන්න. විනාඩි 5ක් ඇතුළත පිළිතුරු ලබාදෙන්නෙමු!",
+        default: "ස්තූතියි! අපි ශ්‍රී ලංකා සංචාර, ලෝක ව්‍යාප්ත නිවාඩු පැකේජ සහ කඩිනම් UAE වීසා සේවා සපයන්නෙමු. ඔබට අපගේ නියෝජිතයෙකු සමග WhatsApp ඔස්සේ කතාබස් කිරීමට අවශ්‍යද?"
+      }
+    }
+  };
+
+  const getLang = () => (typeof getActiveSiteLanguage === 'function' ? getActiveSiteLanguage() : 'en');
+
+  // Create Launcher
+  const launcher = document.createElement('div');
+  launcher.id = 'starplusAssistantLauncher';
+  launcher.className = 'starplus-assistant-launcher';
+  launcher.setAttribute('role', 'button');
+  launcher.setAttribute('tabindex', '0');
+  launcher.setAttribute('aria-label', 'Open Starplus Assistant');
+
+  launcher.innerHTML = `
+    <div class="starplus-assistant-beacon">
+      <svg class="w-4 h-4 fill-current text-slate-950" viewBox="0 0 24 24">
+        <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5z"/>
+      </svg>
+    </div>
+    <span id="starplusAssistantLabel" class="text-xs sm:text-sm font-bold tracking-wide text-amber-300">
+      ${ASSISTANT_I18N[getLang()].launcherText}
+    </span>
+    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+  `;
+
+  // Create Slide-Out Chat Panel
+  const panel = document.createElement('div');
+  panel.id = 'starplusAssistantPanel';
+  panel.className = 'starplus-assistant-panel hidden';
+  panel.setAttribute('role', 'dialog');
+  panel.setAttribute('aria-label', 'Starplus Assistant Chat Panel');
+
+  panel.innerHTML = `
+    <!-- Header -->
+    <div class="flex items-center justify-between px-4 py-3 bg-slate-950/90 border-b border-amber-500/20">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-slate-950 shadow-md">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5z"/>
+          </svg>
+        </div>
+        <div>
+          <h4 id="starplusAssistantTitle" class="text-sm font-bold text-white tracking-wide leading-tight">
+            ${ASSISTANT_I18N[getLang()].title}
+          </h4>
+          <p id="starplusAssistantSubtitle" class="text-[11px] text-amber-400/90 font-medium leading-none mt-0.5">
+            ${ASSISTANT_I18N[getLang()].subtitle}
+          </p>
+        </div>
+      </div>
+      <button type="button" id="starplusAssistantClose" class="w-7 h-7 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors text-sm" aria-label="Close Assistant">
+        ✕
+      </button>
+    </div>
+
+    <!-- Messages Container -->
+    <div id="starplusAssistantMessages" class="starplus-assistant-messages space-y-3">
+      <!-- Initial Welcome Message -->
+      <div class="flex items-start gap-2 max-w-[90%]">
+        <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center flex-shrink-0 text-xs">
+          ★
+        </div>
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl rounded-tl-sm p-3 text-xs sm:text-sm text-slate-100 shadow-sm leading-relaxed">
+          <p id="starplusAssistantWelcomeText">${ASSISTANT_I18N[getLang()].welcomeMsg}</p>
+        </div>
+      </div>
+
+      <!-- Quick Starter Chips Wrapper -->
+      <div id="starplusAssistantChips" class="flex flex-wrap gap-1.5 pt-1"></div>
+    </div>
+
+    <!-- Persistent Bottom WhatsApp Handover CTA -->
+    <div class="p-2.5 bg-slate-950/80 border-t border-slate-800/80">
+      <a 
+        id="starplusAssistantWaCta"
+        href="https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent('Hi Starplus Travels, I am chatting with Starplus Assistant and need help planning my trip.')}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold transition-all shadow-md active:scale-[0.98]"
+      >
+        <svg class="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 24 24">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+        </svg>
+        <span id="starplusAssistantWaText" class="truncate">${ASSISTANT_I18N[getLang()].waCta}</span>
+      </a>
+    </div>
+
+    <!-- Input Box -->
+    <form id="starplusAssistantForm" class="p-2.5 bg-slate-900 border-t border-slate-800 flex items-center gap-2">
+      <input 
+        type="text" 
+        id="starplusAssistantInput" 
+        class="flex-1 bg-slate-950 text-slate-100 placeholder-slate-500 text-xs sm:text-sm px-3 py-2 rounded-xl border border-slate-700/80 focus:outline-none focus:border-amber-400 transition-colors" 
+        placeholder="${ASSISTANT_I18N[getLang()].placeholder}"
+        autocomplete="off"
+      />
+      <button 
+        type="submit" 
+        id="starplusAssistantSend" 
+        class="px-3.5 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold rounded-xl text-xs transition-all flex items-center justify-center shadow-md"
+      >
+        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+        </svg>
+      </button>
+    </form>
+  `;
+
+  document.body.appendChild(launcher);
+  document.body.appendChild(panel);
+
+  const messagesContainer = panel.querySelector('#starplusAssistantMessages');
+  const chipsContainer = panel.querySelector('#starplusAssistantChips');
+  const waCta = panel.querySelector('#starplusAssistantWaCta');
+  const input = panel.querySelector('#starplusAssistantInput');
+  const form = panel.querySelector('#starplusAssistantForm');
+  const closeBtn = panel.querySelector('#starplusAssistantClose');
+
+  let conversationHistory = [];
+
+  // Update language elements
+  function syncAssistantLanguage() {
+    const lang = getLang();
+    const config = ASSISTANT_I18N[lang] || ASSISTANT_I18N.en;
+
+    const lbl = document.getElementById('starplusAssistantLabel');
+    if (lbl) lbl.textContent = config.launcherText;
+
+    const t = document.getElementById('starplusAssistantTitle');
+    if (t) t.textContent = config.title;
+
+    const sub = document.getElementById('starplusAssistantSubtitle');
+    if (sub) sub.textContent = config.subtitle;
+
+    const welcome = document.getElementById('starplusAssistantWelcomeText');
+    if (welcome) welcome.textContent = config.welcomeMsg;
+
+    const waTxt = document.getElementById('starplusAssistantWaText');
+    if (waTxt) waTxt.textContent = config.waCta;
+
+    if (input) input.placeholder = config.placeholder;
+
+    // Render chips
+    renderChips(config.chips);
+  }
+
+  function renderChips(chips) {
+    if (!chipsContainer) return;
+    chipsContainer.innerHTML = '';
+    chips.forEach(chip => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'starplus-assistant-chip';
+      btn.textContent = chip.label;
+      btn.addEventListener('click', () => {
+        handleUserInput(chip.query, chip.label);
+      });
+      chipsContainer.appendChild(btn);
+    });
+  }
+
+  function appendUserBubble(text) {
+    const bubble = document.createElement('div');
+    bubble.className = 'flex justify-end';
+    bubble.innerHTML = `
+      <div class="bg-amber-500 text-slate-950 font-medium rounded-2xl rounded-tr-sm px-3 py-2 text-xs sm:text-sm max-w-[85%] shadow-md leading-relaxed">
+        ${text}
+      </div>
+    `;
+    messagesContainer.appendChild(bubble);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function appendBotBubble(text, quickAction) {
+    const bubble = document.createElement('div');
+    bubble.className = 'flex items-start gap-2 max-w-[90%]';
+    bubble.innerHTML = `
+      <div class="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center flex-shrink-0 text-xs">
+        ★
+      </div>
+      <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl rounded-tl-sm p-3 text-xs sm:text-sm text-slate-100 shadow-sm leading-relaxed">
+        <p>${text}</p>
+        ${quickAction ? `<div class="mt-2.5">${quickAction}</div>` : ''}
+      </div>
+    `;
+    messagesContainer.appendChild(bubble);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function updateWhatsAppContext(lastQuery, lastReply) {
+    if (!waCta) return;
+    const lang = getLang();
+    const prefix = lang === 'si'
+      ? `හෙලෝ Starplus Travels, මම වෙබ් සහයකයා හරහා පහත දේ පිළිබඳව විමසමින් සිටිමි:`
+      : `Hi Starplus Travels, I am consulting the website assistant regarding:`;
+
+    const summary = `${prefix} "${lastQuery}". Please connect me with a specialist for further assistance.`;
+    waCta.href = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(summary)}`;
+  }
+
+  function getBotResponse(rawText) {
+    const lang = getLang();
+    const config = ASSISTANT_I18N[lang] || ASSISTANT_I18N.en;
+    const q = rawText.toLowerCase();
+
+    if (q.includes('sri lanka') || q.includes('lanka') || q.includes('ශ්‍රී ලංකා') || q.includes('tour') || q.includes('package') || q.includes('පැකේජ')) {
+      return {
+        text: config.responses.srilanka,
+        action: `<a href="/packages.html" class="inline-flex items-center gap-1 text-[11px] font-bold text-amber-400 hover:text-amber-300 underline">View Sri Lanka Packages →</a>`
+      };
+    } else if (q.includes('visa') || q.includes('uae') || q.includes('dubai') || q.includes('වීසා') || q.includes('visit')) {
+      return {
+        text: config.responses.visa,
+        action: `<a href="/visa-services.html" class="inline-flex items-center gap-1 text-[11px] font-bold text-amber-400 hover:text-amber-300 underline">Explore UAE Visa Services →</a>`
+      };
+    } else if (q.includes('itinerary') || q.includes('custom') || q.includes('plan') || q.includes('සැලසුම්')) {
+      return {
+        text: config.responses.itinerary,
+        action: `<a href="/#itinerary-planner" class="inline-flex items-center gap-1 text-[11px] font-bold text-amber-400 hover:text-amber-300 underline">Open Itinerary Planner →</a>`
+      };
+    } else if (q.includes('whatsapp') || q.includes('agent') || q.includes('speak') || q.includes('call') || q.includes('කතා')) {
+      return {
+        text: config.responses.whatsapp,
+        action: `<a href="https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent('Hi Starplus Travels, I would like to speak directly with a travel agent.')}" target="_blank" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#25D366] text-white text-[11px] font-bold hover:bg-[#20ba59]">Open WhatsApp Chat ↗</a>`
+      };
+    }
+
+    return {
+      text: config.responses.default,
+      action: null
+    };
+  }
+
+  function handleUserInput(queryText, displayBubbleText) {
+    const query = (queryText || '').trim();
+    if (!query) return;
+
+    appendUserBubble(displayBubbleText || query);
+    conversationHistory.push({ role: 'user', text: query });
+
+    // Simulate typing / response delay
+    setTimeout(() => {
+      const resp = getBotResponse(query);
+      appendBotBubble(resp.text, resp.action);
+      conversationHistory.push({ role: 'assistant', text: resp.text });
+      updateWhatsAppContext(query, resp.text);
+    }, 350);
+  }
+
+  // Toggle Panel
+  function togglePanel(show) {
+    const isCurrentlyHidden = panel.classList.contains('hidden');
+    const targetShow = (typeof show === 'boolean') ? show : isCurrentlyHidden;
+
+    if (targetShow) {
+      panel.classList.remove('hidden');
+      if (input) setTimeout(() => input.focus(), 150);
+    } else {
+      panel.classList.add('hidden');
+    }
+  }
+
+  launcher.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePanel();
+  });
+
+  closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePanel(false);
+  });
+
+  // Close when clicking outside panel or launcher
+  document.addEventListener('click', (e) => {
+    if (!panel.classList.contains('hidden') && !panel.contains(e.target) && !launcher.contains(e.target)) {
+      togglePanel(false);
+    }
+  });
+
+  // Handle Form Submit
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const val = input.value;
+    input.value = '';
+    handleUserInput(val);
+  });
+
+  // Listen for language changes across the site
+  window.addEventListener('languagechange', () => {
+    syncAssistantLanguage();
+  });
+
+  // Initial language setup
+  syncAssistantLanguage();
+}
+
+window.initStarplusAssistant = initStarplusAssistant;
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initStarplusAssistant);
+} else {
+  initStarplusAssistant();
+}
+
+
 
 
