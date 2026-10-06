@@ -32,9 +32,14 @@ function updateElementTranslation(el, val) {
   // 4. If element contains child elements (icons, badges, svgs)
   if (el.children && el.children.length > 0) {
     // If there is an explicit text span, update it directly
-    const textSpan = el.querySelector('.i18n-text, .btn-text, span:not([class*="fa-"]):not([class*="icon"]):not(.check-mark):not(.custom-select-label)');
+    const textSpan = el.querySelector('.wa-btn-text, .i18n-text, .btn-text, span:not([class*="fa-"]):not([class*="icon"]):not(.check-mark):not(.custom-select-label)');
     if (textSpan && !textSpan.hasAttribute('data-i18n') && !textSpan.hasAttribute('data-key')) {
-      if (typeof val === 'string' && ((val.includes('<') && val.includes('>')) || /&[a-zA-Z0-9#]+;/.test(val))) {
+      if (typeof val === 'string' && val.includes('<') && val.includes('>')) {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = val;
+        const innerSpan = tempDiv.querySelector('span');
+        textSpan.textContent = innerSpan ? innerSpan.textContent : tempDiv.textContent.trim();
+      } else if (typeof val === 'string' && /&[a-zA-Z0-9#]+;/.test(val)) {
         textSpan.innerHTML = val;
       } else {
         textSpan.textContent = val;

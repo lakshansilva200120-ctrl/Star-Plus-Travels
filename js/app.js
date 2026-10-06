@@ -4341,9 +4341,15 @@ function updateElementTranslation(el, val) {
     }
 
     // If there is an explicit text span, update it directly
-    const textSpan = el.querySelector('.i18n-text, .btn-text, span:not([class*="fa-"]):not([class*="icon"]):not(.check-mark):not(.custom-select-label)');
+    const textSpan = el.querySelector('.wa-btn-text, .i18n-text, .btn-text, span:not([class*="fa-"]):not([class*="icon"]):not(.check-mark):not(.custom-select-label)');
     if (textSpan && !textSpan.hasAttribute('data-i18n') && !textSpan.hasAttribute('data-key')) {
-      if (typeof val === 'string' && ((val.includes('<') && val.includes('>')) || /&[a-zA-Z0-9#]+;/.test(val))) {
+      // If the incoming value has HTML tags (like <i ...></i><span>...</span>), extract just the text for textSpan
+      if (typeof val === 'string' && val.includes('<') && val.includes('>')) {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = val;
+        const innerSpan = tempDiv.querySelector('span');
+        textSpan.textContent = innerSpan ? innerSpan.textContent : tempDiv.textContent.trim();
+      } else if (typeof val === 'string' && /&[a-zA-Z0-9#]+;/.test(val)) {
         textSpan.innerHTML = val;
       } else {
         textSpan.textContent = val;
@@ -10830,10 +10836,18 @@ function applyDwellModalTranslation() {
   // Update WhatsApp button (specifically target ONLY bottom CTA, NOT generic button)
   const waBtn = modal.querySelector('#dwellWhatsAppBtn, a.dwell-whatsapp-cta, a.dwell-btn-whatsapp, a[href*="wa.me"]');
   if (waBtn) {
-    const svg = waBtn.querySelector('svg');
-    waBtn.innerHTML = '';
-    if (svg) waBtn.appendChild(svg);
-    waBtn.appendChild(document.createTextNode(' ' + t.button));
+    const textSpan = waBtn.querySelector('.wa-btn-text');
+    if (textSpan) {
+      textSpan.textContent = t.button;
+    } else {
+      const svg = waBtn.querySelector('svg');
+      waBtn.innerHTML = '';
+      if (svg) waBtn.appendChild(svg);
+      const span = document.createElement('span');
+      span.className = 'wa-btn-text';
+      span.textContent = t.button;
+      waBtn.appendChild(span);
+    }
     if (waBtn.tagName.toLowerCase() === 'a') {
       waBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(t.msg)}`;
     }
