@@ -494,8 +494,8 @@ const I18N_TRANSLATIONS = {
     bookedServicePrefix: "Booked:",
     reviewsCtaTitle: "Ready to Plan Your Next Journey?",
     reviewsCtaDesc: "Whether you require express 24-hour visa processing, tailor-made luxury holiday packages, or VIP corporate travel management, our licensed consultants are at your service across Dubai and Colombo.",
-    reviewsCtaSpecialistBtn: '<i class="fa-brands fa-whatsapp text-lg"></i><span>Chat with a Specialist</span>',
-    reviewsCtaPlanBtn: '<i class="fa-solid fa-compass text-sm"></i><span>Plan Custom Itinerary</span>',
+    reviewsCtaSpecialistBtn: 'Chat with a Specialist',
+    reviewsCtaPlanBtn: 'Plan Custom Itinerary',
     reviewsCtaRecentlyBooked: "Recently booked with Star Plus Travels?",
     reviewsCtaLeaveReview: '<span>Leave a Google Review</span><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>',
 
@@ -807,8 +807,8 @@ const I18N_TRANSLATIONS = {
     bookedServicePrefix: "වෙන්කළ සේවාව:",
     reviewsCtaTitle: "ඔබගේ මීළඟ සංචාරය සැලසුම් කිරීමට සූදානම්ද?",
     reviewsCtaDesc: "පැය 24 ක ක්ෂණික වීසා, සුඛෝපභෝගී නිවාඩු පැකේජ හෝ VIP ආයතනික සංචාරක කළමනාකරණය සඳහා ඩුබායි සහ කොළඹ අපගේ බලපත්‍රලාභී උපදේශකයින් සූදානම්.",
-    reviewsCtaSpecialistBtn: '<i class="fa-brands fa-whatsapp text-lg"></i><span>විශේෂඥයෙකු සමඟ කතාබස් කරන්න</span>',
-    reviewsCtaPlanBtn: '<i class="fa-solid fa-compass text-sm"></i><span>අභිරුචි සංචාරයක් සැලසුම් කරන්න</span>',
+    reviewsCtaSpecialistBtn: 'විශේෂඥයෙකු සමඟ කතාබස් කරන්න',
+    reviewsCtaPlanBtn: 'අභිරුචි සංචාරයක් සැලසුම් කරන්න',
     reviewsCtaRecentlyBooked: "මෑතකදී Star Plus Travels සමඟ සංචාරය කළාද?",
     reviewsCtaLeaveReview: '<span>ඔබේ අදහස පළ කරන්න</span><i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>',
 
