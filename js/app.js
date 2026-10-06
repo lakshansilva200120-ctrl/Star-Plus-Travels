@@ -5558,9 +5558,9 @@ window.scrollPackagesCarousel = scrollPackagesCarousel;
    Navigation Dropdown Controller (Explore Menu)
    ========================================================================== */
 function initNavDropdowns() {
-  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  const dropdowns = document.querySelectorAll('.nav-dropdown, #navExploreWrapper');
   dropdowns.forEach(dropdown => {
-    const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+    const trigger = dropdown.querySelector('.nav-dropdown-trigger, button');
     if (trigger) {
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
