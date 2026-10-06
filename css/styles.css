@@ -999,79 +999,32 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
   transform: translateX(-50%) translateY(0);
 }
 
-/* ==========================================================================
-   Explore Navbar Dropdown - Solid 100% Opaque Dark Background & Left Alignment
-   ========================================================================== */
-
-/* Ensure solid, non-transparent background and clear z-index */
-.explore-dropdown-menu,
-#navExploreWrapper [class*="absolute"],
-#exploreDropdownWrapper .dropdown-menu {
-  position: absolute !important;
-  top: calc(100% + 8px) !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: 250px !important;
-  background: #0b1120 !important; /* Strictly 100% solid dark - no transparency */
-  background-color: #0b1120 !important;
-  border: 1px solid rgba(245, 158, 11, 0.3) !important;
-  border-radius: 12px !important;
-  box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.9), 0 0 1px 1px rgba(255, 255, 255, 0.05) !important;
-  padding: 8px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 4px !important;
-  z-index: 99999 !important; /* Ensure it floats above all hero text and badges */
+/* Ensure #navExploreWrapper compact dropdown shows seamlessly on group hover and is-open */
+#navExploreWrapper .explore-dropdown-card {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+  transform: translate(-50%, 8px);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
+  width: 16rem !important;
+  max-width: 90vw !important;
+  display: flex !important;
+  flex-direction: column !important;
   box-sizing: border-box !important;
 }
 
-#navExploreWrapper:hover [class*="absolute"],
-#navExploreWrapper.is-open [class*="absolute"],
-#navExploreWrapper:focus-within [class*="absolute"],
-#navExploreWrapper:hover .explore-dropdown-menu,
-#navExploreWrapper.is-open .explore-dropdown-menu,
-#navExploreWrapper:focus-within .explore-dropdown-menu,
-.group:hover #navExploreWrapper [class*="absolute"],
-#exploreDropdownWrapper:hover .dropdown-menu,
-#exploreDropdownWrapper.is-open .dropdown-menu {
+#navExploreWrapper:hover .explore-dropdown-card,
+#navExploreWrapper.is-open .explore-dropdown-card,
+#navExploreWrapper:focus-within .explore-dropdown-card {
   opacity: 1 !important;
   visibility: visible !important;
   pointer-events: auto !important;
+  transform: translate(-50%, 0) !important;
 }
 
 #navExploreWrapper:hover svg,
 #navExploreWrapper.is-open svg {
   transform: rotate(180deg);
-}
-
-/* Style every link inside the dropdown to be left-aligned and clean */
-.explore-dropdown-menu a,
-#navExploreWrapper [class*="absolute"] a,
-#exploreDropdownWrapper .dropdown-menu a {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important; /* Align left */
-  text-align: left !important;
-  gap: 12px !important;
-  padding: 10px 14px !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  color: #f1f5f9 !important;
-  background: transparent !important;
-  border-radius: 8px !important;
-  text-decoration: none !important;
-  transition: background-color 0.15s ease, color 0.15s ease !important;
-}
-
-.explore-dropdown-menu a:hover,
-#navExploreWrapper [class*="absolute"] a:hover,
-#exploreDropdownWrapper .dropdown-menu a:hover {
-  background-color: rgba(245, 158, 11, 0.15) !important;
-  color: #f59e0b !important;
 }
 
 
