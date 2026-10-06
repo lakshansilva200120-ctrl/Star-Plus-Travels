@@ -968,7 +968,12 @@
   <!-- Dwell / High-Intent WhatsApp Modal -->
   <div id="dwellModalOverlay" class="dwell-modal-overlay hidden" aria-hidden="true" role="dialog">
     <div class="dwell-modal-card">
-      <button id="dwellModalClose" class="dwell-modal-close" aria-label="Close dialog">&times;</button>
+      <button type="button" id="closeDwellModal" class="dwell-modal-close absolute top-4 right-4 text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-full w-8 h-8 flex items-center justify-center transition-colors z-20" aria-label="Close">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
       
       <div class="dwell-badge">
         <span>👋</span> NEED A HAND?

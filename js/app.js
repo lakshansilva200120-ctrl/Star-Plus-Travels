@@ -10827,17 +10827,15 @@ function applyDwellModalTranslation() {
                   Array.from(modal.querySelectorAll('p, div')).find(el => el.textContent && (el.textContent.includes('Skip the forms') || el.textContent.includes('පෝරම පිරවීම')));
   if (subtext) subtext.textContent = t.subtext;
 
-  // Update WhatsApp button
-  const btn = modal.querySelector('a[href*="wa.me"], button, .dwell-btn, #dwellWhatsAppBtn') ||
-              Array.from(modal.querySelectorAll('a, button')).find(el => el.textContent && el.textContent.includes('WhatsApp'));
-  if (btn) {
-    // Update text node while keeping the SVG icon
-    const svg = btn.querySelector('svg');
-    btn.innerHTML = '';
-    if (svg) btn.appendChild(svg);
-    btn.appendChild(document.createTextNode(' ' + t.button));
-    if (btn.tagName.toLowerCase() === 'a') {
-      btn.href = `https://wa.me/971527582293?text=${encodeURIComponent(t.msg)}`;
+  // Update WhatsApp button (specifically target ONLY bottom CTA, NOT generic button)
+  const waBtn = modal.querySelector('#dwellWhatsAppBtn, a.dwell-whatsapp-cta, a.dwell-btn-whatsapp, a[href*="wa.me"]');
+  if (waBtn) {
+    const svg = waBtn.querySelector('svg');
+    waBtn.innerHTML = '';
+    if (svg) waBtn.appendChild(svg);
+    waBtn.appendChild(document.createTextNode(' ' + t.button));
+    if (waBtn.tagName.toLowerCase() === 'a') {
+      waBtn.href = `https://wa.me/971527582293?text=${encodeURIComponent(t.msg)}`;
     }
   }
 }
@@ -10853,7 +10851,7 @@ function initDwellModal() {
   const modal = document.getElementById("dwellModalOverlay") || document.querySelector("#dwellModal, .dwell-modal, [data-dwell-modal]");
   if (!modal) return;
 
-  const closeBtn = document.getElementById("dwellModalClose") || modal.querySelector('.dwell-modal-close');
+  const closeBtn = document.getElementById("closeDwellModal") || document.getElementById("dwellModalClose") || modal.querySelector('.dwell-modal-close');
   const waBtn = document.getElementById("dwellWhatsAppBtn") || modal.querySelector('.dwell-btn-whatsapp, a[href*="wa.me"]');
   const STORAGE_KEY = "starplus_dwell_modal_seen";
 
@@ -10905,6 +10903,26 @@ function initDwellModal() {
       closeDwellModal();
     });
   }
+
+  document.getElementById('closeDwellModal')?.addEventListener('click', () => {
+    const m = document.querySelector('#dwellModal, #dwellModalOverlay');
+    if (m) {
+      m.classList.add('hidden');
+      m.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setDismissed();
+    }
+  });
+
+  document.getElementById('dwellModalClose')?.addEventListener('click', () => {
+    const m = document.querySelector('#dwellModal, #dwellModalOverlay');
+    if (m) {
+      m.classList.add('hidden');
+      m.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setDismissed();
+    }
+  });
 
   if (waBtn) {
     waBtn.addEventListener("click", () => {
