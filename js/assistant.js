@@ -293,20 +293,18 @@
     const currentLang = getActiveLanguage();
     const t = I18N[currentLang] || I18N.en;
 
-    // 1. Sleek TAMM-style Floating Launcher Button positioned above WhatsApp widget
+    // 1. Sleek TAMM-style Circular Floating Launcher Button positioned above WhatsApp widget
     const launcher = document.createElement('div');
     launcher.id = 'starplusAssistantLauncher';
     launcher.className = 'starplus-assistant-launcher';
     launcher.setAttribute('role', 'button');
     launcher.setAttribute('tabindex', '0');
     launcher.setAttribute('aria-label', 'Open Starplus AI Concierge');
-    launcher.setAttribute('title', t.launcherTooltip);
+    launcher.setAttribute('title', t.launcherText);
+    launcher.setAttribute('data-tooltip', t.launcherText);
     launcher.innerHTML = `
       <div class="tamm-launcher-orb"></div>
-      <span id="starplusAssistantLabel" class="text-xs font-bold tracking-wider text-amber-300">
-        ${t.launcherText}
-      </span>
-      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="tamm-online-dot"></span>
     `;
 
     // 2. TAMM Luxury Architecture Drawer / Modal Panel
@@ -594,7 +592,11 @@
     const t = I18N[lang] || I18N.en;
 
     const launcher = document.getElementById('starplusAssistantLauncher');
-    if (launcher) launcher.setAttribute('title', t.launcherTooltip);
+    if (launcher) {
+      launcher.setAttribute('title', t.launcherText);
+      launcher.setAttribute('data-tooltip', t.launcherText);
+      launcher.setAttribute('aria-label', t.launcherText);
+    }
 
     const label = document.getElementById('starplusAssistantLabel');
     if (label) label.textContent = t.launcherText;
