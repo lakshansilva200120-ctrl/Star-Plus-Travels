@@ -321,29 +321,47 @@
           <div class="relative group nav-dropdown" id="navExploreWrapper">
             <button type="button" class="nav-link nav-dropdown-trigger flex items-center gap-1.5 px-4 py-2 text-slate-800 dark:text-slate-100 hover:text-amber-500 dark:hover:text-amber-400 font-semibold transition-colors cursor-pointer bg-transparent border-none outline-none">
               <span data-i18n="navExplore">Explore</span>
-              <svg class="w-4 h-4 transition-transform group-hover:rotate-180 text-amber-500 dark:text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <svg class="chevron-arrow w-4 h-4 transition-transform group-hover:rotate-180 text-amber-500 dark:text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M6 9l6 6 6-6"/>
               </svg>
             </button>
 
-            <!-- The dropdown menu MUST be nested right here -->
-            <div class="dropdown-panel nav-dropdown-menu">
-              <a href="why-us.html" class="nav-dropdown-item">
-                <span class="icon">🛡️</span> <span data-i18n="navWhyUs">Why Choose Us</span>
+            <div class="explore-dropdown-box dropdown-panel nav-dropdown-menu">
+              <a href="/why-choose-us" class="explore-row">
+                <span class="icon-wrap">
+                  <svg class="gold-icon" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </span>
+                <span class="label" data-i18n="navWhyUs">Why Choose Us</span>
               </a>
-              <a href="careers.html" class="nav-dropdown-item flex items-center justify-between">
-                <span class="flex items-center gap-2.5"><span class="icon">💼</span> <span data-i18n="navCareers">Careers</span></span>
-                <span class="dot w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse ml-auto"></span>
+
+              <a href="/careers" class="explore-row">
+                <span class="icon-wrap">
+                  <svg class="gold-icon" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                </span>
+                <span class="label" data-i18n="navCareers">Careers</span>
+                <span class="dot-badge"></span>
               </a>
-              <a href="partners.html" class="nav-dropdown-item flex items-center justify-between">
-                <span class="flex items-center gap-2.5"><span class="icon">🤝</span> <span>B2B &amp; DMC Partners</span></span>
-                <span class="badge text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ml-auto">INTAKE</span>
+
+              <a href="/b2b" class="explore-row">
+                <span class="icon-wrap">
+                  <svg class="gold-icon" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v1"/><path d="M18 8h4a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-4"/><circle cx="8" cy="12" r="2"/></svg>
+                </span>
+                <span class="label" data-i18n="navB2B">B2B &amp; DMC Partners</span>
+                <span class="intake-pill" data-i18n="navB2BIntake">INTAKE</span>
               </a>
-              <a href="faq.html" class="nav-dropdown-item">
-                <span class="icon">❓</span> <span data-i18n="navFaq">Help &amp; FAQ</span>
+
+              <a href="/faq" class="explore-row">
+                <span class="icon-wrap">
+                  <svg class="gold-icon" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </span>
+                <span class="label" data-i18n="navFaq">Help &amp; FAQ</span>
               </a>
-              <a href="terms.html" class="nav-dropdown-item">
-                <span class="icon">📄</span> <span data-i18n="navTerms">Terms &amp; Conditions</span>
+
+              <a href="/terms" class="explore-row">
+                <span class="icon-wrap">
+                  <svg class="gold-icon" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </span>
+                <span class="label" data-i18n="navTerms">Terms &amp; Conditions</span>
               </a>
             </div>
           </div>
