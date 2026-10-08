@@ -1023,15 +1023,20 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
   display: flex !important;
 }
 
-.relative.group:hover svg,
-.relative.group.is-open svg,
 .relative.group:hover .chevron-arrow,
 .relative.group.is-open .chevron-arrow,
-.nav-dropdown:hover svg,
-.nav-dropdown.is-open svg,
 .nav-dropdown:hover .chevron-arrow,
 .nav-dropdown.is-open .chevron-arrow {
   transform: rotate(180deg);
+}
+
+/* Ensure icons inside dropdown items never inherit accidental inversion */
+.explore-dropdown-box a svg,
+.dropdown-panel a svg,
+.nav-dropdown-menu a svg,
+.explore-row svg,
+.nav-dropdown-item svg {
+  transform: none !important;
 }
 
 /* 2. Fix the rows: force left alignment and give icons a fixed width */
