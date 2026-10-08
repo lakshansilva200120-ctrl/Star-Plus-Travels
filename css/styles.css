@@ -945,7 +945,10 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
   filter: none !important;
 }
 
-/* Navigation Dropdown Menu (Explore / More) - Restored to original stable state */
+/* ==========================================================================
+   Navigation Dropdown Menu (Explore / More)
+   ========================================================================== */
+.relative.group,
 .nav-dropdown {
   position: relative;
   display: inline-flex;
@@ -959,105 +962,133 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
   cursor: pointer;
 }
 
-.nav-dropdown-trigger i.chevron {
-  font-size: 0.65rem;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  color: #f59e0b;
-}
-
-.nav-dropdown:hover .nav-dropdown-trigger i.chevron,
-.nav-dropdown.is-open .nav-dropdown-trigger i.chevron {
-  transform: rotate(180deg);
-}
-
+/* Hide by default, show on hover/open */
+.relative.group .dropdown-panel,
+.nav-dropdown .dropdown-panel,
 .nav-dropdown-menu {
+  display: none;
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(8px);
-  min-width: 220px;
-  background: rgba(11, 25, 44, 0.97);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 1rem;
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(245, 158, 11, 0.15);
-  padding: 0.5rem;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s;
-  z-index: 60;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  width: 240px;
+  background: #080e1a;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+  padding: 8px;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 99999;
 }
 
+/* Invisible bridge so mouse hover is preserved across margin-top */
+.dropdown-panel::before,
+.nav-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: transparent;
+}
+
+/* Reveal when hovered or open */
+.relative.group:hover .dropdown-panel,
+.relative.group.is-open .dropdown-panel,
+.relative.group:focus-within .dropdown-panel,
+.nav-dropdown:hover .dropdown-panel,
+.nav-dropdown.is-open .dropdown-panel,
 .nav-dropdown:hover .nav-dropdown-menu,
 .nav-dropdown:focus-within .nav-dropdown-menu,
 .nav-dropdown.is-open .nav-dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
+  display: flex !important;
 }
 
+.relative.group:hover svg,
+.relative.group.is-open svg,
+.nav-dropdown:hover .chevron,
+.nav-dropdown.is-open .chevron {
+  transform: rotate(180deg);
+}
+
+.dropdown-panel a,
+.nav-dropdown-menu a,
 .nav-dropdown-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.6rem 0.85rem;
-  border-radius: 0.65rem;
+  gap: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
   color: #e2e8f0;
-  font-size: 0.825rem;
-  font-weight: 600;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
 }
 
-.nav-dropdown-item i {
-  color: #f59e0b;
-  font-size: 0.85rem;
-  width: 16px;
-  text-align: center;
-  transition: transform 0.2s ease;
-}
-
+.dropdown-panel a:hover,
+.nav-dropdown-menu a:hover,
 .nav-dropdown-item:hover {
-  background: rgba(245, 158, 11, 0.14);
-  color: #ffffff;
-  transform: translateX(4px);
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
 }
 
-.nav-dropdown-item:hover i {
-  transform: scale(1.15);
+.dropdown-panel a .icon,
+.nav-dropdown-menu a .icon {
+  font-size: 14px;
+  line-height: 1;
 }
 
-/* Light Theme Navigation Dropdowns, Language Toggle & Mobile Menu */
-html.light .nav-dropdown-trigger i.chevron,
-:root:not(.dark) .nav-dropdown-trigger i.chevron {
-  color: #d97706;
+.dropdown-panel a .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #34d399;
+  margin-left: auto;
 }
 
+.dropdown-panel a .badge {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+/* Light Theme Navigation Dropdowns */
+html.light .relative.group .dropdown-panel,
+:root:not(.dark) .relative.group .dropdown-panel,
 html.light .nav-dropdown-menu,
 :root:not(.dark) .nav-dropdown-menu {
-  background: rgba(255, 255, 255, 0.98);
+  background: #ffffff;
   border: 1px solid rgba(226, 232, 240, 0.95);
-  box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(245, 158, 11, 0.2);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
 }
 
+html.light .dropdown-panel a,
+:root:not(.dark) .dropdown-panel a,
+html.light .nav-dropdown-menu a,
+:root:not(.dark) .nav-dropdown-menu a,
 html.light .nav-dropdown-item,
 :root:not(.dark) .nav-dropdown-item {
   color: #334155;
 }
 
-html.light .nav-dropdown-item i,
-:root:not(.dark) .nav-dropdown-item i {
-  color: #d97706;
-}
-
+html.light .dropdown-panel a:hover,
+:root:not(.dark) .dropdown-panel a:hover,
+html.light .nav-dropdown-menu a:hover,
+:root:not(.dark) .nav-dropdown-menu a:hover,
 html.light .nav-dropdown-item:hover,
 :root:not(.dark) .nav-dropdown-item:hover {
   background: rgba(245, 158, 11, 0.12);
-  color: #0f172a;
-  transform: translateX(4px);
+  color: #d97706;
 }
 
 /* Language Toggle & Mobile Hamburger Adaptation in Light Theme */

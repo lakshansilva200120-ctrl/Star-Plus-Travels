@@ -11,7 +11,9 @@
     { "source": "/faq", "destination": "/faq.html" },
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/terms", "destination": "/terms.html" },
-    { "source": "/careers", "destination": "/careers.html" }
+    { "source": "/careers", "destination": "/careers.html" },
+    { "source": "/why-choose-us", "destination": "/why-us.html" },
+    { "source": "/b2b", "destination": "/partners.html" }
   ],
   "headers": [
     {

@@ -5558,16 +5558,23 @@ window.scrollPackagesCarousel = scrollPackagesCarousel;
    Navigation Dropdown Controller (Explore Menu)
    ========================================================================== */
 function initNavDropdowns() {
-  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  const dropdowns = document.querySelectorAll('.nav-dropdown, #navExploreWrapper');
   dropdowns.forEach(dropdown => {
     const trigger = dropdown.querySelector('.nav-dropdown-trigger');
     if (trigger) {
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        dropdowns.forEach(d => {
+          if (d !== dropdown) d.classList.remove('is-open');
+        });
         dropdown.classList.toggle('is-open');
       });
     }
+
+    dropdown.addEventListener('mouseleave', () => {
+      dropdown.classList.remove('is-open');
+    });
   });
 
   document.addEventListener('click', (e) => {
@@ -5576,6 +5583,12 @@ function initNavDropdowns() {
         dropdown.classList.remove('is-open');
       }
     });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdowns.forEach(dropdown => dropdown.classList.remove('is-open'));
+    }
   });
 }
 
