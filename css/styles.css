@@ -971,7 +971,7 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
   left: 50%;
   transform: translateX(-50%);
   width: 270px;
-  background: #090e1a;
+  background: #0a0f1d;
   border: 1px solid rgba(245, 158, 11, 0.3);
   border-radius: 16px;
   padding: 8px;
@@ -1037,7 +1037,7 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
 
 .explore-row:hover,
 .nav-dropdown-item:hover {
-  background: rgba(245, 158, 11, 0.12);
+  background: rgba(245, 158, 11, 0.1);
 }
 
 .icon-wrap {
@@ -1051,10 +1051,10 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
 }
 
 .gold-icon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   color: #f59e0b;
-  stroke: #f59e0b;
+  fill: #f59e0b;
   flex-shrink: 0;
 }
 
