@@ -1641,9 +1641,9 @@ const VISA_DATA = {
   oman_change: {
     key: 'oman_change',
     title: 'Oman Visa Change by Luxury Coach (Deira Departure)',
-    rateHeadline: 'From 290 AED (Same Day Coach & Visa Return)',
+    rateHeadline: 'From 650 AED (Same Day Coach & Visa Return)',
     badge: 'Daily Departure • Deira Hub',
-    priceAED: 290,
+    priceAED: 650,
     speed: 'Same Day Coach & Visa Return',
     docs: [
       'Original passport with 6+ months validity',
@@ -1656,9 +1656,9 @@ const VISA_DATA = {
   schengen: {
     key: 'schengen',
     title: 'Schengen European Visa Full Concierge & File Preparation',
-    rateHeadline: 'From 650 AED (Appointment Booking, Flight/Hotel Vouchers, Insurance)',
+    rateHeadline: 'From 450 AED (Appointment Booking, Flight/Hotel Vouchers, Insurance)',
     badge: 'Concierge • VFS / BLS Appointments',
-    priceAED: 650,
+    priceAED: 450,
     speed: '10–15 Working Days (Fast-Track Slot Booking)',
     docs: [
       'Original passport with 3+ months validity beyond travel date',
@@ -1672,9 +1672,9 @@ const VISA_DATA = {
   srilanka: {
     key: 'srilanka',
     title: 'Sri Lanka Electronic Travel Authorization (ETA)',
-    rateHeadline: 'From 210 AED | 12–24 Hours Approval',
+    rateHeadline: 'From 220 AED | 12–24 Hours Approval',
     badge: 'Direct Official Portal Approval',
-    priceAED: 210,
+    priceAED: 220,
     speed: '12–24 Hours Approval',
     docs: [
       'Passport copy bio-page scan (valid 6+ months from arrival)',
@@ -1720,9 +1720,9 @@ const VISA_DATA_SI = {
   oman_change: {
     key: 'oman_change',
     title: 'ඕමාන් වීසා මාරුව සුඛෝපභෝගී බස් රථයෙන් (දෙයිරා සිට)',
-    rateHeadline: 'AED 290 සිට (එදිනම බස් රථ ගමන සහ වීසා අලුත් කිරීම)',
+    rateHeadline: 'AED 650 සිට (එදිනම බස් රථ ගමන සහ වීසා අලුත් කිරීම)',
     badge: 'දිනපතා පිටත්වීම් • දෙයිරා මධ්‍යස්ථානය',
-    priceAED: 290,
+    priceAED: 650,
     speed: 'එදිනම බස් රථ ගමන සහ වීසා අලුත් කිරීම',
     docs: [
       'මාස 6 කට වැඩි වලංගුතාවයක් සහිත මුල් ගමන් බලපත්‍රය',
@@ -1735,9 +1735,9 @@ const VISA_DATA_SI = {
   schengen: {
     key: 'schengen',
     title: 'යුරෝපා ෂෙන්ගන් වීසා සම්පූර්ණ ලිපිගොනු සකස් කිරීමේ සේවාව',
-    rateHeadline: 'AED 650 සිට (දිනයක් වෙන්කිරීම, හෝටල්/ගුවන් ටිකට් සහ රක්ෂණාවරණය)',
+    rateHeadline: 'AED 450 සිට (දිනයක් වෙන්කිරීම, හෝටල්/ගුවන් ටිකට් සහ රක්ෂණාවරණය)',
     badge: 'පුද්ගලික සේවාව • VFS / BLS වේලාවන්',
-    priceAED: 650,
+    priceAED: 450,
     speed: 'වැඩකරන දින 10–15 (කඩිනම් දිනයක් වෙන්කිරීම)',
     docs: [
       'සංචාරක දිනයෙන් පසු මාස 3 කට වැඩි වලංගුතාවයක් සහිත මුල් ගමන් බලපත්‍රය',
@@ -1751,9 +1751,9 @@ const VISA_DATA_SI = {
   srilanka: {
     key: 'srilanka',
     title: 'ශ්‍රී ලංකා විද්‍යුත් සංචාරක අනුමැතිය (ETA)',
-    rateHeadline: 'AED 210 සිට | පැය 12–24 කඩිනම් අනුමැතිය',
+    rateHeadline: 'AED 220 සිට | පැය 12–24 කඩිනම් අනුමැතිය',
     badge: 'සෘජු නිල අනුමැතිය',
-    priceAED: 210,
+    priceAED: 220,
     speed: 'පැය 12–24 කඩිනම් අනුමැතිය',
     docs: [
       'ගමන් බලපත්‍රයේ තොරතුරු පිටපතේ ස්කෑන් පිටපත (මාස 6 කට වඩා වලංගු)',

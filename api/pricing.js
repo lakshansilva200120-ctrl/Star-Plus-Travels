@@ -40,28 +40,28 @@ const DEFAULT_RATES = {
     omanBusChange: {
       id: 'oman-bus-change',
       name: 'Oman Visa Change by Luxury Coach',
-      priceAED: 290,
-      priceUSD: 80,
+      priceAED: 650,
+      priceUSD: 180,
       available: true,
-      processingTime: 'Daily Departures',
+      processingTime: 'Same Day',
       notes: 'Roundtrip coach + hotel room stay included'
     },
     schengenConcierge: {
       id: 'schengen-concierge',
       name: 'Schengen Concierge & File Prep',
-      priceAED: 650,
-      priceUSD: 180,
+      priceAED: 450,
+      priceUSD: 125,
       available: true,
-      processingTime: 'Fast Slot Alerts',
+      processingTime: 'Express',
       notes: 'VFS/TLS file prep, dummy tickets, travel insurance'
     },
     sriLankaEta: {
       id: 'sri-lanka-eta',
       name: 'Sri Lanka Electronic ETA',
-      priceAED: 240,
-      priceUSD: 68,
+      priceAED: 220,
+      priceUSD: 60,
       available: true,
-      processingTime: '6–24 Hours',
+      processingTime: '24 Hours',
       notes: 'Double entry 30-day tourist approval'
     }
   },

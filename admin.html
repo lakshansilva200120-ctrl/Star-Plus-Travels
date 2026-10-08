@@ -328,6 +328,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="js/pricing-sync.js?v=1.0.0"></script>
   <script src="js/pricing.js?v=1.0.0"></script>
   <script>
     (function() {
@@ -494,28 +495,28 @@
         omanBusChange: {
           id: 'oman-bus-change',
           name: 'Oman Visa Change by Luxury Coach',
-          priceAED: 290,
-          priceUSD: 80,
+          priceAED: 650,
+          priceUSD: 180,
           available: true,
-          processingTime: 'Daily Departures',
+          processingTime: 'Same Day',
           notes: 'Roundtrip coach + hotel room stay included'
         },
         schengenConcierge: {
           id: 'schengen-concierge',
           name: 'Schengen Concierge & File Prep',
-          priceAED: 650,
-          priceUSD: 180,
+          priceAED: 450,
+          priceUSD: 125,
           available: true,
-          processingTime: 'Fast Slot Alerts',
+          processingTime: 'Express',
           notes: 'VFS/TLS file prep, dummy tickets, travel insurance'
         },
         sriLankaEta: {
           id: 'sri-lanka-eta',
           name: 'Sri Lanka Electronic ETA',
-          priceAED: 240,
-          priceUSD: 68,
+          priceAED: 220,
+          priceUSD: 60,
           available: true,
-          processingTime: '6–24 Hours',
+          processingTime: '24 Hours',
           notes: 'Double entry 30-day tourist approval'
         }
       };
@@ -539,8 +540,9 @@
                   <button 
                     type="button" 
                     data-reset-card="${key}" 
+                    data-card-id="${key}"
                     title="Reset ${item.name} to factory default rates"
-                    class="text-xs text-slate-400 hover:text-amber-400 flex items-center gap-1 transition-colors px-2 py-1 rounded bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 cursor-pointer"
+                    class="btn-card-reset text-xs text-slate-400 hover:text-amber-400 flex items-center gap-1 transition-colors px-2 py-1 rounded bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 cursor-pointer"
                   >
                     <span>&#x21BA; Reset</span>
                   </button>
@@ -775,7 +777,7 @@
 
         if (res && res.success) {
           updateLastModifiedText(res.pricing ? res.pricing.lastUpdated : new Date().toISOString());
-          showToast('Changes Live', 'Live rates published to global network');
+          showToast('Changes Live', '✓ Changes successfully published live to www.starplustraveluae.com');
         } else {
           showToast('Error', 'Could not sync rates with server, stored locally');
         }
