@@ -1491,6 +1491,41 @@ html.light .warning-banner-box p,
   box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6);
 }
 
+/* Feature & Guarantee Cards: Clean Lift & Glow (Strictly No Rotation/Flip) */
+.guarantee-card {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.guarantee-card:hover {
+  transform: translateY(-4px) !important;
+}
+
+.guarantee-card-amber:hover {
+  border-color: rgba(245, 158, 11, 0.5) !important;
+  box-shadow: 0 12px 30px -10px rgba(245, 158, 11, 0.25) !important;
+}
+
+.guarantee-card-cyan:hover {
+  border-color: rgba(6, 182, 212, 0.5) !important;
+  box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.25) !important;
+}
+
+.guarantee-card-emerald:hover {
+  border-color: rgba(16, 185, 129, 0.5) !important;
+  box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.25) !important;
+}
+
+.guarantee-card-purple:hover {
+  border-color: rgba(168, 85, 247, 0.5) !important;
+  box-shadow: 0 12px 30px -10px rgba(168, 85, 247, 0.25) !important;
+}
+
+/* Prevent any child element from inheriting accidental rotation or flipping */
+.guarantee-card *,
+.guarantee-card:hover * {
+  transform-origin: center center;
+}
+
 .glass-input {
   background: var(--theme-bg-input);
   border: 1px solid var(--theme-border-input);
