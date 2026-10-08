@@ -5565,17 +5565,33 @@ function initNavDropdowns() {
       trigger.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        dropdowns.forEach(d => {
+          if (d !== dropdown) d.classList.remove('is-open');
+        });
         dropdown.classList.toggle('is-open');
       });
     }
+
+    // Close when moving mouse away
+    dropdown.addEventListener('mouseleave', () => {
+      dropdown.classList.remove('is-open');
+    });
   });
 
+  // Close when clicking outside
   document.addEventListener('click', (e) => {
     dropdowns.forEach(dropdown => {
       if (!dropdown.contains(e.target)) {
         dropdown.classList.remove('is-open');
       }
     });
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdowns.forEach(dropdown => dropdown.classList.remove('is-open'));
+    }
   });
 }
 
