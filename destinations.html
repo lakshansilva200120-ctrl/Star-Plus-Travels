@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -307,30 +307,37 @@
           <a href="reviews.html" class="nav-link text-slate-800 dark:text-slate-100 hover:text-amber-500 dark:hover:text-amber-400 font-semibold transition-colors" data-i18n="navReviews">Reviews</a>
           
           <!-- Explore Dropdown -->
-          <div class="relative group" id="navExploreWrapper">
-            <button type="button" class="flex items-center gap-1.5 px-4 py-2 text-amber-400 font-medium">
+          <div class="nav-dropdown">
+            <button type="button" class="nav-link nav-dropdown-trigger text-slate-800 dark:text-slate-100 hover:text-amber-500 dark:hover:text-amber-400 font-semibold transition-colors cursor-pointer bg-transparent border-none outline-none">
               <span data-i18n="navExplore">Explore</span>
-              <svg class="w-4 h-4 transition-transform group-hover:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9l6 6 6-6"/></svg>
+              <i class="fa-solid fa-chevron-down chevron text-[10px] text-amber-500 dark:text-amber-400"></i>
             </button>
-
-            <!-- The Dropdown Card -->
-            <div class="explore-dropdown-card absolute left-1/2 -translate-x-1/2 top-full mt-2 w-64 bg-[#0a0f1d] border border-amber-500/20 rounded-xl shadow-2xl p-2 flex flex-col gap-1 z-50">
-              <a href="/why-choose-us" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-200 hover:text-amber-400 hover:bg-white/5 rounded-lg transition-colors">
-                <span class="text-amber-400">🛡️</span> <span data-i18n="navWhyUs">Why Choose Us</span>
+            <div class="nav-dropdown-menu">
+              <a href="why-us.html" class="nav-dropdown-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span data-i18n="navWhyUs">Why Choose Us</span>
               </a>
-              <a href="/careers" class="flex items-center justify-between px-3 py-2 text-sm text-slate-200 hover:text-amber-400 hover:bg-white/5 rounded-lg transition-colors">
-                <span class="flex items-center gap-3"><span class="text-amber-400">💼</span> <span data-i18n="navCareers">Careers</span></span>
-                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <a href="careers.html" class="nav-dropdown-item flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-briefcase"></i>
+                  <span data-i18n="navCareers">Careers</span>
+                </div>
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               </a>
-              <a href="/b2b" class="flex items-center justify-between px-3 py-2 text-sm text-slate-200 hover:text-amber-400 hover:bg-white/5 rounded-lg transition-colors">
-                <span class="flex items-center gap-3"><span class="text-amber-400">🤝</span> <span data-i18n="navB2B">B2B &amp; DMC Partners</span></span>
-                <span class="text-[10px] uppercase font-bold bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded" data-i18n="navB2BIntake">INTAKE</span>
+              <a href="partners.html" class="nav-dropdown-item flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <i class="fa-solid fa-handshake"></i>
+                  <span>B2B &amp; DMC Partners</span>
+                </div>
+                <span class="text-[9px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">Intake</span>
               </a>
-              <a href="/faq" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-200 hover:text-amber-400 hover:bg-white/5 rounded-lg transition-colors">
-                <span class="text-amber-400">❓</span> <span data-i18n="navFaq">Help &amp; FAQ</span>
+              <a href="faq.html" class="nav-dropdown-item">
+                <i class="fa-solid fa-circle-question"></i>
+                <span data-i18n="navFaq">Help &amp; FAQ</span>
               </a>
-              <a href="/terms" class="flex items-center gap-3 px-3 py-2 text-sm text-slate-200 hover:text-amber-400 hover:bg-white/5 rounded-lg transition-colors">
-                <span class="text-amber-400">📄</span> <span data-i18n="navTerms">Terms &amp; Conditions</span>
+              <a href="terms.html" class="nav-dropdown-item">
+                <i class="fa-solid fa-file-contract"></i>
+                <span data-i18n="navTerms">Terms &amp; Conditions</span>
               </a>
             </div>
           </div>

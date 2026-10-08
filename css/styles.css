@@ -999,36 +999,6 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
   transform: translateX(-50%) translateY(0);
 }
 
-/* Ensure #navExploreWrapper compact dropdown shows seamlessly on group hover and is-open */
-#navExploreWrapper .explore-dropdown-card {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: translate(-50%, 8px);
-  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.2s;
-  width: 16rem !important;
-  max-width: 90vw !important;
-  display: flex !important;
-  flex-direction: column !important;
-  box-sizing: border-box !important;
-}
-
-#navExploreWrapper:hover .explore-dropdown-card,
-#navExploreWrapper.is-open .explore-dropdown-card,
-#navExploreWrapper:focus-within .explore-dropdown-card {
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-  transform: translate(-50%, 0) !important;
-}
-
-#navExploreWrapper:hover svg,
-#navExploreWrapper.is-open svg {
-  transform: rotate(180deg);
-}
-
-
-
 .nav-dropdown-item {
   display: flex;
   align-items: center;
