@@ -66,16 +66,6 @@ const DEFAULT_RATES = {
     }
   },
   packages: {
-    sriLankaWonders: {
-      id: 'sri-lanka-wonders',
-      title: 'Wonders of Sri Lanka Tour',
-      destination: 'Sri Lanka (Sigiriya, Kandy, Ella, Bentota)',
-      duration: '6 Days / 5 Nights',
-      priceAED: 2150,
-      priceUSD: 595,
-      badge: 'Bestseller',
-      available: true
-    },
     dubaiLuxury: {
       id: 'dubai-luxury',
       title: 'Ultimate Dubai & Desert Safari Extravaganza',
@@ -86,7 +76,17 @@ const DEFAULT_RATES = {
       badge: 'Bestseller',
       available: true
     },
-    bakuCaucasus: {
+    sriLankaScenic: {
+      id: 'sri-lanka-scenic',
+      title: 'Scenic Sri Lanka: Tea Hills, Wildlife & Beaches',
+      destination: 'Colombo, Kandy, Ella & Yala',
+      duration: '6 Days / 5 Nights',
+      priceAED: 1890,
+      priceUSD: 515,
+      badge: 'Trending',
+      available: true
+    },
+    bakuAzerbaijan: {
       id: 'baku-azerbaijan',
       title: 'Baku & Caucasus Wonders of Azerbaijan',
       destination: 'Baku & Gabala, Azerbaijan',
@@ -94,6 +94,76 @@ const DEFAULT_RATES = {
       priceAED: 2150,
       priceUSD: 595,
       badge: 'Popular',
+      available: true
+    },
+    maldivesParadise: {
+      id: 'maldives-paradise',
+      title: 'Maldives Overwater Villa Paradise Escape',
+      destination: 'North Malé Atoll, Maldives',
+      duration: '4 Days / 3 Nights',
+      priceAED: 4650,
+      priceUSD: 1265,
+      badge: 'Luxury Romance',
+      available: true
+    },
+    baliGetaway: {
+      id: 'bali-getaway',
+      title: 'Bali Heavenly Getaway: Ubud & Seminyak',
+      destination: 'Bali, Indonesia',
+      duration: '7 Days / 6 Nights',
+      priceAED: 2850,
+      priceUSD: 775,
+      badge: 'Bestseller',
+      available: true
+    },
+    turkeyBalloons: {
+      id: 'turkey-balloons',
+      title: 'Classic Turkey: Istanbul & Cappadocia Balloons',
+      destination: 'Istanbul & Cappadocia, Turkey',
+      duration: '6 Days / 5 Nights',
+      priceAED: 3350,
+      priceUSD: 915,
+      badge: 'Bucket List',
+      available: true
+    },
+    umrahPremium: {
+      id: 'umrah-premium',
+      title: 'Premium Umrah Spiritual Journey',
+      destination: 'Makkah & Madinah, KSA',
+      duration: '7 Days / 6 Nights',
+      priceAED: 2990,
+      priceUSD: 815,
+      badge: 'Spiritual Peace',
+      available: true
+    },
+    dubaiMice: {
+      id: 'dubai-mice',
+      title: 'Executive Dubai MICE, Gala & Corporate Summit',
+      destination: 'Dubai & Abu Dhabi, UAE',
+      duration: '4 Days / 3 Nights',
+      priceAED: 3450,
+      priceUSD: 940,
+      badge: 'Corporate VIP',
+      available: true
+    },
+    caucasusRetreat: {
+      id: 'caucasus-retreat',
+      title: 'Caucasus Executive Leadership & Team Incentive Retreat',
+      destination: 'Baku & Shahdag, Azerbaijan',
+      duration: '5 Days / 4 Nights',
+      priceAED: 2650,
+      priceUSD: 725,
+      badge: 'Executive Retreat',
+      available: true
+    },
+    uaeGoldenVisa: {
+      id: 'uae-golden-visa',
+      title: 'UAE 10-Year Golden Visa & Concierge Relocation Bundle',
+      destination: 'Dubai, United Arab Emirates',
+      duration: 'Express 5-7 Days',
+      priceAED: 4950,
+      priceUSD: 1350,
+      badge: '10-Year Residency',
       available: true
     },
     georgiaKazbegi: {
@@ -104,16 +174,6 @@ const DEFAULT_RATES = {
       priceAED: 2250,
       priceUSD: 620,
       badge: 'Winter Special',
-      available: true
-    },
-    maldivesEscape: {
-      id: 'maldives-escape',
-      title: 'Maldives Overwater Resort Luxury Escape',
-      destination: 'Maldives',
-      duration: '4 Days / 3 Nights',
-      priceAED: 3850,
-      priceUSD: 1055,
-      badge: 'Island Luxury',
       available: true
     }
   },
@@ -272,7 +332,13 @@ export default async function handler(req, res) {
     if (!inMemoryPricing) {
       const remoteData = await fetchFromRemoteStore();
       if (remoteData) {
-        inMemoryPricing = { ...DEFAULT_RATES, ...remoteData };
+        inMemoryPricing = {
+          ...DEFAULT_RATES,
+          ...remoteData,
+          visas: { ...DEFAULT_RATES.visas, ...(remoteData.visas || {}) },
+          packages: { ...DEFAULT_RATES.packages, ...(remoteData.packages || {}) },
+          services: { ...DEFAULT_RATES.services, ...(remoteData.services || {}) }
+        };
       }
     }
     const currentData = inMemoryPricing || DEFAULT_RATES;

@@ -435,9 +435,20 @@
       // Active pricing state
       let currentPricing = null;
 
+      function ensureAllPackages(data) {
+        if (!data) return;
+        if (!data.packages) data.packages = {};
+        Object.keys(BASELINE_PACKAGE_DEFAULTS).forEach(k => {
+          if (!data.packages[k]) {
+            data.packages[k] = Object.assign({}, BASELINE_PACKAGE_DEFAULTS[k]);
+          }
+        });
+      }
+
       async function initDashboard() {
         if (!window.StarplusPricing) return;
         currentPricing = window.StarplusPricing.getPricing();
+        ensureAllPackages(currentPricing);
         renderVisas();
         renderPackages();
         renderServices();
@@ -448,6 +459,7 @@
           const remoteData = await window.StarplusPricing.loadPricing();
           if (remoteData) {
             currentPricing = remoteData;
+            ensureAllPackages(currentPricing);
             renderVisas();
             renderPackages();
             renderServices();
@@ -528,16 +540,6 @@
       };
 
       const BASELINE_PACKAGE_DEFAULTS = {
-        sriLankaWonders: {
-          id: 'sri-lanka-wonders',
-          title: 'Wonders of Sri Lanka Tour',
-          destination: 'Sri Lanka (Sigiriya, Kandy, Ella, Bentota)',
-          duration: '6 Days / 5 Nights',
-          priceAED: 2150,
-          priceUSD: 595,
-          badge: 'Bestseller',
-          available: true
-        },
         dubaiLuxury: {
           id: 'dubai-luxury',
           title: 'Ultimate Dubai & Desert Safari Extravaganza',
@@ -548,7 +550,17 @@
           badge: 'Bestseller',
           available: true
         },
-        bakuCaucasus: {
+        sriLankaScenic: {
+          id: 'sri-lanka-scenic',
+          title: 'Scenic Sri Lanka: Tea Hills, Wildlife & Beaches',
+          destination: 'Colombo, Kandy, Ella & Yala',
+          duration: '6 Days / 5 Nights',
+          priceAED: 1890,
+          priceUSD: 515,
+          badge: 'Trending',
+          available: true
+        },
+        bakuAzerbaijan: {
           id: 'baku-azerbaijan',
           title: 'Baku & Caucasus Wonders of Azerbaijan',
           destination: 'Baku & Gabala, Azerbaijan',
@@ -556,6 +568,76 @@
           priceAED: 2150,
           priceUSD: 595,
           badge: 'Popular',
+          available: true
+        },
+        maldivesParadise: {
+          id: 'maldives-paradise',
+          title: 'Maldives Overwater Villa Paradise Escape',
+          destination: 'North Malé Atoll, Maldives',
+          duration: '4 Days / 3 Nights',
+          priceAED: 4650,
+          priceUSD: 1265,
+          badge: 'Luxury Romance',
+          available: true
+        },
+        baliGetaway: {
+          id: 'bali-getaway',
+          title: 'Bali Heavenly Getaway: Ubud & Seminyak',
+          destination: 'Bali, Indonesia',
+          duration: '7 Days / 6 Nights',
+          priceAED: 2850,
+          priceUSD: 775,
+          badge: 'Bestseller',
+          available: true
+        },
+        turkeyBalloons: {
+          id: 'turkey-balloons',
+          title: 'Classic Turkey: Istanbul & Cappadocia Balloons',
+          destination: 'Istanbul & Cappadocia, Turkey',
+          duration: '6 Days / 5 Nights',
+          priceAED: 3350,
+          priceUSD: 915,
+          badge: 'Bucket List',
+          available: true
+        },
+        umrahPremium: {
+          id: 'umrah-premium',
+          title: 'Premium Umrah Spiritual Journey',
+          destination: 'Makkah & Madinah, KSA',
+          duration: '7 Days / 6 Nights',
+          priceAED: 2990,
+          priceUSD: 815,
+          badge: 'Spiritual Peace',
+          available: true
+        },
+        dubaiMice: {
+          id: 'dubai-mice',
+          title: 'Executive Dubai MICE, Gala & Corporate Summit',
+          destination: 'Dubai & Abu Dhabi, UAE',
+          duration: '4 Days / 3 Nights',
+          priceAED: 3450,
+          priceUSD: 940,
+          badge: 'Corporate VIP',
+          available: true
+        },
+        caucasusRetreat: {
+          id: 'caucasus-retreat',
+          title: 'Caucasus Executive Leadership & Team Incentive Retreat',
+          destination: 'Baku & Shahdag, Azerbaijan',
+          duration: '5 Days / 4 Nights',
+          priceAED: 2650,
+          priceUSD: 725,
+          badge: 'Executive Retreat',
+          available: true
+        },
+        uaeGoldenVisa: {
+          id: 'uae-golden-visa',
+          title: 'UAE 10-Year Golden Visa & Concierge Relocation Bundle',
+          destination: 'Dubai, United Arab Emirates',
+          duration: 'Express 5-7 Days',
+          priceAED: 4950,
+          priceUSD: 1350,
+          badge: '10-Year Residency',
           available: true
         },
         georgiaKazbegi: {
@@ -566,16 +648,6 @@
           priceAED: 2250,
           priceUSD: 620,
           badge: 'Winter Special',
-          available: true
-        },
-        maldivesEscape: {
-          id: 'maldives-escape',
-          title: 'Maldives Overwater Resort Luxury Escape',
-          destination: 'Maldives',
-          duration: '4 Days / 3 Nights',
-          priceAED: 3850,
-          priceUSD: 1055,
-          badge: 'Island Luxury',
           available: true
         }
       };
@@ -757,7 +829,7 @@
           card.innerHTML = `
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">${item.id}</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400 font-mono px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">[ ${item.id.toUpperCase()} ]</span>
                 <div class="flex items-center gap-2">
                   <button 
                     type="button" 
@@ -778,7 +850,7 @@
                 </div>
               </div>
               <div class="flex items-center gap-2 mb-1.5">
-                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                <span class="promo-badge-pill px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
                   ${item.badge || 'Circuit'}
                 </span>
               </div>
@@ -810,6 +882,25 @@
             </div>
           `;
           grid.appendChild(card);
+        });
+
+        // Add input listeners for live draft updating & badge preview
+        grid.querySelectorAll('input[data-pkg-field]').forEach(input => {
+          input.addEventListener('input', (e) => {
+            const k = e.target.getAttribute('data-pkg-field');
+            const prop = e.target.getAttribute('data-prop');
+            const val = (prop === 'priceAED' || prop === 'priceUSD') ? parseFloat(e.target.value) || 0 : e.target.value;
+            if (currentPricing && currentPricing.packages && currentPricing.packages[k]) {
+              currentPricing.packages[k][prop] = val;
+            }
+            if (prop === 'badge') {
+              const card = document.getElementById(`package-card-${k}`);
+              if (card) {
+                const badgeSpan = card.querySelector('.promo-badge-pill');
+                if (badgeSpan) badgeSpan.textContent = val || 'Circuit';
+              }
+            }
+          });
         });
 
         // Add toggle listeners
@@ -858,8 +949,8 @@
               const badgeInput = card.querySelector(`[data-pkg-field="${key}"][data-prop="badge"]`);
               if (badgeInput) badgeInput.value = defaultItem.badge;
 
-              const badgeSpan = card.querySelector('.rounded-full.bg-amber-500\\/20');
-              if (badgeSpan) badgeSpan.textContent = defaultItem.badge;
+              const badgeSpan = card.querySelector('.promo-badge-pill') || card.querySelector('.rounded-full.bg-amber-500\\/20');
+              if (badgeSpan) badgeSpan.textContent = defaultItem.badge || 'Circuit';
 
               const toggleInput = card.querySelector(`[data-pkg-toggle="${key}"]`);
               if (toggleInput) {

@@ -79,16 +79,6 @@
       }
     },
     packages: {
-      sriLankaWonders: {
-        id: 'sri-lanka-wonders',
-        title: 'Wonders of Sri Lanka Tour',
-        destination: 'Sri Lanka (Sigiriya, Kandy, Ella, Bentota)',
-        duration: '6 Days / 5 Nights',
-        priceAED: 2150,
-        priceUSD: 595,
-        badge: 'Bestseller',
-        available: true
-      },
       dubaiLuxury: {
         id: 'dubai-luxury',
         title: 'Ultimate Dubai & Desert Safari Extravaganza',
@@ -99,7 +89,17 @@
         badge: 'Bestseller',
         available: true
       },
-      bakuCaucasus: {
+      sriLankaScenic: {
+        id: 'sri-lanka-scenic',
+        title: 'Scenic Sri Lanka: Tea Hills, Wildlife & Beaches',
+        destination: 'Colombo, Kandy, Ella & Yala',
+        duration: '6 Days / 5 Nights',
+        priceAED: 1890,
+        priceUSD: 515,
+        badge: 'Trending',
+        available: true
+      },
+      bakuAzerbaijan: {
         id: 'baku-azerbaijan',
         title: 'Baku & Caucasus Wonders of Azerbaijan',
         destination: 'Baku & Gabala, Azerbaijan',
@@ -107,6 +107,76 @@
         priceAED: 2150,
         priceUSD: 595,
         badge: 'Popular',
+        available: true
+      },
+      maldivesParadise: {
+        id: 'maldives-paradise',
+        title: 'Maldives Overwater Villa Paradise Escape',
+        destination: 'North Malé Atoll, Maldives',
+        duration: '4 Days / 3 Nights',
+        priceAED: 4650,
+        priceUSD: 1265,
+        badge: 'Luxury Romance',
+        available: true
+      },
+      baliGetaway: {
+        id: 'bali-getaway',
+        title: 'Bali Heavenly Getaway: Ubud & Seminyak',
+        destination: 'Bali, Indonesia',
+        duration: '7 Days / 6 Nights',
+        priceAED: 2850,
+        priceUSD: 775,
+        badge: 'Bestseller',
+        available: true
+      },
+      turkeyBalloons: {
+        id: 'turkey-balloons',
+        title: 'Classic Turkey: Istanbul & Cappadocia Balloons',
+        destination: 'Istanbul & Cappadocia, Turkey',
+        duration: '6 Days / 5 Nights',
+        priceAED: 3350,
+        priceUSD: 915,
+        badge: 'Bucket List',
+        available: true
+      },
+      umrahPremium: {
+        id: 'umrah-premium',
+        title: 'Premium Umrah Spiritual Journey',
+        destination: 'Makkah & Madinah, KSA',
+        duration: '7 Days / 6 Nights',
+        priceAED: 2990,
+        priceUSD: 815,
+        badge: 'Spiritual Peace',
+        available: true
+      },
+      dubaiMice: {
+        id: 'dubai-mice',
+        title: 'Executive Dubai MICE, Gala & Corporate Summit',
+        destination: 'Dubai & Abu Dhabi, UAE',
+        duration: '4 Days / 3 Nights',
+        priceAED: 3450,
+        priceUSD: 940,
+        badge: 'Corporate VIP',
+        available: true
+      },
+      caucasusRetreat: {
+        id: 'caucasus-retreat',
+        title: 'Caucasus Executive Leadership & Team Incentive Retreat',
+        destination: 'Baku & Shahdag, Azerbaijan',
+        duration: '5 Days / 4 Nights',
+        priceAED: 2650,
+        priceUSD: 725,
+        badge: 'Executive Retreat',
+        available: true
+      },
+      uaeGoldenVisa: {
+        id: 'uae-golden-visa',
+        title: 'UAE 10-Year Golden Visa & Concierge Relocation Bundle',
+        destination: 'Dubai, United Arab Emirates',
+        duration: 'Express 5-7 Days',
+        priceAED: 4950,
+        priceUSD: 1350,
+        badge: '10-Year Residency',
         available: true
       },
       georgiaKazbegi: {
@@ -117,16 +187,6 @@
         priceAED: 2250,
         priceUSD: 620,
         badge: 'Winter Special',
-        available: true
-      },
-      maldivesEscape: {
-        id: 'maldives-escape',
-        title: 'Maldives Overwater Resort Luxury Escape',
-        destination: 'Maldives',
-        duration: '4 Days / 3 Nights',
-        priceAED: 3850,
-        priceUSD: 1055,
-        badge: 'Island Luxury',
         available: true
       }
     },
@@ -183,7 +243,13 @@
           const stored = window.localStorage.getItem(STORAGE_KEY);
           if (stored) {
             const parsed = JSON.parse(stored);
-            this.cache = Object.assign({}, DEFAULT_PRICING, parsed);
+            this.cache = {
+              lastUpdated: parsed.lastUpdated || DEFAULT_PRICING.lastUpdated,
+              updatedBy: parsed.updatedBy || DEFAULT_PRICING.updatedBy,
+              visas: Object.assign({}, DEFAULT_PRICING.visas, parsed.visas || {}),
+              packages: Object.assign({}, DEFAULT_PRICING.packages, parsed.packages || {}),
+              services: Object.assign({}, DEFAULT_PRICING.services, parsed.services || {})
+            };
             return this.cache;
           }
         } catch (e) {
@@ -206,7 +272,13 @@
           if (res.ok) {
             const data = await res.json();
             if (data && data.success && data.pricing) {
-              this.cache = Object.assign({}, DEFAULT_PRICING, data.pricing);
+              this.cache = {
+                lastUpdated: data.pricing.lastUpdated || DEFAULT_PRICING.lastUpdated,
+                updatedBy: data.pricing.updatedBy || DEFAULT_PRICING.updatedBy,
+                visas: Object.assign({}, DEFAULT_PRICING.visas, data.pricing.visas || {}),
+                packages: Object.assign({}, DEFAULT_PRICING.packages, data.pricing.packages || {}),
+                services: Object.assign({}, DEFAULT_PRICING.services, data.pricing.services || {})
+              };
               this.saveLocal(this.cache);
               this.broadcast();
               return this.cache;
@@ -233,7 +305,13 @@
             if (res.ok) {
               const rows = await res.json();
               if (Array.isArray(rows) && rows.length > 0 && rows[0].pricing) {
-                this.cache = Object.assign({}, DEFAULT_PRICING, rows[0].pricing);
+                this.cache = {
+                  lastUpdated: rows[0].pricing.lastUpdated || DEFAULT_PRICING.lastUpdated,
+                  updatedBy: rows[0].pricing.updatedBy || DEFAULT_PRICING.updatedBy,
+                  visas: Object.assign({}, DEFAULT_PRICING.visas, rows[0].pricing.visas || {}),
+                  packages: Object.assign({}, DEFAULT_PRICING.packages, rows[0].pricing.packages || {}),
+                  services: Object.assign({}, DEFAULT_PRICING.services, rows[0].pricing.services || {})
+                };
                 this.saveLocal(this.cache);
                 this.broadcast();
                 return this.cache;
@@ -466,22 +544,103 @@
           }
         }
 
-        // 4. Update window.PACKAGES prices if present
-        if (Array.isArray(window.PACKAGES)) {
-          window.PACKAGES.forEach(pkg => {
-            if (pkg.id === 'dubai-luxury' && data.packages.dubaiLuxury) {
-              pkg.priceAED = data.packages.dubaiLuxury.priceAED;
-            } else if (pkg.id === 'sri-lanka-wonders' && data.packages.sriLankaWonders) {
-              pkg.priceAED = data.packages.sriLankaWonders.priceAED;
-            } else if (pkg.id === 'baku-azerbaijan' && data.packages.bakuCaucasus) {
-              pkg.priceAED = data.packages.bakuCaucasus.priceAED;
-            } else if (pkg.id === 'georgia-kazbegi' && data.packages.georgiaKazbegi) {
-              pkg.priceAED = data.packages.georgiaKazbegi.priceAED;
-            } else if (pkg.id === 'maldives-escape' && data.packages.maldivesEscape) {
-              pkg.priceAED = data.packages.maldivesEscape.priceAED;
-            }
+        // 4. Update window.PACKAGES prices & availability if present
+        if (Array.isArray(window.PACKAGES) && data.packages) {
+          const packageMapping = [
+            { key: 'dubaiLuxury', ids: ['dubai-luxury'] },
+            { key: 'sriLankaScenic', ids: ['sri-lanka-scenic', 'sri-lanka-wildlife', 'sri-lanka-wonders'] },
+            { key: 'bakuAzerbaijan', ids: ['baku-azerbaijan', 'baku-caucasus'] },
+            { key: 'maldivesParadise', ids: ['maldives-paradise', 'maldives-all-inclusive', 'maldives-escape'] },
+            { key: 'baliGetaway', ids: ['bali-getaway', 'bali-luxury-nature'] },
+            { key: 'turkeyBalloons', ids: ['turkey-balloons', 'turkey-istanbul-cappadocia'] },
+            { key: 'umrahPremium', ids: ['umrah-premium', 'umrah-spiritual-package'] },
+            { key: 'dubaiMice', ids: ['dubai-mice', 'dubai-corporate-mice'] },
+            { key: 'caucasusRetreat', ids: ['caucasus-retreat', 'baku-corporate-retreat'] },
+            { key: 'uaeGoldenVisa', ids: ['uae-golden-visa', 'uae-golden-visa-bundle'] },
+            { key: 'georgiaKazbegi', ids: ['georgia-kazbegi'] }
+          ];
+
+          packageMapping.forEach(({ key, ids }) => {
+            const liveItem = data.packages[key];
+            if (!liveItem) return;
+            window.PACKAGES.forEach(pkg => {
+              if (ids.includes(pkg.id) || (pkg.legacyId && ids.includes(pkg.legacyId)) || (pkg.adminId && ids.includes(pkg.adminId))) {
+                pkg.priceAED = liveItem.priceAED;
+                if (liveItem.priceUSD) pkg.priceUSD = liveItem.priceUSD;
+                if (liveItem.duration) pkg.duration = liveItem.duration;
+                if (liveItem.badge) pkg.badge = liveItem.badge;
+                pkg.available = liveItem.available !== false;
+              }
+            });
           });
         }
+      }
+
+      // 4b. Synchronize live package cards in DOM (index.html)
+      if (typeof document !== 'undefined' && data.packages) {
+        const domPackageMapping = [
+          { key: 'dubaiLuxury', ids: ['dubai-luxury'] },
+          { key: 'sriLankaScenic', ids: ['sri-lanka-scenic', 'sri-lanka-wildlife', 'sri-lanka-wonders'] },
+          { key: 'bakuAzerbaijan', ids: ['baku-azerbaijan', 'baku-caucasus'] },
+          { key: 'maldivesParadise', ids: ['maldives-paradise', 'maldives-all-inclusive', 'maldives-escape'] },
+          { key: 'baliGetaway', ids: ['bali-getaway', 'bali-luxury-nature'] },
+          { key: 'turkeyBalloons', ids: ['turkey-balloons', 'turkey-istanbul-cappadocia'] },
+          { key: 'umrahPremium', ids: ['umrah-premium', 'umrah-spiritual-package'] },
+          { key: 'dubaiMice', ids: ['dubai-mice', 'dubai-corporate-mice'] },
+          { key: 'caucasusRetreat', ids: ['caucasus-retreat', 'baku-corporate-retreat'] },
+          { key: 'uaeGoldenVisa', ids: ['uae-golden-visa', 'uae-golden-visa-bundle'] },
+          { key: 'georgiaKazbegi', ids: ['georgia-kazbegi'] }
+        ];
+
+        domPackageMapping.forEach(({ key, ids }) => {
+          const liveItem = data.packages[key];
+          if (!liveItem) return;
+
+          const selector = ids.map(id => `[data-package-id="${id}"], [data-pkg-id="${id}"]`).join(', ');
+          document.querySelectorAll(selector).forEach(card => {
+            // Main bold price: AED [X,XXX]
+            const priceEl = card.querySelector('.price-aed');
+            if (priceEl) {
+              priceEl.setAttribute('data-base-aed', liveItem.priceAED);
+              priceEl.textContent = `AED ${Number(liveItem.priceAED).toLocaleString()}`;
+            }
+
+            // Tabby installment line: or 4x AED [Math.round(X / 4)]/mo with Tabby
+            const tabbyAmount = Math.round(liveItem.priceAED / 4);
+            const tabbyLine = card.querySelector('.tabby-installment, [data-tabby-line]');
+            if (tabbyLine) {
+              tabbyLine.textContent = `or 4x AED ${tabbyAmount}/mo with Tabby`;
+            } else {
+              card.querySelectorAll('span, div, p').forEach(el => {
+                if (el.textContent && el.textContent.toLowerCase().includes('tabby')) {
+                  el.textContent = `or 4x AED ${tabbyAmount}/mo with Tabby`;
+                }
+              });
+            }
+
+            // Availability: dim card or display "Inquire for Next Dates" badge
+            const isAvail = liveItem.available !== false;
+            let unavailBadge = card.querySelector('.unavailable-badge');
+
+            if (!isAvail) {
+              card.classList.add('opacity-70', 'grayscale-[30%]');
+              if (!unavailBadge) {
+                unavailBadge = document.createElement('div');
+                unavailBadge.className = 'unavailable-badge absolute top-3 right-3 z-20 px-3 py-1 rounded-full text-xs font-bold bg-slate-900/90 text-amber-400 border border-amber-500/40 shadow-lg flex items-center gap-1.5';
+                unavailBadge.innerHTML = '<i class="fa-solid fa-clock text-[10px]"></i><span>Inquire for Next Dates</span>';
+                const imgContainer = card.querySelector('.img-container') || card;
+                imgContainer.appendChild(unavailBadge);
+              } else {
+                unavailBadge.classList.remove('hidden');
+              }
+            } else {
+              card.classList.remove('opacity-70', 'grayscale-[30%]');
+              if (unavailBadge) {
+                unavailBadge.classList.add('hidden');
+              }
+            }
+          });
+        });
       }
 
       // 5. Trigger global app price recalculations & re-renders

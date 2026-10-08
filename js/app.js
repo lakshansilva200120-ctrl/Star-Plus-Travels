@@ -90,11 +90,30 @@ function updateAllPriceDisplays() {
         });
       }
       if (liveData && liveData.packages) {
-        document.querySelectorAll('[data-pkg-id]').forEach(el => {
-          const pId = el.getAttribute('data-pkg-id');
-          if (liveData.packages[pId] && liveData.packages[pId].priceAED) {
-            el.setAttribute('data-base-aed', liveData.packages[pId].priceAED);
-          }
+        const pkgMap = [
+          { key: 'dubaiLuxury', ids: ['dubai-luxury'] },
+          { key: 'sriLankaScenic', ids: ['sri-lanka-scenic', 'sri-lanka-wildlife', 'sri-lanka-wonders'] },
+          { key: 'bakuAzerbaijan', ids: ['baku-azerbaijan', 'baku-caucasus'] },
+          { key: 'maldivesParadise', ids: ['maldives-paradise', 'maldives-all-inclusive', 'maldives-escape'] },
+          { key: 'baliGetaway', ids: ['bali-getaway', 'bali-luxury-nature'] },
+          { key: 'turkeyBalloons', ids: ['turkey-balloons', 'turkey-istanbul-cappadocia'] },
+          { key: 'umrahPremium', ids: ['umrah-premium', 'umrah-spiritual-package'] },
+          { key: 'dubaiMice', ids: ['dubai-mice', 'dubai-corporate-mice'] },
+          { key: 'caucasusRetreat', ids: ['caucasus-retreat', 'baku-corporate-retreat'] },
+          { key: 'uaeGoldenVisa', ids: ['uae-golden-visa', 'uae-golden-visa-bundle'] },
+          { key: 'georgiaKazbegi', ids: ['georgia-kazbegi'] }
+        ];
+
+        pkgMap.forEach(({ key, ids }) => {
+          const item = liveData.packages[key];
+          if (!item) return;
+          const selector = ids.map(id => `[data-package-id="${id}"], [data-pkg-id="${id}"]`).join(', ');
+          document.querySelectorAll(selector).forEach(card => {
+            const priceEl = card.querySelector('.price-aed') || card;
+            if (priceEl && priceEl.setAttribute) {
+              priceEl.setAttribute('data-base-aed', item.priceAED);
+            }
+          });
         });
       }
     } catch (e) {}
@@ -869,6 +888,12 @@ const PACKAGES_I18N = {
     duration: 'දින 5 / රාත්‍රී 4',
     badge: 'වැඩිම ඉල්ලුමක් ඇති'
   },
+  'sri-lanka-scenic': {
+    title: 'සුන්දර ශ්‍රී ලංකාව: තේ වතු, වනජීවී සෆාරි සහ වෙරළ',
+    destination: 'කොළඹ, මහනුවර සහ බෙන්තොට',
+    duration: 'දින 6 / රාත්‍රී 5',
+    badge: 'ජනප්‍රියම'
+  },
   'sri-lanka-wildlife': {
     title: 'සුන්දර ශ්‍රී ලංකාව: තේ වතු, වනජීවී සෆාරි සහ වෙරළ',
     destination: 'කොළඹ, මහනුවර සහ බෙන්තොට',
@@ -887,11 +912,23 @@ const PACKAGES_I18N = {
     duration: 'දින 6 / රාත්‍රී 5',
     badge: 'ශීත ඍතු විශේෂ'
   },
+  'maldives-paradise': {
+    title: 'මාලදිවයින දියමත විලා සුඛෝපභෝගී නිවාඩුව',
+    destination: 'උතුරු මාලේ අතොළුව, මාලදිවයින',
+    duration: 'දින 4 / රාත්‍රී 3',
+    badge: 'රොමෑන්ටික් නිවාඩුවක්'
+  },
   'maldives-all-inclusive': {
     title: 'මාලදිවයින දියමත විලා සුඛෝපභෝගී නිවාඩුව',
     destination: 'උතුරු මාලේ අතොළුව, මාලදිවයින',
     duration: 'දින 4 / රාත්‍රී 3',
     badge: 'රොමෑන්ටික් නිවාඩුවක්'
+  },
+  'bali-getaway': {
+    title: 'ස්වර්ගීය බාලි චාරිකාව: උබුඩ් සහ සෙමින්‍යක්',
+    destination: 'බාලි, ඉන්දුනීසියාව',
+    duration: 'දින 7 / රාත්‍රී 6',
+    badge: 'වැඩිම ඉල්ලුමක් ඇති'
   },
   'bali-luxury-nature': {
     title: 'ස්වර්ගීය බාලි චාරිකාව: උබුඩ් සහ සෙමින්‍යක්',
@@ -899,11 +936,23 @@ const PACKAGES_I18N = {
     duration: 'දින 7 / රාත්‍රී 6',
     badge: 'වැඩිම ඉල්ලුමක් ඇති'
   },
+  'turkey-balloons': {
+    title: 'සුන්දර තුර්කිය: ඉස්තාන්බුල් සහ කැපඩෝසියා බැලූන් චාරිකාව',
+    destination: 'ඉස්තාන්බුල් සහ කැපඩෝසියා, තුර්කිය',
+    duration: 'දින 6 / රාත්‍රී 5',
+    badge: 'විශේෂ චාරිකාව'
+  },
   'turkey-istanbul-cappadocia': {
     title: 'සුන්දර තුර්කිය: ඉස්තාන්බුල් සහ කැපඩෝසියා බැලූන් චාරිකාව',
     destination: 'ඉස්තාන්බුල් සහ කැපඩෝසියා, තුර්කිය',
     duration: 'දින 6 / රාත්‍රී 5',
     badge: 'විශේෂ චාරිකාව'
+  },
+  'umrah-premium': {
+    title: 'ප්‍රිමියම් උම්රා වන්දනා ගමන',
+    destination: 'මක්කම සහ මදීනා, සෞදි අරාබිය',
+    duration: 'දින 7 / රාත්‍රී 6',
+    badge: 'සුවිශේෂී වන්දනාව'
   },
   'umrah-spiritual-package': {
     title: 'ප්‍රිමියම් උම්රා වන්දනා ගමන',
@@ -911,11 +960,23 @@ const PACKAGES_I18N = {
     duration: 'දින 7 / රාත්‍රී 6',
     badge: 'සුවිශේෂී වන්දනාව'
   },
+  'dubai-mice': {
+    title: 'විධායක ඩුබායි MICE සහ ආයතනික සමුළු පැකේජය',
+    destination: 'ඩුබායි සහ අබුඩාබි, එ.අ.එ.',
+    duration: 'දින 4 / රාත්‍රී 3',
+    badge: 'ආයතනික VIP'
+  },
   'dubai-corporate-mice': {
     title: 'විධායක ඩුබායි MICE සහ ආයතනික සමුළු පැකේජය',
     destination: 'ඩුබායි සහ අබුඩාබි, එ.අ.එ.',
     duration: 'දින 4 / රාත්‍රී 3',
     badge: 'ආයතනික VIP'
+  },
+  'caucasus-retreat': {
+    title: 'කොකේසස් විධායක නායකත්ව සහ කණ්ඩායම් සංචාරක පැකේජය',
+    destination: 'බාකු සහ ෂාඩාග්, අසර්බයිජාන්',
+    duration: 'දින 5 / රාත්‍රී 4',
+    badge: 'විධායක සංචාරය'
   },
   'baku-corporate-retreat': {
     title: 'කොකේසස් විධායක නායකත්ව සහ කණ්ඩායම් සංචාරක පැකේජය',
@@ -923,17 +984,17 @@ const PACKAGES_I18N = {
     duration: 'දින 5 / රාත්‍රී 4',
     badge: 'විධායක සංචාරය'
   },
-  'uae-golden-visa-bundle': {
+  'uae-golden-visa': {
     title: 'එ.අ.එ. වසර 10 ක ගෝල්ඩන් වීසා සහ පදිංචි වීමේ සේවා පැකේජය',
     destination: 'ඩුබායි, එක්සත් අරාබි එමීර් රාජ්‍යය',
     duration: 'දින 5-7 සීඝ්‍රගාමී',
     badge: 'ගෝල්ඩන් වීසා'
   },
-  'schengen-visa-travel-bundle': {
-    title: 'යුරෝපා ෂෙන්ගන් එක්ස්ප්‍රස් වීසා සහ ගුවන් ටිකට්පත් පැකේජය',
-    destination: 'ප්‍රංශය, ස්විට්සර්ලන්තය සහ ඉතාලිය',
-    duration: 'දින 10-15 සේවා කාලය',
-    badge: 'සහතික කළ අවස්ථාව'
+  'uae-golden-visa-bundle': {
+    title: 'එ.අ.එ. වසර 10 ක ගෝල්ඩන් වීසා සහ පදිංචි වීමේ සේවා පැකේජය',
+    destination: 'ඩුබායි, එක්සත් අරාබි එමීර් රාජ්‍යය',
+    duration: 'දින 5-7 සීඝ්‍රගාමී',
+    badge: 'ගෝල්ඩන් වීසා'
   }
 };
 
@@ -941,6 +1002,7 @@ const PACKAGES_I18N = {
 const PACKAGES = [
   {
     id: 'dubai-luxury',
+    legacyId: 'dubai-luxury',
     title: 'Ultimate Dubai & Desert Safari Extravaganza',
     category: 'dubai',
     categoryTag: 'CITY BREAK & LUXURY',
@@ -975,7 +1037,8 @@ const PACKAGES = [
     ]
   },
   {
-    id: 'sri-lanka-wildlife',
+    id: 'sri-lanka-scenic',
+    legacyId: 'sri-lanka-wildlife',
     title: 'Scenic Sri Lanka: Tea Hills, Wildlife & Beaches',
     category: 'srilanka',
     categoryTag: 'SAFARI & WILDLIFE',
@@ -1012,6 +1075,7 @@ const PACKAGES = [
   },
   {
     id: 'baku-azerbaijan',
+    legacyId: 'baku-azerbaijan',
     title: 'Baku & Caucasus Wonders of Azerbaijan',
     category: 'caucasus',
     categoryTag: 'ALPINE & HERITAGE',
@@ -1047,44 +1111,8 @@ const PACKAGES = [
     ]
   },
   {
-    id: 'georgia-kazbegi',
-    title: 'Magical Georgia: Tbilisi, Kazbegi & Gudauri',
-    category: 'caucasus',
-    categoryTag: 'ALPINE & HERITAGE',
-    destination: 'Tbilisi & Caucasus, Georgia',
-    tagline: 'OLD TBILISI & CAUCASIAN SNOW CAPS',
-    editorialSummary: 'Wander the cobblestone sulfur bath alleys of Old Tbilisi, drive the dramatic Georgian Military Highway past turquoise Jinvali Reservoir, and take a 4x4 up to the 14th-century Gergeti Trinity Church under Mount Kazbek.',
-    highlightTags: ['⛪ Gergeti Trinity Church', '🏔️ Mount Kazbek 4x4', '🍷 Old Tbilisi Wine & Baths'],
-    flag: '<i class="fa-solid fa-snowflake text-amber-400"></i>',
-    duration: '6 Days / 5 Nights',
-    rating: 4.9,
-    reviews: 118,
-    badge: 'Winter Special',
-    badgeColor: 'from-indigo-500 to-purple-500',
-    image: 'assets/packages/georgia-kazbegi.jpg',
-    fallback: 'assets/packages/georgia-kazbegi.jpg',
-    alt: 'Gergeti Trinity Church and Mount Kazbek Caucasus Mountains, Georgia',
-    galleryImages: [
-      { image: 'assets/packages/georgia-kazbegi.jpg', title: 'Gergeti Trinity Church & Mount Kazbek' },
-      { image: 'assets/packages/georgia-kazbegi.jpg', title: 'Old Tbilisi Colorful Balconies & Narikala' },
-      { image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=80', title: 'Ananuri Fortress & Aragvi River' },
-      { image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80', title: 'Gudauri Caucasus Ski Slopes' }
-    ],
-    priceAED: 2290,
-    originalPriceAED: 2950,
-    priceLKR: 'LKR 200,000',
-    perks: ['Direct Flights Option', '4★ Boutique Hotel in Old Tbilisi', 'Kazbegi 4x4 Mountain Excursion', 'Traditional Georgian Feast & Wine', 'Roundtrip Transfers'],
-    itinerary: [
-      { day: 1, title: 'Welcome to Tbilisi & Narikala Fortress Cable Car', desc: 'Private airport greeting, ride the cable car over the old town, explore sulfur bath district.' },
-      { day: 2, title: 'Mtskheta Ancient Capital & Jvari Monastery', desc: 'Visit UNESCO World Heritage sites at the confluence of Mtkvari and Aragvi rivers.' },
-      { day: 3, title: 'Ananuri Fortress, Gudauri & Gergeti Trinity Church', desc: 'Drive the Military Highway, stop at Ananuri fortress, 4x4 trek to Gergeti church.' },
-      { day: 4, title: 'Kakheti Wine Region & Bodbe Monastery', desc: 'Tour cradle of wine in Kakheti, taste Qvevri wines, visit Bodbe convent.' },
-      { day: 5, title: 'Tbilisi Sulphur Baths & Shopping Leisure', desc: 'Relax in historic sulfur thermal baths and stroll Rustaveli Avenue.' },
-      { day: 6, title: 'Departure Flight Transfer', desc: 'Leisurely breakfast and private chauffeur transfer to TBS Airport.' }
-    ]
-  },
-  {
-    id: 'maldives-all-inclusive',
+    id: 'maldives-paradise',
+    legacyId: 'maldives-all-inclusive',
     title: 'Maldives Overwater Villa Paradise Escape',
     category: 'tropical',
     categoryTag: 'TROPICAL ESCAPE',
@@ -1117,7 +1145,8 @@ const PACKAGES = [
     ]
   },
   {
-    id: 'bali-luxury-nature',
+    id: 'bali-getaway',
+    legacyId: 'bali-luxury-nature',
     title: 'Bali Heavenly Getaway: Ubud & Seminyak',
     category: 'tropical',
     categoryTag: 'TROPICAL ESCAPE',
@@ -1153,7 +1182,8 @@ const PACKAGES = [
     ]
   },
   {
-    id: 'turkey-istanbul-cappadocia',
+    id: 'turkey-balloons',
+    legacyId: 'turkey-istanbul-cappadocia',
     title: 'Classic Turkey: Istanbul & Cappadocia Balloons',
     category: 'caucasus',
     categoryTag: 'ALPINE & HERITAGE',
@@ -1187,7 +1217,8 @@ const PACKAGES = [
     ]
   },
   {
-    id: 'umrah-spiritual-package',
+    id: 'umrah-premium',
+    legacyId: 'umrah-spiritual-package',
     title: 'Premium Umrah Spiritual Journey',
     category: 'spiritual',
     categoryTag: 'SPIRITUAL JOURNEY',
@@ -1222,7 +1253,8 @@ const PACKAGES = [
     ]
   },
   {
-    id: 'dubai-corporate-mice',
+    id: 'dubai-mice',
+    legacyId: 'dubai-corporate-mice',
     title: 'Executive Dubai MICE, Gala & Corporate Summit',
     category: 'corporate',
     categoryTag: 'CORPORATE & MICE',
@@ -1255,7 +1287,8 @@ const PACKAGES = [
     ]
   },
   {
-    id: 'baku-corporate-retreat',
+    id: 'caucasus-retreat',
+    legacyId: 'baku-corporate-retreat',
     title: 'Caucasus Executive Leadership & Team Incentive Retreat',
     category: 'corporate',
     categoryTag: 'CORPORATE & RETREAT',
@@ -1289,7 +1322,8 @@ const PACKAGES = [
     ]
   },
   {
-    id: 'uae-golden-visa-bundle',
+    id: 'uae-golden-visa',
+    legacyId: 'uae-golden-visa-bundle',
     title: 'UAE 10-Year Golden Visa & Concierge Relocation Bundle',
     category: 'visa-bundle',
     categoryTag: 'RESIDENCY & CONCIERGE',
@@ -1322,37 +1356,41 @@ const PACKAGES = [
     ]
   },
   {
-    id: 'schengen-visa-travel-bundle',
-    title: 'Schengen Europe Express Visa + Flight Booking Bundle',
-    category: 'visa-bundle',
-    categoryTag: 'VISA & TRAVEL BUNDLE',
-    tags: ['visa-bundle', 'caucasus'],
-    destination: 'France, Switzerland & Italy',
-    tagline: 'EFFORTLESS EUROPEAN TRAVEL CLEARANCE',
-    editorialSummary: 'Guaranteed embassy appointment slots, official flight and hotel booking certificates, personalized day-by-day itineraries, and comprehensive Schengen travel insurance.',
-    highlightTags: ['🇪🇺 Guaranteed Embassy Slot', '📄 Verified Flight & Hotel Vouchers', '🛡️ Full Travel Insurance'],
-    flag: '<i class="fa-solid fa-file-shield text-amber-400"></i>',
-    duration: '10-15 Days Processing',
+    id: 'georgia-kazbegi',
+    legacyId: 'georgia-kazbegi',
+    title: 'Magical Georgia: Tbilisi, Kazbegi & Gudauri',
+    category: 'caucasus',
+    categoryTag: 'ALPINE & HERITAGE',
+    destination: 'Tbilisi & Caucasus, Georgia',
+    tagline: 'OLD TBILISI & CAUCASIAN SNOW CAPS',
+    editorialSummary: 'Wander the cobblestone sulfur bath alleys of Old Tbilisi, drive the dramatic Georgian Military Highway past turquoise Jinvali Reservoir, and take a 4x4 up to the 14th-century Gergeti Trinity Church under Mount Kazbek.',
+    highlightTags: ['⛪ Gergeti Trinity Church', '🏔️ Mount Kazbek 4x4', '🍷 Old Tbilisi Wine & Baths'],
+    flag: '<i class="fa-solid fa-snowflake text-amber-400"></i>',
+    duration: '6 Days / 5 Nights',
     rating: 4.9,
-    reviews: 172,
-    badge: 'Guaranteed Slot',
-    badgeColor: 'from-emerald-600 to-teal-600',
-    image: 'assets/packages/schengen-europe-express.jpg',
-    alt: 'Iconic Eiffel Tower in Paris along the Seine river representing European Schengen journey across France, Switzerland and Italy',
+    reviews: 118,
+    badge: 'Winter Special',
+    badgeColor: 'from-indigo-500 to-purple-500',
+    image: 'assets/packages/georgia-kazbegi.jpg',
+    fallback: 'assets/packages/georgia-kazbegi.jpg',
+    alt: 'Gergeti Trinity Church and Mount Kazbek Caucasus Mountains, Georgia',
     galleryImages: [
-      { image: 'assets/packages/schengen-europe-express.jpg', title: 'Paris Eiffel Tower Europe' },
-      { image: 'assets/packages/georgia-kazbegi.jpg', title: 'Alpine Landscapes' }
+      { image: 'assets/packages/georgia-kazbegi.jpg', title: 'Gergeti Trinity Church & Mount Kazbek' },
+      { image: 'assets/packages/georgia-kazbegi.jpg', title: 'Old Tbilisi Colorful Balconies & Narikala' },
+      { image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=1200&q=80', title: 'Ananuri Fortress & Aragvi River' },
+      { image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80', title: 'Gudauri Caucasus Ski Slopes' }
     ],
-    priceAED: 1450,
-    originalPriceAED: 1950,
-    priceLKR: 'LKR 125,000',
-    perks: ['Guaranteed Embassy Appointment Slot', 'Official Confirmed Flight & Hotel Vouchers', 'Custom Day-by-Day Travel Itinerary', 'Comprehensive Schengen Travel Insurance', 'Senior Immigration Specialist Review'],
+    priceAED: 2250,
+    originalPriceAED: 2950,
+    priceLKR: 'LKR 200,000',
+    perks: ['Direct Flights Option', '4★ Boutique Hotel in Old Tbilisi', 'Kazbegi 4x4 Mountain Excursion', 'Traditional Georgian Feast & Wine', 'Roundtrip Transfers'],
     itinerary: [
-      { day: 1, title: 'Profile Assessment & Required Checklist Formulation', desc: 'Case officer review of bank statements, NOC letter, and flight dates.' },
-      { day: 2, title: 'Embassy Slot Confirmation & Application Submission', desc: 'Securing premium VFS/TLS/BLS appointment slot and online form submission.' },
-      { day: 3, title: 'Flight & Hotel Reservation Certificate Issuance', desc: 'Issuance of verifiably confirmed PNR flight itineraries and hotel bookings.' },
-      { day: 4, title: 'Biometrics Appointment Attendance Support', desc: 'Document pack handover and embassy interview briefing.' },
-      { day: 5, title: 'Passport Retrieval with Valid Visa Stamping', desc: 'Tracking and delivery of stamped passport to client doorstep.' }
+      { day: 1, title: 'Welcome to Tbilisi & Narikala Fortress Cable Car', desc: 'Private airport greeting, ride the cable car over the old town, explore sulfur bath district.' },
+      { day: 2, title: 'Mtskheta Ancient Capital & Jvari Monastery', desc: 'Visit UNESCO World Heritage sites at the confluence of Mtkvari and Aragvi rivers.' },
+      { day: 3, title: 'Ananuri Fortress, Gudauri & Gergeti Trinity Church', desc: 'Drive the Military Highway, stop at Ananuri fortress, 4x4 trek to Gergeti church.' },
+      { day: 4, title: 'Kakheti Wine Region & Bodbe Monastery', desc: 'Tour cradle of wine in Kakheti, taste Qvevri wines, visit Bodbe convent.' },
+      { day: 5, title: 'Tbilisi Sulphur Baths & Shopping Leisure', desc: 'Relax in historic sulfur thermal baths and stroll Rustaveli Avenue.' },
+      { day: 6, title: 'Departure Flight Transfer', desc: 'Leisurely breakfast and private chauffeur transfer to TBS Airport.' }
     ]
   }
 ];
@@ -1903,7 +1941,25 @@ function renderPackages(filteredList = PACKAGES) {
     return;
   }
 
+  // Sync with live pricing store if available
+  if (typeof window !== 'undefined' && window.StarplusPricing && typeof window.StarplusPricing.getPricing === 'function') {
+    const pStore = window.StarplusPricing.getPricing();
+    if (pStore && pStore.packages) {
+      filteredList.forEach(pkg => {
+        const live = pStore.packages[pkg.id] || (pkg.legacyId && pStore.packages[pkg.legacyId]);
+        if (live) {
+          if (typeof live.priceAED === 'number') pkg.priceAED = live.priceAED;
+          if (typeof live.priceUSD === 'number') pkg.priceUSD = live.priceUSD;
+          if (live.duration) pkg.duration = live.duration;
+          if (live.badge) pkg.badge = live.badge;
+          if (typeof live.available === 'boolean') pkg.available = live.available;
+        }
+      });
+    }
+  }
+
   grid.innerHTML = filteredList.map(pkg => {
+    const isAvailable = pkg.available !== false;
     const formattedPrice = formatPrice(pkg.priceAED);
     const formattedOriginal = formatPrice(pkg.originalPriceAED);
     const monthlyInstallment = formatPrice(Math.round(pkg.priceAED / 4));
@@ -1917,19 +1973,23 @@ function renderPackages(filteredList = PACKAGES) {
     const startingFromText = t.startingFrom || 'Starting from';
     const perPersonText = t.perPerson || 'per person';
     const installmentText = currentLang === 'si' 
-      ? `හෝ Tabby මගින් මසකට 4x ${monthlyInstallment}`
-      : `or 4x ${monthlyInstallment}/mo with Tabby`;
+      ? `හෝ Tabby මගින් මසකට 4x AED ${Math.round(pkg.priceAED / 4)}`
+      : `or 4x AED ${Math.round(pkg.priceAED / 4)}/mo with Tabby`;
     const itineraryBtnText = t.itineraryBtn || 'Itinerary';
-    const quoteBtnText = currentLang === 'si' ? 'මිල ගණන්' : 'Request Quote';
-    const whatsappBtnText = currentLang === 'si' ? 'WhatsApp මගින් විමසන්න' : 'Inquire on WhatsApp';
+    const quoteBtnText = !isAvailable
+      ? (currentLang === 'si' ? 'ඊළඟ දින විමසන්න' : 'Inquire for Next Dates')
+      : (currentLang === 'si' ? 'මිල ගණන්' : 'Request Quote');
+    const whatsappBtnText = !isAvailable
+      ? (currentLang === 'si' ? 'ඊළඟ දින සඳහා WhatsApp කරන්න' : 'Inquire Next Dates on WhatsApp')
+      : (currentLang === 'si' ? 'WhatsApp මගින් විමසන්න' : 'Inquire on WhatsApp');
 
     const rawWaMsg = currentLang === 'si'
-      ? `හෙලෝ Star Plus Travels, මම "${title}" (${formattedPrice}) පැකේජය පිළිබඳ විස්තර සහ ලබාගත හැකි දින දැනගැනීමට කැමතියි.`
-      : `Hello Star Plus Travels, I would like to inquire about "${title}" (${formattedPrice} per person). Please share more details and availability.`;
+      ? `හෙලෝ Star Plus Travels, මම "${title}" (AED ${pkg.priceAED}) පැකේජය පිළිබඳ විස්තර සහ ලබාගත හැකි දින දැනගැනීමට කැමතියි.`
+      : `Hello Star Plus Travels, I would like to inquire about "${title}" (AED ${pkg.priceAED} per person). Please share more details and availability.`;
     const whatsappUrl = `https://wa.me/971527582293?text=${encodeURIComponent(rawWaMsg)}`;
 
     return `
-      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10 transition-all duration-300 w-full max-w-full box-border min-w-0" data-package-id="${pkg.id}" data-package-title="${encodeURIComponent(pkg.title)}" data-package-dest="${encodeURIComponent(pkg.destination || '')}">
+      <div class="package-card glass-card glass-card-hover rounded-2xl overflow-hidden flex flex-col relative group border border-slate-200 dark:border-white/10 transition-all duration-300 w-full max-w-full box-border min-w-0 ${!isAvailable ? 'opacity-70 grayscale-[30%]' : ''}" data-package-id="${pkg.id}" data-pkg-id="${pkg.legacyId || pkg.id}" data-package-title="${encodeURIComponent(pkg.title)}" data-package-dest="${encodeURIComponent(pkg.destination || '')}">
         <!-- Image & Badges -->
         <div class="img-container relative h-56 overflow-hidden bg-slate-900 w-full max-w-full">
           <img src="${pkg.image}" alt="${pkg.alt}" class="w-full h-full object-cover object-center" loading="lazy" onerror="this.onerror=null;this.src='${pkg.fallback || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80'}';">
@@ -1937,10 +1997,19 @@ function renderPackages(filteredList = PACKAGES) {
           
           <!-- Category & Bestseller Badge -->
           <div class="absolute top-3 left-3 flex flex-wrap gap-2 max-w-[80%]">
-            <span class="px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${pkg.badgeColor} shadow-md truncate max-w-full">
+            <span class="px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${pkg.badgeColor} shadow-md truncate max-w-full promo-badge-pill">
               ${badge}
             </span>
           </div>
+
+          ${!isAvailable ? `
+          <!-- Unavailable Badge -->
+          <div class="absolute top-3 right-3 z-10">
+            <span class="inquire-dates-badge px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider bg-rose-600/90 text-white shadow-lg border border-rose-400/30">
+              Inquire for Next Dates
+            </span>
+          </div>
+          ` : ''}
 
           <!-- Duration Pill -->
           <div class="absolute bottom-3 left-3 flex items-center space-x-1.5 px-3 py-1 rounded-lg bg-slate-900/85 backdrop-blur-md text-xs font-semibold text-slate-200 border border-slate-700/50">
@@ -1987,10 +2056,10 @@ function renderPackages(filteredList = PACKAGES) {
               <div class="min-w-0 flex-1">
                 <span class="text-[11px] text-slate-500 dark:text-slate-400 block font-medium truncate">${startingFromText}</span>
                 <div class="flex items-baseline space-x-2 flex-wrap">
-                  <span class="price-aed text-2xl font-black text-amber-600 dark:text-amber-400 font-heading" data-base-aed="${pkg.priceAED}">${formattedPrice}</span>
+                  <span class="price-aed text-2xl font-black text-amber-600 dark:text-amber-400 font-heading" data-base-aed="${pkg.priceAED}">AED ${pkg.priceAED.toLocaleString()}</span>
                   <span class="text-xs text-slate-400 dark:text-slate-500 line-through" data-base-aed="${pkg.originalPriceAED}">${formattedOriginal}</span>
                 </div>
-                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium block break-words">
+                <span class="tabby-installment text-[10px] text-emerald-600 dark:text-emerald-400 font-medium block break-words">
                   ${installmentText}
                 </span>
               </div>
@@ -2690,7 +2759,7 @@ function downloadCurrentPackageBrochure() {
 
 // Itinerary Modal Functionality
 function openItineraryModal(pkgId) {
-  const pkg = PACKAGES.find(p => p.id === pkgId);
+  const pkg = PACKAGES.find(p => p.id === pkgId || p.legacyId === pkgId);
   if (!pkg) return;
   currentActivePackage = pkg;
 
