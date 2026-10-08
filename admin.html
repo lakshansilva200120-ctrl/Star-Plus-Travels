@@ -35,6 +35,12 @@
       border: 1px solid rgba(245, 158, 11, 0.2);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .admin-glass-panel:hover {
+      transform: translateY(-4px);
+      border-color: rgba(245, 158, 11, 0.4);
+      box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6);
     }
     .admin-tab-btn.active {
       background: rgba(245, 158, 11, 0.15);
