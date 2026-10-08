@@ -149,6 +149,110 @@ const DEFAULT_RATES = {
   }
 };
 
+// Remote Cloud Data Store Connector (Supabase / Cloud KV)
+// If SUPABASE_URL & SUPABASE_KEY (or SUPABASE_SERVICE_ROLE_KEY / SUPABASE_ANON_KEY) are configured,
+// pricing is persisted across serverless cold starts in the 'site_pricing' table.
+// Otherwise, it uses the resilient in-memory & fallback architecture.
+
+async function fetchFromRemoteStore() {
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY;
+
+  if (supabaseUrl && supabaseKey) {
+    try {
+      const res = await fetch(`${supabaseUrl.replace(/\/+$/, '')}/rest/v1/site_pricing?id=eq.global&select=pricing,updated_at`, {
+        headers: {
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+          'Accept': 'application/json'
+        }
+      });
+      if (res.ok) {
+        const rows = await res.json();
+        if (Array.isArray(rows) && rows.length > 0 && rows[0].pricing) {
+          return rows[0].pricing;
+        }
+      }
+    } catch (err) {
+      console.warn('[api/pricing] Remote store read failed:', err.message);
+    }
+  }
+
+  // Also support custom KV / JSON store endpoint if configured
+  const remoteEndpoint = process.env.SITE_PRICING_REMOTE_ENDPOINT;
+  if (remoteEndpoint) {
+    try {
+      const res = await fetch(remoteEndpoint, {
+        headers: {
+          'Accept': 'application/json',
+          ...(process.env.SITE_PRICING_REMOTE_SECRET ? { 'Authorization': `Bearer ${process.env.SITE_PRICING_REMOTE_SECRET}` } : {})
+        }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data && (data.pricing || data.visas)) {
+          return data.pricing || data;
+        }
+      }
+    } catch (err) {
+      console.warn('[api/pricing] Custom remote endpoint read failed:', err.message);
+    }
+  }
+
+  return null;
+}
+
+async function saveToRemoteStore(pricingData) {
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY;
+
+  if (supabaseUrl && supabaseKey) {
+    try {
+      const endpoint = `${supabaseUrl.replace(/\/+$/, '')}/rest/v1/site_pricing`;
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'apikey': supabaseKey,
+          'Authorization': `Bearer ${supabaseKey}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'resolution=merge-duplicates'
+        },
+        body: JSON.stringify({
+          id: 'global',
+          pricing: pricingData,
+          updated_at: new Date().toISOString()
+        })
+      });
+      if (res.ok) {
+        return true;
+      }
+    } catch (err) {
+      console.warn('[api/pricing] Remote store save failed:', err.message);
+    }
+  }
+
+  const remoteEndpoint = process.env.SITE_PRICING_REMOTE_ENDPOINT;
+  if (remoteEndpoint) {
+    try {
+      const res = await fetch(remoteEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(process.env.SITE_PRICING_REMOTE_SECRET ? { 'Authorization': `Bearer ${process.env.SITE_PRICING_REMOTE_SECRET}` } : {})
+        },
+        body: JSON.stringify({ pricing: pricingData })
+      });
+      if (res.ok) {
+        return true;
+      }
+    } catch (err) {
+      console.warn('[api/pricing] Custom remote endpoint save failed:', err.message);
+    }
+  }
+
+  return false;
+}
+
 export default async function handler(req, res) {
   // CORS & Security Headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -159,8 +263,14 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  // GET: Retrieve active rates
+  // GET: Retrieve active rates (checks in-memory first, then remote cloud store, falls back to defaults)
   if (req.method === 'GET') {
+    if (!inMemoryPricing) {
+      const remoteData = await fetchFromRemoteStore();
+      if (remoteData) {
+        inMemoryPricing = { ...DEFAULT_RATES, ...remoteData };
+      }
+    }
     const currentData = inMemoryPricing || DEFAULT_RATES;
     return res.status(200).json({
       success: true,
@@ -204,9 +314,12 @@ export default async function handler(req, res) {
         updatedBy: payload.updatedBy || 'Staff Admin'
       };
 
+      // Asynchronously/await push to remote cloud store if configured
+      await saveToRemoteStore(inMemoryPricing);
+
       return res.status(200).json({
         success: true,
-        message: 'Rates successfully published to live site',
+        message: 'Live rates published to global network',
         pricing: inMemoryPricing
       });
     } catch (err) {

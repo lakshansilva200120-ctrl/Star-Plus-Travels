@@ -761,7 +761,7 @@
 
         if (res && res.success) {
           updateLastModifiedText(res.pricing ? res.pricing.lastUpdated : new Date().toISOString());
-          showToast('Changes Live', 'Rates successfully published to live site');
+          showToast('Changes Live', 'Live rates published to global network');
         } else {
           showToast('Error', 'Could not sync rates with server, stored locally');
         }

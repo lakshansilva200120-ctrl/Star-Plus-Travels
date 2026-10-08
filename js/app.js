@@ -1780,6 +1780,20 @@ const VISA_DATA_SI = {
   }
 };
 
+// Expose data structures globally for cross-module live pricing sync
+if (typeof window !== 'undefined') {
+  window.VISA_DATA = VISA_DATA;
+  window.VISA_DATA_SI = VISA_DATA_SI;
+  window.PACKAGES = PACKAGES;
+
+  // React to remote pricing updates
+  window.addEventListener('starplus:pricing-updated', (e) => {
+    if (typeof window.StarplusPricing !== 'undefined' && typeof window.StarplusPricing.syncDOM === 'function') {
+      window.StarplusPricing.syncDOM();
+    }
+  });
+}
+
 // Global Helpers
 function formatPrice(amountInAED) {
   const info = CURRENCIES[currentCurrency];

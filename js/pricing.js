@@ -318,9 +318,73 @@
         }
       });
 
-      // 3. Trigger global app price recalculations
+      // 3. Update window.VISA_DATA and window.VISA_DATA_SI if defined in global scope
+      if (typeof window !== 'undefined') {
+        if (window.VISA_DATA) {
+          if (data.visas.uae30Day && window.VISA_DATA.uae) {
+            window.VISA_DATA.uae.priceAED = data.visas.uae30Day.priceAED;
+            window.VISA_DATA.uae.rateHeadline = `From ${data.visas.uae30Day.priceAED} AED | ${data.visas.uae30Day.processingTime}`;
+          }
+          if (data.visas.omanBusChange && window.VISA_DATA.oman_change) {
+            window.VISA_DATA.oman_change.priceAED = data.visas.omanBusChange.priceAED;
+            window.VISA_DATA.oman_change.rateHeadline = `From ${data.visas.omanBusChange.priceAED} AED (${data.visas.omanBusChange.processingTime})`;
+          }
+          if (data.visas.schengenConcierge && window.VISA_DATA.schengen) {
+            window.VISA_DATA.schengen.priceAED = data.visas.schengenConcierge.priceAED;
+            window.VISA_DATA.schengen.rateHeadline = `From ${data.visas.schengenConcierge.priceAED} AED (Appointment Booking, Flight/Hotel Vouchers, Insurance)`;
+          }
+          if (data.visas.sriLankaEta && window.VISA_DATA.srilanka) {
+            window.VISA_DATA.srilanka.priceAED = data.visas.sriLankaEta.priceAED;
+            window.VISA_DATA.srilanka.rateHeadline = `From ${data.visas.sriLankaEta.priceAED} AED | ${data.visas.sriLankaEta.processingTime}`;
+          }
+        }
+
+        if (window.VISA_DATA_SI) {
+          if (data.visas.uae30Day && window.VISA_DATA_SI.uae) {
+            window.VISA_DATA_SI.uae.priceAED = data.visas.uae30Day.priceAED;
+            window.VISA_DATA_SI.uae.rateHeadline = `AED ${data.visas.uae30Day.priceAED} සිට | පැය 24–48 කඩිනම් සේවාව`;
+          }
+          if (data.visas.omanBusChange && window.VISA_DATA_SI.oman_change) {
+            window.VISA_DATA_SI.oman_change.priceAED = data.visas.omanBusChange.priceAED;
+            window.VISA_DATA_SI.oman_change.rateHeadline = `AED ${data.visas.omanBusChange.priceAED} සිට (එදිනම බස් රථ ගමන සහ වීසා අලුත් කිරීම)`;
+          }
+          if (data.visas.schengenConcierge && window.VISA_DATA_SI.schengen) {
+            window.VISA_DATA_SI.schengen.priceAED = data.visas.schengenConcierge.priceAED;
+            window.VISA_DATA_SI.schengen.rateHeadline = `AED ${data.visas.schengenConcierge.priceAED} සිට (දිනයක් වෙන්කිරීම, හෝටල්/ගුවන් ටිකට් සහ රක්ෂණාවරණය)`;
+          }
+          if (data.visas.sriLankaEta && window.VISA_DATA_SI.srilanka) {
+            window.VISA_DATA_SI.srilanka.priceAED = data.visas.sriLankaEta.priceAED;
+            window.VISA_DATA_SI.srilanka.rateHeadline = `AED ${data.visas.sriLankaEta.priceAED} සිට | ${data.visas.sriLankaEta.processingTime}`;
+          }
+        }
+
+        // 4. Update window.PACKAGES prices if present
+        if (Array.isArray(window.PACKAGES)) {
+          window.PACKAGES.forEach(pkg => {
+            if (pkg.id === 'dubai-luxury' && data.packages.dubaiLuxury) {
+              pkg.priceAED = data.packages.dubaiLuxury.priceAED;
+            } else if (pkg.id === 'sri-lanka-wonders' && data.packages.sriLankaWonders) {
+              pkg.priceAED = data.packages.sriLankaWonders.priceAED;
+            } else if (pkg.id === 'baku-azerbaijan' && data.packages.bakuCaucasus) {
+              pkg.priceAED = data.packages.bakuCaucasus.priceAED;
+            } else if (pkg.id === 'georgia-kazbegi' && data.packages.georgiaKazbegi) {
+              pkg.priceAED = data.packages.georgiaKazbegi.priceAED;
+            } else if (pkg.id === 'maldives-escape' && data.packages.maldivesEscape) {
+              pkg.priceAED = data.packages.maldivesEscape.priceAED;
+            }
+          });
+        }
+      }
+
+      // 5. Trigger global app price recalculations & re-renders
       if (typeof window.updateAllPriceDisplays === 'function') {
         window.updateAllPriceDisplays();
+      }
+      if (typeof window.checkVisaRequirements === 'function' && document.getElementById('visaResultCard')) {
+        window.checkVisaRequirements();
+      }
+      if (typeof window.renderPackages === 'function' && (document.getElementById('packages-grid') || document.getElementById('packagesGrid'))) {
+        window.renderPackages();
       }
     }
   }
