@@ -1027,49 +1027,52 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
 /* Explore Row Links */
 .explore-row,
 .nav-dropdown-item {
-  display: flex;
-  align-items: center;
-  padding: 10px 14px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 14px !important;
+  border-radius: 10px !important;
+  text-decoration: none !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+  box-sizing: border-box;
 }
 
 .explore-row:hover,
 .nav-dropdown-item:hover {
-  background: rgba(245, 158, 11, 0.1);
+  background: rgba(245, 158, 11, 0.1) !important;
 }
 
-.icon-wrap {
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 12px;
-  flex-shrink: 0;
-}
-
-.gold-icon {
-  width: 20px;
-  height: 20px;
-  color: #f59e0b;
-  fill: #f59e0b;
-  flex-shrink: 0;
+.explore-row i,
+.nav-dropdown-item i {
+  color: #f59e0b !important;
+  font-size: 15px !important;
+  width: 18px !important;
+  text-align: center !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .explore-row .label,
-.nav-dropdown-item .label {
-  font-size: 14.5px;
+.nav-dropdown-item .label,
+.explore-row span[data-i18n],
+.nav-dropdown-item span[data-i18n],
+.explore-row > span:not(.dot-badge):not(.intake-pill),
+.nav-dropdown-item > span:not(.dot-badge):not(.intake-pill) {
+  font-size: 14px;
   font-weight: 500;
   color: #ffffff;
-  flex-grow: 1;
   white-space: nowrap;
   transition: color 0.15s ease;
 }
 
 .explore-row:hover .label,
-.nav-dropdown-item:hover .label {
+.nav-dropdown-item:hover .label,
+.explore-row:hover span[data-i18n],
+.nav-dropdown-item:hover span[data-i18n],
+.explore-row:hover > span:not(.dot-badge):not(.intake-pill),
+.nav-dropdown-item:hover > span:not(.dot-badge):not(.intake-pill) {
   color: #f59e0b;
 }
 
@@ -1078,7 +1081,8 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
   height: 7px;
   border-radius: 50%;
   background: #10b981;
-  margin-left: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .intake-pill {
@@ -1089,7 +1093,8 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
   color: #f59e0b;
   padding: 2px 7px;
   border-radius: 6px;
-  margin-left: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 /* Light Theme Navigation Dropdowns */
@@ -1107,7 +1112,13 @@ html.light .nav-dropdown-menu,
 html.light .explore-row .label,
 :root:not(.dark) .explore-row .label,
 html.light .nav-dropdown-item .label,
-:root:not(.dark) .nav-dropdown-item .label {
+:root:not(.dark) .nav-dropdown-item .label,
+html.light .explore-row span[data-i18n],
+:root:not(.dark) .explore-row span[data-i18n],
+html.light .nav-dropdown-item span[data-i18n],
+:root:not(.dark) .nav-dropdown-item span[data-i18n],
+html.light .explore-row > span:not(.dot-badge):not(.intake-pill),
+:root:not(.dark) .explore-row > span:not(.dot-badge):not(.intake-pill) {
   color: #1e293b;
 }
 
