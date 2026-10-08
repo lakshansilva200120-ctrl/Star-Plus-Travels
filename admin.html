@@ -52,6 +52,19 @@
       border-color: rgba(245, 158, 11, 0.7);
       box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
     }
+    @keyframes resetHighlight {
+      0% {
+        border-color: rgba(245, 158, 11, 0.9);
+        box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+      }
+      100% {
+        border-color: rgba(245, 158, 11, 0.2);
+        box-shadow: none;
+      }
+    }
+    .card-reset-highlight {
+      animation: resetHighlight 1.4s ease-out forwards;
+    }
   </style>
 
   <!-- Immediate Theme Initialization Script -->
@@ -435,6 +448,64 @@
         }
       }
 
+      // Baseline Defaults for Service Cards
+      const BASELINE_VISA_DEFAULTS = {
+        uae30Day: {
+          id: 'uae-30-day',
+          name: '30-Day Single Entry Tourist Visa',
+          priceAED: 380,
+          priceUSD: 105,
+          available: true,
+          processingTime: '24–48 Hours',
+          notes: 'Includes mandatory medical insurance'
+        },
+        uae60Day: {
+          id: 'uae-60-day',
+          name: '60-Day Single Entry Tourist Visa',
+          priceAED: 590,
+          priceUSD: 165,
+          available: true,
+          processingTime: '24–48 Hours',
+          notes: 'Includes mandatory medical insurance'
+        },
+        expressFee: {
+          id: 'express-fee',
+          name: 'VIP Express Same-Day Processing Surcharge',
+          priceAED: 150,
+          priceUSD: 42,
+          available: true,
+          processingTime: '6–12 Hours',
+          notes: 'Priority immigration clearance queue'
+        },
+        omanBusChange: {
+          id: 'oman-bus-change',
+          name: 'Oman Visa Change by Luxury Coach',
+          priceAED: 290,
+          priceUSD: 80,
+          available: true,
+          processingTime: 'Daily Departures',
+          notes: 'Roundtrip coach + hotel room stay included'
+        },
+        schengenConcierge: {
+          id: 'schengen-concierge',
+          name: 'Schengen Concierge & File Prep',
+          priceAED: 650,
+          priceUSD: 180,
+          available: true,
+          processingTime: 'Fast Slot Alerts',
+          notes: 'VFS/TLS file prep, dummy tickets, travel insurance'
+        },
+        sriLankaEta: {
+          id: 'sri-lanka-eta',
+          name: 'Sri Lanka Electronic ETA',
+          priceAED: 240,
+          priceUSD: 68,
+          available: true,
+          processingTime: '6–24 Hours',
+          notes: 'Double entry 30-day tourist approval'
+        }
+      };
+
       // Render Visas Tab
       function renderVisas() {
         const grid = document.getElementById('visaCardsGrid');
@@ -444,18 +515,29 @@
         Object.keys(currentPricing.visas).forEach(key => {
           const item = currentPricing.visas[key];
           const card = document.createElement('div');
-          card.className = 'admin-glass-panel p-5 rounded-2xl flex flex-col justify-between space-y-4';
+          card.id = `visa-card-${key}`;
+          card.className = 'admin-glass-panel p-5 rounded-2xl flex flex-col justify-between space-y-4 transition-all duration-300';
           card.innerHTML = `
             <div>
-              <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center justify-between gap-2 mb-2">
                 <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">${item.id}</span>
-                <label class="relative inline-flex items-center cursor-pointer">
-                  <input type="checkbox" data-visa-toggle="${key}" ${item.available ? 'checked' : ''} class="sr-only peer">
-                  <div class="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
-                  <span class="ml-2 text-xs font-semibold ${item.available ? 'text-emerald-400' : 'text-slate-400'} status-label">
-                    ${item.available ? 'Available' : 'On Hold'}
-                  </span>
-                </label>
+                <div class="flex items-center gap-2">
+                  <button 
+                    type="button" 
+                    data-reset-card="${key}" 
+                    title="Reset ${item.name} to factory default rates"
+                    class="text-xs text-slate-400 hover:text-amber-400 flex items-center gap-1 transition-colors px-2 py-1 rounded bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 cursor-pointer"
+                  >
+                    <span>&#x21BA; Reset</span>
+                  </button>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" data-visa-toggle="${key}" ${item.available ? 'checked' : ''} class="sr-only peer">
+                    <div class="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                    <span class="ml-2 text-xs font-semibold ${item.available ? 'text-emerald-400' : 'text-slate-400'} status-label">
+                      ${item.available ? 'Available' : 'On Hold'}
+                    </span>
+                  </label>
+                </div>
               </div>
               <h4 class="text-sm font-bold text-white">${item.name}</h4>
               <p class="text-xs text-slate-400 mt-1">${item.notes || ''}</p>
@@ -490,6 +572,61 @@
             if (label) {
               label.textContent = e.target.checked ? 'Available' : 'On Hold';
               label.className = `ml-2 text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} status-label`;
+            }
+          });
+        });
+
+        // Add reset listeners
+        grid.querySelectorAll('[data-reset-card]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const key = btn.getAttribute('data-reset-card');
+            const defaultItem = BASELINE_VISA_DEFAULTS[key] || (window.StarplusPricing && window.StarplusPricing.DEFAULT_PRICING && window.StarplusPricing.DEFAULT_PRICING.visas[key]);
+            if (!defaultItem) return;
+
+            // 1. Re-populate local draft state
+            if (currentPricing && currentPricing.visas && currentPricing.visas[key]) {
+              currentPricing.visas[key].priceAED = defaultItem.priceAED;
+              currentPricing.visas[key].priceUSD = defaultItem.priceUSD;
+              currentPricing.visas[key].processingTime = defaultItem.processingTime;
+              currentPricing.visas[key].available = true;
+            }
+
+            // 2. Re-populate inputs in this card
+            const card = document.getElementById(`visa-card-${key}`);
+            if (card) {
+              const aedInput = card.querySelector(`[data-visa-field="${key}"][data-prop="priceAED"]`);
+              if (aedInput) aedInput.value = defaultItem.priceAED;
+
+              const usdInput = card.querySelector(`[data-visa-field="${key}"][data-prop="priceUSD"]`);
+              if (usdInput) usdInput.value = defaultItem.priceUSD;
+
+              const timeInput = card.querySelector(`[data-visa-field="${key}"][data-prop="processingTime"]`);
+              if (timeInput) timeInput.value = defaultItem.processingTime;
+
+              const toggleInput = card.querySelector(`[data-visa-toggle="${key}"]`);
+              if (toggleInput) {
+                toggleInput.checked = true;
+                const statusLabel = card.querySelector('.status-label');
+                if (statusLabel) {
+                  statusLabel.textContent = 'Available';
+                  statusLabel.className = 'ml-2 text-xs font-semibold text-emerald-400 status-label';
+                }
+              }
+
+              // 3. Visual feedback: flash amber border & show quick indicator on button
+              card.classList.remove('card-reset-highlight');
+              void card.offsetWidth; // Force DOM reflow to retrigger animation
+              card.classList.add('card-reset-highlight');
+
+              const originalBtnContent = btn.innerHTML;
+              btn.innerHTML = '<i class="fa-solid fa-check text-amber-400"></i><span class="text-amber-400 font-bold">Reset!</span>';
+              btn.classList.add('border-amber-500/60', 'bg-amber-500/10');
+              setTimeout(() => {
+                btn.innerHTML = originalBtnContent;
+                btn.classList.remove('border-amber-500/60', 'bg-amber-500/10');
+              }, 1400);
+
+              showToast('Reset to Default', `Restored factory defaults for ${defaultItem.name}`);
             }
           });
         });
