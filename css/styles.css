@@ -1068,9 +1068,17 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
 .explore-dropdown-box svg,
 .explore-dropdown-box img,
 .explore-dropdown-box i,
+.dropdown-panel svg,
+.dropdown-panel img,
 .dropdown-panel i,
+.nav-dropdown-menu svg,
+.nav-dropdown-menu img,
 .nav-dropdown-menu i,
+.explore-row svg,
+.explore-row img,
 .explore-row i,
+.nav-dropdown-item svg,
+.nav-dropdown-item img,
 .nav-dropdown-item i,
 [id*="explore"] a > svg,
 [id*="explore"] a > i,
@@ -1079,10 +1087,10 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
   width: 20px !important;
   min-width: 20px !important;
   height: 20px !important;
-  display: flex !important;
+  flex-shrink: 0 !important;
+  display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  flex-shrink: 0 !important;
   color: #f59e0b !important;
   font-size: 15px !important;
   text-align: center !important;
