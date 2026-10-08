@@ -428,13 +428,27 @@
       // Active pricing state
       let currentPricing = null;
 
-      function initDashboard() {
+      async function initDashboard() {
         if (!window.StarplusPricing) return;
         currentPricing = window.StarplusPricing.getPricing();
         renderVisas();
         renderPackages();
         renderServices();
         updateLastModifiedText(currentPricing.lastUpdated);
+
+        // Fetch latest rates from live remote store
+        try {
+          const remoteData = await window.StarplusPricing.loadPricing();
+          if (remoteData) {
+            currentPricing = remoteData;
+            renderVisas();
+            renderPackages();
+            renderServices();
+            updateLastModifiedText(currentPricing.lastUpdated);
+          }
+        } catch (e) {
+          console.warn('[Admin] Failed to refresh live rates:', e);
+        }
       }
 
       function updateLastModifiedText(isoString) {

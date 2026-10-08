@@ -191,9 +191,10 @@
     }
 
     /**
-     * Asynchronously loads pricing, fetching from serverless API if available.
+     * Asynchronously loads pricing, fetching from serverless API or direct cloud store if available.
      */
     async loadPricing() {
+      // 1. Try serverless endpoint first (/api/pricing)
       if (typeof fetch === 'function') {
         try {
           const res = await fetch(API_ENDPOINT, { cache: 'no-store' });
@@ -207,14 +208,42 @@
             }
           }
         } catch (e) {
-          // Gracefully fallback to localStorage or memory
+          // Fall through to remote cloud store connector or local cache
+        }
+
+        // 2. Direct Cloud Store Connector (Supabase / Remote KV) if configured in window.STARPLUS_CONFIG
+        try {
+          const cfg = (typeof window !== 'undefined' && window.STARPLUS_CONFIG) || {};
+          const supabaseUrl = cfg.supabaseUrl || (typeof window !== 'undefined' && window.localStorage && window.localStorage.getItem('starplus_supabase_url'));
+          const supabaseKey = cfg.supabaseKey || (typeof window !== 'undefined' && window.localStorage && window.localStorage.getItem('starplus_supabase_key'));
+
+          if (supabaseUrl && supabaseKey) {
+            const res = await fetch(`${supabaseUrl.replace(/\/+$/, '')}/rest/v1/site_pricing?id=eq.global&select=pricing`, {
+              headers: {
+                'apikey': supabaseKey,
+                'Authorization': `Bearer ${supabaseKey}`,
+                'Accept': 'application/json'
+              }
+            });
+            if (res.ok) {
+              const rows = await res.json();
+              if (Array.isArray(rows) && rows.length > 0 && rows[0].pricing) {
+                this.cache = Object.assign({}, DEFAULT_PRICING, rows[0].pricing);
+                this.saveLocal(this.cache);
+                this.broadcast();
+                return this.cache;
+              }
+            }
+          }
+        } catch (e) {
+          // Gracefully fallback to localStorage or default pricing
         }
       }
       return this.getPricing();
     }
 
     /**
-     * Save updated pricing data (locally and via API).
+     * Save updated pricing data (locally and via API / remote cloud store).
      */
     async savePricing(updatedPricing, adminToken) {
       const dataToSave = Object.assign({}, this.getPricing(), updatedPricing, {
@@ -225,7 +254,9 @@
       this.saveLocal(dataToSave);
       this.broadcast();
 
-      // Push to serverless API
+      let remoteSaved = false;
+
+      // 1. Push to serverless API
       if (typeof fetch === 'function') {
         try {
           const headers = { 'Content-Type': 'application/json' };
@@ -246,14 +277,44 @@
               this.saveLocal(this.cache);
               this.broadcast();
             }
-            return { success: true, pricing: this.cache };
+            remoteSaved = true;
           }
         } catch (err) {
-          console.warn('[StarplusPricing] Remote sync error, stored locally:', err);
+          console.warn('[StarplusPricing] API remote sync error:', err);
+        }
+
+        // 2. Direct Cloud Store Connector (Supabase / Remote KV) if configured in window.STARPLUS_CONFIG
+        try {
+          const cfg = (typeof window !== 'undefined' && window.STARPLUS_CONFIG) || {};
+          const supabaseUrl = cfg.supabaseUrl || (typeof window !== 'undefined' && window.localStorage && window.localStorage.getItem('starplus_supabase_url'));
+          const supabaseKey = cfg.supabaseKey || (typeof window !== 'undefined' && window.localStorage && window.localStorage.getItem('starplus_supabase_key'));
+
+          if (supabaseUrl && supabaseKey) {
+            const endpoint = `${supabaseUrl.replace(/\/+$/, '')}/rest/v1/site_pricing`;
+            const res = await fetch(endpoint, {
+              method: 'POST',
+              headers: {
+                'apikey': supabaseKey,
+                'Authorization': `Bearer ${supabaseKey}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'resolution=merge-duplicates'
+              },
+              body: JSON.stringify({
+                id: 'global',
+                pricing: dataToSave,
+                updated_at: new Date().toISOString()
+              })
+            });
+            if (res.ok) {
+              remoteSaved = true;
+            }
+          }
+        } catch (err) {
+          console.warn('[StarplusPricing] Direct Supabase sync error:', err);
         }
       }
 
-      return { success: true, localOnly: true, pricing: this.cache };
+      return { success: true, remoteSaved, localOnly: !remoteSaved, pricing: this.cache };
     }
 
     saveLocal(data) {
