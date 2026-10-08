@@ -233,9 +233,18 @@ Keep answers structured with bullet points, friendly, luxury-toned, and invite t
 
       // 3. UAE Visa Services & Requirements
       if (q.includes('visa') || q.includes('uae') || q.includes('tourist visa') || q.includes('entry') || q.includes('30-day') || q.includes('60-day') || q.includes('වීසා')) {
+        // Read from live pricing service if available
+        let v30 = 380, v60 = 590;
+        if (typeof window !== 'undefined' && window.StarplusPricing && typeof window.StarplusPricing.getPricing === 'function') {
+          const lp = window.StarplusPricing.getPricing();
+          if (lp && lp.visas) {
+            if (lp.visas.uae30Day && lp.visas.uae30Day.priceAED) v30 = lp.visas.uae30Day.priceAED;
+            if (lp.visas.uae60Day && lp.visas.uae60Day.priceAED) v60 = lp.visas.uae60Day.priceAED;
+          }
+        }
         if (lang === 'si') {
           return {
-            text: `Star Plus Travels ආයතනය එක්සත් අරාබි එමීර් (UAE) සංචාරක වීසා කඩිනමින් නිකුත් කරයි:\n\n• **වීසා විකල්ප:** දින 30 සහ දින 60 සංචාරක වීසා (තනි සහ බහුවිධ ඇතුළුවීම් / Single & Multiple Entry).\n• **සැකසුම් කාලය:** පැය 24–48 ක සාමාන්‍ය අනුමැතිය (ක්ෂණික Express සේවාවද ඇත).\n• **අවශ්‍ය ලියකියවිලි:**\n  1. විදේශ ගමන් බලපත්‍රයේ පැහැදිලි පිටපතක් (මාස 6ක අවම වලංගුභාවය).\n  2. සුදු පසුබිම් සහිත විදේශ ගමන් බලපත්‍ර ප්‍රමාණයේ ඡායාරූපයක්.\n• **ගාස්තු:** දින 30 වීසා AED 330 සිට, දින 60 වීසා AED 590 සිට (සෞඛ්‍ය රක්ෂණය ඇතුළත්ය).\n• **Tabby පහසුකම:** 0% පොලී රහිතව මාස 4කින් ගෙවිය හැක.`,
+            text: `Star Plus Travels ආයතනය එක්සත් අරාබි එමීර් (UAE) සංචාරක වීසා කඩිනමින් නිකුත් කරයි:\n\n• **වීසා විකල්ප:** දින 30 සහ දින 60 සංචාරක වීසා (තනි සහ බහුවිධ ඇතුළුවීම් / Single & Multiple Entry).\n• **සැකසුම් කාලය:** පැය 24–48 ක සාමාන්‍ය අනුමැතිය (ක්ෂණික Express සේවාවද ඇත).\n• **අවශ්‍ය ලියකියවිලි:**\n  1. විදේශ ගමන් බලපත්‍රයේ පැහැදිලි පිටපතක් (මාස 6ක අවම වලංගුභාවය).\n  2. සුදු පසුබිම් සහිත විදේශ ගමන් බලපත්‍ර ප්‍රමාණයේ ඡායාරූපයක්.\n• **ගාස්තු:** දින 30 වීසා AED ${v30} සිට, දින 60 වීසා AED ${v60} සිට (සෞඛ්‍ය රක්ෂණය ඇතුළත්ය).\n• **Tabby පහසුකම:** 0% පොලී රහිතව මාස 4කින් ගෙවිය හැක.`,
             actionLabel: "වීසා අයදුම්පත WhatsApp වෙත",
             actionUrl: `https://wa.me/${this.kb.contacts.whatsappRaw}?text=${encodeURIComponent('Hi Starplus Travels, I would like to apply for a UAE Tourist Visa: ' + query)}`,
             handoffTopic: "UAE Tourist Visa Application",
@@ -243,7 +252,7 @@ Keep answers structured with bullet points, friendly, luxury-toned, and invite t
           };
         }
         return {
-          text: `We issue official **UAE Tourist & Visit Visas** with guaranteed rapid processing and zero embassy visits:\n\n• **Available Categories:**\n  • **30-Day Tourist Visa:** Single or Multiple Entry (From AED 330).\n  • **60-Day Tourist Visa:** Single or Multiple Entry (From AED 590).\n• **Processing Timeline:** Fast 24–48 hours turnaround (Express same-day service available).\n• **Required Documents:**\n  1. Clear passport bio-data page copy (minimum 6 months validity).\n  2. Passport-sized color photo with white background.\n• **Financing:** Split visa fees into 4 interest-free installments with Tabby.\n\nSend your passport copy directly via WhatsApp to start processing today!`,
+          text: `We issue official **UAE Tourist & Visit Visas** with guaranteed rapid processing and zero embassy visits:\n\n• **Available Categories:**\n  • **30-Day Tourist Visa:** Single or Multiple Entry (From AED ${v30}).\n  • **60-Day Tourist Visa:** Single or Multiple Entry (From AED ${v60}).\n• **Processing Timeline:** Fast 24–48 hours turnaround (Express same-day service available).\n• **Required Documents:**\n  1. Clear passport bio-data page copy (minimum 6 months validity).\n  2. Passport-sized color photo with white background.\n• **Financing:** Split visa fees into 4 interest-free installments with Tabby.\n\nSend your passport copy directly via WhatsApp to start processing today!`,
           actionLabel: "Apply for Visa on WhatsApp",
           actionUrl: `https://wa.me/${this.kb.contacts.whatsappRaw}?text=${encodeURIComponent('Hi Starplus Travels, I would like to apply for a UAE Tourist Visa: ' + query)}`,
           handoffTopic: "UAE Tourist Visa Application",
@@ -253,9 +262,16 @@ Keep answers structured with bullet points, friendly, luxury-toned, and invite t
 
       // 4. Sri Lanka Holiday Packages & Circuits
       if (q.includes('sri lanka') || q.includes('lanka') || q.includes('package') || q.includes('sigiriya') || q.includes('kandy') || q.includes('ella') || q.includes('nuwara eliya') || q.includes('yala') || q.includes('bentota') || q.includes('galle') || q.includes('ශ්‍රී ලංකා') || q.includes('සංචාරක පැකේජ')) {
+        let slPrice = 2150;
+        if (typeof window !== 'undefined' && window.StarplusPricing && typeof window.StarplusPricing.getPricing === 'function') {
+          const lp = window.StarplusPricing.getPricing();
+          if (lp && lp.packages && lp.packages.sriLankaWonders && lp.packages.sriLankaWonders.priceAED) {
+            slPrice = lp.packages.sriLankaWonders.priceAED;
+          }
+        }
         if (lang === 'si') {
           return {
-            text: `අපගේ වඩාත් ආකර්ෂණීය **ශ්‍රී ලංකා පෞද්ගලික සංචාරක පැකේජයන් (Curated Sri Lanka Tours)**:\n\n• **ඓතිහාසික සහ සංස්කෘතික:** සීගිරිය පර්වත බලකොටුව, දඹුල්ල රජමහා විහාරය, මහනුවර ශ්‍රී දළදා මාළිගාව.\n• **මනරම් කඳුකරය:** නුවරඑළිය තේ වතු, ඇල්ල නයින් ආච් පාලම සහ සුප්‍රකට නිල් දුම්රිය චාරිකාව.\n• **වනජීවී සෆාරි:** යාල දිවියන් සහ උඩවලව අලි ඇතුන් නැරඹීම.\n• **දකුණු වෙරළ තීරය:** බෙන්තොට ජල ක්‍රීඩා, මිරිස්ස තල්මසුන් නැරඹීම, ගාලු කොටුව.\n• **Wonders of Sri Lanka (දින 6 / රාත්‍රී 5):** එක් අයෙකුට AED 2,150 සිට (තරු 4/5 හෝටල්, AC වාහනය සහ රියදුරු ඇතුළත්ය).`,
+            text: `අපගේ වඩාත් ආකර්ෂණීය **ශ්‍රී ලංකා පෞද්ගලික සංචාරක පැකේජයන් (Curated Sri Lanka Tours)**:\n\n• **ඓතිහාසික සහ සංස්කෘතික:** සීගිරිය පර්වත බලකොටුව, දඹුල්ල රජමහා විහාරය, මහනුවර ශ්‍රී දළදා මාළිගාව.\n• **මනරම් කඳුකරය:** නුවරඑළිය තේ වතු, ඇල්ල නයින් ආච් පාලම සහ සුප්‍රකට නිල් දුම්රිය චාරිකාව.\n• **වනජීවී සෆාරි:** යාල දිවියන් සහ උඩවලව අලි ඇතුන් නැරඹීම.\n• **දකුණු වෙරළ තීරය:** බෙන්තොට ජල ක්‍රීඩා, මිරිස්ස තල්මසුන් නැරඹීම, ගාලු කොටුව.\n• **Wonders of Sri Lanka (දින 6 / රාත්‍රී 5):** එක් අයෙකුට AED ${slPrice.toLocaleString()} සිට (තරු 4/5 හෝටල්, AC වාහනය සහ රියදුරු ඇතුළත්ය).`,
             actionLabel: "සංචාරක විස්තර WhatsApp වෙත",
             actionUrl: `https://wa.me/${this.kb.contacts.whatsappRaw}?text=${encodeURIComponent('Hi Starplus Travels, I would like details on Sri Lanka Tour Packages: ' + query)}`,
             handoffTopic: "Sri Lanka Holiday Packages",
@@ -263,7 +279,7 @@ Keep answers structured with bullet points, friendly, luxury-toned, and invite t
           };
         }
         return {
-          text: `Explore our signature **Sri Lanka Private Luxury Circuits**, operated with dedicated chauffeur-guides and premier boutique stays:\n\n• **Heritage & Culture:** Climb UNESCO-listed Sigiriya Citadel, explore Dambulla Golden Caves, and visit the Sacred Temple of the Tooth in Kandy.\n• **Scenic Hill Country & Tea Estates:** Colonial tea estates in Nuwara Eliya, Ella Nine Arch Bridge, and the scenic mountain train ride.\n• **Wildlife & Safari:** Leopard tracks in Yala National Park & elephant herds in Udawalawe.\n• **Southern Beach Escapes:** Golden sands in Bentota, blue whale safaris in Mirissa, and cobblestone walks in Galle Dutch Fort.\n• **Signature 6-Day Journey:** Starting at **AED 2,150 per person** (includes 4/5★ resorts, breakfast, chauffeur-guide, luxury AC vehicle, & transfers).\n\n100% bespoke customization available on request!`,
+          text: `Explore our signature **Sri Lanka Private Luxury Circuits**, operated with dedicated chauffeur-guides and premier boutique stays:\n\n• **Heritage & Culture:** Climb UNESCO-listed Sigiriya Citadel, explore Dambulla Golden Caves, and visit the Sacred Temple of the Tooth in Kandy.\n• **Scenic Hill Country & Tea Estates:** Colonial tea estates in Nuwara Eliya, Ella Nine Arch Bridge, and the scenic mountain train ride.\n• **Wildlife & Safari:** Leopard tracks in Yala National Park & elephant herds in Udawalawe.\n• **Southern Beach Escapes:** Golden sands in Bentota, blue whale safaris in Mirissa, and cobblestone walks in Galle Dutch Fort.\n• **Signature 6-Day Journey:** Starting at **AED ${slPrice.toLocaleString()} per person** (includes 4/5★ resorts, breakfast, chauffeur-guide, luxury AC vehicle, & transfers).\n\n100% bespoke customization available on request!`,
           actionLabel: "Inquire on WhatsApp",
           actionUrl: `https://wa.me/${this.kb.contacts.whatsappRaw}?text=${encodeURIComponent('Hi Starplus Travels, I would like details on Sri Lanka Tour Packages: ' + query)}`,
           handoffTopic: "Sri Lanka Holiday Packages",

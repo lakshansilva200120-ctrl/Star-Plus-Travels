@@ -77,6 +77,29 @@ window.formatSecondaryPrice = formatSecondaryPrice;
  * and .price-secondary / [data-secondary-for]
  */
 function updateAllPriceDisplays() {
+  // Sync live pricing attributes if StarplusPricing is available
+  if (typeof window !== 'undefined' && window.StarplusPricing && typeof window.StarplusPricing.getPricing === 'function') {
+    try {
+      const liveData = window.StarplusPricing.getPricing();
+      if (liveData && liveData.visas) {
+        document.querySelectorAll('[data-visa-id]').forEach(el => {
+          const vId = el.getAttribute('data-visa-id');
+          if (liveData.visas[vId] && liveData.visas[vId].priceAED) {
+            el.setAttribute('data-base-aed', liveData.visas[vId].priceAED);
+          }
+        });
+      }
+      if (liveData && liveData.packages) {
+        document.querySelectorAll('[data-pkg-id]').forEach(el => {
+          const pId = el.getAttribute('data-pkg-id');
+          if (liveData.packages[pId] && liveData.packages[pId].priceAED) {
+            el.setAttribute('data-base-aed', liveData.packages[pId].priceAED);
+          }
+        });
+      }
+    } catch (e) {}
+  }
+
   // 1. Update elements with [data-base-aed] or .price-aed
   document.querySelectorAll('.price-aed, [data-base-aed]').forEach(el => {
     const rawAED = el.getAttribute('data-base-aed');

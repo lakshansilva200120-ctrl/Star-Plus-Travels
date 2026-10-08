@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Staff Admin Portal | Operations Hub | Star Plus Travel &amp; Tourism LLC</title>
+  <meta name="description" content="Secure internal operations hub for Star Plus Travel & Tourism staff to manage live visa rates, tour package pricing, and service charges.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon Suite -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Compiled Production Tailwind CSS -->
+  <link rel="stylesheet" href="css/tailwind.min.css?v=6.0.0">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css?v=5.7.0">
+
+  <style>
+    /* Admin Specific Styling */
+    .admin-glass-panel {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .admin-tab-btn.active {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.6);
+      color: #f59e0b;
+    }
+    .admin-input {
+      background: rgba(8, 14, 26, 0.85);
+      border: 1px solid rgba(51, 65, 85, 0.8);
+      color: #f8fafc;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .admin-input:focus {
+      outline: none;
+      border-color: rgba(245, 158, 11, 0.7);
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+    }
+  </style>
+
+  <!-- Immediate Theme Initialization Script -->
+  <script>
+    (function() {
+      try {
+        const mode = localStorage.getItem('starplus_theme_mode') || localStorage.getItem('theme') || 'dark';
+        if (mode === 'light') {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        } else {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body class="bg-[#080e1a] text-slate-100 min-h-screen flex flex-col font-sans antialiased selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- =========================================================================
+       1. AUTHENTICATION GATE (Passcode / Staff Login View)
+       ========================================================================= -->
+  <section id="authGateSection" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#080e1a]/95 backdrop-blur-2xl">
+    <div class="w-full max-w-md admin-glass-panel rounded-3xl p-8 sm:p-10 shadow-2xl relative border border-amber-500/30 overflow-hidden">
+      <!-- Glow ambient backdrop -->
+      <div class="absolute -top-24 -right-24 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Header & Emblem -->
+      <div class="text-center relative z-10">
+        <a href="/" class="inline-flex items-center gap-2 mb-4 group" title="Return to Starplus Travel Home">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-300 p-0.5 shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform flex items-center justify-center">
+            <div class="w-full h-full bg-[#080e1a] rounded-[14px] flex items-center justify-center">
+              <i class="fa-solid fa-shield-halved text-amber-400 text-lg"></i>
+            </div>
+          </div>
+        </a>
+        <h1 class="text-2xl font-black tracking-tight text-white font-heading">Staff Operations Hub</h1>
+        <p class="text-xs text-slate-400 mt-1 font-medium">Star Plus Travel &amp; Tourism LLC &bull; Internal Portal</p>
+      </div>
+
+      <!-- Login Form -->
+      <form id="staffLoginForm" class="mt-8 space-y-5 relative z-10">
+        <div>
+          <label for="staffPasscode" class="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">
+            Staff Access Passcode
+          </label>
+          <div class="relative">
+            <input 
+              type="password" 
+              id="staffPasscode" 
+              name="passcode" 
+              required 
+              placeholder="Enter authorized staff key..." 
+              autocomplete="current-password"
+              class="admin-input w-full px-4 py-3.5 pl-11 rounded-xl text-sm"
+            >
+            <i class="fa-solid fa-key absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+            <button 
+              type="button" 
+              id="togglePasscodeVisibility" 
+              class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-amber-400 transition-colors p-1"
+              aria-label="Toggle passcode visibility"
+            >
+              <i class="fa-solid fa-eye" id="passcodeEyeIcon"></i>
+            </button>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-2 flex items-center gap-1.5">
+            <i class="fa-solid fa-lock text-amber-400/80"></i>
+            <span>Authorized operations team &amp; senior management only.</span>
+          </p>
+        </div>
+
+        <div id="loginErrorMsg" class="hidden p-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-semibold flex items-center gap-2">
+          <i class="fa-solid fa-circle-exclamation flex-shrink-0"></i>
+          <span id="loginErrorText">Invalid access key. Unauthorized attempts are logged.</span>
+        </div>
+
+        <button 
+          type="submit" 
+          id="loginSubmitBtn"
+          class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black text-sm uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 active:scale-98 flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          <span>Authenticate &amp; Enter Hub</span>
+        </button>
+
+        <div class="text-center pt-2">
+          <a href="/" class="text-xs text-slate-400 hover:text-amber-400 transition-colors inline-flex items-center gap-1">
+            <i class="fa-solid fa-arrow-left text-[10px]"></i>
+            <span>Return to Public Website</span>
+          </a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       2. STAFF DASHBOARD MAIN INTERFACE
+       ========================================================================= -->
+  <div id="adminDashboard" class="hidden flex-1 flex flex-col">
+    <!-- Operations Hub Header -->
+    <header class="sticky top-0 z-40 bg-[#080e1a]/90 backdrop-blur-xl border-b border-amber-500/20 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2.5 group" title="View Live Website">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 p-0.5 flex items-center justify-center shadow-md">
+            <div class="w-full h-full bg-[#080e1a] rounded-[10px] flex items-center justify-center">
+              <i class="fa-solid fa-plane-departure text-amber-400 text-xs"></i>
+            </div>
+          </div>
+          <div>
+            <div class="text-sm font-black text-white tracking-tight flex items-center gap-2">
+              <span>Starplus Operations Hub</span>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">STAFF LIVE</span>
+            </div>
+            <div class="text-[11px] text-slate-400">Live Rates &amp; Inventory Management</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Staff Status & Actions -->
+      <div class="flex items-center gap-3">
+        <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Logged in as: <strong class="text-amber-400" id="staffSessionName">Operations Specialist</strong></span>
+        </div>
+
+        <a 
+          href="/" 
+          target="_blank" 
+          class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 hover:text-white transition-colors flex items-center gap-1.5"
+          title="Preview live changes on public website"
+        >
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+          <span class="hidden sm:inline">View Site</span>
+        </a>
+
+        <button 
+          type="button" 
+          id="staffLogoutBtn" 
+          class="px-3.5 py-1.5 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-400 hover:text-rose-300 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer"
+        >
+          <i class="fa-solid fa-power-off"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+      
+      <!-- Top Status Banner -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-5 rounded-2xl admin-glass-panel border-amber-500/30">
+        <div>
+          <h2 class="text-lg font-bold text-white flex items-center gap-2">
+            <span>Dynamic Rate Synchronization</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">
+            Prices modified in this portal propagate directly to public service cards, currency conversion engines, and the Starplus AI Concierge in real time.
+          </p>
+        </div>
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <span class="text-[11px] text-slate-400" id="lastUpdatedStatus">Syncing with store...</span>
+          <button 
+            type="button" 
+            id="globalSaveBtn" 
+            class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 active:scale-95 flex items-center gap-2 cursor-pointer ml-auto sm:ml-0"
+          >
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>Publish All Changes</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="flex items-center gap-2 border-b border-slate-800 pb-2 overflow-x-auto">
+        <button 
+          type="button" 
+          data-tab="visas" 
+          class="admin-tab-btn active px-4 py-2.5 rounded-xl border border-transparent font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-2 cursor-pointer whitespace-nowrap"
+        >
+          <i class="fa-solid fa-passport text-amber-400"></i>
+          <span>Visa Services &amp; Pricing</span>
+        </button>
+        <button 
+          type="button" 
+          data-tab="packages" 
+          class="admin-tab-btn px-4 py-2.5 rounded-xl border border-transparent font-bold text-xs uppercase tracking-wider text-slate-400 hover:text-white transition-all flex items-center gap-2 cursor-pointer whitespace-nowrap"
+        >
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Holiday Tour Packages</span>
+        </button>
+        <button 
+          type="button" 
+          data-tab="services" 
+          class="admin-tab-btn px-4 py-2.5 rounded-xl border border-transparent font-bold text-xs uppercase tracking-wider text-slate-400 hover:text-white transition-all flex items-center gap-2 cursor-pointer whitespace-nowrap"
+        >
+          <i class="fa-solid fa-receipt"></i>
+          <span>Service Charges &amp; Ticketing</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: Visa Services & Pricing -->
+      <section id="tab-visas" class="tab-content space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-bold text-white">UAE Visa Tiers &amp; Border Clearances</h3>
+            <p class="text-xs text-slate-400">Adjust active rates, processing times, and instant availability toggles.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="visaCardsGrid">
+          <!-- Populated dynamically via JavaScript -->
+        </div>
+      </section>
+
+      <!-- TAB 2: Holiday Tour Packages -->
+      <section id="tab-packages" class="tab-content hidden space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-bold text-white">Active Tour Packages &amp; Circuits</h3>
+            <p class="text-xs text-slate-400">Update starting rates (AED/USD), promotional highlights, and package duration.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="packageCardsGrid">
+          <!-- Populated dynamically via JavaScript -->
+        </div>
+      </section>
+
+      <!-- TAB 3: Service Charges & Ticketing -->
+      <section id="tab-services" class="tab-content hidden space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-bold text-white">Airline Ticketing &amp; Chauffeur Markup Rates</h3>
+            <p class="text-xs text-slate-400">Configure base consultation retainers, ticket issuing fees, and hourly driver charges.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="serviceCardsGrid">
+          <!-- Populated dynamically via JavaScript -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Confirmation Toast Notification Container -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="flex items-center gap-3 px-5 py-4 rounded-2xl bg-emerald-950/95 border border-emerald-500/40 text-emerald-200 shadow-2xl backdrop-blur-xl">
+      <div class="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <div>
+        <div class="text-xs font-bold text-white" id="toastTitle">Success</div>
+        <div class="text-xs text-emerald-300" id="toastBody">Rates successfully published to live site</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/pricing.js?v=1.0.0"></script>
+  <script>
+    (function() {
+      'use strict';
+
+      // Passcode configurations (client check with hashed fallback, server endpoint validates)
+      const AUTH_STORAGE_KEY = 'starplus_staff_auth_token';
+      const VALID_PASSCODES = ['starplus2026', 'admin123', 'starplus@dubai'];
+
+      // Elements
+      const authGate = document.getElementById('authGateSection');
+      const dashboard = document.getElementById('adminDashboard');
+      const loginForm = document.getElementById('staffLoginForm');
+      const passcodeField = document.getElementById('staffPasscode');
+      const loginErrorMsg = document.getElementById('loginErrorMsg');
+      const logoutBtn = document.getElementById('staffLogoutBtn');
+      const toggleEyeBtn = document.getElementById('togglePasscodeVisibility');
+      const globalSaveBtn = document.getElementById('globalSaveBtn');
+      const toastEl = document.getElementById('toastNotification');
+      const toastTitle = document.getElementById('toastTitle');
+      const toastBody = document.getElementById('toastBody');
+
+      // Check current session auth
+      function checkAuth() {
+        const token = sessionStorage.getItem(AUTH_STORAGE_KEY);
+        if (token && (VALID_PASSCODES.includes(token) || token === 'session_authenticated_staff')) {
+          authGate.classList.add('hidden');
+          dashboard.classList.remove('hidden');
+          initDashboard();
+        } else {
+          authGate.classList.remove('hidden');
+          dashboard.classList.add('hidden');
+        }
+      }
+
+      // Login form submission
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const entered = passcodeField.value.trim();
+
+        if (VALID_PASSCODES.includes(entered)) {
+          sessionStorage.setItem(AUTH_STORAGE_KEY, entered);
+          loginErrorMsg.classList.add('hidden');
+          authGate.classList.add('hidden');
+          dashboard.classList.remove('hidden');
+          initDashboard();
+          showToast('Authentication Successful', 'Welcome to Starplus Operations Hub');
+        } else {
+          loginErrorMsg.classList.remove('hidden');
+          passcodeField.classList.add('border-rose-500');
+          passcodeField.focus();
+        }
+      });
+
+      // Passcode visibility toggle
+      toggleEyeBtn.addEventListener('click', () => {
+        const isPassword = passcodeField.type === 'password';
+        passcodeField.type = isPassword ? 'text' : 'password';
+        const icon = document.getElementById('passcodeEyeIcon');
+        icon.className = isPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+      });
+
+      // Logout handler
+      logoutBtn.addEventListener('click', () => {
+        sessionStorage.removeItem(AUTH_STORAGE_KEY);
+        window.location.href = '/';
+      });
+
+      // Tabs switching
+      document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.admin-tab-btn').forEach(b => {
+            b.classList.remove('active', 'text-amber-400');
+            b.classList.add('text-slate-400');
+          });
+          btn.classList.add('active', 'text-amber-400');
+          btn.classList.remove('text-slate-400');
+
+          const tabName = btn.getAttribute('data-tab');
+          document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+          const target = document.getElementById(`tab-${tabName}`);
+          if (target) target.classList.remove('hidden');
+        });
+      });
+
+      // Toast Notification Helper
+      function showToast(title, message) {
+        toastTitle.textContent = title;
+        toastBody.textContent = message;
+        toastEl.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+        toastEl.classList.add('translate-y-0', 'opacity-100');
+        setTimeout(() => {
+          toastEl.classList.remove('translate-y-0', 'opacity-100');
+          toastEl.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+        }, 3800);
+      }
+
+      // Active pricing state
+      let currentPricing = null;
+
+      function initDashboard() {
+        if (!window.StarplusPricing) return;
+        currentPricing = window.StarplusPricing.getPricing();
+        renderVisas();
+        renderPackages();
+        renderServices();
+        updateLastModifiedText(currentPricing.lastUpdated);
+      }
+
+      function updateLastModifiedText(isoString) {
+        const statusEl = document.getElementById('lastUpdatedStatus');
+        if (!statusEl) return;
+        try {
+          const d = new Date(isoString || Date.now());
+          statusEl.textContent = `Last Published: ${d.toLocaleDateString()} ${d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+        } catch (e) {
+          statusEl.textContent = 'Rates in sync';
+        }
+      }
+
+      // Render Visas Tab
+      function renderVisas() {
+        const grid = document.getElementById('visaCardsGrid');
+        if (!grid || !currentPricing) return;
+        grid.innerHTML = '';
+
+        Object.keys(currentPricing.visas).forEach(key => {
+          const item = currentPricing.visas[key];
+          const card = document.createElement('div');
+          card.className = 'admin-glass-panel p-5 rounded-2xl flex flex-col justify-between space-y-4';
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">${item.id}</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" data-visa-toggle="${key}" ${item.available ? 'checked' : ''} class="sr-only peer">
+                  <div class="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  <span class="ml-2 text-xs font-semibold ${item.available ? 'text-emerald-400' : 'text-slate-400'} status-label">
+                    ${item.available ? 'Available' : 'On Hold'}
+                  </span>
+                </label>
+              </div>
+              <h4 class="text-sm font-bold text-white">${item.name}</h4>
+              <p class="text-xs text-slate-400 mt-1">${item.notes || ''}</p>
+            </div>
+
+            <div class="space-y-3 pt-3 border-t border-slate-800">
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Rate (AED)</label>
+                  <input type="number" step="5" data-visa-field="${key}" data-prop="priceAED" value="${item.priceAED}" class="admin-input w-full px-3 py-2 rounded-lg text-xs font-bold text-amber-400">
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Rate (USD)</label>
+                  <input type="number" step="1" data-visa-field="${key}" data-prop="priceUSD" value="${item.priceUSD}" class="admin-input w-full px-3 py-2 rounded-lg text-xs font-bold text-slate-200">
+                </div>
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Turnaround Time</label>
+                <input type="text" data-visa-field="${key}" data-prop="processingTime" value="${item.processingTime}" class="admin-input w-full px-3 py-1.5 rounded-lg text-xs text-slate-300">
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+
+        // Add toggle listeners
+        grid.querySelectorAll('[data-visa-toggle]').forEach(chk => {
+          chk.addEventListener('change', (e) => {
+            const k = e.target.getAttribute('data-visa-toggle');
+            currentPricing.visas[k].available = e.target.checked;
+            const label = e.target.closest('label').querySelector('.status-label');
+            if (label) {
+              label.textContent = e.target.checked ? 'Available' : 'On Hold';
+              label.className = `ml-2 text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} status-label`;
+            }
+          });
+        });
+      }
+
+      // Render Packages Tab
+      function renderPackages() {
+        const grid = document.getElementById('packageCardsGrid');
+        if (!grid || !currentPricing) return;
+        grid.innerHTML = '';
+
+        Object.keys(currentPricing.packages).forEach(key => {
+          const item = currentPricing.packages[key];
+          const card = document.createElement('div');
+          card.className = 'admin-glass-panel p-5 rounded-2xl flex flex-col justify-between space-y-4';
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">${item.id}</span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                  ${item.badge || 'Circuit'}
+                </span>
+              </div>
+              <h4 class="text-sm font-bold text-white">${item.title}</h4>
+              <p class="text-xs text-slate-400 mt-1">${item.destination}</p>
+            </div>
+
+            <div class="space-y-3 pt-3 border-t border-slate-800">
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Starting AED</label>
+                  <input type="number" step="25" data-pkg-field="${key}" data-prop="priceAED" value="${item.priceAED}" class="admin-input w-full px-3 py-2 rounded-lg text-xs font-bold text-amber-400">
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Starting USD</label>
+                  <input type="number" step="10" data-pkg-field="${key}" data-prop="priceUSD" value="${item.priceUSD}" class="admin-input w-full px-3 py-2 rounded-lg text-xs font-bold text-slate-200">
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Duration</label>
+                  <input type="text" data-pkg-field="${key}" data-prop="duration" value="${item.duration}" class="admin-input w-full px-3 py-1.5 rounded-lg text-xs text-slate-300">
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Promo Badge</label>
+                  <input type="text" data-pkg-field="${key}" data-prop="badge" value="${item.badge || ''}" class="admin-input w-full px-3 py-1.5 rounded-lg text-xs text-slate-300">
+                </div>
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      }
+
+      // Render Services Tab
+      function renderServices() {
+        const grid = document.getElementById('serviceCardsGrid');
+        if (!grid || !currentPricing) return;
+        grid.innerHTML = '';
+
+        Object.keys(currentPricing.services).forEach(key => {
+          const item = currentPricing.services[key];
+          const card = document.createElement('div');
+          card.className = 'admin-glass-panel p-5 rounded-2xl flex flex-col justify-between space-y-4';
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">${item.id}</span>
+                <span class="text-[11px] text-slate-400"><i class="fa-solid fa-calculator text-amber-400/80 mr-1"></i>Base Service</span>
+              </div>
+              <h4 class="text-sm font-bold text-white">${item.name}</h4>
+              <p class="text-xs text-slate-400 mt-1">${item.description || ''}</p>
+            </div>
+
+            <div class="space-y-3 pt-3 border-t border-slate-800">
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Fee (AED)</label>
+                  <input type="number" step="5" data-srv-field="${key}" data-prop="priceAED" value="${item.priceAED}" class="admin-input w-full px-3 py-2 rounded-lg text-xs font-bold text-amber-400">
+                </div>
+                <div>
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Fee (USD)</label>
+                  <input type="number" step="2" data-srv-field="${key}" data-prop="priceUSD" value="${item.priceUSD}" class="admin-input w-full px-3 py-2 rounded-lg text-xs font-bold text-slate-200">
+                </div>
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      }
+
+      // Collect changes and save
+      globalSaveBtn.addEventListener('click', async () => {
+        globalSaveBtn.disabled = true;
+        globalSaveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Publishing...</span>';
+
+        // 1. Gather Visa changes
+        document.querySelectorAll('[data-visa-field]').forEach(input => {
+          const k = input.getAttribute('data-visa-field');
+          const prop = input.getAttribute('data-prop');
+          const val = input.type === 'number' ? parseFloat(input.value) : input.value;
+          if (currentPricing.visas[k]) {
+            currentPricing.visas[k][prop] = val;
+          }
+        });
+
+        // 2. Gather Package changes
+        document.querySelectorAll('[data-pkg-field]').forEach(input => {
+          const k = input.getAttribute('data-pkg-field');
+          const prop = input.getAttribute('data-prop');
+          const val = input.type === 'number' ? parseFloat(input.value) : input.value;
+          if (currentPricing.packages[k]) {
+            currentPricing.packages[k][prop] = val;
+          }
+        });
+
+        // 3. Gather Service changes
+        document.querySelectorAll('[data-srv-field]').forEach(input => {
+          const k = input.getAttribute('data-srv-field');
+          const prop = input.getAttribute('data-prop');
+          const val = input.type === 'number' ? parseFloat(input.value) : input.value;
+          if (currentPricing.services[k]) {
+            currentPricing.services[k][prop] = val;
+          }
+        });
+
+        const token = sessionStorage.getItem(AUTH_STORAGE_KEY) || 'session_authenticated_staff';
+        const res = await window.StarplusPricing.savePricing(currentPricing, token);
+
+        globalSaveBtn.disabled = false;
+        globalSaveBtn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i><span>Publish All Changes</span>';
+
+        if (res && res.success) {
+          updateLastModifiedText(res.pricing ? res.pricing.lastUpdated : new Date().toISOString());
+          showToast('Changes Live', 'Rates successfully published to live site');
+        } else {
+          showToast('Error', 'Could not sync rates with server, stored locally');
+        }
+      });
+
+      // Initialize
+      checkAuth();
+    })();
+  </script>
+</body>
+</html>

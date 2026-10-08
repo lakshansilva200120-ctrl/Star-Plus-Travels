@@ -13,7 +13,8 @@
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/careers", "destination": "/careers.html" },
     { "source": "/why-choose-us", "destination": "/why-us.html" },
-    { "source": "/b2b", "destination": "/partners.html" }
+    { "source": "/b2b", "destination": "/partners.html" },
+    { "source": "/admin", "destination": "/admin.html" }
   ],
   "headers": [
     {

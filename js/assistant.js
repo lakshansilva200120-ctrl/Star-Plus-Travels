@@ -201,16 +201,23 @@
 
     // 4. Sri Lanka 6-Day Tour / General Sri Lanka Tours
     if (q.includes('sri lanka') || q.includes('6-day') || q.includes('6 day') || q.includes('lanka') || q.includes('ශ්‍රී ලංකා') || q.includes('සංචාර')) {
+      let slPrice = 2150;
+      if (typeof window !== 'undefined' && window.StarplusPricing && typeof window.StarplusPricing.getPricing === 'function') {
+        const lp = window.StarplusPricing.getPricing();
+        if (lp && lp.packages && lp.packages.sriLankaWonders && lp.packages.sriLankaWonders.priceAED) {
+          slPrice = lp.packages.sriLankaWonders.priceAED;
+        }
+      }
       if (lang === 'si') {
         return {
-          text: `අපගේ වඩාත් ජනප්‍රිය **දින 6 / රාත්‍රී 5 "Wonders of Sri Lanka"** සුඛෝපභෝගී සංචාරක පැකේජය තුළ සීගිරිය පර්වත බලකොටුව, මහනුවර ශ්‍රී දළදා මාළිගාව, ඇල්ල නයින් ආච් පාලම සහ මනරම් නිල් දුම්රිය චාරිකාව, මෙන්ම බෙන්තොට වෙරළ තීරය ඇතුළත් වේ.\n\n• **ඇතුළත් දෑ:** තරු 4/5 සුඛෝපභෝගී හෝටල් නවාතැන්, දිනපතා උදෑසන ආහාර, කැපවූ පුද්ගලික ඉංග්‍රීසි/සිංහල කතාකරන රියදුරු සහ AC වාහනය, සියලුම දේශීය බදු.\n• **මිල:** එක් අයෙකුට AED 2,150 සිට (Tabby මගින් 0% පොලියට කොටස් 4කින් ගෙවිය හැක).\n\nඔබගේ සංචාරක දිනයන්ට අනුව ගැලපෙන සැලැස්මක් සකසා ගැනීමට කැමතිද?`,
+          text: `අපගේ වඩාත් ජනප්‍රිය **දින 6 / රාත්‍රී 5 "Wonders of Sri Lanka"** සුඛෝපභෝගී සංචාරක පැකේජය තුළ සීගිරිය පර්වත බලකොටුව, මහනුවර ශ්‍රී දළදා මාළිගාව, ඇල්ල නයින් ආච් පාලම සහ මනරම් නිල් දුම්රිය චාරිකාව, මෙන්ම බෙන්තොට වෙරළ තීරය ඇතුළත් වේ.\n\n• **ඇතුළත් දෑ:** තරු 4/5 සුඛෝපභෝගී හෝටල් නවාතැන්, දිනපතා උදෑසන ආහාර, කැපවූ පුද්ගලික ඉංග්‍රීසි/සිංහල කතාකරන රියදුරු සහ AC වාහනය, සියලුම දේශීය බදු.\n• **මිල:** එක් අයෙකුට AED ${slPrice.toLocaleString()} සිට (Tabby මගින් 0% පොලියට කොටස් 4කින් ගෙවිය හැක).\n\nඔබගේ සංචාරක දිනයන්ට අනුව ගැලපෙන සැලැස්මක් සකසා ගැනීමට කැමතිද?`,
           actionLabel: "ශ්‍රී ලංකා පැකේජ නරඹන්න",
           actionUrl: "/packages.html",
           handoffTopic: "Sri Lanka 6-Day Tour Details & Quotation"
         };
       }
       return {
-        text: `Our premier **6-Day / 5-Night "Wonders of Sri Lanka"** curated private tour covers the iconic Sigiriya Rock Citadel, the Sacred Temple of the Tooth in Kandy, the scenic Ella tea mountain blue train journey, and golden beaches in Bentota.\n\n• **Includes:** Hand-picked 4/5-star boutique resort stays, daily buffet breakfast, private chauffeur-guide with dedicated luxury AC vehicle, entrance clearances, and airport transfers.\n• **Pricing:** From AED 2,150 per person (Tabby 0% split-in-4 installment plans available).\n\nWould you like me to share the day-by-day itinerary or customize it for your travel dates?`,
+        text: `Our premier **6-Day / 5-Night "Wonders of Sri Lanka"** curated private tour covers the iconic Sigiriya Rock Citadel, the Sacred Temple of the Tooth in Kandy, the scenic Ella tea mountain blue train journey, and golden beaches in Bentota.\n\n• **Includes:** Hand-picked 4/5-star boutique resort stays, daily buffet breakfast, private chauffeur-guide with dedicated luxury AC vehicle, entrance clearances, and airport transfers.\n• **Pricing:** From AED ${slPrice.toLocaleString()} per person (Tabby 0% split-in-4 installment plans available).\n\nWould you like me to share the day-by-day itinerary or customize it for your travel dates?`,
         actionLabel: "View All Sri Lanka Packages",
         actionUrl: "/packages.html",
         handoffTopic: "Sri Lanka 6-Day Tour Details & Quotation"
@@ -219,16 +226,24 @@
 
     // 5. UAE Visa Services & Requirements
     if (q.includes('visa') || q.includes('uae') || q.includes('dubai') || q.includes('entry') || q.includes('30-day') || q.includes('60-day') || q.includes('වීසා')) {
+      let v30 = 380, v60 = 590;
+      if (typeof window !== 'undefined' && window.StarplusPricing && typeof window.StarplusPricing.getPricing === 'function') {
+        const lp = window.StarplusPricing.getPricing();
+        if (lp && lp.visas) {
+          if (lp.visas.uae30Day && lp.visas.uae30Day.priceAED) v30 = lp.visas.uae30Day.priceAED;
+          if (lp.visas.uae60Day && lp.visas.uae60Day.priceAED) v60 = lp.visas.uae60Day.priceAED;
+        }
+      }
       if (lang === 'si') {
         return {
-          text: `Star Plus Travels මගින් එක්සත් අරාබි එමීර් (UAE) සංචාරක සහ විවේක වීසා කඩිනමින් ලබාදේ:\n\n• **වීසා වර්ග:** දින 30 සහ දින 60 (තනි සහ බහුවිධ ඇතුළුවීම් / Single & Multiple Entry).\n• **සැකසුම් කාලය:** පැය 24 සිට 48 දක්වා අධිවේගී අනුමැතිය (Express processing available).\n• **අවශ්‍ය ලියකියවිලි:** විදේශ ගමන් බලපත්‍රයේ පැහැදිලි පිටපතක් (මාස 6ක් වලංගු) සහ ඡායාරූපයක් පමණි.\n• **ගාස්තු:** දින 30 වීසා AED 330 සිට, දින 60 වීසා AED 590 සිට.\n\nඅපගේ වීසා කණ්ඩායම සමඟ දැන්ම අයදුම් කිරීමට සූදානම්ද?`,
+          text: `Star Plus Travels මගින් එක්සත් අරාබි එමීර් (UAE) සංචාරක සහ විවේක වීසා කඩිනමින් ලබාදේ:\n\n• **වීසා වර්ග:** දින 30 සහ දින 60 (තනි සහ බහුවිධ ඇතුළුවීම් / Single & Multiple Entry).\n• **සැකසුම් කාලය:** පැය 24 සිට 48 දක්වා අධිවේගී අනුමැතිය (Express processing available).\n• **අවශ්‍ය ලියකියවිලි:** විදේශ ගමන් බලපත්‍රයේ පැහැදිලි පිටපතක් (මාස 6ක් වලංගු) සහ ඡායාරූපයක් පමණි.\n• **ගාස්තු:** දින 30 වීසා AED ${v30} සිට, දින 60 වීසා AED ${v60} සිට.\n\nඅපගේ වීසා කණ්ඩායම සමඟ දැන්ම අයදුම් කිරීමට සූදානම්ද?`,
           actionLabel: "වීසා සේවාවන් පරීක්ෂා කරන්න",
           actionUrl: "/visa-services.html",
           handoffTopic: "UAE Visit Visa Application (30/60 Days)"
         };
       }
       return {
-        text: `We issue official UAE Tourist & Visit Visas with guaranteed rapid processing and zero hidden charges:\n\n• **Available Options:** 30-Day Single/Multiple Entry & 60-Day Single/Multiple Entry.\n• **Turnaround Time:** 24–48 Hours standard approval (Express same-day available upon request).\n• **Required Documents:** Passport copy (min. 6 months validity) and passport-size photograph with white background.\n• **Rates:** 30-Day from AED 330, 60-Day from AED 590 (includes mandatory COVID health cover).\n\nWould you like to initiate your visa application right away?`,
+        text: `We issue official UAE Tourist & Visit Visas with guaranteed rapid processing and zero hidden charges:\n\n• **Available Options:** 30-Day Single/Multiple Entry & 60-Day Single/Multiple Entry.\n• **Turnaround Time:** 24–48 Hours standard approval (Express same-day available upon request).\n• **Required Documents:** Passport copy (min. 6 months validity) and passport-size photograph with white background.\n• **Rates:** 30-Day from AED ${v30}, 60-Day from AED ${v60} (includes mandatory COVID health cover).\n\nWould you like to initiate your visa application right away?`,
         actionLabel: "Explore UAE Visa Services",
         actionUrl: "/visa-services.html",
         handoffTopic: "UAE Visit Visa Application (30/60 Days)"
