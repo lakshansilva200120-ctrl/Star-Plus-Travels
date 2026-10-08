@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>B2B Supplier &amp; DMC Partnerships | Star Plus Travel &amp; Tourism LLC</title>
   <meta name="description" content="Partner with Star Plus Travels. We are actively expanding our global B2B supplier and DMC network across Singapore, Malaysia, Turkey, Vietnam, Bali, Maldives, Armenia, Kazakhstan, Kyrgyzstan, Japan, Mauritius, and Kenya.">
@@ -222,8 +222,8 @@
             class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/80 border border-slate-700/60 hover:border-amber-500/50 shadow-sm backdrop-blur-md text-[11px] font-semibold text-slate-100 transition-all focus:outline-none"
             aria-expanded="false"
           >
-            <span class="text-xs">??</span>
-            <span id="current-currency-label">AED (?.?)</span>
+            <span class="text-xs" id="current-currency-flag">🇦🇪</span>
+            <span id="current-currency-label">AED (د.إ)</span>
             <svg class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200" id="currency-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
@@ -235,22 +235,34 @@
             class="currency-dropdown hidden absolute right-0 top-full mt-1.5 w-36 rounded-2xl bg-slate-900/95 border border-slate-700/80 shadow-2xl backdrop-blur-xl py-1.5 z-50 transition-all duration-200"
           >
             <button type="button" class="currency-item currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors" data-currency="AED">
-              <span class="currency-label">AED</span>
+              <span class="flex items-center gap-2">
+                <span class="text-xs">🇦🇪</span>
+                <span class="currency-label">AED</span>
+              </span>
               <span class="currency-symbol text-slate-400 text-[11px]">د.إ</span>
             </button>
 
             <button type="button" class="currency-item currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors" data-currency="USD">
-              <span class="currency-label">USD</span>
+              <span class="flex items-center gap-2">
+                <span class="text-xs">🇺🇸</span>
+                <span class="currency-label">USD</span>
+              </span>
               <span class="currency-symbol text-slate-400 text-[11px]">$</span>
             </button>
 
             <button type="button" class="currency-item currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors" data-currency="EUR">
-              <span class="currency-label">EUR</span>
+              <span class="flex items-center gap-2">
+                <span class="text-xs">🇪🇺</span>
+                <span class="currency-label">EUR</span>
+              </span>
               <span class="currency-symbol text-slate-400 text-[11px]">&euro;</span>
             </button>
 
             <button type="button" class="currency-item currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors" data-currency="GBP">
-              <span class="currency-label">GBP</span>
+              <span class="flex items-center gap-2">
+                <span class="text-xs">🇬🇧</span>
+                <span class="currency-label">GBP</span>
+              </span>
               <span class="currency-symbol text-slate-400 text-[11px]">&pound;</span>
             </button>
           </div>
@@ -1147,7 +1159,7 @@
             </span>
           </label>
           <p id="dmc-checkbox-error" class="hidden text-xs text-rose-400 mt-1 font-medium" data-i18n="dmc_checkbox_error">
-            ?? Please certify and check this box before submitting your application.
+            ⚠️ Please certify and check this box before submitting your application.
           </p>
         </div>
 
@@ -1302,8 +1314,8 @@
     <!-- Bottom Bar -->
     <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
       <div class="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-2.5 text-center sm:text-left">
-        <span data-i18n="footerCopyright">� 2026 Star Plus Travel &amp; Tourism LLC. All rights reserved.</span>
-        <span class="hidden sm:inline text-slate-700">�</span>
+        <span data-i18n="footerCopyright">&copy; 2026 Star Plus Travel &amp; Tourism LLC. All rights reserved.</span>
+        <span class="hidden sm:inline text-slate-700">&bull;</span>
         <span data-i18n="footerAttribution">Redesigned &amp; Developed by Lupo</span>
       </div>
       <div class="flex items-center space-x-3 text-slate-400 text-sm">

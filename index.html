@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" class="dark scroll-smooth w-full max-w-full">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Star Plus Travels | Your Gateway to the World ï Luxury Holidays, Flights & Visas</title>
+  <title>Star Plus Travels | Your Gateway to the World &bull; Luxury Holidays, Flights & Visas</title>
   <meta name="description" content="Discover extraordinary holiday packages, cheap flight deals, and fast-track visa services with Star Plus Travels. Headquartered in Deira Dubai and Sri Lanka.">
   
   <!-- Favicon Links for Browser Tab & URL Bar -->
@@ -293,8 +293,8 @@
             class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/80 border border-slate-700/60 hover:border-amber-500/50 shadow-sm backdrop-blur-md text-[11px] font-semibold text-slate-100 transition-all focus:outline-none"
             aria-expanded="false"
           >
-            <span class="text-xs">??</span>
-            <span id="current-currency-label">AED (?.?)</span>
+            <span class="text-xs" id="current-currency-flag">üá¶üá™</span>
+            <span id="current-currency-label">AED (ÿØ.ÿ•)</span>
             <svg class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200" id="currency-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
@@ -306,22 +306,34 @@
             class="currency-dropdown hidden absolute right-0 top-full mt-1.5 w-36 rounded-2xl bg-slate-900/95 border border-slate-700/80 shadow-2xl backdrop-blur-xl py-1.5 z-50 transition-all duration-200"
           >
             <button type="button" class="currency-item currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors" data-currency="AED">
-              <span class="currency-label">AED</span>
+              <span class="flex items-center gap-2">
+                <span class="text-xs">üá¶üá™</span>
+                <span class="currency-label">AED</span>
+              </span>
               <span class="currency-symbol text-slate-400 text-[11px]">ÿØ.ÿ•</span>
             </button>
 
             <button type="button" class="currency-item currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors" data-currency="USD">
-              <span class="currency-label">USD</span>
+              <span class="flex items-center gap-2">
+                <span class="text-xs">üá∫üá∏</span>
+                <span class="currency-label">USD</span>
+              </span>
               <span class="currency-symbol text-slate-400 text-[11px]">$</span>
             </button>
 
             <button type="button" class="currency-item currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors" data-currency="EUR">
-              <span class="currency-label">EUR</span>
+              <span class="flex items-center gap-2">
+                <span class="text-xs">üá™üá∫</span>
+                <span class="currency-label">EUR</span>
+              </span>
               <span class="currency-symbol text-slate-400 text-[11px]">&euro;</span>
             </button>
 
             <button type="button" class="currency-item currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors" data-currency="GBP">
-              <span class="currency-label">GBP</span>
+              <span class="flex items-center gap-2">
+                <span class="text-xs">üá¨üáß</span>
+                <span class="currency-label">GBP</span>
+              </span>
               <span class="currency-symbol text-slate-400 text-[11px]">&pound;</span>
             </button>
           </div>
@@ -644,7 +656,7 @@
       <!-- Top Badge -->
       <div class="inline-flex items-center space-x-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full bg-slate-900/50 dark:bg-slate-900/50 border border-amber-500/40 text-amber-300 text-[11px] sm:text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4 lg:mb-6 shadow-xl backdrop-blur-md animate-float">
         <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-400 animate-ping"></span>
-        <span data-i18n="heroBadge">STAR PLUS TRAVEL &amp; TOURISM LLC ï DUBAI &amp; COLOMBO ?</span>
+        <span data-i18n="heroBadge">STAR PLUS TRAVEL &amp; TOURISM LLC &bull; DUBAI &amp; COLOMBO ?</span>
       </div>
 
       <!-- Main Catchphrase / Headline -->
@@ -727,13 +739,13 @@
           <div class="mt-3 pt-2.5 sm:mt-4 sm:pt-3 border-t border-slate-800/60 flex items-center flex-wrap gap-1.5 sm:gap-2 text-[11px] sm:text-xs text-slate-400">
             <span class="font-bold text-slate-300" data-i18n="trendingLabel">Trending Now:</span>
             <button type="button" onclick="document.getElementById('heroDestinationInput').value='Dubai'; handleHeroSearch();" class="hover:text-amber-400 underline decoration-amber-500/40">Dubai Desert</button>
-            <span>ï</span>
+            <span>&bull;</span>
             <button type="button" onclick="document.getElementById('heroDestinationInput').value='Sri Lanka'; handleHeroSearch();" class="hover:text-amber-400 underline decoration-amber-500/40">Sri Lanka Tea Hills</button>
-            <span>ï</span>
+            <span>&bull;</span>
             <button type="button" onclick="document.getElementById('heroDestinationInput').value='Georgia'; handleHeroSearch();" class="hover:text-amber-400 underline decoration-amber-500/40">Georgia Kazbegi</button>
-            <span>ï</span>
+            <span>&bull;</span>
             <button type="button" onclick="document.getElementById('heroDestinationInput').value='Maldives'; handleHeroSearch();" class="hover:text-amber-400 underline decoration-amber-500/40">Maldives Villas</button>
-            <span>ï</span>
+            <span>&bull;</span>
             <button type="button" onclick="document.getElementById('heroDestinationInput').value='Azerbaijan'; handleHeroSearch();" class="hover:text-amber-400 underline decoration-amber-500/40">Baku Azerbaijan</button>
           </div>
         </div>
@@ -757,7 +769,7 @@
         <div class="glass-card p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-200 dark:border-slate-800">
           <div class="text-xl sm:text-2xl lg:text-3xl font-black text-amber-600 dark:text-amber-400 font-heading flex items-center">
             <span class="stat-counter" data-target="4.9" data-decimals="1">4.9</span>
-            <span class="text-[10px] sm:text-xs text-amber-500 ml-1">?????</span>
+            <span class="text-[10px] sm:text-xs text-amber-500 ml-1">‚òÖ‚òÖ‚òÖ‚òÖ‚òÖ</span>
           </div>
           <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5" data-i18n="trustRatingLabel">Google & Trustpilot Rating</p>
         </div>
@@ -1001,7 +1013,7 @@
           <div>
             <!-- Animated Shimmer Icon -->
             <div class="relative w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
-              <span class="relative z-10">??</span>
+              <span class="relative z-10">üíé</span>
               <!-- Light ray sweep -->
               <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-amber-400/20 to-transparent"></div>
             </div>
@@ -1032,7 +1044,7 @@
           <div>
             <!-- Animated Passport Icon -->
             <div class="relative w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xl mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
-              <span class="relative z-10">??</span>
+              <span class="relative z-10">üíé</span>
               <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-blue-400/20 to-transparent"></div>
             </div>
 
@@ -1062,7 +1074,7 @@
           <div>
             <!-- Animated Card Icon -->
             <div class="relative w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
-              <span class="relative z-10">??</span>
+              <span class="relative z-10">üõ°Ô∏è</span>
               <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-emerald-400/20 to-transparent"></div>
             </div>
 
@@ -1092,7 +1104,7 @@
           <div>
             <!-- Animated Headset Icon with Live Pulse Indicator -->
             <div class="relative w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-xl mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
-              <span class="relative z-10">??</span>
+              <span class="relative z-10">üéß</span>
               <!-- Live pulse dot -->
               <span class="absolute top-1.5 right-1.5 flex h-2 w-2 z-20" title="Active Live Assistance">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -1412,7 +1424,7 @@
             
             <div class="text-xs font-semibold text-slate-300 flex items-center gap-2">
               <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-lock text-[11px]"></i> Terms &amp; Conditions Apply</span>
-              <span>ï</span>
+              <span>&bull;</span>
               <span>0% Tabby Installments Available</span>
             </div>
           </div>
@@ -1429,7 +1441,7 @@
               <!-- Flight Header -->
               <div class="flex items-center justify-between border-b border-slate-800 pb-3">
                 <div class="flex items-center gap-2">
-                  <span class="text-amber-400 text-lg">??</span>
+                  <span class="text-amber-400 text-lg">‚òÖ</span>
                   <div>
                     <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Star Plus Travel Pass</div>
                     <div class="text-xs font-black text-amber-300">VIP HOLIDAY REBATE</div>
@@ -1451,7 +1463,7 @@
                 <div class="relative flex-1 mx-4 flex items-center justify-center">
                   <div class="w-full h-0.5 bg-dashed border-b-2 border-dashed border-slate-700"></div>
                   <div class="absolute -top-3 w-6 h-6 rounded-full bg-amber-500/20 flex items-center justify-center text-xs animate-[bounce_2s_infinite]">
-                    ??
+                    ‚úàÔ∏è
                   </div>
                 </div>
 
@@ -1493,11 +1505,9 @@
     <!-- Section Title -->
     <div class="max-w-7xl mx-auto px-4 text-center mb-10">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 mb-3">
-        <span class="text-xs text-amber-400 font-medium">? 4.9 Rating</span>
-        <span class="text-slate-500">ï</span>
-        <span class="text-xs text-slate-300">Google Verified Reviews</span>
+        <span class="text-xs text-amber-400 font-medium">? 4.9 Rating</span><span class="text-slate-500">&bull;</span><span class="text-xs text-slate-300">Google Verified Reviews</span>
       </div>
-      <h2 class="text-2xl md:text-3xl font-extrabold text-white" data-i18n="testimonialsTitle">Travelers who <span class="text-[#FF385C] inline-block mx-1">??</span> us</h2>
+      <h2 class="text-2xl md:text-3xl font-extrabold text-white" data-i18n="testimonialsTitle">Travelers who <span class="text-[#FF385C] inline-block mx-1">‚ù§Ô∏è</span> us</h2>
     </div>
 
     <!-- Marquee Container -->
@@ -1540,7 +1550,7 @@
             <span class="text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-full truncate max-w-[170px]">Georgia Tour, Hotels &amp; Logistics</span>
           </div>
           <p style="white-space: normal !important; word-break: break-word;" class="text-sm text-slate-200 leading-relaxed my-3 line-clamp-4 italic block">
-            "We booked a trip to Georgia with Mr. Sasan Lakmal of Star Plus Travel and Tourism LLCóhe was awesome. He handled our entire trip from flights to rental car and hotels. It was reassuring to pass that responsibility to someone so competent and timely. Highly recommend!"
+            "We booked a trip to Georgia with Mr. Sasan Lakmal of Star Plus Travel and Tourism LLC&mdash;he was awesome. He handled our entire trip from flights to rental car and hotels. It was reassuring to pass that responsibility to someone so competent and timely. Highly recommend!"
           </p>
           <div class="pt-3 border-t border-slate-800/80 flex items-center gap-3">
             <div class="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-semibold text-amber-400 shrink-0">SL</div>
@@ -1563,7 +1573,7 @@
             <span class="text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-full truncate max-w-[170px]">10-Day Dubai Tour &amp; Visa</span>
           </div>
           <p style="white-space: normal !important; word-break: break-word;" class="text-sm text-slate-200 leading-relaxed my-3 line-clamp-4 italic block">
-            "I recently booked a tour to Dubai with Star Plus Travels and the service they provided was next level. The visa process was smooth and hassle-free. The team was cooperative, prompt, and organized a comprehensive 10-day tour covering Dubaiís premier attractions."
+            "I recently booked a tour to Dubai with Star Plus Travels and the service they provided was next level. The visa process was smooth and hassle-free. The team was cooperative, prompt, and organized a comprehensive 10-day tour covering Dubai's premier attractions."
           </p>
           <div class="pt-3 border-t border-slate-800/80 flex items-center gap-3">
             <div class="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-semibold text-amber-400 shrink-0">DP</div>
@@ -1679,7 +1689,7 @@
             <span class="text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-full truncate max-w-[170px]">Georgia Tour, Hotels &amp; Logistics</span>
           </div>
           <p style="white-space: normal !important; word-break: break-word;" class="text-sm text-slate-200 leading-relaxed my-3 line-clamp-4 italic block">
-            "We booked a trip to Georgia with Mr. Sasan Lakmal of Star Plus Travel and Tourism LLCóhe was awesome. He handled our entire trip from flights to rental car and hotels. It was reassuring to pass that responsibility to someone so competent and timely. Highly recommend!"
+            "We booked a trip to Georgia with Mr. Sasan Lakmal of Star Plus Travel and Tourism LLC&mdash;he was awesome. He handled our entire trip from flights to rental car and hotels. It was reassuring to pass that responsibility to someone so competent and timely. Highly recommend!"
           </p>
           <div class="pt-3 border-t border-slate-800/80 flex items-center gap-3">
             <div class="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-semibold text-amber-400 shrink-0">SL</div>
@@ -1702,7 +1712,7 @@
             <span class="text-[10px] text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-full truncate max-w-[170px]">10-Day Dubai Tour &amp; Visa</span>
           </div>
           <p style="white-space: normal !important; word-break: break-word;" class="text-sm text-slate-200 leading-relaxed my-3 line-clamp-4 italic block">
-            "I recently booked a tour to Dubai with Star Plus Travels and the service they provided was next level. The visa process was smooth and hassle-free. The team was cooperative, prompt, and organized a comprehensive 10-day tour covering Dubaiís premier attractions."
+            "I recently booked a tour to Dubai with Star Plus Travels and the service they provided was next level. The visa process was smooth and hassle-free. The team was cooperative, prompt, and organized a comprehensive 10-day tour covering Dubai's premier attractions."
           </p>
           <div class="pt-3 border-t border-slate-800/80 flex items-center gap-3">
             <div class="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-semibold text-amber-400 shrink-0">DP</div>
@@ -1879,7 +1889,7 @@
           <!-- Office 1: Dubai -->
           <div class="mt-8 glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
             <div class="flex items-center space-x-3 mb-2">
-              <span class="text-xl">????</span>
+              <span class="text-xl">üá¶üá™</span>
               <div>
                 <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="contactUaeOffice">Dubai Headquarters, UAE</h4>
                 <a href="https://www.google.com/maps/dir/?api=1&destination=Office+204+Al+Rigga+Business+Center+Al+Rigga+Road+Deira+Dubai+UAE" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-500 dark:text-slate-400 hover:text-amber-500 transition-colors inline-flex items-center gap-1">
@@ -1899,7 +1909,7 @@
           <!-- Office 2: Colombo -->
           <div class="mt-4 glass-card p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
             <div class="flex items-center space-x-3 mb-2">
-              <span class="text-xl">????</span>
+              <span class="text-xl">üá±üá∞</span>
               <div>
                 <h4 class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="contactSlOffice">Colombo Branch, Sri Lanka</h4>
                 <a href="https://www.google.com/maps/dir/?api=1&destination=No+45+Galle+Road+Colombo+03+Western+Province+Sri+Lanka" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-500 dark:text-slate-400 hover:text-amber-500 transition-colors inline-flex items-center gap-1">
@@ -2185,8 +2195,8 @@
     <!-- Bottom Bar & Payment Badges -->
     <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px]">
       <div class="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-2.5 text-center sm:text-left">
-        <span data-i18n="footerCopyright">© 2026 Star Plus Travel &amp; Tourism LLC. All rights reserved.</span>
-        <span class="hidden sm:inline text-slate-700">ï</span>
+        <span data-i18n="footerCopyright">&copy; 2026 Star Plus Travel &amp; Tourism LLC. All rights reserved.</span>
+        <span class="hidden sm:inline text-slate-700">&bull;</span>
         <span data-i18n="footerAttribution">Redesigned &amp; Developed by Lupo</span>
       </div>
       <div class="flex items-center space-x-3 text-slate-400 text-sm">
@@ -2242,7 +2252,7 @@
 
           <div class="flex flex-col">
             <label for="bookingChildren" class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5 min-h-[2rem] flex items-end cursor-pointer" data-i18n="children_travelers">
-              Children (2ñ11 Yrs)
+              Children (2&ndash;11 Yrs)
             </label>
             <select id="bookingChildren" name="children" onchange="calculateBookingTotal()" class="w-full box-border h-11 px-3 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white focus:ring-amber-500">
               <option value="0" selected>0 Children</option>
@@ -2345,7 +2355,7 @@
             <div id="itineraryModalTagline" class="text-xs md:text-sm font-medium text-amber-400/90 tracking-wide uppercase mt-1"></div>
             <p id="itineraryModalSummary" class="text-sm text-slate-300 leading-relaxed mt-3 max-w-2xl"></p>
 
-            <!-- Highlights Pill Row: 3ñ4 quick tags -->
+            <!-- Highlights Pill Row: 3&ndash;4 quick tags -->
             <div id="itineraryHighlightTags" class="flex flex-wrap items-center gap-2 mt-4">
               <!-- Dynamically populated tags -->
             </div>
@@ -2565,15 +2575,15 @@
       </button>
       
       <div class="dwell-badge">
-        <span>??</span> NEED A HAND?
+        <span>üëã</span> NEED A HAND?
       </div>
       
       <h3 class="dwell-title">
-        Youíve spent longer looking than it takes to get your trip planned.
+        You've spent longer looking than it takes to get your trip planned.
       </h3>
       
       <p class="dwell-subtext">
-        Skip the forms. Tell our travel specialists where you want to go and weíll build your custom itinerary on WhatsApp in 5 minutes.
+        Skip the forms. Tell our travel specialists where you want to go and we'll build your custom itinerary on WhatsApp in 5 minutes.
       </p>
       
       <a 

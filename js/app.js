@@ -3321,6 +3321,13 @@ function updateQuoteFormFields() {
 window.updateQuoteFormFields = updateQuoteFormFields;
 
 // Currency Switcher Logic & Modern Currency Dropdown
+const CURRENCY_FLAGS = {
+  AED: '🇦🇪',
+  USD: '🇺🇸',
+  EUR: '🇪🇺',
+  GBP: '🇬🇧'
+};
+
 const CURRENCY_DISPLAY_LABELS = {
   AED: 'AED (د.إ)',
   USD: 'USD ($)',
@@ -3332,6 +3339,10 @@ function updateModernCurrencyDropdownUI(curr) {
   const labelEl = document.getElementById('current-currency-label');
   if (labelEl && CURRENCY_DISPLAY_LABELS[curr]) {
     labelEl.textContent = CURRENCY_DISPLAY_LABELS[curr];
+  }
+  const flagEl = document.getElementById('current-currency-flag');
+  if (flagEl && CURRENCY_FLAGS[curr]) {
+    flagEl.textContent = CURRENCY_FLAGS[curr];
   }
 
   document.querySelectorAll('.currency-option, .currency-item').forEach(btn => {
