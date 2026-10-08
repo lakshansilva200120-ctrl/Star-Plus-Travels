@@ -335,17 +335,17 @@
     panel.setAttribute('aria-label', 'Starplus AI Concierge Dialog');
     panel.innerHTML = `
       <!-- Top Bar with Minimize Button (-) -->
-      <div class="flex items-center justify-between px-4 py-3 bg-slate-950/90 border-b border-amber-500/20 select-none flex-shrink-0">
+      <div class="concierge-top-bar flex items-center justify-between px-4 py-3 border-b select-none flex-shrink-0">
         <div class="flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span id="assistantBrandPill" class="text-[11px] font-bold tracking-widest text-amber-300 uppercase">
+          <span id="assistantBrandPill" class="text-[11px] font-bold tracking-widest text-amber-500 dark:text-amber-300 uppercase">
             ${t.brandPill}
           </span>
         </div>
         <button 
           type="button" 
           id="assistantMinimizeBtn" 
-          class="w-7 h-7 rounded-full bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white flex items-center justify-center transition-colors text-base font-bold shadow cursor-pointer" 
+          class="w-7 h-7 rounded-full bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-colors text-base font-bold shadow cursor-pointer" 
           aria-label="Minimize Assistant"
           title="Minimize"
         >
@@ -363,10 +363,10 @@
           <div class="tamm-hero-orb-wrap">
             <div class="tamm-hero-orb"></div>
           </div>
-          <h3 id="assistantGreetingTitle" class="text-xl sm:text-2xl font-bold text-white tracking-tight mt-3">
+          <h3 id="assistantGreetingTitle" class="concierge-hero-title text-xl sm:text-2xl font-bold tracking-tight mt-3">
             ${t.greetingTitle}
           </h3>
-          <p id="assistantGreetingSub" class="text-xs sm:text-sm text-slate-300 font-medium mt-1">
+          <p id="assistantGreetingSub" class="concierge-hero-sub text-xs sm:text-sm font-medium mt-1">
             ${t.greetingSubtitle}
           </p>
         </div>
@@ -375,7 +375,7 @@
         <div id="assistantCapabilityCards" class="space-y-2 mt-1">
           <!-- Card 1 -->
           <button type="button" class="tamm-card" data-query="${t.card1Query}">
-            <div class="tamm-card-icon bg-teal-500/20 text-teal-300 border border-teal-500/30">
+            <div class="tamm-card-icon bg-teal-500/20 text-teal-600 dark:text-teal-300 border border-teal-500/30">
               🗺️
             </div>
             <div class="flex-1 min-w-0">
@@ -387,7 +387,7 @@
 
           <!-- Card 2 -->
           <button type="button" class="tamm-card" data-query="${t.card2Query}">
-            <div class="tamm-card-icon bg-sky-500/20 text-sky-300 border border-sky-500/30">
+            <div class="tamm-card-icon bg-sky-500/20 text-sky-600 dark:text-sky-300 border border-sky-500/30">
               💬
             </div>
             <div class="flex-1 min-w-0">
@@ -399,7 +399,7 @@
 
           <!-- Card 3 -->
           <button type="button" class="tamm-card" data-query="${t.card3Query}">
-            <div class="tamm-card-icon bg-amber-500/20 text-amber-300 border border-amber-500/30">
+            <div class="tamm-card-icon bg-amber-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/30">
               ✨
             </div>
             <div class="flex-1 min-w-0">
@@ -415,7 +415,7 @@
           <button 
             type="button" 
             id="assistantExplorePromptsBtn" 
-            class="text-xs font-semibold text-amber-400/90 hover:text-amber-300 transition-colors py-1 inline-flex items-center gap-1.5 cursor-pointer"
+            class="text-xs font-semibold text-amber-600 dark:text-amber-400 hover:text-amber-500 dark:hover:text-amber-300 transition-colors py-1 inline-flex items-center gap-1.5 cursor-pointer"
           >
             <span id="assistantExplorePromptsText">${t.explorePrompts}</span>
           </button>
@@ -438,8 +438,8 @@
       </div>
 
       <!-- WhatsApp Handoff Bar -->
-      <div class="px-3.5 py-2 bg-slate-950/80 border-t border-slate-800/80 flex items-center justify-between gap-2 flex-shrink-0 select-none">
-        <div class="flex items-center gap-1.5 text-[11px] text-slate-300 truncate">
+      <div class="concierge-wa-bar px-3.5 py-2 flex items-center justify-between gap-2 flex-shrink-0 select-none">
+        <div class="flex items-center gap-1.5 text-[11px] truncate">
           <span class="w-2 h-2 rounded-full bg-[#25D366] flex-shrink-0"></span>
           <span id="assistantWaHandoffLabel" class="truncate">${t.waHandoffBarText}</span>
         </div>
@@ -458,12 +458,12 @@
       </div>
 
       <!-- Modern Search / Input Bar -->
-      <form id="assistantChatForm" class="p-2.5 bg-slate-900 border-t border-slate-800 flex-shrink-0">
+      <form id="assistantChatForm" class="concierge-input-form p-2.5 flex-shrink-0">
         <div class="tamm-input-container">
           <button 
             type="button" 
             id="assistantPlusActionBtn" 
-            class="w-7 h-7 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-300 flex items-center justify-center transition-colors text-base font-bold flex-shrink-0 cursor-pointer" 
+            class="w-7 h-7 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 hover:text-amber-500 dark:hover:text-amber-300 flex items-center justify-center transition-colors text-base font-bold flex-shrink-0 cursor-pointer" 
             title="Toggle Quick Prompts" 
             aria-label="Toggle Quick Prompts"
           >
@@ -472,7 +472,7 @@
           <input 
             type="text" 
             id="assistantChatInput" 
-            class="flex-1 bg-transparent text-slate-100 placeholder-slate-400 text-xs sm:text-sm focus:outline-none" 
+            class="flex-1 bg-transparent text-xs sm:text-sm focus:outline-none" 
             placeholder="${t.placeholder}"
             autocomplete="off"
           />
@@ -490,7 +490,7 @@
       </form>
 
       <!-- Disclaimer Footer -->
-      <div class="px-4 py-1.5 bg-slate-950 text-[10px] text-slate-400 text-center border-t border-slate-900 select-none flex-shrink-0">
+      <div class="concierge-disclaimer-footer px-4 py-1.5 text-[10px] text-center select-none flex-shrink-0">
         <p id="assistantDisclaimerText">${t.disclaimer}</p>
       </div>
     `;
@@ -704,7 +704,7 @@
       const bubble = document.createElement('div');
       bubble.className = 'flex justify-end';
       bubble.innerHTML = `
-        <div class="bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-semibold rounded-2xl rounded-tr-sm px-4 py-2.5 text-xs sm:text-sm max-w-[85%] shadow-md leading-relaxed">
+        <div class="assistant-user-bubble rounded-2xl rounded-tr-sm px-4 py-2.5 text-xs sm:text-sm max-w-[85%] shadow-md leading-relaxed">
           ${escapeHtml(text)}
         </div>
       `;
@@ -714,12 +714,12 @@
       bubble.className = 'flex items-start gap-2.5 max-w-[95%]';
       bubble.innerHTML = `
         <div class="tamm-launcher-orb w-7 h-7 flex-shrink-0 text-xs shadow-md"></div>
-        <div class="bg-slate-900/90 border border-slate-700/70 rounded-2xl rounded-tl-sm p-3.5 text-xs sm:text-sm text-slate-100 shadow-lg leading-relaxed flex-1">
-          <div class="space-y-2 text-slate-200">${formatMarkdown(text)}</div>
+        <div class="assistant-bot-bubble rounded-2xl rounded-tl-sm p-3.5 text-xs sm:text-sm shadow-lg leading-relaxed flex-1">
+          <div class="space-y-2 assistant-markdown-text">${formatMarkdown(text)}</div>
           
-          <div class="mt-3 pt-2.5 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2">
+          <div class="mt-3 pt-2.5 border-t assistant-meta-divider flex flex-wrap items-center justify-between gap-2">
             ${action ? `
-              <a href="${action.url}" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/35 transition-colors">
+              <a href="${action.url}" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-600 dark:text-amber-300 text-xs font-bold border border-amber-500/35 transition-colors">
                 ${action.label} →
               </a>
             ` : '<span></span>'}
