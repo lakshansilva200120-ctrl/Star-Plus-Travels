@@ -5601,7 +5601,11 @@ html.light .dwell-subtext {
 .custom-itinerary-banner,
 [class*="dream-destination"] {
   width: 100% !important;
-  max-width: 1280px !important; /* or matches site container */
+  max-width: 100% !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  box-sizing: border-box !important;
 }

@@ -1230,54 +1230,56 @@
       </div>
 
       <!-- Bottom Banner for Custom Trip Request -->
-      <div class="custom-itinerary-banner dream-destination-banner mt-14 relative overflow-hidden rounded-3xl bg-slate-950 border border-slate-800/80 shadow-2xl min-h-[200px] flex items-center group">
-        
-        <!-- 1. Background Video (No blur, positioned to highlight the wing and bright coast) -->
-        <video
-          autoplay
-          loop
-          muted
-          playsinline
-          preload="auto"
-          class="absolute inset-0 w-full h-full object-cover object-right pointer-events-none brightness-95 contrast-105"
-        >
-          <source src="/assets/videos/custom-flight-loop.mp4" type="video/mp4" />
-        </video>
-
-        <!-- 2. Directional Gradient (Deeper dark scrim to hide artifacts and deliver clean contrast) -->
-        <div class="absolute inset-0 bg-gradient-to-r from-[#070b14] via-[#070b14]/90 to-transparent pointer-events-none"></div>
-
-        <!-- 3. Foreground Text & Button -->
-        <div class="relative z-10 w-full p-8 md:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+      <div class="w-full max-w-7xl mx-auto mt-14">
+        <div class="custom-itinerary-banner dream-destination-banner w-full relative overflow-hidden rounded-3xl bg-slate-950 border border-slate-800/80 shadow-2xl min-h-[200px] flex items-center justify-between group">
           
-          <div class="max-w-xl space-y-2">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-[11px] font-bold uppercase tracking-wider backdrop-blur-sm">
-              <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-              <span data-i18n="customTripBadge">Tailor-Made Holidays</span>
+          <!-- 1. Background Video (No blur, positioned to highlight the wing and bright coast) -->
+          <video
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            class="absolute inset-0 w-full h-full object-cover object-right pointer-events-none brightness-95 contrast-105"
+          >
+            <source src="/assets/videos/custom-flight-loop.mp4" type="video/mp4" />
+          </video>
+
+          <!-- 2. Directional Gradient (Deeper dark scrim to hide artifacts and deliver clean contrast) -->
+          <div class="absolute inset-0 bg-gradient-to-r from-[#070b14] via-[#070b14]/90 to-transparent pointer-events-none"></div>
+
+          <!-- 3. Foreground Text & Button -->
+          <div class="relative z-10 w-full p-8 md:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            
+            <div class="max-w-xl space-y-2 text-left">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/40 text-amber-400 text-[11px] font-bold uppercase tracking-wider backdrop-blur-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                <span data-i18n="customTripBadge">Tailor-Made Holidays</span>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md" data-i18n="customTripTitle">
+                Don't see your dream destination?
+              </h3>
+
+              <p class="text-xs sm:text-sm text-slate-200/90 leading-relaxed drop-shadow-sm" data-i18n="customTripDesc">
+                Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.
+              </p>
             </div>
 
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight drop-shadow-md" data-i18n="customTripTitle">
-              Don't see your dream destination?
-            </h3>
+            <div class="shrink-0 w-full sm:w-auto">
+              <a 
+                href="#quoteModal"
+                onclick="if(typeof openQuoteModal === 'function') openQuoteModal();"
+                class="relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all duration-300"
+              >
+                <span data-i18n="customTripBtn">Request Custom Itinerary</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </a>
+            </div>
 
-            <p class="text-xs sm:text-sm text-slate-200/90 leading-relaxed drop-shadow-sm" data-i18n="customTripDesc">
-              Our luxury travel planners can customize any itinerary for families, honeymoons, solo trips, or corporate groups.
-            </p>
           </div>
-
-          <div class="shrink-0 w-full sm:w-auto">
-            <a 
-              href="#quoteModal"
-              onclick="if(typeof openQuoteModal === 'function') openQuoteModal();"
-              class="relative inline-flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(245,158,11,0.4)] hover:scale-105 active:scale-95 transition-all duration-300"
-            >
-              <span data-i18n="customTripBtn">Request Custom Itinerary</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-              </svg>
-            </a>
-          </div>
-
         </div>
       </div>
 
