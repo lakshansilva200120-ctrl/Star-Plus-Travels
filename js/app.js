@@ -3334,14 +3334,16 @@ function updateModernCurrencyDropdownUI(curr) {
     labelEl.textContent = CURRENCY_DISPLAY_LABELS[curr];
   }
 
-  document.querySelectorAll('.currency-option').forEach(btn => {
+  document.querySelectorAll('.currency-option, .currency-item').forEach(btn => {
     const btnCurr = btn.getAttribute('data-currency');
     if (btnCurr === curr) {
-      btn.classList.add('text-amber-400', 'font-semibold', 'bg-white/10');
+      btn.classList.add('text-amber-400', 'font-semibold', 'bg-white/10', 'is-selected');
       btn.classList.remove('text-slate-200');
+      btn.setAttribute('aria-selected', 'true');
     } else {
-      btn.classList.remove('text-amber-400', 'font-semibold', 'bg-white/10');
+      btn.classList.remove('text-amber-400', 'font-semibold', 'bg-white/10', 'is-selected');
       btn.classList.add('text-slate-200');
+      btn.setAttribute('aria-selected', 'false');
     }
   });
 }
@@ -3378,7 +3380,7 @@ function initModernCurrencyDropdown() {
   }
 
   // Option select handler
-  document.querySelectorAll('.currency-option').forEach(btn => {
+  document.querySelectorAll('.currency-option, .currency-item').forEach(btn => {
     if (!btn._hasCurrencyListener) {
       btn._hasCurrencyListener = true;
       btn.addEventListener('click', (e) => {

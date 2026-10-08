@@ -235,50 +235,26 @@
           <!-- Floating Menu Panel -->
           <div 
             id="currency-menu" 
-            class="hidden absolute right-0 top-full mt-1.5 w-36 rounded-2xl bg-slate-900/95 border border-slate-700/80 shadow-2xl backdrop-blur-xl py-1.5 z-50 transition-all duration-200"
+            class="currency-dropdown hidden absolute right-0 top-full mt-1.5 w-36 rounded-2xl bg-slate-900/95 border border-slate-700/80 shadow-2xl backdrop-blur-xl py-1.5 z-50 transition-all duration-200"
           >
-            <button 
-              type="button" 
-              data-currency="AED" 
-              class="currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
-            >
-              <span class="flex items-center gap-2">
-                <span class="text-xs">????</span> AED
-              </span>
-              <span class="text-slate-400 text-[11px]">?.?</span>
+            <button type="button" class="currency-item currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors" data-currency="AED">
+              <span class="currency-label">AED</span>
+              <span class="currency-symbol text-slate-400 text-[11px]">Ø¯.Ø¥</span>
             </button>
 
-            <button 
-              type="button" 
-              data-currency="USD" 
-              class="currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
-            >
-              <span class="flex items-center gap-2">
-                <span class="text-xs">????</span> USD
-              </span>
-              <span class="text-slate-400 text-[11px]">$</span>
+            <button type="button" class="currency-item currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors" data-currency="USD">
+              <span class="currency-label">USD</span>
+              <span class="currency-symbol text-slate-400 text-[11px]">$</span>
             </button>
 
-            <button 
-              type="button" 
-              data-currency="EUR" 
-              class="currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
-            >
-              <span class="flex items-center gap-2">
-                <span class="text-xs">????</span> EUR
-              </span>
-              <span class="text-slate-400 text-[11px]">€</span>
+            <button type="button" class="currency-item currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors" data-currency="EUR">
+              <span class="currency-label">EUR</span>
+              <span class="currency-symbol text-slate-400 text-[11px]">&euro;</span>
             </button>
 
-            <button 
-              type="button" 
-              data-currency="GBP" 
-              class="currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors"
-            >
-              <span class="flex items-center gap-2">
-                <span class="text-xs">????</span> GBP
-              </span>
-              <span class="text-slate-400 text-[11px]">£</span>
+            <button type="button" class="currency-item currency-option w-full flex items-center justify-between px-3.5 py-2 text-xs font-medium text-slate-200 hover:text-white hover:bg-white/5 transition-colors" data-currency="GBP">
+              <span class="currency-label">GBP</span>
+              <span class="currency-symbol text-slate-400 text-[11px]">&pound;</span>
             </button>
           </div>
         </div>
