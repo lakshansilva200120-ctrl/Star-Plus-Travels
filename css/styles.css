@@ -945,7 +945,7 @@ html.light body:has(#hero) .hero-floating-nav:not(.header-scrolled) .nav-link:ho
   filter: none !important;
 }
 
-/* Navigation Dropdown Menu (Explore / More) */
+/* Navigation Dropdown Menu (Explore / More) - Restored to original stable state */
 .nav-dropdown {
   position: relative;
   display: inline-flex;
