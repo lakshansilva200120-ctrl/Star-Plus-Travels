@@ -527,6 +527,94 @@
         }
       };
 
+      const BASELINE_PACKAGE_DEFAULTS = {
+        sriLankaWonders: {
+          id: 'sri-lanka-wonders',
+          title: 'Wonders of Sri Lanka Tour',
+          destination: 'Sri Lanka (Sigiriya, Kandy, Ella, Bentota)',
+          duration: '6 Days / 5 Nights',
+          priceAED: 2150,
+          priceUSD: 595,
+          badge: 'Bestseller',
+          available: true
+        },
+        dubaiLuxury: {
+          id: 'dubai-luxury',
+          title: 'Ultimate Dubai & Desert Safari Extravaganza',
+          destination: 'Dubai & Abu Dhabi, UAE',
+          duration: '5 Days / 4 Nights',
+          priceAED: 2450,
+          priceUSD: 675,
+          badge: 'Bestseller',
+          available: true
+        },
+        bakuCaucasus: {
+          id: 'baku-azerbaijan',
+          title: 'Baku & Caucasus Wonders of Azerbaijan',
+          destination: 'Baku & Gabala, Azerbaijan',
+          duration: '5 Days / 4 Nights',
+          priceAED: 2150,
+          priceUSD: 595,
+          badge: 'Popular',
+          available: true
+        },
+        georgiaKazbegi: {
+          id: 'georgia-kazbegi',
+          title: 'Magical Georgia: Tbilisi, Kazbegi & Gudauri',
+          destination: 'Tbilisi & Caucasus, Georgia',
+          duration: '6 Days / 5 Nights',
+          priceAED: 2250,
+          priceUSD: 620,
+          badge: 'Winter Special',
+          available: true
+        },
+        maldivesEscape: {
+          id: 'maldives-escape',
+          title: 'Maldives Overwater Resort Luxury Escape',
+          destination: 'Maldives',
+          duration: '4 Days / 3 Nights',
+          priceAED: 3850,
+          priceUSD: 1055,
+          badge: 'Island Luxury',
+          available: true
+        }
+      };
+
+      const BASELINE_SERVICE_DEFAULTS = {
+        ticketingMarkup: {
+          id: 'ticketing-markup',
+          name: 'Airline Ticket Issuance Service Fee',
+          priceAED: 50,
+          priceUSD: 14,
+          description: 'Standard per-ticket issuance and route change management fee',
+          available: true
+        },
+        flightConsultation: {
+          id: 'flight-consultation',
+          name: 'VIP Flight Route & Complex Itinerary Consultation',
+          priceAED: 100,
+          priceUSD: 28,
+          description: 'Multi-city route planning and group fare negotiation',
+          available: true
+        },
+        chauffeurHourly: {
+          id: 'chauffeur-hourly',
+          name: 'Private Luxury Chauffeur Base Daily Rate',
+          priceAED: 450,
+          priceUSD: 125,
+          description: 'Executive sedan with fuel, toll fees, and bilingual chauffeur',
+          available: true
+        },
+        hotelBookingFee: {
+          id: 'hotel-booking-fee',
+          name: 'Direct Hotel & Resort Concierge Booking Service',
+          priceAED: 75,
+          priceUSD: 21,
+          description: 'Exclusive corporate rate matching and room upgrades',
+          available: true
+        }
+      };
+
       // Render Visas Tab
       function renderVisas() {
         const grid = document.getElementById('visaCardsGrid');
@@ -553,10 +641,10 @@
                     <span>&#x21BA; Reset</span>
                   </button>
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" data-visa-toggle="${key}" ${item.available ? 'checked' : ''} class="sr-only peer">
+                    <input type="checkbox" data-visa-toggle="${key}" ${item.available !== false ? 'checked' : ''} class="sr-only peer">
                     <div class="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
-                    <span class="ml-2 text-xs font-semibold ${item.available ? 'text-emerald-400' : 'text-slate-400'} status-label">
-                      ${item.available ? 'Available' : 'On Hold'}
+                    <span class="ml-2 text-xs font-semibold ${item.available !== false ? 'text-emerald-400' : 'text-slate-400'} status-label">
+                      ${item.available !== false ? 'Available' : 'On Hold'}
                     </span>
                   </label>
                 </div>
@@ -662,12 +750,34 @@
 
         Object.keys(currentPricing.packages).forEach(key => {
           const item = currentPricing.packages[key];
+          const isAvail = item.available !== false;
           const card = document.createElement('div');
-          card.className = 'admin-glass-panel p-5 rounded-2xl flex flex-col justify-between space-y-4';
+          card.id = `package-card-${key}`;
+          card.className = 'admin-glass-panel p-5 rounded-2xl flex flex-col justify-between space-y-4 transition-all duration-300';
           card.innerHTML = `
             <div>
-              <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center justify-between gap-2 mb-2">
                 <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">${item.id}</span>
+                <div class="flex items-center gap-2">
+                  <button 
+                    type="button" 
+                    data-reset-pkg="${key}" 
+                    data-card-id="${key}"
+                    title="Reset ${item.title} to factory default rates"
+                    class="btn-card-reset text-xs text-slate-400 hover:text-amber-400 flex items-center gap-1 transition-colors px-2 py-1 rounded bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 cursor-pointer"
+                  >
+                    <span>&#x21BA; Reset</span>
+                  </button>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" data-pkg-toggle="${key}" ${isAvail ? 'checked' : ''} class="sr-only peer">
+                    <div class="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                    <span class="ml-2 text-xs font-semibold ${isAvail ? 'text-emerald-400' : 'text-slate-400'} status-label">
+                      ${isAvail ? 'Available' : 'On Hold'}
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 mb-1.5">
                 <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
                   ${item.badge || 'Circuit'}
                 </span>
@@ -701,6 +811,83 @@
           `;
           grid.appendChild(card);
         });
+
+        // Add toggle listeners
+        grid.querySelectorAll('[data-pkg-toggle]').forEach(chk => {
+          chk.addEventListener('change', (e) => {
+            const k = e.target.getAttribute('data-pkg-toggle');
+            if (currentPricing && currentPricing.packages && currentPricing.packages[k]) {
+              currentPricing.packages[k].available = e.target.checked;
+            }
+            const label = e.target.closest('label').querySelector('.status-label');
+            if (label) {
+              label.textContent = e.target.checked ? 'Available' : 'On Hold';
+              label.className = `ml-2 text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} status-label`;
+            }
+          });
+        });
+
+        // Add reset listeners
+        grid.querySelectorAll('[data-reset-pkg]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const key = btn.getAttribute('data-reset-pkg');
+            const defaultItem = BASELINE_PACKAGE_DEFAULTS[key] || (window.StarplusPricing && window.StarplusPricing.DEFAULT_PRICING && window.StarplusPricing.DEFAULT_PRICING.packages[key]);
+            if (!defaultItem) return;
+
+            // 1. Re-populate local draft state
+            if (currentPricing && currentPricing.packages && currentPricing.packages[key]) {
+              currentPricing.packages[key].priceAED = defaultItem.priceAED;
+              currentPricing.packages[key].priceUSD = defaultItem.priceUSD;
+              currentPricing.packages[key].duration = defaultItem.duration;
+              currentPricing.packages[key].badge = defaultItem.badge;
+              currentPricing.packages[key].available = true;
+            }
+
+            // 2. Re-populate inputs in this card
+            const card = document.getElementById(`package-card-${key}`);
+            if (card) {
+              const aedInput = card.querySelector(`[data-pkg-field="${key}"][data-prop="priceAED"]`);
+              if (aedInput) aedInput.value = defaultItem.priceAED;
+
+              const usdInput = card.querySelector(`[data-pkg-field="${key}"][data-prop="priceUSD"]`);
+              if (usdInput) usdInput.value = defaultItem.priceUSD;
+
+              const durationInput = card.querySelector(`[data-pkg-field="${key}"][data-prop="duration"]`);
+              if (durationInput) durationInput.value = defaultItem.duration;
+
+              const badgeInput = card.querySelector(`[data-pkg-field="${key}"][data-prop="badge"]`);
+              if (badgeInput) badgeInput.value = defaultItem.badge;
+
+              const badgeSpan = card.querySelector('.rounded-full.bg-amber-500\\/20');
+              if (badgeSpan) badgeSpan.textContent = defaultItem.badge;
+
+              const toggleInput = card.querySelector(`[data-pkg-toggle="${key}"]`);
+              if (toggleInput) {
+                toggleInput.checked = true;
+                const statusLabel = card.querySelector('.status-label');
+                if (statusLabel) {
+                  statusLabel.textContent = 'Available';
+                  statusLabel.className = 'ml-2 text-xs font-semibold text-emerald-400 status-label';
+                }
+              }
+
+              // 3. Visual feedback: flash amber border & show quick indicator on button
+              card.classList.remove('card-reset-highlight');
+              void card.offsetWidth; // Force DOM reflow to retrigger animation
+              card.classList.add('card-reset-highlight');
+
+              const originalBtnContent = btn.innerHTML;
+              btn.innerHTML = '<i class="fa-solid fa-check text-amber-400"></i><span class="text-amber-400 font-bold">Reset!</span>';
+              btn.classList.add('border-amber-500/60', 'bg-amber-500/10');
+              setTimeout(() => {
+                btn.innerHTML = originalBtnContent;
+                btn.classList.remove('border-amber-500/60', 'bg-amber-500/10');
+              }, 1400);
+
+              showToast('Reset to Default', `Restored factory defaults for ${defaultItem.title}`);
+            }
+          });
+        });
       }
 
       // Render Services Tab
@@ -711,13 +898,32 @@
 
         Object.keys(currentPricing.services).forEach(key => {
           const item = currentPricing.services[key];
+          const isAvail = item.available !== false;
           const card = document.createElement('div');
-          card.className = 'admin-glass-panel p-5 rounded-2xl flex flex-col justify-between space-y-4';
+          card.id = `service-card-${key}`;
+          card.className = 'admin-glass-panel p-5 rounded-2xl flex flex-col justify-between space-y-4 transition-all duration-300';
           card.innerHTML = `
             <div>
-              <div class="flex items-center justify-between mb-2">
+              <div class="flex items-center justify-between gap-2 mb-2">
                 <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">${item.id}</span>
-                <span class="text-[11px] text-slate-400"><i class="fa-solid fa-calculator text-amber-400/80 mr-1"></i>Base Service</span>
+                <div class="flex items-center gap-2">
+                  <button 
+                    type="button" 
+                    data-reset-srv="${key}" 
+                    data-card-id="${key}"
+                    title="Reset ${item.name} to factory default rates"
+                    class="btn-card-reset text-xs text-slate-400 hover:text-amber-400 flex items-center gap-1 transition-colors px-2 py-1 rounded bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 cursor-pointer"
+                  >
+                    <span>&#x21BA; Reset</span>
+                  </button>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" data-srv-toggle="${key}" ${isAvail ? 'checked' : ''} class="sr-only peer">
+                    <div class="w-9 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                    <span class="ml-2 text-xs font-semibold ${isAvail ? 'text-emerald-400' : 'text-slate-400'} status-label">
+                      ${isAvail ? 'Available' : 'On Hold'}
+                    </span>
+                  </label>
+                </div>
               </div>
               <h4 class="text-sm font-bold text-white">${item.name}</h4>
               <p class="text-xs text-slate-400 mt-1">${item.description || ''}</p>
@@ -737,6 +943,72 @@
             </div>
           `;
           grid.appendChild(card);
+        });
+
+        // Add toggle listeners
+        grid.querySelectorAll('[data-srv-toggle]').forEach(chk => {
+          chk.addEventListener('change', (e) => {
+            const k = e.target.getAttribute('data-srv-toggle');
+            if (currentPricing && currentPricing.services && currentPricing.services[k]) {
+              currentPricing.services[k].available = e.target.checked;
+            }
+            const label = e.target.closest('label').querySelector('.status-label');
+            if (label) {
+              label.textContent = e.target.checked ? 'Available' : 'On Hold';
+              label.className = `ml-2 text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} status-label`;
+            }
+          });
+        });
+
+        // Add reset listeners
+        grid.querySelectorAll('[data-reset-srv]').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const key = btn.getAttribute('data-reset-srv');
+            const defaultItem = BASELINE_SERVICE_DEFAULTS[key] || (window.StarplusPricing && window.StarplusPricing.DEFAULT_PRICING && window.StarplusPricing.DEFAULT_PRICING.services[key]);
+            if (!defaultItem) return;
+
+            // 1. Re-populate local draft state
+            if (currentPricing && currentPricing.services && currentPricing.services[key]) {
+              currentPricing.services[key].priceAED = defaultItem.priceAED;
+              currentPricing.services[key].priceUSD = defaultItem.priceUSD;
+              currentPricing.services[key].available = true;
+            }
+
+            // 2. Re-populate inputs in this card
+            const card = document.getElementById(`service-card-${key}`);
+            if (card) {
+              const aedInput = card.querySelector(`[data-srv-field="${key}"][data-prop="priceAED"]`);
+              if (aedInput) aedInput.value = defaultItem.priceAED;
+
+              const usdInput = card.querySelector(`[data-srv-field="${key}"][data-prop="priceUSD"]`);
+              if (usdInput) usdInput.value = defaultItem.priceUSD;
+
+              const toggleInput = card.querySelector(`[data-srv-toggle="${key}"]`);
+              if (toggleInput) {
+                toggleInput.checked = true;
+                const statusLabel = card.querySelector('.status-label');
+                if (statusLabel) {
+                  statusLabel.textContent = 'Available';
+                  statusLabel.className = 'ml-2 text-xs font-semibold text-emerald-400 status-label';
+                }
+              }
+
+              // 3. Visual feedback: flash amber border & show quick indicator on button
+              card.classList.remove('card-reset-highlight');
+              void card.offsetWidth; // Force DOM reflow to retrigger animation
+              card.classList.add('card-reset-highlight');
+
+              const originalBtnContent = btn.innerHTML;
+              btn.innerHTML = '<i class="fa-solid fa-check text-amber-400"></i><span class="text-amber-400 font-bold">Reset!</span>';
+              btn.classList.add('border-amber-500/60', 'bg-amber-500/10');
+              setTimeout(() => {
+                btn.innerHTML = originalBtnContent;
+                btn.classList.remove('border-amber-500/60', 'bg-amber-500/10');
+              }, 1400);
+
+              showToast('Reset to Default', `Restored factory defaults for ${defaultItem.name}`);
+            }
+          });
         });
       }
 

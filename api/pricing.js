@@ -123,28 +123,32 @@ const DEFAULT_RATES = {
       name: 'Airline Ticket Issuance Service Fee',
       priceAED: 50,
       priceUSD: 14,
-      description: 'Standard per-ticket issuance and route change management fee'
+      description: 'Standard per-ticket issuance and route change management fee',
+      available: true
     },
     flightConsultation: {
       id: 'flight-consultation',
       name: 'VIP Flight Route & Complex Itinerary Consultation',
       priceAED: 100,
       priceUSD: 28,
-      description: 'Multi-city route planning and group fare negotiation'
+      description: 'Multi-city route planning and group fare negotiation',
+      available: true
     },
     chauffeurHourly: {
       id: 'chauffeur-hourly',
       name: 'Private Luxury Chauffeur Base Daily Rate',
       priceAED: 450,
       priceUSD: 125,
-      description: 'Executive sedan with fuel, toll fees, and bilingual chauffeur'
+      description: 'Executive sedan with fuel, toll fees, and bilingual chauffeur',
+      available: true
     },
     hotelBookingFee: {
       id: 'hotel-booking-fee',
       name: 'Direct Hotel & Resort Concierge Booking Service',
       priceAED: 75,
       priceUSD: 21,
-      description: 'Exclusive corporate rate matching and room upgrades'
+      description: 'Exclusive corporate rate matching and room upgrades',
+      available: true
     }
   }
 };
