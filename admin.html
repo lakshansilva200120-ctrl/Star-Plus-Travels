@@ -87,6 +87,12 @@
       transform: translateX(0);
       transition: transform 0.25s ease;
     }
+    .btn-card-reset:hover {
+      transform: rotate(-45deg);
+    }
+    .hover\:rotate-\[-45deg\]:hover {
+      transform: rotate(-45deg);
+    }
   </style>
 
   <!-- Immediate Theme Initialization Script -->
@@ -723,8 +729,8 @@
                     type="button" 
                     data-reset-card="${key}" 
                     data-card-id="${item.id ? item.id.toUpperCase() : key}"
-                    title="Reset to default baseline"
-                    class="btn-card-reset p-1 text-slate-400 hover:text-amber-400 transition-colors bg-transparent border-0 cursor-pointer inline-flex items-center justify-center"
+                    title="Reset to default rates"
+                    class="btn-card-reset bg-transparent border-0 p-1 text-slate-400 hover:text-amber-400 hover:rotate-[-45deg] transition-all cursor-pointer inline-flex items-center justify-center"
                   >
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
@@ -857,8 +863,8 @@
                     type="button" 
                     data-reset-pkg="${key}" 
                     data-card-id="${item.id ? item.id.toUpperCase() : key}"
-                    title="Reset to default baseline"
-                    class="btn-card-reset p-1 text-slate-400 hover:text-amber-400 transition-colors bg-transparent border-0 cursor-pointer inline-flex items-center justify-center"
+                    title="Reset to default rates"
+                    class="btn-card-reset bg-transparent border-0 p-1 text-slate-400 hover:text-amber-400 hover:rotate-[-45deg] transition-all cursor-pointer inline-flex items-center justify-center"
                   >
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
@@ -1030,8 +1036,8 @@
                     type="button" 
                     data-reset-srv="${key}" 
                     data-card-id="${item.id ? item.id.toUpperCase() : key}"
-                    title="Reset to default baseline"
-                    class="btn-card-reset p-1 text-slate-400 hover:text-amber-400 transition-colors bg-transparent border-0 cursor-pointer inline-flex items-center justify-center"
+                    title="Reset to default rates"
+                    class="btn-card-reset bg-transparent border-0 p-1 text-slate-400 hover:text-amber-400 hover:rotate-[-45deg] transition-all cursor-pointer inline-flex items-center justify-center"
                   >
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                       <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
