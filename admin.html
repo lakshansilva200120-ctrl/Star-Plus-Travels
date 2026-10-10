@@ -28,6 +28,10 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css?v=5.7.0">
 
+  <!-- Document Processing Libraries (Client-Side OCR & PDF extraction) -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
   <style>
     /* Admin Specific Styling */
     .admin-glass-panel {
@@ -295,6 +299,14 @@
           <i class="fa-solid fa-receipt"></i>
           <span>Service Charges &amp; Ticketing</span>
         </button>
+        <button 
+          type="button" 
+          data-tab="ocr" 
+          class="admin-tab-btn px-4 py-2.5 rounded-xl border border-transparent font-bold text-xs uppercase tracking-wider text-slate-400 hover:text-white transition-all flex items-center gap-2 cursor-pointer whitespace-nowrap"
+        >
+          <i class="fa-solid fa-file-invoice"></i>
+          <span>Document OCR &amp; Extractor</span>
+        </button>
       </div>
 
       <!-- TAB 1: Visa Services & Pricing -->
@@ -336,6 +348,134 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="serviceCardsGrid">
           <!-- Populated dynamically via JavaScript -->
+        </div>
+      </section>
+
+      <!-- TAB 4: Smart Document OCR & All-Caps Extractor -->
+      <section id="tab-ocr" class="tab-content hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-file-invoice text-amber-400"></i>
+              <span>Smart Document OCR &amp; All-Caps Extractor</span>
+            </h3>
+            <p class="text-xs text-slate-400">Scan passport biodata pages, e-visas, airline tickets, and hotel vouchers with in-browser privacy-first OCR.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+              <i class="fa-solid fa-shield-halved text-[10px]"></i>
+              <span>100% Client-Side • Zero Cloud Uploads</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Drag & Drop Upload Card -->
+        <div class="admin-glass-panel p-6 rounded-2xl border-amber-500/30 space-y-5">
+          <div 
+            id="ocrDropZone" 
+            class="relative border-2 border-dashed border-slate-700 hover:border-amber-400/80 rounded-2xl p-8 sm:p-10 text-center transition-all duration-300 cursor-pointer bg-slate-900/60 hover:bg-slate-900/90 group"
+          >
+            <input 
+              type="file" 
+              id="ocrFileInput" 
+              accept=".pdf,.jpg,.jpeg,.png,.webp,application/pdf,image/jpeg,image/png,image/webp" 
+              class="hidden"
+            >
+            <div class="flex flex-col items-center justify-center space-y-3 pointer-events-none">
+              <div class="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-2xl group-hover:scale-110 group-hover:bg-amber-500/20 transition-all duration-300">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+              </div>
+              <div class="space-y-1">
+                <p class="text-sm font-bold text-white group-hover:text-amber-300 transition-colors">
+                  Drag &amp; drop document here, or <span class="text-amber-400 underline underline-offset-4">browse files</span>
+                </p>
+                <p class="text-xs text-slate-400">
+                  Supports PDF visas, scanned passports, and tickets (<span class="text-slate-300 font-mono">.pdf, .jpg, .jpeg, .png, .webp</span>)
+                </p>
+              </div>
+              <div class="flex items-center gap-2 pt-2 text-[11px] text-slate-400">
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
+                  <i class="fa-solid fa-file-pdf text-rose-400"></i> PDF
+                </span>
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
+                  <i class="fa-solid fa-file-image text-emerald-400"></i> JPG / PNG / WEBP
+                </span>
+                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
+                  <i class="fa-solid fa-bolt text-amber-400"></i> Instant All-Caps
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Bar Container (Hidden by default) -->
+          <div id="ocrProgressContainer" class="hidden space-y-2 pt-1">
+            <div class="flex items-center justify-between text-xs">
+              <span id="ocrProgressLabel" class="font-medium text-amber-400 flex items-center gap-2">
+                <i class="fa-solid fa-circle-notch fa-spin"></i>
+                <span id="ocrProgressText">Scanning and extracting text... 0%</span>
+              </span>
+              <span id="ocrProgressPercent" class="font-mono text-slate-400">0%</span>
+            </div>
+            <div class="w-full h-2.5 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+              <div id="ocrProgressBar" class="h-full bg-gradient-to-r from-amber-500 via-amber-400 to-emerald-400 rounded-full transition-all duration-200" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Extraction Results & Badges Area -->
+        <div id="ocrResultsWrapper" class="admin-glass-panel p-6 rounded-2xl border-slate-800 space-y-4">
+          <!-- Smart Auto-Detected Field Badges -->
+          <div>
+            <div class="flex items-center justify-between mb-2.5">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i>
+                <span>Smart Auto-Detected Fields (Click any badge to copy)</span>
+              </label>
+              <span id="ocrDetectedCount" class="text-[11px] font-mono text-slate-400">0 detected</span>
+            </div>
+
+            <div id="ocrBadgesContainer" class="flex flex-wrap items-center gap-2 min-h-[38px] p-3 rounded-xl bg-slate-900/80 border border-slate-800">
+              <span class="text-xs text-slate-400 italic" id="ocrNoBadgesPlaceholder">
+                Upload a document above to auto-detect passport numbers, airline PNRs, and dates.
+              </span>
+            </div>
+          </div>
+
+          <!-- All-Caps Processed Textarea & Actions -->
+          <div class="space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <label for="ocrResultText" class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                <i class="fa-solid fa-align-left text-amber-400"></i>
+                <span>Extracted Text (Strict All-Caps Normalized)</span>
+              </label>
+              <div class="flex items-center gap-2">
+                <button 
+                  type="button" 
+                  id="clearOcrBtn" 
+                  class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition-colors border border-slate-700 hover:border-slate-600 flex items-center gap-1.5 cursor-pointer"
+                >
+                  <i class="fa-solid fa-trash-can text-slate-400"></i>
+                  <span>Clear</span>
+                </button>
+                <button 
+                  type="button" 
+                  id="copyAllOcrBtn" 
+                  class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20 active:scale-95 flex items-center gap-2 cursor-pointer"
+                >
+                  <i class="fa-solid fa-copy"></i>
+                  <span>📋 Copy All Text (Uppercase)</span>
+                </button>
+              </div>
+            </div>
+
+            <textarea 
+              id="ocrResultText" 
+              rows="12" 
+              placeholder="Extracted and cleaned uppercase text will appear here. You can also edit or paste directly..." 
+              class="w-full rounded-xl bg-slate-900 text-slate-200 border border-slate-700 p-4 font-mono text-xs sm:text-sm leading-relaxed focus:outline-none focus:border-amber-400/80 focus:ring-1 focus:ring-amber-400/40 transition-colors resize-y select-text"
+              spellcheck="false"
+            ></textarea>
+          </div>
         </div>
       </section>
 
@@ -1203,6 +1343,359 @@
           showToast('Error', 'Could not sync rates with server, stored locally');
         }
       });
+
+      // -------------------------------------------------------------------------
+      // CLIENT-SIDE DOCUMENT OCR & ALL-CAPS TEXT EXTRACTOR
+      // -------------------------------------------------------------------------
+      const ocrDropZone = document.getElementById('ocrDropZone');
+      const ocrFileInput = document.getElementById('ocrFileInput');
+      const ocrProgressContainer = document.getElementById('ocrProgressContainer');
+      const ocrProgressBar = document.getElementById('ocrProgressBar');
+      const ocrProgressText = document.getElementById('ocrProgressText');
+      const ocrProgressPercent = document.getElementById('ocrProgressPercent');
+      const ocrResultText = document.getElementById('ocrResultText');
+      const ocrBadgesContainer = document.getElementById('ocrBadgesContainer');
+      const ocrDetectedCount = document.getElementById('ocrDetectedCount');
+      const copyAllOcrBtn = document.getElementById('copyAllOcrBtn');
+      const clearOcrBtn = document.getElementById('clearOcrBtn');
+
+      // Configure PDF.js worker URL if available
+      if (window.pdfjsLib) {
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+      }
+
+      // Drag and drop event listeners
+      if (ocrDropZone && ocrFileInput) {
+        ['dragenter', 'dragover'].forEach(eventName => {
+          ocrDropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            ocrDropZone.classList.add('border-amber-400', 'bg-slate-800/80', 'scale-[1.01]');
+          });
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+          ocrDropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            ocrDropZone.classList.remove('border-amber-400', 'bg-slate-800/80', 'scale-[1.01]');
+          });
+        });
+
+        ocrDropZone.addEventListener('drop', (e) => {
+          const files = e.dataTransfer?.files;
+          if (files && files.length > 0) {
+            handleOcrFile(files[0]);
+          }
+        });
+
+        ocrDropZone.addEventListener('click', () => {
+          ocrFileInput.click();
+        });
+
+        ocrFileInput.addEventListener('change', (e) => {
+          const files = e.target.files;
+          if (files && files.length > 0) {
+            handleOcrFile(files[0]);
+          }
+        });
+      }
+
+      // Update OCR progress UI
+      function setOcrProgress(percent, message) {
+        if (!ocrProgressContainer) return;
+        ocrProgressContainer.classList.remove('hidden');
+        const cleanPercent = Math.min(100, Math.max(0, Math.round(percent)));
+        if (ocrProgressBar) ocrProgressBar.style.width = `${cleanPercent}%`;
+        if (ocrProgressPercent) ocrProgressPercent.textContent = `${cleanPercent}%`;
+        if (ocrProgressText) {
+          ocrProgressText.textContent = message || `Scanning and extracting text... ${cleanPercent}%`;
+        }
+      }
+
+      function hideOcrProgress() {
+        if (ocrProgressContainer) {
+          setTimeout(() => {
+            ocrProgressContainer.classList.add('hidden');
+            if (ocrProgressBar) ocrProgressBar.style.width = '0%';
+          }, 600);
+        }
+      }
+
+      // Clean, format, and normalize text strictly to UPPERCASE
+      function cleanAndNormalizeText(rawText) {
+        if (!rawText) return '';
+        return rawText
+          .toUpperCase()
+          // Replace Windows CRLF / CR with LF
+          .replace(/\r\n/g, '\n')
+          .replace(/\r/g, '\n')
+          // Collapse multiple consecutive spaces (excluding newlines)
+          .replace(/[^\S\r\n]{2,}/g, ' ')
+          // Collapse more than two consecutive newlines into double newlines
+          .replace(/\n{3,}/g, '\n\n')
+          .trim();
+      }
+
+      // Smart Regex Matchers & Detected Fields Badges
+      function extractAndRenderSmartBadges(text) {
+        if (!ocrBadgesContainer) return;
+
+        // Smart Regex definitions
+        const passportRegex = /\b[A-Z][0-9]{7,8}\b/g;
+        const pnrRegex = /\b[A-Z0-9]{6}\b/g;
+        const dateRegex = /\b\d{2}[-/.]\d{2}[-/.]\d{4}\b/g;
+
+        const passports = Array.from(new Set(text.match(passportRegex) || []));
+        const dates = Array.from(new Set(text.match(dateRegex) || []));
+
+        // PNR candidates: 6 chars alphanumeric, exclude common dictionary/header words or overlap with passports
+        const pnrRaw = Array.from(new Set(text.match(pnrRegex) || []));
+        const excludedWords = new Set([
+          'UNITED', 'EMIRAT', 'PASSTO', 'PASSPT', 'NUMBER', 'TRAVEL', 'FLIGHT',
+          'TICKET', 'STATUS', 'ISSUED', 'OFFICE', 'PERSON', 'GENDER', 'FEMALE',
+          'SYSTEM', 'ONLINE', 'DUBAII', 'AIRWAY', 'PORTAL', 'DETAIL', 'MIDDLE',
+          'RECORD', 'VOUCHR', 'CONFIR', 'EXPIRE', 'STREET', 'MEMBER', 'CLIENT'
+        ]);
+
+        const pnrs = pnrRaw.filter(cand => {
+          if (passports.includes(cand)) return false;
+          if (excludedWords.has(cand)) return false;
+          // Must contain at least one letter and not only zeros/digits or standard simple words
+          const hasLetter = /[A-Z]/.test(cand);
+          return hasLetter;
+        });
+
+        const totalCount = passports.length + pnrs.length + dates.length;
+        if (ocrDetectedCount) {
+          ocrDetectedCount.textContent = `${totalCount} detected`;
+        }
+
+        ocrBadgesContainer.innerHTML = '';
+
+        if (totalCount === 0) {
+          ocrBadgesContainer.innerHTML = `
+            <span class="text-xs text-slate-400 italic">
+              No standard passports, 6-character PNRs, or dates auto-detected yet. You can copy the full text below.
+            </span>
+          `;
+          return;
+        }
+
+        // Helper to append clickable badge
+        function appendBadge(label, value, iconClass, colorClass, borderClass) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.title = `Click to copy ${label}: ${value}`;
+          btn.className = `inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer active:scale-95 ${colorClass} ${borderClass} border hover:brightness-125`;
+          btn.innerHTML = `
+            <i class="${iconClass} text-[11px]"></i>
+            <span class="text-[10px] uppercase font-sans font-bold opacity-80">${label}:</span>
+            <span>${value}</span>
+            <i class="fa-solid fa-copy text-[10px] opacity-60 ml-0.5"></i>
+          `;
+          btn.addEventListener('click', () => {
+            navigator.clipboard.writeText(value).then(() => {
+              showToast('Copied!', `${label} ${value} copied to clipboard`);
+            }).catch(() => {
+              // Fallback
+              const temp = document.createElement('textarea');
+              temp.value = value;
+              document.body.appendChild(temp);
+              temp.select();
+              document.execCommand('copy');
+              document.body.removeChild(temp);
+              showToast('Copied!', `${label} ${value} copied to clipboard`);
+            });
+          });
+          ocrBadgesContainer.appendChild(btn);
+        }
+
+        // Render Passports
+        passports.forEach(pp => {
+          appendBadge('Passport', pp, 'fa-solid fa-id-card', 'bg-amber-500/15 text-amber-300', 'border-amber-500/40');
+        });
+
+        // Render PNRs
+        pnrs.forEach(pnr => {
+          appendBadge('Airline PNR', pnr, 'fa-solid fa-plane-departure', 'bg-sky-500/15 text-sky-300', 'border-sky-500/40');
+        });
+
+        // Render Dates
+        dates.forEach(dt => {
+          appendBadge('Date', dt, 'fa-solid fa-calendar-days', 'bg-emerald-500/15 text-emerald-300', 'border-emerald-500/40');
+        });
+      }
+
+      // Handle File Upload and Extraction
+      async function handleOcrFile(file) {
+        if (!file) return;
+
+        const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+        const isImage = file.type.startsWith('image/') || /\.(jpe?g|png|webp|bmp)$/i.test(file.name);
+
+        if (!isPdf && !isImage) {
+          showToast('Invalid File', 'Please upload a PDF document or image (.jpg, .png, .webp)');
+          return;
+        }
+
+        setOcrProgress(5, `Loading ${file.name}...`);
+
+        try {
+          let extractedRaw = '';
+
+          if (isPdf) {
+            extractedRaw = await processPdfFile(file);
+          } else {
+            extractedRaw = await processImageFile(file);
+          }
+
+          const processedUpper = cleanAndNormalizeText(extractedRaw);
+
+          if (ocrResultText) {
+            ocrResultText.value = processedUpper;
+          }
+
+          extractAndRenderSmartBadges(processedUpper);
+          setOcrProgress(100, 'Scan complete!');
+          hideOcrProgress();
+          showToast('Scan Complete', `Successfully extracted and converted text to ALL-CAPS from ${file.name}`);
+        } catch (err) {
+          console.error('OCR processing error:', err);
+          hideOcrProgress();
+          showToast('Extraction Failed', err.message || 'Error scanning document. Please try another file.');
+        }
+      }
+
+      // PDF text extraction via PDF.js with OCR fallback for scanned pages
+      async function processPdfFile(file) {
+        if (!window.pdfjsLib) {
+          throw new Error('PDF.js library not loaded yet. Please check your internet connection.');
+        }
+
+        setOcrProgress(15, 'Parsing PDF document structure...');
+        const arrayBuffer = await file.arrayBuffer();
+        const loadingTask = window.pdfjsLib.getDocument({ data: arrayBuffer });
+        const pdf = await loadingTask.promise;
+        const numPages = pdf.numPages;
+
+        let accumulatedText = '';
+        let requiresImageOcr = false;
+
+        // 1. Try embedded digital text layer first
+        for (let i = 1; i <= numPages; i++) {
+          setOcrProgress(15 + Math.round((i / numPages) * 35), `Extracting text from page ${i} of ${numPages}...`);
+          const page = await pdf.getPage(i);
+          const textContent = await page.getTextContent();
+          const pageText = textContent.items.map(item => item.str).join(' ');
+          accumulatedText += pageText + '\n\n';
+        }
+
+        // If digital text is rich enough, return it
+        if (accumulatedText.trim().length > 60) {
+          return accumulatedText;
+        }
+
+        // Otherwise (scanned image PDF), render pages to canvas and OCR via Tesseract
+        requiresImageOcr = true;
+        accumulatedText = '';
+
+        for (let i = 1; i <= Math.min(numPages, 5); i++) {
+          setOcrProgress(45 + Math.round((i / numPages) * 45), `Running optical character recognition on scanned page ${i} of ${numPages}...`);
+          const page = await pdf.getPage(i);
+          const viewport = page.getViewport({ scale: 2.0 }); // 2x scale for higher OCR fidelity
+
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+
+          await page.render({ canvasContext: context, viewport: viewport }).promise;
+
+          if (window.Tesseract) {
+            const result = await window.Tesseract.recognize(canvas, 'eng');
+            accumulatedText += (result?.data?.text || '') + '\n\n';
+          }
+        }
+
+        return accumulatedText;
+      }
+
+      // Image OCR via Tesseract.js
+      async function processImageFile(file) {
+        if (!window.Tesseract) {
+          throw new Error('Tesseract.js OCR library not loaded yet. Please check your internet connection.');
+        }
+
+        setOcrProgress(10, 'Initializing OCR optical engine...');
+
+        const result = await window.Tesseract.recognize(file, 'eng', {
+          logger: (m) => {
+            if (m.status === 'recognizing text') {
+              const p = Math.round((m.progress || 0) * 85);
+              setOcrProgress(10 + p, `Scanning and extracting text... ${Math.round(10 + p)}%`);
+            } else if (m.status) {
+              setOcrProgress(15, `${m.status.charAt(0).toUpperCase() + m.status.slice(1)}...`);
+            }
+          }
+        });
+
+        return result?.data?.text || '';
+      }
+
+      // Copy All Text Button
+      if (copyAllOcrBtn) {
+        copyAllOcrBtn.addEventListener('click', () => {
+          const text = ocrResultText ? ocrResultText.value : '';
+          if (!text || !text.trim()) {
+            showToast('No Text', 'No extracted text available to copy.');
+            return;
+          }
+
+          navigator.clipboard.writeText(text).then(() => {
+            showToast('Copied!', 'All uppercase text copied to clipboard');
+          }).catch(() => {
+            // Fallback for older browsers
+            if (ocrResultText) {
+              ocrResultText.select();
+              document.execCommand('copy');
+              showToast('Copied!', 'All uppercase text copied to clipboard');
+            }
+          });
+        });
+      }
+
+      // Clear OCR Button
+      if (clearOcrBtn) {
+        clearOcrBtn.addEventListener('click', () => {
+          if (ocrResultText) ocrResultText.value = '';
+          if (ocrFileInput) ocrFileInput.value = '';
+          if (ocrBadgesContainer) {
+            ocrBadgesContainer.innerHTML = `
+              <span class="text-xs text-slate-400 italic">
+                Upload a document above to auto-detect passport numbers, airline PNRs, and dates.
+              </span>
+            `;
+          }
+          if (ocrDetectedCount) ocrDetectedCount.textContent = '0 detected';
+          showToast('Cleared', 'Extraction workspace cleared');
+        });
+      }
+
+      // Live text sync with badges if user types/pastes into textarea
+      if (ocrResultText) {
+        ocrResultText.addEventListener('input', () => {
+          const upper = cleanAndNormalizeText(ocrResultText.value);
+          // Only auto-update if case change occurred
+          if (upper !== ocrResultText.value) {
+            const start = ocrResultText.selectionStart;
+            const end = ocrResultText.selectionEnd;
+            ocrResultText.value = upper;
+            ocrResultText.setSelectionRange(start, end);
+          }
+          extractAndRenderSmartBadges(upper);
+        });
+      }
 
       // Initialize
       checkAuth();
