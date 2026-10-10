@@ -737,16 +737,19 @@
                       <path d="M3 3v5h5"/>
                     </svg>
                   </button>
-                  <label class="relative inline-flex items-center cursor-pointer select-none">
-                    <input type="checkbox" data-visa-toggle="${key}" data-card-id="${key}" ${item.available !== false ? 'checked' : ''} class="sr-only peer toggle-availability">
-                    <!-- Track -->
-                    <div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:bg-emerald-500 transition-colors toggle-track"></div>
-                    <!-- Knob/Thumb -->
-                    <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5 shadow-sm toggle-knob"></div>
-                    <span class="ml-2.5 text-xs font-semibold ${item.available !== false ? 'text-emerald-400' : 'text-slate-400'} status-label">
+                  <div class="inline-flex items-center gap-2">
+                    <!-- Clickable switch only -->
+                    <label class="relative inline-flex items-center cursor-pointer select-none">
+                      <input type="checkbox" data-visa-toggle="${key}" data-card-id="${item.id ? item.id.toUpperCase() : key}" ${item.available !== false ? 'checked' : ''} class="sr-only peer toggle-availability">
+                      <div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:bg-emerald-500 transition-colors toggle-track"></div>
+                      <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5 shadow-sm toggle-knob"></div>
+                    </label>
+
+                    <!-- Static text label (not clickable) -->
+                    <span class="text-xs font-semibold ${item.available !== false ? 'text-emerald-400' : 'text-slate-400'} select-none status-label" data-status-id="${item.id ? item.id.toUpperCase() : key}">
                       ${item.available !== false ? 'Available' : 'Paused / Hold'}
                     </span>
-                  </label>
+                  </div>
                 </div>
               </div>
               <h4 class="text-sm font-bold text-white">${item.name}</h4>
@@ -778,10 +781,11 @@
           chk.addEventListener('change', (e) => {
             const k = e.target.getAttribute('data-visa-toggle');
             currentPricing.visas[k].available = e.target.checked;
-            const label = e.target.closest('label').querySelector('.status-label');
+            const card = document.getElementById(`visa-card-${k}`);
+            const label = card ? card.querySelector('.status-label') : e.target.closest('div').querySelector('.status-label');
             if (label) {
               label.textContent = e.target.checked ? 'Available' : 'Paused / Hold';
-              label.className = `ml-2.5 text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} status-label`;
+              label.className = `text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} select-none status-label`;
             }
           });
         });
@@ -819,7 +823,7 @@
                 const statusLabel = card.querySelector('.status-label');
                 if (statusLabel) {
                   statusLabel.textContent = 'Available';
-                  statusLabel.className = 'ml-2.5 text-xs font-semibold text-emerald-400 status-label';
+                  statusLabel.className = 'text-xs font-semibold text-emerald-400 select-none status-label';
                 }
               }
 
@@ -871,16 +875,19 @@
                       <path d="M3 3v5h5"/>
                     </svg>
                   </button>
-                  <label class="relative inline-flex items-center cursor-pointer select-none">
-                    <input type="checkbox" data-pkg-toggle="${key}" data-card-id="${key}" ${isAvail ? 'checked' : ''} class="sr-only peer toggle-availability">
-                    <!-- Track -->
-                    <div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:bg-emerald-500 transition-colors toggle-track"></div>
-                    <!-- Knob/Thumb -->
-                    <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5 shadow-sm toggle-knob"></div>
-                    <span class="ml-2.5 text-xs font-semibold ${isAvail ? 'text-emerald-400' : 'text-slate-400'} status-label">
+                  <div class="inline-flex items-center gap-2">
+                    <!-- Clickable switch only -->
+                    <label class="relative inline-flex items-center cursor-pointer select-none">
+                      <input type="checkbox" data-pkg-toggle="${key}" data-card-id="${item.id ? item.id.toUpperCase() : key}" ${isAvail ? 'checked' : ''} class="sr-only peer toggle-availability">
+                      <div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:bg-emerald-500 transition-colors toggle-track"></div>
+                      <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5 shadow-sm toggle-knob"></div>
+                    </label>
+
+                    <!-- Static text label (not clickable) -->
+                    <span class="text-xs font-semibold ${isAvail ? 'text-emerald-400' : 'text-slate-400'} select-none status-label" data-status-id="${item.id ? item.id.toUpperCase() : key}">
                       ${isAvail ? 'Available' : 'Paused / Hold'}
                     </span>
-                  </label>
+                  </div>
                 </div>
               </div>
               <div class="flex items-center gap-2 mb-1.5">
@@ -944,10 +951,11 @@
             if (currentPricing && currentPricing.packages && currentPricing.packages[k]) {
               currentPricing.packages[k].available = e.target.checked;
             }
-            const label = e.target.closest('label').querySelector('.status-label');
+            const card = document.getElementById(`package-card-${k}`);
+            const label = card ? card.querySelector('.status-label') : e.target.closest('div').querySelector('.status-label');
             if (label) {
               label.textContent = e.target.checked ? 'Available' : 'Paused / Hold';
-              label.className = `ml-2.5 text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} status-label`;
+              label.className = `text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} select-none status-label`;
             }
           });
         });
@@ -992,7 +1000,7 @@
                 const statusLabel = card.querySelector('.status-label');
                 if (statusLabel) {
                   statusLabel.textContent = 'Available';
-                  statusLabel.className = 'ml-2.5 text-xs font-semibold text-emerald-400 status-label';
+                  statusLabel.className = 'text-xs font-semibold text-emerald-400 select-none status-label';
                 }
               }
 
@@ -1044,16 +1052,19 @@
                       <path d="M3 3v5h5"/>
                     </svg>
                   </button>
-                  <label class="relative inline-flex items-center cursor-pointer select-none">
-                    <input type="checkbox" data-srv-toggle="${key}" data-card-id="${key}" ${isAvail ? 'checked' : ''} class="sr-only peer toggle-availability">
-                    <!-- Track -->
-                    <div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:bg-emerald-500 transition-colors toggle-track"></div>
-                    <!-- Knob/Thumb -->
-                    <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5 shadow-sm toggle-knob"></div>
-                    <span class="ml-2.5 text-xs font-semibold ${isAvail ? 'text-emerald-400' : 'text-slate-400'} status-label">
+                  <div class="inline-flex items-center gap-2">
+                    <!-- Clickable switch only -->
+                    <label class="relative inline-flex items-center cursor-pointer select-none">
+                      <input type="checkbox" data-srv-toggle="${key}" data-card-id="${item.id ? item.id.toUpperCase() : key}" ${isAvail ? 'checked' : ''} class="sr-only peer toggle-availability">
+                      <div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:bg-emerald-500 transition-colors toggle-track"></div>
+                      <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5 shadow-sm toggle-knob"></div>
+                    </label>
+
+                    <!-- Static text label (not clickable) -->
+                    <span class="text-xs font-semibold ${isAvail ? 'text-emerald-400' : 'text-slate-400'} select-none status-label" data-status-id="${item.id ? item.id.toUpperCase() : key}">
                       ${isAvail ? 'Available' : 'Paused / Hold'}
                     </span>
-                  </label>
+                  </div>
                 </div>
               </div>
               <h4 class="text-sm font-bold text-white">${item.name}</h4>
@@ -1083,10 +1094,11 @@
             if (currentPricing && currentPricing.services && currentPricing.services[k]) {
               currentPricing.services[k].available = e.target.checked;
             }
-            const label = e.target.closest('label').querySelector('.status-label');
+            const card = document.getElementById(`service-card-${k}`);
+            const label = card ? card.querySelector('.status-label') : e.target.closest('div').querySelector('.status-label');
             if (label) {
               label.textContent = e.target.checked ? 'Available' : 'Paused / Hold';
-              label.className = `ml-2.5 text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} status-label`;
+              label.className = `text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} select-none status-label`;
             }
           });
         });
@@ -1120,7 +1132,7 @@
                 const statusLabel = card.querySelector('.status-label');
                 if (statusLabel) {
                   statusLabel.textContent = 'Available';
-                  statusLabel.className = 'ml-2.5 text-xs font-semibold text-emerald-400 status-label';
+                  statusLabel.className = 'text-xs font-semibold text-emerald-400 select-none status-label';
                 }
               }
 
