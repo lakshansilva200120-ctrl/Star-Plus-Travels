@@ -422,11 +422,109 @@
           </div>
         </div>
 
-        <!-- Extraction Results & Badges Area -->
-        <div id="ocrResultsWrapper" class="admin-glass-panel p-6 rounded-2xl border-slate-800 space-y-4">
+        <!-- Extraction Results & Structured Passport Card Area -->
+        <div id="ocrResultsWrapper" class="space-y-4">
+
+          <!-- Structured Passport Summary Card (Appears when Passport/MRZ is detected) -->
+          <div id="passportSummaryCard" class="hidden admin-glass-panel p-6 rounded-2xl border-amber-500/40 bg-gradient-to-br from-slate-900/90 via-slate-900/95 to-amber-950/20 shadow-xl space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-amber-500/20">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center text-lg">
+                  <i class="fa-solid fa-passport"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                    <span>Passport Verified Summary</span>
+                    <span id="mrzIndicatorBadge" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                      MRZ ICAO 9303
+                    </span>
+                  </h4>
+                  <p class="text-xs text-slate-400">Structured traveler identity parsed directly from machine-readable zone &amp; biodata</p>
+                </div>
+              </div>
+              <button 
+                type="button" 
+                id="copyAllPassportFieldsBtn" 
+                class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20 active:scale-95 flex items-center gap-2 cursor-pointer self-start sm:self-auto"
+              >
+                <i class="fa-solid fa-clone"></i>
+                <span>📋 Copy All Key Details</span>
+              </button>
+            </div>
+
+            <!-- 6 Structured Field Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <!-- Full Name -->
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-colors flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Full Name</div>
+                  <div id="ppCardFullName" class="text-xs sm:text-sm font-bold text-white font-mono truncate mt-0.5">-</div>
+                </div>
+                <button type="button" data-copy-target="ppCardFullName" title="Copy Full Name" class="btn-field-copy p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-colors border border-slate-700 cursor-pointer flex-shrink-0">
+                  <i class="fa-solid fa-copy text-xs"></i>
+                </button>
+              </div>
+
+              <!-- Surname -->
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-colors flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Surname / Family Name</div>
+                  <div id="ppCardSurname" class="text-xs sm:text-sm font-bold text-amber-300 font-mono truncate mt-0.5">-</div>
+                </div>
+                <button type="button" data-copy-target="ppCardSurname" title="Copy Surname" class="btn-field-copy p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-colors border border-slate-700 cursor-pointer flex-shrink-0">
+                  <i class="fa-solid fa-copy text-xs"></i>
+                </button>
+              </div>
+
+              <!-- Given Names -->
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-colors flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Given Name(s)</div>
+                  <div id="ppCardGivenName" class="text-xs sm:text-sm font-bold text-white font-mono truncate mt-0.5">-</div>
+                </div>
+                <button type="button" data-copy-target="ppCardGivenName" title="Copy Given Name" class="btn-field-copy p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-colors border border-slate-700 cursor-pointer flex-shrink-0">
+                  <i class="fa-solid fa-copy text-xs"></i>
+                </button>
+              </div>
+
+              <!-- Passport Number -->
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-colors flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Passport Number</div>
+                  <div id="ppCardPassportNumber" class="text-xs sm:text-sm font-bold text-emerald-400 font-mono tracking-wider truncate mt-0.5">-</div>
+                </div>
+                <button type="button" data-copy-target="ppCardPassportNumber" title="Copy Passport Number" class="btn-field-copy p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-colors border border-slate-700 cursor-pointer flex-shrink-0">
+                  <i class="fa-solid fa-copy text-xs"></i>
+                </button>
+              </div>
+
+              <!-- Nationality -->
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-colors flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Nationality / Issuing State</div>
+                  <div id="ppCardNationality" class="text-xs sm:text-sm font-bold text-sky-400 font-mono truncate mt-0.5">-</div>
+                </div>
+                <button type="button" data-copy-target="ppCardNationality" title="Copy Nationality" class="btn-field-copy p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-colors border border-slate-700 cursor-pointer flex-shrink-0">
+                  <i class="fa-solid fa-copy text-xs"></i>
+                </button>
+              </div>
+
+              <!-- Expiry Date -->
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-colors flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Expiry Date</div>
+                  <div id="ppCardExpiryDate" class="text-xs sm:text-sm font-bold text-rose-300 font-mono truncate mt-0.5">-</div>
+                </div>
+                <button type="button" data-copy-target="ppCardExpiryDate" title="Copy Expiry Date" class="btn-field-copy p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-colors border border-slate-700 cursor-pointer flex-shrink-0">
+                  <i class="fa-solid fa-copy text-xs"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
           <!-- Smart Auto-Detected Field Badges -->
-          <div>
-            <div class="flex items-center justify-between mb-2.5">
+          <div class="admin-glass-panel p-6 rounded-2xl border-slate-800 space-y-3">
+            <div class="flex items-center justify-between">
               <label class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
                 <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i>
                 <span>Smart Auto-Detected Fields (Click any badge to copy)</span>
@@ -441,41 +539,61 @@
             </div>
           </div>
 
-          <!-- All-Caps Processed Textarea & Actions -->
-          <div class="space-y-2">
-            <div class="flex flex-wrap items-center justify-between gap-3">
-              <label for="ocrResultText" class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-                <i class="fa-solid fa-align-left text-amber-400"></i>
-                <span>Extracted Text (Strict All-Caps Normalized)</span>
-              </label>
-              <div class="flex items-center gap-2">
-                <button 
-                  type="button" 
-                  id="clearOcrBtn" 
-                  class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition-colors border border-slate-700 hover:border-slate-600 flex items-center gap-1.5 cursor-pointer"
-                >
-                  <i class="fa-solid fa-trash-can text-slate-400"></i>
-                  <span>Clear</span>
-                </button>
-                <button 
-                  type="button" 
-                  id="copyAllOcrBtn" 
-                  class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20 active:scale-95 flex items-center gap-2 cursor-pointer"
-                >
-                  <i class="fa-solid fa-copy"></i>
-                  <span>📋 Copy All Text (Uppercase)</span>
-                </button>
+          <!-- Collapsible Accordion: Advanced / Raw OCR Output -->
+          <div class="admin-glass-panel rounded-2xl border-slate-800 overflow-hidden">
+            <button 
+              type="button" 
+              id="rawOcrAccordionToggle" 
+              class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-slate-800/40 transition-colors cursor-pointer"
+            >
+              <div class="flex items-center gap-2.5">
+                <i class="fa-solid fa-code text-amber-400 text-sm"></i>
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Advanced / Raw OCR Output</span>
+                <span id="ocrLineCountBadge" class="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-800 text-slate-400 border border-slate-700">0 lines</span>
               </div>
-            </div>
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] text-slate-400 hidden sm:inline" id="accordionStateHint">Click to collapse / expand</span>
+                <i id="rawOcrChevron" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-200"></i>
+              </div>
+            </button>
 
-            <textarea 
-              id="ocrResultText" 
-              rows="12" 
-              placeholder="Extracted and cleaned uppercase text will appear here. You can also edit or paste directly..." 
-              class="w-full rounded-xl bg-slate-900 text-slate-200 border border-slate-700 p-4 font-mono text-xs sm:text-sm leading-relaxed focus:outline-none focus:border-amber-400/80 focus:ring-1 focus:ring-amber-400/40 transition-colors resize-y select-text"
-              spellcheck="false"
-            ></textarea>
+            <!-- Collapsible Body -->
+            <div id="rawOcrAccordionBody" class="px-6 pb-6 pt-2 space-y-3 border-t border-slate-800/60">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <label for="ocrResultText" class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                  <i class="fa-solid fa-align-left text-amber-400"></i>
+                  <span>Extracted Text (Noise-Filtered &amp; Uppercase Normalized)</span>
+                </label>
+                <div class="flex items-center gap-2">
+                  <button 
+                    type="button" 
+                    id="clearOcrBtn" 
+                    class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium transition-colors border border-slate-700 hover:border-slate-600 flex items-center gap-1.5 cursor-pointer"
+                  >
+                    <i class="fa-solid fa-trash-can text-slate-400"></i>
+                    <span>Clear</span>
+                  </button>
+                  <button 
+                    type="button" 
+                    id="copyAllOcrBtn" 
+                    class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20 active:scale-95 flex items-center gap-2 cursor-pointer"
+                  >
+                    <i class="fa-solid fa-copy"></i>
+                    <span>📋 Copy All Text (Uppercase)</span>
+                  </button>
+                </div>
+              </div>
+
+              <textarea 
+                id="ocrResultText" 
+                rows="10" 
+                placeholder="Extracted and cleaned uppercase text will appear here. You can also edit or paste directly..." 
+                class="w-full rounded-xl bg-slate-900 text-slate-200 border border-slate-700 p-4 font-mono text-xs sm:text-sm leading-relaxed focus:outline-none focus:border-amber-400/80 focus:ring-1 focus:ring-amber-400/40 transition-colors resize-y select-text"
+                spellcheck="false"
+              ></textarea>
+            </div>
           </div>
+
         </div>
       </section>
 
@@ -1422,19 +1540,266 @@
         }
       }
 
-      // Clean, format, and normalize text strictly to UPPERCASE
+      // Clean, filter OCR noise, and normalize text strictly to UPPERCASE
       function cleanAndNormalizeText(rawText) {
         if (!rawText) return '';
-        return rawText
+        const lines = rawText
           .toUpperCase()
-          // Replace Windows CRLF / CR with LF
           .replace(/\r\n/g, '\n')
           .replace(/\r/g, '\n')
-          // Collapse multiple consecutive spaces (excluding newlines)
-          .replace(/[^\S\r\n]{2,}/g, ' ')
-          // Collapse more than two consecutive newlines into double newlines
-          .replace(/\n{3,}/g, '\n\n')
-          .trim();
+          .split('\n');
+
+        const cleanedLines = [];
+
+        lines.forEach(rawLine => {
+          let line = rawLine
+            // Collapse multiple spaces
+            .replace(/[^\S\r\n]{2,}/g, ' ')
+            .trim();
+
+          if (!line) return;
+
+          // Check if this line looks like an MRZ line (starts with P< or has many < characters)
+          const isMrzLike = /^P[<K0-9A-Z]/.test(line) || (line.includes('<<') && line.length > 20);
+
+          if (!isMrzLike) {
+            // Noise filtering: strip isolated symbols / punctuation lines like "[", "|", ".", "¥", etc.
+            line = line.replace(/^[|\\/_~`^¥€$#@!*?.,;:()[\]{}<>-]+$/, '').trim();
+            // Filter out single/double junk characters
+            if (line.length < 3) return;
+          }
+
+          cleanedLines.push(line);
+        });
+
+        // Group meaningful lines neatly, collapsing consecutive blank lines
+        return cleanedLines.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+      }
+
+      // -------------------------------------------------------------------------
+      // PASSPORT & MRZ (MACHINE READABLE ZONE) PARSER (ICAO Doc 9303 Type 3)
+      // -------------------------------------------------------------------------
+      const passportSummaryCard = document.getElementById('passportSummaryCard');
+      const mrzIndicatorBadge = document.getElementById('mrzIndicatorBadge');
+      const ppCardFullName = document.getElementById('ppCardFullName');
+      const ppCardSurname = document.getElementById('ppCardSurname');
+      const ppCardGivenName = document.getElementById('ppCardGivenName');
+      const ppCardPassportNumber = document.getElementById('ppCardPassportNumber');
+      const ppCardNationality = document.getElementById('ppCardNationality');
+      const ppCardExpiryDate = document.getElementById('ppCardExpiryDate');
+      const copyAllPassportFieldsBtn = document.getElementById('copyAllPassportFieldsBtn');
+      const rawOcrAccordionToggle = document.getElementById('rawOcrAccordionToggle');
+      const rawOcrAccordionBody = document.getElementById('rawOcrAccordionBody');
+      const rawOcrChevron = document.getElementById('rawOcrChevron');
+      const ocrLineCountBadge = document.getElementById('ocrLineCountBadge');
+
+      let parsedPassportData = null;
+
+      // Format YYMMDD into DD/MM/YYYY
+      function formatMrzDate(yymmdd, isExpiry = false) {
+        if (!yymmdd || yymmdd.length !== 6 || !/^\d{6}$/.test(yymmdd)) return null;
+        const yy = parseInt(yymmdd.substring(0, 2), 10);
+        const mm = yymmdd.substring(2, 4);
+        const dd = yymmdd.substring(4, 6);
+        const currentYear2Digit = new Date().getFullYear() % 100;
+        let century = 1900;
+        if (isExpiry) {
+          century = yy <= currentYear2Digit + 30 ? 2000 : 1900;
+        } else {
+          century = yy <= currentYear2Digit ? 2000 : 1900;
+        }
+        const fullYear = century + yy;
+        return `${dd}/${mm}/${fullYear}`;
+      }
+
+      // Parse MRZ text lines or standard passport format
+      function parsePassportMrz(text) {
+        if (!text) return null;
+
+        const lines = text.split('\n').map(l => l.replace(/\s+/g, '').toUpperCase());
+
+        // 1. Locate Line 1 of MRZ: starts with P< and followed by 40-44 characters
+        let line1 = null;
+        let line2 = null;
+
+        for (let i = 0; i < lines.length; i++) {
+          const l = lines[i];
+          // Look for P< with at least 30 chars
+          if (/^P<[A-Z0-9<]{28,45}$/.test(l)) {
+            line1 = l;
+            // Check subsequent lines for Line 2 (at least 30 chars)
+            for (let j = i + 1; j < Math.min(lines.length, i + 4); j++) {
+              const next = lines[j];
+              if (/^[A-Z0-9<]{30,45}$/.test(next) && !next.startsWith('P<')) {
+                line2 = next;
+                break;
+              }
+            }
+            if (line1 && line2) break;
+          }
+        }
+
+        if (line1 && line2) {
+          // Pad to 44 chars if slightly truncated by OCR
+          line1 = line1.padEnd(44, '<').substring(0, 44);
+          line2 = line2.padEnd(44, '<').substring(0, 44);
+
+          // Issuing Country: Line 1 chars 2..5 (P<[A-Z]{3})
+          const issuingCountry = line1.substring(2, 5).replace(/</g, '').trim();
+
+          // Names: Line 1 chars 5..44
+          const namePart = line1.substring(5);
+          const nameSegments = namePart.split('<<');
+          const surname = (nameSegments[0] || '').replace(/</g, ' ').trim();
+          const givenNames = (nameSegments[1] || '').replace(/</g, ' ').trim();
+          const fullName = [givenNames, surname].filter(Boolean).join(' ') || surname;
+
+          // Line 2: Passport Number (chars 0..9)
+          const rawDocNumber = line2.substring(0, 9).replace(/</g, '').trim();
+
+          // Line 2: Nationality (chars 10..13)
+          const nationality = line2.substring(10, 13).replace(/</g, '').trim() || issuingCountry;
+
+          // Line 2: Date of Birth (chars 13..19)
+          const dobRaw = line2.substring(13, 19);
+          const dobFormatted = formatMrzDate(dobRaw, false);
+
+          // Line 2: Expiry Date (chars 21..27)
+          const expiryRaw = line2.substring(21, 27);
+          const expiryFormatted = formatMrzDate(expiryRaw, true);
+
+          return {
+            hasMrz: true,
+            fullName: fullName || 'PASSPORT HOLDER',
+            surname: surname || '-',
+            givenName: givenNames || '-',
+            passportNumber: rawDocNumber,
+            nationality: nationality || 'UNKNOWN',
+            expiryDate: expiryFormatted || '-',
+            dob: dobFormatted || '-'
+          };
+        }
+
+        // Fallback: Check if document has recognizable passport indicators in biodata
+        const passportNumMatch = text.match(/\b[A-Z][0-9]{7,8}\b/);
+        const hasPassportWord = /\b(PASSPORT|PASSEPORT|REISEPASS|TRAVEL DOCUMENT|GIVEN NAMES|SURNAME)\b/.test(text);
+
+        if (passportNumMatch && hasPassportWord) {
+          // Standard date match
+          const dates = Array.from(new Set(text.match(/\b\d{2}[-/.]\d{2}[-/.]\d{4}\b/g) || []));
+          const expiryDate = dates.length > 0 ? dates[dates.length - 1] : '-';
+
+          // Extract names from heuristics if possible
+          let surname = '-';
+          let givenName = '-';
+          const surnameMatch = text.match(/(?:SURNAME|NOM|APELLIDO)[:\s]+([A-Z\s]{2,30})/);
+          if (surnameMatch) surname = surnameMatch[1].trim();
+
+          const givenMatch = text.match(/(?:GIVEN NAMES?|PRÉNOMS?|NOMBRES?)[:\s]+([A-Z\s]{2,40})/);
+          if (givenMatch) givenName = givenMatch[1].trim();
+
+          const fullName = [givenName !== '-' ? givenName : '', surname !== '-' ? surname : ''].filter(Boolean).join(' ') || 'PASSPORT HOLDER';
+
+          return {
+            hasMrz: false,
+            fullName: fullName,
+            surname: surname,
+            givenName: givenName,
+            passportNumber: passportNumMatch[0],
+            nationality: 'STANDARD BIODATA',
+            expiryDate: expiryDate,
+            dob: dates.length > 1 ? dates[0] : '-'
+          };
+        }
+
+        return null;
+      }
+
+      // Render structured passport summary card
+      function renderPassportSummaryCard(passportData) {
+        if (!passportSummaryCard) return;
+
+        parsedPassportData = passportData;
+
+        if (!passportData) {
+          passportSummaryCard.classList.add('hidden');
+          return;
+        }
+
+        if (ppCardFullName) ppCardFullName.textContent = passportData.fullName || '-';
+        if (ppCardSurname) ppCardSurname.textContent = passportData.surname || '-';
+        if (ppCardGivenName) ppCardGivenName.textContent = passportData.givenName || '-';
+        if (ppCardPassportNumber) ppCardPassportNumber.textContent = passportData.passportNumber || '-';
+        if (ppCardNationality) ppCardNationality.textContent = passportData.nationality || '-';
+        if (ppCardExpiryDate) ppCardExpiryDate.textContent = passportData.expiryDate || '-';
+
+        if (mrzIndicatorBadge) {
+          mrzIndicatorBadge.textContent = passportData.hasMrz ? 'MRZ ICAO 9303 PASSED' : 'BIODATA DETECTED';
+          mrzIndicatorBadge.className = passportData.hasMrz
+            ? 'text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+            : 'text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30';
+        }
+
+        passportSummaryCard.classList.remove('hidden');
+      }
+
+      // Bind Field Copy Buttons in Passport Summary Card
+      document.querySelectorAll('.btn-field-copy').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.getAttribute('data-copy-target');
+          const targetEl = document.getElementById(targetId);
+          if (targetEl && targetEl.textContent && targetEl.textContent !== '-') {
+            const val = targetEl.textContent.trim();
+            navigator.clipboard.writeText(val).then(() => {
+              showToast('Copied!', `${val} copied to clipboard`);
+            }).catch(() => {
+              showToast('Copied!', `${val} copied`);
+            });
+          }
+        });
+      });
+
+      // Master Copy All Key Details Button
+      if (copyAllPassportFieldsBtn) {
+        copyAllPassportFieldsBtn.addEventListener('click', () => {
+          if (!parsedPassportData) return;
+          const summaryLines = [
+            `FULL NAME: ${parsedPassportData.fullName}`,
+            `SURNAME: ${parsedPassportData.surname}`,
+            `GIVEN NAME: ${parsedPassportData.givenName}`,
+            `PASSPORT NUMBER: ${parsedPassportData.passportNumber}`,
+            `NATIONALITY: ${parsedPassportData.nationality}`,
+            `EXPIRY DATE: ${parsedPassportData.expiryDate}`
+          ];
+          const summaryText = summaryLines.join('\n');
+          navigator.clipboard.writeText(summaryText).then(() => {
+            showToast('All Details Copied!', '✓ Clean key-value passport details copied to clipboard');
+          }).catch(() => {
+            showToast('Copied!', 'Passport details copied');
+          });
+        });
+      }
+
+      // Collapsible Accordion Toggle for Raw OCR Output
+      if (rawOcrAccordionToggle && rawOcrAccordionBody && rawOcrChevron) {
+        let isAccordionOpen = true;
+        rawOcrAccordionToggle.addEventListener('click', () => {
+          isAccordionOpen = !isAccordionOpen;
+          if (isAccordionOpen) {
+            rawOcrAccordionBody.classList.remove('hidden');
+            rawOcrChevron.style.transform = 'rotate(0deg)';
+          } else {
+            rawOcrAccordionBody.classList.add('hidden');
+            rawOcrChevron.style.transform = 'rotate(-90deg)';
+          }
+        });
+      }
+
+      // Update Line Count badge for OCR text
+      function updateOcrLineCount(text) {
+        if (!ocrLineCountBadge) return;
+        const count = text ? text.split('\n').filter(l => l.trim().length > 0).length : 0;
+        ocrLineCountBadge.textContent = `${count} lines`;
       }
 
       // Smart Regex Matchers & Detected Fields Badges
@@ -1556,10 +1921,21 @@
             ocrResultText.value = processedUpper;
           }
 
+          updateOcrLineCount(processedUpper);
+
+          // Parse MRZ / Passport structure
+          const passportInfo = parsePassportMrz(processedUpper);
+          renderPassportSummaryCard(passportInfo);
+
           extractAndRenderSmartBadges(processedUpper);
           setOcrProgress(100, 'Scan complete!');
           hideOcrProgress();
-          showToast('Scan Complete', `Successfully extracted and converted text to ALL-CAPS from ${file.name}`);
+
+          if (passportInfo) {
+            showToast('Passport Identified', `✓ Parsed MRZ for ${passportInfo.fullName} (${passportInfo.passportNumber})`);
+          } else {
+            showToast('Scan Complete', `Successfully extracted and converted text to ALL-CAPS from ${file.name}`);
+          }
         } catch (err) {
           console.error('OCR processing error:', err);
           hideOcrProgress();
@@ -1678,6 +2054,8 @@
             `;
           }
           if (ocrDetectedCount) ocrDetectedCount.textContent = '0 detected';
+          renderPassportSummaryCard(null);
+          updateOcrLineCount('');
           showToast('Cleared', 'Extraction workspace cleared');
         });
       }
@@ -1693,6 +2071,9 @@
             ocrResultText.value = upper;
             ocrResultText.setSelectionRange(start, end);
           }
+          updateOcrLineCount(upper);
+          const passportInfo = parsePassportMrz(upper);
+          renderPassportSummaryCard(passportInfo);
           extractAndRenderSmartBadges(upper);
         });
       }
