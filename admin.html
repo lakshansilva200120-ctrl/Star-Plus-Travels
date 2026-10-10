@@ -722,11 +722,14 @@
                   <button 
                     type="button" 
                     data-reset-card="${key}" 
-                    data-card-id="${key}"
-                    title="Reset ${item.name} to factory default rates"
-                    class="btn-card-reset text-xs text-slate-400 hover:text-amber-400 flex items-center gap-1 transition-colors px-2 py-1 rounded bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 cursor-pointer"
+                    data-card-id="${item.id ? item.id.toUpperCase() : key}"
+                    title="Reset to default baseline"
+                    class="btn-card-reset p-1 text-slate-400 hover:text-amber-400 transition-colors bg-transparent border-0 cursor-pointer inline-flex items-center justify-center"
                   >
-                    <span>&#x21BA; Reset</span>
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                      <path d="M3 3v5h5"/>
+                    </svg>
                   </button>
                   <label class="relative inline-flex items-center cursor-pointer select-none">
                     <input type="checkbox" data-visa-toggle="${key}" data-card-id="${key}" ${item.available !== false ? 'checked' : ''} class="sr-only peer toggle-availability">
@@ -814,18 +817,18 @@
                 }
               }
 
-              // 3. Visual feedback: flash amber border & show quick indicator on button
+              // 3. Visual feedback: flash amber border & show quick spin/indicator on button
               card.classList.remove('card-reset-highlight');
               void card.offsetWidth; // Force DOM reflow to retrigger animation
               card.classList.add('card-reset-highlight');
 
-              const originalBtnContent = btn.innerHTML;
-              btn.innerHTML = '<i class="fa-solid fa-check text-amber-400"></i><span class="text-amber-400 font-bold">Reset!</span>';
-              btn.classList.add('border-amber-500/60', 'bg-amber-500/10');
+              btn.classList.add('text-amber-400');
+              const svgEl = btn.querySelector('svg');
+              if (svgEl) svgEl.classList.add('rotate-180', 'transition-transform', 'duration-500');
               setTimeout(() => {
-                btn.innerHTML = originalBtnContent;
-                btn.classList.remove('border-amber-500/60', 'bg-amber-500/10');
-              }, 1400);
+                btn.classList.remove('text-amber-400');
+                if (svgEl) svgEl.classList.remove('rotate-180');
+              }, 1000);
 
               showToast('Reset to Default', `Restored factory defaults for ${defaultItem.name}`);
             }
@@ -853,11 +856,14 @@
                   <button 
                     type="button" 
                     data-reset-pkg="${key}" 
-                    data-card-id="${key}"
-                    title="Reset ${item.title} to factory default rates"
-                    class="btn-card-reset text-xs text-slate-400 hover:text-amber-400 flex items-center gap-1 transition-colors px-2 py-1 rounded bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 cursor-pointer"
+                    data-card-id="${item.id ? item.id.toUpperCase() : key}"
+                    title="Reset to default baseline"
+                    class="btn-card-reset p-1 text-slate-400 hover:text-amber-400 transition-colors bg-transparent border-0 cursor-pointer inline-flex items-center justify-center"
                   >
-                    <span>&#x21BA; Reset</span>
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                      <path d="M3 3v5h5"/>
+                    </svg>
                   </button>
                   <label class="relative inline-flex items-center cursor-pointer select-none">
                     <input type="checkbox" data-pkg-toggle="${key}" data-card-id="${key}" ${isAvail ? 'checked' : ''} class="sr-only peer toggle-availability">
@@ -984,18 +990,18 @@
                 }
               }
 
-              // 3. Visual feedback: flash amber border & show quick indicator on button
+              // 3. Visual feedback: flash amber border & show quick spin/indicator on button
               card.classList.remove('card-reset-highlight');
               void card.offsetWidth; // Force DOM reflow to retrigger animation
               card.classList.add('card-reset-highlight');
 
-              const originalBtnContent = btn.innerHTML;
-              btn.innerHTML = '<i class="fa-solid fa-check text-amber-400"></i><span class="text-amber-400 font-bold">Reset!</span>';
-              btn.classList.add('border-amber-500/60', 'bg-amber-500/10');
+              btn.classList.add('text-amber-400');
+              const svgEl = btn.querySelector('svg');
+              if (svgEl) svgEl.classList.add('rotate-180', 'transition-transform', 'duration-500');
               setTimeout(() => {
-                btn.innerHTML = originalBtnContent;
-                btn.classList.remove('border-amber-500/60', 'bg-amber-500/10');
-              }, 1400);
+                btn.classList.remove('text-amber-400');
+                if (svgEl) svgEl.classList.remove('rotate-180');
+              }, 1000);
 
               showToast('Reset to Default', `Restored factory defaults for ${defaultItem.title}`);
             }
@@ -1023,11 +1029,14 @@
                   <button 
                     type="button" 
                     data-reset-srv="${key}" 
-                    data-card-id="${key}"
-                    title="Reset ${item.name} to factory default rates"
-                    class="btn-card-reset text-xs text-slate-400 hover:text-amber-400 flex items-center gap-1 transition-colors px-2 py-1 rounded bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 cursor-pointer"
+                    data-card-id="${item.id ? item.id.toUpperCase() : key}"
+                    title="Reset to default baseline"
+                    class="btn-card-reset p-1 text-slate-400 hover:text-amber-400 transition-colors bg-transparent border-0 cursor-pointer inline-flex items-center justify-center"
                   >
-                    <span>&#x21BA; Reset</span>
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                      <path d="M3 3v5h5"/>
+                    </svg>
                   </button>
                   <label class="relative inline-flex items-center cursor-pointer select-none">
                     <input type="checkbox" data-srv-toggle="${key}" data-card-id="${key}" ${isAvail ? 'checked' : ''} class="sr-only peer toggle-availability">
@@ -1109,18 +1118,18 @@
                 }
               }
 
-              // 3. Visual feedback: flash amber border & show quick indicator on button
+              // 3. Visual feedback: flash amber border & show quick spin/indicator on button
               card.classList.remove('card-reset-highlight');
               void card.offsetWidth; // Force DOM reflow to retrigger animation
               card.classList.add('card-reset-highlight');
 
-              const originalBtnContent = btn.innerHTML;
-              btn.innerHTML = '<i class="fa-solid fa-check text-amber-400"></i><span class="text-amber-400 font-bold">Reset!</span>';
-              btn.classList.add('border-amber-500/60', 'bg-amber-500/10');
+              btn.classList.add('text-amber-400');
+              const svgEl = btn.querySelector('svg');
+              if (svgEl) svgEl.classList.add('rotate-180', 'transition-transform', 'duration-500');
               setTimeout(() => {
-                btn.innerHTML = originalBtnContent;
-                btn.classList.remove('border-amber-500/60', 'bg-amber-500/10');
-              }, 1400);
+                btn.classList.remove('text-amber-400');
+                if (svgEl) svgEl.classList.remove('rotate-180');
+              }, 1000);
 
               showToast('Reset to Default', `Restored factory defaults for ${defaultItem.name}`);
             }
