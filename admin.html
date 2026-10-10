@@ -747,7 +747,7 @@
 
                     <!-- Static text label (not clickable) -->
                     <span class="text-xs font-semibold ${item.available !== false ? 'text-emerald-400' : 'text-slate-400'} select-none status-label" data-status-id="${item.id ? item.id.toUpperCase() : key}">
-                      ${item.available !== false ? 'Available' : 'Paused / Hold'}
+                      ${item.available !== false ? 'Available' : 'Paused'}
                     </span>
                   </div>
                 </div>
@@ -784,7 +784,7 @@
             const card = document.getElementById(`visa-card-${k}`);
             const label = card ? card.querySelector('.status-label') : e.target.closest('div').querySelector('.status-label');
             if (label) {
-              label.textContent = e.target.checked ? 'Available' : 'Paused / Hold';
+              label.textContent = e.target.checked ? 'Available' : 'Paused';
               label.className = `text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} select-none status-label`;
             }
           });
@@ -885,7 +885,7 @@
 
                     <!-- Static text label (not clickable) -->
                     <span class="text-xs font-semibold ${isAvail ? 'text-emerald-400' : 'text-slate-400'} select-none status-label" data-status-id="${item.id ? item.id.toUpperCase() : key}">
-                      ${isAvail ? 'Available' : 'Paused / Hold'}
+                      ${isAvail ? 'Available' : 'Paused'}
                     </span>
                   </div>
                 </div>
@@ -954,7 +954,7 @@
             const card = document.getElementById(`package-card-${k}`);
             const label = card ? card.querySelector('.status-label') : e.target.closest('div').querySelector('.status-label');
             if (label) {
-              label.textContent = e.target.checked ? 'Available' : 'Paused / Hold';
+              label.textContent = e.target.checked ? 'Available' : 'Paused';
               label.className = `text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} select-none status-label`;
             }
           });
@@ -1062,7 +1062,7 @@
 
                     <!-- Static text label (not clickable) -->
                     <span class="text-xs font-semibold ${isAvail ? 'text-emerald-400' : 'text-slate-400'} select-none status-label" data-status-id="${item.id ? item.id.toUpperCase() : key}">
-                      ${isAvail ? 'Available' : 'Paused / Hold'}
+                      ${isAvail ? 'Available' : 'Paused'}
                     </span>
                   </div>
                 </div>
@@ -1097,7 +1097,7 @@
             const card = document.getElementById(`service-card-${k}`);
             const label = card ? card.querySelector('.status-label') : e.target.closest('div').querySelector('.status-label');
             if (label) {
-              label.textContent = e.target.checked ? 'Available' : 'Paused / Hold';
+              label.textContent = e.target.checked ? 'Available' : 'Paused';
               label.className = `text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} select-none status-label`;
             }
           });
