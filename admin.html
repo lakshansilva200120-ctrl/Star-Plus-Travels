@@ -426,7 +426,7 @@
         <div id="ocrResultsWrapper" class="space-y-4">
 
           <!-- Structured Passport Summary Card (Appears when Passport/MRZ is detected) -->
-          <div id="passportSummaryCard" class="hidden admin-glass-panel p-6 rounded-2xl border-amber-500/40 bg-gradient-to-br from-slate-900/90 via-slate-900/95 to-amber-950/20 shadow-xl space-y-4">
+          <div id="passportSummaryCard" class="hidden admin-glass-panel p-6 rounded-2xl border-amber-500/40 bg-gradient-to-br from-slate-900/90 via-slate-900/95 to-amber-950/20 shadow-xl space-y-5">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-amber-500/20">
               <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center text-lg">
@@ -439,7 +439,7 @@
                       MRZ ICAO 9303
                     </span>
                   </h4>
-                  <p class="text-xs text-slate-400">Structured traveler identity parsed directly from machine-readable zone &amp; biodata</p>
+                  <p class="text-xs text-slate-400">Extracted passport fields in editable uppercase format with dedicated 1-click copy buttons</p>
                 </div>
               </div>
               <button 
@@ -447,77 +447,191 @@
                 id="copyAllPassportFieldsBtn" 
                 class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20 active:scale-95 flex items-center gap-2 cursor-pointer self-start sm:self-auto"
               >
-                <i class="fa-solid fa-clone"></i>
-                <span>📋 Copy All Key Details</span>
+                <i class="fa-solid fa-copy"></i>
+                <span>📋 Copy All 6 Details</span>
               </button>
             </div>
 
-            <!-- 6 Structured Field Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              <!-- Full Name -->
-              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-colors flex items-center justify-between gap-3">
-                <div class="min-w-0">
-                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Full Name</div>
-                  <div id="ppCardFullName" class="text-xs sm:text-sm font-bold text-white font-mono truncate mt-0.5">-</div>
+            <!-- 6 Structured Form Rows with Editable Inputs & Copy Buttons -->
+            <div class="space-y-3" id="passportFieldsForm">
+              <!-- 1. PASSPORT NO -->
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="w-full sm:w-48 flex-shrink-0">
+                  <label for="ppInputPassportNo" class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-id-card text-xs"></i>
+                    <span>PASSPORT NO</span>
+                  </label>
+                  <span class="text-[10px] text-slate-500 block">MRZ Line 2 / Document ID</span>
                 </div>
-                <button type="button" data-copy-target="ppCardFullName" title="Copy Full Name" class="btn-field-copy p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-colors border border-slate-700 cursor-pointer flex-shrink-0">
-                  <i class="fa-solid fa-copy text-xs"></i>
-                </button>
+                <div class="flex items-center gap-2 flex-1 w-full">
+                  <input 
+                    type="text" 
+                    id="ppInputPassportNo" 
+                    placeholder="e.g. M1234567" 
+                    class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 focus:border-amber-400 text-white font-mono text-xs sm:text-sm font-bold tracking-wider uppercase transition-colors outline-none"
+                    spellcheck="false"
+                  >
+                  <button 
+                    type="button" 
+                    data-copy-input="ppInputPassportNo" 
+                    data-field-name="PASSPORT NO"
+                    title="Copy PASSPORT NO" 
+                    class="btn-field-copy px-3 py-2 rounded-xl bg-slate-800 hover:bg-emerald-600/30 text-slate-300 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500/40 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer flex-shrink-0 active:scale-95"
+                  >
+                    <i class="fa-solid fa-copy text-xs"></i>
+                    <span class="hidden sm:inline">Copy</span>
+                  </button>
+                </div>
               </div>
 
-              <!-- Surname -->
-              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-colors flex items-center justify-between gap-3">
-                <div class="min-w-0">
-                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Surname / Family Name</div>
-                  <div id="ppCardSurname" class="text-xs sm:text-sm font-bold text-amber-300 font-mono truncate mt-0.5">-</div>
+              <!-- 2. FULL NAME -->
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="w-full sm:w-48 flex-shrink-0">
+                  <label for="ppInputFullName" class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-user text-xs"></i>
+                    <span>FULL NAME</span>
+                  </label>
+                  <span class="text-[10px] text-slate-500 block">Surname + Given Names</span>
                 </div>
-                <button type="button" data-copy-target="ppCardSurname" title="Copy Surname" class="btn-field-copy p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-colors border border-slate-700 cursor-pointer flex-shrink-0">
-                  <i class="fa-solid fa-copy text-xs"></i>
-                </button>
+                <div class="flex items-center gap-2 flex-1 w-full">
+                  <input 
+                    type="text" 
+                    id="ppInputFullName" 
+                    placeholder="e.g. DOE JOHN MICHAEL" 
+                    class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 focus:border-amber-400 text-white font-mono text-xs sm:text-sm font-bold uppercase transition-colors outline-none"
+                    spellcheck="false"
+                  >
+                  <button 
+                    type="button" 
+                    data-copy-input="ppInputFullName" 
+                    data-field-name="FULL NAME"
+                    title="Copy FULL NAME" 
+                    class="btn-field-copy px-3 py-2 rounded-xl bg-slate-800 hover:bg-emerald-600/30 text-slate-300 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500/40 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer flex-shrink-0 active:scale-95"
+                  >
+                    <i class="fa-solid fa-copy text-xs"></i>
+                    <span class="hidden sm:inline">Copy</span>
+                  </button>
+                </div>
               </div>
 
-              <!-- Given Names -->
-              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-colors flex items-center justify-between gap-3">
-                <div class="min-w-0">
-                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Given Name(s)</div>
-                  <div id="ppCardGivenName" class="text-xs sm:text-sm font-bold text-white font-mono truncate mt-0.5">-</div>
+              <!-- 3. BIRTHDAY -->
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="w-full sm:w-48 flex-shrink-0">
+                  <label for="ppInputBirthday" class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-cake-candles text-xs"></i>
+                    <span>BIRTHDAY</span>
+                  </label>
+                  <span class="text-[10px] text-slate-500 block">Date of Birth (DD/MM/YYYY)</span>
                 </div>
-                <button type="button" data-copy-target="ppCardGivenName" title="Copy Given Name" class="btn-field-copy p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-colors border border-slate-700 cursor-pointer flex-shrink-0">
-                  <i class="fa-solid fa-copy text-xs"></i>
-                </button>
+                <div class="flex items-center gap-2 flex-1 w-full">
+                  <input 
+                    type="text" 
+                    id="ppInputBirthday" 
+                    placeholder="DD/MM/YYYY" 
+                    class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 focus:border-amber-400 text-white font-mono text-xs sm:text-sm font-bold uppercase transition-colors outline-none"
+                    spellcheck="false"
+                  >
+                  <button 
+                    type="button" 
+                    data-copy-input="ppInputBirthday" 
+                    data-field-name="BIRTHDAY"
+                    title="Copy BIRTHDAY" 
+                    class="btn-field-copy px-3 py-2 rounded-xl bg-slate-800 hover:bg-emerald-600/30 text-slate-300 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500/40 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer flex-shrink-0 active:scale-95"
+                  >
+                    <i class="fa-solid fa-copy text-xs"></i>
+                    <span class="hidden sm:inline">Copy</span>
+                  </button>
+                </div>
               </div>
 
-              <!-- Passport Number -->
-              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-colors flex items-center justify-between gap-3">
-                <div class="min-w-0">
-                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Passport Number</div>
-                  <div id="ppCardPassportNumber" class="text-xs sm:text-sm font-bold text-emerald-400 font-mono tracking-wider truncate mt-0.5">-</div>
+              <!-- 4. PASSPORT EXPIRE DATE -->
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="w-full sm:w-48 flex-shrink-0">
+                  <label for="ppInputExpireDate" class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-calendar-xmark text-xs"></i>
+                    <span>PASSPORT EXPIRE DATE</span>
+                  </label>
+                  <span class="text-[10px] text-slate-500 block">Date of Expiry (DD/MM/YYYY)</span>
                 </div>
-                <button type="button" data-copy-target="ppCardPassportNumber" title="Copy Passport Number" class="btn-field-copy p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-colors border border-slate-700 cursor-pointer flex-shrink-0">
-                  <i class="fa-solid fa-copy text-xs"></i>
-                </button>
+                <div class="flex items-center gap-2 flex-1 w-full">
+                  <input 
+                    type="text" 
+                    id="ppInputExpireDate" 
+                    placeholder="DD/MM/YYYY" 
+                    class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 focus:border-amber-400 text-rose-300 font-mono text-xs sm:text-sm font-bold uppercase transition-colors outline-none"
+                    spellcheck="false"
+                  >
+                  <button 
+                    type="button" 
+                    data-copy-input="ppInputExpireDate" 
+                    data-field-name="PASSPORT EXPIRE DATE"
+                    title="Copy PASSPORT EXPIRE DATE" 
+                    class="btn-field-copy px-3 py-2 rounded-xl bg-slate-800 hover:bg-emerald-600/30 text-slate-300 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500/40 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer flex-shrink-0 active:scale-95"
+                  >
+                    <i class="fa-solid fa-copy text-xs"></i>
+                    <span class="hidden sm:inline">Copy</span>
+                  </button>
+                </div>
               </div>
 
-              <!-- Nationality -->
-              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-colors flex items-center justify-between gap-3">
-                <div class="min-w-0">
-                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Nationality / Issuing State</div>
-                  <div id="ppCardNationality" class="text-xs sm:text-sm font-bold text-sky-400 font-mono truncate mt-0.5">-</div>
+              <!-- 5. ISSUE DATE -->
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="w-full sm:w-48 flex-shrink-0">
+                  <label for="ppInputIssueDate" class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-calendar-check text-xs"></i>
+                    <span>ISSUE DATE</span>
+                  </label>
+                  <span class="text-[10px] text-slate-500 block">Date of Issue (DD/MM/YYYY)</span>
                 </div>
-                <button type="button" data-copy-target="ppCardNationality" title="Copy Nationality" class="btn-field-copy p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-colors border border-slate-700 cursor-pointer flex-shrink-0">
-                  <i class="fa-solid fa-copy text-xs"></i>
-                </button>
+                <div class="flex items-center gap-2 flex-1 w-full">
+                  <input 
+                    type="text" 
+                    id="ppInputIssueDate" 
+                    placeholder="DD/MM/YYYY" 
+                    class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 focus:border-amber-400 text-emerald-300 font-mono text-xs sm:text-sm font-bold uppercase transition-colors outline-none"
+                    spellcheck="false"
+                  >
+                  <button 
+                    type="button" 
+                    data-copy-input="ppInputIssueDate" 
+                    data-field-name="ISSUE DATE"
+                    title="Copy ISSUE DATE" 
+                    class="btn-field-copy px-3 py-2 rounded-xl bg-slate-800 hover:bg-emerald-600/30 text-slate-300 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500/40 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer flex-shrink-0 active:scale-95"
+                  >
+                    <i class="fa-solid fa-copy text-xs"></i>
+                    <span class="hidden sm:inline">Copy</span>
+                  </button>
+                </div>
               </div>
 
-              <!-- Expiry Date -->
-              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-colors flex items-center justify-between gap-3">
-                <div class="min-w-0">
-                  <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Expiry Date</div>
-                  <div id="ppCardExpiryDate" class="text-xs sm:text-sm font-bold text-rose-300 font-mono truncate mt-0.5">-</div>
+              <!-- 6. PLACE -->
+              <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/30 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div class="w-full sm:w-48 flex-shrink-0">
+                  <label for="ppInputPlace" class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-location-dot text-xs"></i>
+                    <span>PLACE</span>
+                  </label>
+                  <span class="text-[10px] text-slate-500 block">Place of Issue / Place of Birth</span>
                 </div>
-                <button type="button" data-copy-target="ppCardExpiryDate" title="Copy Expiry Date" class="btn-field-copy p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-amber-400 transition-colors border border-slate-700 cursor-pointer flex-shrink-0">
-                  <i class="fa-solid fa-copy text-xs"></i>
-                </button>
+                <div class="flex items-center gap-2 flex-1 w-full">
+                  <input 
+                    type="text" 
+                    id="ppInputPlace" 
+                    placeholder="e.g. MAHARASHTRA / DUBAI" 
+                    class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 focus:border-amber-400 text-sky-300 font-mono text-xs sm:text-sm font-bold uppercase transition-colors outline-none"
+                    spellcheck="false"
+                  >
+                  <button 
+                    type="button" 
+                    data-copy-input="ppInputPlace" 
+                    data-field-name="PLACE"
+                    title="Copy PLACE" 
+                    class="btn-field-copy px-3 py-2 rounded-xl bg-slate-800 hover:bg-emerald-600/30 text-slate-300 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500/40 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer flex-shrink-0 active:scale-95"
+                  >
+                    <i class="fa-solid fa-copy text-xs"></i>
+                    <span class="hidden sm:inline">Copy</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -1577,16 +1691,16 @@
       }
 
       // -------------------------------------------------------------------------
-      // PASSPORT & MRZ (MACHINE READABLE ZONE) PARSER (ICAO Doc 9303 Type 3)
+      // PASSPORT & MRZ (MACHINE READABLE ZONE) PARSER (6 TARGET FIELDS)
       // -------------------------------------------------------------------------
       const passportSummaryCard = document.getElementById('passportSummaryCard');
       const mrzIndicatorBadge = document.getElementById('mrzIndicatorBadge');
-      const ppCardFullName = document.getElementById('ppCardFullName');
-      const ppCardSurname = document.getElementById('ppCardSurname');
-      const ppCardGivenName = document.getElementById('ppCardGivenName');
-      const ppCardPassportNumber = document.getElementById('ppCardPassportNumber');
-      const ppCardNationality = document.getElementById('ppCardNationality');
-      const ppCardExpiryDate = document.getElementById('ppCardExpiryDate');
+      const ppInputPassportNo = document.getElementById('ppInputPassportNo');
+      const ppInputFullName = document.getElementById('ppInputFullName');
+      const ppInputBirthday = document.getElementById('ppInputBirthday');
+      const ppInputExpireDate = document.getElementById('ppInputExpireDate');
+      const ppInputIssueDate = document.getElementById('ppInputIssueDate');
+      const ppInputPlace = document.getElementById('ppInputPlace');
       const copyAllPassportFieldsBtn = document.getElementById('copyAllPassportFieldsBtn');
       const rawOcrAccordionToggle = document.getElementById('rawOcrAccordionToggle');
       const rawOcrAccordionBody = document.getElementById('rawOcrAccordionBody');
@@ -1597,7 +1711,7 @@
 
       // Format YYMMDD into DD/MM/YYYY
       function formatMrzDate(yymmdd, isExpiry = false) {
-        if (!yymmdd || yymmdd.length !== 6 || !/^\d{6}$/.test(yymmdd)) return null;
+        if (!yymmdd || yymmdd.length !== 6 || !/^\d{6}$/.test(yymmdd)) return '';
         const yy = parseInt(yymmdd.substring(0, 2), 10);
         const mm = yymmdd.substring(2, 4);
         const dd = yymmdd.substring(4, 6);
@@ -1612,22 +1726,82 @@
         return `${dd}/${mm}/${fullYear}`;
       }
 
-      // Parse MRZ text lines or standard passport format
+      // Convert various date formats (e.g., DD/MM/YYYY, DD.MM.YYYY, DD-MM-YYYY) into standard DD/MM/YYYY
+      function normalizeDateFormat(dtStr) {
+        if (!dtStr) return '';
+        const match = dtStr.match(/\b(\d{2})[/.-](\d{2})[/.-](\d{4})\b/);
+        if (match) {
+          return `${match[1]}/${match[2]}/${match[3]}`;
+        }
+        return dtStr.trim();
+      }
+
+      // Parse a date string into a timestamp for ordering
+      function parseDateValue(dtStr) {
+        const match = dtStr.match(/\b(\d{2})[/.-](\d{2})[/.-](\d{4})\b/);
+        if (match) {
+          return new Date(parseInt(match[3], 10), parseInt(match[2], 10) - 1, parseInt(match[1], 10)).getTime();
+        }
+        return 0;
+      }
+
+      // Extract Place of Issue / Place of Birth
+      function extractPlace(text) {
+        if (!text) return '';
+
+        // Known cities, states, regions, and countries
+        const knownLocations = [
+          'MAHARASHTRA', 'MUMBAI', 'DELHI', 'DUBAI', 'ABU DHABI', 'SHARJAH', 'COLOMBO',
+          'KERALA', 'TAMIL NADU', 'KARNATAKA', 'GUJARAT', 'PUNJAB', 'HARYANA', 'RAJASTHAN',
+          'WEST BENGAL', 'HYDERABAD', 'BANGALORE', 'CHENNAI', 'KOLKATA', 'AHMEDABAD',
+          'PUNE', 'CHANDIGARH', 'JAIPUR', 'LUCKNOW', 'GOA', 'KANDY', 'GALLE', 'BAKU',
+          'DHAKA', 'ISLAMABAD', 'LAHORE', 'KARACHI', 'KATHMANDU', 'MANILA', 'BANGKOK'
+        ];
+
+        // 1. Direct label pattern: "PLACE OF ISSUE", "PLACE OF BIRTH", "ISSUING AUTHORITY"
+        const placeMatch = text.match(/(?:PLACE\s+OF\s+(?:ISSUE|BIRTH)|ISSUING\s+AUTHORITY|PLACE)[:\s]+([A-Z\s,.-]{3,30})/);
+        if (placeMatch) {
+          const cand = placeMatch[1].trim();
+          // Remove trailing junk words
+          const clean = cand.split(/\n/)[0].replace(/^(OF|AT|STATE|CITY|DISTRICT)[:\s]+/i, '').trim();
+          if (clean && clean.length >= 3 && !/^(AND|THE|PASSPORT|NUMBER|DATE)$/.test(clean)) {
+            return clean;
+          }
+        }
+
+        // 2. Check for known locations in text
+        for (const loc of knownLocations) {
+          const regex = new RegExp(`\\b${loc}\\b`);
+          if (regex.test(text)) {
+            return loc;
+          }
+        }
+
+        return '';
+      }
+
+      // Parse 6 Target Passport Fields
       function parsePassportMrz(text) {
         if (!text) return null;
 
         const lines = text.split('\n').map(l => l.replace(/\s+/g, '').toUpperCase());
 
-        // 1. Locate Line 1 of MRZ: starts with P< and followed by 40-44 characters
+        let passportNo = '';
+        let fullName = '';
+        let birthday = '';
+        let expireDate = '';
+        let issueDate = '';
+        let place = extractPlace(text);
+        let hasMrz = false;
+
+        // 1. Check for MRZ Type 3 (2 lines of 44 chars)
         let line1 = null;
         let line2 = null;
 
         for (let i = 0; i < lines.length; i++) {
           const l = lines[i];
-          // Look for P< with at least 30 chars
           if (/^P<[A-Z0-9<]{28,45}$/.test(l)) {
             line1 = l;
-            // Check subsequent lines for Line 2 (at least 30 chars)
             for (let j = i + 1; j < Math.min(lines.length, i + 4); j++) {
               const next = lines[j];
               if (/^[A-Z0-9<]{30,45}$/.test(next) && !next.startsWith('P<')) {
@@ -1640,82 +1814,108 @@
         }
 
         if (line1 && line2) {
-          // Pad to 44 chars if slightly truncated by OCR
+          hasMrz = true;
           line1 = line1.padEnd(44, '<').substring(0, 44);
           line2 = line2.padEnd(44, '<').substring(0, 44);
 
-          // Issuing Country: Line 1 chars 2..5 (P<[A-Z]{3})
-          const issuingCountry = line1.substring(2, 5).replace(/</g, '').trim();
-
-          // Names: Line 1 chars 5..44
+          // Line 1: Full Name = SURNAME GIVEN_NAMES
           const namePart = line1.substring(5);
           const nameSegments = namePart.split('<<');
           const surname = (nameSegments[0] || '').replace(/</g, ' ').trim();
           const givenNames = (nameSegments[1] || '').replace(/</g, ' ').trim();
-          const fullName = [givenNames, surname].filter(Boolean).join(' ') || surname;
+          fullName = [surname, givenNames].filter(Boolean).join(' ') || surname;
 
-          // Line 2: Passport Number (chars 0..9)
-          const rawDocNumber = line2.substring(0, 9).replace(/</g, '').trim();
+          // Line 2: Passport No (chars 0..9 before checksum <)
+          passportNo = line2.substring(0, 9).replace(/</g, '').trim();
 
-          // Line 2: Nationality (chars 10..13)
-          const nationality = line2.substring(10, 13).replace(/</g, '').trim() || issuingCountry;
-
-          // Line 2: Date of Birth (chars 13..19)
+          // Line 2: Birthday (chars 13..19: YYMMDD)
           const dobRaw = line2.substring(13, 19);
-          const dobFormatted = formatMrzDate(dobRaw, false);
+          birthday = formatMrzDate(dobRaw, false);
 
-          // Line 2: Expiry Date (chars 21..27)
+          // Line 2: Expire Date (chars 21..27: YYMMDD)
           const expiryRaw = line2.substring(21, 27);
-          const expiryFormatted = formatMrzDate(expiryRaw, true);
-
-          return {
-            hasMrz: true,
-            fullName: fullName || 'PASSPORT HOLDER',
-            surname: surname || '-',
-            givenName: givenNames || '-',
-            passportNumber: rawDocNumber,
-            nationality: nationality || 'UNKNOWN',
-            expiryDate: expiryFormatted || '-',
-            dob: dobFormatted || '-'
-          };
+          expireDate = formatMrzDate(expiryRaw, true);
         }
 
-        // Fallback: Check if document has recognizable passport indicators in biodata
-        const passportNumMatch = text.match(/\b[A-Z][0-9]{7,8}\b/);
-        const hasPassportWord = /\b(PASSPORT|PASSEPORT|REISEPASS|TRAVEL DOCUMENT|GIVEN NAMES|SURNAME)\b/.test(text);
+        // 2. Fallbacks & Date of Issue resolution
+        // Extract all standard dates in DD/MM/YYYY format
+        const standardDates = Array.from(new Set(text.match(/\b\d{2}[/.-]\d{2}[/.-]\d{4}\b/g) || []))
+          .map(d => normalizeDateFormat(d));
 
-        if (passportNumMatch && hasPassportWord) {
-          // Standard date match
-          const dates = Array.from(new Set(text.match(/\b\d{2}[-/.]\d{2}[-/.]\d{4}\b/g) || []));
-          const expiryDate = dates.length > 0 ? dates[dates.length - 1] : '-';
+        // Fallback for Passport No if not parsed from MRZ
+        if (!passportNo) {
+          const pNoMatch = text.match(/(?:PASSPORT\s*(?:NO|NUMBER|\/)?|EF\.\s*WO)[:\s]*([A-Z][0-9]{7,8})/);
+          if (pNoMatch) {
+            passportNo = pNoMatch[1];
+          } else {
+            const genericMatch = text.match(/\b[A-Z][0-9]{7,8}\b/);
+            if (genericMatch) passportNo = genericMatch[0];
+          }
+        }
 
-          // Extract names from heuristics if possible
-          let surname = '-';
-          let givenName = '-';
-          const surnameMatch = text.match(/(?:SURNAME|NOM|APELLIDO)[:\s]+([A-Z\s]{2,30})/);
-          if (surnameMatch) surname = surnameMatch[1].trim();
+        // Fallback for Full Name if not from MRZ
+        if (!fullName) {
+          const nameMatch = text.match(/(?:GIVEN\s*NAMES?|FULL\s*NAME|SURNAME|NAME)[:\s]+([A-Z\s]{3,40})/);
+          if (nameMatch) {
+            fullName = nameMatch[1].split(/\n/)[0].trim();
+          }
+        }
 
-          const givenMatch = text.match(/(?:GIVEN NAMES?|PRÉNOMS?|NOMBRES?)[:\s]+([A-Z\s]{2,40})/);
-          if (givenMatch) givenName = givenMatch[1].trim();
+        // Check for labeled Issue Date: "DATE OF ISSUE", "ISSUE DATE", "DATE D'EMISSION"
+        const issueDateMatch = text.match(/(?:DATE\s*OF\s*ISSUE|ISSUE\s*DATE|ISSUED\s*ON|DT\s*OF\s*ISSUE)[:\s]*(\d{2}[/.-]\d{2}[/.-]\d{4})/);
+        if (issueDateMatch) {
+          issueDate = normalizeDateFormat(issueDateMatch[1]);
+        }
 
-          const fullName = [givenName !== '-' ? givenName : '', surname !== '-' ? surname : ''].filter(Boolean).join(' ') || 'PASSPORT HOLDER';
+        // Check for labeled Expiry Date
+        const expireDateMatch = text.match(/(?:DATE\s*OF\s*EXPIRY|EXPIRY\s*DATE|DATE\s*OF\s*EXPIRATION|EXPIRE\s*DATE)[:\s]*(\d{2}[/.-]\d{2}[/.-]\d{4})/);
+        if (expireDateMatch && !expireDate) {
+          expireDate = normalizeDateFormat(expireDateMatch[1]);
+        }
 
+        // Check for labeled DOB
+        const dobMatch = text.match(/(?:DATE\s*OF\s*BIRTH|DOB|BIRTHDAY|NÉ\s*LE)[:\s]*(\d{2}[/.-]\d{2}[/.-]\d{4})/);
+        if (dobMatch && !birthday) {
+          birthday = normalizeDateFormat(dobMatch[1]);
+        }
+
+        // Sort standard dates chronologically to assign missing Issue Date, Birthday, Expire Date
+        if (standardDates.length >= 2) {
+          const sorted = [...standardDates].sort((a, b) => parseDateValue(a) - parseDateValue(b));
+          if (!issueDate && sorted.length >= 2) {
+            // Earlier date is typically Issue Date (or DOB if 3 dates present)
+            if (sorted.length >= 3 && !birthday) {
+              birthday = sorted[0];
+              issueDate = sorted[1];
+              if (!expireDate) expireDate = sorted[2];
+            } else {
+              issueDate = sorted[0];
+              if (!expireDate) expireDate = sorted[sorted.length - 1];
+            }
+          }
+        } else if (standardDates.length === 1 && !expireDate) {
+          expireDate = standardDates[0];
+        }
+
+        // Only return non-null if at least one meaningful passport identifier exists
+        const hasPassportIndicators = passportNo || hasMrz || /\b(PASSPORT|PASSEPORT|REISEPASS|TRAVEL DOCUMENT)\b/.test(text);
+
+        if (hasPassportIndicators) {
           return {
-            hasMrz: false,
-            fullName: fullName,
-            surname: surname,
-            givenName: givenName,
-            passportNumber: passportNumMatch[0],
-            nationality: 'STANDARD BIODATA',
-            expiryDate: expiryDate,
-            dob: dates.length > 1 ? dates[0] : '-'
+            hasMrz,
+            passportNo: passportNo.toUpperCase(),
+            fullName: fullName.toUpperCase(),
+            birthday: birthday.toUpperCase(),
+            expireDate: expireDate.toUpperCase(),
+            issueDate: issueDate.toUpperCase(),
+            place: place.toUpperCase()
           };
         }
 
         return null;
       }
 
-      // Render structured passport summary card
+      // Render 6-row passport summary card with editable inputs
       function renderPassportSummaryCard(passportData) {
         if (!passportSummaryCard) return;
 
@@ -1726,12 +1926,12 @@
           return;
         }
 
-        if (ppCardFullName) ppCardFullName.textContent = passportData.fullName || '-';
-        if (ppCardSurname) ppCardSurname.textContent = passportData.surname || '-';
-        if (ppCardGivenName) ppCardGivenName.textContent = passportData.givenName || '-';
-        if (ppCardPassportNumber) ppCardPassportNumber.textContent = passportData.passportNumber || '-';
-        if (ppCardNationality) ppCardNationality.textContent = passportData.nationality || '-';
-        if (ppCardExpiryDate) ppCardExpiryDate.textContent = passportData.expiryDate || '-';
+        if (ppInputPassportNo) ppInputPassportNo.value = passportData.passportNo || '';
+        if (ppInputFullName) ppInputFullName.value = passportData.fullName || '';
+        if (ppInputBirthday) ppInputBirthday.value = passportData.birthday || '';
+        if (ppInputExpireDate) ppInputExpireDate.value = passportData.expireDate || '';
+        if (ppInputIssueDate) ppInputIssueDate.value = passportData.issueDate || '';
+        if (ppInputPlace) ppInputPlace.value = passportData.place || '';
 
         if (mrzIndicatorBadge) {
           mrzIndicatorBadge.textContent = passportData.hasMrz ? 'MRZ ICAO 9303 PASSED' : 'BIODATA DETECTED';
@@ -1743,37 +1943,49 @@
         passportSummaryCard.classList.remove('hidden');
       }
 
-      // Bind Field Copy Buttons in Passport Summary Card
+      // Bind Field Copy Buttons in Passport Summary Form
       document.querySelectorAll('.btn-field-copy').forEach(btn => {
         btn.addEventListener('click', () => {
-          const targetId = btn.getAttribute('data-copy-target');
-          const targetEl = document.getElementById(targetId);
-          if (targetEl && targetEl.textContent && targetEl.textContent !== '-') {
-            const val = targetEl.textContent.trim();
+          const inputId = btn.getAttribute('data-copy-input');
+          const fieldName = btn.getAttribute('data-field-name') || 'Field';
+          const inputEl = document.getElementById(inputId);
+          if (inputEl && inputEl.value && inputEl.value.trim()) {
+            const val = inputEl.value.trim().toUpperCase();
             navigator.clipboard.writeText(val).then(() => {
-              showToast('Copied!', `${val} copied to clipboard`);
+              showToast('Copied!', `${fieldName}: ${val} copied to clipboard`);
             }).catch(() => {
-              showToast('Copied!', `${val} copied`);
+              inputEl.select();
+              document.execCommand('copy');
+              showToast('Copied!', `${fieldName}: ${val} copied`);
             });
+          } else {
+            showToast('Empty Field', `${fieldName} is currently empty`);
           }
         });
       });
 
-      // Master Copy All Key Details Button
+      // Master Copy All 6 Details Button
       if (copyAllPassportFieldsBtn) {
         copyAllPassportFieldsBtn.addEventListener('click', () => {
-          if (!parsedPassportData) return;
+          const passportNo = (ppInputPassportNo?.value || '').trim().toUpperCase();
+          const fullName = (ppInputFullName?.value || '').trim().toUpperCase();
+          const birthday = (ppInputBirthday?.value || '').trim().toUpperCase();
+          const expireDate = (ppInputExpireDate?.value || '').trim().toUpperCase();
+          const issueDate = (ppInputIssueDate?.value || '').trim().toUpperCase();
+          const place = (ppInputPlace?.value || '').trim().toUpperCase();
+
           const summaryLines = [
-            `FULL NAME: ${parsedPassportData.fullName}`,
-            `SURNAME: ${parsedPassportData.surname}`,
-            `GIVEN NAME: ${parsedPassportData.givenName}`,
-            `PASSPORT NUMBER: ${parsedPassportData.passportNumber}`,
-            `NATIONALITY: ${parsedPassportData.nationality}`,
-            `EXPIRY DATE: ${parsedPassportData.expiryDate}`
+            `PASSPORT NO: ${passportNo}`,
+            `FULL NAME: ${fullName}`,
+            `BIRTHDAY: ${birthday}`,
+            `PASSPORT EXPIRE DATE: ${expireDate}`,
+            `ISSUE DATE: ${issueDate}`,
+            `PLACE: ${place}`
           ];
+
           const summaryText = summaryLines.join('\n');
           navigator.clipboard.writeText(summaryText).then(() => {
-            showToast('All Details Copied!', '✓ Clean key-value passport details copied to clipboard');
+            showToast('All 6 Details Copied!', '✓ Clean key-value passport details copied to clipboard');
           }).catch(() => {
             showToast('Copied!', 'Passport details copied');
           });
@@ -1932,7 +2144,8 @@
           hideOcrProgress();
 
           if (passportInfo) {
-            showToast('Passport Identified', `✓ Parsed MRZ for ${passportInfo.fullName} (${passportInfo.passportNumber})`);
+            const ppDisplay = passportInfo.passportNo ? ` (${passportInfo.passportNo})` : '';
+            showToast('Passport Identified', `✓ Extracted details for ${passportInfo.fullName || 'Traveler'}${ppDisplay}`);
           } else {
             showToast('Scan Complete', `Successfully extracted and converted text to ALL-CAPS from ${file.name}`);
           }
