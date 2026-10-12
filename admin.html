@@ -2909,9 +2909,9 @@
         return dataUrl.replace(/^data:image\/jpeg;base64,/, '');
       }
 
-      // Call Gemini Vision API trying gemini-2.5-flash first, then falling back to gemini-2.0-flash
+      // Call Gemini Vision API trying gemini-3-flash-preview first, then falling back to gemini-2.5-flash
       async function callGeminiVisionOcr(base64Image) {
-        const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
+        const activeModels = ['gemini-3-flash-preview', 'gemini-2.5-flash'];
         let lastError = null;
 
         const requestBody = JSON.stringify({
@@ -2934,7 +2934,7 @@
           }
         });
 
-        for (const model of models) {
+        for (const model of activeModels) {
           try {
             const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${_gk}`;
             const res = await fetch(url, {
