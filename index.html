@@ -3343,15 +3343,35 @@
       }
     };
 
+    // Supabase Client Initialization & Organic Visitor Tracking
+    const supabase = (typeof window.supabase !== 'undefined' && typeof window.supabase.createClient === 'function')
+      ? window.supabase.createClient('https://wzxeuqoaafnchgeaibzn.supabase.co', 'sb_publishable_E1oAdQukxCsZ97wXtq34-Q_UsiweL3W')
+      : (window.supabaseClient || (window.StarplusBackend && window.StarplusBackend.getClient ? window.StarplusBackend.getClient() : null));
+
+    async function trackVisitor() {
+      // Check session to avoid inflating on rapid reloads
+      if (!sessionStorage.getItem('sp_visited')) {
+        try {
+          if (supabase && typeof supabase.rpc === 'function') {
+            const { data, error } = await supabase.rpc('increment_page_view');
+            if (!error) {
+              sessionStorage.setItem('sp_visited', 'true');
+              console.log('Organic view logged. Current count:', data);
+            } else {
+              console.error('Track error:', error);
+            }
+          } else if (window.StarplusBackend && typeof window.StarplusBackend.recordPageView === 'function') {
+            await window.StarplusBackend.recordPageView();
+          }
+        } catch (err) {
+          console.error('Track exception:', err);
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', trackVisitor);
+
     // Live Rates DOM Sync and Analytics Tracking
     document.addEventListener('DOMContentLoaded', async function() {
-      // 1. Record Page View Hit if new session
-      if (window.StarplusBackend && typeof window.StarplusBackend.recordPageView === 'function') {
-        try {
-          await window.StarplusBackend.recordPageView();
-        } catch (e) {}
-      }
-
       // 2. Fetch Live Rates from Supabase site_pricing and update DOM cards
       if (window.StarplusBackend && typeof window.StarplusBackend.fetchLivePricing === 'function') {
         try {

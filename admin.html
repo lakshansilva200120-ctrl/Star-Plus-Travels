@@ -2748,6 +2748,36 @@
       // Initialize
       checkAuth();
     })();
+
+    // Supabase Live Visitor Views Analytics Query for Admin Dashboard
+    const supabase = (typeof window.supabase !== 'undefined' && typeof window.supabase.createClient === 'function')
+      ? window.supabase.createClient('https://wzxeuqoaafnchgeaibzn.supabase.co', 'sb_publishable_E1oAdQukxCsZ97wXtq34-Q_UsiweL3W')
+      : (window.supabaseClient || (window.StarplusBackend && window.StarplusBackend.getClient ? window.StarplusBackend.getClient() : null));
+
+    async function loadViews() {
+      try {
+        if (supabase && typeof supabase.from === 'function') {
+          const { data, error } = await supabase
+            .from('site_stats')
+            .select('views')
+            .eq('id', 'total_views')
+            .single();
+          if (data && !error) {
+            const badge = document.getElementById('stat-total-views');
+            if (badge) badge.textContent = Number(data.views).toLocaleString();
+            return;
+          }
+        }
+        if (window.StarplusBackend && typeof window.StarplusBackend.getTotalViews === 'function') {
+          const views = await window.StarplusBackend.getTotalViews();
+          const badge = document.getElementById('stat-total-views');
+          if (badge) badge.textContent = Number(views).toLocaleString();
+        }
+      } catch (err) {
+        console.error('Error loading views in admin:', err);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', loadViews);
   </script>
 </body>
 </html>

@@ -174,7 +174,7 @@
     },
 
     /**
-     * Website Views Analytics: increment view count once per user session
+     * Website Views Analytics: increment view count once per user session via Supabase RPC
      */
     async recordPageView() {
       if (typeof window === 'undefined' || typeof sessionStorage === 'undefined') return;
@@ -182,34 +182,47 @@
 
       const client = getClient();
       try {
-        let currentViews = 1420;
-        if (client) {
-          const { data, error } = await client.from('site_stats').select('views').eq('id', 'total_views').single();
-          if (!error && data && typeof data.views === 'number') {
-            currentViews = data.views;
+        if (client && typeof client.rpc === 'function') {
+          const { data, error } = await client.rpc('increment_page_view');
+          if (!error) {
+            sessionStorage.setItem('sp_visited', 'true');
+            console.log('Organic view logged. Current count:', data);
+            return data;
+          } else {
+            console.error('Track error:', error);
           }
-          const nextViews = currentViews + 1;
-          await client.from('site_stats').upsert({ id: 'total_views', views: nextViews });
-          sessionStorage.setItem('sp_visited', 'true');
-        } else {
-          const res = await restQuery('site_stats?id=eq.total_views&select=views');
-          if (res.ok) {
-            const data = await res.json();
-            if (Array.isArray(data) && data[0] && typeof data[0].views === 'number') {
-              currentViews = data[0].views;
-            }
-          }
-          const nextViews = currentViews + 1;
-          await restQuery('site_stats', {
-            method: 'POST',
-            headers: { 'Prefer': 'resolution=merge-duplicates' },
-            body: JSON.stringify({ id: 'total_views', views: nextViews })
-          });
-          sessionStorage.setItem('sp_visited', 'true');
         }
-      } catch (err) {
-        console.warn('[StarplusBackend] Analytics view recording error:', err);
+
+        // Direct REST RPC fallback
+        const rpcRes = await restQuery('rpc/increment_page_view', {
+          method: 'POST',
+          body: JSON.stringify({})
+        });
+        if (rpcRes.ok) {
+          const count = await rpcRes.json();
+          sessionStorage.setItem('sp_visited', 'true');
+          console.log('Organic view logged. Current count:', count);
+          return count;
+        }
+
+        // Fallback: update site_stats directly if RPC endpoint is unreachable
+        let currentViews = 1420;
+        const res = await restQuery('site_stats?id=eq.total_views&select=views');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data[0] && typeof data[0].views === 'number') {
+            currentViews = data[0].views;
+          }
+        }
+        const nextViews = currentViews + 1;
+        await restQuery('site_stats', {
+          method: 'POST',
+          headers: { 'Prefer': 'resolution=merge-duplicates' },
+          body: JSON.stringify({ id: 'total_views', views: nextViews })
+        });
         sessionStorage.setItem('sp_visited', 'true');
+      } catch (err) {
+        console.error('Track exception:', err);
       }
     },
 
