@@ -2918,7 +2918,7 @@
           contents: [{
             parts: [
               {
-                text: "Extract identity document details. Return ONLY valid JSON: {\"document_type\":\"Passport|National ID|Visa|Other\",\"document_no\":\"string\",\"full_name\":\"string\",\"birthday\":\"DD/MM/YYYY\",\"expiry_date\":\"DD/MM/YYYY\",\"issue_date\":\"DD/MM/YYYY\",\"place\":\"string\"}"
+                text: "You are an identity document parser. Analyze this passport or ID image. Return ONLY a valid JSON object without markdown fences, comments, or backticks:\n{\n  \"document_no\": \"string\",\n  \"full_name\": \"string\",\n  \"birthday\": \"DD/MM/YYYY\",\n  \"expiry_date\": \"DD/MM/YYYY\",\n  \"issue_date\": \"DD/MM/YYYY\",\n  \"place\": \"string\"\n}"
               },
               {
                 inline_data: {
