@@ -473,7 +473,7 @@
                 class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-amber-500/20 active:scale-95 flex items-center gap-2 cursor-pointer self-start sm:self-auto"
               >
                 <i class="fa-solid fa-copy"></i>
-                <span>📋 Copy All 6 Details</span>
+                <span>📋 Copy All 7 Details</span>
               </button>
             </div>
 
@@ -630,33 +630,35 @@
                 </div>
               </div>
 
-              <!-- Field 6: PLACE -->
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/40 transition-colors">
-                <!-- Left: Label & Description -->
-                <div class="sm:w-1/3 flex-shrink-0">
-                  <div class="flex items-center gap-2 text-amber-400 font-semibold text-xs tracking-wider uppercase">
-                    <i class="fa-solid fa-location-dot text-xs"></i>
-                    <span>PLACE</span>
-                  </div>
-                  <div class="text-[11px] text-slate-400 mt-0.5">Place of Issue / Place of Birth</div>
+              <!-- Field 6: PLACE OF BIRTH -->
+              <div class="result-row flex items-center justify-between p-3 rounded-lg bg-[#0b1329] border border-gray-800">
+                <div class="flex flex-col">
+                  <span class="text-xs font-semibold text-amber-400 flex items-center gap-1.5">
+                    📍 PLACE OF BIRTH
+                  </span>
+                  <span class="text-[11px] text-gray-400">Town / City / State / Country of Birth</span>
                 </div>
+                <div class="flex items-center gap-2">
+                  <input type="text" id="place-of-birth" class="bg-transparent text-white font-mono text-sm px-3 py-1.5 rounded border border-gray-700 focus:outline-none focus:border-amber-400" readonly />
+                  <input type="hidden" id="ocr-place-of-birth" />
+                  <button type="button" class="copy-btn btn-field-copy px-3 py-1.5 text-xs font-semibold rounded bg-[#1e293b] hover:bg-amber-400 hover:text-black transition cursor-pointer" onclick="navigator.clipboard.writeText((document.getElementById('place-of-birth')||document.getElementById('ocr-place-of-birth')).value); this.innerText='COPIED!';">COPY</button>
+                </div>
+              </div>
 
-                <!-- Right: Editable Value Input + Integrated Copy Button -->
-                <div class="sm:w-2/3 flex items-center gap-2 w-full">
-                  <input 
-                    type="text" 
-                    id="place" 
-                    class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
-                    placeholder="Awaiting scan..."
-                  />
+              <!-- Field 7: PLACE OF ISSUE -->
+              <div class="result-row flex items-center justify-between p-3 rounded-lg bg-[#0b1329] border border-gray-800 mt-2">
+                <div class="flex flex-col">
+                  <span class="text-xs font-semibold text-amber-400 flex items-center gap-1.5">
+                    🏢 PLACE OF ISSUE
+                  </span>
+                  <span class="text-[11px] text-gray-400">Issuing Authority / City / Country</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <input type="text" id="place-of-issue" class="bg-transparent text-white font-mono text-sm px-3 py-1.5 rounded border border-gray-700 focus:outline-none focus:border-amber-400" readonly />
+                  <input type="hidden" id="ocr-place-of-issue" />
+                  <input type="hidden" id="place" />
                   <input type="hidden" id="ocr-place" />
-                  <button 
-                    type="button" 
-                    onclick="navigator.clipboard.writeText((document.getElementById('place')||document.getElementById('ocr-place')).value); this.innerText='COPIED!';" 
-                    class="btn-field-copy flex-shrink-0 px-3 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:border-amber-500 rounded-lg text-xs font-bold uppercase transition-all whitespace-nowrap cursor-pointer"
-                  >
-                    COPY
-                  </button>
+                  <button type="button" class="copy-btn btn-field-copy px-3 py-1.5 text-xs font-semibold rounded bg-[#1e293b] hover:bg-amber-400 hover:text-black transition cursor-pointer" onclick="navigator.clipboard.writeText((document.getElementById('place-of-issue')||document.getElementById('ocr-place-of-issue')).value); this.innerText='COPIED!';">COPY</button>
                 </div>
               </div>
             </div>
@@ -2694,20 +2696,23 @@
         // #birthday: 03/03/1989
         // #passport-expiry: 30/04/2027
         // #issue-date: 01/05/2017
-        // #place: MAHARASHTRA
+        // #place-of-birth: MAHARASHTRA
+        // #place-of-issue: MAHARASHTRA
         const ppNo = (passportData.passportNo || 'R0564182').toUpperCase();
         const fName = (passportData.fullName || 'WAJGE MRUNAL PRASHANT').toUpperCase();
         const bDay = (passportData.birthday || '03/03/1989').toUpperCase();
         const pExp = (passportData.expireDate || '30/04/2027').toUpperCase();
         const iDate = (passportData.issueDate || '01/05/2017').toUpperCase();
-        const plc = (passportData.place || 'MAHARASHTRA').toUpperCase();
+        const pBirth = (passportData.placeOfBirth || passportData.place || 'MAHARASHTRA').toUpperCase();
+        const pIssue = (passportData.placeOfIssue || passportData.place || 'MAHARASHTRA').toUpperCase();
 
         setOcrFieldValue(['passport-no', 'passport-number', 'ocr-passport-no'], ppNo);
         setOcrFieldValue(['full-name', 'ocr-full-name'], fName);
         setOcrFieldValue(['birthday', 'ocr-birthday'], bDay);
         setOcrFieldValue(['passport-expiry', 'ocr-expire-date'], pExp);
         setOcrFieldValue(['issue-date', 'ocr-issue-date'], iDate);
-        setOcrFieldValue(['place', 'ocr-place'], plc);
+        setOcrFieldValue(['place-of-birth', 'ocr-place-of-birth'], pBirth);
+        setOcrFieldValue(['place-of-issue', 'ocr-place-of-issue', 'place', 'ocr-place'], pIssue);
 
         if (mrzIndicatorBadge) {
           mrzIndicatorBadge.textContent = passportData.hasMrz ? 'MRZ ICAO 9303 PASSED' : 'BIODATA DETECTED';
@@ -2719,7 +2724,7 @@
         passportSummaryCard.classList.remove('hidden');
       }
 
-      // Master Copy All 6 Details Button
+      // Master Copy All 7 Details Button
       if (copyAllPassportFieldsBtn) {
         copyAllPassportFieldsBtn.addEventListener('click', () => {
           const elPassportNo = document.getElementById('passport-no') || document.getElementById('passport-number') || document.getElementById('ocr-passport-no');
@@ -2727,14 +2732,16 @@
           const elBirthday = document.getElementById('birthday') || document.getElementById('ocr-birthday');
           const elExpireDate = document.getElementById('passport-expiry') || document.getElementById('ocr-expire-date');
           const elIssueDate = document.getElementById('issue-date') || document.getElementById('ocr-issue-date');
-          const elPlace = document.getElementById('place') || document.getElementById('ocr-place');
+          const elPlaceBirth = document.getElementById('place-of-birth') || document.getElementById('ocr-place-of-birth');
+          const elPlaceIssue = document.getElementById('place-of-issue') || document.getElementById('ocr-place-of-issue') || document.getElementById('place') || document.getElementById('ocr-place');
 
           const passportNo = (elPassportNo?.value || 'R0564182').trim().toUpperCase();
           const fullName = (elFullName?.value || 'WAJGE MRUNAL PRASHANT').trim().toUpperCase();
           const birthday = (elBirthday?.value || '03/03/1989').trim().toUpperCase();
           const expireDate = (elExpireDate?.value || '30/04/2027').trim().toUpperCase();
           const issueDate = (elIssueDate?.value || '01/05/2017').trim().toUpperCase();
-          const place = (elPlace?.value || 'MAHARASHTRA').trim().toUpperCase();
+          const placeBirth = (elPlaceBirth?.value || 'MAHARASHTRA').trim().toUpperCase();
+          const placeIssue = (elPlaceIssue?.value || 'MAHARASHTRA').trim().toUpperCase();
 
           const summaryLines = [
             `PASSPORT NO: ${passportNo}`,
@@ -2742,12 +2749,13 @@
             `BIRTHDAY: ${birthday}`,
             `PASSPORT EXPIRE DATE: ${expireDate}`,
             `ISSUE DATE: ${issueDate}`,
-            `PLACE: ${place}`
+            `PLACE OF BIRTH: ${placeBirth}`,
+            `PLACE OF ISSUE: ${placeIssue}`
           ];
 
           const summaryText = summaryLines.join('\n');
           navigator.clipboard.writeText(summaryText).then(() => {
-            showToast('All 6 Details Copied!', '✓ Clean key-value passport details copied to clipboard');
+            showToast('All 7 Details Copied!', '✓ Clean key-value passport details copied to clipboard');
           }).catch(() => {
             showToast('Copied!', 'Passport details copied');
           });
@@ -2921,7 +2929,7 @@
           contents: [{
             parts: [
               {
-                text: "You are an identity document parser. Analyze this passport or ID image. Return ONLY a valid JSON object without markdown fences, comments, or backticks:\n{\n  \"document_no\": \"string\",\n  \"full_name\": \"string\",\n  \"birthday\": \"DD/MM/YYYY\",\n  \"expiry_date\": \"DD/MM/YYYY\",\n  \"issue_date\": \"DD/MM/YYYY\",\n  \"place\": \"string\"\n}"
+                text: "Extract details from this identity document. Return ONLY valid JSON:\n{\n  \"document_no\": \"string\",\n  \"full_name\": \"string\",\n  \"birthday\": \"DD/MM/YYYY\",\n  \"expiry_date\": \"DD/MM/YYYY\",\n  \"issue_date\": \"DD/MM/YYYY\",\n  \"place_of_birth\": \"string\",\n  \"place_of_issue\": \"string\"\n}"
               },
               {
                 inline_data: {
@@ -3034,13 +3042,15 @@
           // birthday    -> #birthday (and #ocr-birthday)
           // expiry_date -> #passport-expiry (and #ocr-expire-date)
           // issue_date  -> #issue-date (and #ocr-issue-date)
-          // place       -> #place (and #ocr-place)
+          // place_of_birth -> #place-of-birth (and #ocr-place-of-birth)
+          // place_of_issue -> #place-of-issue (and #ocr-place-of-issue)
           const docNo = (extractedDoc.document_no || '').trim().toUpperCase();
           const fullName = (extractedDoc.full_name || '').trim().toUpperCase();
           const birthday = (extractedDoc.birthday || '').trim().toUpperCase();
           const expiryDate = (extractedDoc.expiry_date || '').trim().toUpperCase();
           const issueDate = (extractedDoc.issue_date || '').trim().toUpperCase();
-          const place = (extractedDoc.place || '').trim().toUpperCase();
+          const placeOfBirth = (extractedDoc.place_of_birth || extractedDoc.place || '').trim().toUpperCase();
+          const placeOfIssue = (extractedDoc.place_of_issue || extractedDoc.place || '').trim().toUpperCase();
           const docType = (extractedDoc.document_type || 'Identity Document').trim().toUpperCase();
 
           const passportData = {
@@ -3051,7 +3061,9 @@
             birthday: birthday,
             expireDate: expiryDate,
             issueDate: issueDate,
-            place: place
+            placeOfBirth: placeOfBirth,
+            placeOfIssue: placeOfIssue,
+            place: placeOfIssue || placeOfBirth
           };
 
           // Populate inputs
@@ -3068,7 +3080,8 @@
           setVal(['birthday', 'ocr-birthday'], birthday);
           setVal(['passport-expiry', 'ocr-expire-date'], expiryDate);
           setVal(['issue-date', 'ocr-issue-date'], issueDate);
-          setVal(['place', 'ocr-place'], place);
+          setVal(['place-of-birth', 'ocr-place-of-birth'], placeOfBirth);
+          setVal(['place-of-issue', 'ocr-place-of-issue', 'place', 'ocr-place'], placeOfIssue);
 
           parsedPassportData = passportData;
 
@@ -3080,7 +3093,8 @@
             `BIRTHDAY: ${birthday}`,
             `EXPIRY DATE: ${expiryDate}`,
             `ISSUE DATE: ${issueDate}`,
-            `PLACE: ${place}`,
+            `PLACE OF BIRTH: ${placeOfBirth}`,
+            `PLACE OF ISSUE: ${placeOfIssue}`,
             '',
             'RAW GEMINI VISION JSON:',
             JSON.stringify(extractedDoc, null, 2)
