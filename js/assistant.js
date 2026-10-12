@@ -349,7 +349,7 @@
     panel.setAttribute('role', 'dialog');
     panel.setAttribute('aria-label', 'Starplus AI Concierge Dialog');
     panel.innerHTML = `
-      <!-- Top Bar with Minimize Button (-) -->
+      <!-- Top Bar with Close Button (✕) -->
       <div class="concierge-top-bar flex items-center justify-between px-4 py-3 border-b select-none flex-shrink-0">
         <div class="flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -360,12 +360,13 @@
         <button 
           type="button" 
           id="assistantMinimizeBtn" 
-          class="w-7 h-7 rounded-full bg-slate-200/80 dark:bg-slate-800/80 hover:bg-slate-300/80 dark:hover:bg-slate-700/80 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-colors text-base font-bold shadow cursor-pointer" 
-          aria-label="Minimize Assistant"
-          title="Minimize"
+          onclick="typeof closeConciergeModal === 'function' ? closeConciergeModal() : (window.StarplusAssistant && window.StarplusAssistant.close())" 
+          aria-label="Close concierge" 
+          title="Close concierge"
+          class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-all border border-slate-700/50 hover:scale-105 active:scale-95 cursor-pointer"
         >
-          <svg class="w-3.5 h-3.5 fill-none stroke-current" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24">
-            <path d="M5 12h14"/>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6L6 18M6 6l12 12"/>
           </svg>
         </button>
       </div>
@@ -871,5 +872,14 @@
     },
     ask: (q) => executeUserTurn(q),
     syncLanguage: (l) => syncLanguage(l)
+  };
+
+  window.closeConciergeModal = () => {
+    if (window.StarplusAssistant && typeof window.StarplusAssistant.close === 'function') {
+      window.StarplusAssistant.close();
+    } else {
+      const p = document.getElementById('starplusAssistantPanel');
+      if (p) p.classList.add('hidden');
+    }
   };
 })();
