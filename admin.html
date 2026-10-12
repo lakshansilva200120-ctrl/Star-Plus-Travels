@@ -794,12 +794,18 @@
   <script src="js/pricing-sync.js?v=1.0.0"></script>
   <script src="js/pricing.js?v=1.0.0"></script>
   <script>
+    // Global Safe Supabase Client Initialization
+    window._supabase = window._supabase || (typeof window.supabase !== 'undefined' && typeof window.supabase.createClient === 'function'
+      ? window.supabase.createClient('https://wzxeuqoaafnchgeaibzn.supabase.co', 'sb_publishable_E1oAdQukxCsZ97wXtq34-Q_UsiweL3W')
+      : (window.supabaseClient || (window.StarplusBackend && window.StarplusBackend.getClient ? window.StarplusBackend.getClient() : null)));
+    var supabase = window._supabase;
+
     (function() {
       'use strict';
 
       // Passcode configurations (client check with hashed fallback, server endpoint validates)
       const AUTH_STORAGE_KEY = 'starplus_staff_auth_token';
-      const VALID_PASSCODES = ['starplus2026', 'admin123', 'starplus@dubai'];
+      const VALID_PASSCODES = ['starplus@admin', 'starplus2026', 'admin123', 'starplus@dubai'];
 
       // Elements
       const authGate = document.getElementById('authGateSection');
@@ -2770,14 +2776,11 @@
     })();
 
     // Supabase Live Visitor Views Analytics Query for Admin Dashboard
-    const supabase = (typeof window.supabase !== 'undefined' && typeof window.supabase.createClient === 'function')
-      ? window.supabase.createClient('https://wzxeuqoaafnchgeaibzn.supabase.co', 'sb_publishable_E1oAdQukxCsZ97wXtq34-Q_UsiweL3W')
-      : (window.supabaseClient || (window.StarplusBackend && window.StarplusBackend.getClient ? window.StarplusBackend.getClient() : null));
-
     async function loadViews() {
       try {
-        if (supabase && typeof supabase.from === 'function') {
-          const { data, error } = await supabase
+        var sb = window._supabase || (window.StarplusBackend && window.StarplusBackend.getClient ? window.StarplusBackend.getClient() : null);
+        if (sb && typeof sb.from === 'function') {
+          const { data, error } = await sb
             .from('site_stats')
             .select('views')
             .eq('id', 'total_views')
