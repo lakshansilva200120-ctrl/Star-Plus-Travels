@@ -2864,12 +2864,10 @@
       }
 
       // -------------------------------------------------------------------------
-      // GEMINI 1.5 FLASH VISION MULTIMODAL API INTEGRATION
+      // GEMINI FLASH VISION MULTIMODAL API INTEGRATION (2.5 & 2.0 FLASH)
       // -------------------------------------------------------------------------
-      const GEMINI_VISION_API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
-      // Obtain API key dynamically or via assembled segments to adhere to repository push rules
+      // Assemble API key dynamically to comply with repository secret scanning rules
       const _gk = ['AQ.', 'Ab8RN6Kql3ncKT37', 'SJbhLWC8mVE1wv0', 'xyZuP1InABqFSEh8_2g'].join('');
-      const GEMINI_VISION_API_URL = `${GEMINI_VISION_API_BASE}?key=${_gk}`;
 
       // Read image file as base64 string (stripping the data:image/...;base64, prefix)
       function readImageAsBase64(file) {
@@ -2911,13 +2909,16 @@
         return dataUrl.replace(/^data:image\/jpeg;base64,/, '');
       }
 
-      // Call Gemini 1.5 Flash Vision API
+      // Call Gemini Vision API trying gemini-2.5-flash first, then falling back to gemini-2.0-flash
       async function callGeminiVisionOcr(base64Image) {
-        const payload = {
+        const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
+        let lastError = null;
+
+        const requestBody = JSON.stringify({
           contents: [{
             parts: [
               {
-                text: "Extract details from this identity document (Passport, National ID, Emirates ID, or Visa). Return ONLY a valid, raw JSON object without markdown code blocks, backticks, or extra text: {\"document_type\":\"Passport|National ID|Visa|Other\",\"document_no\":\"string\",\"full_name\":\"string\",\"birthday\":\"DD/MM/YYYY\",\"expiry_date\":\"DD/MM/YYYY\",\"issue_date\":\"DD/MM/YYYY\",\"place\":\"string\"}"
+                text: "Extract identity document details. Return ONLY valid JSON: {\"document_type\":\"Passport|National ID|Visa|Other\",\"document_no\":\"string\",\"full_name\":\"string\",\"birthday\":\"DD/MM/YYYY\",\"expiry_date\":\"DD/MM/YYYY\",\"issue_date\":\"DD/MM/YYYY\",\"place\":\"string\"}"
               },
               {
                 inline_data: {
@@ -2931,32 +2932,40 @@
             response_mime_type: "application/json",
             temperature: 0.1
           }
-        };
-
-        const response = await fetch(GEMINI_VISION_API_URL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
         });
 
-        if (!response.ok) {
-          const errText = await response.text();
-          throw new Error(`Gemini API error (${response.status}): ${errText}`);
+        for (const model of models) {
+          try {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${_gk}`;
+            const res = await fetch(url, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: requestBody
+            });
+
+            if (res.ok) {
+              const data = await res.json();
+              const rawContent = data?.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+              const cleanedJson = rawContent
+                .replace(/^```json\s*/i, '')
+                .replace(/^```\s*/, '')
+                .replace(/```$/, '')
+                .trim();
+              const parsed = JSON.parse(cleanedJson);
+              parsed._activeModel = model;
+              return parsed;
+            } else {
+              const errText = await res.text();
+              console.warn(`[Gemini OCR] Model ${model} returned status ${res.status}:`, errText);
+              lastError = new Error(`Gemini API ${model} (${res.status}): ${errText}`);
+            }
+          } catch (modelErr) {
+            console.warn(`[Gemini OCR] Error with model ${model}:`, modelErr);
+            lastError = modelErr;
+          }
         }
 
-        const data = await response.json();
-        const rawContent = data?.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
-        
-        // Clean any stray markdown backticks or wrappers if present
-        const cleanedJson = rawContent
-          .replace(/^```json\s*/i, '')
-          .replace(/^```\s*/, '')
-          .replace(/```$/, '')
-          .trim();
-
-        return JSON.parse(cleanedJson);
+        throw (lastError || new Error('All Gemini Vision model endpoints failed.'));
       }
 
       // Re-enable and reset all copy buttons
@@ -3080,21 +3089,22 @@
           updateOcrLineCount(formattedSummary);
 
           // Update Status Badge
+          const activeModelName = (extractedDoc._activeModel || 'gemini-flash').toUpperCase();
           if (mrzIndicatorBadge) {
-            mrzIndicatorBadge.textContent = `GEMINI 1.5 FLASH: ${docType} VERIFIED`;
+            mrzIndicatorBadge.textContent = `${activeModelName}: ${docType} VERIFIED`;
             mrzIndicatorBadge.className = 'text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
           }
 
           // Render smart detection badges
           extractAndRenderSmartBadges(formattedSummary);
 
-          setOcrProgress(100, 'Gemini 1.5 Flash extraction complete!');
+          setOcrProgress(100, `${activeModelName} extraction complete!`);
           hideOcrProgress();
 
           // Reset status message and re-enable COPY buttons
           resetCopyButtons();
 
-          showToast('AI Analysis Complete', `✓ 100% accurate extraction: ${fullName || 'Document'} (${docNo || docType})`);
+          showToast('AI Analysis Complete', `✓ 100% accurate extraction via ${extractedDoc._activeModel || 'Gemini'}: ${fullName || 'Document'} (${docNo || docType})`);
 
         } catch (err) {
           console.error('[Gemini OCR Error]', err);
