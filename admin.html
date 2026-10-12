@@ -810,10 +810,13 @@
     window._supabase = window._supabase || (typeof window.supabase !== 'undefined' && typeof window.supabase.createClient === 'function'
       ? window.supabase.createClient('https://wzxeuqoaafnchgeaibzn.supabase.co', 'sb_publishable_E1oAdQukxCsZ97wXtq34-Q_UsiweL3W')
       : (window.supabaseClient || (window.StarplusBackend && window.StarplusBackend.getClient ? window.StarplusBackend.getClient() : null)));
-    var supabase = window._supabase;
+    // Provide safe global reference
+    window.supabase = window._supabase;
 
     (function() {
       'use strict';
+      // Local reference inside IIFE
+      const supabase = window._supabase;
 
       // Passcode configurations (client check with hashed fallback, server endpoint validates)
       const AUTH_STORAGE_KEY = 'starplus_staff_auth_token';
