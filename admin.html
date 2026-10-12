@@ -494,13 +494,14 @@
                 <div class="sm:w-2/3 flex items-center gap-2 w-full">
                   <input 
                     type="text" 
-                    id="ocr-passport-no" 
+                    id="passport-number" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
                     placeholder="Awaiting scan..."
                   />
+                  <input type="hidden" id="ocr-passport-no" />
                   <button 
                     type="button" 
-                    onclick="navigator.clipboard.writeText(document.getElementById('ocr-passport-no').value); this.innerText='COPIED!';" 
+                    onclick="navigator.clipboard.writeText((document.getElementById('passport-number')||document.getElementById('ocr-passport-no')).value); this.innerText='COPIED!';" 
                     class="btn-field-copy flex-shrink-0 px-3 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:border-amber-500 rounded-lg text-xs font-bold uppercase transition-all whitespace-nowrap cursor-pointer"
                   >
                     COPY
@@ -523,13 +524,14 @@
                 <div class="sm:w-2/3 flex items-center gap-2 w-full">
                   <input 
                     type="text" 
-                    id="ocr-full-name" 
+                    id="full-name" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
                     placeholder="Awaiting scan..."
                   />
+                  <input type="hidden" id="ocr-full-name" />
                   <button 
                     type="button" 
-                    onclick="navigator.clipboard.writeText(document.getElementById('ocr-full-name').value); this.innerText='COPIED!';" 
+                    onclick="navigator.clipboard.writeText((document.getElementById('full-name')||document.getElementById('ocr-full-name')).value); this.innerText='COPIED!';" 
                     class="btn-field-copy flex-shrink-0 px-3 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:border-amber-500 rounded-lg text-xs font-bold uppercase transition-all whitespace-nowrap cursor-pointer"
                   >
                     COPY
@@ -552,13 +554,14 @@
                 <div class="sm:w-2/3 flex items-center gap-2 w-full">
                   <input 
                     type="text" 
-                    id="ocr-birthday" 
+                    id="birthday" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
                     placeholder="Awaiting scan..."
                   />
+                  <input type="hidden" id="ocr-birthday" />
                   <button 
                     type="button" 
-                    onclick="navigator.clipboard.writeText(document.getElementById('ocr-birthday').value); this.innerText='COPIED!';" 
+                    onclick="navigator.clipboard.writeText((document.getElementById('birthday')||document.getElementById('ocr-birthday')).value); this.innerText='COPIED!';" 
                     class="btn-field-copy flex-shrink-0 px-3 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:border-amber-500 rounded-lg text-xs font-bold uppercase transition-all whitespace-nowrap cursor-pointer"
                   >
                     COPY
@@ -581,13 +584,14 @@
                 <div class="sm:w-2/3 flex items-center gap-2 w-full">
                   <input 
                     type="text" 
-                    id="ocr-expire-date" 
+                    id="passport-expiry" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
                     placeholder="Awaiting scan..."
                   />
+                  <input type="hidden" id="ocr-expire-date" />
                   <button 
                     type="button" 
-                    onclick="navigator.clipboard.writeText(document.getElementById('ocr-expire-date').value); this.innerText='COPIED!';" 
+                    onclick="navigator.clipboard.writeText((document.getElementById('passport-expiry')||document.getElementById('ocr-expire-date')).value); this.innerText='COPIED!';" 
                     class="btn-field-copy flex-shrink-0 px-3 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:border-amber-500 rounded-lg text-xs font-bold uppercase transition-all whitespace-nowrap cursor-pointer"
                   >
                     COPY
@@ -610,13 +614,14 @@
                 <div class="sm:w-2/3 flex items-center gap-2 w-full">
                   <input 
                     type="text" 
-                    id="ocr-issue-date" 
+                    id="issue-date" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
                     placeholder="Awaiting scan..."
                   />
+                  <input type="hidden" id="ocr-issue-date" />
                   <button 
                     type="button" 
-                    onclick="navigator.clipboard.writeText(document.getElementById('ocr-issue-date').value); this.innerText='COPIED!';" 
+                    onclick="navigator.clipboard.writeText((document.getElementById('issue-date')||document.getElementById('ocr-issue-date')).value); this.innerText='COPIED!';" 
                     class="btn-field-copy flex-shrink-0 px-3 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:border-amber-500 rounded-lg text-xs font-bold uppercase transition-all whitespace-nowrap cursor-pointer"
                   >
                     COPY
@@ -639,13 +644,14 @@
                 <div class="sm:w-2/3 flex items-center gap-2 w-full">
                   <input 
                     type="text" 
-                    id="ocr-place" 
+                    id="place" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
                     placeholder="Awaiting scan..."
                   />
+                  <input type="hidden" id="ocr-place" />
                   <button 
                     type="button" 
-                    onclick="navigator.clipboard.writeText(document.getElementById('ocr-place').value); this.innerText='COPIED!';" 
+                    onclick="navigator.clipboard.writeText((document.getElementById('place')||document.getElementById('ocr-place')).value); this.innerText='COPIED!';" 
                     class="btn-field-copy flex-shrink-0 px-3 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:border-amber-500 rounded-lg text-xs font-bold uppercase transition-all whitespace-nowrap cursor-pointer"
                   >
                     COPY
@@ -2309,12 +2315,29 @@
         return '';
       }
 
+      // Helper function to clean common OCR numeric misreads ('O' -> '0', 'I' -> '1', 'B' -> '8', 'S' -> '5', 'Z' -> '2')
+      function cleanOcrNumericZone(str) {
+        if (!str) return '';
+        return str
+          .replace(/[OOD]/g, '0')
+          .replace(/[IL]/g, '1')
+          .replace(/[Z]/g, '2')
+          .replace(/[S]/g, '5')
+          .replace(/[B]/g, '8');
+      }
+
       // Robust Fuzzy Parser for Passport MRZ and Document Biodata adhering to strict ICAO 9303 standards
       function parsePassportMrz(text) {
         if (!text) return null;
 
         const rawUpper = text.toUpperCase();
-        const lines = rawUpper.split('\n').map(l => l.trim());
+        // 1. Collect all recognized OCR lines
+        const lines = rawUpper
+          .replace(/\r\n/g, '\n')
+          .replace(/\r/g, '\n')
+          .split('\n')
+          .map(l => l.trim())
+          .filter(Boolean);
 
         let passportNo = '';
         let fullName = '';
@@ -2324,43 +2347,95 @@
         let place = extractPlace(rawUpper);
         let hasMrz = false;
 
-        // --- 1. MRZ LINE EXTRACTION (Strict ICAO 9303 TD3 44-character format) ---
+        // --- 1. MRZ LINE DETECTION STRATEGY ---
         let line1 = null;
         let line2 = null;
+        let line1Index = -1;
 
+        // Find Line 1: Any line matching /P[A-Z0-9<]{1}[A-Z<]{3}[A-Z0-9<]+/ or starting with "P<" (length ~40-46 chars)
         for (let i = 0; i < lines.length; i++) {
-          const compact = lines[i].replace(/\s+/g, '');
-          // Line 1: Starts with P< or P followed by 3-letter country code and contains <<
-          if (/^P<[A-Z0-9<]{20,}/.test(compact) || (/^P[A-Z]{3}[A-Z0-9<]{15,}/.test(compact) && compact.includes('<<'))) {
-            line1 = compact;
-            // Search next 5 lines for Line 2
-            for (let j = i + 1; j < Math.min(lines.length, i + 6); j++) {
-              const cand2 = lines[j].replace(/\s+/g, '');
-              // Line 2: Document number, digits, < delimiters, length >= 25, does not start with P<
-              if (!cand2.startsWith('P<') && cand2.length >= 25 && /\d/.test(cand2)) {
-                line2 = cand2;
-                break;
-              }
-            }
-            if (line1 && line2) break;
+          const cleanLine = lines[i].replace(/\s+/g, '');
+          const isL1Pattern = /P[A-Z0-9<]{1}[A-Z<]{3}[A-Z0-9<]+/.test(cleanLine) || cleanLine.startsWith('P<');
+          if (isL1Pattern && cleanLine.length >= 35 && cleanLine.length <= 48) {
+            line1 = cleanLine;
+            line1Index = i;
+            break;
           }
         }
 
-        // --- 2. PARSE ICAO 9303 LINE 1 ---
-        // Format: P<[3-letter Country][Surname]<<[Given Names]<<<<<<
+        // Fallback check if length was outside 35-48
+        if (!line1) {
+          for (let i = 0; i < lines.length; i++) {
+            const cleanLine = lines[i].replace(/\s+/g, '');
+            if ((cleanLine.startsWith('P<') || /P[A-Z0-9<]{1}[A-Z<]{3}[A-Z0-9<]+/.test(cleanLine)) && cleanLine.length >= 25) {
+              line1 = cleanLine;
+              line1Index = i;
+              break;
+            }
+          }
+        }
+
+        // Find Line 2: The line immediately below Line 1, or any line matching /^[A-Z0-9<]{9}[0-9][A-Z<]{3}[0-9]{6}/
+        if (line1Index !== -1 && line1Index + 1 < lines.length) {
+          const candBelow = lines[line1Index + 1].replace(/\s+/g, '');
+          if (!candBelow.startsWith('P<') && candBelow.length >= 28) {
+            line2 = candBelow;
+          }
+        }
+
+        if (!line2) {
+          for (let i = 0; i < lines.length; i++) {
+            if (i === line1Index) continue;
+            const cand = lines[i].replace(/\s+/g, '');
+            if (cand.startsWith('P<') || cand.length < 28) continue;
+            // Clean numeric misreads at position 9 and 13..18 to test pattern
+            const testCand = cand.substring(0, 9) + cleanOcrNumericZone(cand.charAt(9)) + cand.substring(10, 13) + cleanOcrNumericZone(cand.substring(13, 19)) + cand.substring(19);
+            if (/^[A-Z0-9<]{9}[0-9][A-Z<]{3}[0-9]{6}/.test(testCand) || /^[A-Z0-9<]{9}[0-9][A-Z<]{3}[0-9]{6}/.test(cand)) {
+              line2 = cand;
+              break;
+            }
+          }
+        }
+
+        // Clean both lines by replacing spaces with empty strings and replacing common OCR misreads in numeric zones
+        if (line1) {
+          line1 = line1.replace(/\s+/g, '');
+        }
+
+        if (line2) {
+          line2 = line2.replace(/\s+/g, '');
+          // In Line 2 numeric zones:
+          // chars 0 to 8: Passport Number digits
+          let docNum = line2.substring(0, 9);
+          if (/^[A-Z]/i.test(docNum)) {
+            docNum = docNum.charAt(0) + cleanOcrNumericZone(docNum.substring(1));
+          } else {
+            docNum = cleanOcrNumericZone(docNum);
+          }
+          const check9 = cleanOcrNumericZone(line2.charAt(9));
+          const natPart = line2.substring(10, 13);
+          const dobPart = cleanOcrNumericZone(line2.substring(13, 19));
+          const check19 = cleanOcrNumericZone(line2.charAt(19));
+          const sexPart = line2.charAt(20);
+          const expPart = cleanOcrNumericZone(line2.substring(21, 27));
+          const check27 = cleanOcrNumericZone(line2.charAt(27));
+          const restPart = line2.substring(28);
+
+          line2 = docNum + check9 + natPart + dobPart + check19 + sexPart + expPart + check27 + restPart;
+        }
+
+        // --- 2. PARSE ICAO 9303 LINE 1 (Name Extraction) ---
         if (line1) {
           hasMrz = true;
-          // Extract text beginning at Surname: index 5 in standard P<CCC[SURNAME]
           let nameSection = '';
           if (line1.startsWith('P<')) {
             nameSection = line1.substring(5);
           } else if (/^P[A-Z]{3}/.test(line1)) {
             nameSection = line1.substring(4);
           } else {
-            nameSection = line1.replace(/^P<[A-Z]{3}/, '').replace(/^P</, '');
+            nameSection = line1.replace(/^P[A-Z0-9<]{1}[A-Z<]{3}/, '').replace(/^P</, '');
           }
 
-          // Surname: Text before the first '<<'
           const doubleLessIdx = nameSection.indexOf('<<');
           let rawSurname = '';
           let rawGiven = '';
@@ -2371,52 +2446,64 @@
             rawSurname = nameSection;
           }
 
-          // Given Names: Text following '<<', strip trailing filler '<<' and '<'
           const fillerIdx = rawGiven.indexOf('<<');
           if (fillerIdx !== -1) {
             rawGiven = rawGiven.substring(0, fillerIdx);
           }
           rawGiven = rawGiven.replace(/<+$/, '');
 
-          // Replace single '<' with spaces
           const cleanGiven = rawGiven.replace(/<+/g, ' ').trim();
           const cleanSurname = rawSurname.replace(/<+/g, ' ').trim();
-
-          const combined = [cleanSurname, cleanGiven].filter(Boolean).join(' ');
-          fullName = cleanFullNameString(combined);
+          fullName = cleanFullNameString([cleanSurname, cleanGiven].filter(Boolean).join(' '));
         }
 
-        // --- 3. PARSE ICAO 9303 LINE 2 ---
-        // Format: [PassportNo (0..8)][Check (9)][Nationality (10..12)][DOB (13..18)][Check (19)][Sex (20)][Expiry (21..26)]
+        // --- 3. PRECISE FIELD MAPPING FROM MRZ LINE 2 ---
         if (line2) {
-          // Passport Number: Characters 0 to 8 (9 chars), trim '<'
-          const rawPpSegment = line2.substring(0, 9).replace(/<+$/, '').trim();
-          let candPp = rawPpSegment.replace(/^([A-Z])O(\d{6,7})$/i, '$10$2');
-          if (/^[A-Z0-9]{7,9}$/.test(candPp)) {
-            passportNo = candPp;
+          // Passport Number: Take chars 0 to 9 of Line 2. Strip '<'. If valid, populate #passport-number.
+          const ppCandidate = line2.substring(0, 9).replace(/<+$/, '').trim();
+          if (/^[A-Z0-9]{7,9}$/.test(ppCandidate)) {
+            passportNo = ppCandidate;
           }
 
-          // Birth Date: Characters 13 to 18 (YYMMDD format)
+          // Birth Date: Chars 13 to 18 of Line 2 (YYMMDD format):
+          // DD = line2.substring(17, 19), MM = line2.substring(15, 17), YY = line2.substring(13, 15)
+          // Century: Number(YY) > 30 ? '19' + YY : '20' + YY
+          // Format: `${DD}/${MM}/${Century}`
           if (line2.length >= 19) {
-            const dobSegment = line2.substring(13, 19);
-            const parsedDob = parseMrzBirthDate(dobSegment);
-            if (parsedDob) {
-              birthday = parsedDob;
+            const yy = line2.substring(13, 15);
+            const mm = line2.substring(15, 17);
+            const dd = line2.substring(17, 19);
+            if (/^\d{2}$/.test(yy) && /^\d{2}$/.test(mm) && /^\d{2}$/.test(dd)) {
+              const mmNum = parseInt(mm, 10);
+              const ddNum = parseInt(dd, 10);
+              if (mmNum >= 1 && mmNum <= 12 && ddNum >= 1 && ddNum <= 31) {
+                const century = Number(yy) > 30 ? '19' + yy : '20' + yy;
+                birthday = `${dd}/${mm}/${century}`;
+              }
             }
           }
 
-          // Expiry Date: Characters 21 to 26 (YYMMDD format)
+          // Expiry Date: Chars 21 to 26 of Line 2 (YYMMDD format):
+          // DD = line2.substring(25, 27), MM = line2.substring(23, 25), YY = line2.substring(21, 23)
+          // Century: '20' + YY
+          // Format: `${DD}/${MM}/${Century}` (DO NOT assign this to Issue Date)
           if (line2.length >= 27) {
-            const expSegment = line2.substring(21, 27);
-            const parsedExp = parseMrzExpiryDate(expSegment);
-            if (parsedExp) {
-              expireDate = parsedExp;
+            const yy = line2.substring(21, 23);
+            const mm = line2.substring(23, 25);
+            const dd = line2.substring(25, 27);
+            if (/^\d{2}$/.test(yy) && /^\d{2}$/.test(mm) && /^\d{2}$/.test(dd)) {
+              const mmNum = parseInt(mm, 10);
+              const ddNum = parseInt(dd, 10);
+              if (mmNum >= 1 && mmNum <= 12 && ddNum >= 1 && ddNum <= 31) {
+                const century = '20' + yy;
+                expireDate = `${dd}/${mm}/${century}`;
+              }
             }
           }
 
-          // Resilient Fallback for Line 2 if character positions shifted slightly during OCR
+          // Resilient Fallback for Line 2 if character index shifted by 1
           if (!birthday || !expireDate) {
-            const mrzPatternMatch = line2.match(/([0-9O]{6})[0-9O<][MF<]([0-9O]{6})/i);
+            const mrzPatternMatch = line2.match(/([0-9]{6})[0-9<][MF<]([0-9]{6})/i);
             if (mrzPatternMatch) {
               if (!birthday) birthday = parseMrzBirthDate(mrzPatternMatch[1]);
               if (!expireDate) expireDate = parseMrzExpiryDate(mrzPatternMatch[2]);
@@ -2477,55 +2564,36 @@
           }
         }
 
-        // ISSUE DATE LOGIC:
-        // Do NOT duplicate the Birth Date into the Issue Date field.
-        // 1. Search visual scan text for clear "Date of Issue" / "DOI"
+        // 3. ISSUE DATE & FALLBACK HANDLING:
+        // Only set #issue-date if visual text specifically matches words like "Date of Issue", "DOI", or "Date de délivrance" followed by a date pattern.
         const issueDateLabels = [
-          /(?:DATE\s*OF\s*ISSUE|ISSUE\s*DATE|ISSUED\s*ON|DT\s*OF\s*ISSUE|DATE\s*D['\s]*EMISSION|DOI)\b[:\s.]*(\d{2}[\/\.-]\d{2}[\/\.-]\d{4})/i,
-          /(?:DATE\s*OF\s*ISSUE|ISSUE\s*DATE|ISSUED\s*ON|DT\s*OF\s*ISSUE|DOI)\b[^\d\n]{0,30}\n[^\d\n]{0,20}(\d{2}[\/\.-]\d{2}[\/\.-]\d{4})/i,
-          /(?:DATE\s*OF\s*ISSUE|ISSUE\s*DATE|ISSUED\s*ON|DT\s*OF\s*ISSUE|DOI)\b[:\s.]*(\d{2}[\/\.\s-](?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[A-Z]*[\/\.\s-]\d{4})/i
+          /(?:DATE\s*OF\s*ISSUE|ISSUE\s*DATE|DOI|DATE\s*DE\s*D[EÉ]LIVRANCE)\b[:\s.]*(\d{2}[\/\.-]\d{2}[\/\.-]\d{4})/i,
+          /(?:DATE\s*OF\s*ISSUE|ISSUE\s*DATE|DOI|DATE\s*DE\s*D[EÉ]LIVRANCE)\b[^\d\n]{0,30}\n[^\d\n]{0,20}(\d{2}[\/\.-]\d{2}[\/\.-]\d{4})/i,
+          /(?:DATE\s*OF\s*ISSUE|ISSUE\s*DATE|DOI|DATE\s*DE\s*D[EÉ]LIVRANCE)\b[:\s.]*(\d{2}[\/\.\s-](?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[A-Z]*[\/\.\s-]\d{4})/i
         ];
 
         for (const pattern of issueDateLabels) {
           const match = rawUpper.match(pattern);
           if (match) {
             const cand = normalizeDateFormat(match[1]);
-            if (cand && cand !== birthday) {
+            // Never place the expiry date or birth date into #issue-date
+            if (cand && cand !== expireDate && cand !== birthday) {
               issueDate = cand;
               break;
             }
           }
         }
 
-        // 2. If no labeled Issue Date found, inspect intermediate dates in visual text
-        if (!issueDate) {
-          const dateMatches = rawUpper.match(/\b\d{2}[\/\.-]\d{2}[\/\.-]\d{4}\b/g) || [];
-          const distinctDates = Array.from(new Set(dateMatches.map(d => normalizeDateFormat(d))))
-            .filter(d => Boolean(d) && d !== birthday && d !== expireDate);
-
-          for (const d of distinctDates) {
-            const val = parseDateValue(d);
-            const bVal = parseDateValue(birthday);
-            const eVal = parseDateValue(expireDate);
-            // Must be between Birthday and Expiry
-            if ((!bVal || val > bVal) && (!eVal || val < eVal)) {
-              issueDate = d;
-              break;
-            }
-          }
-        }
-
-        // 3. If Issue Date cannot be verified with confidence from visual text:
-        // Calculate it ONLY if 10-year validity applies (Expiry minus 10 years + 1 day)
+        // If Issue Date is not found in visual text, calculate it as Expiry Date minus 10 years (or 5 years), or leave it empty so staff can review it manually. Never place the expiry date into #issue-date.
         if (!issueDate && expireDate) {
           const calculated10Year = calculate10YearIssueDate(expireDate);
-          if (calculated10Year && calculated10Year !== birthday) {
+          if (calculated10Year && calculated10Year !== expireDate && calculated10Year !== birthday) {
             issueDate = calculated10Year;
           }
         }
 
-        // Absolute Guard: NEVER populate Issue Date with holder's Date of Birth
-        if (issueDate === birthday) {
+        // Absolute Safeguards: Never place expiry date or birthday into #issue-date
+        if (issueDate === expireDate || issueDate === birthday) {
           issueDate = '';
         }
 
@@ -2562,20 +2630,20 @@
           return;
         }
 
-        // Explicitly set the .value property of all 6 input fields with extracted values
-        const elPassportNo = document.getElementById('ocr-passport-no');
-        const elFullName = document.getElementById('ocr-full-name');
-        const elBirthday = document.getElementById('ocr-birthday');
-        const elExpireDate = document.getElementById('ocr-expire-date');
-        const elIssueDate = document.getElementById('ocr-issue-date');
-        const elPlace = document.getElementById('ocr-place');
+        function setOcrFieldValue(primaryId, aliasId, val) {
+          const primaryEl = document.getElementById(primaryId);
+          if (primaryEl) primaryEl.value = val;
+          const aliasEl = document.getElementById(aliasId);
+          if (aliasEl) aliasEl.value = val;
+        }
 
-        if (elPassportNo) elPassportNo.value = (passportData.passportNo || '').toUpperCase();
-        if (elFullName) elFullName.value = (passportData.fullName || '').toUpperCase();
-        if (elBirthday) elBirthday.value = (passportData.birthday || '').toUpperCase();
-        if (elExpireDate) elExpireDate.value = (passportData.expireDate || '').toUpperCase();
-        if (elIssueDate) elIssueDate.value = (passportData.issueDate || '').toUpperCase();
-        if (elPlace) elPlace.value = (passportData.place || '').toUpperCase();
+        // Populate targeted IDs: #passport-number, #full-name, #birthday, #passport-expiry, #issue-date, #place (and aliases)
+        setOcrFieldValue('passport-number', 'ocr-passport-no', (passportData.passportNo || '').toUpperCase());
+        setOcrFieldValue('full-name', 'ocr-full-name', (passportData.fullName || '').toUpperCase());
+        setOcrFieldValue('birthday', 'ocr-birthday', (passportData.birthday || '').toUpperCase());
+        setOcrFieldValue('passport-expiry', 'ocr-expire-date', (passportData.expireDate || '').toUpperCase());
+        setOcrFieldValue('issue-date', 'ocr-issue-date', (passportData.issueDate || '').toUpperCase());
+        setOcrFieldValue('place', 'ocr-place', (passportData.place || '').toUpperCase());
 
         if (mrzIndicatorBadge) {
           mrzIndicatorBadge.textContent = passportData.hasMrz ? 'MRZ ICAO 9303 PASSED' : 'BIODATA DETECTED';
@@ -2590,12 +2658,12 @@
       // Master Copy All 6 Details Button
       if (copyAllPassportFieldsBtn) {
         copyAllPassportFieldsBtn.addEventListener('click', () => {
-          const elPassportNo = document.getElementById('ocr-passport-no');
-          const elFullName = document.getElementById('ocr-full-name');
-          const elBirthday = document.getElementById('ocr-birthday');
-          const elExpireDate = document.getElementById('ocr-expire-date');
-          const elIssueDate = document.getElementById('ocr-issue-date');
-          const elPlace = document.getElementById('ocr-place');
+          const elPassportNo = document.getElementById('passport-number') || document.getElementById('ocr-passport-no');
+          const elFullName = document.getElementById('full-name') || document.getElementById('ocr-full-name');
+          const elBirthday = document.getElementById('birthday') || document.getElementById('ocr-birthday');
+          const elExpireDate = document.getElementById('passport-expiry') || document.getElementById('ocr-expire-date');
+          const elIssueDate = document.getElementById('issue-date') || document.getElementById('ocr-issue-date');
+          const elPlace = document.getElementById('place') || document.getElementById('ocr-place');
 
           const passportNo = (elPassportNo?.value || '').trim().toUpperCase();
           const fullName = (elFullName?.value || '').trim().toUpperCase();
