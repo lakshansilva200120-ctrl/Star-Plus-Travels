@@ -3344,16 +3344,15 @@
     };
 
     // Supabase Client Initialization & Organic Visitor Tracking
-    const supabase = (typeof window.supabase !== 'undefined' && typeof window.supabase.createClient === 'function')
-      ? window.supabase.createClient('https://wzxeuqoaafnchgeaibzn.supabase.co', 'sb_publishable_E1oAdQukxCsZ97wXtq34-Q_UsiweL3W')
-      : (window.supabaseClient || (window.StarplusBackend && window.StarplusBackend.getClient ? window.StarplusBackend.getClient() : null));
+    // Reuse existing supabase client without re-declaring
+    const sbClient = window._supabaseClient || window.supabaseClient || (window.supabase ? window.supabase : null) || (window.StarplusBackend && window.StarplusBackend.getClient ? window.StarplusBackend.getClient() : null);
 
     async function trackVisitor() {
       // Check session to avoid inflating on rapid reloads
       if (!sessionStorage.getItem('sp_visited')) {
         try {
-          if (supabase && typeof supabase.rpc === 'function') {
-            const { data, error } = await supabase.rpc('increment_page_view');
+          if (sbClient && typeof sbClient.rpc === 'function') {
+            const { data, error } = await sbClient.rpc('increment_page_view');
             if (!error) {
               sessionStorage.setItem('sp_visited', 'true');
               console.log('Organic view logged. Current count:', data);
