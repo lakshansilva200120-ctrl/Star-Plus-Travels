@@ -631,34 +631,64 @@
               </div>
 
               <!-- Field 6: PLACE OF BIRTH -->
-              <div class="result-row flex items-center justify-between p-3 rounded-lg bg-[#0b1329] border border-gray-800">
-                <div class="flex flex-col">
-                  <span class="text-xs font-semibold text-amber-400 flex items-center gap-1.5">
-                    📍 PLACE OF BIRTH
-                  </span>
-                  <span class="text-[11px] text-gray-400">Town / City / State / Country of Birth</span>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/40 transition-colors">
+                <!-- Left: Label & Description -->
+                <div class="sm:w-1/3 flex-shrink-0">
+                  <div class="flex items-center gap-2 text-amber-400 font-semibold text-xs tracking-wider uppercase">
+                    <i class="fa-solid fa-location-dot text-xs"></i>
+                    <span>PLACE OF BIRTH</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">Town / City / State / Country of Birth</div>
                 </div>
-                <div class="flex items-center gap-2">
-                  <input type="text" id="place-of-birth" class="bg-transparent text-white font-mono text-sm px-3 py-1.5 rounded border border-gray-700 focus:outline-none focus:border-amber-400" readonly />
+
+                <!-- Right: Editable Value Input + Integrated Copy Button -->
+                <div class="sm:w-2/3 flex items-center gap-2 w-full">
+                  <input 
+                    type="text" 
+                    id="place-of-birth" 
+                    class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
+                    placeholder="Awaiting scan..."
+                  />
                   <input type="hidden" id="ocr-place-of-birth" />
-                  <button type="button" class="copy-btn btn-field-copy px-3 py-1.5 text-xs font-semibold rounded bg-[#1e293b] hover:bg-amber-400 hover:text-black transition cursor-pointer" onclick="navigator.clipboard.writeText((document.getElementById('place-of-birth')||document.getElementById('ocr-place-of-birth')).value); this.innerText='COPIED!';">COPY</button>
+                  <button 
+                    type="button" 
+                    onclick="navigator.clipboard.writeText((document.getElementById('place-of-birth')||document.getElementById('ocr-place-of-birth')).value); this.innerText='COPIED!';" 
+                    class="btn-field-copy flex-shrink-0 px-3 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:border-amber-500 rounded-lg text-xs font-bold uppercase transition-all whitespace-nowrap cursor-pointer"
+                  >
+                    COPY
+                  </button>
                 </div>
               </div>
 
               <!-- Field 7: PLACE OF ISSUE -->
-              <div class="result-row flex items-center justify-between p-3 rounded-lg bg-[#0b1329] border border-gray-800 mt-2">
-                <div class="flex flex-col">
-                  <span class="text-xs font-semibold text-amber-400 flex items-center gap-1.5">
-                    🏢 PLACE OF ISSUE
-                  </span>
-                  <span class="text-[11px] text-gray-400">Issuing Authority / City / Country</span>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/40 transition-colors">
+                <!-- Left: Label & Description -->
+                <div class="sm:w-1/3 flex-shrink-0">
+                  <div class="flex items-center gap-2 text-amber-400 font-semibold text-xs tracking-wider uppercase">
+                    <i class="fa-solid fa-building-columns text-xs"></i>
+                    <span>PLACE OF ISSUE</span>
+                  </div>
+                  <div class="text-[11px] text-slate-400 mt-0.5">Issuing Authority / City / Country</div>
                 </div>
-                <div class="flex items-center gap-2">
-                  <input type="text" id="place-of-issue" class="bg-transparent text-white font-mono text-sm px-3 py-1.5 rounded border border-gray-700 focus:outline-none focus:border-amber-400" readonly />
+
+                <!-- Right: Editable Value Input + Integrated Copy Button -->
+                <div class="sm:w-2/3 flex items-center gap-2 w-full">
+                  <input 
+                    type="text" 
+                    id="place-of-issue" 
+                    class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
+                    placeholder="Awaiting scan..."
+                  />
                   <input type="hidden" id="ocr-place-of-issue" />
                   <input type="hidden" id="place" />
                   <input type="hidden" id="ocr-place" />
-                  <button type="button" class="copy-btn btn-field-copy px-3 py-1.5 text-xs font-semibold rounded bg-[#1e293b] hover:bg-amber-400 hover:text-black transition cursor-pointer" onclick="navigator.clipboard.writeText((document.getElementById('place-of-issue')||document.getElementById('ocr-place-of-issue')).value); this.innerText='COPIED!';">COPY</button>
+                  <button 
+                    type="button" 
+                    onclick="navigator.clipboard.writeText((document.getElementById('place-of-issue')||document.getElementById('ocr-place-of-issue')).value); this.innerText='COPIED!';" 
+                    class="btn-field-copy flex-shrink-0 px-3 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:border-amber-500 rounded-lg text-xs font-bold uppercase transition-all whitespace-nowrap cursor-pointer"
+                  >
+                    COPY
+                  </button>
                 </div>
               </div>
             </div>
