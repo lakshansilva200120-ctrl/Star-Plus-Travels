@@ -28,6 +28,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+  <!-- Supabase Backend Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css?v=5.7.0">
 
@@ -1375,6 +1379,478 @@
     </div>
   </section>
 
+  <!-- =========================================================================
+       POPULAR UAE EXPERIENCES & FAST-TRACK TRAVEL SERVICES (Live Synced via Supabase)
+       ========================================================================= -->
+  <section id="experiences" class="py-20 px-4 sm:px-6 lg:px-8 bg-slate-100/60 dark:bg-slate-950/50 border-b border-slate-200 dark:border-slate-800/80 relative overflow-hidden transition-colors w-full">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-xs font-black uppercase tracking-widest text-amber-500 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+            Instant Clearances &amp; Excursions
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3 font-heading leading-tight">
+            Popular Dubai Tours &amp; Fast-Track Services
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-2 max-w-2xl">
+            Live rates synchronized directly with Star Plus Dubai Operations Desk. Request instant callback or reserve via WhatsApp.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 shadow-xs">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Live Supabase Rates</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Grid of Core 11 Baseline Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="coreExperiencesGrid">
+        
+        <!-- CARD 1: UAE-30-DAY -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 relative group" data-card-id="UAE-30-DAY">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">UAE-30-DAY</span>
+              <span class="promo-badge text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">Fast Track</span>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-400 transition-colors">30-Day Single Entry Tourist Visa</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Official UAE tourist visa with mandatory medical insurance included.</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <i class="fa-regular fa-clock text-amber-400"></i>
+              <span class="turnaround-text font-medium">24–48 Hours</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <div class="flex items-baseline justify-between">
+              <div>
+                <span class="price-aed text-2xl font-black text-amber-500 font-heading">380 AED</span>
+                <span class="price-usd text-xs text-slate-400 ml-1.5 font-medium">$105</span>
+              </div>
+              <span class="text-[10px] text-slate-400 uppercase font-semibold">Single Entry</span>
+            </div>
+            <div class="space-y-2 card-actions">
+              <button type="button" onclick="openQuickInquiryModal('UAE-30-DAY')" class="btn-quick-inquiry w-full py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-phone-volume text-[11px] text-amber-400"></i>
+                <span>Quick Inquiry / Callback</span>
+              </button>
+              <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20inquiring%20about%2030-Day%20UAE%20Tourist%20Visa" target="_blank" rel="noopener noreferrer" class="btn-book-action w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Book via WhatsApp</span>
+              </a>
+              <div class="paused-badge hidden py-2 px-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold text-center">
+                PAUSED / INQUIRE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: UAE-60-DAY -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 relative group" data-card-id="UAE-60-DAY">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">UAE-60-DAY</span>
+              <span class="promo-badge text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30">Popular</span>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-400 transition-colors">60-Day Single Entry Tourist Visa</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Extended stay tourism visa with insurance and rapid government issuance.</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <i class="fa-regular fa-clock text-amber-400"></i>
+              <span class="turnaround-text font-medium">24–48 Hours</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <div class="flex items-baseline justify-between">
+              <div>
+                <span class="price-aed text-2xl font-black text-amber-500 font-heading">590 AED</span>
+                <span class="price-usd text-xs text-slate-400 ml-1.5 font-medium">$165</span>
+              </div>
+              <span class="text-[10px] text-slate-400 uppercase font-semibold">Single Entry</span>
+            </div>
+            <div class="space-y-2 card-actions">
+              <button type="button" onclick="openQuickInquiryModal('UAE-60-DAY')" class="btn-quick-inquiry w-full py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-phone-volume text-[11px] text-amber-400"></i>
+                <span>Quick Inquiry / Callback</span>
+              </button>
+              <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20inquiring%20about%2060-Day%20UAE%20Tourist%20Visa" target="_blank" rel="noopener noreferrer" class="btn-book-action w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Book via WhatsApp</span>
+              </a>
+              <div class="paused-badge hidden py-2 px-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold text-center">
+                PAUSED / INQUIRE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: UAE-30-EXT -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 relative group" data-card-id="UAE-30-EXT">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">UAE-30-EXT</span>
+              <span class="promo-badge text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-400 border border-purple-500/30">Inside Country</span>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-400 transition-colors">30-Day Inside-Country Extension</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Status change without leaving UAE border. Seamless passport extension.</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <i class="fa-regular fa-clock text-amber-400"></i>
+              <span class="turnaround-text font-medium">24–48 Hours</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <div class="flex items-baseline justify-between">
+              <div>
+                <span class="price-aed text-2xl font-black text-amber-500 font-heading">790 AED</span>
+                <span class="price-usd text-xs text-slate-400 ml-1.5 font-medium">$220</span>
+              </div>
+              <span class="text-[10px] text-slate-400 uppercase font-semibold">No Exit</span>
+            </div>
+            <div class="space-y-2 card-actions">
+              <button type="button" onclick="openQuickInquiryModal('UAE-30-EXT')" class="btn-quick-inquiry w-full py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-phone-volume text-[11px] text-amber-400"></i>
+                <span>Quick Inquiry / Callback</span>
+              </button>
+              <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20inquiring%20about%2030-Day%20UAE%20Inside%20Extension" target="_blank" rel="noopener noreferrer" class="btn-book-action w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Book via WhatsApp</span>
+              </a>
+              <div class="paused-badge hidden py-2 px-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold text-center">
+                PAUSED / INQUIRE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: UAE-60-EXT -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 relative group" data-card-id="UAE-60-EXT">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">UAE-60-EXT</span>
+              <span class="promo-badge text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-400 border border-purple-500/30">Extended Stay</span>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-400 transition-colors">60-Day Inside-Country Extension</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">2-Month legal stay extension within UAE without airport exit.</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <i class="fa-regular fa-clock text-amber-400"></i>
+              <span class="turnaround-text font-medium">24–48 Hours</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <div class="flex items-baseline justify-between">
+              <div>
+                <span class="price-aed text-2xl font-black text-amber-500 font-heading">990 AED</span>
+                <span class="price-usd text-xs text-slate-400 ml-1.5 font-medium">$275</span>
+              </div>
+              <span class="text-[10px] text-slate-400 uppercase font-semibold">No Exit</span>
+            </div>
+            <div class="space-y-2 card-actions">
+              <button type="button" onclick="openQuickInquiryModal('UAE-60-EXT')" class="btn-quick-inquiry w-full py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-phone-volume text-[11px] text-amber-400"></i>
+                <span>Quick Inquiry / Callback</span>
+              </button>
+              <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20inquiring%20about%2060-Day%20UAE%20Inside%20Extension" target="_blank" rel="noopener noreferrer" class="btn-book-action w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Book via WhatsApp</span>
+              </a>
+              <div class="paused-badge hidden py-2 px-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold text-center">
+                PAUSED / INQUIRE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 5: DESERT-SAFARI -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 relative group" data-card-id="DESERT-SAFARI">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">DESERT-SAFARI</span>
+              <span class="promo-badge text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30">Top Seller</span>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-400 transition-colors">VIP Desert Safari &amp; 4x4 Dune Bashing</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Red dune bashing, camel rides, live BBQ buffet dinner &amp; fire shows.</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <i class="fa-regular fa-clock text-amber-400"></i>
+              <span class="turnaround-text font-medium">Daily Departure</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <div class="flex items-baseline justify-between">
+              <div>
+                <span class="price-aed text-2xl font-black text-amber-500 font-heading">180 AED</span>
+                <span class="price-usd text-xs text-slate-400 ml-1.5 font-medium">$50</span>
+              </div>
+              <span class="text-[10px] text-slate-400 uppercase font-semibold">Per Person</span>
+            </div>
+            <div class="space-y-2 card-actions">
+              <button type="button" onclick="openQuickInquiryModal('DESERT-SAFARI')" class="btn-quick-inquiry w-full py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-phone-volume text-[11px] text-amber-400"></i>
+                <span>Quick Inquiry / Callback</span>
+              </button>
+              <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20inquiring%20about%20VIP%20Desert%20Safari" target="_blank" rel="noopener noreferrer" class="btn-book-action w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Book via WhatsApp</span>
+              </a>
+              <div class="paused-badge hidden py-2 px-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold text-center">
+                PAUSED / INQUIRE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 6: DUBAI-CITY -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 relative group" data-card-id="DUBAI-CITY">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">DUBAI-CITY</span>
+              <span class="promo-badge text-[10px] font-bold px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/30">Must Do</span>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-400 transition-colors">Dubai Half-Day City Tour &amp; Landmarks</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Burj Al Arab photo stop, Dubai Frame, Gold Souk &amp; Palm Jumeirah.</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <i class="fa-regular fa-clock text-amber-400"></i>
+              <span class="turnaround-text font-medium">Daily Morning</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <div class="flex items-baseline justify-between">
+              <div>
+                <span class="price-aed text-2xl font-black text-amber-500 font-heading">120 AED</span>
+                <span class="price-usd text-xs text-slate-400 ml-1.5 font-medium">$35</span>
+              </div>
+              <span class="text-[10px] text-slate-400 uppercase font-semibold">Guided Coach</span>
+            </div>
+            <div class="space-y-2 card-actions">
+              <button type="button" onclick="openQuickInquiryModal('DUBAI-CITY')" class="btn-quick-inquiry w-full py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-phone-volume text-[11px] text-amber-400"></i>
+                <span>Quick Inquiry / Callback</span>
+              </button>
+              <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20inquiring%20about%20Dubai%20City%20Tour" target="_blank" rel="noopener noreferrer" class="btn-book-action w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Book via WhatsApp</span>
+              </a>
+              <div class="paused-badge hidden py-2 px-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold text-center">
+                PAUSED / INQUIRE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 7: MARINA-DHOW -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 relative group" data-card-id="MARINA-DHOW">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">MARINA-DHOW</span>
+              <span class="promo-badge text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30">Dinner Cruise</span>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-400 transition-colors">Dubai Marina Luxury Dhow Cruise</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">2-Hour glass boat cruise, 5-star international buffet &amp; Tanoura dance.</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <i class="fa-regular fa-clock text-amber-400"></i>
+              <span class="turnaround-text font-medium">Daily Evening</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <div class="flex items-baseline justify-between">
+              <div>
+                <span class="price-aed text-2xl font-black text-amber-500 font-heading">160 AED</span>
+                <span class="price-usd text-xs text-slate-400 ml-1.5 font-medium">$45</span>
+              </div>
+              <span class="text-[10px] text-slate-400 uppercase font-semibold">Buffet Included</span>
+            </div>
+            <div class="space-y-2 card-actions">
+              <button type="button" onclick="openQuickInquiryModal('MARINA-DHOW')" class="btn-quick-inquiry w-full py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-phone-volume text-[11px] text-amber-400"></i>
+                <span>Quick Inquiry / Callback</span>
+              </button>
+              <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20inquiring%20about%20Dubai%20Marina%20Dhow%20Cruise" target="_blank" rel="noopener noreferrer" class="btn-book-action w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Book via WhatsApp</span>
+              </a>
+              <div class="paused-badge hidden py-2 px-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold text-center">
+                PAUSED / INQUIRE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 8: YACHT-CHARTER -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 relative group" data-card-id="YACHT-CHARTER">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">YACHT-CHARTER</span>
+              <span class="promo-badge text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30">VIP Exclusive</span>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-400 transition-colors">Private Luxury Yacht Charter</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Private captain, crew, sound system, and scenic Palm Jumeirah cruise.</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <i class="fa-regular fa-clock text-amber-400"></i>
+              <span class="turnaround-text font-medium">Hourly Charter</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <div class="flex items-baseline justify-between">
+              <div>
+                <span class="price-aed text-2xl font-black text-amber-500 font-heading">490 AED</span>
+                <span class="price-usd text-xs text-slate-400 ml-1.5 font-medium">$135</span>
+              </div>
+              <span class="text-[10px] text-slate-400 uppercase font-semibold">Per Hour</span>
+            </div>
+            <div class="space-y-2 card-actions">
+              <button type="button" onclick="openQuickInquiryModal('YACHT-CHARTER')" class="btn-quick-inquiry w-full py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-phone-volume text-[11px] text-amber-400"></i>
+                <span>Quick Inquiry / Callback</span>
+              </button>
+              <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20inquiring%20about%20Private%20Yacht%20Charter" target="_blank" rel="noopener noreferrer" class="btn-book-action w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Book via WhatsApp</span>
+              </a>
+              <div class="paused-badge hidden py-2 px-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold text-center">
+                PAUSED / INQUIRE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 9: AIR-TICKET -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 relative group" data-card-id="AIR-TICKET">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">AIR-TICKET</span>
+              <span class="promo-badge text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">Best Fares</span>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-400 transition-colors">Air Ticket Issuance &amp; Rescheduling</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">IATA global airline ticketing, baggage upgrades, and route changes.</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <i class="fa-regular fa-clock text-amber-400"></i>
+              <span class="turnaround-text font-medium">Instant Issue</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <div class="flex items-baseline justify-between">
+              <div>
+                <span class="price-aed text-2xl font-black text-amber-500 font-heading">50 AED</span>
+                <span class="price-usd text-xs text-slate-400 ml-1.5 font-medium">$14</span>
+              </div>
+              <span class="text-[10px] text-slate-400 uppercase font-semibold">Service Fee</span>
+            </div>
+            <div class="space-y-2 card-actions">
+              <button type="button" onclick="openQuickInquiryModal('AIR-TICKET')" class="btn-quick-inquiry w-full py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-phone-volume text-[11px] text-amber-400"></i>
+                <span>Quick Inquiry / Callback</span>
+              </button>
+              <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20inquiring%20about%20Airline%20Ticketing%20Service" target="_blank" rel="noopener noreferrer" class="btn-book-action w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Book via WhatsApp</span>
+              </a>
+              <div class="paused-badge hidden py-2 px-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold text-center">
+                PAUSED / INQUIRE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 10: OK-TO-BOARD -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 relative group" data-card-id="OK-TO-BOARD">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">OK-TO-BOARD</span>
+              <span class="promo-badge text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 border border-blue-500/30">Express OTB</span>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-400 transition-colors">Airline Ok-To-Board (OTB) Clearance</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Mandatory PNR approval for UAE travel across all major carrier portals.</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <i class="fa-regular fa-clock text-amber-400"></i>
+              <span class="turnaround-text font-medium">2–4 Hours</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <div class="flex items-baseline justify-between">
+              <div>
+                <span class="price-aed text-2xl font-black text-amber-500 font-heading">75 AED</span>
+                <span class="price-usd text-xs text-slate-400 ml-1.5 font-medium">$22</span>
+              </div>
+              <span class="text-[10px] text-slate-400 uppercase font-semibold">Per Traveler</span>
+            </div>
+            <div class="space-y-2 card-actions">
+              <button type="button" onclick="openQuickInquiryModal('OK-TO-BOARD')" class="btn-quick-inquiry w-full py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-phone-volume text-[11px] text-amber-400"></i>
+                <span>Quick Inquiry / Callback</span>
+              </button>
+              <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20inquiring%20about%20Airline%20OTB%20Clearance" target="_blank" rel="noopener noreferrer" class="btn-book-action w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Book via WhatsApp</span>
+              </a>
+              <div class="paused-badge hidden py-2 px-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold text-center">
+                PAUSED / INQUIRE
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 11: AIRPORT-TRANSFER -->
+        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-amber-500/40 transition-all duration-300 relative group" data-card-id="AIRPORT-TRANSFER">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">AIRPORT-TRANSFER</span>
+              <span class="promo-badge text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">Private Car</span>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-400 transition-colors">Private Airport VIP Transfer (DXB)</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Executive sedan pick-up/drop-off, flight tracking, and toll fees included.</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <i class="fa-regular fa-clock text-amber-400"></i>
+              <span class="turnaround-text font-medium">24/7 Service</span>
+            </div>
+          </div>
+          <div class="mt-5 pt-4 border-t border-slate-200 dark:border-slate-800/80 space-y-3">
+            <div class="flex items-baseline justify-between">
+              <div>
+                <span class="price-aed text-2xl font-black text-amber-500 font-heading">150 AED</span>
+                <span class="price-usd text-xs text-slate-400 ml-1.5 font-medium">$42</span>
+              </div>
+              <span class="text-[10px] text-slate-400 uppercase font-semibold">Executive Sedan</span>
+            </div>
+            <div class="space-y-2 card-actions">
+              <button type="button" onclick="openQuickInquiryModal('AIRPORT-TRANSFER')" class="btn-quick-inquiry w-full py-2 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                <i class="fa-solid fa-phone-volume text-[11px] text-amber-400"></i>
+                <span>Quick Inquiry / Callback</span>
+              </button>
+              <a href="https://wa.me/971527582293?text=Hi%20Star%20Plus,%20I%20am%20inquiring%20about%20Airport%20Transfer%20DXB" target="_blank" rel="noopener noreferrer" class="btn-book-action w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/20 cursor-pointer">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Book via WhatsApp</span>
+              </a>
+              <div class="paused-badge hidden py-2 px-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold text-center">
+                PAUSED / INQUIRE
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Interactive Season Promo Voucher & 3D Boarding Pass Banner -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full overflow-hidden">
     <div class="relative overflow-hidden rounded-3xl bg-slate-950 p-8 md:p-12 lg:p-14 shadow-2xl border border-amber-400/40 group">
@@ -2470,8 +2946,115 @@
     <!-- WhatsApp Icon -->
     <svg class="w-8 h-8 fill-current relative z-10" viewBox="0 0 24 24">
       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-    </svg>
-  </a>
+  <!-- Global Floating Quick Inquiry / Callback Button -->
+  <button
+    type="button"
+    id="global-inquiry-float-btn"
+    onclick="openQuickInquiryModal('General Inquiry')"
+    class="fixed bottom-24 right-6 z-50 flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 border border-amber-300/40 cursor-pointer group"
+    aria-label="Quick Travel Inquiry & Instant Callback"
+  >
+    <div class="w-6 h-6 rounded-full bg-slate-950/20 flex items-center justify-center text-slate-950">
+      <i class="fa-solid fa-bolt-lightning text-xs animate-bounce"></i>
+    </div>
+    <span class="hidden sm:inline font-black">Quick Inquiry</span>
+    <span class="text-[10px] bg-slate-950 text-amber-300 px-1.5 py-0.5 rounded-full font-bold">2-Min</span>
+  </button>
+
+  <!-- Global Frictionless Quick Inquiry Modal -->
+  <div id="quickInquiryModal" class="fixed inset-0 z-[9999] bg-slate-950/85 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto" onclick="if(event.target === this) closeQuickInquiryModal()" role="dialog" aria-modal="true" aria-labelledby="quickInquiryTitle">
+    <div class="relative w-full max-w-lg bg-[#0b1324] border border-amber-500/40 rounded-3xl shadow-2xl overflow-hidden flex flex-col my-auto modal-content-animate">
+      <!-- Modal Header -->
+      <div class="px-6 py-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90 backdrop-blur-md">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg shadow-inner">
+            <i class="fa-solid fa-paper-plane"></i>
+          </div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">Instant Concierge</span>
+            <h3 id="quickInquiryTitle" class="text-lg font-bold text-white font-heading mt-0.5">Quick Travel Inquiry</h3>
+          </div>
+        </div>
+        <button type="button" onclick="closeQuickInquiryModal()" class="w-9 h-9 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors border border-slate-700 cursor-pointer" aria-label="Close modal">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <form id="quickInquiryForm" onsubmit="handleQuickInquirySubmit(event)" class="p-6 space-y-4 text-left">
+        <p class="text-xs text-slate-400 leading-relaxed">
+          No sign-up or registration required. Fill your details and our Deira Dubai travel specialists will connect with you in minutes.
+        </p>
+
+        <!-- Service / Package Field -->
+        <div>
+          <label for="quickInquiryService" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+            Service or Package of Interest
+          </label>
+          <div class="relative">
+            <input 
+              type="text" 
+              id="quickInquiryService" 
+              name="service_interest" 
+              required
+              class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 transition-colors"
+              placeholder="e.g. UAE 30-Day Tourist Visa, Desert Safari, Flight Ticket"
+            />
+          </div>
+        </div>
+
+        <!-- Full Name -->
+        <div>
+          <label for="quickInquiryName" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+            Your Full Name *
+          </label>
+          <input 
+            type="text" 
+            id="quickInquiryName" 
+            name="full_name" 
+            required
+            class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 transition-colors"
+            placeholder="e.g. John Doe"
+          />
+        </div>
+
+        <!-- Phone / WhatsApp -->
+        <div>
+          <label for="quickInquiryPhone" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+            WhatsApp / Mobile Number *
+          </label>
+          <input 
+            type="tel" 
+            id="quickInquiryPhone" 
+            name="phone" 
+            required
+            class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 transition-colors"
+            placeholder="e.g. +971 52 758 2293"
+          />
+          <p class="text-[11px] text-slate-500 mt-1">Include country code so we can message you directly on WhatsApp.</p>
+        </div>
+
+        <!-- Submit & Actions -->
+        <div class="pt-2 flex flex-col sm:flex-row gap-3">
+          <button 
+            type="submit" 
+            id="btnQuickInquirySubmit" 
+            class="flex-1 py-3 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Submit Inquiry</span>
+          </button>
+          <button 
+            type="button" 
+            onclick="closeQuickInquiryModal()" 
+            class="py-3 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-colors cursor-pointer"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- Toast Notification Container -->
   <div id="toastContainer"></div>
@@ -2597,6 +3180,153 @@
         // Ensure pause state resets cleanly for next cycle
         vidA.addEventListener('ended', () => { if (vidA) vidA.pause(); });
         vidB.addEventListener('ended', () => { if (vidB) vidB.pause(); });
+      }
+    });
+  </script>
+
+  <!-- Supabase Live Rates Sync, View Counter & Quick Lead Capture Script -->
+  <script>
+    // Global Quick Inquiry Modal Handlers
+    window.openQuickInquiryModal = function(serviceName) {
+      const modal = document.getElementById('quickInquiryModal');
+      const serviceInput = document.getElementById('quickInquiryService');
+      if (serviceInput && serviceName) {
+        serviceInput.value = serviceName;
+      }
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    window.closeQuickInquiryModal = function() {
+      const modal = document.getElementById('quickInquiryModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    };
+
+    window.handleQuickInquirySubmit = async function(e) {
+      if (e) e.preventDefault();
+      const submitBtn = document.getElementById('btnQuickInquirySubmit');
+      const nameInput = document.getElementById('quickInquiryName');
+      const phoneInput = document.getElementById('quickInquiryPhone');
+      const serviceInput = document.getElementById('quickInquiryService');
+
+      const fullName = (nameInput && nameInput.value || '').trim();
+      const phone = (phoneInput && phoneInput.value || '').trim();
+      const service = (serviceInput && serviceInput.value || 'General Inquiry').trim();
+
+      if (!fullName || !phone) {
+        alert('Please provide your name and WhatsApp/mobile phone number.');
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+      }
+
+      try {
+        if (window.StarplusBackend && typeof window.StarplusBackend.submitLead === 'function') {
+          await window.StarplusBackend.submitLead({
+            full_name: fullName,
+            phone: phone,
+            service_interest: service
+          });
+        }
+      } catch (err) {
+        console.warn('Backend lead capture error:', err);
+      }
+
+      // Close modal
+      closeQuickInquiryModal();
+
+      // Show toast if showToast available
+      if (typeof window.showToast === 'function') {
+        window.showToast('Inquiry received! Opening WhatsApp concierge...', 'success');
+      }
+
+      // Open WhatsApp chat to +971527582293 with pre-filled message
+      const cleanPhone = phone.replace(/[^0-9]/g, '');
+      const encodedMsg = encodeURIComponent(
+        `Hi Star Plus Travels, my name is ${fullName} (${phone}). I would like to inquire about: ${service}.`
+      );
+      window.open(`https://wa.me/971527582293?text=${encodedMsg}`, '_blank');
+
+      // Reset form
+      if (document.getElementById('quickInquiryForm')) {
+        document.getElementById('quickInquiryForm').reset();
+      }
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Inquiry';
+      }
+    };
+
+    // Live Rates DOM Sync and Analytics Tracking
+    document.addEventListener('DOMContentLoaded', async function() {
+      // 1. Record Page View Hit if new session
+      if (window.StarplusBackend && typeof window.StarplusBackend.recordPageView === 'function') {
+        try {
+          await window.StarplusBackend.recordPageView();
+        } catch (e) {}
+      }
+
+      // 2. Fetch Live Rates from Supabase site_pricing and update DOM cards
+      if (window.StarplusBackend && typeof window.StarplusBackend.fetchLivePricing === 'function') {
+        try {
+          const { rows, map } = await window.StarplusBackend.fetchLivePricing();
+          if (map) {
+            // Update cards with data-card-id
+            document.querySelectorAll('[data-card-id]').forEach(card => {
+              const cardId = card.getAttribute('data-card-id');
+              const item = map[cardId.toUpperCase()] || map[cardId.toLowerCase()];
+              if (!item) return;
+
+              // Price AED & USD
+              const priceAedEl = card.querySelector('.price-aed');
+              if (priceAedEl && item.aed !== undefined) {
+                priceAedEl.textContent = `${Number(item.aed).toLocaleString()} AED`;
+              }
+              const priceUsdEl = card.querySelector('.price-usd');
+              if (priceUsdEl && item.usd !== undefined) {
+                priceUsdEl.textContent = `$${Number(item.usd).toLocaleString()}`;
+              }
+
+              // Turnaround duration
+              const turnaroundEl = card.querySelector('.turnaround-text');
+              if (turnaroundEl && item.duration) {
+                turnaroundEl.textContent = item.duration;
+              }
+
+              // Promo badge
+              const promoEl = card.querySelector('.promo-badge');
+              if (promoEl && item.promo_badge) {
+                promoEl.textContent = item.promo_badge;
+                promoEl.classList.remove('hidden');
+              }
+
+              // Availability state
+              const btnBook = card.querySelector('.btn-book-action');
+              const pausedBadge = card.querySelector('.paused-badge');
+              if (item.is_available === false) {
+                card.classList.add('opacity-70', 'grayscale-[30%]');
+                if (btnBook) btnBook.classList.add('hidden');
+                if (pausedBadge) pausedBadge.classList.remove('hidden');
+              } else {
+                card.classList.remove('opacity-70', 'grayscale-[30%]');
+                if (btnBook) btnBook.classList.remove('hidden');
+                if (pausedBadge) pausedBadge.classList.add('hidden');
+              }
+            });
+          }
+        } catch (err) {
+          console.warn('Failed to sync live pricing to cards:', err);
+        }
       }
     });
   </script>

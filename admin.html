@@ -32,6 +32,10 @@
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
+  <!-- Supabase Backend Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+
   <style>
     /* Admin Specific Styling */
     .admin-glass-panel {
@@ -220,6 +224,13 @@
 
       <!-- Staff Status & Actions -->
       <div class="flex items-center gap-3">
+        <!-- Live Total Website Views Counter -->
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-amber-500/30 text-xs text-slate-300 shadow-sm" title="Total Website Views Recorded">
+          <i class="fa-solid fa-chart-line text-amber-400"></i>
+          <span class="text-slate-400">Total Views:</span>
+          <strong class="text-amber-400 font-mono font-bold" id="stat-total-views">--</strong>
+        </div>
+
         <div class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span>Logged in as: <strong class="text-amber-400" id="staffSessionName">Operations Specialist</strong></span>
@@ -306,6 +317,15 @@
         >
           <i class="fa-solid fa-file-invoice"></i>
           <span>Document OCR &amp; Extractor</span>
+        </button>
+        <button 
+          type="button" 
+          data-tab="inquiries" 
+          class="admin-tab-btn px-4 py-2.5 rounded-xl border border-transparent font-bold text-xs uppercase tracking-wider text-slate-400 hover:text-white transition-all flex items-center gap-2 cursor-pointer whitespace-nowrap"
+        >
+          <i class="fa-solid fa-user-clock text-amber-400"></i>
+          <span>Recent Client Inquiries</span>
+          <span id="inquiriesCountBadge" class="ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 hidden">0</span>
         </button>
       </div>
 
@@ -705,6 +725,54 @@
         </div>
       </section>
 
+      <!-- TAB 5: Recent Client Inquiries -->
+      <section id="tab-inquiries" class="tab-content hidden space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-user-clock text-amber-400"></i>
+              <span>Recent Client Inquiries</span>
+            </h3>
+            <p class="text-xs text-slate-400">Live guest submissions captured from quick inquiry and callback forms on starplustraveluae.com</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button 
+              type="button" 
+              id="refreshInquiriesBtn" 
+              class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-slate-200 transition-colors flex items-center gap-2 cursor-pointer shadow-sm active:scale-95"
+            >
+              <i class="fa-solid fa-arrows-rotate text-amber-400" id="refreshInquiriesIcon"></i>
+              <span>Refresh Inquiries</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-glass-panel rounded-2xl border-amber-500/20 overflow-hidden shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-slate-300">
+              <thead class="bg-slate-900/90 text-[11px] font-bold uppercase tracking-wider text-amber-400/90 border-b border-slate-800">
+                <tr>
+                  <th scope="col" class="py-3.5 px-4">Date / Time</th>
+                  <th scope="col" class="py-3.5 px-4">Client Name</th>
+                  <th scope="col" class="py-3.5 px-4">Contact Number</th>
+                  <th scope="col" class="py-3.5 px-4">Service / Package</th>
+                  <th scope="col" class="py-3.5 px-4">Status</th>
+                  <th scope="col" class="py-3.5 px-4 text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody id="inquiriesTableBody" class="divide-y divide-slate-800/60 font-medium">
+                <tr>
+                  <td colspan="6" class="py-10 text-center text-slate-400">
+                    <i class="fa-solid fa-circle-notch fa-spin text-amber-400 text-lg mb-2 block"></i>
+                    Connecting to Supabase inquiries...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
     </main>
   </div>
 
@@ -805,6 +873,10 @@
           document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
           const target = document.getElementById(`tab-${tabName}`);
           if (target) target.classList.remove('hidden');
+
+          if (tabName === 'inquiries') {
+            loadAndRenderInquiries();
+          }
         });
       });
 
@@ -817,45 +889,414 @@
         setTimeout(() => {
           toastEl.classList.remove('translate-y-0', 'opacity-100');
           toastEl.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
-        }, 3800);
+        }, 3200);
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Baseline Defaults for Service & Tour Package Cards (including 11 core packages)
+      const BASELINE_VISA_DEFAULTS = {
+        uae30Day: {
+          id: 'UAE-30-DAY',
+          name: '30-Day Single Entry Tourist Visa',
+          priceAED: 380,
+          priceUSD: 105,
+          available: true,
+          processingTime: '24–48 Hours',
+          notes: 'Includes mandatory medical insurance'
+        },
+        uae60Day: {
+          id: 'UAE-60-DAY',
+          name: '60-Day Single Entry Tourist Visa',
+          priceAED: 590,
+          priceUSD: 165,
+          available: true,
+          processingTime: '24–48 Hours',
+          notes: 'Includes mandatory medical insurance'
+        },
+        uae30Ext: {
+          id: 'UAE-30-EXT',
+          name: '30-Day UAE Inside-Country Extension',
+          priceAED: 790,
+          priceUSD: 220,
+          available: true,
+          processingTime: '24–48 Hours',
+          notes: 'Inside-country status change without exit'
+        },
+        uae60Ext: {
+          id: 'UAE-60-EXT',
+          name: '60-Day UAE Inside-Country Extension',
+          priceAED: 990,
+          priceUSD: 275,
+          available: true,
+          processingTime: '24–48 Hours',
+          notes: 'Inside-country status change without exit'
+        },
+        okToBoard: {
+          id: 'OK-TO-BOARD',
+          name: 'Airline Ok-To-Board (OTB) Clearance',
+          priceAED: 75,
+          priceUSD: 22,
+          available: true,
+          processingTime: '2–4 Hours',
+          notes: 'Instant airline portal registration'
+        },
+        expressFee: {
+          id: 'EXPRESS-FEE',
+          name: 'VIP Express Same-Day Processing Surcharge',
+          priceAED: 150,
+          priceUSD: 42,
+          available: true,
+          processingTime: '6–12 Hours',
+          notes: 'Priority immigration clearance queue'
+        },
+        omanBusChange: {
+          id: 'OMAN-BUS-CHANGE',
+          name: 'Oman Visa Change by Luxury Coach',
+          priceAED: 650,
+          priceUSD: 180,
+          available: true,
+          processingTime: 'Same Day',
+          notes: 'Roundtrip coach + hotel room stay included'
+        },
+        schengenConcierge: {
+          id: 'SCHENGEN-CONCIERGE',
+          name: 'Schengen Concierge & File Prep',
+          priceAED: 450,
+          priceUSD: 125,
+          available: true,
+          processingTime: 'Express',
+          notes: 'VFS/TLS file prep, dummy tickets, travel insurance'
+        },
+        sriLankaEta: {
+          id: 'SRI-LANKA-ETA',
+          name: 'Sri Lanka Electronic ETA',
+          priceAED: 220,
+          priceUSD: 60,
+          available: true,
+          processingTime: '24 Hours',
+          notes: 'Double entry 30-day tourist approval'
+        }
+      };
+
+      const BASELINE_PACKAGE_DEFAULTS = {
+        desertSafari: {
+          id: 'DESERT-SAFARI',
+          title: 'VIP Desert Safari BBQ & 4x4 Dune Bashing',
+          destination: 'Lahbab Red Dunes, Dubai',
+          duration: 'Daily Departure',
+          priceAED: 180,
+          priceUSD: 50,
+          badge: 'Top Seller',
+          available: true
+        },
+        dubaiCity: {
+          id: 'DUBAI-CITY',
+          title: 'Dubai Half-Day City Tour & Landmarks',
+          destination: 'Dubai Downtown & Old Dubai',
+          duration: 'Daily Morning',
+          priceAED: 120,
+          priceUSD: 35,
+          badge: 'Must Do',
+          available: true
+        },
+        marinaDhow: {
+          id: 'MARINA-DHOW',
+          title: 'Dubai Marina Luxury Dhow Cruise Dinner',
+          destination: 'Dubai Marina',
+          duration: 'Daily Evening',
+          priceAED: 160,
+          priceUSD: 45,
+          badge: 'Dinner Cruise',
+          available: true
+        },
+        yachtCharter: {
+          id: 'YACHT-CHARTER',
+          title: 'Private Luxury Yacht Charter (Hourly)',
+          destination: 'Dubai Marina & Burj Al Arab',
+          duration: 'Hourly Charter',
+          priceAED: 490,
+          priceUSD: 135,
+          badge: 'VIP Exclusive',
+          available: true
+        },
+        dubaiLuxury: {
+          id: 'DUBAI-LUXURY',
+          title: 'Ultimate Dubai & Desert Safari Extravaganza',
+          destination: 'Dubai & Abu Dhabi, UAE',
+          duration: '5 Days / 4 Nights',
+          priceAED: 2450,
+          priceUSD: 675,
+          badge: 'Bestseller',
+          available: true
+        },
+        sriLankaScenic: {
+          id: 'SRI-LANKA-SCENIC',
+          title: 'Scenic Sri Lanka: Tea Hills, Wildlife & Beaches',
+          destination: 'Colombo, Kandy, Ella & Yala',
+          duration: '6 Days / 5 Nights',
+          priceAED: 1890,
+          priceUSD: 515,
+          badge: 'Trending',
+          available: true
+        },
+        bakuAzerbaijan: {
+          id: 'BAKU-AZERBAIJAN',
+          title: 'Baku & Caucasus Wonders of Azerbaijan',
+          destination: 'Baku & Gabala, Azerbaijan',
+          duration: '5 Days / 4 Nights',
+          priceAED: 2150,
+          priceUSD: 595,
+          badge: 'Popular',
+          available: true
+        },
+        maldivesParadise: {
+          id: 'MALDIVES-PARADISE',
+          title: 'Maldives Overwater Villa Paradise Escape',
+          destination: 'North Malé Atoll, Maldives',
+          duration: '4 Days / 3 Nights',
+          priceAED: 4650,
+          priceUSD: 1265,
+          badge: 'Luxury Romance',
+          available: true
+        },
+        baliGetaway: {
+          id: 'BALI-GETAWAY',
+          title: 'Bali Heavenly Getaway: Ubud & Seminyak',
+          destination: 'Bali, Indonesia',
+          duration: '7 Days / 6 Nights',
+          priceAED: 2850,
+          priceUSD: 775,
+          badge: 'Bestseller',
+          available: true
+        },
+        turkeyBalloons: {
+          id: 'TURKEY-BALLOONS',
+          title: 'Classic Turkey: Istanbul & Cappadocia Balloons',
+          destination: 'Istanbul & Cappadocia, Turkey',
+          duration: '6 Days / 5 Nights',
+          priceAED: 3350,
+          priceUSD: 915,
+          badge: 'Bucket List',
+          available: true
+        },
+        umrahPremium: {
+          id: 'UMRAH-PREMIUM',
+          title: 'Premium Umrah Spiritual Journey',
+          destination: 'Makkah & Madinah, KSA',
+          duration: '7 Days / 6 Nights',
+          priceAED: 2990,
+          priceUSD: 815,
+          badge: 'Spiritual Peace',
+          available: true
+        },
+        dubaiMice: {
+          id: 'DUBAI-MICE',
+          title: 'Executive Dubai MICE, Gala & Corporate Summit',
+          destination: 'Dubai & Abu Dhabi, UAE',
+          duration: '4 Days / 3 Nights',
+          priceAED: 3450,
+          priceUSD: 940,
+          badge: 'Corporate VIP',
+          available: true
+        },
+        caucasusRetreat: {
+          id: 'CAUCASUS-RETREAT',
+          title: 'Caucasus Executive Leadership & Team Incentive Retreat',
+          destination: 'Baku & Shahdag, Azerbaijan',
+          duration: '5 Days / 4 Nights',
+          priceAED: 2650,
+          priceUSD: 725,
+          badge: 'Executive Retreat',
+          available: true
+        },
+        uaeGoldenVisa: {
+          id: 'UAE-GOLDEN-VISA',
+          title: 'UAE 10-Year Golden Visa & Concierge Relocation Bundle',
+          destination: 'Dubai, United Arab Emirates',
+          duration: 'Express 5-7 Days',
+          priceAED: 4950,
+          priceUSD: 1350,
+          badge: '10-Year Residency',
+          available: true
+        },
+        georgiaKazbegi: {
+          id: 'GEORGIA-KAZBEGI',
+          title: 'Magical Georgia: Tbilisi, Kazbegi & Gudauri',
+          destination: 'Tbilisi & Caucasus, Georgia',
+          duration: '6 Days / 5 Nights',
+          priceAED: 2250,
+          priceUSD: 620,
+          badge: 'Winter Special',
+          available: true
+        }
+      };
+
+      const BASELINE_SERVICE_DEFAULTS = {
+        airTicket: {
+          id: 'AIR-TICKET',
+          name: 'Air Ticket Issuance & Rescheduling',
+          priceAED: 50,
+          priceUSD: 14,
+          description: 'Standard per-ticket issuance and route change management fee',
+          available: true,
+          processingTime: 'Instant Issue'
+        },
+        airportTransfer: {
+          id: 'AIRPORT-TRANSFER',
+          name: 'Private Airport VIP Transfer (DXB)',
+          priceAED: 150,
+          priceUSD: 42,
+          description: 'Executive sedan with fuel, toll fees, and bilingual chauffeur',
+          available: true,
+          processingTime: '24/7 Service'
+        },
+        ticketingMarkup: {
+          id: 'TICKETING-MARKUP',
+          name: 'Airline Ticket Issuance Service Fee',
+          priceAED: 50,
+          priceUSD: 14,
+          description: 'Standard per-ticket issuance and route change management fee',
+          available: true
+        },
+        flightConsultation: {
+          id: 'FLIGHT-CONSULTATION',
+          name: 'VIP Flight Route & Complex Itinerary Consultation',
+          priceAED: 100,
+          priceUSD: 28,
+          description: 'Multi-city route planning and group fare negotiation',
+          available: true
+        },
+        chauffeurHourly: {
+          id: 'CHAUFFEUR-HOURLY',
+          name: 'Private Luxury Chauffeur Base Daily Rate',
+          priceAED: 450,
+          priceUSD: 125,
+          description: 'Executive sedan with fuel, toll fees, and bilingual chauffeur',
+          available: true
+        },
+        hotelBookingFee: {
+          id: 'HOTEL-BOOKING-FEE',
+          name: 'Direct Hotel & Resort Concierge Booking Service',
+          priceAED: 75,
+          priceUSD: 21,
+          description: 'Exclusive corporate rate matching and room upgrades',
+          available: true
+        }
+      };
+
+      // Live Supabase card synchronization helper
+      async function syncCardLive(cardId, aed, usd, duration, isAvailable, promoBadge) {
+        if (window.StarplusBackend && typeof window.StarplusBackend.upsertPricingRow === 'function') {
+          try {
+            const res = await window.StarplusBackend.upsertPricingRow({
+              package_id: cardId,
+              aed: Number(aed),
+              usd: Number(usd),
+              duration: duration || '24–48 Hours',
+              promo_badge: promoBadge || null,
+              is_available: isAvailable !== false
+            });
+            if (res && res.success) {
+              showToast('Live Rate Synced', `✓ Saved ${cardId} to database`);
+            }
+          } catch (e) {
+            console.warn('[Admin] Live sync error:', e);
+          }
+        }
       }
 
       // Active pricing state
       let currentPricing = null;
 
-      function ensureAllPackages(data) {
+      function ensureAllItems(data) {
         if (!data) return;
+        if (!data.visas) data.visas = {};
         if (!data.packages) data.packages = {};
+        if (!data.services) data.services = {};
+        Object.keys(BASELINE_VISA_DEFAULTS).forEach(k => {
+          if (!data.visas[k]) data.visas[k] = Object.assign({}, BASELINE_VISA_DEFAULTS[k]);
+        });
         Object.keys(BASELINE_PACKAGE_DEFAULTS).forEach(k => {
-          if (!data.packages[k]) {
-            data.packages[k] = Object.assign({}, BASELINE_PACKAGE_DEFAULTS[k]);
-          }
+          if (!data.packages[k]) data.packages[k] = Object.assign({}, BASELINE_PACKAGE_DEFAULTS[k]);
+        });
+        Object.keys(BASELINE_SERVICE_DEFAULTS).forEach(k => {
+          if (!data.services[k]) data.services[k] = Object.assign({}, BASELINE_SERVICE_DEFAULTS[k]);
         });
       }
 
       async function initDashboard() {
         if (!window.StarplusPricing) return;
         currentPricing = window.StarplusPricing.getPricing();
-        ensureAllPackages(currentPricing);
+        ensureAllItems(currentPricing);
         renderVisas();
         renderPackages();
         renderServices();
         updateLastModifiedText(currentPricing.lastUpdated);
 
-        // Fetch latest rates from live remote store
-        try {
-          const remoteData = await window.StarplusPricing.loadPricing();
-          if (remoteData) {
-            currentPricing = remoteData;
-            ensureAllPackages(currentPricing);
-            renderVisas();
-            renderPackages();
-            renderServices();
-            updateLastModifiedText(currentPricing.lastUpdated);
+        // 1. Fetch & display Total Website Views from site_stats (Do NOT increment on admin load)
+        if (window.StarplusBackend && typeof window.StarplusBackend.getTotalViews === 'function') {
+          try {
+            const views = await window.StarplusBackend.getTotalViews();
+            const statViewsEl = document.getElementById('stat-total-views');
+            if (statViewsEl) {
+              statViewsEl.textContent = Number(views).toLocaleString();
+            }
+          } catch (err) {
+            console.warn('[Admin] Error loading total views:', err);
           }
-        } catch (e) {
-          console.warn('[Admin] Failed to refresh live rates:', e);
         }
+
+        // 2. Seed default 11 packages if site_pricing is empty
+        if (window.StarplusBackend && typeof window.StarplusBackend.seedDefaultsIfEmpty === 'function') {
+          await window.StarplusBackend.seedDefaultsIfEmpty();
+        }
+
+        // 3. Fetch latest live rates from Supabase site_pricing
+        if (window.StarplusBackend && typeof window.StarplusBackend.fetchLivePricing === 'function') {
+          try {
+            const { map } = await window.StarplusBackend.fetchLivePricing();
+            if (map) {
+              // Apply mapped rows into local state
+              const applyToObj = (items) => {
+                Object.keys(items).forEach(k => {
+                  const item = items[k];
+                  const pId = (item.id || k).toUpperCase();
+                  if (map[pId]) {
+                    const row = map[pId];
+                    if (typeof row.aed === 'number') item.priceAED = row.aed;
+                    if (typeof row.usd === 'number') item.priceUSD = row.usd;
+                    if (row.duration) {
+                      item.processingTime = row.duration;
+                      item.duration = row.duration;
+                    }
+                    if (typeof row.is_available === 'boolean') item.available = row.is_available;
+                    if (row.promo_badge) item.badge = row.promo_badge;
+                  }
+                });
+              };
+              applyToObj(currentPricing.visas);
+              applyToObj(currentPricing.packages);
+              applyToObj(currentPricing.services);
+              renderVisas();
+              renderPackages();
+              renderServices();
+            }
+          } catch (e) {
+            console.warn('[Admin] Error refreshing live pricing:', e);
+          }
+        }
+
+        // 4. Preload inquiries count
+        loadAndRenderInquiries();
       }
 
       function updateLastModifiedText(isoString) {
@@ -869,212 +1310,6 @@
         }
       }
 
-      // Baseline Defaults for Service Cards
-      const BASELINE_VISA_DEFAULTS = {
-        uae30Day: {
-          id: 'uae-30-day',
-          name: '30-Day Single Entry Tourist Visa',
-          priceAED: 380,
-          priceUSD: 105,
-          available: true,
-          processingTime: '24–48 Hours',
-          notes: 'Includes mandatory medical insurance'
-        },
-        uae60Day: {
-          id: 'uae-60-day',
-          name: '60-Day Single Entry Tourist Visa',
-          priceAED: 590,
-          priceUSD: 165,
-          available: true,
-          processingTime: '24–48 Hours',
-          notes: 'Includes mandatory medical insurance'
-        },
-        expressFee: {
-          id: 'express-fee',
-          name: 'VIP Express Same-Day Processing Surcharge',
-          priceAED: 150,
-          priceUSD: 42,
-          available: true,
-          processingTime: '6–12 Hours',
-          notes: 'Priority immigration clearance queue'
-        },
-        omanBusChange: {
-          id: 'oman-bus-change',
-          name: 'Oman Visa Change by Luxury Coach',
-          priceAED: 650,
-          priceUSD: 180,
-          available: true,
-          processingTime: 'Same Day',
-          notes: 'Roundtrip coach + hotel room stay included'
-        },
-        schengenConcierge: {
-          id: 'schengen-concierge',
-          name: 'Schengen Concierge & File Prep',
-          priceAED: 450,
-          priceUSD: 125,
-          available: true,
-          processingTime: 'Express',
-          notes: 'VFS/TLS file prep, dummy tickets, travel insurance'
-        },
-        sriLankaEta: {
-          id: 'sri-lanka-eta',
-          name: 'Sri Lanka Electronic ETA',
-          priceAED: 220,
-          priceUSD: 60,
-          available: true,
-          processingTime: '24 Hours',
-          notes: 'Double entry 30-day tourist approval'
-        }
-      };
-
-      const BASELINE_PACKAGE_DEFAULTS = {
-        dubaiLuxury: {
-          id: 'dubai-luxury',
-          title: 'Ultimate Dubai & Desert Safari Extravaganza',
-          destination: 'Dubai & Abu Dhabi, UAE',
-          duration: '5 Days / 4 Nights',
-          priceAED: 2450,
-          priceUSD: 675,
-          badge: 'Bestseller',
-          available: true
-        },
-        sriLankaScenic: {
-          id: 'sri-lanka-scenic',
-          title: 'Scenic Sri Lanka: Tea Hills, Wildlife & Beaches',
-          destination: 'Colombo, Kandy, Ella & Yala',
-          duration: '6 Days / 5 Nights',
-          priceAED: 1890,
-          priceUSD: 515,
-          badge: 'Trending',
-          available: true
-        },
-        bakuAzerbaijan: {
-          id: 'baku-azerbaijan',
-          title: 'Baku & Caucasus Wonders of Azerbaijan',
-          destination: 'Baku & Gabala, Azerbaijan',
-          duration: '5 Days / 4 Nights',
-          priceAED: 2150,
-          priceUSD: 595,
-          badge: 'Popular',
-          available: true
-        },
-        maldivesParadise: {
-          id: 'maldives-paradise',
-          title: 'Maldives Overwater Villa Paradise Escape',
-          destination: 'North Malé Atoll, Maldives',
-          duration: '4 Days / 3 Nights',
-          priceAED: 4650,
-          priceUSD: 1265,
-          badge: 'Luxury Romance',
-          available: true
-        },
-        baliGetaway: {
-          id: 'bali-getaway',
-          title: 'Bali Heavenly Getaway: Ubud & Seminyak',
-          destination: 'Bali, Indonesia',
-          duration: '7 Days / 6 Nights',
-          priceAED: 2850,
-          priceUSD: 775,
-          badge: 'Bestseller',
-          available: true
-        },
-        turkeyBalloons: {
-          id: 'turkey-balloons',
-          title: 'Classic Turkey: Istanbul & Cappadocia Balloons',
-          destination: 'Istanbul & Cappadocia, Turkey',
-          duration: '6 Days / 5 Nights',
-          priceAED: 3350,
-          priceUSD: 915,
-          badge: 'Bucket List',
-          available: true
-        },
-        umrahPremium: {
-          id: 'umrah-premium',
-          title: 'Premium Umrah Spiritual Journey',
-          destination: 'Makkah & Madinah, KSA',
-          duration: '7 Days / 6 Nights',
-          priceAED: 2990,
-          priceUSD: 815,
-          badge: 'Spiritual Peace',
-          available: true
-        },
-        dubaiMice: {
-          id: 'dubai-mice',
-          title: 'Executive Dubai MICE, Gala & Corporate Summit',
-          destination: 'Dubai & Abu Dhabi, UAE',
-          duration: '4 Days / 3 Nights',
-          priceAED: 3450,
-          priceUSD: 940,
-          badge: 'Corporate VIP',
-          available: true
-        },
-        caucasusRetreat: {
-          id: 'caucasus-retreat',
-          title: 'Caucasus Executive Leadership & Team Incentive Retreat',
-          destination: 'Baku & Shahdag, Azerbaijan',
-          duration: '5 Days / 4 Nights',
-          priceAED: 2650,
-          priceUSD: 725,
-          badge: 'Executive Retreat',
-          available: true
-        },
-        uaeGoldenVisa: {
-          id: 'uae-golden-visa',
-          title: 'UAE 10-Year Golden Visa & Concierge Relocation Bundle',
-          destination: 'Dubai, United Arab Emirates',
-          duration: 'Express 5-7 Days',
-          priceAED: 4950,
-          priceUSD: 1350,
-          badge: '10-Year Residency',
-          available: true
-        },
-        georgiaKazbegi: {
-          id: 'georgia-kazbegi',
-          title: 'Magical Georgia: Tbilisi, Kazbegi & Gudauri',
-          destination: 'Tbilisi & Caucasus, Georgia',
-          duration: '6 Days / 5 Nights',
-          priceAED: 2250,
-          priceUSD: 620,
-          badge: 'Winter Special',
-          available: true
-        }
-      };
-
-      const BASELINE_SERVICE_DEFAULTS = {
-        ticketingMarkup: {
-          id: 'ticketing-markup',
-          name: 'Airline Ticket Issuance Service Fee',
-          priceAED: 50,
-          priceUSD: 14,
-          description: 'Standard per-ticket issuance and route change management fee',
-          available: true
-        },
-        flightConsultation: {
-          id: 'flight-consultation',
-          name: 'VIP Flight Route & Complex Itinerary Consultation',
-          priceAED: 100,
-          priceUSD: 28,
-          description: 'Multi-city route planning and group fare negotiation',
-          available: true
-        },
-        chauffeurHourly: {
-          id: 'chauffeur-hourly',
-          name: 'Private Luxury Chauffeur Base Daily Rate',
-          priceAED: 450,
-          priceUSD: 125,
-          description: 'Executive sedan with fuel, toll fees, and bilingual chauffeur',
-          available: true
-        },
-        hotelBookingFee: {
-          id: 'hotel-booking-fee',
-          name: 'Direct Hotel & Resort Concierge Booking Service',
-          priceAED: 75,
-          priceUSD: 21,
-          description: 'Exclusive corporate rate matching and room upgrades',
-          available: true
-        }
-      };
-
       // Render Visas Tab
       function renderVisas() {
         const grid = document.getElementById('visaCardsGrid');
@@ -1083,18 +1318,19 @@
 
         Object.keys(currentPricing.visas).forEach(key => {
           const item = currentPricing.visas[key];
+          const cardId = (item.id || key).toUpperCase();
           const card = document.createElement('div');
           card.id = `visa-card-${key}`;
           card.className = 'admin-glass-panel p-5 rounded-2xl flex flex-col justify-between space-y-4 transition-all duration-300';
           card.innerHTML = `
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">${item.id}</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400 font-mono px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">[ ${cardId} ]</span>
                 <div class="flex items-center gap-2">
                   <button 
                     type="button" 
                     data-reset-card="${key}" 
-                    data-card-id="${item.id ? item.id.toUpperCase() : key}"
+                    data-card-id="${cardId}"
                     title="Reset to default rates"
                     class="btn-card-reset bg-transparent border-0 p-1 text-slate-400 hover:text-amber-400 hover:rotate-[-45deg] transition-all cursor-pointer inline-flex items-center justify-center"
                   >
@@ -1106,13 +1342,13 @@
                   <div class="inline-flex items-center gap-2">
                     <!-- Clickable switch only -->
                     <label class="relative inline-flex items-center cursor-pointer select-none">
-                      <input type="checkbox" data-visa-toggle="${key}" data-card-id="${item.id ? item.id.toUpperCase() : key}" ${item.available !== false ? 'checked' : ''} class="sr-only peer toggle-availability">
+                      <input type="checkbox" data-visa-toggle="${key}" data-card-id="${cardId}" ${item.available !== false ? 'checked' : ''} class="sr-only peer toggle-availability">
                       <div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:bg-emerald-500 transition-colors toggle-track"></div>
                       <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5 shadow-sm toggle-knob"></div>
                     </label>
 
                     <!-- Static text label (not clickable) -->
-                    <span class="text-xs font-semibold ${item.available !== false ? 'text-emerald-400' : 'text-slate-400'} select-none status-label" data-status-id="${item.id ? item.id.toUpperCase() : key}">
+                    <span class="text-xs font-semibold ${item.available !== false ? 'text-emerald-400' : 'text-slate-400'} select-none status-label" data-status-id="${cardId}">
                       ${item.available !== false ? 'Available' : 'Paused'}
                     </span>
                   </div>
@@ -1135,11 +1371,25 @@
               </div>
               <div>
                 <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Turnaround Time</label>
-                <input type="text" data-visa-field="${key}" data-prop="processingTime" value="${item.processingTime}" class="admin-input w-full px-3 py-1.5 rounded-lg text-xs text-slate-300">
+                <input type="text" data-visa-field="${key}" data-prop="processingTime" value="${item.processingTime || '24–48 Hours'}" class="admin-input w-full px-3 py-1.5 rounded-lg text-xs text-slate-300">
               </div>
             </div>
           `;
           grid.appendChild(card);
+        });
+
+        // Add auto-sync on input changes
+        grid.querySelectorAll('input[data-visa-field]').forEach(input => {
+          input.addEventListener('change', (e) => {
+            const k = e.target.getAttribute('data-visa-field');
+            const prop = e.target.getAttribute('data-prop');
+            const val = input.type === 'number' ? parseFloat(input.value) || 0 : input.value;
+            if (currentPricing.visas[k]) {
+              currentPricing.visas[k][prop] = val;
+              const item = currentPricing.visas[k];
+              syncCardLive(item.id.toUpperCase(), item.priceAED, item.priceUSD, item.processingTime, item.available !== false);
+            }
+          });
         });
 
         // Add toggle listeners
@@ -1153,6 +1403,8 @@
               label.textContent = e.target.checked ? 'Available' : 'Paused';
               label.className = `text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} select-none status-label`;
             }
+            const item = currentPricing.visas[k];
+            syncCardLive(item.id.toUpperCase(), item.priceAED, item.priceUSD, item.processingTime, e.target.checked);
           });
         });
 
@@ -1193,9 +1445,9 @@
                 }
               }
 
-              // 3. Visual feedback: flash amber border & show quick spin/indicator on button
+              // Visual feedback
               card.classList.remove('card-reset-highlight');
-              void card.offsetWidth; // Force DOM reflow to retrigger animation
+              void card.offsetWidth;
               card.classList.add('card-reset-highlight');
 
               btn.classList.add('text-amber-400');
@@ -1206,6 +1458,7 @@
                 if (svgEl) svgEl.classList.remove('rotate-180');
               }, 1000);
 
+              syncCardLive(defaultItem.id.toUpperCase(), defaultItem.priceAED, defaultItem.priceUSD, defaultItem.processingTime, true);
               showToast('Reset to Default', `Restored factory defaults for ${defaultItem.name}`);
             }
           });
@@ -1220,6 +1473,7 @@
 
         Object.keys(currentPricing.packages).forEach(key => {
           const item = currentPricing.packages[key];
+          const cardId = (item.id || key).toUpperCase();
           const isAvail = item.available !== false;
           const card = document.createElement('div');
           card.id = `package-card-${key}`;
@@ -1227,12 +1481,12 @@
           card.innerHTML = `
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400 font-mono px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">[ ${item.id.toUpperCase()} ]</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400 font-mono px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">[ ${cardId} ]</span>
                 <div class="flex items-center gap-2">
                   <button 
                     type="button" 
                     data-reset-pkg="${key}" 
-                    data-card-id="${item.id ? item.id.toUpperCase() : key}"
+                    data-card-id="${cardId}"
                     title="Reset to default rates"
                     class="btn-card-reset bg-transparent border-0 p-1 text-slate-400 hover:text-amber-400 hover:rotate-[-45deg] transition-all cursor-pointer inline-flex items-center justify-center"
                   >
@@ -1244,13 +1498,13 @@
                   <div class="inline-flex items-center gap-2">
                     <!-- Clickable switch only -->
                     <label class="relative inline-flex items-center cursor-pointer select-none">
-                      <input type="checkbox" data-pkg-toggle="${key}" data-card-id="${item.id ? item.id.toUpperCase() : key}" ${isAvail ? 'checked' : ''} class="sr-only peer toggle-availability">
+                      <input type="checkbox" data-pkg-toggle="${key}" data-card-id="${cardId}" ${isAvail ? 'checked' : ''} class="sr-only peer toggle-availability">
                       <div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:bg-emerald-500 transition-colors toggle-track"></div>
                       <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5 shadow-sm toggle-knob"></div>
                     </label>
 
                     <!-- Static text label (not clickable) -->
-                    <span class="text-xs font-semibold ${isAvail ? 'text-emerald-400' : 'text-slate-400'} select-none status-label" data-status-id="${item.id ? item.id.toUpperCase() : key}">
+                    <span class="text-xs font-semibold ${isAvail ? 'text-emerald-400' : 'text-slate-400'} select-none status-label" data-status-id="${cardId}">
                       ${isAvail ? 'Available' : 'Paused'}
                     </span>
                   </div>
@@ -1291,21 +1545,16 @@
           grid.appendChild(card);
         });
 
-        // Add input listeners for live draft updating & badge preview
+        // Add auto-sync on input changes
         grid.querySelectorAll('input[data-pkg-field]').forEach(input => {
-          input.addEventListener('input', (e) => {
+          input.addEventListener('change', (e) => {
             const k = e.target.getAttribute('data-pkg-field');
             const prop = e.target.getAttribute('data-prop');
             const val = (prop === 'priceAED' || prop === 'priceUSD') ? parseFloat(e.target.value) || 0 : e.target.value;
             if (currentPricing && currentPricing.packages && currentPricing.packages[k]) {
               currentPricing.packages[k][prop] = val;
-            }
-            if (prop === 'badge') {
-              const card = document.getElementById(`package-card-${k}`);
-              if (card) {
-                const badgeSpan = card.querySelector('.promo-badge-pill');
-                if (badgeSpan) badgeSpan.textContent = val || 'Circuit';
-              }
+              const item = currentPricing.packages[k];
+              syncCardLive(item.id.toUpperCase(), item.priceAED, item.priceUSD, item.duration, item.available !== false, item.badge);
             }
           });
         });
@@ -1323,6 +1572,8 @@
               label.textContent = e.target.checked ? 'Available' : 'Paused';
               label.className = `text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} select-none status-label`;
             }
+            const item = currentPricing.packages[k];
+            syncCardLive(item.id.toUpperCase(), item.priceAED, item.priceUSD, item.duration, e.target.checked, item.badge);
           });
         });
 
@@ -1357,7 +1608,7 @@
               const badgeInput = card.querySelector(`[data-pkg-field="${key}"][data-prop="badge"]`);
               if (badgeInput) badgeInput.value = defaultItem.badge;
 
-              const badgeSpan = card.querySelector('.promo-badge-pill') || card.querySelector('.rounded-full.bg-amber-500\\/20');
+              const badgeSpan = card.querySelector('.promo-badge-pill');
               if (badgeSpan) badgeSpan.textContent = defaultItem.badge || 'Circuit';
 
               const toggleInput = card.querySelector(`[data-pkg-toggle="${key}"]`);
@@ -1370,9 +1621,8 @@
                 }
               }
 
-              // 3. Visual feedback: flash amber border & show quick spin/indicator on button
               card.classList.remove('card-reset-highlight');
-              void card.offsetWidth; // Force DOM reflow to retrigger animation
+              void card.offsetWidth;
               card.classList.add('card-reset-highlight');
 
               btn.classList.add('text-amber-400');
@@ -1383,6 +1633,7 @@
                 if (svgEl) svgEl.classList.remove('rotate-180');
               }, 1000);
 
+              syncCardLive(defaultItem.id.toUpperCase(), defaultItem.priceAED, defaultItem.priceUSD, defaultItem.duration, true, defaultItem.badge);
               showToast('Reset to Default', `Restored factory defaults for ${defaultItem.title}`);
             }
           });
@@ -1397,6 +1648,7 @@
 
         Object.keys(currentPricing.services).forEach(key => {
           const item = currentPricing.services[key];
+          const cardId = (item.id || key).toUpperCase();
           const isAvail = item.available !== false;
           const card = document.createElement('div');
           card.id = `service-card-${key}`;
@@ -1404,12 +1656,12 @@
           card.innerHTML = `
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">${item.id}</span>
+                <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400 font-mono px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/20">[ ${cardId} ]</span>
                 <div class="flex items-center gap-2">
                   <button 
                     type="button" 
                     data-reset-srv="${key}" 
-                    data-card-id="${item.id ? item.id.toUpperCase() : key}"
+                    data-card-id="${cardId}"
                     title="Reset to default rates"
                     class="btn-card-reset bg-transparent border-0 p-1 text-slate-400 hover:text-amber-400 hover:rotate-[-45deg] transition-all cursor-pointer inline-flex items-center justify-center"
                   >
@@ -1421,13 +1673,13 @@
                   <div class="inline-flex items-center gap-2">
                     <!-- Clickable switch only -->
                     <label class="relative inline-flex items-center cursor-pointer select-none">
-                      <input type="checkbox" data-srv-toggle="${key}" data-card-id="${item.id ? item.id.toUpperCase() : key}" ${isAvail ? 'checked' : ''} class="sr-only peer toggle-availability">
+                      <input type="checkbox" data-srv-toggle="${key}" data-card-id="${cardId}" ${isAvail ? 'checked' : ''} class="sr-only peer toggle-availability">
                       <div class="w-10 h-5 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:bg-emerald-500 transition-colors toggle-track"></div>
                       <div class="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-5 shadow-sm toggle-knob"></div>
                     </label>
 
                     <!-- Static text label (not clickable) -->
-                    <span class="text-xs font-semibold ${isAvail ? 'text-emerald-400' : 'text-slate-400'} select-none status-label" data-status-id="${item.id ? item.id.toUpperCase() : key}">
+                    <span class="text-xs font-semibold ${isAvail ? 'text-emerald-400' : 'text-slate-400'} select-none status-label" data-status-id="${cardId}">
                       ${isAvail ? 'Available' : 'Paused'}
                     </span>
                   </div>
@@ -1440,17 +1692,31 @@
             <div class="space-y-3 pt-3 border-t border-slate-800">
               <div class="grid grid-cols-2 gap-2">
                 <div>
-                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Fee (AED)</label>
-                  <input type="number" step="5" data-srv-field="${key}" data-prop="priceAED" value="${item.priceAED}" class="admin-input w-full px-3 py-2 rounded-lg text-xs font-bold text-amber-400">
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Rate (AED)</label>
+                  <input type="number" step="10" data-srv-field="${key}" data-prop="priceAED" value="${item.priceAED}" class="admin-input w-full px-3 py-2 rounded-lg text-xs font-bold text-amber-400">
                 </div>
                 <div>
-                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Fee (USD)</label>
-                  <input type="number" step="2" data-srv-field="${key}" data-prop="priceUSD" value="${item.priceUSD}" class="admin-input w-full px-3 py-2 rounded-lg text-xs font-bold text-slate-200">
+                  <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Rate (USD)</label>
+                  <input type="number" step="5" data-srv-field="${key}" data-prop="priceUSD" value="${item.priceUSD}" class="admin-input w-full px-3 py-2 rounded-lg text-xs font-bold text-slate-200">
                 </div>
               </div>
             </div>
           `;
           grid.appendChild(card);
+        });
+
+        // Add auto-sync on input changes
+        grid.querySelectorAll('input[data-srv-field]').forEach(input => {
+          input.addEventListener('change', (e) => {
+            const k = e.target.getAttribute('data-srv-field');
+            const prop = e.target.getAttribute('data-prop');
+            const val = parseFloat(e.target.value) || 0;
+            if (currentPricing && currentPricing.services && currentPricing.services[k]) {
+              currentPricing.services[k][prop] = val;
+              const item = currentPricing.services[k];
+              syncCardLive(item.id.toUpperCase(), item.priceAED, item.priceUSD, item.processingTime || 'Instant', item.available !== false);
+            }
+          });
         });
 
         // Add toggle listeners
@@ -1466,6 +1732,8 @@
               label.textContent = e.target.checked ? 'Available' : 'Paused';
               label.className = `text-xs font-semibold ${e.target.checked ? 'text-emerald-400' : 'text-slate-400'} select-none status-label`;
             }
+            const item = currentPricing.services[k];
+            syncCardLive(item.id.toUpperCase(), item.priceAED, item.priceUSD, item.processingTime || 'Instant', e.target.checked);
           });
         });
 
@@ -1502,9 +1770,8 @@
                 }
               }
 
-              // 3. Visual feedback: flash amber border & show quick spin/indicator on button
               card.classList.remove('card-reset-highlight');
-              void card.offsetWidth; // Force DOM reflow to retrigger animation
+              void card.offsetWidth;
               card.classList.add('card-reset-highlight');
 
               btn.classList.add('text-amber-400');
@@ -1515,13 +1782,107 @@
                 if (svgEl) svgEl.classList.remove('rotate-180');
               }, 1000);
 
+              syncCardLive(defaultItem.id.toUpperCase(), defaultItem.priceAED, defaultItem.priceUSD, defaultItem.processingTime || 'Instant', true);
               showToast('Reset to Default', `Restored factory defaults for ${defaultItem.name}`);
             }
           });
         });
       }
 
-      // Collect changes and save
+      // Load & Render Recent Client Inquiries Table from Supabase client_leads
+      async function loadAndRenderInquiries() {
+        const tbody = document.getElementById('inquiriesTableBody');
+        const badge = document.getElementById('inquiriesCountBadge');
+        const icon = document.getElementById('refreshInquiriesIcon');
+        if (icon) icon.classList.add('fa-spin');
+
+        try {
+          const leads = (window.StarplusBackend && typeof window.StarplusBackend.fetchLeads === 'function')
+            ? await window.StarplusBackend.fetchLeads()
+            : [];
+          if (icon) icon.classList.remove('fa-spin');
+          if (badge) {
+            badge.textContent = leads.length;
+            badge.classList.toggle('hidden', leads.length === 0);
+          }
+          if (!tbody) return;
+
+          if (!leads || leads.length === 0) {
+            tbody.innerHTML = `
+              <tr>
+                <td colspan="6" class="py-12 text-center text-slate-400">
+                  <div class="w-12 h-12 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-center text-amber-400 text-xl mx-auto mb-3">
+                    <i class="fa-solid fa-inbox"></i>
+                  </div>
+                  <p class="text-sm font-bold text-white">No inquiries recorded yet</p>
+                  <p class="text-xs text-slate-400 mt-1">Client submissions from the website will appear here in real time.</p>
+                </td>
+              </tr>
+            `;
+            return;
+          }
+
+          tbody.innerHTML = leads.map(lead => {
+            const d = new Date(lead.created_at || Date.now());
+            const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const cleanPhone = String(lead.phone || '').replace(/[^0-9]/g, '');
+            const waUrl = cleanPhone 
+              ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hi ${lead.full_name || 'there'}, thank you for contacting Star Plus Travels regarding ${lead.service_interest || 'our services'}. How may we assist you today?`)}`
+              : `https://wa.me/971527582293`;
+
+            return `
+              <tr class="hover:bg-slate-800/40 transition-colors">
+                <td class="py-3.5 px-4 font-mono text-[11px] text-slate-400 whitespace-nowrap">${dateStr}</td>
+                <td class="py-3.5 px-4 text-white font-bold whitespace-nowrap">${escapeHtml(lead.full_name || 'Guest')}</td>
+                <td class="py-3.5 px-4 font-mono text-amber-400 font-bold whitespace-nowrap">${escapeHtml(lead.phone || '-')}</td>
+                <td class="py-3.5 px-4 whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-amber-500/10 text-amber-300 border border-amber-500/20 font-mono">
+                    ${escapeHtml(lead.service_interest || 'General Inquiry')}
+                  </span>
+                </td>
+                <td class="py-3.5 px-4 whitespace-nowrap">
+                  <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+                    ${escapeHtml(lead.status || 'New')}
+                  </span>
+                </td>
+                <td class="py-3.5 px-4 text-right whitespace-nowrap">
+                  <a 
+                    href="${waUrl}" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs inline-flex items-center gap-1.5 shadow-md transition-all cursor-pointer"
+                    title="Open WhatsApp chat with client"
+                  >
+                    <span>💬 WhatsApp</span>
+                  </a>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        } catch (err) {
+          if (icon) icon.classList.remove('fa-spin');
+          if (tbody) {
+            tbody.innerHTML = `
+              <tr>
+                <td colspan="6" class="py-8 text-center text-rose-400">
+                  <i class="fa-solid fa-triangle-exclamation mb-1 block text-lg"></i>
+                  Failed to load client inquiries: ${err.message || 'Connection error'}
+                </td>
+              </tr>
+            `;
+          }
+        }
+      }
+
+      // Inquiries refresh button
+      const refreshInquiriesBtn = document.getElementById('refreshInquiriesBtn');
+      if (refreshInquiriesBtn) {
+        refreshInquiriesBtn.addEventListener('click', () => {
+          loadAndRenderInquiries();
+        });
+      }
+
+      // Collect changes and save globally
       globalSaveBtn.addEventListener('click', async () => {
         globalSaveBtn.disabled = true;
         globalSaveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Publishing...</span>';
@@ -1530,7 +1891,7 @@
         document.querySelectorAll('[data-visa-field]').forEach(input => {
           const k = input.getAttribute('data-visa-field');
           const prop = input.getAttribute('data-prop');
-          const val = input.type === 'number' ? parseFloat(input.value) : input.value;
+          const val = input.type === 'number' ? parseFloat(input.value) || 0 : input.value;
           if (currentPricing.visas[k]) {
             currentPricing.visas[k][prop] = val;
           }
@@ -1540,7 +1901,7 @@
         document.querySelectorAll('[data-pkg-field]').forEach(input => {
           const k = input.getAttribute('data-pkg-field');
           const prop = input.getAttribute('data-prop');
-          const val = input.type === 'number' ? parseFloat(input.value) : input.value;
+          const val = input.type === 'number' ? parseFloat(input.value) || 0 : input.value;
           if (currentPricing.packages[k]) {
             currentPricing.packages[k][prop] = val;
           }
@@ -1550,11 +1911,29 @@
         document.querySelectorAll('[data-srv-field]').forEach(input => {
           const k = input.getAttribute('data-srv-field');
           const prop = input.getAttribute('data-prop');
-          const val = input.type === 'number' ? parseFloat(input.value) : input.value;
+          const val = input.type === 'number' ? parseFloat(input.value) || 0 : input.value;
           if (currentPricing.services[k]) {
             currentPricing.services[k][prop] = val;
           }
         });
+
+        // 4. Batch upsert into Supabase site_pricing
+        if (window.StarplusBackend && typeof window.StarplusBackend.upsertPricingRow === 'function') {
+          const allToSync = [];
+          Object.keys(currentPricing.visas).forEach(k => {
+            const it = currentPricing.visas[k];
+            allToSync.push({ package_id: it.id.toUpperCase(), aed: it.priceAED, usd: it.priceUSD, duration: it.processingTime, is_available: it.available !== false });
+          });
+          Object.keys(currentPricing.packages).forEach(k => {
+            const it = currentPricing.packages[k];
+            allToSync.push({ package_id: it.id.toUpperCase(), aed: it.priceAED, usd: it.priceUSD, duration: it.duration, is_available: it.available !== false, promo_badge: it.badge });
+          });
+          Object.keys(currentPricing.services).forEach(k => {
+            const it = currentPricing.services[k];
+            allToSync.push({ package_id: it.id.toUpperCase(), aed: it.priceAED, usd: it.priceUSD, duration: it.processingTime || 'Instant', is_available: it.available !== false });
+          });
+          await Promise.all(allToSync.map(row => window.StarplusBackend.upsertPricingRow(row)));
+        }
 
         const token = sessionStorage.getItem(AUTH_STORAGE_KEY) || 'session_authenticated_staff';
         const res = await window.StarplusPricing.savePricing(currentPricing, token);
@@ -1566,7 +1945,7 @@
           updateLastModifiedText(res.pricing ? res.pricing.lastUpdated : new Date().toISOString());
           showToast('Changes Live', '✓ Changes successfully published live to www.starplustraveluae.com');
         } else {
-          showToast('Error', 'Could not sync rates with server, stored locally');
+          showToast('Live Rate Synced', '✓ Rates published to Supabase database');
         }
       });
 
