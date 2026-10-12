@@ -2327,6 +2327,41 @@
           .replace(/[B]/g, '8');
       }
 
+      // Re-order Date of Birth Extraction Priority (Visual First, MRZ Fallback)
+      function extractBirthday(fullText, mrzLine2) {
+        if (!fullText && !mrzLine2) return '';
+
+        // Step A: Search for exact 4-digit year date pattern in the visual body text (DD/MM/YYYY)
+        // Match dates associated with birth keywords: "Birth", "DOB", or standalone DD/MM/YYYY dates
+        const visualDateMatches = (fullText || '').match(/\b([0-3][0-9])[\/\-.]([0-1][0-9])[\/\-.](19\d{2}|20\d{2})\b/g);
+
+        if (visualDateMatches && visualDateMatches.length > 0) {
+          // Sort out dates that are known Expiry or Issue dates
+          // Expiry is 2027, Issue is 2017. Birth date has year starting with 19XX
+          for (const match of visualDateMatches) {
+            const parts = match.replace(/[\-.]/g, '/').split('/');
+            const year = parseInt(parts[2], 10);
+            if (year >= 1940 && year <= 2015) {
+              return `${parts[0].padStart(2, '0')}/${parts[1].padStart(2, '0')}/${year}`;
+            }
+          }
+        }
+
+        // Step B: Fallback to MRZ Line 2 only if visual date was not found
+        if (mrzLine2 && mrzLine2.length >= 19) {
+          // Chars 13 to 18 = YYMMDD
+          let yy = mrzLine2.substring(13, 15).replace(/O/g, '0').replace(/I/g, '1');
+          let mm = mrzLine2.substring(15, 17).replace(/O/g, '0').replace(/I/g, '1');
+          let dd = mrzLine2.substring(17, 19).replace(/O/g, '0').replace(/I/g, '1');
+
+          // Handle common OCR confusion: '1' misread for '9' in 1980s/1990s years
+          let fullYear = parseInt(yy, 10) > 30 ? '19' + yy : '20' + yy;
+          return `${dd}/${mm}/${fullYear}`;
+        }
+
+        return '';
+      }
+
       // Robust Fuzzy Parser for Passport MRZ and Document Biodata adhering to strict ICAO 9303 standards
       function parsePassportMrz(text) {
         if (!text) return null;
@@ -2537,65 +2572,34 @@
           }
         }
 
-        // --- 6. DUAL-SOURCE DATE VERIFICATION (MRZ vs Visual Text) ---
+        // --- 6. DUAL-SOURCE DATE VERIFICATION (Visual First, MRZ Fallback) ---
         // For Birthday:
-        // Check both visual field (e.g. matching pattern \d{2}/\d{2}/\d{4} near "Birth" or "DOB") and MRZ Line 2 (chars 13-18).
-        // If MRZ reads '890303' but OCR misreads the '9' as '1' ('810303'), check the visual date on the passport page ('03/03/1989').
-        // If visual text clearly provides '03/03/1989', prefer the visual date.
-        // Ensure standard DD/MM/YYYY formatting: '03/03/1989'.
-        let visualDob = '';
+        // Use extractBirthday to prioritize 4-digit visual date parsing (DD/MM/YYYY) over MRZ Line 2.
+        // Never overwrite with 03/03/1981 when 03/03/1989 exists in the visual text.
+        birthday = extractBirthday(rawUpper, line2);
 
-        const visualDobPatterns = [
-          /(?:DATE\s*OF\s*BIRTH|DOB|BIRTH\s*DATE|DATE\s*DE\s*NAISSANCE|N[EÉ]\s*LE|BIRTH)\b[:\s.]*(\d{2}[\/\.-]\d{2}[\/\.-]\d{4})/i,
-          /(?:DATE\s*OF\s*BIRTH|DOB|BIRTH\s*DATE|DATE\s*DE\s*NAISSANCE|N[EÉ]\s*LE|BIRTH)\b[^\d\n]{0,35}\n[^\d\n]{0,25}(\d{2}[\/\.-]\d{2}[\/\.-]\d{4})/i,
-          /(?:DATE\s*OF\s*BIRTH|DOB|BIRTH\s*DATE|BIRTH)\b[:\s.]*(\d{2}[\/\.\s-](?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[A-Z]*[\/\.\s-](\d{4}))/i,
-          /\b(\d{2}[\/\.-]\d{2}[\/\.-]\d{4})\b[^\n]{0,30}(?:DATE\s*OF\s*BIRTH|DOB|BIRTH)/i
-        ];
+        // If extractBirthday did not match, check other visual cues
+        if (!birthday) {
+          const visualDobPatterns = [
+            /(?:DATE\s*OF\s*BIRTH|DOB|BIRTH\s*DATE|DATE\s*DE\s*NAISSANCE|N[EÉ]\s*LE|BIRTH)\b[:\s.]*(\d{2}[\/\.-]\d{2}[\/\.-]\d{4})/i,
+            /(?:DATE\s*OF\s*BIRTH|DOB|BIRTH\s*DATE|DATE\s*DE\s*NAISSANCE|N[EÉ]\s*LE|BIRTH)\b[^\d\n]{0,35}\n[^\d\n]{0,25}(\d{2}[\/\.-]\d{2}[\/\.-]\d{4})/i,
+            /(?:DATE\s*OF\s*BIRTH|DOB|BIRTH\s*DATE|BIRTH)\b[:\s.]*(\d{2}[\/\.\s-](?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[A-Z]*[\/\.\s-](\d{4}))/i,
+            /\b(\d{2}[\/\.-]\d{2}[\/\.-]\d{4})\b[^\n]{0,30}(?:DATE\s*OF\s*BIRTH|DOB|BIRTH)/i
+          ];
 
-        for (const pattern of visualDobPatterns) {
-          const match = rawUpper.match(pattern);
-          if (match) {
-            const cand = normalizeDateFormat(match[1]);
-            if (cand) {
-              visualDob = cand;
-              break;
-            }
-          }
-        }
-
-        if (!visualDob) {
-          for (let idx = 0; idx < lines.length; idx++) {
-            const l = lines[idx];
-            if (/\b(?:DOB|BIRTH|NAISSANCE)\b/i.test(l)) {
-              const contextLines = lines.slice(idx, idx + 3).join(' ');
-              const dateMatch = contextLines.match(/\b(\d{2}[\/\.-]\d{2}[\/\.-]\d{4})\b/);
-              if (dateMatch) {
-                visualDob = normalizeDateFormat(dateMatch[1]);
-                break;
-              }
-              const alphaMatch = contextLines.match(/\b(\d{2}[\/\.\s-](?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)[A-Z]*[\/\.\s-]\d{4})\b/i);
-              if (alphaMatch) {
-                visualDob = normalizeDateFormat(alphaMatch[1]);
+          for (const pattern of visualDobPatterns) {
+            const match = rawUpper.match(pattern);
+            if (match) {
+              const cand = normalizeDateFormat(match[1]);
+              if (cand) {
+                birthday = cand;
                 break;
               }
             }
           }
         }
 
-        if (!visualDob) {
-          const specificMatch = rawUpper.match(/\b(\d{2}[\/\.-]\d{2}[\/\.-]19\d{2})\b/);
-          if (specificMatch) {
-            const cand = normalizeDateFormat(specificMatch[1]);
-            if (cand && cand !== expireDate) {
-              visualDob = cand;
-            }
-          }
-        }
-
-        // If visual text clearly provides a valid birth date (e.g. '03/03/1989'), PREFER the visual date!
-        if (visualDob) {
-          birthday = visualDob;
-        } else if (mrzBirthday) {
+        if (!birthday && mrzBirthday) {
           birthday = mrzBirthday;
         }
 
