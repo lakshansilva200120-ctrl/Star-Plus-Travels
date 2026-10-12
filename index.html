@@ -3028,7 +3028,7 @@
         <!-- Phone / WhatsApp -->
         <div>
           <label for="quickInquiryPhone" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
-            WhatsApp / Mobile Number *
+            Phone / Mobile Number *
           </label>
           <input 
             type="tel" 
@@ -3038,7 +3038,42 @@
             class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 transition-colors"
             placeholder="e.g. +971 52 758 2293"
           />
-          <p class="text-[11px] text-slate-500 mt-1">Include country code so we can message you directly on WhatsApp.</p>
+          <p class="text-[11px] text-slate-500 mt-1">Include country code so our team can reach you seamlessly.</p>
+        </div>
+
+        <!-- Preferred Contact Method Selector -->
+        <div>
+          <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+            Preferred Contact Method
+          </label>
+          <div class="grid grid-cols-2 gap-2.5">
+            <!-- WhatsApp Option (Default) -->
+            <label class="relative flex items-center justify-center gap-2 p-3 rounded-xl border border-emerald-500/40 bg-emerald-950/20 hover:bg-emerald-950/40 cursor-pointer transition-all has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500/15 has-[:checked]:text-emerald-300 text-slate-300">
+              <input 
+                type="radio" 
+                name="contact_method" 
+                value="WhatsApp" 
+                checked 
+                onchange="updateQuickInquiryMethod(this.value)" 
+                class="sr-only peer"
+              />
+              <span class="text-sm">💬</span>
+              <span class="text-xs font-bold">WhatsApp</span>
+            </label>
+
+            <!-- Direct Phone Call Option -->
+            <label class="relative flex items-center justify-center gap-2 p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800 cursor-pointer transition-all has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/15 has-[:checked]:text-amber-300 text-slate-300">
+              <input 
+                type="radio" 
+                name="contact_method" 
+                value="Phone Call" 
+                onchange="updateQuickInquiryMethod(this.value)" 
+                class="sr-only peer"
+              />
+              <span class="text-sm">📞</span>
+              <span class="text-xs font-bold">Direct Phone Call</span>
+            </label>
+          </div>
         </div>
 
         <!-- Submit & Actions -->
@@ -3046,10 +3081,10 @@
           <button 
             type="submit" 
             id="btnQuickInquirySubmit" 
-            class="flex-1 py-3 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 flex items-center justify-center gap-2 cursor-pointer"
+            class="flex-1 py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-emerald-950/30 flex items-center justify-center gap-2 cursor-pointer"
           >
-            <i class="fa-solid fa-paper-plane"></i>
-            <span>Submit Inquiry</span>
+            <i class="fa-brands fa-whatsapp text-sm" id="btnQuickInquiryIcon"></i>
+            <span id="btnQuickInquiryLabel">Chat on WhatsApp</span>
           </button>
           <button 
             type="button" 
@@ -3216,19 +3251,43 @@
       }
     };
 
+    // Dynamic Submit Button Text & Style based on contact method
+    window.updateQuickInquiryMethod = function(method) {
+      const submitBtn = document.getElementById('btnQuickInquirySubmit');
+      const icon = document.getElementById('btnQuickInquiryIcon');
+      const label = document.getElementById('btnQuickInquiryLabel');
+      if (!submitBtn || !label) return;
+
+      if (method === 'Phone Call') {
+        label.textContent = 'Request a Call Back';
+        if (icon) {
+          icon.className = 'fa-solid fa-phone text-sm';
+        }
+        submitBtn.className = 'flex-1 py-3 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 cursor-pointer';
+      } else {
+        label.textContent = 'Chat on WhatsApp';
+        if (icon) {
+          icon.className = 'fa-brands fa-whatsapp text-sm';
+        }
+        submitBtn.className = 'flex-1 py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-emerald-950/30 flex items-center justify-center gap-2 cursor-pointer';
+      }
+    };
+
     window.handleQuickInquirySubmit = async function(e) {
       if (e) e.preventDefault();
       const submitBtn = document.getElementById('btnQuickInquirySubmit');
       const nameInput = document.getElementById('quickInquiryName');
       const phoneInput = document.getElementById('quickInquiryPhone');
       const serviceInput = document.getElementById('quickInquiryService');
+      const methodRadio = document.querySelector('input[name="contact_method"]:checked');
+      const contactMethod = methodRadio ? methodRadio.value : 'WhatsApp';
 
       const fullName = (nameInput && nameInput.value || '').trim();
       const phone = (phoneInput && phoneInput.value || '').trim();
       const service = (serviceInput && serviceInput.value || 'General Inquiry').trim();
 
       if (!fullName || !phone) {
-        alert('Please provide your name and WhatsApp/mobile phone number.');
+        alert('Please provide your name and phone number.');
         return;
       }
 
@@ -3242,7 +3301,8 @@
           await window.StarplusBackend.submitLead({
             full_name: fullName,
             phone: phone,
-            service_interest: service
+            service_interest: service,
+            contact_method: contactMethod
           });
         }
       } catch (err) {
@@ -3252,25 +3312,34 @@
       // Close modal
       closeQuickInquiryModal();
 
-      // Show toast if showToast available
-      if (typeof window.showToast === 'function') {
-        window.showToast('Inquiry received! Opening WhatsApp concierge...', 'success');
-      }
+      if (contactMethod === 'Phone Call') {
+        // Confirmation for direct phone call without opening WhatsApp
+        if (typeof window.showToast === 'function') {
+          window.showToast('Request received! A consultant will call your phone shortly.', 'success');
+        } else {
+          alert('Request received! A consultant will call your phone shortly.');
+        }
+      } else {
+        // WhatsApp route: show toast and launch WhatsApp chat
+        if (typeof window.showToast === 'function') {
+          window.showToast('Inquiry received! Opening WhatsApp concierge...', 'success');
+        }
 
-      // Open WhatsApp chat to +971527582293 with pre-filled message
-      const cleanPhone = phone.replace(/[^0-9]/g, '');
-      const encodedMsg = encodeURIComponent(
-        `Hi Star Plus Travels, my name is ${fullName} (${phone}). I would like to inquire about: ${service}.`
-      );
-      window.open(`https://wa.me/971527582293?text=${encodedMsg}`, '_blank');
+        const cleanPhone = phone.replace(/[^0-9]/g, '');
+        const encodedMsg = encodeURIComponent(
+          `Hi Star Plus Travels, my name is ${fullName} (${phone}). I would like to inquire about: ${service}.`
+        );
+        window.open(`https://wa.me/971527582293?text=${encodedMsg}`, '_blank');
+      }
 
       // Reset form
       if (document.getElementById('quickInquiryForm')) {
         document.getElementById('quickInquiryForm').reset();
+        updateQuickInquiryMethod('WhatsApp');
       }
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Inquiry';
+        updateQuickInquiryMethod('WhatsApp');
       }
     };
 

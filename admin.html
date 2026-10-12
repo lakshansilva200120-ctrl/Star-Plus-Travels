@@ -755,6 +755,7 @@
                   <th scope="col" class="py-3.5 px-4">Date / Time</th>
                   <th scope="col" class="py-3.5 px-4">Client Name</th>
                   <th scope="col" class="py-3.5 px-4">Contact Number</th>
+                  <th scope="col" class="py-3.5 px-4">Channel</th>
                   <th scope="col" class="py-3.5 px-4">Service / Package</th>
                   <th scope="col" class="py-3.5 px-4">Status</th>
                   <th scope="col" class="py-3.5 px-4 text-right">Action</th>
@@ -762,7 +763,7 @@
               </thead>
               <tbody id="inquiriesTableBody" class="divide-y divide-slate-800/60 font-medium">
                 <tr>
-                  <td colspan="6" class="py-10 text-center text-slate-400">
+                  <td colspan="7" class="py-10 text-center text-slate-400">
                     <i class="fa-solid fa-circle-notch fa-spin text-amber-400 text-lg mb-2 block"></i>
                     Connecting to Supabase inquiries...
                   </td>
@@ -1810,7 +1811,7 @@
           if (!leads || leads.length === 0) {
             tbody.innerHTML = `
               <tr>
-                <td colspan="6" class="py-12 text-center text-slate-400">
+                <td colspan="7" class="py-12 text-center text-slate-400">
                   <div class="w-12 h-12 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-center text-amber-400 text-xl mx-auto mb-3">
                     <i class="fa-solid fa-inbox"></i>
                   </div>
@@ -1826,15 +1827,44 @@
             const d = new Date(lead.created_at || Date.now());
             const dateStr = d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             const cleanPhone = String(lead.phone || '').replace(/[^0-9]/g, '');
+            const rawPhone = String(lead.phone || '').trim();
+            const isPhoneCall = String(lead.contact_method || '').toLowerCase().includes('call') || String(lead.contact_method || '').toLowerCase().includes('phone');
+            
             const waUrl = cleanPhone 
               ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hi ${lead.full_name || 'there'}, thank you for contacting Star Plus Travels regarding ${lead.service_interest || 'our services'}. How may we assist you today?`)}`
               : `https://wa.me/971527582293`;
+
+            // Channel badge
+            const channelBadge = isPhoneCall
+              ? `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30 whitespace-nowrap">📞 Phone Call</span>`
+              : `<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 whitespace-nowrap">💬 WhatsApp</span>`;
+
+            // Action button
+            const actionBtn = isPhoneCall
+              ? `<a 
+                  href="tel:${escapeHtml(rawPhone)}" 
+                  class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-bold text-xs inline-flex items-center gap-1.5 shadow-md shadow-amber-500/20 transition-all cursor-pointer whitespace-nowrap"
+                  title="Direct Call to ${escapeHtml(rawPhone)}"
+                >
+                  <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                  <span>Call Now</span>
+                </a>`
+              : `<a 
+                  href="${waUrl}" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs inline-flex items-center gap-1.5 shadow-md transition-all cursor-pointer whitespace-nowrap"
+                  title="Open WhatsApp chat with client"
+                >
+                  <span>💬 WhatsApp</span>
+                </a>`;
 
             return `
               <tr class="hover:bg-slate-800/40 transition-colors">
                 <td class="py-3.5 px-4 font-mono text-[11px] text-slate-400 whitespace-nowrap">${dateStr}</td>
                 <td class="py-3.5 px-4 text-white font-bold whitespace-nowrap">${escapeHtml(lead.full_name || 'Guest')}</td>
                 <td class="py-3.5 px-4 font-mono text-amber-400 font-bold whitespace-nowrap">${escapeHtml(lead.phone || '-')}</td>
+                <td class="py-3.5 px-4 whitespace-nowrap">${channelBadge}</td>
                 <td class="py-3.5 px-4 whitespace-nowrap">
                   <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-amber-500/10 text-amber-300 border border-amber-500/20 font-mono">
                     ${escapeHtml(lead.service_interest || 'General Inquiry')}
@@ -1846,15 +1876,7 @@
                   </span>
                 </td>
                 <td class="py-3.5 px-4 text-right whitespace-nowrap">
-                  <a 
-                    href="${waUrl}" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs inline-flex items-center gap-1.5 shadow-md transition-all cursor-pointer"
-                    title="Open WhatsApp chat with client"
-                  >
-                    <span>💬 WhatsApp</span>
-                  </a>
+                  ${actionBtn}
                 </td>
               </tr>
             `;
@@ -1864,7 +1886,7 @@
           if (tbody) {
             tbody.innerHTML = `
               <tr>
-                <td colspan="6" class="py-8 text-center text-rose-400">
+                <td colspan="7" class="py-8 text-center text-rose-400">
                   <i class="fa-solid fa-triangle-exclamation mb-1 block text-lg"></i>
                   Failed to load client inquiries: ${err.message || 'Connection error'}
                 </td>

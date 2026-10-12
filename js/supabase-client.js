@@ -242,12 +242,13 @@
     /**
      * Frictionless Lead Capture: save lead into client_leads
      */
-    async submitLead({ full_name, phone, service_interest }) {
+    async submitLead({ full_name, phone, service_interest, contact_method }) {
       const client = getClient();
       const payload = {
         full_name: String(full_name || '').trim(),
         phone: String(phone || '').trim(),
         service_interest: String(service_interest || 'General Inquiry').trim(),
+        contact_method: String(contact_method || 'WhatsApp').trim(),
         status: 'New'
       };
 
