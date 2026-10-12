@@ -288,40 +288,45 @@
       <div class="flex items-center gap-2 border-b border-slate-800 pb-2 overflow-x-auto">
         <button 
           type="button" 
-          data-tab-target="tab-panel-visas" 
-          class="admin-nav-tab admin-tab-btn active px-4 py-2.5 rounded-xl border border-amber-500/80 font-bold text-xs uppercase tracking-wider text-amber-400 bg-amber-950/40 transition-all flex items-center gap-2 cursor-pointer whitespace-nowrap"
+          data-tab-target="tab-visas" 
+          onclick="setActiveTab('tab-visas')"
+          class="px-4 py-2 rounded-full border border-amber-500/80 bg-amber-950/40 text-amber-400 font-semibold text-xs tracking-wider flex items-center gap-2 transition-all shadow-sm whitespace-nowrap cursor-pointer"
         >
           <i class="fa-solid fa-passport text-amber-400"></i>
           <span>Visa Services &amp; Pricing</span>
         </button>
         <button 
           type="button" 
-          data-tab-target="tab-panel-holidays" 
-          class="admin-nav-tab admin-tab-btn px-4 py-2.5 rounded-xl border border-transparent font-bold text-xs uppercase tracking-wider text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2 cursor-pointer whitespace-nowrap"
+          data-tab-target="tab-holidays" 
+          onclick="setActiveTab('tab-holidays')"
+          class="px-4 py-2 rounded-full border border-transparent hover:border-slate-700 text-slate-400 hover:text-slate-200 font-medium text-xs tracking-wider flex items-center gap-2 transition-all whitespace-nowrap cursor-pointer"
         >
           <i class="fa-solid fa-map-location-dot"></i>
           <span>Holiday Tour Packages</span>
         </button>
         <button 
           type="button" 
-          data-tab-target="tab-panel-ticketing" 
-          class="admin-nav-tab admin-tab-btn px-4 py-2.5 rounded-xl border border-transparent font-bold text-xs uppercase tracking-wider text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2 cursor-pointer whitespace-nowrap"
+          data-tab-target="tab-ticketing" 
+          onclick="setActiveTab('tab-ticketing')"
+          class="px-4 py-2 rounded-full border border-transparent hover:border-slate-700 text-slate-400 hover:text-slate-200 font-medium text-xs tracking-wider flex items-center gap-2 transition-all whitespace-nowrap cursor-pointer"
         >
           <i class="fa-solid fa-receipt"></i>
           <span>Service Charges &amp; Ticketing</span>
         </button>
         <button 
           type="button" 
-          data-tab-target="tab-panel-ocr" 
-          class="admin-nav-tab admin-tab-btn px-4 py-2.5 rounded-xl border border-transparent font-bold text-xs uppercase tracking-wider text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2 cursor-pointer whitespace-nowrap"
+          data-tab-target="tab-ocr" 
+          onclick="setActiveTab('tab-ocr')"
+          class="px-4 py-2 rounded-full border border-transparent hover:border-slate-700 text-slate-400 hover:text-slate-200 font-medium text-xs tracking-wider flex items-center gap-2 transition-all whitespace-nowrap cursor-pointer"
         >
           <i class="fa-solid fa-file-invoice"></i>
           <span>Document OCR &amp; Extractor</span>
         </button>
         <button 
           type="button" 
-          data-tab-target="tab-panel-inquiries" 
-          class="admin-nav-tab admin-tab-btn px-4 py-2.5 rounded-xl border border-transparent font-bold text-xs uppercase tracking-wider text-slate-400 hover:text-slate-200 transition-all flex items-center gap-2 cursor-pointer whitespace-nowrap"
+          data-tab-target="tab-inquiries" 
+          onclick="setActiveTab('tab-inquiries')"
+          class="px-4 py-2 rounded-full border border-transparent hover:border-slate-700 text-slate-400 hover:text-slate-200 font-medium text-xs tracking-wider flex items-center gap-2 transition-all whitespace-nowrap cursor-pointer"
         >
           <i class="fa-solid fa-user-clock text-amber-400"></i>
           <span>Recent Client Inquiries</span>
@@ -330,7 +335,7 @@
       </div>
 
       <!-- TAB 1: Visa Services & Pricing -->
-      <section id="tab-panel-visas" class="tab-panel tab-content space-y-4">
+      <div id="tab-visas" class="admin-tab-content tab-panel tab-content space-y-4">
         <div class="flex items-center justify-between">
           <div>
             <h3 class="text-base font-bold text-white">UAE Visa Tiers &amp; Border Clearances</h3>
@@ -341,10 +346,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="visaCardsGrid">
           <!-- Populated dynamically via JavaScript -->
         </div>
-      </section>
+      </div>
 
       <!-- TAB 2: Holiday Tour Packages -->
-      <section id="tab-panel-holidays" class="tab-panel tab-content hidden space-y-4">
+      <div id="tab-holidays" class="admin-tab-content tab-panel tab-content hidden space-y-4">
         <div class="flex items-center justify-between">
           <div>
             <h3 class="text-base font-bold text-white">Active Tour Packages &amp; Circuits</h3>
@@ -355,10 +360,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="packageCardsGrid">
           <!-- Populated dynamically via JavaScript -->
         </div>
-      </section>
+      </div>
 
       <!-- TAB 3: Service Charges & Ticketing -->
-      <section id="tab-panel-ticketing" class="tab-panel tab-content hidden space-y-4">
+      <div id="tab-ticketing" class="admin-tab-content tab-panel tab-content hidden space-y-4">
         <div class="flex items-center justify-between">
           <div>
             <h3 class="text-base font-bold text-white">Airline Ticketing &amp; Chauffeur Markup Rates</h3>
@@ -369,10 +374,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="serviceCardsGrid">
           <!-- Populated dynamically via JavaScript -->
         </div>
-      </section>
+      </div>
 
       <!-- TAB 4: Smart Document OCR & All-Caps Extractor -->
-      <section id="tab-panel-ocr" class="tab-panel tab-content hidden space-y-6">
+      <div id="tab-ocr" class="admin-tab-content tab-panel tab-content hidden space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h3 class="text-base font-bold text-white flex items-center gap-2">
@@ -723,10 +728,10 @@
           </div>
 
         </div>
-      </section>
+      </div>
 
       <!-- TAB 5: Recent Client Inquiries -->
-      <section id="tab-panel-inquiries" class="tab-panel tab-content hidden space-y-5">
+      <div id="tab-inquiries" class="admin-tab-content tab-panel tab-content hidden space-y-5">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h3 class="text-base font-bold text-white flex items-center gap-2">
@@ -772,7 +777,7 @@
             </table>
           </div>
         </div>
-      </section>
+      </div>
 
     </main>
   </div>
@@ -866,43 +871,48 @@
         window.location.href = '/';
       });
 
-      // Clean Tab Switcher Function
-      function switchTab(activeId) {
-        // Hide all panels
-        document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
-        // Show selected panel
-        const target = document.getElementById(activeId);
-        if (target) target.classList.remove('hidden');
-
-        // Update button styling: reset active pill classes and highlight only active button
-        document.querySelectorAll('.admin-nav-tab').forEach(btn => {
-          btn.classList.remove('border-amber-500/80', 'text-amber-400', 'bg-amber-950/40', 'active');
-          btn.classList.add('text-slate-400', 'hover:text-slate-200');
+      // Deterministic Tab Switcher Function
+      function setActiveTab(targetTabId) {
+        // 1. Hide all tab panels
+        document.querySelectorAll('.admin-tab-content').forEach(section => {
+          section.style.display = 'none';
+          section.classList.add('hidden');
         });
-        const activeBtn = document.querySelector(`[data-tab-target="${activeId}"]`);
-        if (activeBtn) {
-          activeBtn.classList.add('border-amber-500/80', 'text-amber-400', 'bg-amber-950/40', 'active');
-          activeBtn.classList.remove('text-slate-400');
+
+        // 2. Show the targeted panel
+        const targetPanel = document.getElementById(targetTabId);
+        if (targetPanel) {
+          targetPanel.style.display = 'block';
+          targetPanel.classList.remove('hidden');
         }
 
-        if (activeId === 'tab-panel-inquiries') {
+        // 3. Update nav button styles
+        document.querySelectorAll('[data-tab-target]').forEach(btn => {
+          const isActive = btn.getAttribute('data-tab-target') === targetTabId;
+          if (isActive) {
+            btn.className = 'px-4 py-2 rounded-full border border-amber-500/80 bg-amber-950/40 text-amber-400 font-semibold text-xs tracking-wider flex items-center gap-2 transition-all shadow-sm cursor-pointer whitespace-nowrap';
+          } else {
+            btn.className = 'px-4 py-2 rounded-full border border-transparent hover:border-slate-700 text-slate-400 hover:text-slate-200 font-medium text-xs tracking-wider flex items-center gap-2 transition-all cursor-pointer whitespace-nowrap';
+          }
+        });
+
+        if (targetTabId === 'tab-inquiries') {
           loadAndRenderInquiries();
         }
       }
 
+      // Expose globally
+      window.setActiveTab = setActiveTab;
+      window.switchTab = setActiveTab;
+
       // Attach Event Listeners to all Tab Navigation Buttons
-      document.querySelectorAll('.admin-nav-tab').forEach(btn => {
+      document.querySelectorAll('[data-tab-target]').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.preventDefault();
           const targetId = btn.getAttribute('data-tab-target');
-          if (targetId) {
-            switchTab(targetId);
-          }
+          if (targetId) setActiveTab(targetId);
         });
       });
-
-      // Expose switchTab globally
-      window.switchTab = switchTab;
 
       // Toast Notification Helper
       function showToast(title, message) {
@@ -1322,8 +1332,8 @@
         // 4. Preload inquiries count
         loadAndRenderInquiries();
 
-        // 5. Default to tab-panel-visas active on initial load
-        switchTab('tab-panel-visas');
+        // 5. Default to tab-visas active on initial load
+        setActiveTab('tab-visas');
       }
 
       function updateLastModifiedText(isoString) {
