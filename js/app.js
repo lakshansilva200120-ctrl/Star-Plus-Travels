@@ -11207,4 +11207,268 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// ============================================================================
+// Global Quick Inquiry Modal Handlers & Dynamic DOM Injector
+// ============================================================================
+(function() {
+  function ensureQuickInquiryModal() {
+    let modal = document.getElementById('quickInquiryModal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'quickInquiryModal';
+      modal.className = 'fixed inset-0 z-[9999] bg-slate-950/85 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto';
+      modal.setAttribute('role', 'dialog');
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('aria-labelledby', 'quickInquiryTitle');
+      modal.onclick = function(e) {
+        if (e.target === this) window.closeQuickInquiryModal();
+      };
+      modal.innerHTML = `
+        <div class="relative w-full max-w-lg bg-[#0b1324] border border-amber-500/40 rounded-3xl shadow-2xl overflow-hidden flex flex-col my-auto modal-content-animate">
+          <!-- Modal Header -->
+          <div class="px-6 py-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90 backdrop-blur-md">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg shadow-inner">
+                <i class="fa-solid fa-paper-plane"></i>
+              </div>
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">Instant Concierge</span>
+                <h3 id="quickInquiryTitle" class="text-lg font-bold text-white font-heading mt-0.5">Quick Travel Inquiry</h3>
+              </div>
+            </div>
+            <button type="button" onclick="closeQuickInquiryModal()" class="w-9 h-9 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-colors border border-slate-700 cursor-pointer" aria-label="Close modal">
+              <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+          </div>
+
+          <!-- Modal Body -->
+          <form id="quickInquiryForm" onsubmit="handleQuickInquirySubmit(event)" class="p-6 space-y-4 text-left">
+            <p class="text-xs text-slate-400 leading-relaxed">
+              No sign-up or registration required. Fill your details and our Deira Dubai travel specialists will connect with you in minutes.
+            </p>
+
+            <!-- Service / Package Field -->
+            <div>
+              <label for="quickInquiryService" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+                Service or Package of Interest
+              </label>
+              <div class="relative">
+                <input 
+                  type="text" 
+                  id="quickInquiryService" 
+                  name="service_interest" 
+                  required
+                  class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 transition-colors"
+                  placeholder="e.g. UAE 30-Day Tourist Visa, Desert Safari, Flight Ticket"
+                />
+              </div>
+            </div>
+
+            <!-- Full Name -->
+            <div>
+              <label for="quickInquiryName" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+                Your Full Name *
+              </label>
+              <input 
+                type="text" 
+                id="quickInquiryName" 
+                name="full_name" 
+                required
+                class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 transition-colors"
+                placeholder="e.g. John Doe"
+              />
+            </div>
+
+            <!-- Phone / WhatsApp -->
+            <div>
+              <label for="quickInquiryPhone" class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
+                Phone / Mobile Number *
+              </label>
+              <input 
+                type="tel" 
+                id="quickInquiryPhone" 
+                name="phone" 
+                required
+                class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder-slate-500 transition-colors"
+                placeholder="e.g. +971 52 758 2293"
+              />
+              <p class="text-[11px] text-slate-500 mt-1">Include country code so our team can reach you seamlessly.</p>
+            </div>
+
+            <!-- Preferred Contact Method Selector -->
+            <div>
+              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
+                Preferred Contact Method
+              </label>
+              <div class="grid grid-cols-2 gap-2.5">
+                <label class="relative flex items-center justify-center gap-2 p-3 rounded-xl border border-emerald-500/40 bg-emerald-950/20 hover:bg-emerald-950/40 cursor-pointer transition-all has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-500/15 has-[:checked]:text-emerald-300 text-slate-300">
+                  <input 
+                    type="radio" 
+                    name="contact_method" 
+                    value="WhatsApp" 
+                    checked 
+                    onchange="updateQuickInquiryMethod(this.value)" 
+                    class="sr-only peer"
+                  />
+                  <span class="text-sm">💬</span>
+                  <span class="text-xs font-bold">WhatsApp</span>
+                </label>
+                <label class="relative flex items-center justify-center gap-2 p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800 cursor-pointer transition-all has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/15 has-[:checked]:text-amber-300 text-slate-300">
+                  <input 
+                    type="radio" 
+                    name="contact_method" 
+                    value="Phone Call" 
+                    onchange="updateQuickInquiryMethod(this.value)" 
+                    class="sr-only peer"
+                  />
+                  <span class="text-sm">📞</span>
+                  <span class="text-xs font-bold">Direct Phone Call</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Submit & Actions -->
+            <div class="pt-2 flex flex-col sm:flex-row gap-3">
+              <button 
+                type="submit" 
+                id="btnQuickInquirySubmit" 
+                class="flex-1 py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-emerald-950/30 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <i class="fa-brands fa-whatsapp text-sm" id="btnQuickInquiryIcon"></i>
+                <span id="btnQuickInquiryLabel">Chat on WhatsApp</span>
+              </button>
+              <button 
+                type="button" 
+                onclick="closeQuickInquiryModal()" 
+                class="py-3 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+    return modal;
+  }
+
+  if (!window.openQuickInquiryModal) {
+    window.openQuickInquiryModal = function(serviceName) {
+      const modal = ensureQuickInquiryModal();
+      const serviceInput = document.getElementById('quickInquiryService');
+      if (serviceInput && serviceName) {
+        serviceInput.value = serviceName;
+      }
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+  }
+
+  if (!window.closeQuickInquiryModal) {
+    window.closeQuickInquiryModal = function() {
+      const modal = document.getElementById('quickInquiryModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }
+    };
+  }
+
+  if (!window.updateQuickInquiryMethod) {
+    window.updateQuickInquiryMethod = function(method) {
+      const submitBtn = document.getElementById('btnQuickInquirySubmit');
+      const icon = document.getElementById('btnQuickInquiryIcon');
+      const label = document.getElementById('btnQuickInquiryLabel');
+      if (!submitBtn || !label) return;
+
+      if (method === 'Phone Call') {
+        label.textContent = 'Request a Call Back';
+        if (icon) {
+          icon.className = 'fa-solid fa-phone text-sm';
+        }
+        submitBtn.className = 'flex-1 py-3 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/25 flex items-center justify-center gap-2 cursor-pointer';
+      } else {
+        label.textContent = 'Chat on WhatsApp';
+        if (icon) {
+          icon.className = 'fa-brands fa-whatsapp text-sm';
+        }
+        submitBtn.className = 'flex-1 py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-emerald-950/30 flex items-center justify-center gap-2 cursor-pointer';
+      }
+    };
+  }
+
+  if (!window.handleQuickInquirySubmit) {
+    window.handleQuickInquirySubmit = async function(e) {
+      if (e) e.preventDefault();
+      const submitBtn = document.getElementById('btnQuickInquirySubmit');
+      const nameInput = document.getElementById('quickInquiryName');
+      const phoneInput = document.getElementById('quickInquiryPhone');
+      const serviceInput = document.getElementById('quickInquiryService');
+      const methodRadio = document.querySelector('input[name="contact_method"]:checked');
+      const contactMethod = methodRadio ? methodRadio.value : 'WhatsApp';
+
+      const fullName = (nameInput && nameInput.value || '').trim();
+      const phone = (phoneInput && phoneInput.value || '').trim();
+      const service = (serviceInput && serviceInput.value || 'General Inquiry').trim();
+
+      if (!fullName || !phone) {
+        alert('Please provide your name and phone number.');
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+      }
+
+      try {
+        if (window.StarplusBackend && typeof window.StarplusBackend.submitLead === 'function') {
+          await window.StarplusBackend.submitLead({
+            fullName,
+            phone,
+            service,
+            contactMethod,
+            source: 'Quick Inquiry Modal'
+          });
+        }
+      } catch (err) {
+        console.warn('Backend sync error:', err);
+      }
+
+      window.closeQuickInquiryModal();
+      if (document.getElementById('quickInquiryForm')) {
+        document.getElementById('quickInquiryForm').reset();
+      }
+
+      if (contactMethod === 'WhatsApp') {
+        const text = encodeURIComponent(`Hi Star Plus Travels, I would like to inquire about: ${service}. My name is ${fullName} (${phone}).`);
+        window.open(`https://wa.me/971527582293?text=${text}`, '_blank');
+      } else {
+        if (typeof showToast === 'function') {
+          showToast('Inquiry Received!', 'Our travel team will call you back shortly.');
+        } else {
+          alert('Thank you! Our travel team will call you back shortly.');
+        }
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        window.updateQuickInquiryMethod(contactMethod);
+      }
+    };
+  }
+
+  // Bind Esc key to close modal
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      window.closeQuickInquiryModal();
+    }
+  });
+})();
+
 // Starplus Assistant is loaded via js/assistant.js

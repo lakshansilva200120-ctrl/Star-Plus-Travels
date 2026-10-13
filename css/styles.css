@@ -4761,18 +4761,18 @@ select.field-error-border {
 #global-whatsapp-btn,
 .whatsapp-floating {
   position: fixed !important;
-  bottom: 1.5rem !important;
-  right: 1.5rem !important;
-  z-index: 50 !important;
+  bottom: 24px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 3.5rem !important;
-  height: 3.5rem !important;
+  width: 52px !important;
+  height: 52px !important;
   background-color: #25D366 !important;
   color: #ffffff !important;
   border-radius: 9999px !important;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(37, 211, 102, 0.3) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   cursor: pointer !important;
   text-decoration: none !important;
@@ -4781,7 +4781,8 @@ select.field-error-border {
 #global-whatsapp-btn:hover,
 .whatsapp-floating:hover {
   background-color: #20ba59 !important;
-  transform: scale(1.1) !important;
+  transform: scale(1.08) !important;
+  box-shadow: 0 14px 30px -5px rgba(0, 0, 0, 0.6), 0 0 20px rgba(37, 211, 102, 0.45) !important;
 }
 
 #global-whatsapp-btn:active,
@@ -5299,30 +5300,30 @@ html.light .dwell-subtext {
 
 /* 1. Launcher Button Positioning (Above Floating WhatsApp Widget - Clean Circular Button) */
 .starplus-assistant-launcher {
-  width: 56px !important;
-  height: 56px !important;
+  width: 52px !important;
+  height: 52px !important;
   border-radius: 9999px !important; /* or rounded-full */
   padding: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   position: fixed !important;
-  right: 24px !important;
-  bottom: 96px !important; /* Sits right above the WhatsApp floating button */
+  right: 20px !important;
+  bottom: 88px !important; /* Exactly 12px gap above WhatsApp widget (24px + 52px + 12px = 88px) */
   background: #080e1a !important;
-  border: 1.5px solid rgba(245, 158, 11, 0.4) !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245, 158, 11, 0.2) !important;
+  border: 1.5px solid rgba(245, 158, 11, 0.45) !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245, 158, 11, 0.25) !important;
   cursor: pointer !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
-  z-index: 999 !important;
+  z-index: 9999 !important;
   user-select: none !important;
   text-decoration: none !important;
 }
 
 .starplus-assistant-launcher:hover {
-  transform: scale(1.06) !important;
-  border-color: rgba(245, 158, 11, 0.75) !important;
-  box-shadow: 0 14px 30px -5px rgba(0, 0, 0, 0.75), 0 0 22px rgba(245, 158, 11, 0.35) !important;
+  transform: scale(1.08) !important;
+  border-color: rgba(245, 158, 11, 0.8) !important;
+  box-shadow: 0 14px 30px -5px rgba(0, 0, 0, 0.75), 0 0 22px rgba(245, 158, 11, 0.4) !important;
 }
 
 .starplus-assistant-launcher:active {
@@ -5787,10 +5788,10 @@ body.dark .tamm-prompt-pill:hover {
 /* Responsive Adjustments */
 @media (max-width: 640px) {
   .starplus-assistant-launcher {
-    right: 24px !important;
-    bottom: 96px !important;
-    width: 56px !important;
-    height: 56px !important;
+    right: 20px !important;
+    bottom: 88px !important;
+    width: 52px !important;
+    height: 52px !important;
     padding: 0 !important;
   }
   .starplus-assistant-panel {
