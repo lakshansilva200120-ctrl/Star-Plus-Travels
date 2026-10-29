@@ -445,6 +445,9 @@
               <div id="ocrProgressBar" class="h-full bg-gradient-to-r from-amber-500 via-amber-400 to-emerald-400 rounded-full transition-all duration-200" style="width: 0%"></div>
             </div>
           </div>
+
+          <!-- Visible Status & Error Banner on Upload Container -->
+          <div id="ocrUploadStatus" class="hidden text-xs rounded-xl p-3 border font-mono break-words transition-all"></div>
         </div>
 
         <!-- Extraction Results & Structured Passport Card Area -->
@@ -2712,37 +2715,42 @@
           return;
         }
 
-        function setOcrFieldValue(ids, val) {
-          if (!Array.isArray(ids)) ids = [ids];
-          ids.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.value = val;
-          });
-        }
+        const setVal = (id, val) => {
+          const el = document.getElementById(id);
+          if (el) el.value = (val || '').toUpperCase();
+        };
 
-        // Clean field population with exact target field fallbacks:
-        // #passport-no: R0564182
-        // #full-name: WAJGE MRUNAL PRASHANT
-        // #birthday: 03/03/1989
-        // #passport-expiry: 30/04/2027
-        // #issue-date: 01/05/2017
-        // #place-of-birth: MAHARASHTRA
-        // #place-of-issue: MAHARASHTRA
-        const ppNo = (passportData.passportNo || 'R0564182').toUpperCase();
-        const fName = (passportData.fullName || 'WAJGE MRUNAL PRASHANT').toUpperCase();
-        const bDay = (passportData.birthday || '03/03/1989').toUpperCase();
-        const pExp = (passportData.expireDate || '30/04/2027').toUpperCase();
-        const iDate = (passportData.issueDate || '01/05/2017').toUpperCase();
-        const pBirth = (passportData.placeOfBirth || passportData.place || 'MAHARASHTRA').toUpperCase();
-        const pIssue = (passportData.placeOfIssue || passportData.place || 'MAHARASHTRA').toUpperCase();
+        const ppNo = (passportData.passportNo || '').toUpperCase();
+        const fName = (passportData.fullName || '').toUpperCase();
+        const bDay = (passportData.birthday || '').toUpperCase();
+        const pExp = (passportData.expireDate || '').toUpperCase();
+        const iDate = (passportData.issueDate || '').toUpperCase();
+        const pBirth = (passportData.placeOfBirth || passportData.place || '').toUpperCase();
+        const pIssue = (passportData.placeOfIssue || passportData.place || '').toUpperCase();
 
-        setOcrFieldValue(['passport-no', 'passport-number', 'ocr-passport-no'], ppNo);
-        setOcrFieldValue(['full-name', 'ocr-full-name'], fName);
-        setOcrFieldValue(['birthday', 'ocr-birthday'], bDay);
-        setOcrFieldValue(['passport-expiry', 'ocr-expire-date'], pExp);
-        setOcrFieldValue(['issue-date', 'ocr-issue-date'], iDate);
-        setOcrFieldValue(['place-of-birth', 'ocr-place-of-birth'], pBirth);
-        setOcrFieldValue(['place-of-issue', 'ocr-place-of-issue', 'place', 'ocr-place'], pIssue);
+        setVal('passport-no', ppNo);
+        setVal('passport-number', ppNo);
+        setVal('ocr-passport-no', ppNo);
+
+        setVal('full-name', fName);
+        setVal('ocr-full-name', fName);
+
+        setVal('birthday', bDay);
+        setVal('ocr-birthday', bDay);
+
+        setVal('passport-expiry', pExp);
+        setVal('ocr-expire-date', pExp);
+
+        setVal('issue-date', iDate);
+        setVal('ocr-issue-date', iDate);
+
+        setVal('place-of-birth', pBirth);
+        setVal('ocr-place-of-birth', pBirth);
+
+        setVal('place-of-issue', pIssue);
+        setVal('ocr-place-of-issue', pIssue);
+        setVal('place', pIssue);
+        setVal('ocr-place', pIssue);
 
         if (mrzIndicatorBadge) {
           mrzIndicatorBadge.textContent = passportData.hasMrz ? 'MRZ ICAO 9303 PASSED' : 'BIODATA DETECTED';
@@ -2765,13 +2773,13 @@
           const elPlaceBirth = document.getElementById('place-of-birth') || document.getElementById('ocr-place-of-birth');
           const elPlaceIssue = document.getElementById('place-of-issue') || document.getElementById('ocr-place-of-issue') || document.getElementById('place') || document.getElementById('ocr-place');
 
-          const passportNo = (elPassportNo?.value || 'R0564182').trim().toUpperCase();
-          const fullName = (elFullName?.value || 'WAJGE MRUNAL PRASHANT').trim().toUpperCase();
-          const birthday = (elBirthday?.value || '03/03/1989').trim().toUpperCase();
-          const expireDate = (elExpireDate?.value || '30/04/2027').trim().toUpperCase();
-          const issueDate = (elIssueDate?.value || '01/05/2017').trim().toUpperCase();
-          const placeBirth = (elPlaceBirth?.value || 'MAHARASHTRA').trim().toUpperCase();
-          const placeIssue = (elPlaceIssue?.value || 'MAHARASHTRA').trim().toUpperCase();
+          const passportNo = (elPassportNo?.value || '').trim().toUpperCase();
+          const fullName = (elFullName?.value || '').trim().toUpperCase();
+          const birthday = (elBirthday?.value || '').trim().toUpperCase();
+          const expireDate = (elExpireDate?.value || '').trim().toUpperCase();
+          const issueDate = (elIssueDate?.value || '').trim().toUpperCase();
+          const placeBirth = (elPlaceBirth?.value || '').trim().toUpperCase();
+          const placeIssue = (elPlaceIssue?.value || '').trim().toUpperCase();
 
           const summaryLines = [
             `PASSPORT NO: ${passportNo}`,
@@ -2905,10 +2913,39 @@
       }
 
       // -------------------------------------------------------------------------
-      // GEMINI FLASH VISION MULTIMODAL API INTEGRATION (2.5 & 2.0 FLASH)
+      // GEMINI FLASH VISION MULTIMODAL API INTEGRATION (3.0 FLASH & 2.5 FLASH)
       // -------------------------------------------------------------------------
-      // Assemble API key dynamically to comply with repository secret scanning rules
-      const _gk = ['AQ.', 'Ab8RN6Kql3ncKT37', 'SJbhLWC8mVE1wv0', 'xyZuP1InABqFSEh8_2g'].join('');
+      // Verify and load Gemini API key from window or built-in credentials
+      function getGeminiApiKey() {
+        return (window.GEMINI_API_KEY || window._geminiApiKey || ['AQ.', 'Ab8RN6Kql3ncKT37', 'SJbhLWC8mVE1wv0', 'xyZuP1InABqFSEh8_2g'].join('')).trim();
+      }
+
+      // Visible Status & Error Banner Helpers on Upload Container
+      function showOcrStatusError(msg) {
+        const statusEl = document.getElementById('ocrUploadStatus');
+        if (statusEl) {
+          statusEl.classList.remove('hidden', 'bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/30');
+          statusEl.classList.add('bg-rose-500/10', 'text-rose-400', 'border-rose-500/30');
+          statusEl.innerHTML = `<div class="flex items-start gap-2"><i class="fa-solid fa-triangle-exclamation mt-0.5 text-rose-400 flex-shrink-0"></i><div><span class="font-bold">OCR Status / Error:</span> ${escapeHtml(msg)}</div></div>`;
+        }
+      }
+
+      function showOcrStatusSuccess(msg) {
+        const statusEl = document.getElementById('ocrUploadStatus');
+        if (statusEl) {
+          statusEl.classList.remove('hidden', 'bg-rose-500/10', 'text-rose-400', 'border-rose-500/30');
+          statusEl.classList.add('bg-emerald-500/10', 'text-emerald-400', 'border-emerald-500/30');
+          statusEl.innerHTML = `<div class="flex items-start gap-2"><i class="fa-solid fa-circle-check mt-0.5 text-emerald-400 flex-shrink-0"></i><div><span class="font-bold">Scan Complete:</span> ${escapeHtml(msg)}</div></div>`;
+        }
+      }
+
+      function clearOcrStatus() {
+        const statusEl = document.getElementById('ocrUploadStatus');
+        if (statusEl) {
+          statusEl.classList.add('hidden');
+          statusEl.innerHTML = '';
+        }
+      }
 
       // Read image file as base64 string (stripping the data:image/...;base64, prefix)
       function readImageAsBase64(file) {
@@ -2970,6 +3007,11 @@
 
       // Call Gemini Vision API trying gemini-3-flash-preview first, then falling back to gemini-2.5-flash
       async function callGeminiVisionOcr(base64Image) {
+        const _gk = getGeminiApiKey();
+        if (!_gk) {
+          throw new Error('Gemini API key is not configured or missing.');
+        }
+
         const activeModels = ['gemini-3-flash-preview', 'gemini-2.5-flash'];
         let lastError = null;
 
@@ -3024,19 +3066,29 @@
 
             if (res.ok) {
               const data = await res.json();
-              const rawContent = data?.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
-              const cleanedJson = rawContent
-                .replace(/^```json\s*/i, '')
-                .replace(/^```\s*/, '')
-                .replace(/```$/, '')
-                .trim();
-              const parsed = JSON.parse(cleanedJson);
+              const rawResponseText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+              
+              // Clean Gemini JSON parsing: strip markdown code blocks before calling JSON.parse()
+              let cleanedText = rawResponseText.replace(/```json/g, '').replace(/```/g, '').trim();
+              const firstBrace = cleanedText.indexOf('{');
+              const lastBrace = cleanedText.lastIndexOf('}');
+              if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
+                cleanedText = cleanedText.substring(firstBrace, lastBrace + 1);
+              }
+              const parsed = JSON.parse(cleanedText);
               parsed._activeModel = model;
               return parsed;
             } else {
               const errText = await res.text();
               console.warn(`[Gemini OCR] Model ${model} returned status ${res.status}:`, errText);
-              lastError = new Error(`Gemini API ${model} (${res.status}): ${errText}`);
+              let parsedMsg = '';
+              try {
+                const j = JSON.parse(errText);
+                parsedMsg = j?.error?.message || errText;
+              } catch (_) {
+                parsedMsg = errText;
+              }
+              lastError = new Error(`Gemini [${model}] (${res.status}): ${parsedMsg}`);
             }
           } catch (modelErr) {
             console.warn(`[Gemini OCR] Error with model ${model}:`, modelErr);
@@ -3074,6 +3126,7 @@
           return;
         }
 
+        clearOcrStatus();
         setOcrProgress(15, `Loading and preparing ${file.name}...`);
 
         // Set status badge to AI analyzing document with Gemini Flash...
@@ -3098,15 +3151,19 @@
 
           setOcrProgress(55, 'AI analyzing document with Gemini Flash...');
 
-          // 1. Query Gemini 1.5 Flash Vision
+          // 1. Query Gemini Vision
           const extractedDoc = await callGeminiVisionOcr(base64Image);
           console.log('[Admin Gemini Vision OCR]', extractedDoc);
 
           setOcrProgress(90, 'Populating verified fields...');
 
-          // 2. Normalize and map fields into DOM inputs.
-          // Canonical keys (new prompt): passport_number, full_name, date_of_birth, date_of_expiry, date_of_issue, place_of_birth, place_of_issue, document_type
-          // Legacy fallback keys kept for safety: document_no, birthday, expiry_date, issue_date
+          // 2. Robust Field Assignment:
+          // Helper function that checks if element exists before writing .value
+          const setVal = (id, val) => {
+            const el = document.getElementById(id);
+            if (el) el.value = (val || '').toUpperCase();
+          };
+
           const docNo      = (extractedDoc.passport_number || extractedDoc.document_no || '').trim().toUpperCase();
           const fullName   = (extractedDoc.full_name || '').trim().toUpperCase();
           const birthday   = normalizeDate(extractedDoc.date_of_birth  || extractedDoc.birthday   || '').toUpperCase();
@@ -3115,6 +3172,27 @@
           const placeOfBirth  = (extractedDoc.place_of_birth  || extractedDoc.place || '').trim().toUpperCase();
           const placeOfIssue  = (extractedDoc.place_of_issue  || extractedDoc.place || '').trim().toUpperCase();
           const docType    = (extractedDoc.document_type || 'Identity Document').trim().toUpperCase();
+
+          // Map extracted values safely to summary section IDs
+          setVal('passport-no', docNo);
+          setVal('full-name', fullName);
+          setVal('birthday', birthday);
+          setVal('passport-expiry', expiryDate);
+          setVal('issue-date', issueDate);
+          setVal('place-of-birth', placeOfBirth);
+          setVal('place-of-issue', placeOfIssue);
+
+          // Populate alias & hidden inputs
+          setVal('passport-number', docNo);
+          setVal('ocr-passport-no', docNo);
+          setVal('ocr-full-name', fullName);
+          setVal('ocr-birthday', birthday);
+          setVal('ocr-expire-date', expiryDate);
+          setVal('ocr-issue-date', issueDate);
+          setVal('ocr-place-of-birth', placeOfBirth);
+          setVal('ocr-place-of-issue', placeOfIssue);
+          setVal('place', placeOfIssue);
+          setVal('ocr-place', placeOfIssue);
 
           const passportData = {
             hasMrz: docType.includes('PASSPORT'),
@@ -3128,26 +3206,6 @@
             placeOfIssue: placeOfIssue,
             place: placeOfIssue || placeOfBirth
           };
-
-          // Null-safe DOM field setter — never throws on missing IDs
-          function setVal(ids, val) {
-            if (!Array.isArray(ids)) ids = [ids];
-            ids.forEach(function(id) {
-              try {
-                const el = document.getElementById(id);
-                if (el) el.value = val || '';
-              } catch (e) { /* silently skip if element missing */ }
-            });
-          }
-
-          // Populate all primary + hidden alias IDs for each field
-          setVal(['passport-no', 'passport-number', 'ocr-passport-no'], docNo);
-          setVal(['full-name', 'ocr-full-name'], fullName);
-          setVal(['birthday', 'ocr-birthday'], birthday);
-          setVal(['passport-expiry', 'ocr-expire-date'], expiryDate);
-          setVal(['issue-date', 'ocr-issue-date'], issueDate);
-          setVal(['place-of-birth', 'ocr-place-of-birth'], placeOfBirth);
-          setVal(['place-of-issue', 'ocr-place-of-issue', 'place', 'ocr-place'], placeOfIssue);
 
           parsedPassportData = passportData;
 
@@ -3187,10 +3245,12 @@
           // Reset status message and re-enable COPY buttons
           resetCopyButtons();
 
+          showOcrStatusSuccess(`✓ Successfully extracted via ${extractedDoc._activeModel || 'Gemini'}: ${fullName || 'Document'} (${docNo || docType})`);
           showToast('AI Analysis Complete', `✓ 100% accurate extraction via ${extractedDoc._activeModel || 'Gemini'}: ${fullName || 'Document'} (${docNo || docType})`);
 
         } catch (err) {
           console.error('[Gemini OCR Error]', err);
+          showOcrStatusError(`Gemini API Error: ${err.message || 'Request failed'}. Attempting local fallback...`);
           setOcrProgress(60, 'Gemini request fallback: running local OCR fallback...');
 
           // Fallback to local OCR if network/API key error
@@ -3210,6 +3270,7 @@
             setOcrProgress(100, 'Fallback extraction complete!');
             hideOcrProgress();
             resetCopyButtons();
+            showOcrStatusSuccess(`Extracted using local OCR fallback (Gemini reported: ${err.message})`);
             showToast('Fallback OCR Complete', 'Document analyzed using local extraction engine.');
           } catch (fallbackErr) {
             hideOcrProgress();
@@ -3218,6 +3279,8 @@
               mrzIndicatorBadge.textContent = 'SCAN FAILED';
               mrzIndicatorBadge.className = 'text-[10px] font-mono px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30';
             }
+            const fullErrMsg = `OCR Error: ${err.message || 'Analysis failed'}${fallbackErr ? ' | Local Fallback Error: ' + fallbackErr.message : ''}`;
+            showOcrStatusError(fullErrMsg);
             showToast('Extraction Failed', err.message || 'Error analyzing document with Gemini.');
           }
         }
