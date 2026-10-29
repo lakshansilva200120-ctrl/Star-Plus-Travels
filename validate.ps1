@@ -21,7 +21,8 @@ $htmlFiles = @(
     "contact.html",
     "terms.html",
     "careers.html",
-    "partners.html"
+    "partners.html",
+    "admin.html"
 )
 foreach ($file in $htmlFiles) {
     $fullPath = Join-Path $root $file
@@ -51,7 +52,7 @@ foreach ($file in $htmlFiles) {
         $hrefMatches = [regex]::Matches($content, $regexHref)
         foreach ($hm in $hrefMatches) {
             $href = $hm.Groups[1].Value
-            if (-not ($href.StartsWith("http://") -or $href.StartsWith("https://") -or $href.StartsWith("#") -or $href.StartsWith("mailto:") -or $href.StartsWith("tel:"))) {
+            if (-not ($href.StartsWith("http://") -or $href.StartsWith("https://") -or $href.StartsWith("#") -or $href.StartsWith("mailto:") -or $href.StartsWith("tel:") -or $href.StartsWith('${') -or $href.StartsWith("javascript:"))) {
                 $cleanHref = $href.Split('#')[0].Split('?')[0].TrimStart('/')
                 if ($cleanHref -ne "") {
                     $assetPath = Join-Path $root $cleanHref
