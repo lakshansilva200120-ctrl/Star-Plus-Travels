@@ -3030,22 +3030,24 @@
         }
       }
 
-      // Read image file as base64 string (stripping the data:image/...;base64, prefix)
+      // Read image file as base64 object array at full original resolution (no compression/cropping)
       function readImageAsBase64(file) {
         return new Promise((resolve, reject) => {
           const reader = new FileReader();
           reader.onload = () => {
             const result = reader.result || '';
+            const mimeMatch = typeof result === 'string' ? result.match(/^data:([^;]+);base64,/) : null;
+            const mimeType = mimeMatch ? mimeMatch[1] : (file.type || 'image/jpeg');
             const base64Data = typeof result === 'string' ? result.replace(/^data:[^;]+;base64,/, '') : '';
-            resolve(base64Data);
+            resolve([{ mimeType: mimeType || 'image/jpeg', data: base64Data }]);
           };
           reader.onerror = (err) => reject(err);
           reader.readAsDataURL(file);
         });
       }
 
-      // Render first page of PDF at scale 2.5 to off-screen HTML5 canvas, export as image/jpeg base64
-      async function renderPdfFirstPageAsJpegBase64(file) {
+      // Render PDF pages (up to 3 pages) at scale 3.0 to off-screen HTML5 canvas, export as image/jpeg base64
+      async function renderPdfPagesAsBase64(file) {
         if (!window.pdfjsLib) {
           throw new Error('PDF.js library not loaded yet. Please check your internet connection.');
         }
@@ -3056,18 +3058,25 @@
           throw new Error('PDF file contains no pages.');
         }
 
-        const page = await pdf.getPage(1);
-        const viewport = page.getViewport({ scale: 2.5 }); // 2.5 scale for crisp OCR fidelity
+        const pagesToRender = Math.min(pdf.numPages, 3);
+        const imageList = [];
+        for (let i = 1; i <= pagesToRender; i++) {
+          const page = await pdf.getPage(i);
+          const viewport = page.getViewport({ scale: 3.0 }); // 3.0 scale for crisp OCR fidelity on MRZ and small text
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+          canvas.width = viewport.width;
+          canvas.height = viewport.height;
 
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
+          await page.render({ canvasContext: context, viewport: viewport }).promise;
 
-        await page.render({ canvasContext: context, viewport: viewport }).promise;
-
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
-        return dataUrl.replace(/^data:image\/jpeg;base64,/, '');
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.96);
+          imageList.push({
+            mimeType: 'image/jpeg',
+            data: dataUrl.replace(/^data:image\/jpeg;base64,/, '')
+          });
+        }
+        return imageList;
       }
 
       // Normalize any date string to DD/MM/YYYY. Handles MRZ YYMMDD, ISO YYYY-MM-DD, DD-MM-YYYY variants.
@@ -3089,7 +3098,7 @@
       }
 
       // Call Gemini Vision API trying gemini-3-flash-preview first, then falling back to gemini-2.5-flash
-      async function callGeminiVisionOcr(base64Image) {
+      async function callGeminiVisionOcr(imageOrImages) {
         const _gk = getGeminiApiKey();
         if (!_gk) {
           throw new Error('Gemini API key is not configured or missing.');
@@ -3098,12 +3107,42 @@
         const activeModels = ['gemini-3-flash-preview', 'gemini-2.5-flash'];
         let lastError = null;
 
+        // Normalise input to an array of { mimeType, data }
+        let imageParts = [];
+        if (Array.isArray(imageOrImages)) {
+          imageParts = imageOrImages.map(img => {
+            if (typeof img === 'string') {
+              return { mimeType: 'image/jpeg', data: img };
+            }
+            return { mimeType: img.mimeType || 'image/jpeg', data: img.data };
+          });
+        } else if (typeof imageOrImages === 'string') {
+          imageParts = [{ mimeType: 'image/jpeg', data: imageOrImages }];
+        } else if (imageOrImages && typeof imageOrImages === 'object') {
+          imageParts = [{ mimeType: imageOrImages.mimeType || 'image/jpeg', data: imageOrImages.data }];
+        }
+
+        if (imageParts.length === 0) {
+          throw new Error('No valid document images provided for OCR analysis.');
+        }
+
         const ocrPrompt = [
-          'You are a passport and identity document OCR expert.',
-          'Read ALL text in this document image and extract these fields.',
-          'Return ONLY a single valid JSON object with no markdown, no prose, no code fences.',
+          'You are an expert OCR system for international travel documents and passports (specifically supporting Indian, UAE, GCC, and ICAO 9303 standards).',
+          'Analyze all provided passport image(s) or pages carefully. Locate both the visual inspection zone (VIZ) and the machine-readable zone (MRZ 2 lines at the bottom).',
           '',
-          'Required JSON shape (return ONLY this shape with empty string "" if not found):',
+          'Extract these exact fields:',
+          '- passport_number: Visual passport number (e.g. top right) OR from MRZ Line 2 (first 9 alphanumeric characters).',
+          '- full_name: Given names plus surname (e.g. from "Given Name(s)" and "Surname" fields, or parsed from MRZ Line 1).',
+          '- date_of_birth: Date of birth formatted strictly as DD/MM/YYYY. If found as YYMMDD in MRZ, convert accurately to DD/MM/YYYY.',
+          '- date_of_expiry: Expiration date formatted strictly as DD/MM/YYYY.',
+          '- date_of_issue: Date of issue formatted strictly as DD/MM/YYYY.',
+          '- place_of_birth: Place/City/State of birth as printed.',
+          '- place_of_issue: Issuing authority or place of issue (e.g., CHANDIGARH, DUBAI, DELHI, etc.).',
+          '',
+          'CRITICAL MRZ FALLBACK RULE:',
+          'If any field (passport_number, full_name, date_of_birth, date_of_expiry) is not found in the visual text or is obscured, derive it directly from the 2-line MRZ at the bottom of the bio page.',
+          '',
+          'Return ONLY a valid JSON object with these exact keys:',
           '{',
           '  "passport_number": "",',
           '  "full_name": "",',
@@ -3114,23 +3153,21 @@
           '  "place_of_issue": ""',
           '}',
           '',
-          'Rules: output empty string "" for any unreadable field. All values UPPERCASE. Dates in DD/MM/YYYY only. Never return descriptions or explanations. Return ONLY the JSON object.'
+          'Rules: Return non-empty extracted values whenever readable. If a field is truly missing from all provided pages and MRZ, use empty string "". All values UPPERCASE. Dates in DD/MM/YYYY only. Never return code fences, explanations or markdown.'
         ].join('\n');
 
+        const parts = [{ text: ocrPrompt }];
+        imageParts.forEach(img => {
+          parts.push({
+            inline_data: {
+              mime_type: img.mimeType || 'image/jpeg',
+              data: img.data
+            }
+          });
+        });
+
         const requestBody = JSON.stringify({
-          contents: [{
-            parts: [
-              {
-                text: ocrPrompt
-              },
-              {
-                inline_data: {
-                  mime_type: "image/jpeg",
-                  data: base64Image
-                }
-              }
-            ]
-          }],
+          contents: [{ parts: parts }],
           generationConfig: {
             response_mime_type: "application/json",
             temperature: 0.1
@@ -3200,7 +3237,7 @@
         }
       }
 
-      // Handle File Upload and Extraction with Gemini 1.5 Flash Vision
+      // Handle File Upload and Extraction with Gemini Flash Vision
       async function handleOcrFile(file) {
         if (!file) return;
 
@@ -3225,20 +3262,20 @@
         }
 
         try {
-          let base64Image = '';
+          let imageList = [];
 
           if (isPdf) {
-            setOcrProgress(30, 'Rendering PDF first page at 2.5x resolution...');
-            base64Image = await renderPdfFirstPageAsJpegBase64(file);
+            setOcrProgress(30, 'Rendering PDF pages (up to 3) at 3.0x resolution...');
+            imageList = await renderPdfPagesAsBase64(file);
           } else {
-            setOcrProgress(30, 'Reading image for Gemini Flash Vision...');
-            base64Image = await readImageAsBase64(file);
+            setOcrProgress(30, 'Reading image at full resolution for Gemini Flash...');
+            imageList = await readImageAsBase64(file);
           }
 
-          setOcrProgress(55, 'AI analyzing document with Gemini Flash...');
+          setOcrProgress(55, `AI analyzing ${imageList.length} page(s) with Gemini Flash...`);
 
           // 1. Query Gemini Vision
-          const extractedDoc = await callGeminiVisionOcr(base64Image);
+          const extractedDoc = await callGeminiVisionOcr(imageList);
           const ocrData = extractedDoc;
 
           setOcrProgress(90, 'Populating verified fields...');
