@@ -2950,16 +2950,54 @@
         return dataUrl.replace(/^data:image\/jpeg;base64,/, '');
       }
 
+      // Normalize any date string to DD/MM/YYYY. Handles MRZ YYMMDD, ISO YYYY-MM-DD, DD-MM-YYYY variants.
+      function normalizeDate(raw) {
+        if (!raw) return '';
+        const s = String(raw).trim();
+        if (/^\d{2}\/\d{2}\/\d{4}$/.test(s)) return s;
+        const isoM = s.match(/^(\d{4})[-\/](\d{2})[-\/](\d{2})$/);
+        if (isoM) return `${isoM[3]}/${isoM[2]}/${isoM[1]}`;
+        const dmy = s.match(/^(\d{2})[-.](\d{2})[-.](\d{4})$/);
+        if (dmy) return `${dmy[1]}/${dmy[2]}/${dmy[3]}`;
+        const mrz = s.match(/^(\d{2})(\d{2})(\d{2})$/);
+        if (mrz) {
+          const yy = parseInt(mrz[1], 10);
+          const yyyy = yy > 30 ? `19${mrz[1]}` : `20${mrz[1]}`;
+          return `${mrz[3]}/${mrz[2]}/${yyyy}`;
+        }
+        return s;
+      }
+
       // Call Gemini Vision API trying gemini-3-flash-preview first, then falling back to gemini-2.5-flash
       async function callGeminiVisionOcr(base64Image) {
         const activeModels = ['gemini-3-flash-preview', 'gemini-2.5-flash'];
         let lastError = null;
 
+        const ocrPrompt = [
+          'You are a passport and identity document OCR expert.',
+          'Read ALL text in this document image and extract these fields.',
+          'Return ONLY a single valid JSON object with no markdown, no prose, no code fences.',
+          '',
+          'Required JSON schema (return exactly these keys):',
+          '{',
+          '  "passport_number": "Document / passport number, e.g. A1234567",',
+          '  "full_name": "Surname followed by given name(s)",',
+          '  "date_of_birth": "Date of birth in DD/MM/YYYY",',
+          '  "date_of_expiry": "Date of expiry in DD/MM/YYYY",',
+          '  "date_of_issue": "Date of issue in DD/MM/YYYY",',
+          '  "place_of_birth": "Town, city, state or country of birth",',
+          '  "place_of_issue": "Issuing authority, city or country",',
+          '  "document_type": "PASSPORT or IDENTITY CARD or RESIDENCE PERMIT or VISA"',
+          '}',
+          '',
+          'Rules: output empty string "" for any unreadable field. All values UPPERCASE. Dates in DD/MM/YYYY only. Return ONLY the JSON.'
+        ].join('\n');
+
         const requestBody = JSON.stringify({
           contents: [{
             parts: [
               {
-                text: "Extract details from this identity document. Return ONLY valid JSON:\n{\n  \"document_no\": \"string\",\n  \"full_name\": \"string\",\n  \"birthday\": \"DD/MM/YYYY\",\n  \"expiry_date\": \"DD/MM/YYYY\",\n  \"issue_date\": \"DD/MM/YYYY\",\n  \"place_of_birth\": \"string\",\n  \"place_of_issue\": \"string\"\n}"
+                text: ocrPrompt
               },
               {
                 inline_data: {
@@ -3066,22 +3104,17 @@
 
           setOcrProgress(90, 'Populating verified fields...');
 
-          // 2. Normalize and Map fields into inputs:
-          // document_no -> #passport-number (and #passport-no, #ocr-passport-no)
-          // full_name   -> #full-name (and #ocr-full-name)
-          // birthday    -> #birthday (and #ocr-birthday)
-          // expiry_date -> #passport-expiry (and #ocr-expire-date)
-          // issue_date  -> #issue-date (and #ocr-issue-date)
-          // place_of_birth -> #place-of-birth (and #ocr-place-of-birth)
-          // place_of_issue -> #place-of-issue (and #ocr-place-of-issue)
-          const docNo = (extractedDoc.document_no || '').trim().toUpperCase();
-          const fullName = (extractedDoc.full_name || '').trim().toUpperCase();
-          const birthday = (extractedDoc.birthday || '').trim().toUpperCase();
-          const expiryDate = (extractedDoc.expiry_date || '').trim().toUpperCase();
-          const issueDate = (extractedDoc.issue_date || '').trim().toUpperCase();
-          const placeOfBirth = (extractedDoc.place_of_birth || extractedDoc.place || '').trim().toUpperCase();
-          const placeOfIssue = (extractedDoc.place_of_issue || extractedDoc.place || '').trim().toUpperCase();
-          const docType = (extractedDoc.document_type || 'Identity Document').trim().toUpperCase();
+          // 2. Normalize and map fields into DOM inputs.
+          // Canonical keys (new prompt): passport_number, full_name, date_of_birth, date_of_expiry, date_of_issue, place_of_birth, place_of_issue, document_type
+          // Legacy fallback keys kept for safety: document_no, birthday, expiry_date, issue_date
+          const docNo      = (extractedDoc.passport_number || extractedDoc.document_no || '').trim().toUpperCase();
+          const fullName   = (extractedDoc.full_name || '').trim().toUpperCase();
+          const birthday   = normalizeDate(extractedDoc.date_of_birth  || extractedDoc.birthday   || '').toUpperCase();
+          const expiryDate = normalizeDate(extractedDoc.date_of_expiry  || extractedDoc.expiry_date || '').toUpperCase();
+          const issueDate  = normalizeDate(extractedDoc.date_of_issue   || extractedDoc.issue_date  || '').toUpperCase();
+          const placeOfBirth  = (extractedDoc.place_of_birth  || extractedDoc.place || '').trim().toUpperCase();
+          const placeOfIssue  = (extractedDoc.place_of_issue  || extractedDoc.place || '').trim().toUpperCase();
+          const docType    = (extractedDoc.document_type || 'Identity Document').trim().toUpperCase();
 
           const passportData = {
             hasMrz: docType.includes('PASSPORT'),
@@ -3096,16 +3129,19 @@
             place: placeOfIssue || placeOfBirth
           };
 
-          // Populate inputs
+          // Null-safe DOM field setter — never throws on missing IDs
           function setVal(ids, val) {
             if (!Array.isArray(ids)) ids = [ids];
-            ids.forEach(id => {
-              const el = document.getElementById(id);
-              if (el) el.value = val;
+            ids.forEach(function(id) {
+              try {
+                const el = document.getElementById(id);
+                if (el) el.value = val || '';
+              } catch (e) { /* silently skip if element missing */ }
             });
           }
 
-          setVal(['passport-number', 'passport-no', 'ocr-passport-no'], docNo);
+          // Populate all primary + hidden alias IDs for each field
+          setVal(['passport-no', 'passport-number', 'ocr-passport-no'], docNo);
           setVal(['full-name', 'ocr-full-name'], fullName);
           setVal(['birthday', 'ocr-birthday'], birthday);
           setVal(['passport-expiry', 'ocr-expire-date'], expiryDate);
