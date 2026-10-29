@@ -504,9 +504,9 @@
                     type="text" 
                     id="passport-no" 
                     name="passport_number" 
-                    data-field="passport" 
+                    data-field="passport_number" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
-                    placeholder="MRZ Line 2 / Document ID"
+                    placeholder="Awaiting scan..."
                   />
                   <input type="hidden" id="passport-number" />
                   <input type="hidden" id="ocr-passport-no" />
@@ -537,9 +537,9 @@
                     type="text" 
                     id="full-name" 
                     name="full_name" 
-                    data-field="name" 
+                    data-field="full_name" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
-                    placeholder="Surname + Given Names"
+                    placeholder="Awaiting scan..."
                   />
                   <input type="hidden" id="ocr-full-name" />
                   <button 
@@ -569,9 +569,9 @@
                     type="text" 
                     id="birthday" 
                     name="date_of_birth" 
-                    data-field="dob" 
+                    data-field="date_of_birth" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
-                    placeholder="Date of Birth (DD/MM/YYYY)"
+                    placeholder="Awaiting scan..."
                   />
                   <input type="hidden" id="ocr-birthday" />
                   <button 
@@ -601,9 +601,9 @@
                     type="text" 
                     id="passport-expiry" 
                     name="date_of_expiry" 
-                    data-field="expiry" 
+                    data-field="date_of_expiry" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
-                    placeholder="Date of Expiry (DD/MM/YYYY)"
+                    placeholder="Awaiting scan..."
                   />
                   <input type="hidden" id="ocr-expire-date" />
                   <button 
@@ -633,9 +633,9 @@
                     type="text" 
                     id="issue-date" 
                     name="date_of_issue" 
-                    data-field="issue" 
+                    data-field="date_of_issue" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
-                    placeholder="Date of Issue (DD/MM/YYYY)"
+                    placeholder="Awaiting scan..."
                   />
                   <input type="hidden" id="ocr-issue-date" />
                   <button 
@@ -665,9 +665,9 @@
                     type="text" 
                     id="place-of-birth" 
                     name="place_of_birth" 
-                    data-field="pob" 
+                    data-field="place_of_birth" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
-                    placeholder="Town / City / State / Country of Birth"
+                    placeholder="Awaiting scan..."
                   />
                   <input type="hidden" id="ocr-place-of-birth" />
                   <button 
@@ -697,9 +697,9 @@
                     type="text" 
                     id="place-of-issue" 
                     name="place_of_issue" 
-                    data-field="poi" 
+                    data-field="place_of_issue" 
                     class="w-full bg-slate-950 text-slate-100 font-mono text-sm px-3.5 py-2 rounded-lg border border-slate-700 focus:border-amber-400 focus:outline-none uppercase tracking-wide select-all" 
-                    placeholder="Issuing Authority / City / Country"
+                    placeholder="Awaiting scan..."
                   />
                   <input type="hidden" id="ocr-place-of-issue" />
                   <input type="hidden" id="place" />
@@ -2745,62 +2745,81 @@
         } catch (_) {}
       }
 
-      // Resilient Multi-Selector OCR Field Population
-      function populateSummaryFields(data) {
-        if (!data) return null;
-        console.log('Gemini Parsed Output:', data);
+      // Direct Hardcoded OCR Summary Field Population
+      function populateSummaryFields(ocrData) {
+        if (!ocrData) return null;
 
         const card = document.getElementById('passportSummaryCard') || document.querySelector('.passport-summary-card') || document.getElementById('verified-summary');
         if (card) {
           card.classList.remove('hidden');
         }
 
-        const fieldMap = {
-          passport: data.passport_number || data.passportNo || data.document_id || data.passport || data.document_no || '',
-          name: data.full_name || data.fullName || data.name || '',
-          dob: normalizeDate(data.date_of_birth || data.dateOfBirth || data.dob || data.birthday || ''),
-          expiry: normalizeDate(data.date_of_expiry || data.dateOfExpiry || data.expiry_date || data.passport_expiry || data.expireDate || ''),
-          issue: normalizeDate(data.date_of_issue || data.dateOfIssue || data.issue_date || data.issueDate || ''),
-          pob: data.place_of_birth || data.placeOfBirth || data.birth_place || '',
-          poi: data.place_of_issue || data.placeOfIssue || data.issue_place || data.place || ''
+        const fields = {
+          passport: document.querySelector('#passport-no, [data-field="passport_number"]'),
+          name: document.querySelector('#full-name, [data-field="full_name"]'),
+          dob: document.querySelector('#birthday, [data-field="date_of_birth"]'),
+          expiry: document.querySelector('#passport-expiry, [data-field="date_of_expiry"]'),
+          issue: document.querySelector('#issue-date, [data-field="date_of_issue"]'),
+          pob: document.querySelector('#place-of-birth, [data-field="place_of_birth"]'),
+          poi: document.querySelector('#place-of-issue, [data-field="place_of_issue"]')
         };
 
-        // Auto-detect inputs in order or by specific IDs found in your HTML
-        const inputs = document.querySelectorAll('.passport-summary-card input, #verified-summary input, input[readonly]');
-
-        // Fallback: search by ID patterns using setFieldValue
-        const setVal = (selectors, val) => {
-          if (!val) return;
-          for (const sel of selectors) {
-            const el = document.querySelector(sel);
-            if (el) {
-              setFieldValue(el, val);
-              return;
-            }
-          }
+        const updateBox = (el, val) => {
+          if (!el || !val) return;
+          const clean = String(val).trim().toUpperCase();
+          if ('value' in el) el.value = clean;
+          el.textContent = clean;
+          el.classList.add('populated');
+          try {
+            el.dispatchEvent(new Event('input', { bubbles: true }));
+            el.dispatchEvent(new Event('change', { bubbles: true }));
+          } catch (_) {}
         };
 
-        setVal(['#passport-no', '#passport_number', '#passportNo', 'input[placeholder*="MRZ"]'], fieldMap.passport);
-        setVal(['#full-name', '#full_name', '#fullName', 'input[placeholder*="Surname"]'], fieldMap.name);
-        setVal(['#birthday', '#date_of_birth', '#dob', 'input[placeholder*="Birth"]'], fieldMap.dob);
-        setVal(['#passport-expiry', '#passport_expire', '#expiry_date', 'input[placeholder*="Expiry"]'], fieldMap.expiry);
-        setVal(['#issue-date', '#date_of_issue', '#issueDate', 'input[placeholder*="Issue ("]'], fieldMap.issue);
-        setVal(['#place-of-birth', '#place_of_birth', '#pob', 'input[placeholder*="Country of Birth"]'], fieldMap.pob);
-        setVal(['#place-of-issue', '#place_of_issue', '#poi', 'input[placeholder*="Issuing Authority"]'], fieldMap.poi);
+        const passportVal = ocrData.passport_number || ocrData.passportNo || ocrData.document_id || '';
+        const nameVal = ocrData.full_name || ocrData.fullName || ocrData.name || '';
+        const dobVal = normalizeDate(ocrData.date_of_birth || ocrData.dob || ocrData.birthday || '');
+        const expiryVal = normalizeDate(ocrData.date_of_expiry || ocrData.expiry_date || ocrData.passport_expiry || ocrData.dateOfExpiry || '');
+        const issueVal = normalizeDate(ocrData.date_of_issue || ocrData.issue_date || ocrData.dateOfIssue || '');
+        const pobVal = ocrData.place_of_birth || ocrData.placeOfBirth || ocrData.birth_place || '';
+        const poiVal = ocrData.place_of_issue || ocrData.placeOfIssue || ocrData.issue_place || ocrData.place || '';
+
+        updateBox(fields.passport, passportVal);
+        updateBox(fields.name, nameVal);
+        updateBox(fields.dob, dobVal);
+        updateBox(fields.expiry, expiryVal);
+        updateBox(fields.issue, issueVal);
+        updateBox(fields.pob, pobVal);
+        updateBox(fields.poi, poiVal);
 
         // Also sync hidden and alias inputs
-        setFieldValue('passport-number', fieldMap.passport);
-        setFieldValue('ocr-passport-no', fieldMap.passport);
-        setFieldValue('ocr-full-name', fieldMap.name);
-        setFieldValue('ocr-birthday', fieldMap.dob);
-        setFieldValue('ocr-expire-date', fieldMap.expiry);
-        setFieldValue('ocr-issue-date', fieldMap.issue);
-        setFieldValue('ocr-place-of-birth', fieldMap.pob);
-        setFieldValue('ocr-place-of-issue', fieldMap.poi);
-        setFieldValue('place', fieldMap.poi);
-        setFieldValue('ocr-place', fieldMap.poi);
+        const updateHidden = (id, val) => {
+          const el = document.getElementById(id);
+          if (el && val) {
+            const clean = String(val).trim().toUpperCase();
+            if ('value' in el) el.value = clean;
+          }
+        };
+        updateHidden('passport-number', passportVal);
+        updateHidden('ocr-passport-no', passportVal);
+        updateHidden('ocr-full-name', nameVal);
+        updateHidden('ocr-birthday', dobVal);
+        updateHidden('ocr-expire-date', expiryVal);
+        updateHidden('ocr-issue-date', issueVal);
+        updateHidden('ocr-place-of-birth', pobVal);
+        updateHidden('ocr-place-of-issue', poiVal);
+        updateHidden('place', poiVal);
+        updateHidden('ocr-place', poiVal);
 
-        return fieldMap;
+        return {
+          passport: passportVal,
+          name: nameVal,
+          dob: dobVal,
+          expiry: expiryVal,
+          issue: issueVal,
+          pob: pobVal,
+          poi: poiVal
+        };
       }
 
       // Render 6-row passport summary card and bind values directly to input fields
@@ -3084,18 +3103,18 @@
           'Read ALL text in this document image and extract these fields.',
           'Return ONLY a single valid JSON object with no markdown, no prose, no code fences.',
           '',
-          'Required JSON schema (return exactly these keys):',
+          'Required JSON shape (return ONLY this shape with empty string "" if not found):',
           '{',
-          '  "passport_number": "MRZ Line 2 doc ID or visual passport number",',
-          '  "full_name": "Full legal name as printed",',
-          '  "date_of_birth": "DD/MM/YYYY",',
-          '  "date_of_expiry": "DD/MM/YYYY",',
-          '  "date_of_issue": "DD/MM/YYYY",',
-          '  "place_of_birth": "Town / City / Country of birth",',
-          '  "place_of_issue": "Place of issue / Issuing authority"',
+          '  "passport_number": "",',
+          '  "full_name": "",',
+          '  "date_of_birth": "",',
+          '  "date_of_expiry": "",',
+          '  "date_of_issue": "",',
+          '  "place_of_birth": "",',
+          '  "place_of_issue": ""',
           '}',
           '',
-          'Rules: output empty string "" for any unreadable field. All values UPPERCASE. Dates in DD/MM/YYYY only. Return ONLY the JSON.'
+          'Rules: output empty string "" for any unreadable field. All values UPPERCASE. Dates in DD/MM/YYYY only. Never return descriptions or explanations. Return ONLY the JSON object.'
         ].join('\n');
 
         const requestBody = JSON.stringify({
@@ -3129,18 +3148,22 @@
 
             if (res.ok) {
               const data = await res.json();
-              const rawResponseText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+              const responseText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
               
-              // Clean Gemini JSON parsing: strip markdown code blocks before calling JSON.parse()
-              let cleanedText = rawResponseText.replace(/```json/g, '').replace(/```/g, '').trim();
-              const firstBrace = cleanedText.indexOf('{');
-              const lastBrace = cleanedText.lastIndexOf('}');
+              console.log('--- GEMINI RAW OUTPUT ---', responseText);
+
+              // Safe and clean Gemini JSON parsing
+              let cleanJson = responseText.replace(/```json/gi, '').replace(/```/g, '').trim();
+              const firstBrace = cleanJson.indexOf('{');
+              const lastBrace = cleanJson.lastIndexOf('}');
               if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
-                cleanedText = cleanedText.substring(firstBrace, lastBrace + 1);
+                cleanJson = cleanJson.substring(firstBrace, lastBrace + 1);
               }
-              const parsed = JSON.parse(cleanedText);
-              parsed._activeModel = model;
-              return parsed;
+              const ocrData = JSON.parse(cleanJson);
+              console.log('--- PARSED OCR OBJECT ---', ocrData);
+
+              ocrData._activeModel = model;
+              return ocrData;
             } else {
               const errText = await res.text();
               console.warn(`[Gemini OCR] Model ${model} returned status ${res.status}:`, errText);
@@ -3216,21 +3239,21 @@
 
           // 1. Query Gemini Vision
           const extractedDoc = await callGeminiVisionOcr(base64Image);
-          const data = extractedDoc;
+          const ocrData = extractedDoc;
 
           setOcrProgress(90, 'Populating verified fields...');
 
-          // Call resilient populateSummaryFields to map inputs across multiple selectors
-          const fieldMap = populateSummaryFields(data);
+          // Call direct hardcoded populateSummaryFields to map inputs directly
+          const fieldMap = populateSummaryFields(ocrData);
 
-          const docNo = String(fieldMap?.passport || data.passport_number || data.passportNo || data.document_id || data.document_no || '').trim().toUpperCase();
-          const fullName = String(fieldMap?.name || data.full_name || data.fullName || data.name || '').trim().toUpperCase();
-          const birthday = String(fieldMap?.dob || normalizeDate(data.date_of_birth || data.dateOfBirth || data.dob || data.birthday || '')).trim().toUpperCase();
-          const expiryDate = String(fieldMap?.expiry || normalizeDate(data.date_of_expiry || data.dateOfExpiry || data.expiry_date || data.expireDate || '')).trim().toUpperCase();
-          const issueDate = String(fieldMap?.issue || normalizeDate(data.date_of_issue || data.dateOfIssue || data.issue_date || data.issueDate || '')).trim().toUpperCase();
-          const placeOfBirth = String(fieldMap?.pob || data.place_of_birth || data.placeOfBirth || '').trim().toUpperCase();
-          const placeOfIssue = String(fieldMap?.poi || data.place_of_issue || data.placeOfIssue || data.place || '').trim().toUpperCase();
-          const docType = String(data.document_type || 'PASSPORT').trim().toUpperCase();
+          const docNo = String(fieldMap?.passport || ocrData.passport_number || ocrData.passportNo || ocrData.document_id || '').trim().toUpperCase();
+          const fullName = String(fieldMap?.name || ocrData.full_name || ocrData.fullName || ocrData.name || '').trim().toUpperCase();
+          const birthday = String(fieldMap?.dob || normalizeDate(ocrData.date_of_birth || ocrData.dob || ocrData.birthday || '')).trim().toUpperCase();
+          const expiryDate = String(fieldMap?.expiry || normalizeDate(ocrData.date_of_expiry || ocrData.expiry_date || ocrData.passport_expiry || '')).trim().toUpperCase();
+          const issueDate = String(fieldMap?.issue || normalizeDate(ocrData.date_of_issue || ocrData.issue_date || '')).trim().toUpperCase();
+          const placeOfBirth = String(fieldMap?.pob || ocrData.place_of_birth || ocrData.placeOfBirth || ocrData.birth_place || '').trim().toUpperCase();
+          const placeOfIssue = String(fieldMap?.poi || ocrData.place_of_issue || ocrData.placeOfIssue || ocrData.issue_place || '').trim().toUpperCase();
+          const docType = String(ocrData.document_type || 'PASSPORT').trim().toUpperCase();
 
           const passportData = {
             hasMrz: docType.includes('PASSPORT'),
