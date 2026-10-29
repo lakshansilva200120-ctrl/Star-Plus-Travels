@@ -2715,18 +2715,23 @@
           return;
         }
 
+        const data = passportData;
+        console.log('Extracted OCR Data:', data);
+
         const setVal = (id, val) => {
           const el = document.getElementById(id);
-          if (el) el.value = (val || '').toUpperCase();
+          if (el) {
+            el.value = (val != null ? String(val) : '').trim().toUpperCase();
+          }
         };
 
-        const ppNo = (passportData.passportNo || '').toUpperCase();
-        const fName = (passportData.fullName || '').toUpperCase();
-        const bDay = (passportData.birthday || '').toUpperCase();
-        const pExp = (passportData.expireDate || '').toUpperCase();
-        const iDate = (passportData.issueDate || '').toUpperCase();
-        const pBirth = (passportData.placeOfBirth || passportData.place || '').toUpperCase();
-        const pIssue = (passportData.placeOfIssue || passportData.place || '').toUpperCase();
+        const ppNo = String(data.passport_number || data.passportNo || data.document_id || data.document_no || '').trim().toUpperCase();
+        const fName = String(data.full_name || data.fullName || data.name || '').trim().toUpperCase();
+        const bDay = normalizeDate(data.date_of_birth || data.dateOfBirth || data.dob || data.birthday || '').trim().toUpperCase();
+        const pExp = normalizeDate(data.date_of_expiry || data.dateOfExpiry || data.expiry_date || data.expireDate || '').trim().toUpperCase();
+        const iDate = normalizeDate(data.date_of_issue || data.dateOfIssue || data.issue_date || data.issueDate || '').trim().toUpperCase();
+        const pBirth = String(data.place_of_birth || data.placeOfBirth || '').trim().toUpperCase();
+        const pIssue = String(data.place_of_issue || data.placeOfIssue || data.place || '').trim().toUpperCase();
 
         setVal('passport-no', ppNo);
         setVal('passport-number', ppNo);
@@ -3022,14 +3027,13 @@
           '',
           'Required JSON schema (return exactly these keys):',
           '{',
-          '  "passport_number": "Document / passport number, e.g. A1234567",',
-          '  "full_name": "Surname followed by given name(s)",',
-          '  "date_of_birth": "Date of birth in DD/MM/YYYY",',
-          '  "date_of_expiry": "Date of expiry in DD/MM/YYYY",',
-          '  "date_of_issue": "Date of issue in DD/MM/YYYY",',
-          '  "place_of_birth": "Town, city, state or country of birth",',
-          '  "place_of_issue": "Issuing authority, city or country",',
-          '  "document_type": "PASSPORT or IDENTITY CARD or RESIDENCE PERMIT or VISA"',
+          '  "passport_number": "MRZ Line 2 doc ID or visual passport number",',
+          '  "full_name": "Full legal name as printed",',
+          '  "date_of_birth": "DD/MM/YYYY",',
+          '  "date_of_expiry": "DD/MM/YYYY",',
+          '  "date_of_issue": "DD/MM/YYYY",',
+          '  "place_of_birth": "Town / City / Country of birth",',
+          '  "place_of_issue": "Place of issue / Issuing authority"',
           '}',
           '',
           'Rules: output empty string "" for any unreadable field. All values UPPERCASE. Dates in DD/MM/YYYY only. Return ONLY the JSON.'
@@ -3153,25 +3157,31 @@
 
           // 1. Query Gemini Vision
           const extractedDoc = await callGeminiVisionOcr(base64Image);
-          console.log('[Admin Gemini Vision OCR]', extractedDoc);
+          const data = extractedDoc;
 
           setOcrProgress(90, 'Populating verified fields...');
+
+          // Inspect exact extracted payload in browser console
+          console.log('Extracted OCR Data:', data);
 
           // 2. Robust Field Assignment:
           // Helper function that checks if element exists before writing .value
           const setVal = (id, val) => {
             const el = document.getElementById(id);
-            if (el) el.value = (val || '').toUpperCase();
+            if (el) {
+              el.value = (val != null ? String(val) : '').trim().toUpperCase();
+            }
           };
 
-          const docNo      = (extractedDoc.passport_number || extractedDoc.document_no || '').trim().toUpperCase();
-          const fullName   = (extractedDoc.full_name || '').trim().toUpperCase();
-          const birthday   = normalizeDate(extractedDoc.date_of_birth  || extractedDoc.birthday   || '').toUpperCase();
-          const expiryDate = normalizeDate(extractedDoc.date_of_expiry  || extractedDoc.expiry_date || '').toUpperCase();
-          const issueDate  = normalizeDate(extractedDoc.date_of_issue   || extractedDoc.issue_date  || '').toUpperCase();
-          const placeOfBirth  = (extractedDoc.place_of_birth  || extractedDoc.place || '').trim().toUpperCase();
-          const placeOfIssue  = (extractedDoc.place_of_issue  || extractedDoc.place || '').trim().toUpperCase();
-          const docType    = (extractedDoc.document_type || 'Identity Document').trim().toUpperCase();
+          // Support both snake_case and camelCase keys from parsed JSON with multiple fallbacks
+          const docNo = String(data.passport_number || data.passportNo || data.document_id || data.document_no || '').trim().toUpperCase();
+          const fullName = String(data.full_name || data.fullName || data.name || '').trim().toUpperCase();
+          const birthday = normalizeDate(data.date_of_birth || data.dateOfBirth || data.dob || data.birthday || '').trim().toUpperCase();
+          const expiryDate = normalizeDate(data.date_of_expiry || data.dateOfExpiry || data.expiry_date || data.expireDate || '').trim().toUpperCase();
+          const issueDate = normalizeDate(data.date_of_issue || data.dateOfIssue || data.issue_date || data.issueDate || '').trim().toUpperCase();
+          const placeOfBirth = String(data.place_of_birth || data.placeOfBirth || '').trim().toUpperCase();
+          const placeOfIssue = String(data.place_of_issue || data.placeOfIssue || data.place || '').trim().toUpperCase();
+          const docType = String(data.document_type || 'PASSPORT').trim().toUpperCase();
 
           // Map extracted values safely to summary section IDs
           setVal('passport-no', docNo);
