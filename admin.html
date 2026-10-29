@@ -101,6 +101,11 @@
     .hover\:rotate-\[-45deg\]:hover {
       transform: rotate(-45deg);
     }
+    .populated {
+      color: #f8fafc !important;
+      background-color: rgba(2, 6, 23, 0.95) !important;
+      border-color: rgba(245, 158, 11, 0.5) !important;
+    }
   </style>
 
   <!-- Immediate Theme Initialization Script -->
@@ -2718,6 +2723,28 @@
         return null;
       }
 
+      // Unified Field Setter: handles both form controls (<input>, <textarea>) and containers (<div>, <span>, <p>)
+      function setFieldValue(elementOrId, text) {
+        const el = typeof elementOrId === 'string' 
+          ? (document.getElementById(elementOrId) || document.querySelector(elementOrId)) 
+          : elementOrId;
+        if (!el) return;
+        const cleanVal = (text || '').toString().trim().toUpperCase();
+        if (!cleanVal) return;
+
+        if ('value' in el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA')) {
+          el.value = cleanVal;
+        } else {
+          el.textContent = cleanVal;
+        }
+        el.classList.add('populated');
+
+        try {
+          el.dispatchEvent(new Event('input', { bubbles: true }));
+          el.dispatchEvent(new Event('change', { bubbles: true }));
+        } catch (_) {}
+      }
+
       // Resilient Multi-Selector OCR Field Population
       function populateSummaryFields(data) {
         if (!data) return null;
@@ -2741,14 +2768,13 @@
         // Auto-detect inputs in order or by specific IDs found in your HTML
         const inputs = document.querySelectorAll('.passport-summary-card input, #verified-summary input, input[readonly]');
 
-        // Fallback: search by ID patterns
+        // Fallback: search by ID patterns using setFieldValue
         const setVal = (selectors, val) => {
           if (!val) return;
           for (const sel of selectors) {
             const el = document.querySelector(sel);
             if (el) {
-              el.value = String(val).trim().toUpperCase();
-              el.dispatchEvent(new Event('input', { bubbles: true }));
+              setFieldValue(el, val);
               return;
             }
           }
@@ -2763,23 +2789,16 @@
         setVal(['#place-of-issue', '#place_of_issue', '#poi', 'input[placeholder*="Issuing Authority"]'], fieldMap.poi);
 
         // Also sync hidden and alias inputs
-        const syncHidden = (id, v) => {
-          const el = document.getElementById(id);
-          if (el && v) {
-            el.value = String(v).trim().toUpperCase();
-            el.dispatchEvent(new Event('input', { bubbles: true }));
-          }
-        };
-        syncHidden('passport-number', fieldMap.passport);
-        syncHidden('ocr-passport-no', fieldMap.passport);
-        syncHidden('ocr-full-name', fieldMap.name);
-        syncHidden('ocr-birthday', fieldMap.dob);
-        syncHidden('ocr-expire-date', fieldMap.expiry);
-        syncHidden('ocr-issue-date', fieldMap.issue);
-        syncHidden('ocr-place-of-birth', fieldMap.pob);
-        syncHidden('ocr-place-of-issue', fieldMap.poi);
-        syncHidden('place', fieldMap.poi);
-        syncHidden('ocr-place', fieldMap.poi);
+        setFieldValue('passport-number', fieldMap.passport);
+        setFieldValue('ocr-passport-no', fieldMap.passport);
+        setFieldValue('ocr-full-name', fieldMap.name);
+        setFieldValue('ocr-birthday', fieldMap.dob);
+        setFieldValue('ocr-expire-date', fieldMap.expiry);
+        setFieldValue('ocr-issue-date', fieldMap.issue);
+        setFieldValue('ocr-place-of-birth', fieldMap.pob);
+        setFieldValue('ocr-place-of-issue', fieldMap.poi);
+        setFieldValue('place', fieldMap.poi);
+        setFieldValue('ocr-place', fieldMap.poi);
 
         return fieldMap;
       }
